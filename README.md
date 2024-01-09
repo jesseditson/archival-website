@@ -1,4 +1,5 @@
 # archival-website
+
 A template repo for making archival websites
 
 ## What do you need to install on your computer to use this repo?
@@ -7,13 +8,13 @@ A template repo for making archival websites
 
 This is the version control system we'll use to edit the website. You'll need it locally - you can see if you already have it by opening a terminal and running `git --version`
 
-- Ruby: https://www.ruby-lang.org/en/
+- rust: https://rustup.rs/
 
-You'll need version `2.5` at least to run archival. You can check your version by running `ruby --version`.
+Archival is a cargo crate, so the easiest way to use it is to install via cargo.
 
-- Bundler: https://bundler.io
+- archival
 
-Once you have `ruby`, you can run `gem install bundler` to get this.
+`cargo install archival`
 
 ## How to build a website with this repo
 
@@ -24,10 +25,6 @@ Once you have `ruby`, you can run `gem install bundler` to get this.
 2. Clone the resulting repo using `git clone <your-repo-url>`
 
 ![Clone button](https://archival-website-assets.s3.us-west-2.amazonaws.com/clone-url.png)
-
-3. Run `bundle install` inside the local repository
-
-4. Run `rake run` inside the local repository
 
 5. Open `dist/index.html` in a browser window
 

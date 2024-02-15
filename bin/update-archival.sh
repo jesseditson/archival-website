@@ -10,11 +10,14 @@ cd $(dirname "$0")
 rm -rf tmp
 mkdir tmp
 
+release_url="https://api.github.com/repos/jesseditson/archival/releases/latest"
+[[ ! -z "$1" ]] && release_url="https://api.github.com/repos/jesseditson/archival/releases/tags/$1"
+
 # download all files in the latest release
 while read -r file; do
 echo $file
     curl -O -L --output-dir tmp $file
-done < <(curl -s https://api.github.com/repos/jesseditson/archival/releases/latest | grep "browser_download_url" | cut -d : -f 2,3 | tr -d \")
+done < <(curl -s $release_url | grep "browser_download_url" | cut -d : -f 2,3 | tr -d \")
 
 # for each tar
 for f in tmp/*.tar.gz; do

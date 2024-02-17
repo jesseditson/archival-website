@@ -1,2 +1,0 @@
-# additional assets dirs. These will be packaged with the app.
-assets = ["style", "img"]

@@ -2,19 +2,29 @@
 
 A template repo for making archival websites
 
-## What do you need to install on your computer to use this repo?
+## Prerequisites
+
+To simply edit and view this website, there are technically no dependencies.
+However, in most practical cases you'll at least need git so that you can clone
+this repo and push it somewhere to be deployed.
 
 - Git: https://git-scm.com
 
-This is the version control system we'll use to edit the website. You'll need it locally - you can see if you already have it by opening a terminal and running `git --version`
+This is the version control system we'll use to edit the website. You'll need it
+locally - it comes preinstalled on Mac OS and most linux distros. You can see if
+you already have it by opening a terminal and running `git --version`.
 
-- rust: https://rustup.rs/
+If you plan on using typescript and/or tailwind css, you'll also need node.js to
+build your site. You can find installers here:
 
-Archival is a cargo crate, so the easiest way to use it is to install via cargo.
+- rust: https://nodejs.org/en/download/
 
-- archival
+You'll need basic familiarity with html to edit and create pages. Archival uses
+the liquid templating language (https://liquidmarkup.org/) to generate dynamic content.
 
-`cargo install archival`
+For more information on how archival works, see the full documentation:
+
+https://docs.archival.dev
 
 ## How to build a website with this repo
 
@@ -26,19 +36,23 @@ Archival is a cargo crate, so the easiest way to use it is to install via cargo.
 
 ![Clone button](https://archival-website-assets.s3.us-west-2.amazonaws.com/clone-url.png)
 
-5. Open `dist/index.html` in a browser window
+3. inside the repo, run `npm i` to install js dependencies (if you're using
+   compiled js or css).
 
-6. Edit the files in this repo, and see your website update in real time
+4. if you're using compiled js/css, run `npm run build`. Otherwise, run
+   `bin/archival run` - either command will print a server location where you can view
+   your website, which will automatically rebuild whenever you change a file.
 
-## How to deploy a website from a copy of this repo using netlify
+## How to deploy this website
 
-1. Set up a new site in netlify
+1. In netlify, cloudflare or any other git-based host, create a new site that
+   deploys from this repository.
 
-2. Connect your site to your copy of this repository
+2. If you're using typescript and/or tailwind, set the build command to
+   `npm run build`. Otherwise, set it to `bin/archival build`.
 
-3. Add `bin/archival build` to the build steps for the repo
-
-4. Configure netlify's DNS to use your domain name
+3. Add `bin/archival build` to the build steps for the repo and `dist` as the
+   folder to deploy.
 
 # More questions?
 

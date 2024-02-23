@@ -1,2 +1,1 @@
 archival_version = "0.7.4"
-prebuild = ["npm ci", "npm run build"]

@@ -1,6 +1,6 @@
 {
   "name": "archival-website",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "devDependencies": {
     "@chialab/esbuild-plugin-meta-url": "^0.17.5",
     "esbuild": "^0.17.18",
@@ -10,10 +10,10 @@
   "scripts": {
     "build": "npm run build:site; npm run build:js; npm run build:css",
     "dev": "npm-run-all -l --parallel \"watch:*\"",
-    "watch:site": "archival run",
+    "watch:site": "bin/archival run",
     "watch:js": "./build-js.mjs --dev",
     "watch:css": "npm run tailwind -- --watch",
-    "build:site": "archival build",
+    "build:site": "bin/archival build",
     "build:js": "./build-js.mjs",
     "build:css": "npm run tailwind -- --minify",
     "tailwind": "npx tailwindcss -i ./style/main.css -o ./dist/style.css",

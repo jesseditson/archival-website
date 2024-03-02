@@ -1,0 +1,11 @@
+name: Archival
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Archival Build
+        uses: jesseditson/archival@v0.4.7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

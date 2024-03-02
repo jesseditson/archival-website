@@ -1,8 +1,1 @@
 # This file is used to define the objects available on your site.
-
-[site]
-name = "string"
-
-[section]
-name = "string"
-body = "markdown"

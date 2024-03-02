@@ -1,13 +1,6 @@
-## Environment normalization:
-/.bundle/
-
 # Archival
 dist
 bin/tmp
 
 # MacOS
 .DS_Store
-
-# npm/node
-node_modules
-npm-debug.log*

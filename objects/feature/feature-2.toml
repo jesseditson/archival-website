@@ -1,0 +1,7 @@
+order = 2
+group = "Some Features"
+brief = "Getting started"
+title = "Another feature"
+description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula."
+button_title = "Action"
+button_link = "#"

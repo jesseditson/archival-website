@@ -1,0 +1,9 @@
+order = 2
+name = "You have options"
+body = """
+## Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+*Aliquam at ipsum eu nunc commodo posuere et sit amet ligula.*
+"""
+
+image_url = "/img/option.png"

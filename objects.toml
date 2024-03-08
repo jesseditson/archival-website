@@ -1,5 +1,37 @@
 # This file is used to define the objects available on your site.
 
-[section]
+[site]
 name = "string"
+highlights_title = "string"
+
+[nav]
+title = "string"
+url = "string"
+primary = "boolean"
+
+[cta]
+name = "string"
+brief = "string"
+message = "string"
+subtitle = "string"
+button_title = "string"
+button_link = "string"
+
+[highlight]
+name = "string"
+image_url = "string"
 body = "markdown"
+
+[feature]
+group = "string"
+brief = "string"
+title = "string"
+description = "string"
+button_title = "string"
+button_link = "string"
+
+[footer_group]
+name = "string"
+[footer_group.link]
+title = "string"
+url = "string"

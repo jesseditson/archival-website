@@ -1,0 +1,12 @@
+order = 2
+name = "social"
+
+[[link]]
+title = "Facebook"
+link = "#"
+[[link]]
+title = "Mastodon"
+link = "#"
+[[link]]
+title = "Linkedin"
+link = "#"

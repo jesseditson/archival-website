@@ -1,0 +1,6 @@
+name = "top"
+brief = "what kind of business are you building?"
+message = "Your audience is special"
+subtitle = "This website is your first chance to impress them."
+button_title = "Sign Up Now"
+button_link = "#"

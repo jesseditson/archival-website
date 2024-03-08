@@ -1,0 +1,9 @@
+order = 1
+name = "legal"
+
+[[link]]
+title = "Terms"
+link = "#"
+[[link]]
+title = "Privacy"
+link = "#"

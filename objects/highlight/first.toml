@@ -1,0 +1,9 @@
+order = 1
+name = "This is some important stuff"
+body = """
+## Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+*Aliquam at ipsum eu nunc commodo posuere et sit amet ligula.*
+"""
+
+image_url = "/img/writer.png"

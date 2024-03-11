@@ -8,5 +8,6 @@ bin/tmp
 # MacOS
 .DS_Store
 
-# npm
+# npm/node
 node_modules
+npm-debug.log*

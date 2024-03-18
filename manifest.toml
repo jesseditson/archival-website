@@ -1,1 +1,2 @@
 archival_version = "0.4.7"
+prebuild = ["npm run build"]

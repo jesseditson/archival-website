@@ -20,6 +20,7 @@ button_link = "string"
 [highlight]
 name = "string"
 image_url = "string"
+image = "image"
 body = "markdown"
 
 [feature]

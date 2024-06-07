@@ -1,2 +1,1 @@
-site_url = "https://cdn.archival.dev/templates/landing-page"
 prebuild = ["npm ci", "npm run build"]

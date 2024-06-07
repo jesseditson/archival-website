@@ -1,4 +1,4 @@
-window.addEventListener("load", () => {});
+window.addEventListener("load", async () => {});
 
 if (DEV) {
   console.log("Dev Mode enabled");

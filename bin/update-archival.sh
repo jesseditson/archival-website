@@ -10,14 +10,25 @@ cd $(dirname "$0")
 rm -rf tmp
 mkdir tmp
 
-release_url="https://api.github.com/repos/jesseditson/archival/releases/latest"
-[[ ! -z "$1" ]] && release_url="https://api.github.com/repos/jesseditson/archival/releases/tags/$1"
+if ! command -v gh &> /dev/null; then
+    echo "downloading with curl..."
+    release_url="https://api.github.com/repos/jesseditson/archival/releases/latest"
+    [[ ! -z "$1" ]] && release_url="https://api.github.com/repos/jesseditson/archival/releases/tags/$1"
 
-# download all files in the latest release
-while read -r file; do
-echo $file
-    curl -O -L --output-dir tmp $file
-done < <(curl -s $release_url | grep "browser_download_url" | cut -d : -f 2,3 | tr -d \")
+    # download all files in the latest release
+    while read -r file; do
+    echo $file
+        curl -O -L --output-dir tmp $file
+    done < <(curl -s $release_url | grep "browser_download_url" | cut -d : -f 2,3 | tr -d \")  
+else
+    echo "downloading with gh..."
+    gh release download $1 --pattern "*.tar.gz" -D tmp --repo jesseditson/archival
+fi
+
+if [ -z "$(ls -A tmp)" ]; then
+    echo "Download failed. Try again later or install gh and sign in."
+    exit 1;
+fi
 
 # for each tar
 for f in tmp/*.tar.gz; do

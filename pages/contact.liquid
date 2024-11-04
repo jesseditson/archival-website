@@ -1,0 +1,8 @@
+{% assign title = objects.site.name | append: " | Contact" %}
+{% layout 'theme' title: title
+  , active_page: "contact" %}
+
+<!-- Contact Section -->
+<div class="contact-section">
+  {{ objects.contact.content }}
+</div>

@@ -1,0 +1,127 @@
+/* Global */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.masthead {
+    font-size: 4rem;
+    text-align: center;
+    margin: 3rem 0;
+}
+
+.container {
+    max-width: 1200px;
+    padding: 20px;
+}
+
+/* Navigation styles */
+.navigation {
+    margin: 0 0 3rem;
+    text-align: center;
+}
+
+.navigation ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.navigation ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.navigation ul li a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #333;
+    font-size: 18px;
+    transition: color 0.3s;
+    padding: 0.75rem 1rem;
+    border-radius: 1rem;
+}
+
+.navigation ul li a.active {
+    background-color: #333;
+    color: #fff;
+}
+
+
+/* Masonry layout */
+
+.photo-gallery {
+    column-count: 3; /* We can change this to whatever we want */
+    column-gap: 10px; /* Gap between columns */
+}
+
+.photo-item {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 10px; /* Spacing between items */
+}
+
+.photo-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+/* Hover with "optimized" shadow effect */
+.photo-item:hover img {
+    transform: scale(1.02);
+    cursor: pointer;
+    box-shadow:
+      0 1px 1px hsl(0deg 0% 0% / 0.075),
+      0 2px 2px hsl(0deg 0% 0% / 0.075),
+      0 4px 4px hsl(0deg 0% 0% / 0.075),
+      0 8px 8px hsl(0deg 0% 0% / 0.075),
+      0 16px 16px hsl(0deg 0% 0% / 0.075)
+    ;
+}
+
+
+/* Lightbox */
+
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox-content {
+    width: 80%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-content img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+}

@@ -1,0 +1,8 @@
+{% assign title = objects.site.name | append: " | About" %}
+{% layout 'theme' title: title
+  , active_page: "about" %}
+
+<!-- About Section -->
+<div class="about-section">
+  {{ objects.about.content }}
+</div>

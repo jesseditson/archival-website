@@ -1,12 +1,23 @@
-{% layout 'theme' title: objects.site.name %}
+{% layout 'theme' title: objects.site.name
+  , active_page: "photos" %}
 
-<h1>
-  {{ objects.site.name }}
-</h1>
-
-<div class="content">
-  {% for section in objects.section %}
-    <h2>{{ section.name }}</h2>
-    <div>{{ section.body }}</div>
+<!-- Photo gallery -->
+<div class="photo-gallery">
+  {% for photo in objects.photos %}
+    <div class="photo-item" onclick="openLightbox('{{photo.file.url}}')">
+      <img src="{{photo.file.url}}" alt="{{photo.title}}">
+    </div>
   {% endfor %}
+</div>
+<!-- Lightbox -->
+<div
+  id="lightbox"
+  class="lightbox"
+  onclick="closeLightbox()">
+  <div class="lightbox-content">
+    <img
+      id="lightbox-img"
+      src=""
+      alt="Fullscreen Image">
+  </div>
 </div>

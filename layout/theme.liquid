@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>{{ title }}</title>
     <meta name="description" content="{% default description "" %}">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta property="og:title" content="{{ title }}">
     <meta property="og:type" content="website">
@@ -17,14 +17,27 @@
     <link rel="apple-touch-icon" href="/icon.png">
       <!-- Place favicon.ico in the root directory -->
 
-    <link rel="stylesheet" href="/style.css">
-    <script src="/script.js" type="application/javascript"></script>
+    <link rel="stylesheet" href="/styles.css">
 
     <meta name="theme-color" content="#fafafa">
   </head>
 
   <body>
-    {{ page_content }}
+    <div class="container">
+      <h1 class="masthead">{{ objects.site.name }}</h1>
+
+      <!-- Navigation -->
+      <nav class="navigation">
+        <ul>
+          <li><a class="{% if active_page == "photos" %}active{% endif %}" href="/index.html">Photos</a></li>
+          <li><a class="{% if active_page == "about" %}active{% endif %}" href="/about.html">About</a></li>
+          <li><a class="{% if active_page == "contact" %}active{% endif %}" href="/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      {{ page_content }}
+    </div>
+    <script src="/script.js" type="application/javascript"></script>
   </body>
 
 </html>

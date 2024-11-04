@@ -11,4 +11,4 @@ content = "markdown"
 
 [photos]
 title = "string"
-photo = "image"
+file = "image"

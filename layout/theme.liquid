@@ -4,19 +4,21 @@
   <head>
     <meta charset="utf-8">
     <title>{{ title }}</title>
-    <meta name="description" content="">
+    <meta name="description" content="{% default description "" %}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta property="og:title" content="{{ title }}">
     <meta property="og:type" content="website">
+    <meta property="og:description" content="{% default description "" %}">
     <!-- <meta property="og:url" content=""> -->
     <!-- <meta property="og:image" content=""> -->
 
-    <link rel="manifest" href="/site.webmanifest">
+    {% comment %} <link rel="manifest" href="/site.webmanifest"> {% endcomment %}
     <link rel="apple-touch-icon" href="/icon.png">
       <!-- Place favicon.ico in the root directory -->
 
     <link rel="stylesheet" href="/style.css">
+    <script src="/script.js" type="application/javascript"></script>
 
     <meta name="theme-color" content="#fafafa">
   </head>

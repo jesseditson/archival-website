@@ -4,8 +4,8 @@
 <!-- Photo gallery -->
 <div class="photo-gallery">
   {% for photo in objects.photos %}
-    <div class="photo-item" onclick="openLightbox('{{photo.file.url}}')">
-      <img src="{{photo.file.url}}" alt="{{photo.title}}">
+    <div class="photo-item">
+      <img src="{% default photo.file.url "#" %}" alt="{{photo.title}}">
     </div>
   {% endfor %}
 </div>
@@ -15,9 +15,6 @@
   class="lightbox"
   onclick="closeLightbox()">
   <div class="lightbox-content">
-    <img
-      id="lightbox-img"
-      src=""
-      alt="Fullscreen Image">
+    <img id="lightbox-img" src="">
   </div>
 </div>

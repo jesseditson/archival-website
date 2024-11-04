@@ -1,0 +1,8 @@
+order = 0
+title = "4"
+
+[file]
+filename = "04.jpg"
+sha = "0b91615a80ef52621f59d4dd323a7cfe42e288dfe40baa0ee3f22b9f4b25cb5a"
+mime = "image/jpeg"
+display_type = "image"

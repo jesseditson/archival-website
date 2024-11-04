@@ -3,6 +3,12 @@
 [site]
 name = "string"
 
-[section]
-name = "string"
-body = "markdown"
+[about]
+content = "markdown"
+
+[contact]
+content = "markdown"
+
+[photos]
+title = "string"
+photo = "image"

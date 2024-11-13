@@ -1,4 +1,7 @@
 {% layout 'theme' title: objects.site.name %}
+{% assign base_map_url = "https://www.google.com/maps/embed/v1/place?key=AIzaSyBdU_Na_rXyj8E1cfyr9wxJjlK_VTwAK2s&q=" %}
+{% assign map_address = objects.location.address | replace: " ", "%20" %}
+{% assign map_embed_url = base_map_url | append: map_address %}
 
 <div class="content">
   <header class="header">
@@ -28,8 +31,8 @@
         <h2>Location</h2>
         <p>{{ objects.location.address }}</p>
         <div class="map">
-          <iframe src="{{ objects.location.map_embed_url }}" width="600" height="450" style="border:0;"
-            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <iframe src="{{ map_embed_url }}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
     </section>

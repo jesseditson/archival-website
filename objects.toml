@@ -3,6 +3,7 @@
 [site]
 name = "string"
 tagline = "string"
+logo_image = "image"
 
 [hours]
 monday_friday = "string"

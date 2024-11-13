@@ -1,12 +1,62 @@
 {% layout 'theme' title: objects.site.name %}
 
-<h1>
-  {{ objects.site.name }}
-</h1>
-
 <div class="content">
-  {% for section in objects.section %}
-    <h2>{{ section.name }}</h2>
-    <div>{{ section.body }}</div>
-  {% endfor %}
+  <header class="header">
+    <div class="container">
+      <div class="logo-container">
+        <img src="images/logo.png" alt="{{ objects.site.name }} Logo" class="logo">
+      </div>
+      <h1 class="business-name">{{ objects.site.name }}</h1>
+      <p class="tagline">{{ objects.site.tagline }}</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="hours">
+      <div class="container">
+        <h2>Hours</h2>
+        <ul>
+          <li>Monday - Friday: {{ objects.hours.monday_friday }}</li>
+          <li>Saturday: {{ objects.hours.saturday }}</li>
+          <li>Sunday: {{ objects.hours.sunday }}</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="location">
+      <div class="container">
+        <h2>Location</h2>
+        <p>{{ objects.location.address }}</p>
+        <div class="map">
+          <iframe src="{{ objects.location.map_embed_url }}" width="600" height="450" style="border:0;"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-info">
+      <div class="container">
+        <h2>Contact Us</h2>
+        <p>Phone: {{ objects.contact.phone }}</p>
+        <p>Email: <a href="mailto:{{ objects.contact.email }}">{{ objects.contact.email }}</a></p>
+      </div>
+    </section>
+
+    <section class="about">
+      <div class="container">
+        <h2>About Us</h2>
+        <p>{{ objects.about.description }}</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="summary">{{ objects.site.name }} | {{ objects.contact.phone }} | {{ objects.location.address }}
+      </p>
+      <p class="hours-summary">Hours: Mon-Fri {{ objects.hours.monday_friday }} | Sat {{ objects.hours.saturday }} |
+        Closed Sun</p>
+      <p class="copyright">&copy; 2024 {{ objects.site.name }}</p>
+    </div>
+  </footer>
 </div>

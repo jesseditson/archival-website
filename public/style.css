@@ -1,0 +1,184 @@
+/* Variables */
+:root {
+  --font-family: system-ui, sans-serif;
+  --primary-color: #333;
+  --secondary-color: #555;
+  --accent-color: #007bff;
+  --background-color: #f8f8f8;
+  --footer-background-color: #333;
+  --footer-text-color: #fff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--primary-color);
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--primary-color);
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+h1 {
+  font-size: 4rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  margin-bottom: 2rem;
+}
+
+a {
+  text-decoration: none;
+  color: var(--accent-color);
+}
+
+.container {
+  width: 90%;
+  max-width: 1000px;
+  margin: auto;
+  padding: 2rem 0;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.logo-container {
+  max-width: 32rem;
+  margin: 0 auto 2rem;
+}
+
+.logo {
+  width: 100%;
+  height: auto;
+}
+
+.tagline {
+  font-size: 1.2rem;
+  color: var(--secondary-color);
+}
+
+/* Hours Section */
+.hours {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.hours h2 {
+  font-size: 1.8rem;
+  color: var(--primary-color);
+}
+
+.hours ul {
+  list-style: none;
+  color: var(--secondary-color);
+}
+
+.hours ul li {
+  font-size: 1.2rem;
+  padding: 0.5rem 0;
+}
+
+/* Location */
+.location {
+  text-align: center;
+  padding: 2rem 0;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* Contact Info and Map */
+.contact-info {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.contact-info h2 {
+  font-size: 1.8rem;
+  color: var(--primary-color);
+}
+
+.contact-info p {
+  font-size: 1.2rem;
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+}
+
+.contact-info p:last-child {
+  margin-bottom: 0;
+}
+
+.map iframe {
+  width: 100%;
+  height: 300px;
+  border: none;
+  margin-top: 1rem;
+}
+
+/* About Section */
+.about {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.about h2 {
+  font-size: 1.8rem;
+  color: var(--primary-color);
+}
+
+.about p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--secondary-color);
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.about p:last-child {
+  margin-bottom: 0;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--footer-background-color);
+  color: var(--footer-text-color);
+  padding: 1.5rem 0;
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.footer .summary,
+.footer .hours-summary {
+  font-size: 1rem;
+  color: var(--footer-text-color);
+  margin: 0.5rem 0;
+}

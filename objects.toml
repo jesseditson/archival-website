@@ -2,7 +2,20 @@
 
 [site]
 name = "string"
+tagline = "string"
 
-[section]
-name = "string"
-body = "markdown"
+[hours]
+monday_friday = "string"
+saturday = "string"
+sunday = "string"
+
+[location]
+address = "string"
+map_embed_url = "string"
+
+[contact]
+phone = "string"
+email = "string"
+
+[about]
+description = "markdown"

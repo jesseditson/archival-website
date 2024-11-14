@@ -1,6 +1,6 @@
 {% layout 'theme' title: objects.site.name %}
 {% assign base_map_url = "https://www.google.com/maps/embed/v1/place?key=AIzaSyBdU_Na_rXyj8E1cfyr9wxJjlK_VTwAK2s&q=" %}
-{% assign map_address = objects.location.address | replace: " ", "%20" %}
+{% assign map_address = objects.location.address | url_encode %}
 {% assign map_embed_url = base_map_url | append: map_address %}
 
 <div class="content">

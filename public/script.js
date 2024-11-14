@@ -15,16 +15,19 @@ for (const link of links) {
 }
 
 function clickHandler(e) {
-    e.preventDefault();
-    const href = this.getAttribute('href');
+  const href = this.getAttribute('href');
 
-    document.querySelector(href).scrollIntoView({
-        behavior: 'smooth'
-    });
+  // Only prevent default if href starts with '#', indicating an anchor link
+  if (href.startsWith('#')) {
+      e.preventDefault();
+      document.querySelector(href).scrollIntoView({
+          behavior: 'smooth'
+      });
 
-    // Close mobile menu after clicking
-    if (navLinks.classList.contains('nav-active')) {
-        navLinks.classList.remove('nav-active');
-        hamburger.classList.remove('toggle');
-    }
+      // Close mobile menu after clicking
+      if (navLinks.classList.contains('nav-active')) {
+          navLinks.classList.remove('nav-active');
+          hamburger.classList.remove('toggle');
+      }
+  }
 }

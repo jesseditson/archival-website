@@ -1,1 +1,16 @@
-# This file is used to define the objects available on your site.
+[personal]
+name = "string"
+title = "string"
+tagline = "string"
+
+[experience]
+description = "markdown"
+
+[work]
+description = "markdown"
+
+[contact]
+email = "string"
+
+[resume]
+file = "upload"

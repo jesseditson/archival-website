@@ -3,13 +3,13 @@
 <!-- Navigation Bar -->
 <nav class="navbar">
   <div class="container">
-    <a href="#" class="logo">Alexander King</a>
+    <a href="#" class="logo">{{ objects.personal.name }}</a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#work">Work</a></li>
       <li><a href="#contact">Contact</a></li>
-      <li><a href="YourName_Resume.pdf" class="resume-button">Resume</a></li>
+      <li><a href="{{ objects.resume.file.url }}" class="resume-button">Resume</a></li>
     </ul>
     <div class="hamburger">
       <span></span>
@@ -23,10 +23,10 @@
 <section id="hero">
   <div class="container">
     <p class="intro">Hi, my name is</p>
-    <h1 class="name">Alexander King</h1>
-    <h2 class="profession">&amp; I create things.</h2>
+    <h1 class="name">{{ objects.personal.name }} &amp;</h1>
+    <h2 class="profession">{{ objects.personal.action_line }}</h2>
     <p class="description">
-      I'm a designer &amp; software engineer specializing in building exceptional interactive products.
+      {{ objects.personal.tagline }}
     </p>
     <a href="#work" class="cta">Check out my work</a>
   </div>
@@ -38,18 +38,7 @@
     <h2 class="section-title">About Me</h2>
     <div class="content">
       <div class="text">
-        <p>
-          I’m a passionate UX designer with over seven years of experience crafting intuitive and engaging digital
-          experiences. My journey began with a fascination for how technology can enrich people’s lives, leading me to
-          pursue a degree in Human-Computer Interaction. I thrive on transforming complex problems into simple,
-          user-friendly interfaces that delight users and meet business goals.
-        </p>
-        <p>
-          My approach is rooted in empathy and a deep understanding of user needs. I believe that the best designs
-          emerge from collaborative processes, where diverse perspectives come together to solve challenging problems.
-          When I’m not sketching wireframes or prototyping interactions, you’ll find me staying up-to-date with the
-          latest design trends, attending workshops, or exploring new tools to enhance my skill set.
-        </p>
+        {{ objects.personal.full_about }}
       </div>
     </div>
   </div>
@@ -61,17 +50,7 @@
     <h2 class="section-title">Where I've Worked</h2>
     <!-- Experience Tabs -->
     <div class="experience">
-      <p>
-        At DesignHub, I led the UX team in revamping the company’s flagship product, resulting in a 30% increase in user
-        engagement. My role involved conducting user research, creating personas, and collaborating closely with
-        cross-functional teams to implement design solutions that balanced user needs with technical feasibility.
-      </p>
-      <p>
-        Previously, I worked at Innovate Studios, where I contributed to a variety of projects ranging from mobile
-        applications to enterprise software. One notable project was designing an e-commerce platform that streamlined
-        the shopping experience, which led to a 20% boost in conversion rates. This experience honed my ability to adapt
-        to different industries and understand unique user requirements.
-      </p>
+      {{ objects.experience.description }}
     </div>
   </div>
 </section>
@@ -82,18 +61,7 @@
     <h2 class="section-title">Some Things I've Built</h2>
     <!-- Projects -->
     <div class="projects">
-      <p>
-        One of my most rewarding projects was developing a mobile app for mental health awareness called MindfulSpace. I
-        was responsible for the end-to-end design process, including user interviews, journey mapping, and interactive
-        prototyping. The app received acclaim for its user-centric design and has helped thousands of users manage
-        stress and anxiety.
-      </p>
-      <p>
-        Another project I’m proud of is EcoTrack, a web platform that encourages sustainable living by tracking personal
-        environmental impact. By incorporating gamification elements and a clean, intuitive interface, we engaged users
-        to make eco-friendly choices. The platform was recognized in the “Best for the World” list by a leading
-        environmental organization.
-      </p>
+      {{ objects.work.description }}
     </div>
   </div>
 </section>
@@ -102,22 +70,14 @@
 <section id="contact">
   <div class="container">
     <h2 class="section-title">Get In Touch</h2>
-    <p>
-      Although I'm not currently looking for any new opportunities, my inbox is always open. Whether you have a question
-      or just want to say hi, I'll try my best to get back to you!
-    </p>
-    <a href="mailto:your.email@example.com" class="email-link">Say Hello</a>
+    {{ objects.contact.description }}
+    <a href="mailto:{{ objects.contact.email }}" class="email-link">Say Hello</a>
   </div>
 </section>
 
 <!-- Footer -->
 <footer>
   <div class="container">
-    <ul class="social-links">
-      <li><a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i></a></li>
-      <li><a href="https://linkedin.com/in/yourusername" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-      <!-- Add more social links as needed -->
-    </ul>
     <p>&copy; 2024 Alex King</p>
   </div>
 </footer>

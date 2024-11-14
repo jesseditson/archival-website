@@ -1,7 +1,9 @@
 [personal]
 name = "string"
 title = "string"
+action_line = "string"
 tagline = "string"
+full_about = "markdown"
 
 [experience]
 description = "markdown"
@@ -10,6 +12,7 @@ description = "markdown"
 description = "markdown"
 
 [contact]
+description = "markdown"
 email = "string"
 
 [resume]

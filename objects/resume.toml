@@ -1,0 +1,7 @@
+order = -1
+
+[file]
+filename = "example-resume.pdf"
+display_type = "upload"
+sha = "3a6db494e5530e977ca231ed0a36132049bdaa9c0b24e9ff96f00d001d9a2aab"
+mime = "application/pdf"

@@ -1,1 +1,8 @@
-name = "Tailwind Template"
+order = -1
+app_name = "PhotoApp Pro"
+
+[app_logo]
+mime = "image/svg+xml"
+filename = "logo.svg"
+sha = "78165253db53aa43f132b08a27ed4219230a321bc2b4e23cb7ecc9af55168605"
+display_type = "image"

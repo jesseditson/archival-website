@@ -1,12 +1,113 @@
-{% layout 'theme' title: objects.site.name %}
+{% layout 'theme' title: objects.site.app_name %}
 
-<h1>
-  {{ objects.site.name }}
-</h1>
+<nav class="nav">
+  <div class="container">
+    <div class="logo">
+      <a href="#">
+        <img src="{{ objects.site.app_logo.url }}" />
+      </a>
+    </div>
+    <div class="nav-items">
+      <a class="nav-item" href="#features">Features</a>
+      <a class="nav-item" href="#support">Support</a>
+    </div>
+  </div>
+</nav>
 
-<div class="content">
-  {% for section in objects.section %}
-    <h2>{{ section.name }}</h2>
-    <div>{{ section.body }}</div>
-  {% endfor %}
-</div>
+<header class="hero">
+  <div class="container">
+    <div class="hero-statement">
+      <span class="supplement">Introducing</span>
+      <h1>{{ objects.site.app_name }}</h1>
+      <div class="download-options">
+        <a href="#">
+          <img class="app-store-download" src="images/app-store-black.svg" />
+        </a>
+        <button class="button">Direct Download</button>
+      </div>
+    </div>
+    <img class="hero-image" src="images/photo-app.png" />
+  </div>
+</header>
+
+<main id="features" class="container">
+
+  <h2>Features</h2>
+
+  <section class="features-grid">
+    <div class="feature">
+      <div class="feature-icon">{{ objects.features.feat_one_emoji }}</div>
+      <div class="feature-text">
+        <h3>{{ objects.features.feat_one_title }}</h3>
+        <p class="feature-description">
+          {{ objects.features.feat_one_desc }}
+        </p>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">{{ objects.features.feat_two_emoji }}</div>
+      <div class="feature-text">
+        <h3>{{ objects.features.feat_two_title }}</h3>
+        <p class="feature-description">
+          {{ objects.features.feat_two_desc }}
+        </p>
+      </div>
+
+    </div>
+    <div class="feature">
+      <div class="feature-icon">{{ objects.features.feat_three_emoji }}</div>
+      <div class="feature-text">
+        <h3>{{ objects.features.feat_three_title }}</h3>
+        <p class="feature-description">
+          {{ objects.features.feat_three_desc }}
+        </p>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">{{ objects.features.feat_four_emoji }}</div>
+      <div class="feature-text">
+        <h3>{{ objects.features.feat_four_title }}</h3>
+        <p class="feature-description">
+          {{ objects.features.feat_four_desc }}
+        </p>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">{{ objects.features.feat_five_emoji }}</div>
+      <div class="feature-text">
+        <h3>{{ objects.features.feat_five_title }}</h3>
+        <p class="feature-description">
+          {{ objects.features.feat_five_desc }}
+        </p>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">{{ objects.features.feat_six_emoji }}</div>
+      <div class="feature-text">
+        <h3>{{ objects.features.feat_six_title }}</h3>
+        <p class="feature-description">
+          {{ objects.features.feat_six_desc }}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="support" class="support">
+    <h2>Need support?</h2>
+    <div class="support-modules">
+      <div class="email-support module"><a href="mailto: {{ objects.support.email }}">Send us an email &rarr;</a></div>
+      <div class="chat-support module"><a href="{{ objects.support.chat_link }}">Live chat support &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="container">
+  <p>&copy; 2024 {{ objects.site.app_name }}</p>
+  <p class="footer-legal">
+    <a href="privacy.html">Privacy</a> |
+    <a href="tos.html">Terms of Service</a> |
+    <a href="eula.html">EULA</a>
+  </p>
+</footer>

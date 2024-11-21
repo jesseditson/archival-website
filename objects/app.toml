@@ -2,7 +2,7 @@ order = -1
 description = "Create and share great photo experiences"
 name = "PhotoApp Pro"
 dl_appstore = "#"
-dl_playstore = "#"
+dl_playstore = ""
 dl_direct = "#"
 
 [logo]

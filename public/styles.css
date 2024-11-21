@@ -108,6 +108,7 @@ header.hero {
 }
 
 .hero .container {
+  margin-top: 3rem;
   padding: 0 2rem;
   display: flex;
 }
@@ -323,6 +324,7 @@ footer.container {
 
   .hero .container {
     flex-wrap: wrap;
+    margin-top: 1rem;
   }
 
   .hero-image {

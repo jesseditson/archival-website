@@ -45,9 +45,17 @@ a {
   text-decoration: none;
 }
 
+.brand {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  color: var(--color-hero-text);
+  font-weight: 600;
+}
+
 .app-logo {
-  width: 187px;
-  height: 36px;
+  width: 3rem;
+  height: 3rem;
 }
 
 .nav {
@@ -109,7 +117,7 @@ header.hero {
 
 .hero .container {
   margin-top: 3rem;
-  padding: 0 2rem;
+  padding: 0 1rem;
   display: flex;
 }
 

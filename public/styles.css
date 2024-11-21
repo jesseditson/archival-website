@@ -45,8 +45,15 @@ a {
   text-decoration: none;
 }
 
+.app-logo {
+  width: 187px;
+  height: 36px;
+}
+
 .nav {
-  padding: 2rem 0;
+  position: fixed;
+  width: 100%;
+  padding: 2rem 1rem;
   background-color: var(--color-hero-background);
 }
 
@@ -59,6 +66,15 @@ a {
 .nav-items {
   display: flex;
   gap: 2rem;
+}
+
+.nav-toggle {
+  display: none;
+  font-size: 2rem;
+  color: var(--color-hero-text);
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 a.nav-item {
@@ -92,6 +108,7 @@ header.hero {
 }
 
 .hero .container {
+  padding: 0 2rem;
   display: flex;
 }
 
@@ -105,12 +122,6 @@ header.hero {
   max-width: 60rem;
   margin: 0 auto;
   padding: 0 1rem;
-}
-
-@media (max-width: 768px) {
-  .container {
-    padding: 0 0.5rem;
-  }
 }
 
 button,
@@ -219,12 +230,6 @@ p {
   color: var(--color-text);
 }
 
-@media (max-width: 768px) {
-  .features-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* Support */
 .support-modules {
   display: grid;
@@ -267,25 +272,6 @@ footer.container {
   margin: 8rem auto;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 600px) {
-  body {
-    font-size: 0.9rem;
-  }
-
-  h1 {
-    font-size: 1.8rem;
-  }
-
-  h2 {
-    font-size: 1.6rem;
-  }
-
-  .button {
-    padding: 0.5rem 1rem;
-  }
-}
-
 /* Legal */
 
 .legal {
@@ -313,7 +299,60 @@ footer.container {
   margin-bottom: 1rem;
 }
 
-@media (max-width: 600px) {
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  body {
+    font-size: 0.9rem;
+  }
+
+  h1 {
+    font-size: 4rem;
+  }
+
+  .button {
+    padding: 0.5rem 1rem;
+  }
+
+  .container {
+    padding: 0 0.5rem;
+  }
+
+  .nav {
+    padding: 2rem 1rem;
+  }
+
+  .hero .container {
+    flex-wrap: wrap;
+  }
+
+  .hero-image {
+    order: -1;
+    margin: 0 auto;
+  }
+
+  .hero-statement {
+    text-align: center;
+    margin: 2rem auto 0;
+  }
+
+  .download-options {
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  header.hero {
+    padding-bottom: 3rem;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .support-modules {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+  }
+
   .legal .container {
     padding: 2rem;
   }

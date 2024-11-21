@@ -4,7 +4,7 @@
   <div class="container">
     <div class="logo">
       <a href="#">
-        <img src="{{ objects.app.logo.url }}" alt="{{ objects.app.name }} logo" />
+        <img class="app-logo" src="{{ objects.app.logo.url }}" alt="{{ objects.app.name }} logo" />
       </a>
     </div>
     <div class="nav-items">
@@ -39,11 +39,11 @@
   </div>
 </header>
 
-<main id="features" class="container">
+<main class="container">
 
   <h2>Features</h2>
 
-  <section class="features-grid">
+  <section id="features" class="features-grid">
     {% for feature in objects.features %}
     <div class="feature">
       <div class="feature-icon">{{ feature.emoji }}</div>

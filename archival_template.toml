@@ -1,0 +1,10 @@
+name = "Landing Page"
+description = """
+This template provides a simple landing page for a product or service, which can be easily customized. It is built with tailwind and includes a typescript build pipeline for javascript.
+"""
+tags = [
+    "typescript",
+    "tailwind",
+    "product"
+]
+tlds = ["com", "app"]

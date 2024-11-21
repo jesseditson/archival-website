@@ -1,10 +1,13 @@
 # This file is used to define the objects available on your site.
 
-[site]
-app_name = "string"
-app_description = "string"
-app_logo = "image"
-app_screenshot = "image"
+[app]
+name = "string"
+description = "string"
+logo = "image"
+screenshot = "image"
+dl_appstore = "string"
+dl_playstore = "string"
+dl_direct = "string"
 
 [features]
 emoji = "string"
@@ -17,7 +20,7 @@ chat_link = "string"
 
 [legal]
 company_name = "string"
-start_date = "string"
 company_email = "string"
 company_address = "string"
 company_jurisdiction = "string"
+start_date = "string"

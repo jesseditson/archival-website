@@ -1,10 +1,10 @@
-{% layout 'theme' title: objects.site.app_name %}
+{% layout 'theme' title: objects.app.name %}
 
 <nav class="nav">
   <div class="container">
     <div class="logo">
       <a href="#">
-        <img src="{{ objects.site.app_logo.url }}" alt="{{ objects.site.app_name }} logo" />
+        <img src="{{ objects.app.logo.url }}" alt="{{ objects.app.name }} logo" />
       </a>
     </div>
     <div class="nav-items">
@@ -18,15 +18,24 @@
   <div class="container">
     <div class="hero-statement">
       <span class="supplement">Introducing</span>
-      <h1>{{ objects.site.app_name }}</h1>
+      <h1>{{ objects.app.name }}</h1>
       <div class="download-options">
+        {% if objects.app.dl_appstore != empty %}
         <a href="#">
           <img class="app-store-download" src="images/app-store-black.svg" />
         </a>
-        <button class="button">Direct Download</button>
+        {% endif %}
+        {% if objects.app.dl_playstore != empty %}
+        <a href="#">
+          <img class="play-store-download" src="images/play-store-black.svg" />
+        </a>
+        {% endif %}
+        {% if objects.app.dl_direct != empty %}
+        <button class="button">Download</button>
+        {% endif %}
       </div>
     </div>
-    <img class="hero-image" src="{{ objects.site.app_screenshot.url }}" />
+    <img class="hero-image" src="{{ objects.app.screenshot.url }}" />
   </div>
 </header>
 
@@ -48,19 +57,24 @@
     {% endfor %}
   </section>
 
+  {% if objects.support.email != "" or objects.support.chat_link != "" %}
   <section id="support" class="support">
     <h2>Need support?</h2>
     <div class="support-modules">
+      {% if objects.support.email != empty %}
       <div class="email-support module"><a href="mailto: {{ objects.support.email }}">Send us an email &rarr;</a></div>
-      <div class="chat-support module"><a href="{{ objects.support.chat_link }}">Live chat support &rarr;</a>
-      </div>
+      {% endif %}
+      {% if objects.support.chat_link != empty %}
+      <div class="chat-support module"><a href="{{ objects.support.chat_link }}">Live chat support &rarr;</a></div>
+      {% endif %}
     </div>
   </section>
+  {% endif %}
 
 </main>
 
 <footer class="container">
-  <p>&copy; 2024 {{ objects.site.app_name }}</p>
+  <p>&copy; 2024 {{ objects.app.name }}</p>
   <p class="footer-legal">
     <a href="privacy.html">Privacy</a> |
     <a href="tos.html">Terms of Service</a> |

@@ -234,6 +234,10 @@ p {
   align-items: start;
 }
 
+.support-modules > *:only-child {
+  grid-column: span 2;
+}
+
 .support-modules .module a {
   border-radius: 1rem;
   display: block;

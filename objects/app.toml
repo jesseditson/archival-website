@@ -1,14 +1,17 @@
 order = -1
-app_name = "PhotoApp Pro"
-app_description = "Create and share great photo experiences"
+name = "PhotoApp Pro"
+description = "Create and share great photo experiences"
+dl_appstore = "#"
+dl_playstore = "#"
+dl_direct = "#"
 
-[app_screenshot]
+[screenshot]
 filename = "photo-app.png"
 mime = "image/png"
 display_type = "image"
 sha = "945b134c0eee9b8727e81855dfc61117f2bfb032c9f2d86b2e23015c0c6e67eb"
 
-[app_logo]
+[logo]
 sha = "78165253db53aa43f132b08a27ed4219230a321bc2b4e23cb7ecc9af55168605"
 filename = "logo.svg"
 mime = "image/svg+xml"

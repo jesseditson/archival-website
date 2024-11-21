@@ -1,0 +1,8 @@
+name = "Tailwind"
+description = """
+This template is a minimal developer template, which includes tailwind and typescript build pipelines.
+"""
+tags = [
+    "typescript",
+    "tailwind"
+]

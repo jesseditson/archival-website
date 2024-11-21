@@ -1,0 +1,84 @@
+{% layout 'theme' title: "EULA" %}
+
+<div class="nav-top container">
+  <a href="index.html">&larr; Back to home</a>
+</div>
+<div class="container">
+  <h1>End User License Agreement (EULA)</h1>
+  <p><strong>Effective Date: </strong>{{ objects.legal.start_date }}</p>
+
+  <h2>1. Agreement to Terms</h2>
+  <p>This End User License Agreement ("Agreement") is a binding agreement between you ("End User" or "you") and {{
+    objects.legal.company_name }} ("Company," "we," or "us"). This Agreement governs your use of the {{
+    objects.site.app_name }},
+    including any related
+    documentation ("App"). By installing or using the App, you agree to be bound by the terms and conditions of this
+    Agreement.</p>
+
+  <h2>2. License Grant</h2>
+  <p>Subject to the terms of this Agreement, the Company grants you a limited, non-exclusive, non-transferable, and
+    revocable license to use the App for personal, non-commercial purposes on a device owned or otherwise controlled by
+    you, strictly in accordance with the App&apos;s documentation.</p>
+
+  <h2>3. Restrictions</h2>
+  <p>You agree not to:</p>
+  <ul>
+    <li>Copy, modify, or create derivative works of the App, in whole or in part.</li>
+    <li>Reverse engineer, decompile, or disassemble the App.</li>
+    <li>Sell, rent, lease, lend, distribute, or sublicense the App.</li>
+    <li>Make the App available over a network or other environment that permits access or use by multiple devices or
+      users at the same time.</li>
+    <li>Use the App for any purpose that is illegal or prohibited by this Agreement.</li>
+  </ul>
+
+  <h2>4. Intellectual Property Rights</h2>
+  <p>The App, including all content, features, and functionality, is owned by the Company and is protected by
+    intellectual property laws. This Agreement does not grant you any rights to trademarks, logos, or other intellectual
+    property used by the Company.</p>
+
+  <h2>5. Updates and Modifications</h2>
+  <p>The Company may, from time to time, develop patches, bug fixes, updates, upgrades, and other modifications to
+    improve the performance of the App ("Updates"). You consent to such Updates being automatically installed without
+    additional notice. This Agreement will govern any Updates provided by the Company that replace or supplement the
+    App, unless a separate license accompanies the Update.</p>
+
+  <h2>6. Termination</h2>
+  <p>The license is effective until terminated by you or the Company. Your rights under this Agreement will terminate
+    automatically without notice if you fail to comply with any of its terms. Upon termination, you must cease all use
+    of the App and delete all copies from your device.</p>
+
+  <h2>7. Disclaimer of Warranties</h2>
+  <p>The App is provided "as is" and "as available," with all faults and defects without warranty of any kind. To the
+    maximum extent permitted under applicable law, the Company disclaims all warranties, express or implied, regarding
+    the App, including but not limited to implied warranties of merchantability, fitness for a particular purpose,
+    title, and non-infringement.</p>
+
+  <h2>8. Limitation of Liability</h2>
+  <p>To the maximum extent permitted by applicable law, in no event shall the Company or its affiliates, directors,
+    employees, or agents be liable for any indirect, incidental, special, consequential, or punitive damages, or for any
+    loss of profits or revenue, arising out of or related to your use or inability to use the App. In no event shall the
+    Company&apos;s total liability to you for all damages exceed the amount you paid, if any, for the App.</p>
+
+  <h2>9. Indemnification</h2>
+  <p>You agree to indemnify, defend, and hold harmless the Company and its affiliates, directors, employees, and agents
+    from any claims, liabilities, damages, losses, or expenses arising from or related to your violation of this
+    Agreement or your use of the App.</p>
+
+  <h2>10. Governing Law</h2>
+  <p>This Agreement is governed by and construed in accordance with the laws of {{ objects.legal.company_jurisdiction
+    }}, without regard to
+    its conflict of law principles. Any disputes arising from this Agreement or the App will be resolved in the courts
+    of {{ objects.legal.company_jurisdiction }}.</p>
+
+  <h2>11. Changes to this Agreement</h2>
+  <p>The Company reserves the right to modify this Agreement at any time. When changes are made, we will update the
+    "Effective Date" at the top of this document. Your continued use of the App following any changes to this Agreement
+    signifies your acceptance of the revised terms.</p>
+
+  <h2>12. Contact Us</h2>
+  <p>If you have any questions about this Agreement, please contact us:</p>
+  <p><strong>Email: </strong><a href="mailto:{{ objects.legal.company_email }}">{{ objects.legal.company_email
+      }}</a><br>
+    <strong>Mailing Address: </strong>{{ objects.legal.company_address }}
+  </p>
+</div>

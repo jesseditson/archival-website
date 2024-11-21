@@ -2,33 +2,22 @@
 
 [site]
 app_name = "string"
+app_description = "string"
 app_logo = "image"
+app_screenshot = "image"
 
 [features]
-feat_one_emoji = "string"
-feat_one_title = "string"
-feat_one_desc = "string"
-
-feat_two_emoji = "string"
-feat_two_title = "string"
-feat_two_desc = "string"
-
-feat_three_emoji = "string"
-feat_three_title = "string"
-feat_three_desc = "string"
-
-feat_four_emoji = "string"
-feat_four_title = "string"
-feat_four_desc = "string"
-
-feat_five_emoji = "string"
-feat_five_title = "string"
-feat_five_desc = "string"
-
-feat_six_emoji = "string"
-feat_six_title = "string"
-feat_six_desc = "string"
+emoji = "string"
+title = "string"
+desc = "string"
 
 [support]
 email = "string"
 chat_link = "string"
+
+[legal]
+company_name = "string"
+start_date = "string"
+company_email = "string"
+company_address = "string"
+company_jurisdiction = "string"

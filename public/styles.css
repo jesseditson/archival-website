@@ -306,6 +306,7 @@ footer.container {
 .legal ul,
 .legal ol {
   padding-left: 2rem;
+  margin-bottom: 1rem;
 }
 
 @media (max-width: 600px) {

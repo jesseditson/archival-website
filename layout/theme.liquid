@@ -21,7 +21,7 @@
   <meta name="theme-color" content="#fafafa">
 </head>
 
-<body>
+<body class="{% if title == 'Privacy Policy' or title == 'Terms of Service' or title == 'EULA' %}legal{% endif %}">
   {{ page_content }}
 </body>
 

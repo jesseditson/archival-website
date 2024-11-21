@@ -1,0 +1,7 @@
+name = "Typescript"
+description = """
+This is a minimal template with just a simple schema and a typescript build pipeline.
+"""
+tags = [
+    "typescript"
+]

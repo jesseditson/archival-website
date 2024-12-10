@@ -1,0 +1,10 @@
+#:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
+name = "About Me"
+description = """
+This template is intended to be used for a professional website for an individual.
+"""
+context = """
+This template shows information about a person, and could be generated from a resume or other professional information about a person.
+"""
+tags = ["resume", "about"]
+tlds = ["com", "me"]

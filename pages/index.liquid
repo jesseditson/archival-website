@@ -5,12 +5,26 @@
   <div class="container">
     <a href="#" class="logo">{{ objects.personal.name }}</a>
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="{{ objects.resume.file.url }}" class="resume-button"
-          download="{{ objects.resume.file.filename }}">Resume</a></li>
+      <li>
+        <a href="#about">About</a>
+      </li>
+      <li>
+        <a href="#experience">Experience</a>
+      </li>
+      <li>
+        <a href="#work">Work</a>
+      </li>
+      <li>
+        <a href="#contact">Contact</a>
+      </li>
+      {% if objects.resume.file %}
+        <li>
+          <a
+            href="{{ objects.resume.file.url }}"
+            class="resume-button"
+            download="{{ objects.resume.file.filename }}">Resume</a>
+        </li>
+      {% endif %}
     </ul>
     <div class="hamburger">
       <span></span>

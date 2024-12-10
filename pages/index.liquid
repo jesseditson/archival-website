@@ -7,7 +7,12 @@
   <header class="header">
     <div class="container">
       <div class="logo-container">
-        <img src="{{ objects.site.logo_image.url }}" alt="{{ objects.site.name }} Logo" class="logo">
+        {% if objects.site.logo_image %}
+          <img
+            src="{{ objects.site.logo_image.url }}"
+            alt="{{ objects.site.name }} Logo"
+            class="logo">
+        {% endif %}
       </div>
       <h1 class="business-name">{{ objects.site.name }}</h1>
       <p class="tagline">{{ objects.site.tagline }}</p>
@@ -31,7 +36,13 @@
         <h2>Location</h2>
         <p>{{ objects.location.address }}</p>
         <div class="map">
-          <iframe src="{{ map_embed_url }}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+          <iframe
+            src="{{ map_embed_url }}"
+            width="600"
+            height="450"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
@@ -41,7 +52,9 @@
       <div class="container">
         <h2>Contact Us</h2>
         <p>Phone: {{ objects.contact.phone }}</p>
-        <p>Email: <a href="mailto:{{ objects.contact.email }}">{{ objects.contact.email }}</a></p>
+        <p>Email:
+          <a href="mailto:{{ objects.contact.email }}">{{ objects.contact.email }}</a>
+        </p>
       </div>
     </section>
 
@@ -57,7 +70,7 @@
     <div class="container">
       <p class="summary">{{ objects.site.name }} | {{ objects.contact.phone }} | {{ objects.location.address }}
       </p>
-      <p class="hours-summary">Hours: Mon-Fri {{ objects.hours.monday_friday }} | Sat {{ objects.hours.saturday }} |
+      <p class="hours-summary">Hours: Mon-Fri {{ objects.hours.monday_friday }} | Sat {{ objects.hours.saturday }} | 
         Closed Sun</p>
       <p class="copyright">&copy; 2024 {{ objects.site.name }}</p>
     </div>

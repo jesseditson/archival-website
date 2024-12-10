@@ -1,0 +1,10 @@
+#:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
+name = "App"
+description = """
+This template is for showcasing an app.
+"""
+context = """
+This template shows information about an app that is for sale on an app store - for instance google play or the iOS app store.
+"""
+tags = []
+tlds = ["com", "app"]

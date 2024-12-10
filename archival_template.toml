@@ -1,0 +1,10 @@
+#:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
+name = "Small Business"
+description = """
+This template is a simple one pager website for a brick and mortar small business.
+"""
+context = """
+This template shows information about a local business - it has contact, location, and hours. It is expected that the business it is showcasing is a small brick and mortar. 
+"""
+tags = []
+tlds = ["com"]

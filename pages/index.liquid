@@ -3,9 +3,14 @@
 <nav class="nav">
   <div class="container">
     <div class="brand">
-      <a href="#">
-        <img class="app-logo" src="{{ objects.app.logo.url }}" alt="{{ objects.app.name }} logo" />
-      </a>
+      {% if objects.app.logo %}
+        <a href="/">
+          <img
+            class="app-logo"
+            src="{{ objects.app.logo.url }}"
+            alt="{{ objects.app.name }} logo" />
+        </a>
+      {% endif %}
       <span class="app-name">
         {{ objects.app.name }}
       </span>
@@ -24,21 +29,25 @@
       <h1>{{ objects.app.name }}</h1>
       <div class="download-options">
         {% if objects.app.dl_appstore != empty %}
-        <a href="#">
-          <img class="app-store-download" src="images/app-store-black.svg" />
-        </a>
+          <a href="{{objects.app.dl_appstore}}">
+            <img class="app-store-download" src="images/app-store-black.svg" />
+          </a>
         {% endif %}
         {% if objects.app.dl_playstore != empty %}
-        <a href="#">
-          <img class="play-store-download" src="images/play-store-black.svg" />
-        </a>
+          <a href="{{objects.app.dl_playstore}}">
+            <img class="play-store-download" src="images/play-store-black.svg" />
+          </a>
         {% endif %}
         {% if objects.app.dl_direct != empty %}
-        <button class="button">Download</button>
+          <a href="{{objects.app.dl_direct}}">
+            <button class="button">Download</button>
+          </a>
         {% endif %}
       </div>
     </div>
-    <img class="hero-image" src="{{ objects.app.screenshot.url }}" />
+    {% if objects.app.screenshot %}
+      <img class="hero-image" src="{{ objects.app.screenshot.url }}" />
+    {% endif %}
   </div>
 </header>
 
@@ -48,30 +57,34 @@
 
   <section id="features" class="features-grid">
     {% for feature in objects.features %}
-    <div class="feature">
-      <div class="feature-icon">{{ feature.emoji }}</div>
-      <div class="feature-text">
-        <h3>{{ feature.title }}</h3>
-        <p class="feature-description">
-          {{ feature.desc }}
-        </p>
+      <div class="feature">
+        <div class="feature-icon">{{ feature.emoji }}</div>
+        <div class="feature-text">
+          <h3>{{ feature.title }}</h3>
+          <p class="feature-description">
+            {{ feature.desc }}
+          </p>
+        </div>
       </div>
-    </div>
     {% endfor %}
   </section>
 
   {% if objects.support.email != "" or objects.support.chat_link != "" %}
-  <section id="support" class="support">
-    <h2>Need support?</h2>
-    <div class="support-modules">
-      {% if objects.support.email != empty %}
-      <div class="email-support module"><a href="mailto: {{ objects.support.email }}">Send us an email &rarr;</a></div>
-      {% endif %}
-      {% if objects.support.chat_link != empty %}
-      <div class="chat-support module"><a href="{{ objects.support.chat_link }}">Live chat support &rarr;</a></div>
-      {% endif %}
-    </div>
-  </section>
+    <section id="support" class="support">
+      <h2>Need support?</h2>
+      <div class="support-modules">
+        {% if objects.support.email != empty %}
+          <div class="email-support module">
+            <a href="mailto: {{ objects.support.email }}">Send us an email &rarr;</a>
+          </div>
+        {% endif %}
+        {% if objects.support.chat_link != empty %}
+          <div class="chat-support module">
+            <a href="{{ objects.support.chat_link }}">Live chat support &rarr;</a>
+          </div>
+        {% endif %}
+      </div>
+    </section>
   {% endif %}
 
 </main>
@@ -79,8 +92,10 @@
 <footer class="container">
   <p>&copy; 2024 {{ objects.app.name }}</p>
   <p class="footer-legal">
-    <a href="privacy.html">Privacy</a> |
-    <a href="tos.html">Terms of Service</a> |
+    <a href="privacy.html">Privacy</a>
+    |
+    <a href="tos.html">Terms of Service</a>
+    |
     <a href="eula.html">EULA</a>
   </p>
 </footer>

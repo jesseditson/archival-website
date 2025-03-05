@@ -1,4 +1,5 @@
 {% layout 'theme' title: "Band Template" %}
+
 <div class="container">
   <div class="background-image"></div>
   <div class="screen"></div>
@@ -10,10 +11,10 @@
     <nav class="mobile-menu">
       <button class="close-menu" aria-label="Close menu"></button>
       <ul class="mobile-nav-list">
-        <li><a href="/" class="mobile-nav-link active">Latest</a></li>
+        <li><a href="/" class="mobile-nav-link">Latest</a></li>
         <li><a href="/releases" class="mobile-nav-link">Releases</a></li>
         <li><a href="/tour" class="mobile-nav-link">Tour</a></li>
-        <li><a href="/about" class="mobile-nav-link">About</a></li>
+        <li><a href="/about" class="mobile-nav-link active">About</a></li>
         <li><a href="/merch" class="mobile-nav-link">Merch 🡭</a></li>
       </ul>
     </nav>
@@ -27,7 +28,7 @@
       <nav class="primary-nav" aria-label="Main Navigation">
         <ul class="nav-list">
           <li class="nav-item">
-            <a href="/" class="nav-link active">Latest</a>
+            <a href="/" class="nav-link">Latest</a>
           </li>
           <li class="nav-item">
             <a href="/releases" class="nav-link">Releases</a>
@@ -36,7 +37,7 @@
             <a href="/tour" class="nav-link">Tour</a>
           </li>
           <li class="nav-item">
-            <a href="/about" class="nav-link">About</a>
+            <a href="/about" class="nav-link active">About</a>
           </li>
           <li class="nav-item">
             <a href="/merch" class="nav-link">Merch 🡭</a>
@@ -53,35 +54,19 @@
       </div>
     </div>
     <div class="inner-section">
-      <h2 class="subheader">Latest Release</h2>
-      <div class="release-container">
-        <div class="release-image-container">
-          <img src="/images/releases/life-of-leisure.jpg" alt="Life Of Leisure" class="release-image">
+      <h2 class="subheader">About</h2>
+      <div class="about-container">
+        <div class="about-image-container">
+          <img src="/images/about.jpg" alt="Ernest Greene" class="about-image">
         </div>
-        <div class="release-information-container">
-          <h3 class="release-title">Life Of Leisure</h3>
-          <p class="release-description">Suspendisse tincidunt nibh sem, sit amet bibendum magna rutrum sit amet.
-            Quisque rhoncus purus sed nulla aliquam, at congue mi iaculis. Fusce vitae aliquam neque. Integer
-            ullamcorper justo sagittis consequat porta. Fusce id iaculis nisi. Vestibulum luctus gravida.</p>
-        </div>
-      </div>
-    </div>
-    <div class="inner-section">
-      <h2 class="subheader">Tour Dates Added</h2>
-      <div class="tour-dates-container">
-        <div class="tour-date">
-          <span class="date">May 4, 2025</span>
-          <span class="location">Los Angeles, CA</span>
-          <span class="venue">The Wiltern</span>
-          <button class="tickets">Tickets</button>
-        </div>
-        <div class="tour-date">
-          <span class="date">May 6, 2025</span>
-          <span class="location">Austin, TX</span>
-          <span class="venue">Stubb's BBQ</span>
-          <button class="tickets">Tickets</button>
+        <div class="about-information-container">
+          <h3 class="about-title">Ernest Greene</h3>
+          <p class="about-description">Ernest Greene, known professionally as Washed Out, is an American
+            singer-songwriter and record producer. His style has been identified with the chillwave movement. He has
+            released three albums, Within and Without, Paracosm, and Mister Mellow.</p>
         </div>
       </div>
     </div>
+
   </div>
 </div>

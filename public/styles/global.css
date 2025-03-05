@@ -1,0 +1,524 @@
+/* Variables */
+:root {
+  /* Color Palette */
+  --primary-color: rgba(255, 255, 255, 1);
+  --background-color: rgba(0, 0, 0, 1);
+
+  /* Typography */
+  --font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-size-base: 16px;
+  --line-height: 1.6;
+
+  /* Spacing */
+  --container-padding: 20px;
+  --gap: 1rem;
+}
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height);
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--background-color);
+  color: var(--primary-color);
+}
+
+/* Fonts */
+@font-face {
+  font-family: "Kaffe";
+  src: url("/fonts/Kaffe-Regular.woff2") format("woff2"),
+    url("/fonts/Kaffe-Regular.otf") format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+/* Utility */
+.hidden {
+  display: none;
+}
+
+.container {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+  padding-bottom: 2rem;
+}
+
+.background-image {
+  position: fixed; /* Stay fixed */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("/images/background.png");
+  background-size: cover;
+  background-position: center;
+  z-index: -1; /* Keep it behind other content */
+}
+
+.screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.content {
+  display: flex;
+  position: relative;
+  z-index: 3;
+  flex-direction: column;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+/* Animations */
+@keyframes colorCycle {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+/* Logo */
+.logo-nav-container {
+  margin: 6rem auto 0;
+  flex-shrink: 0;
+  padding: 0 2rem;
+}
+
+.logo-wrapper {
+  text-decoration: none;
+}
+
+.logo {
+  display: block;
+  font-family: "Kaffe", sans-serif;
+  font-weight: 400;
+  font-size: 5rem;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0 auto 2rem;
+  line-height: 0.85;
+  opacity: 0.5;
+  color: rgb(229, 255, 0);
+  animation: colorCycle 12s infinite linear;
+}
+
+/* Nav */
+.primary-nav {
+  margin-bottom: 2rem;
+}
+
+.menu-toggle,
+.mobile-menu {
+  display: none;
+}
+
+.nav-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 2rem;
+
+  .nav-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    display: inline-block;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &.active {
+      color: rgb(229, 255, 0);
+      animation: colorCycle 12s infinite linear;
+    }
+  }
+}
+
+/* Player */
+.player {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 28rem;
+  margin: 0 auto;
+  padding: 0.25rem;
+  border-radius: 2rem;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.now-playing {
+  flex-grow: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.play-pause {
+  cursor: pointer;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+  border-radius: 2rem;
+  border: none;
+  background: rgba(255, 255, 255, 0.1) url(/images/icon-pause.svg) no-repeat 50%
+    50%;
+}
+
+.volume {
+  cursor: pointer;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+  border-radius: 2rem;
+  border: none;
+  background: rgba(255, 255, 255, 0.1) url(/images/icon-speaker.svg) no-repeat
+    50% 50%;
+}
+
+.now-playing-label {
+  font-weight: 800;
+}
+
+/* Masthead */
+.masthead {
+  font-family: "Kaffe", sans-serif;
+  font-weight: 400;
+  font-size: clamp(3rem, 11vw + 2rem, 14rem);
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0 auto;
+  line-height: 0.85;
+  opacity: 0.5;
+  color: rgb(229, 255, 0);
+  animation: colorCycle 12s infinite linear;
+  cursor: default;
+  margin-top: auto;
+}
+
+/* Latest Teaser */
+.latest-teaser {
+  margin: auto;
+  padding: 1rem;
+  width: 28rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 2rem;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+  }
+
+  .teaser-label {
+    font-weight: 800;
+  }
+}
+
+/* Interior Styling */
+.inner-section {
+  margin: 4rem auto 0;
+  padding: 0 2rem;
+  max-width: 53rem;
+  width: 100%;
+}
+
+.subheader {
+  font-size: 3rem;
+  font-weight: 1000;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2rem;
+}
+
+/* Release object */
+.release-container {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+
+  .release-image-container {
+    height: 16rem;
+    width: 16rem;
+    border-radius: 1rem;
+    border: 6px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    flex-shrink: 0;
+
+    .release-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .release-title {
+    font-family: "Kaffe", sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  .release-description {
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+}
+
+.release-container:last-child {
+  margin-bottom: 0;
+}
+
+/* Tour Dates */
+.tour-dates-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .tour-date {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 2rem;
+    height: 3rem;
+    display: flex;
+    position: relative;
+    align-items: center;
+    padding: 0 0.25rem 0 0;
+
+    .date {
+      position: absolute;
+      left: 1rem;
+    }
+
+    .location {
+      position: absolute;
+      left: 10rem;
+    }
+
+    .venue {
+      position: absolute;
+      left: 22rem;
+    }
+
+    .tickets {
+      font-weight: 800;
+      color: rgba(255, 255, 255, 1);
+      background-color: rgba(255, 255, 255, 0.1);
+      margin-left: auto;
+      position: relative;
+      height: 2.375rem;
+      padding: 0 1rem;
+      border-radius: 2rem;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      &.sold-out {
+        opacity: 0.5;
+        background: rgba(0, 0, 0, 0.8);
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+/* About */
+.about-container {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+
+  .about-image-container {
+    height: 16rem;
+    width: 16rem;
+    border-radius: 1rem;
+    border: 6px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    flex-shrink: 0;
+
+    .about-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .about-title {
+    font-family: "Kaffe", sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 4rem;
+    line-height: 1;
+  }
+
+  .about-description {
+    line-height: 1.5;
+  }
+}
+
+.about-container:last-child {
+  margin-bottom: 0;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .subheader {
+    text-align: center;
+    line-height: 1;
+  }
+
+  .release-container,
+  .about-container {
+    flex-direction: column;
+    gap: 1rem;
+
+    .release-image-container,
+    .about-image-container {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1/1;
+      margin-bottom: 1rem;
+    }
+
+    .release-title,
+    .about-title {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .tour-dates-container {
+    .tour-date {
+      span,
+      button {
+        font-size: 0.75rem;
+      }
+      .location {
+        left: 7rem;
+      }
+      .venue {
+        left: 15rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 512px) {
+  .logo-nav-container {
+    margin: 4rem 0 0;
+  }
+  .primary-nav {
+    display: none;
+  }
+  .menu-toggle {
+    opacity: 0.75;
+    display: block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: transparent url(/images/icon-mobile-menu.svg) no-repeat 50% 50%;
+    border: none;
+  }
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-100%);
+    transition: transform 0.1s ease-in-out;
+    z-index: 1000;
+  }
+  .mobile-menu.active {
+    transform: translateY(0);
+  }
+  .mobile-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .mobile-nav-link {
+    font-size: 2rem;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: opacity 0.3s ease;
+
+    &.active {
+      color: rgb(229, 255, 0);
+      animation: colorCycle 12s infinite linear;
+    }
+  }
+  .mobile-nav-link:hover {
+    opacity: 0.8;
+  }
+  .close-menu {
+    opacity: 0.75;
+    display: block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: transparent url(/images/icon-close.svg) no-repeat 50% 50%;
+    border: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .venue {
+    display: none;
+  }
+}

@@ -109,6 +109,9 @@ body {
 
 .logo-wrapper {
   text-decoration: none;
+  width: 28rem;
+  display: block;
+  margin: 0 auto;
 }
 
 .logo {

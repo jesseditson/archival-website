@@ -1,0 +1,10 @@
+#:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
+name = "Band Template"
+description = """
+This template is intended to be used by a band or musician
+"""
+context = """
+This template shows information about a musician, band, DJ or other musical entity. This would be a good template to choose if someone uploaded an audio file.
+"""
+tags = ["band", "music"]
+tlds = ["com", "me"]

@@ -1,4 +1,12 @@
-title = "Release Name"
+order = -1
+date = 2009-09-08T00:00:00
 description = """
 Suspendisse tincidunt nibh sem, sit amet bibendum magna rutrum sit amet. Quisque rhoncus purus sed nulla aliquam, at congue mi iaculis. Fusce vitae aliquam neque. Integer ullamcorper justo sagittis consequat porta. Fusce id iaculis nisi. Vestibulum luctus gravida.
 """
+title = "Life Of Leisure"
+
+[image]
+mime = "image/jpeg"
+display_type = "image"
+filename = "life-of-leisure.jpg"
+sha = "931dc6e6643015151dd48df95abd77994a1ac515f604309d8c32e09622fd03bf"

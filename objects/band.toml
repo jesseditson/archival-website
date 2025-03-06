@@ -1,1 +1,8 @@
+order = -1
 name = "Washed Out"
+
+[image]
+mime = "image/png"
+display_type = "image"
+filename = "background.png"
+sha = "aea6fa2d3416d9ab5a73152d84006fca627db4237a88fe2e34c10e8feab28568"

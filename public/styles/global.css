@@ -64,7 +64,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url("/images/background.png");
+  background-image: var(--band-background);
   background-size: cover;
   background-position: center;
   z-index: -1; /* Keep it behind other content */
@@ -339,11 +339,14 @@ body {
     }
 
     .tickets {
+      display: block;
+      text-decoration: none;
       font-weight: 800;
       color: rgba(255, 255, 255, 1);
       background-color: rgba(255, 255, 255, 0.1);
       margin-left: auto;
       position: relative;
+      line-height: 2.375rem;
       height: 2.375rem;
       padding: 0 1rem;
       border-radius: 2rem;
@@ -358,7 +361,6 @@ body {
       &.sold-out {
         opacity: 0.5;
         background: rgba(0, 0, 0, 0.8);
-        cursor: not-allowed;
       }
     }
   }

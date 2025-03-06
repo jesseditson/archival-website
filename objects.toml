@@ -4,6 +4,7 @@ image = "image"
 
 [release]
 image = "image"
+date = "date"
 title = "string"
 description = "markdown"
 

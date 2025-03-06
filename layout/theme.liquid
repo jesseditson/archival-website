@@ -11,10 +11,73 @@
   <meta name="author" content="Band name">
   <link rel="stylesheet" href="/styles/global.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    :root {
+      --band-background: url('{{objects.band.image.url}}');
+    }
+  </style>
 </head>
 
 <body>
-  {{ page_content }}
+  <div class="container">
+    <div class="background-image"></div>
+    <div class="screen"></div>
+
+    <div class="content">
+      <!-- Logo, Nav, Player -->
+      <button class="menu-toggle" aria-label="Menu Toggle"></button>
+
+      <!-- Mobile Fullscreen Menu -->
+      <nav class="mobile-menu">
+        <button class="close-menu" aria-label="Close menu"></button>
+        <ul class="mobile-nav-list">
+          <li><a href="/" class="mobile-nav-link{% if page == 'latest' %} active{% endif %}">Latest</a></li>
+          <li><a href="/releases" class="mobile-nav-link{% if page == 'releases' %} active{% endif %}">Releases</a>
+          </li>
+          <li><a href="/tour" class="mobile-nav-link{% if page == 'tour' %} active{% endif %}">Tour</a></li>
+          <li><a href="/about" class="mobile-nav-link{% if page == 'about' %} active{% endif %}">About</a></li>
+          <li><a href="/merch" class="mobile-nav-link">Merch 🡭</a></li>
+        </ul>
+      </nav>
+
+      <div class="logo-nav-container">
+
+        <a class="logo-wrapper" href="/">
+          <span class="logo">{{objects.band.name}}</span>
+        </a>
+
+        <nav class="primary-nav" aria-label="Main Navigation">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="/" class="nav-link{% if page == 'latest' %} active{% endif %}">Latest</a>
+            </li>
+            <li class="nav-item">
+              <a href="/releases" class="nav-link{% if page == 'releases' %} active{% endif %}">Releases</a>
+            </li>
+            <li class="nav-item">
+              <a href="/tour" class="nav-link{% if page == 'tour' %} active{% endif %}">Tour</a>
+            </li>
+            <li class="nav-item">
+              <a href="/about" class="nav-link{% if page == 'about' %} active{% endif %}">About</a>
+            </li>
+            <li class="nav-item">
+              <a href="/merch" class="nav-link">Merch 🡭</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="player">
+          <button class="play-pause"></button>
+          <div class="now-playing">
+            <span class="now-playing-label">Now Playing:</span>
+            <span class="now-playing-item">Feel It All Around</span>
+          </div>
+          <button class="volume"></button>
+        </div>
+      </div>
+
+      {{ page_content }}
+    </div>
+  </div>
   <script src="/scripts/global.js"></script>
 </body>
 

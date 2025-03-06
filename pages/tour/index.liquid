@@ -1,110 +1,17 @@
-{% layout 'theme' title: "Band Template" %}
+{% layout 'theme' title: "Tour", page: "tour" %}
 
-<div class="container">
-  <div class="background-image"></div>
-  <div class="screen"></div>
-  <div class="content">
-    <!-- Logo, Nav, Player -->
-    <button class="menu-toggle" aria-label="Menu Toggle"></button>
-
-    <!-- Mobile Fullscreen Menu -->
-    <nav class="mobile-menu">
-      <button class="close-menu" aria-label="Close menu"></button>
-      <ul class="mobile-nav-list">
-        <li><a href="/" class="mobile-nav-link">Latest</a></li>
-        <li><a href="/releases" class="mobile-nav-link">Releases</a></li>
-        <li><a href="/tour" class="mobile-nav-link active">Tour</a></li>
-        <li><a href="/about" class="mobile-nav-link">About</a></li>
-        <li><a href="/merch" class="mobile-nav-link">Merch 🡭</a></li>
-      </ul>
-    </nav>
-
-    <div class="logo-nav-container">
-
-      <a class="logo-wrapper" href="/">
-        <span class="logo">Washed<br>Out</span>
-      </a>
-
-      <nav class="primary-nav" aria-label="Main Navigation">
-        <ul class="nav-list">
-          <li class="nav-item">
-            <a href="/" class="nav-link">Latest</a>
-          </li>
-          <li class="nav-item">
-            <a href="/releases" class="nav-link">Releases</a>
-          </li>
-          <li class="nav-item">
-            <a href="/tour" class="nav-link active">Tour</a>
-          </li>
-          <li class="nav-item">
-            <a href="/about" class="nav-link">About</a>
-          </li>
-          <li class="nav-item">
-            <a href="/merch" class="nav-link">Merch 🡭</a>
-          </li>
-        </ul>
-      </nav>
-      <div class="player">
-        <button class="play-pause"></button>
-        <div class="now-playing">
-          <span class="now-playing-label">Now Playing:</span>
-          <span class="now-playing-item">Feel It All Around</span>
-        </div>
-        <button class="volume"></button>
-      </div>
+<div class="inner-section">
+  <h2 class="subheader">Tour Dates</h2>
+  <div class="tour-dates-container">
+    {% for tourdate in objects.tour %}
+    <div class="tour-date">
+      <span class="date">{{tourdate.date | date: "%b %d, %Y"}}</span>
+      <span class="location">{{tourdate.location}}</span>
+      <span class="venue">{{tourdate.venue}}</span>
+      <a href="{{tourdate.ticket_url}}"
+        class="tickets{% if tourdate.tickets_available == false %} sold-out{% endif %}">{% if tourdate.tickets_available
+        == false %}Sold Out{% else %}Tickets{% endif %}</a>
     </div>
-    <div class="inner-section">
-      <h2 class="subheader">Tour Dates</h2>
-      <div class="tour-dates-container">
-        <div class="tour-date">
-          <span class="date">Apr 22, 2025</span>
-          <span class="location">Atlanta, GA</span>
-          <span class="venue">Variety Playhouse</span>
-          <button class="tickets">Tickets</button>
-        </div>
-        <div class="tour-date">
-          <span class="date">Apr 24, 2025</span>
-          <span class="location">Nashville, TN</span>
-          <span class="venue">Ryman Auditorium</span>
-          <button class="tickets">Tickets</button>
-        </div>
-        <div class="tour-date">
-          <span class="date">Apr 26, 2025</span>
-          <span class="location">Chicago, IL</span>
-          <span class="venue">Metro Chicago</span>
-          <button class="tickets">Tickets</button>
-        </div>
-        <div class="tour-date">
-          <span class="date">Apr 28, 2025</span>
-          <span class="location">Denver, CO</span>
-          <span class="venue">Ogden Theatre</span>
-          <button class="tickets">Tickets</button>
-        </div>
-        <div class="tour-date">
-          <span class="date">Apr 30, 2025</span>
-          <span class="location">Seattle, WA</span>
-          <span class="venue">The Showbox</span>
-          <button class="tickets">Tickets</button>
-        </div>
-        <div class="tour-date">
-          <span class="date">May 2, 2025</span>
-          <span class="location">San Francisco, CA</span>
-          <span class="venue">The Fillmore</span>
-          <button class="tickets sold-out" disabled>Sold Out</button>
-        </div>
-        <div class="tour-date">
-          <span class="date">May 4, 2025</span>
-          <span class="location">Los Angeles, CA</span>
-          <span class="venue">The Wiltern</span>
-          <button class="tickets">Tickets</button>
-        </div>
-        <div class="tour-date">
-          <span class="date">May 6, 2025</span>
-          <span class="location">Austin, TX</span>
-          <span class="venue">Stubb's BBQ</span>
-          <button class="tickets">Tickets</button>
-        </div>
-      </div>
-    </div>
+    {% endfor %}
   </div>
 </div>

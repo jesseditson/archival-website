@@ -1,87 +1,31 @@
-{% layout 'theme' title: "Latest" %}
-<div class="container">
-  <div class="background-image"></div>
-  <div class="screen"></div>
-  <div class="content">
-    <!-- Logo, Nav, Player -->
-    <button class="menu-toggle" aria-label="Menu Toggle"></button>
+{% layout 'theme' title: "Latest", page: "latest" %}
+{% assign latest_release = objects.release|sort:"date"|last %}
 
-    <!-- Mobile Fullscreen Menu -->
-    <nav class="mobile-menu">
-      <button class="close-menu" aria-label="Close menu"></button>
-      <ul class="mobile-nav-list">
-        <li><a href="/" class="mobile-nav-link active">Latest</a></li>
-        <li><a href="/releases" class="mobile-nav-link">Releases</a></li>
-        <li><a href="/tour" class="mobile-nav-link">Tour</a></li>
-        <li><a href="/about" class="mobile-nav-link">About</a></li>
-        <li><a href="/merch" class="mobile-nav-link">Merch 🡭</a></li>
-      </ul>
-    </nav>
-
-    <div class="logo-nav-container">
-
-      <a class="logo-wrapper" href="/">
-        <span class="logo">{{objects.band.name}}</span>
-      </a>
-
-      <nav class="primary-nav" aria-label="Main Navigation">
-        <ul class="nav-list">
-          <li class="nav-item">
-            <a href="/" class="nav-link active">Latest</a>
-          </li>
-          <li class="nav-item">
-            <a href="/releases" class="nav-link">Releases</a>
-          </li>
-          <li class="nav-item">
-            <a href="/tour" class="nav-link">Tour</a>
-          </li>
-          <li class="nav-item">
-            <a href="/about" class="nav-link">About</a>
-          </li>
-          <li class="nav-item">
-            <a href="/merch" class="nav-link">Merch 🡭</a>
-          </li>
-        </ul>
-      </nav>
-      <div class="player">
-        <button class="play-pause"></button>
-        <div class="now-playing">
-          <span class="now-playing-label">Now Playing:</span>
-          <span class="now-playing-item">Feel It All Around</span>
-        </div>
-        <button class="volume"></button>
-      </div>
+<div class="inner-section">
+  <h2 class="subheader">Latest Release</h2>
+  <div class="release-container">
+    <div class="release-image-container">
+      <img src="{{ latest_release.image.url }}" alt="{{ latest_release.title }}" class="release-image">
     </div>
-    <div class="inner-section">
-      <h2 class="subheader">Latest Release</h2>
-      <div class="release-container">
-        <div class="release-image-container">
-          <img src="/images/releases/life-of-leisure.jpg" alt="Life Of Leisure" class="release-image">
-        </div>
-        <div class="release-information-container">
-          <h3 class="release-title">Life Of Leisure</h3>
-          <p class="release-description">Suspendisse tincidunt nibh sem, sit amet bibendum magna rutrum sit amet.
-            Quisque rhoncus purus sed nulla aliquam, at congue mi iaculis. Fusce vitae aliquam neque. Integer
-            ullamcorper justo sagittis consequat porta. Fusce id iaculis nisi. Vestibulum luctus gravida.</p>
-        </div>
-      </div>
+    <div class="release-information-container">
+      <h3 class="release-title">{{latest_release.title}}</h3>
+      <p class="release-description">{{latest_release.description}}</p>
     </div>
-    <div class="inner-section">
-      <h2 class="subheader">Tour Dates Added</h2>
-      <div class="tour-dates-container">
-        <div class="tour-date">
-          <span class="date">May 4, 2025</span>
-          <span class="location">Los Angeles, CA</span>
-          <span class="venue">The Wiltern</span>
-          <button class="tickets">Tickets</button>
-        </div>
-        <div class="tour-date">
-          <span class="date">May 6, 2025</span>
-          <span class="location">Austin, TX</span>
-          <span class="venue">Stubb's BBQ</span>
-          <button class="tickets">Tickets</button>
-        </div>
-      </div>
+  </div>
+</div>
+<div class="inner-section">
+  <h2 class="subheader">Tour Dates Added</h2>
+  <div class="tour-dates-container">
+    {% assign latest_dates = objects.tour | reverse | slice:0,2 | reverse %}
+    {% for tourdate in latest_dates %}
+    <div class="tour-date">
+      <span class="date">{{tourdate.date | date: "%b %d, %Y"}}</span>
+      <span class="location">{{tourdate.location}}</span>
+      <span class="venue">{{tourdate.venue}}</span>
+      <a href="{{tourdate.ticket_url}}"
+        class="tickets{% if tourdate.tickets_available == false %} sold-out{% endif %}">{% if tourdate.tickets_available
+        == false %}Sold Out{% else %}Tickets{% endif %}</a>
     </div>
+    {% endfor %}
   </div>
 </div>

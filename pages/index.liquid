@@ -1,11 +1,10 @@
-{% layout 'theme' title: objects.site.name
-  , active_page: "photos" %}
+{% layout 'theme' active_page: "photos" %}
 
 <!-- Photo gallery -->
 <div class="photo-gallery">
-  {% for photo in objects.photos %}
+  {% for photo in photos %}
     <div class="photo-item">
-      <img src="{% default photo.file.url "#" %}" alt="{{photo.title}}">
+      <img src="{{ photo.file.url | default: "#" }}" alt="{{photo.title}}">
     </div>
   {% endfor %}
 </div>

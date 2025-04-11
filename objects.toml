@@ -9,6 +9,6 @@ content = "markdown"
 [contact]
 content = "markdown"
 
-[photos]
+[photo]
 title = "string"
 file = "image"

@@ -1,18 +1,14 @@
 <!doctype html>
-{% unless description %}
-  {% assign description = "" %}
-{% endunless %}
-{% assign title = site.name | default: "foo" %}
 <html class="no-js" lang="">
   <head>
     <meta charset="utf-8">
-    <title>{{ title }}</title>
-    <meta name="description" content="{{ description }}">
+    <title>{{ site.name }}</title>
+    <meta name="description" content="{{ site.description }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta property="og:title" content="{{ title }}">
+    <meta property="og:title" content="{{ site.name }}">
     <meta property="og:type" content="website">
-    <meta property="og:description" content="{{ description }}">
+    <meta property="og:description" content="{{ site.description }}">
     <!-- <meta property="og:url" content=""> -->
     <!-- <meta property="og:image" content=""> -->
 
@@ -27,7 +23,7 @@
 
   <body>
     <div class="container">
-      <h1 class="masthead">{{ objects.site.name }}</h1>
+      <h1 class="masthead">{{ site.name }}</h1>
 
       <!-- Navigation -->
       <nav class="navigation">

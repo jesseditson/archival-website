@@ -2,6 +2,7 @@
 
 [site]
 name = "string"
+description = "string"
 
 [about]
 content = "markdown"

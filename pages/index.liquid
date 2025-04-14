@@ -3,9 +3,11 @@
 <!-- Photo gallery -->
 <div class="photo-gallery">
   {% for photo in photos %}
-    <div class="photo-item">
-      <img src="{{ photo.file.url | default: "#" }}" alt="{{photo.title}}">
-    </div>
+    {% if photo.file %}
+      <div class="photo-item">
+        <img src="{{ photo.file.url | default: "#" }}" alt="{{photo.title}}">
+      </div>
+    {% endif %}
   {% endfor %}
 </div>
 <!-- Lightbox -->

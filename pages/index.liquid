@@ -1,31 +1,37 @@
-{% layout 'theme' title: "Latest", page: "latest" %}
-{% assign latest_release = objects.release|sort:"date"|last %}
+{% layout 'theme' title: "Latest"
+  , page: "latest" %}
+{% assign latest_release = objects.release | sort: "date" | last %}
 
-<div class="inner-section">
-  <h2 class="subheader">Latest Release</h2>
-  <div class="release-container">
-    <div class="release-image-container">
-      <img src="{{ latest_release.image.url }}" alt="{{ latest_release.title }}" class="release-image">
-    </div>
-    <div class="release-information-container">
-      <h3 class="release-title">{{latest_release.title}}</h3>
-      <p class="release-description">{{latest_release.description}}</p>
+{% if latest_release %}
+  <div class="inner-section">
+    <h2 class="subheader">Latest Release</h2>
+    <div class="release-container">
+      <div class="release-image-container">
+        <img
+          src="{{ latest_release.image.url }}"
+          alt="{{ latest_release.title }}"
+          class="release-image">
+      </div>
+      <div class="release-information-container">
+        <h3 class="release-title">{{ latest_release.title }}</h3>
+        <p class="release-description">{{ latest_release.description }}</p>
+      </div>
     </div>
   </div>
-</div>
+{% endif %}
 <div class="inner-section">
   <h2 class="subheader">Tour Dates Added</h2>
   <div class="tour-dates-container">
-    {% assign latest_dates = objects.tour | reverse | slice:0,2 | reverse %}
+    {% assign latest_dates = objects.tour | reverse | slice: 0, 2 | reverse %}
     {% for tourdate in latest_dates %}
-    <div class="tour-date">
-      <span class="date">{{tourdate.date | date: "%b %d, %Y"}}</span>
-      <span class="location">{{tourdate.location}}</span>
-      <span class="venue">{{tourdate.venue}}</span>
-      <a href="{{tourdate.ticket_url}}"
-        class="tickets{% if tourdate.tickets_available == false %} sold-out{% endif %}">{% if tourdate.tickets_available
-        == false %}Sold Out{% else %}Tickets{% endif %}</a>
-    </div>
+      <div class="tour-date">
+        <span class="date">{{ tourdate.date | date: "%b %d, %Y" }}</span>
+        <span class="location">{{ tourdate.location }}</span>
+        <span class="venue">{{ tourdate.venue }}</span>
+        <a href="{{tourdate.ticket_url}}" class="tickets{% if tourdate.tickets_available == false %} sold-out{% endif %}">
+          {% if tourdate.tickets_available == false %}Sold Out{% else %}Tickets{% endif %}
+        </a>
+      </div>
     {% endfor %}
   </div>
 </div>

@@ -1,1 +1,226 @@
-{% layout 'theme' title: "Archival Website" %}
+{% layout 'theme' title: "Profressional" %}
+
+<!-- Header masthead -->
+<header class="header">
+  <div class="container">
+    <nav class="primary-nav">
+      <ul class="nav-items">
+        <li><a href="#about-me" class="nav-item">About Me</a></li>
+        <li><a href="#services" class="nav-item">Services</a></li>
+        <li><a href="#testimonials" class="nav-item">Testimonials</a></li>
+        <li><a href="#book" class="nav-item primary-cta">Book</a></li>
+      </ul>
+    </nav>
+
+    <!-- Professional photo -->
+    <div class="avatar-wrapper">
+      <img src="/images/main-avatar.jpg" alt="Robin Collette" class="avatar" />
+    </div>
+
+    <!-- Professional name, title, location -->
+    <div class="masthead">
+      <h1 class="heading professional-name">{{ objects.professional.first_name }} {{ objects.professional.last_name }}
+      </h1>
+      <p class="subheading title">{{ objects.professional.title }}</p>
+      <p class="subheading location">{{ objects.professional.location }}</p>
+    </div>
+
+    <!-- Masthead CTA -->
+    <a href="#book" class="primary-cta-large">Book a Session</a>
+  </div>
+</header>
+
+<div id="scroll-animate-target" class="scroll-animate">
+  {% include 'partials/inner-nav' %}
+</div>
+
+<!-- Main content -->
+<main class="main">
+
+  <!-- About Me -->
+  <section id="about-me" class="body-section container">
+    <h2 class="heading">Hi, I'm {{ objects.professional.first_name }}</h2>
+    <p class="main-body">
+      It's nice to meet you. I am a professional therapist in Atlanta, GA. I believe that through doing work together,
+      you can gain the things that you love the most back. You can move from feeling stuck, tired, and confused to
+      feeling free, energized, and hopeful.
+      I love what I do, because I see it work over and over again.
+    </p>
+    <p class="main-body">I support my clients by being straightforward and direct, offering encouragement and giving a
+      clear idea of what the next steps are for you to take. Working with OCD is difficult and I bring much needed
+      laughter to sessions.</p>
+    <p class="main-body">I teach you how to understand your OCD and anxiety and will fight some of your fears with you,
+      until eventually I can stand aside and cheer you on as you do the work. I'm in the business of empowering you by
+      teaching you the therapy, doing it together, then eventually seeing you do it all on your own.</p>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="body-section container">
+    <h2 class="heading">Services Offered</h2>
+    <div class="services-grid">
+      <div class="service-item">
+        <h3 class="service-title">Individual Therapy</h3>
+        <p class="service-description">Work one-on-one in a supportive, confidential space to explore personal
+          challenges, build self-awareness, and foster lasting growth.</p>
+        <a href="/services/" class="service-moreinfo">More info &rarr;</a>
+        <div class="service-footer">
+          <span class="service-price">$199 /session</span>
+          <a href="#book" class="service-cta">Book</a>
+        </div>
+      </div>
+      <div class="service-item">
+        <h3 class="service-title">Couples Counseling</h3>
+        <p class="service-description">Whether you’re navigating conflict, deepening connection, or rebuilding trust,
+          Robin helps couples communicate more effectively and strengthen their relationship.</p>
+        <a href="/services/" class="service-moreinfo">More info &rarr;</a>
+        <div class="service-footer">
+          <span class="service-price">$340 /session</span>
+          <a href="#book" class="service-cta">Book</a>
+        </div>
+      </div>
+      <div class="service-item">
+        <h3 class="service-title">Trauma-Informed Therapy</h3>
+        <p class="service-description">With a compassionate, grounded approach, Robin helps clients process past trauma
+          at their own pace, fostering healing, resilience, and a renewed sense of safety.</p>
+        <a href="/services/" class="service-moreinfo">More info &rarr;</a>
+        <div class="service-footer">
+          <span class="service-price">$250 /session</span>
+          <a href="#book" class="service-cta">Book</a>
+        </div>
+      </div>
+      <div class="service-item">
+        <h3 class="service-title">Anxiety &amp; Stress Management</h3>
+        <p class="service-description">Learn practical tools to manage anxiety and overwhelm while uncovering the deeper
+          patterns that fuel them, all in a calming and judgment-free environment.</p>
+        <a href="/services/" class="service-moreinfo">More info &rarr;</a>
+        <div class="service-footer">
+          <span class="service-price">$199 /session</span>
+          <a href="#book" class="service-cta">Book</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials" class="body-section container">
+    <h2 class="heading">Client Testimonials</h2>
+  </section>
+  <div class="testimonial-marquee">
+    <div class="testimonial-track">
+      <div class="testimonial-item">
+        <p class="testimonial-quote">"Robin helped me feel seen and heard in a way I never had before."</p>
+        <div class="testimonial-footer">
+          <img src="/images/avatars/1.jpg" alt="Testimonial Avatar" class="testimonial-avatar" />
+          <p class="testimonial-author">Jasmine R.</p>
+        </div>
+      </div>
+      <div class="testimonial-item">
+        <p class="testimonial-quote">"She blends compassion with practical tools that actually work. Robin is a true
+          gem."</p>
+        <div class="testimonial-footer">
+          <img src="/images/avatars/2.jpg" alt="Testimonial Avatar" class="testimonial-avatar" />
+          <p class="testimonial-author">Tasha B.</p>
+        </div>
+      </div>
+      <div class="testimonial-item">
+        <p class="testimonial-quote">"Therapy was the best investment I’ve ever made in myself, and Robin helped me
+          every step."</p>
+        <div class="testimonial-footer">
+          <img src="/images/avatars/3.jpg" alt="Testimonial Avatar" class="testimonial-avatar" />
+          <p class="testimonial-author">Sarah D.</p>
+        </div>
+      </div>
+      <div class="testimonial-item">
+        <p class="testimonial-quote">"I always leave our sessions feeling lighter, more grounded, and more hopeful every
+          time."</p>
+        <div class="testimonial-footer">
+          <img src="/images/avatars/4.jpg" alt="Testimonial Avatar" class="testimonial-avatar" />
+          <p class="testimonial-author">Jan R.</p>
+        </div>
+      </div>
+
+    </div> <!-- Close testimonial-track -->
+  </div> <!-- Close testimonial-marquee -->
+  <div class="testimonial-marquee">
+    <div class="testimonial-track reverse">
+      <div class="testimonial-item">
+        <p class="testimonial-quote">"I trust Robin completely. There’s a rare safety and honesty in every single
+          session."</p>
+        <div class="testimonial-footer">
+          <img src="/images/avatars/5.jpg" alt="Testimonial Avatar" class="testimonial-avatar" />
+          <p class="testimonial-author">Alexander K.</p>
+        </div>
+      </div>
+      <div class="testimonial-item">
+        <p class="testimonial-quote">"I finally feel like I’m becoming the version of myself I’ve always wanted to be."
+        </p>
+        <div class="testimonial-footer">
+          <img src="/images/avatars/6.jpg" alt="Testimonial Avatar" class="testimonial-avatar" />
+          <p class="testimonial-author">Jesse R.</p>
+        </div>
+      </div>
+      <div class="testimonial-item">
+        <p class="testimonial-quote">"I’ve made more progress in six months with Robin than in years of therapy before."
+        </p>
+        <div class="testimonial-footer">
+          <img src="/images/avatars/7.jpg" alt="Testimonial Avatar" class="testimonial-avatar" />
+          <p class="testimonial-author">Tracy S.</p>
+        </div>
+      </div>
+      <div class="testimonial-item">
+        <p class="testimonial-quote">"Robin helped me become the absolute best version of myself. Highly recommend."</p>
+        <div class="testimonial-footer">
+          <img src="/images/avatars/8.jpg" alt="Testimonial Avatar" class="testimonial-avatar" />
+          <p class="testimonial-author">Devon T.</p>
+        </div>
+      </div>
+    </div> <!-- Close testimonial-track -->
+  </div> <!-- Close testimonial-marquee -->
+
+  <!-- Book a session -->
+  <section id="book" class="body-section container">
+    <h2 class="heading">Book a Session</h2>
+    <p class="main-body">I would love to hear from you. Please fill out the form below so we can get started.</p>
+    <form class="form-container">
+      <div class="form-grid">
+        <!-- Row 1, Col 1 -->
+        <label>
+          <span>Your name</span>
+          <input type="text" name="name" />
+        </label>
+        <!-- Row 1, Col 2 -->
+        <label>
+          <span>Email address</span>
+          <input type="email" name="email" />
+        </label>
+
+        <!-- Row 2, Col 1 -->
+        <label>
+          <span>Phone number</span>
+          <input type="tel" name="phone" />
+        </label>
+        <!-- Row 2, Col 2 -->
+        <label>
+          <span>Session type</span>
+          <select name="session">
+            <option>Individual Therapy</option>
+            <option>Couples Counseling</option>
+            <option>Trauma-Informed Therapy</option>
+            <option>Anxiety &amp; Stress Management</option>
+          </select>
+        </label>
+
+        <!-- Full-width Comments row -->
+        <label class="comments">
+          <span>Comments</span>
+          <textarea name="comments"></textarea>
+        </label>
+
+        <!-- Submit button in bottom-left -->
+        <div class="form-actions">
+          <button type="submit" class="primary-cta-large">Submit</button>
+        </div>
+      </div>
+    </form>
+  </section>
+</main>

@@ -1,0 +1,21 @@
+{% layout 'theme' title: "Service" %}
+{% include 'partials/inner-nav' %}
+
+
+<main class="main inner">
+
+  <section class="body-section container breadcrumb-nav">
+    <a href="/" class="back-to-home">&larr; Return home</a>
+  </section>
+
+  <!-- Service Detail -->
+  <section id="service-detail" class="body-section container">
+    <h2 class="heading">{{ services.name }}</h2>
+    <div class="service-body">
+      {{ services.body }}
+    </div>
+
+    <span class="service-price-large">{{ services.price }}</span>
+    <a href="/#book" class="primary-cta-large">Book this session</a>
+  </section>
+</main>

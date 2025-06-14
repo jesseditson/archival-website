@@ -1,15 +1,33 @@
 <!doctype html>
-<html lang="">
+<html lang="en">
 
-  <head>
-    <meta charset="utf-8">
-    <title>{{ title }}</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
+<head>
+  <meta charset="utf-8">
+  <title>
+    {{ objects.professional.first_name }} {{ objects.professional.last_name }}, {{ objects.professional.title }}
+  </title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <body>
-    {{ page_content }}
-  </body>
+  <link rel="stylesheet" href="/styles/global.css">
+</head>
+
+<body>
+  {{ page_content }}
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p class="footer-static">&copy; 2025 {{ objects.professional.business_name }}. All rights reserved.</p>
+      <p>
+        <a href="privacy.html">Privacy Policy</a>
+        <span class="footer-static">&bull;</span>
+        <a href="terms.html">Terms of Service</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="/scripts/carousel.js" type="application/javascript"></script>
+  <script src="/scripts/nav.js" type="application/javascript"></script>
+</body>
 
 </html>

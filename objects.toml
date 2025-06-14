@@ -1,1 +1,15 @@
 # This file is used to define the objects available on your site.
+
+[professional]
+first_name = "string"
+last_name = "string"
+business_name = "string"
+title = "string"
+location = "string"
+image = "image"
+
+[services]
+template = "service"
+name = "string"
+body = "markdown"
+price = "string"

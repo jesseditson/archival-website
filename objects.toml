@@ -7,6 +7,7 @@ business_name = "string"
 title = "string"
 location = "string"
 image = "image"
+about = "markdown"
 
 [service]
 template = "service"

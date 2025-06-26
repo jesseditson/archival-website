@@ -131,6 +131,14 @@ table {
 
 .body-section {
   width: 100%;
+
+  > p {
+    font-size: var(--font-body-size);
+    font-weight: var(--font-body-weight);
+    width: 100%;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+  }
 }
 
 /* Header */

@@ -15,3 +15,8 @@ name = "string"
 description = "string"
 body = "markdown"
 price = "string"
+
+[testimonial]
+quote = "string"
+author = "string"
+image = "image"

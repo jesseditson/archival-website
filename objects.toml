@@ -8,7 +8,7 @@ title = "string"
 location = "string"
 image = "image"
 
-[services]
+[service]
 template = "service"
 name = "string"
 body = "markdown"

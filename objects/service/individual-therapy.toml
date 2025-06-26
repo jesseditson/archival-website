@@ -1,0 +1,9 @@
+name = "Individual Therapy"
+body ="""
+Trauma-informed individual therapy provides a compassionate, safe, and structured space for individuals who have experienced overwhelming or distressing life events. Whether the trauma was recent or rooted in childhood, therapy is designed to honor each person’s unique experience without forcing them to relive the pain. This approach emphasizes empowerment, trust, and collaboration, allowing clients to regain a sense of control while gently exploring how past experiences may be affecting their current emotional well-being, relationships, and sense of identity.
+
+Sessions are paced according to the client’s comfort and readiness, using evidence-based modalities such as EMDR (Eye Movement Desensitization and Reprocessing), somatic awareness, and parts work. These tools help clients process trauma not only through conversation but also through body-based and neurobiological awareness, which can be essential when words are not enough. The therapist works closely with each individual to develop grounding techniques, emotional regulation skills, and a deeper understanding of personal triggers, always holding the therapeutic alliance as the foundation for healing.
+
+Clients who participate in trauma-informed therapy often report feeling more resilient, present, and connected to themselves over time. While healing from trauma is rarely linear, this work creates lasting shifts in how individuals relate to their past, and more importantly, how they reclaim their future. The goal is not simply to “move on” from trauma but to integrate the experience in a way that affirms safety, dignity, and the possibility of growth.
+"""
+price = "$250 /session"

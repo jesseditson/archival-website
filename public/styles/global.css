@@ -599,6 +599,11 @@ textarea {
     display: none;
   }
 
+  body > .header.condensed {
+    display: flex;
+    z-index: 9999;
+  }
+
   .scroll-animate {
     opacity: 1;
     transform: translateY(0);

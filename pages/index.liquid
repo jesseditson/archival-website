@@ -58,46 +58,17 @@
   <section id="services" class="body-section container">
     <h2 class="heading">Services Offered</h2>
     <div class="services-grid">
+      {% for service in objects.service %}
       <div class="service-item">
-        <h3 class="service-title">Individual Therapy</h3>
-        <p class="service-description">Work one-on-one in a supportive, confidential space to explore personal
-          challenges, build self-awareness, and foster lasting growth.</p>
-        <a href="/services/" class="service-moreinfo">More info &rarr;</a>
+        <h3 class="service-title">{{ service.name }}</h3>
+        <p class="service-description">{{ service.description }}</p>
+        <a href="{{ service.path }}.html" class="service-moreinfo">More info &rarr;</a>
         <div class="service-footer">
-          <span class="service-price">$199 /session</span>
+          <span class="service-price">{{ service.price }}</span>
           <a href="#book" class="service-cta">Book</a>
         </div>
       </div>
-      <div class="service-item">
-        <h3 class="service-title">Couples Counseling</h3>
-        <p class="service-description">Whether you’re navigating conflict, deepening connection, or rebuilding trust,
-          Robin helps couples communicate more effectively and strengthen their relationship.</p>
-        <a href="/services/" class="service-moreinfo">More info &rarr;</a>
-        <div class="service-footer">
-          <span class="service-price">$340 /session</span>
-          <a href="#book" class="service-cta">Book</a>
-        </div>
-      </div>
-      <div class="service-item">
-        <h3 class="service-title">Trauma-Informed Therapy</h3>
-        <p class="service-description">With a compassionate, grounded approach, Robin helps clients process past trauma
-          at their own pace, fostering healing, resilience, and a renewed sense of safety.</p>
-        <a href="/services/" class="service-moreinfo">More info &rarr;</a>
-        <div class="service-footer">
-          <span class="service-price">$250 /session</span>
-          <a href="#book" class="service-cta">Book</a>
-        </div>
-      </div>
-      <div class="service-item">
-        <h3 class="service-title">Anxiety &amp; Stress Management</h3>
-        <p class="service-description">Learn practical tools to manage anxiety and overwhelm while uncovering the deeper
-          patterns that fuel them, all in a calming and judgment-free environment.</p>
-        <a href="/services/" class="service-moreinfo">More info &rarr;</a>
-        <div class="service-footer">
-          <span class="service-price">$199 /session</span>
-          <a href="#book" class="service-cta">Book</a>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </section>
 

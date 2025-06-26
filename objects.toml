@@ -12,5 +12,6 @@ about = "markdown"
 [service]
 template = "service"
 name = "string"
+description = "string"
 body = "markdown"
 price = "string"

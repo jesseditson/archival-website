@@ -1,0 +1,10 @@
+#:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
+name = "Professional Template"
+description = """
+This template is intended to be used by a professional who is offering services
+"""
+context = """
+This template is for a professional that is selling a service or group of services.
+"""
+tags = ["professional", "service"]
+tlds = ["com", "me"]

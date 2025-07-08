@@ -62,46 +62,50 @@
   </section>
 
   <!-- Testimonials -->
-  <section id="testimonials" class="body-section container">
-    <h2 class="heading">Client Testimonials</h2>
-  </section>
-  {% assign half_testimonial_count = testimonials.size | divided_by: 2 | round %}
-  <div class="testimonial-marquee">
-    <div class="testimonial-track">
-      {% for testimonial in testimonials limit: half_testimonial_count %}
-        <div class="testimonial-item">
-          <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
-          <div class="testimonial-footer">
-            {% if testimonial.thumbnail.url %}
-              <img
-                src="{{testimonial.thumbnail.url}}"
-                alt="{{testimonial.author}}"
-                class="testimonial-avatar" />
-            {% endif %}
-            <p class="testimonial-author">{{ testimonial.author }}</p>
+  {% if testimonials.size > 0 %}
+    <section id="testimonials" class="body-section container">
+      <h2 class="heading">Client Testimonials</h2>
+    </section>
+    {% assign half_testimonial_count = testimonials.size | divided_by: 2 | round %}
+    <div class="testimonial-marquee">
+      <div class="testimonial-track">
+        {% for testimonial in testimonials limit: half_testimonial_count %}
+          <div class="testimonial-item">
+            <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
+            <div class="testimonial-footer">
+              {% if testimonial.thumbnail.url %}
+                <img
+                  src="{{testimonial.thumbnail.url}}"
+                  alt="{{testimonial.author}}"
+                  class="testimonial-avatar" />
+              {% endif %}
+              <p class="testimonial-author">{{ testimonial.author }}</p>
+            </div>
           </div>
-        </div>
-      {% endfor %}
+        {% endfor %}
+      </div>
     </div>
-  </div>
-  <div class="testimonial-marquee">
-    <div class="testimonial-track">
-      {% for testimonial in testimonials offset: half_testimonial_count %}
-        <div class="testimonial-item">
-          <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
-          <div class="testimonial-footer">
-            {% if testimonial.thumbnail.url %}
-              <img
-                src="{{testimonial.thumbnail.url}}"
-                alt="{{testimonial.author}}"
-                class="testimonial-avatar" />
-            {% endif %}
-            <p class="testimonial-author">{{ testimonial.author }}</p>
-          </div>
+    {% if testimonials.size > 1 %}
+      <div class="testimonial-marquee">
+        <div class="testimonial-track">
+          {% for testimonial in testimonials offset: half_testimonial_count %}
+            <div class="testimonial-item">
+              <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
+              <div class="testimonial-footer">
+                {% if testimonial.thumbnail.url %}
+                  <img
+                    src="{{testimonial.thumbnail.url}}"
+                    alt="{{testimonial.author}}"
+                    class="testimonial-avatar" />
+                {% endif %}
+                <p class="testimonial-author">{{ testimonial.author }}</p>
+              </div>
+            </div>
+          {% endfor %}
         </div>
-      {% endfor %}
-    </div>
-  </div>
+      </div>
+    {% endif %}
+  {% endif %}
 
   <!-- Book a session -->
   <section id="book" class="body-section container">

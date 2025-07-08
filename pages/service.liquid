@@ -1,18 +1,11 @@
 {% layout 'theme' title: "Service" %}
-{% include 'partials/inner-nav' %}
+{% include 'inner-nav' %}
 
 
-<main class="main inner">
+  <main class="main inner">
 
   <div id="mobile-nav">
-    <nav class="primary-nav">
-      <ul class="nav-items">
-        <li><a href="/#about-me" class="nav-item">About Me</a></li>
-        <li><a href="/#services" class="nav-item">Services</a></li>
-        <li><a href="/#testimonials" class="nav-item">Testimonials</a></li>
-        <li><a href="/#book" class="nav-item primary-cta">Book</a></li>
-      </ul>
-    </nav>
+    {% include "primary-nav" %}
   </div>
 
   <section class="body-section container breadcrumb-nav">

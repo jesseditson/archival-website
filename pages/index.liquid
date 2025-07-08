@@ -3,18 +3,14 @@
 <!-- Header masthead -->
 <header class="header">
   <div class="container">
-    <nav class="primary-nav">
-      <ul class="nav-items">
-        <li><a href="#about-me" class="nav-item">About Me</a></li>
-        <li><a href="#services" class="nav-item">Services</a></li>
-        <li><a href="#testimonials" class="nav-item">Testimonials</a></li>
-        <li><a href="#book" class="nav-item primary-cta">Book</a></li>
-      </ul>
-    </nav>
+    {% include "primary-nav" %}
 
     <!-- Professional photo -->
     <div class="avatar-wrapper">
-      <img src="/images/main-avatar.jpg" alt="Robin Collette" class="avatar" />
+      <img
+        src="/images/main-avatar.jpg"
+        alt="{{ objects.professional.first_name }} {{ objects.professional.last_name }}"
+        class="avatar" />
     </div>
 
     <!-- Professional name, title, location -->
@@ -31,18 +27,11 @@
 </header>
 
 <div id="mobile-nav">
-  <nav class="primary-nav">
-    <ul class="nav-items">
-      <li><a href="#about-me" class="nav-item">About Me</a></li>
-      <li><a href="#services" class="nav-item">Services</a></li>
-      <li><a href="#testimonials" class="nav-item">Testimonials</a></li>
-      <li><a href="#book" class="nav-item primary-cta">Book</a></li>
-    </ul>
-  </nav>
+  {% include "primary-nav" %}
 </div>
 
 <div id="scroll-animate-target" class="scroll-animate">
-  {% include 'partials/inner-nav' %}
+  {% include "inner-nav" %}
 </div>
 
 <!-- Main content -->
@@ -59,15 +48,15 @@
     <h2 class="heading">Services Offered</h2>
     <div class="services-grid">
       {% for service in objects.service %}
-      <div class="service-item">
-        <h3 class="service-title">{{ service.name }}</h3>
-        <p class="service-description">{{ service.description }}</p>
-        <a href="{{ service.path }}.html" class="service-moreinfo">More info &rarr;</a>
-        <div class="service-footer">
-          <span class="service-price">{{ service.price }}</span>
-          <a href="#book" class="service-cta">Book</a>
+        <div class="service-item">
+          <h3 class="service-title">{{ service.name }}</h3>
+          <p class="service-description">{{ service.description }}</p>
+          <a href="{{ service.path }}.html" class="service-moreinfo">More info &rarr;</a>
+          <div class="service-footer">
+            <span class="service-price">{{ service.price }}</span>
+            <a href="#book" class="service-cta">Book</a>
+          </div>
         </div>
-      </div>
       {% endfor %}
     </div>
   </section>
@@ -76,77 +65,43 @@
   <section id="testimonials" class="body-section container">
     <h2 class="heading">Client Testimonials</h2>
   </section>
+  {% assign half_testimonial_count = testimonials.size | divided_by: 2 | round %}
   <div class="testimonial-marquee">
     <div class="testimonial-track">
-      <div class="testimonial-item">
-        <p class="testimonial-quote">"Robin helped me feel seen and heard in a way I never had before."</p>
-        <div class="testimonial-footer">
-          <img src="/images/avatars/1.jpg" alt="Testimonial Avatar" class="testimonial-avatar" />
-          <p class="testimonial-author">Jasmine R.</p>
+      {% for testimonial in testimonials limit: half_testimonial_count %}
+        <div class="testimonial-item">
+          <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
+          <div class="testimonial-footer">
+            {% if testimonial.thumbnail.url %}
+              <img
+                src="{{testimonial.thumbnail.url}}"
+                alt="{{testimonial.author}}"
+                class="testimonial-avatar" />
+            {% endif %}
+            <p class="testimonial-author">{{ testimonial.author }}</p>
+          </div>
         </div>
-      </div>
-      <div class="testimonial-item">
-        <p class="testimonial-quote">"She blends compassion with practical tools that actually work. Robin is a true
-          gem."</p>
-        <div class="testimonial-footer">
-          <img src="/images/avatars/2.jpg" alt="Testimonial Avatar" class="testimonial-avatar" />
-          <p class="testimonial-author">Tasha B.</p>
-        </div>
-      </div>
-      <div class="testimonial-item">
-        <p class="testimonial-quote">"Therapy was the best investment I’ve ever made in myself, and Robin helped me
-          every step."</p>
-        <div class="testimonial-footer">
-          <img src="/images/avatars/3.jpg" alt="Testimonial Avatar" class="testimonial-avatar" />
-          <p class="testimonial-author">Sarah D.</p>
-        </div>
-      </div>
-      <div class="testimonial-item">
-        <p class="testimonial-quote">"I always leave our sessions feeling lighter, more grounded, and more hopeful every
-          time."</p>
-        <div class="testimonial-footer">
-          <img src="/images/avatars/4.jpg" alt="Testimonial Avatar" class="testimonial-avatar" />
-          <p class="testimonial-author">Jan R.</p>
-        </div>
-      </div>
-
-    </div> <!-- Close testimonial-track -->
-  </div> <!-- Close testimonial-marquee -->
+      {% endfor %}
+    </div>
+  </div>
   <div class="testimonial-marquee">
-    <div class="testimonial-track reverse">
-      <div class="testimonial-item">
-        <p class="testimonial-quote">"I trust Robin completely. There’s a rare safety and honesty in every single
-          session."</p>
-        <div class="testimonial-footer">
-          <img src="/images/avatars/5.jpg" alt="Testimonial Avatar" class="testimonial-avatar" />
-          <p class="testimonial-author">Alexander K.</p>
+    <div class="testimonial-track">
+      {% for testimonial in testimonials offset: half_testimonial_count %}
+        <div class="testimonial-item">
+          <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
+          <div class="testimonial-footer">
+            {% if testimonial.thumbnail.url %}
+              <img
+                src="{{testimonial.thumbnail.url}}"
+                alt="{{testimonial.author}}"
+                class="testimonial-avatar" />
+            {% endif %}
+            <p class="testimonial-author">{{ testimonial.author }}</p>
+          </div>
         </div>
-      </div>
-      <div class="testimonial-item">
-        <p class="testimonial-quote">"I finally feel like I’m becoming the version of myself I’ve always wanted to be."
-        </p>
-        <div class="testimonial-footer">
-          <img src="/images/avatars/6.jpg" alt="Testimonial Avatar" class="testimonial-avatar" />
-          <p class="testimonial-author">Jesse R.</p>
-        </div>
-      </div>
-      <div class="testimonial-item">
-        <p class="testimonial-quote">"I’ve made more progress in six months with Robin than in years of therapy before."
-        </p>
-        <div class="testimonial-footer">
-          <img src="/images/avatars/7.jpg" alt="Testimonial Avatar" class="testimonial-avatar" />
-          <p class="testimonial-author">Tracy S.</p>
-        </div>
-      </div>
-      <div class="testimonial-item">
-        <p class="testimonial-quote">"Robin helped me become the absolute best version of myself. Highly recommend."</p>
-        <div class="testimonial-footer">
-          <img src="/images/avatars/8.jpg" alt="Testimonial Avatar" class="testimonial-avatar" />
-          <p class="testimonial-author">Devon T.</p>
-        </div>
-      </div>
-    </div> <!-- Close testimonial-track -->
-  </div> <!-- Close testimonial-marquee -->
+      {% endfor %}
+    </div>
+  </div>
 
   <!-- Book a session -->
   <section id="book" class="body-section container">
@@ -174,10 +129,9 @@
         <label>
           <span>Session type</span>
           <select name="session">
-            <option>Individual Therapy</option>
-            <option>Couples Counseling</option>
-            <option>Trauma-Informed Therapy</option>
-            <option>Anxiety &amp; Stress Management</option>
+            {% for service in services %}
+              <option>{{ service.name }}</option>
+            {% endfor %}
           </select>
         </label>
 

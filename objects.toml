@@ -19,4 +19,4 @@ price = "string"
 [testimonial]
 quote = "string"
 author = "string"
-image = "image"
+thumbnail = "image"

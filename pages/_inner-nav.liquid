@@ -1,0 +1,31 @@
+<header class="header condensed">
+  <div class="container">
+    <a href="/" class="professional-home">
+      <div class="avatar-wrapper">
+        <img
+          src="/images/main-avatar.jpg"
+          alt="{{ objects.professional.first_name }} {{ objects.professional.last_name }}"
+          class="avatar" />
+      </div>
+      <div class="professional-name-title">
+        <span class="professional-name">{{ objects.professional.first_name }} {{ objects.professional.last_name }}</span>
+        <span class="professional-title">
+          {{ objects.professional.title }}</span>
+      </div>
+    </a>
+
+    <nav class="primary-nav">
+      <button
+        class="mobile-nav-toggle"
+        aria-controls="nav-items"
+        aria-expanded="false">
+        <span class="sr-only">Menu</span>
+      </button>
+      <div class="nav-items-wrapper">
+        <ul class="nav-items" id="nav-items">
+          {% include "nav-list" %}
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>

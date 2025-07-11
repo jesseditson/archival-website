@@ -4,7 +4,9 @@ description = """
 This template is a simple one pager website for a brick and mortar small business.
 """
 context = """
-This template shows information about a local business - it has contact, location, and hours. It is expected that the business it is showcasing is a small brick and mortar. 
+This template shows information about a local business - it has contact, location, and hours. It is expected that the business it is showcasing is a small brick and mortar.
+This is a good template to choose for shops, stores, locations, pop-ups, and other similar concepts.
+The logo_image field of the site object should show a logo - if there is an upload that seems like a logo, put it there. Otherwise generate an image based on the description.
 """
 tags = []
 tlds = ["com"]

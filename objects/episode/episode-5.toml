@@ -1,5 +1,6 @@
 number = 5
 title = "What's Up With AI?"
+slug = "whats-up-with-ai"
 description = """
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac ultrices odio. 
 An in-depth discussion about the current state of artificial intelligence and its 

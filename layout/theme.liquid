@@ -60,9 +60,9 @@
   <nav class="main-nav">
     <div class="nav-container">
       <div class="nav-links">
-        <a href="/" class="nav-link active">Home</a>
-        <a href="/episodes" class="nav-link">Episodes</a>
-        <a href="/about" class="nav-link">About</a>
+        <a href="/" class="nav-link{% if title == 'Home' or title == nil %} active{% endif %}">Home</a>
+        <a href="/episodes/" class="nav-link{% if title contains 'Episode' %} active{% endif %}">Episodes</a>
+        <a href="/about/" class="nav-link{% if title == 'About' %} active{% endif %}">About</a>
       </div>
     </div>
   </nav>
@@ -84,8 +84,8 @@
         <div class="footer-links">
           <div class="footer-section footer-nav">
             <h3>Check out</h3>
-            <a href="/">Episodes</a>
-            <a href="/">About</a>
+            <a href="/episodes/">Episodes</a>
+            <a href="/about/">About</a>
           </div>
 
           <div class="footer-section">

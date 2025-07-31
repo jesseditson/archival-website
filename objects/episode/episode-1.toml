@@ -1,5 +1,6 @@
 number = 1
 title = "Our first episode"
+slug = "our-first-episode"
 description = """
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac ultrices odio. 
 We're getting started with a very cool episode.

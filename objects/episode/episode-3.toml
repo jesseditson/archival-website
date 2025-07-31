@@ -1,5 +1,6 @@
 number = 3
 title = "Best Music of 2025"
+slug = "best-music-of-2025"
 description = """
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac ultrices odio. 
 We're diving into the best music releases of 2025 and what they mean for the industry.

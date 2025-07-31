@@ -1,5 +1,6 @@
 number = 4
 title = "Something Interesting"
+slug = "something-interesting"
 description = """
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac ultrices odio. 
 Join us as we explore some truly fascinating topics that caught our attention this week.

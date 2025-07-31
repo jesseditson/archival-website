@@ -11,6 +11,7 @@ email = "string"
 [episode]
 number = "number"
 title = "string"
+slug = "string"
 description = "markdown"
 audio_url = "string"
 duration = "string"

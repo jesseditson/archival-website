@@ -1,5 +1,6 @@
 number = 2
 title = "Something Weird is Happening"
+slug = "something-weird-is-happening"
 description = """
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac ultrices odio. 
 What could be going on here with this thing?.

@@ -128,6 +128,10 @@ body {
   &.active {
     font-weight: 800;
     box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 1);
+
+    &:hover {
+      color: var(--primary-gray);
+    }
   }
 }
 
@@ -428,7 +432,7 @@ body {
 }
 
 .episodes-header .page-title {
-  font-size: 3rem;
+  font-size: 8rem;
   font-weight: 800;
   color: #000;
   margin-bottom: 16px;
@@ -694,7 +698,8 @@ body {
 }
 
 .page-title {
-  font-size: 3rem;
+  font-size: 8rem;
+  line-height: 1.1;
   font-weight: 800;
   color: #000;
   text-align: center;

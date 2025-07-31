@@ -1,1 +1,45 @@
-# This file is used to define the objects available on your site.
+# Podcast Website Object Definitions
+
+[podcast]
+title = "string"
+subtitle = "string"
+description = "markdown"
+logo = "string"
+website_url = "string"
+email = "string"
+
+[episode]
+number = "number"
+title = "string"
+description = "markdown"
+audio_url = "string"
+duration = "string"
+publish_date = "date"
+thumbnail = "string"
+featured = "boolean"
+draft = "boolean"
+tag1 = "string"
+tag2 = "string"
+host1 = "string"
+host2 = "string"
+template = "episode"
+
+[host]
+name = "string"
+bio = "markdown"
+avatar = "string"
+twitter = "string"
+linkedin = "string"
+instagram = "string"
+
+[settings]
+primary_color = "string"
+accent_color = "string"
+background_color = "string"
+twitter = "string"
+instagram = "string"
+tiktok = "string"
+spotify = "string"
+apple_podcasts = "string"
+google_podcasts = "string"
+youtube = "string"

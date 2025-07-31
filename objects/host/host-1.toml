@@ -1,0 +1,8 @@
+name = "Alex Johnson"
+bio = """
+Alex is a senior technology reporter with over 8 years of experience covering the intersection 
+of technology and culture. They specialize in consumer electronics and digital privacy.
+"""
+twitter = "https://twitter.com/alexjohnson"
+linkedin = "https://linkedin.com/in/alexjohnson"
+instagram = ""

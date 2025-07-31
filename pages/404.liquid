@@ -1,5 +1,12 @@
-{% layout 'theme' title: 'Page Not Found'
-  , page: '404' %}
+{% assign podcast = objects.podcast %}
+{% assign settings = objects.settings %}
+{% assign host = objects.host %}
+{% layout 'theme' title: 'Page Not Found', page: '404' %}
 
-<h1>Page Not Found</h1>
-<p>Sorry, but the page you were trying to view does not exist.</p>
+<div class="container">
+  <div class="error-page">
+    <h1>Page Not Found</h1>
+    <p>Sorry, but the page you were trying to view does not exist.</p>
+    <a href="/" class="back-home">← Back to Home</a>
+  </div>
+</div>

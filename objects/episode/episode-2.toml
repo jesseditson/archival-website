@@ -1,0 +1,16 @@
+number = 2
+title = "Something Weird is Happening"
+description = """
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac ultrices odio. 
+What could be going on here with this thing?.
+"""
+audio_url = "/audio/episode-2.mp3"
+duration = "47:18"
+publish_date = "2024-12-03"
+featured = false
+draft = false
+tag1 = "music"
+tag2 = "news"
+host1 = "host-1"
+host2 = "host-2"
+order = 2

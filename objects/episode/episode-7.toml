@@ -1,0 +1,17 @@
+number = 7
+title = "Where is Everyone?"
+description = """
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac ultrices odio. 
+In this episode, we explore the fascinating question of where everyone has gone in our 
+increasingly digital world.
+"""
+audio_url = "/audio/episode-7.mp3"
+duration = "45:32"
+publish_date = "2025-01-10"
+featured = true
+draft = false
+tag1 = "music"
+tag2 = "news"
+host1 = "host-1"
+host2 = "host-2"
+order = 7

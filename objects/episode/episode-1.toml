@@ -1,0 +1,16 @@
+number = 1
+title = "Our first episode"
+description = """
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac ultrices odio. 
+We're getting started with a very cool episode.
+"""
+audio_url = "/audio/episode-1.mp3"
+duration = "47:18"
+publish_date = "2024-12-01"
+featured = false
+draft = false
+tag1 = "music"
+tag2 = "news"
+host1 = "host-1"
+host2 = "host-2"
+order = 1

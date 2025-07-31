@@ -1,15 +1,137 @@
 <!doctype html>
-<html lang="">
+<html lang="en">
 
-  <head>
-    <meta charset="utf-8">
-    <title>{{ title }}</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
+<head>
+  <meta charset="utf-8">
+  <title>{% if title %}{{ title }} - {% endif %}{{ podcast.title }}</title>
+  <meta name="description" content="{{ podcast.description | strip_html | truncate: 160 }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <body>
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{% if title %}{{ title }} - {% endif %}{{ podcast.title }}">
+  <meta property="og:description" content="{{ podcast.description | strip_html | truncate: 160 }}">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="{% if title %}{{ title }} - {% endif %}{{ podcast.title }}">
+  <meta property="twitter:description" content="{{ podcast.description | strip_html | truncate: 160 }}">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <!-- Audio Player Widget -->
+  <div id="audio-player" class="audio-player">
+    <div class="player-content">
+      <button class="play-pause-btn" id="playPauseBtn">
+        <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8 5v14l11-7z" />
+        </svg>
+        <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
+          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+        </svg>
+      </button>
+      <div class="player-info">
+        <span class="now-playing">Now Playing:</span>
+        <span class="episode-title" id="currentEpisode">Select an episode</span>
+      </div>
+      <button class="volume-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" />
+        </svg>
+      </button>
+    </div>
+    <audio id="audioElement" preload="none"></audio>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-links">
+        <a href="/" class="nav-link active">Home</a>
+        <a href="/episodes" class="nav-link">Episodes</a>
+        <a href="/about" class="nav-link">About</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
     {{ page_content }}
-  </body>
+  </main>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>{{ podcast.title }}</h3>
+          <p>{{ podcast.description | strip_html }}</p>
+        </div>
+
+        <div class="footer-links">
+          <div class="footer-section footer-nav">
+            <h3>Check out</h3>
+            <a href="/">Episodes</a>
+            <a href="/">About</a>
+          </div>
+
+          <div class="footer-section">
+            <h4>Listen to episodes on your favorite platform:</h4>
+            <div class="platform-links">
+              <a href="{{ settings.google_podcasts }}" class="platform-link">
+                <img src="/images/platforms/google.svg" height="22" width="122" alt="Google Podcasts">
+              </a>
+              <a href="{{ settings.spotify }}" class="platform-link">
+                <img src="/images/platforms/spotify.svg" height="22" alt="Spotify">
+              </a>
+              <a href="{{ settings.youtube }}" class="platform-link">
+                <img src="/images/platforms/youtube.svg" height="22" alt="YouTube">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="social-links">
+          <a href="{{ settings.twitter }}" class="social-link">
+            <img src="/images/platforms/twitter.svg" height="24" width="24" alt="Twitter">
+          </a>
+          <a href="{{ settings.instagram }}" class="social-link">
+            <img src="/images/platforms/instagram.svg" height="24" width="24" alt="Instagram">
+          </a>
+          <a href="{{ settings.tiktok }}" class="social-link">
+            <img src="/images/platforms/tiktok.svg" height="24" width="24" alt="TikTok">
+          </a>
+          </a>
+        </div>
+
+        <div class="copyright">
+          <p>&copy; 2025. All Rights Reserved. <a href="{{ podcast.website_url }}">{{ podcast.title }}</a></p>
+          <div class="footer-legal">
+            <a href="/terms">Terms</a>
+            <a href="/privacy">Privacy</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="/js/player.js"></script>
+</body>
 
 </html>

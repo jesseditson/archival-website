@@ -1,0 +1,16 @@
+number = 3
+title = "Best Music of 2025"
+description = """
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac ultrices odio. 
+We're diving into the best music releases of 2025 and what they mean for the industry.
+"""
+audio_url = "/audio/episode-3.mp3"
+duration = "47:18"
+publish_date = "2024-12-13"
+featured = false
+draft = false
+tag1 = "music"
+tag2 = "news"
+host1 = "host-1"
+host2 = "host-2"
+order = 3

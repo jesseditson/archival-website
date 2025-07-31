@@ -1,0 +1,17 @@
+number = 6
+title = "The Benefits of Podcasting"
+description = """
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac ultrices odio. 
+We dive deep into why podcasting has become such a powerful medium for storytelling 
+and community building.
+"""
+audio_url = "/audio/episode-6.mp3"
+duration = "38:15"
+publish_date = "2025-01-03"
+featured = false
+draft = false
+tag1 = "music"
+tag2 = "news"
+host1 = "host-1"
+host2 = "host-2"
+order = 6

@@ -1,1 +1,111 @@
-{% layout 'theme' title: "Archival Website" %}
+{% assign podcast = objects.podcast %}
+{% assign settings = objects.settings %}
+{% assign host = objects.host %}
+{% assign episode = objects.episode %}
+{% layout 'theme' title: "Home" %}
+
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="hero-container">
+    <h1 class="hero-title">{{ podcast.title }}</h1>
+    <p class="hero-subtitle">{{ podcast.subtitle }}</p>
+
+    {% assign latest_episode = episode | where: "draft", false | sort: "order" | reverse | first %}
+    {% if latest_episode %}
+    <button class="cta-button" onclick="playEpisode('{{ latest_episode.audio_url }}', '{{ latest_episode.title }}')">
+      LISTEN TO LATEST EPISODE
+    </button>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Featured Episode -->
+{% assign featured_episode = episode | where: "featured", true | first %}
+{% if featured_episode %}
+<section class="featured-episode">
+  <div class="container">
+    <div class="episode-card featured">
+      <div class="episode-image">
+        <img src="/images/episodes/episode-{{ featured_episode.number }}-thumb.jpg" alt="{{ featured_episode.title }}">
+        <button class="play-button"
+          onclick="playEpisode('{{ featured_episode.audio_url }}', '{{ featured_episode.title }}')">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="episode-content">
+        <div class="episode-meta">
+          <span class="episode-number">Episode {{ featured_episode.number }}</span>
+          <h2 class="episode-title">{{ featured_episode.title }}</h2>
+        </div>
+
+        <p class="episode-description">{{ featured_episode.description | strip_html | truncate: 280 }}</p>
+
+        <div class="episode-footer">
+          <div class="episode-tags">
+            {% if featured_episode.tag1 %}
+            <span class="tag">{{ featured_episode.tag1 }}</span>
+            {% endif %}
+            {% if featured_episode.tag2 %}
+            <span class="tag">{{ featured_episode.tag2 }}</span>
+            {% endif %}
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Recent Episodes -->
+<section class="recent-episodes">
+  <div class="container">
+    <h2 class="section-title">Recent Episodes</h2>
+    <p class="section-subtitle">Play here or on your platform of choice</p>
+
+    <div class="episodes-grid">
+      {% assign all_recent = episode | where: "draft", false | where: "featured", false | sort: "order" | reverse %}
+      {% assign counter = 0 %}
+      {% for ep in all_recent %}
+      {% if counter < 6 %} {% assign counter=counter | plus: 1 %} <div class="episode-card">
+        <div class="episode-image">
+          <img src="/images/episodes/episode-{{ ep.number }}-thumb.jpg" alt="{{ ep.title }}">
+          <button class="play-button" onclick="playEpisode('{{ ep.audio_url }}', '{{ ep.title }}')">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="episode-content">
+          <div class="episode-meta">
+            <span class="episode-number">Episode {{ ep.number }}</span>
+          </div>
+
+          <h3 class="episode-title">{{ ep.title }}</h3>
+          <p class="episode-description">{{ ep.description | strip_html | truncate: 200 }}</p>
+
+          <div class="episode-footer">
+            <div class="episode-tags">
+              {% if ep.tag1 %}
+              <span class="tag">{{ ep.tag1 }}</span>
+              {% endif %}
+              {% if ep.tag2 %}
+              <span class="tag">{{ ep.tag2 }}</span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+
+  <div class="browse-all">
+    <button class="browse-button">BROWSE ALL EPISODES</button>
+  </div>
+  </div>
+</section>

@@ -29,7 +29,7 @@
       {% for current_host in host %}
       <div class="host-card">
         <div class="host-image">
-          <img src="/images/hosts/{{ current_host.path }}-avatar.jpg" alt="{{ current_host.name }}">
+          <img src="/images/hosts/{{ current_host.path | split: '/' | last }}-avatar.jpg" alt="{{ current_host.name }}">
         </div>
 
         <div class="host-info">
@@ -40,30 +40,14 @@
 
           <div class="host-social">
             {% if current_host.twitter %}
-            <a href="{{ current_host.twitter }}" class="social-link" target="_blank">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 713 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
-              </svg>
-            </a>
-            {% endif %}
-
-            {% if current_host.linkedin %}
-            <a href="{{ current_host.linkedin }}" class="social-link" target="_blank">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M16 8a6 6 0 616 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 616-6zM2 9h4v12H2z" />
-                <circle cx="4" cy="4" r="2" />
-              </svg>
+            <a href="{{ settings.twitter }}" class="social-link light">
+              <img src="/images/platforms/twitter.svg" height="24" width="24" alt="Twitter">
             </a>
             {% endif %}
 
             {% if current_host.instagram %}
-            <a href="{{ current_host.instagram }}" class="social-link" target="_blank">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                <path d="m16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-              </svg>
+            <a href="{{ settings.instagram }}" class="social-link light">
+              <img src="/images/platforms/instagram.svg" height="24" width="24" alt="Instagram">
             </a>
             {% endif %}
           </div>
@@ -91,20 +75,11 @@
           <div class="contact-method">
             <h4>Follow Us</h4>
             <div class="social-links">
-              <a href="{{ settings.twitter }}" class="social-link">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path
-                    d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 713 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
-                </svg>
-                Twitter
+              <a href="{{ settings.twitter }}" class="social-link light">
+                <img src="/images/platforms/twitter.svg" height="24" width="24" alt="Twitter">
               </a>
-              <a href="{{ settings.instagram }}" class="social-link">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                  <path d="m16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-                </svg>
-                Instagram
+              <a href="{{ settings.instagram }}" class="social-link light">
+                <img src="/images/platforms/instagram.svg" height="24" width="24" alt="Instagram">
               </a>
             </div>
           </div>

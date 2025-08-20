@@ -1,6 +1,10 @@
 {% assign podcast = objects.podcast %}
 {% assign settings = objects.settings %}
 {% assign host = objects.host %}
+{% comment %}
+The episode context is automatically provided by the Archival system
+when this template is used for individual episode pages
+{% endcomment %}
 {% layout 'theme' title: episode.title %}
 
 <article class="episode-detail">

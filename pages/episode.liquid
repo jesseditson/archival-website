@@ -11,9 +11,9 @@ when this template is used for individual episode pages
   <div class="container">
     <!-- Episode Header -->
     <header class="episode-header">
-      <div class="episode-image-large">
+      <div class="episode-image-large" onclick="playEpisode('{{ episode.audio_url }}', '{{ episode.title }}')">
         <img src="/images/episodes/episode-{{ episode.number }}-thumb.jpg" alt="{{ episode.title }}">
-        <button class="play-button-large" onclick="playEpisode('{{ episode.audio_url }}', '{{ episode.title }}')">
+        <button class="play-button-large">
           <svg viewBox="0 0 24 24" fill="currentColor">
             <path d="M8 5v14l11-7z" />
           </svg>
@@ -24,28 +24,30 @@ when this template is used for individual episode pages
         <div class="episode-meta">
           <span class="episode-number">Episode {{ episode.number }}</span>
           <span class="episode-date">{{ episode.publish_date | date: "%B %d, %Y" }}</span>
-          <span class="episode-duration">{{ episode.duration }}</span>
         </div>
 
         <h1 class="episode-title">{{ episode.title }}</h1>
 
-        <div class="episode-tags">
-          {% if episode.tag1 %}
-          <span class="tag">{{ episode.tag1 }}</span>
-          {% endif %}
-          {% if episode.tag2 %}
-          <span class="tag">{{ episode.tag2 }}</span>
-          {% endif %}
+        <div class="episode-description">
+          {{ episode.description }}
+        </div>
+
+        <div class="episode-footer">
+          <div class="episode-tags">
+            {% if episode.tag1 %}
+            <span class="tag">{{ episode.tag1 }}</span>
+            {% endif %}
+            {% if episode.tag2 %}
+            <span class="tag">{{ episode.tag2 }}</span>
+            {% endif %}
+          </div>
+          <span class="episode-duration">{{ episode.duration }}</span>
         </div>
       </div>
     </header>
 
     <!-- Episode Content -->
     <div class="episode-content">
-      <div class="episode-description">
-        {{ episode.description }}
-      </div>
-
       <!-- Audio Player -->
       <div class="episode-player">
         <h3>Listen to this episode</h3>
@@ -59,23 +61,19 @@ when this template is used for individual episode pages
 
       <!-- Platform Links -->
       <div class="platform-section">
-        <h3>Listen on your favorite platform</h3>
+        <h3>or listen on your favorite platform</h3>
         <div class="platform-links">
-          <a href="{{ settings.spotify }}" class="platform-link" target="_blank">
-            <img src="/images/platforms/spotify.svg" alt="Spotify">
-            <span>Spotify</span>
-          </a>
           <a href="{{ settings.apple_podcasts }}" class="platform-link" target="_blank">
             <img src="/images/platforms/apple-podcasts.svg" alt="Apple Podcasts">
-            <span>Apple Podcasts</span>
           </a>
           <a href="{{ settings.google_podcasts }}" class="platform-link" target="_blank">
-            <img src="/images/platforms/google-podcasts.svg" alt="Google Podcasts">
-            <span>Google Podcasts</span>
+            <img src="/images/platforms/google.svg" alt="Google Podcasts">
+          </a>
+          <a href="{{ settings.spotify }}" class="platform-link" target="_blank">
+            <img src="/images/platforms/spotify.svg" alt="Spotify">
           </a>
           <a href="{{ settings.youtube }}" class="platform-link" target="_blank">
             <img src="/images/platforms/youtube.svg" alt="YouTube">
-            <span>YouTube</span>
           </a>
         </div>
       </div>

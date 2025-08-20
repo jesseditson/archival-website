@@ -23,7 +23,7 @@
           </button>
         </div>
 
-        <div class="episode-content" onclick="window.location.href='/episodes/{{ ep.slug }}.html'">
+        <div class="episode-content" onclick="window.location.href='/episode/episode-{{ ep.number }}.html'">
           <div class="episode-meta">
             <span class="episode-number">Episode {{ ep.number }}</span>
             <span class="episode-date">{{ ep.publish_date | date: "%b %d, %Y" }}</span>

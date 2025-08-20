@@ -264,6 +264,12 @@ body {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Regular episode cards (not featured) use flexbox for alignment */
+.episode-card:not(.featured) {
+  display: flex;
+  flex-direction: column;
+}
+
 .episode-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
@@ -315,8 +321,18 @@ body {
   padding: 1.5rem;
 }
 
+/* Regular episode cards (not featured) use flexbox for content */
+.episode-card:not(.featured) .episode-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
 .episode-meta {
   color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .episode-number {
@@ -357,6 +373,11 @@ body {
   justify-content: space-between;
   align-items: flex-end;
   gap: 16px;
+}
+
+/* Regular episode cards (not featured) push footer to bottom */
+.episode-card:not(.featured) .episode-footer {
+  margin-top: auto;
 }
 
 .episode-tags {
@@ -457,13 +478,15 @@ body {
   gap: 30px;
 }
 
-.episodes-directory .episode-card .episode-title a {
+.episodes-directory .episode-card .episode-title a,
+.episode-card .episode-title a {
   color: inherit;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
-.episodes-directory .episode-card .episode-title a:hover {
+.episodes-directory .episode-card .episode-title a:hover,
+.episode-card .episode-title a:hover {
   color: var(--primary-color);
 }
 
@@ -474,14 +497,16 @@ body {
   gap: 16px;
 }
 
-.episodes-directory .episode-duration {
+.episodes-directory .episode-duration,
+.episode-duration {
   font-size: 12px;
   color: #666;
   font-weight: 500;
   flex-shrink: 0;
 }
 
-.episodes-directory .episode-date {
+.episodes-directory .episode-date,
+.episode-date {
   font-size: 12px;
   color: #666;
   font-weight: 500;

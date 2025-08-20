@@ -14,24 +14,22 @@
       {% assign all_episodes = episode | where: "draft", false | sort: "order" | reverse %}
       {% for ep in all_episodes %}
       <div class="episode-card">
-        <div class="episode-image">
+        <div class="episode-image" onclick="playEpisode('{{ ep.audio_url }}', '{{ ep.title }}')">
           <img src="/images/episodes/episode-{{ ep.number }}-thumb.jpg" alt="{{ ep.title }}">
-          <button class="play-button" onclick="playEpisode('{{ ep.audio_url }}', '{{ ep.title }}')">
+          <button class="play-button">
             <svg viewBox="0 0 24 24" fill="currentColor">
               <path d="M8 5v14l11-7z" />
             </svg>
           </button>
         </div>
 
-        <div class="episode-content">
+        <div class="episode-content" onclick="window.location.href='/episodes/{{ ep.slug }}.html'">
           <div class="episode-meta">
             <span class="episode-number">Episode {{ ep.number }}</span>
             <span class="episode-date">{{ ep.publish_date | date: "%b %d, %Y" }}</span>
           </div>
 
-          <h3 class="episode-title">
-            <a href="/episodes/{{ ep.slug }}.html">{{ ep.title }}</a>
-          </h3>
+          <h3 class="episode-title">{{ ep.title }}</h3>
           <p class="episode-description">{{ ep.description | strip_html | truncate: 200 }}</p>
 
           <div class="episode-footer">

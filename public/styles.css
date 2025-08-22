@@ -151,6 +151,7 @@ header.hero {
     background-image: url("/images/iphone-15-portrait.png");
   }
   .screenshot {
+    aspect-ratio: 1419/2796;
     padding: 1.8rem;
     border-radius: 4.5rem;
   }
@@ -162,6 +163,7 @@ header.hero {
     background-image: url("/images/google-pixel-8-rose-portrait.png");
   }
   .screenshot {
+    aspect-ratio: 978/2100;
     padding: 0.6rem;
     padding-left: 0.5rem;
     border-radius: 2rem;

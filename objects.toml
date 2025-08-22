@@ -1,16 +1,25 @@
+#:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/main/objects.schema.json
 # This file is used to define the objects available on your site.
 
 [app]
 name = "string"
-description = "string"
+author = "string"
 logo = "image"
-screenshot = "image"
-dl_appstore = "string"
-dl_playstore = "string"
-dl_direct = "string"
+description = "string"
+appstore_download_link = "string"
+playstore_download_link = "string"
+direct_download_link = "string"
+country = "string"
+legal_email = "string"
+
+[screenshots]
+image = "image"
+description = "string"
+frame = ["iphone-15-portrait","google-pixel-8-rose-portrait"]
 
 [features]
 emoji = "string"
+icon = "image"
 title = "string"
 desc = "string"
 
@@ -18,9 +27,11 @@ desc = "string"
 email = "string"
 chat_link = "string"
 
-[legal]
-company_name = "string"
-company_email = "string"
-company_address = "string"
-company_jurisdiction = "string"
-start_date = "string"
+[eula]
+content = "markdown"
+
+[terms_of_service]
+content = "markdown"
+
+[privacy_policy]
+content = "markdown"

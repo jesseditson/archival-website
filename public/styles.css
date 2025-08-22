@@ -101,11 +101,7 @@ header.hero {
   margin-bottom: 4rem;
   width: 100%;
   background-color: var(--color-hero-background);
-}
-
-.hero-image {
-  width: 30rem;
-  height: auto;
+  height: 50rem;
 }
 
 .supplement {
@@ -126,11 +122,85 @@ header.hero {
   gap: 1rem;
 }
 
+/* Screenshots */
+
+.screenshots {
+  position: relative;
+  width: 22rem;
+  height: 44rem;
+}
+.screenshot-container {
+  position: absolute;
+  height: auto;
+}
+
+.screenshot-frame {
+  background-size: contain;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.screenshot-container.iphone-15-portrait {
+  width: 22rem;
+  .screenshot-frame {
+    background-image: url("/images/iphone-15-portrait.png");
+  }
+  .screenshot {
+    padding: 1.8rem;
+    border-radius: 4.5rem;
+  }
+}
+
+.screenshot-container.google-pixel-8-rose-portrait {
+  width: 20rem;
+  .screenshot-frame {
+    background-image: url("/images/google-pixel-8-rose-portrait.png");
+  }
+  .screenshot {
+    padding: 0.6rem;
+    padding-left: 0.5rem;
+    border-radius: 2rem;
+  }
+}
+
+.screenshot-page-icons {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.screenshot-page-icon {
+  height: 0.5rem;
+  width: 0.5rem;
+  background-color: var(--color-heading);
+  border-radius: 0.5rem;
+  opacity: 0.4;
+  cursor: pointer;
+  transition: width 100ms ease-in;
+  &.active {
+    width: 1rem;
+    opacity: 1;
+  }
+  &:not(:first-child) {
+    margin-left: 1em;
+  }
+}
+
 /* Layout Helpers */
 .container {
   max-width: 60rem;
   margin: 0 auto;
   padding: 0 1rem;
+}
+
+.hidden {
+  display: none;
 }
 
 button,
@@ -229,6 +299,13 @@ p {
   font-size: 2rem;
   margin-right: 2rem;
   align-self: flex-start;
+  &.has-image {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 6rem;
+    height: 2rem;
+  }
 }
 
 .feature h3 {
@@ -330,14 +407,22 @@ footer.container {
     padding: 2rem 1rem;
   }
 
+  header.hero {
+    height: 85rem;
+  }
+
   .hero .container {
     flex-wrap: wrap;
     margin-top: 1rem;
   }
 
-  .hero-image {
+  .screenshots {
     order: -1;
     margin: 0 auto;
+  }
+
+  .screenshot-page-icon {
+    background-color: var(--color-hero-text);
   }
 
   .hero-statement {

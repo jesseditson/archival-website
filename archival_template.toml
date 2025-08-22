@@ -1,10 +1,10 @@
 #:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
 name = "App"
 description = """
-This template is for showcasing an app.
+This website showcases a mobile app, highlights key features, and contains support email links and example privacy policy and EULA pages for your mobile app.
 """
 context = """
-This template shows information about an app that is for sale on an app store - for instance google play or the iOS app store.
+This template shows information about an app that is for sale on an app store - for instance google play or the iOS app store. When generating features, for this template, generate 6 of them.
 """
 tags = []
 tlds = ["com", "app"]

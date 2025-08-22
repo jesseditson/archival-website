@@ -1,18 +1,18 @@
-{% layout 'theme' title: objects.app.name %}
+{% layout 'theme' title: "" %}
 
 <nav class="nav">
   <div class="container">
     <div class="brand">
-      {% if objects.app.logo %}
+      {% if app.logo %}
         <a href="/">
           <img
             class="app-logo"
-            src="{{ objects.app.logo.url }}"
-            alt="{{ objects.app.name }} logo" />
+            src="{{ app.logo.url }}"
+            alt="{{ app.name }} logo" />
         </a>
       {% endif %}
       <span class="app-name">
-        {{ objects.app.name }}
+        {{ app.name }}
       </span>
     </div>
     <div class="nav-items">
@@ -26,27 +26,44 @@
   <div class="container">
     <div class="hero-statement">
       <span class="supplement">Introducing</span>
-      <h1>{{ objects.app.name }}</h1>
+      <h1>{{ app.name }}</h1>
       <div class="download-options">
-        {% if objects.app.dl_appstore != empty %}
-          <a href="{{objects.app.dl_appstore}}">
+        {% if app.appstore_download_link != empty %}
+          <a href="{{app.appstore_download_link}}">
             <img class="app-store-download" src="images/app-store-black.svg" />
           </a>
         {% endif %}
-        {% if objects.app.dl_playstore != empty %}
-          <a href="{{objects.app.dl_playstore}}">
+        {% if app.playstore_download_link != empty %}
+          <a href="{{app.playstore_download_link}}">
             <img class="play-store-download" src="images/play-store-black.svg" />
           </a>
         {% endif %}
-        {% if objects.app.dl_direct != empty %}
-          <a href="{{objects.app.dl_direct}}">
+        {% if app.direct_download_link != empty %}
+          <a href="{{app.direct_download_link}}">
             <button class="button">Download</button>
           </a>
         {% endif %}
       </div>
     </div>
-    {% if objects.app.screenshot %}
-      <img class="hero-image" src="{{ objects.app.screenshot.url }}" />
+    {% if screenshots.size > 0 %}
+      <div class="screenshots">
+        {% for screenshot in screenshots %}
+          <div class="screenshot-container {{screenshot.frame}} {% unless forloop.first %}hidden{% endunless %}">
+            <img
+              class="screenshot"
+              src="{{screenshot.image.url}}"
+              alt="{{screenshot.description}}" />
+            <div class="screenshot-frame"></div>
+          </div>
+        {% endfor %}
+        {% if screenshots.size > 1 %}
+          <div class="screenshot-page-icons">
+            {% for page in (1..screenshots.size) %}
+              <div data-page="{{page}}" class="screenshot-page-icon {% if forloop.first %}active{% endif %}"></div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
     {% endif %}
   </div>
 </header>
@@ -56,9 +73,15 @@
   <h2>Features</h2>
 
   <section id="features" class="features-grid">
-    {% for feature in objects.features %}
+    {% for feature in features %}
       <div class="feature">
-        <div class="feature-icon">{{ feature.emoji }}</div>
+        <div
+          class="feature-icon {% if feature.icon %}has-image{% endif %}"
+          {% if feature.icon %}
+          style="background-image:url('{{feature.icon.url}}')"
+          {% endif %}>
+          {{ feature.emoji }}
+        </div>
         <div class="feature-text">
           <h3>{{ feature.title }}</h3>
           <p class="feature-description">
@@ -69,18 +92,18 @@
     {% endfor %}
   </section>
 
-  {% if objects.support.email != "" or objects.support.chat_link != "" %}
+  {% if support.email != "" or support.chat_link != "" %}
     <section id="support" class="support">
       <h2>Need support?</h2>
       <div class="support-modules">
-        {% if objects.support.email != empty %}
+        {% if support.email != empty %}
           <div class="email-support module">
-            <a href="mailto: {{ objects.support.email }}">Send us an email &rarr;</a>
+            <a href="mailto: {{ support.email }}">Send us an email &rarr;</a>
           </div>
         {% endif %}
-        {% if objects.support.chat_link != empty %}
+        {% if support.chat_link != empty %}
           <div class="chat-support module">
-            <a href="{{ objects.support.chat_link }}">Live chat support &rarr;</a>
+            <a href="{{ support.chat_link }}">Live chat support &rarr;</a>
           </div>
         {% endif %}
       </div>
@@ -90,7 +113,7 @@
 </main>
 
 <footer class="container">
-  <p>&copy; 2024 {{ objects.app.name }}</p>
+  <p>&copy; 2024 {{ app.author }}</p>
   <p class="footer-legal">
     <a href="privacy.html">Privacy</a>
     |
@@ -99,3 +122,8 @@
     <a href="eula.html">EULA</a>
   </p>
 </footer>
+
+<script
+  src="/screenshots.js"
+  type="application/javascript"
+  defer></script>

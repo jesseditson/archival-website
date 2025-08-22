@@ -1,91 +1,9 @@
-{% layout 'theme' title: "Terms of Service" %}
+{% layout 'theme' title: "Terms of Service"
+  , is_legal_page: true %}
 
 <div class="nav-top container">
-  <a href="index.html">&larr; Back to home</a>
+  <a href="/">&larr; Back to home</a>
 </div>
 <div class="container">
-  <h1>Terms of Service</h1>
-  <p><strong>Effective Date: </strong>{{ objects.legal.start_date }}</p>
-
-  <h2>1. Acceptance of Terms</h2>
-  <p>By accessing or using {{ objects.app.name }} (the "App"), you agree to be bound by these Terms of Service
-    ("Terms"). If you do
-    not agree to these Terms, please do not use the App.</p>
-
-  <h2>2. Description of Services</h2>
-  <p>{{ objects.app.name }} provides the following: {{ objects.app.description }}. We reserve the right to
-    modify or discontinue, temporarily or permanently, the App or any
-    features or portions thereof without prior notice.</p>
-
-  <h2>3. User Responsibilities</h2>
-  <p>By using the App, you agree to:</p>
-  <ul>
-    <li>Provide accurate information as requested and keep it up to date.</li>
-    <li>Maintain the security of your account, including keeping your password confidential.</li>
-    <li>Use the App in compliance with all applicable laws and regulations.</li>
-    <li>Refrain from using the App for any unlawful or prohibited activities.</li>
-  </ul>
-
-  <h2>4. Account Registration and Security</h2>
-  <p>To access certain features of the App, you may be required to register for an account. You agree to provide
-    accurate, current, and complete information during the registration process and to update such information to keep
-    it accurate, current, and complete. You are responsible for safeguarding your password and agree not to disclose it
-    to any third party. You agree that you are fully responsible for activities or actions under your account.</p>
-
-  <h2>5. Intellectual Property</h2>
-  <p>All content and materials available on the App, including but not limited to text, graphics, logos, icons, images,
-    audio clips, and software, are the intellectual property of {{ objects.legal.company_name }} or its licensors. You
-    agree not to
-    copy, reproduce, distribute, or create derivative works from any part of the App without prior written permission
-    from us.</p>
-
-  <h2>6. Prohibited Activities</h2>
-  <p>When using the App, you agree not to:</p>
-  <ul>
-    <li>Engage in any illegal or unauthorized activities.</li>
-    <li>Use the App to harass, abuse, or harm another person.</li>
-    <li>Attempt to interfere with the App&apos;s security or functionality, including introducing viruses or other
-      malicious
-      code.</li>
-    <li>Access or use the App for purposes of competitive analysis.</li>
-  </ul>
-
-  <h2>7. Limitation of Liability</h2>
-  <p>In no event shall {{ objects.legal.company_name }}, its directors, employees, or agents be liable for any indirect,
-    incidental,
-    special, consequential, or punitive damages arising from or related to your use of the App. Our liability to you for
-    any damages shall not exceed the total amount you have paid to use the App, if any, in the past 12 months.</p>
-
-  <h2>8. Disclaimer of Warranties</h2>
-  <p>The App is provided "as is" and "as available" without warranties of any kind, whether express or implied. We do
-    not warrant that the App will be uninterrupted, error-free, or secure, or that any defects will be corrected. Your
-    use of the App is at your sole risk.</p>
-
-  <h2>9. Indemnification</h2>
-  <p>You agree to indemnify and hold harmless {{ objects.legal.company_name }} and its affiliates, employees, and agents
-    from any
-    claims, liabilities, damages, losses, and expenses, including reasonable attorney fees, arising out of or in
-    connection with your use of the App or violation of these Terms.</p>
-
-  <h2>10. Termination</h2>
-  <p>We reserve the right to suspend or terminate your access to the App at any time, with or without cause, and with or
-    without notice, if you violate any of these Terms.</p>
-
-  <h2>11. Governing Law</h2>
-  <p>These Terms are governed by and construed in accordance with the laws of {{ objects.legal.company_jurisdiction }},
-    without regard to its
-    conflict of law principles. Any disputes arising from these Terms or the App will be resolved in the courts of {{
-    objects.legal.company_jurisdiction }}.</p>
-
-  <h2>12. Changes to Terms</h2>
-  <p>We may update these Terms from time to time. When we do, we will revise the "Effective Date" at the top of this
-    document. We encourage you to review these Terms periodically for any changes. Continued use of the App following
-    the posting of changes constitutes your acceptance of such changes.</p>
-
-  <h2>13. Contact Us</h2>
-  <p>If you have any questions about these Terms, please contact us:</p>
-  <p><strong>Email: </strong><a href="mailto:{{ objects.legal.company_email }}">{{ objects.legal.company_email
-      }}</a><br>
-    <strong>Mailing Address: </strong>{{ objects.legal.company_address }}
-  </p>
+  {{ terms_of_service.content }}
 </div>

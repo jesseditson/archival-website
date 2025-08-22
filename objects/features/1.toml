@@ -1,3 +1,7 @@
-emoji = "🔍"
 title = "Feature Title"
 desc = "Easily find and organize your photos in your library. Search and filter. Easily find and organize your photos in your library. Search and filter."
+[icon]
+sha = "deea7947247c4c92e7d86cd33e951e9f22d21d8d309a80281f5824461d8906bb"
+filename = "hammer-icon.png"
+mime = "image/png"
+display_type = "image"

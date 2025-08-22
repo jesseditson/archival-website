@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ app.name }}{% if title.size > 0 %}
+        - {{ title }}{% endif %}
+    </title>
+    <meta name="description" content="{{ app.description }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<head>
-  <meta charset="utf-8">
-  <title>{{ title }}</title>
-  <meta name="description" content="{{ objects.app.description }}">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:type" content="website">
+    <!-- <meta property="og:url" content=""> -->
+    {% if app.logo %}
+      <meta property="og:image" content="app.logo.url">
 
-  <meta property="og:title" content="{{ title }}">
-  <meta property="og:type" content="website">
-  <!-- <meta property="og:url" content=""> -->
-  <!-- <meta property="og:image" content=""> -->
+      <link rel="apple-touch-icon" href="{{app.logo.url}}">
+      <link rel="shortcut icon" href="{{app.logo.url}}">
+    {% endif %}
 
-  <link rel="manifest" href="/site.webmanifest">
-  <link rel="apple-touch-icon" href="/icon.png">
-  <!-- Place favicon.ico in the root directory -->
+    <link rel="stylesheet" href="/styles.css">
 
-  <link rel="stylesheet" href="/styles.css">
+    <meta name="theme-color" content="#fafafa">
+  </head>
 
-  <meta name="theme-color" content="#fafafa">
-</head>
-
-<body class="{% if title == 'Privacy Policy' or title == 'Terms of Service' or title == 'EULA' %}legal{% endif %}">
-  {{ page_content }}
-</body>
+  <body class="{% if is_legal_page %}legal{% endif %}">
+    {{ page_content }}
+  </body>
 
 </html>

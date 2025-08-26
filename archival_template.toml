@@ -10,6 +10,6 @@ tags = []
 tlds = ["com", "app"]
 keep_fields = [
     "eula.content",
-    "tos.content",
-    "privacy.content"
+    "terms_of_service.content",
+    "privacy_policy.content"
 ]

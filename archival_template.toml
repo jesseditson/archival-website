@@ -8,8 +8,8 @@ This template shows information about an app that is for sale on an app store - 
 """
 tags = []
 tlds = ["com", "app"]
-keep_fields = [
-    "eula.content",
-    "terms_of_service.content",
-    "privacy_policy.content"
+keep_objects = [
+    "eula",
+    "terms_of_service",
+    "privacy_policy"
 ]

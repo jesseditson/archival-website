@@ -6,6 +6,7 @@ direct_download_link = "#"
 country = "United States"
 legal_email = "legal@your-app.app"
 author = "Your Name"
+copyright_year = "2025"
 
 [logo]
 sha = "deea7947247c4c92e7d86cd33e951e9f22d21d8d309a80281f5824461d8906bb"

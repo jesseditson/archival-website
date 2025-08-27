@@ -11,6 +11,7 @@ playstore_download_link = "string"
 direct_download_link = "string"
 country = "string"
 legal_email = "string"
+copyright_year = "string"
 
 [screenshots]
 image = "image"

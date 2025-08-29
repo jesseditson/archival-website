@@ -131,13 +131,59 @@ class ImageCarousel {
   }
   
   updateCarousel() {
-    // Calculate widths - all images are now the same size
-    const containerWidth = Math.min(1128, window.innerWidth - 32); // 70.5rem max, minus padding
-    const slideWidth = containerWidth + 32; // Add padding back for slide width
+    // Get the actual image width from CSS calculation
+    const viewportWidth = window.innerWidth;
     
-    // Simple calculation: center the current slide
-    const centerOffset = (window.innerWidth - slideWidth) / 2;
-    const translateX = centerOffset - (this.currentIndex * slideWidth);
+    // Calculate image width and slide spacing based on viewport
+    let imageWidth, slideSpacing;
+    
+    if (viewportWidth <= 600) {
+      // Mobile: Show significant portions of adjacent slides with proper spacing
+      imageWidth = viewportWidth * 0.7; // 70% of viewport for main image
+      slideSpacing = viewportWidth * 0.04; // 4vw total spacing (2vw padding on each side)
+    } else if (viewportWidth <= 900) {
+      // Small tablet: Show some adjacent slides
+      imageWidth = Math.min(600, viewportWidth * 0.8);
+      slideSpacing = 24;
+    } else if (viewportWidth <= 1200) {
+      // Large tablet: Standard spacing
+      imageWidth = Math.min(960, viewportWidth - 32);
+      slideSpacing = 32;
+    } else {
+      // Desktop: Full size
+      imageWidth = Math.min(1128, viewportWidth - 32);
+      slideSpacing = 32;
+    }
+    
+    // Calculate slide width including spacing
+    const slideWidth = imageWidth + slideSpacing;
+    
+    // Center the current slide with bounds checking
+    const trackWidth = this.totalSlides * slideWidth;
+    
+    // Calculate center offset to align with page content
+    let centerOffset;
+    if (viewportWidth <= 600) {
+      // On mobile, simply center the image in the viewport
+      centerOffset = (viewportWidth - imageWidth) / 2;
+    } else {
+      // On larger screens, align with the main container
+      const containerMaxWidth = Math.min(1128, viewportWidth - 32); // 70.5rem max, minus padding
+      const containerOffset = (viewportWidth - containerMaxWidth) / 2;
+      centerOffset = containerOffset + (containerMaxWidth - imageWidth) / 2;
+    }
+    
+    // Calculate the ideal position to center the current slide
+    let translateX = centerOffset - (this.currentIndex * slideWidth);
+    
+    // Apply bounds checking to prevent over-scrolling
+    const maxTranslateX = centerOffset; // Don't scroll past the first slide
+    const minTranslateX = centerOffset - ((this.totalSlides - 1) * slideWidth); // Position last slide centered
+    
+    // Only apply bounds if we have enough slides to warrant it
+    if (trackWidth > viewportWidth) {
+      translateX = Math.max(minTranslateX, Math.min(maxTranslateX, translateX));
+    }
     
     this.track.style.transform = `translateX(${translateX}px)`;
     

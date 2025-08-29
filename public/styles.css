@@ -305,6 +305,7 @@ p {
   gap: 2rem;
   margin: 8rem 0;
   align-items: start;
+  justify-items: center;
 }
 
 .feature {
@@ -435,6 +436,13 @@ footer.container {
   padding: 0 1rem;
 }
 
+/* Ensure adjacent slides are visible on smaller screens */
+@media (max-width: 1020px) {
+  .carousel-slide {
+    padding: 0 0.75rem;
+  }
+}
+
 .carousel-slide img {
   object-fit: contain;
   border-radius: 1rem;
@@ -446,6 +454,7 @@ footer.container {
     calc(100vw - 2rem)
   ); /* All images same size as container width */
   max-width: 1128px; /* 70.5rem in pixels */
+  transition: opacity 0.2s ease-in-out;
 }
 
 .carousel-slide:not(.active) img {
@@ -463,7 +472,71 @@ footer.container {
   user-select: none;
 }
 
+/* Carousel Responsive Adjustments */
+@media (max-width: 1200px) {
+  .image-carousel {
+    min-height: 350px;
+  }
+
+  .carousel-slide img {
+    width: min(60rem, calc(100vw - 2rem));
+  }
+}
+
+@media (max-width: 900px) {
+  .image-carousel {
+    min-height: 300px;
+  }
+
+  .carousel-slide {
+    padding: 0 0.75rem; /* Match JavaScript: 24px spacing / 2 = 12px = 0.75rem */
+  }
+
+  .carousel-slide img {
+    width: min(37.5rem, 80vw); /* Match JavaScript: min(600px, 80% viewport) */
+  }
+}
+
+@media (max-width: 600px) {
+  .image-carousel {
+    min-height: 250px;
+  }
+
+  .carousel-slide {
+    padding: 0 2vw; /* 4vw total spacing between slides */
+  }
+
+  .carousel-slide img {
+    width: 70vw; /* Match JavaScript: 70% of viewport */
+    border-radius: 0.5rem;
+  }
+}
+
 /* Responsive Adjustments */
+@media (max-width: 1200px) {
+  .features-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .features-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 6rem 0;
+  }
+
+  .feature h3 {
+    font-size: 2rem;
+  }
+
+  .support-modules {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   body {
     font-size: 0.9rem;
@@ -515,6 +588,13 @@ footer.container {
 
   .features-grid {
     grid-template-columns: 1fr;
+    gap: 3rem;
+    margin: 4rem 0;
+  }
+
+  .feature {
+    max-width: none;
+    width: 100%;
   }
 
   .support-modules {

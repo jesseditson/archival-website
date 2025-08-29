@@ -1,19 +1,20 @@
 /* CSS Variables */
 :root {
   --color-text: #333;
-  --color-hero-text: #f9f9f9;
-  --color-background: #f9f9f9;
+  --color-hero-text: #000000;
+  --color-background: #f2f2f2;
   --color-heading: #222;
-  --color-button-bg: #184ed8;
-  --color-button-hover-bg: #184ed8;
+  --color-button-bg: #000000;
+  --color-button-hover-bg: #161616;
   --color-footer-text: #777;
-  --color-hero-background: #184ed8;
+  --color-nav-background: rgba(242, 242, 242, 0.9);
+  --color-hero-background: #f2f2f2;
   --color-supplement: #ffb31a;
 
-  --typo-h1-size: 5rem;
+  --typo-h1-size: 7rem;
   --typo-h1-weight: 800;
-
-  --typo-h2-size: 3rem;
+  --typo-h2-size: 7rem;
+  --typo-body-size: 1.5rem;
 }
 
 /* Reset */
@@ -54,15 +55,18 @@ a {
 }
 
 .app-logo {
-  width: 3rem;
-  height: 3rem;
+  width: 4rem;
+  height: 4rem;
 }
 
 .nav {
   position: fixed;
   width: 100%;
   padding: 2rem 1rem;
-  background-color: var(--color-hero-background);
+  background-color: var(--color-nav-background);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  z-index: 9999;
 }
 
 .nav .container {
@@ -74,6 +78,9 @@ a {
 .nav-items {
   display: flex;
   gap: 2rem;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .nav-toggle {
@@ -97,11 +104,10 @@ a.nav-item:hover {
 
 /* Hero */
 header.hero {
-  padding: 8rem 0;
-  margin-bottom: 4rem;
+  padding: 8rem 0 0;
+  margin-bottom: 2.5rem;
   width: 100%;
   background-color: var(--color-hero-background);
-  height: 50rem;
 }
 
 .supplement {
@@ -115,6 +121,7 @@ header.hero {
   margin-top: 3rem;
   padding: 0 1rem;
   display: flex;
+  justify-content: center;
 }
 
 .download-options {
@@ -122,12 +129,19 @@ header.hero {
   gap: 1rem;
 }
 
+.app-store-download {
+  background: transparent url("images/app-store-black.svg");
+}
+
+.play-store-download {
+  background-image: url("images/play-store-black.svg");
+}
+
 /* Screenshots */
 
 .screenshots {
   position: relative;
   width: 22rem;
-  height: 44rem;
 }
 .screenshot-container {
   position: absolute;
@@ -196,7 +210,7 @@ header.hero {
 
 /* Layout Helpers */
 .container {
-  max-width: 60rem;
+  max-width: 70.5rem;
   margin: 0 auto;
   padding: 0 1rem;
 }
@@ -247,8 +261,8 @@ h1 {
   color: var(--color-hero-text);
   font-size: var(--typo-h1-size);
   font-weight: var(--typo-h1-weight);
+  text-align: center;
   line-height: 1;
-  margin-bottom: 2rem;
 }
 
 h2 {
@@ -256,11 +270,13 @@ h2 {
   font-weight: var(--typo-h1-weight);
   text-align: center;
   color: var(--color-heading);
-  margin: 0;
+  margin: 0 0 4rem;
 }
 
 p {
+  font-size: var(--typo-body-size);
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 /* Buttons */
@@ -271,6 +287,7 @@ p {
   border-radius: 0.4rem;
   text-align: center;
   line-height: 1;
+  height: 2.5rem;
   font-weight: 600;
   transition: background-color 0.2s;
 }
@@ -283,24 +300,22 @@ p {
 /* Features Grid */
 .features-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, auto);
   gap: 2rem;
-  margin: 4rem 0;
+  margin: 8rem 0;
   align-items: start;
 }
 
 .feature {
   display: flex;
-  align-items: start;
-  padding: 1rem;
-  background-color: var(--color-background);
-  border-radius: 0.5rem;
+  flex-direction: column;
+  align-items: center;
+  max-width: 14.625rem;
 }
 
 .feature-icon {
-  font-size: 2rem;
-  margin-right: 2rem;
-  align-self: flex-start;
+  font-size: 4rem;
   &.has-image {
     background-size: contain;
     background-repeat: no-repeat;
@@ -311,9 +326,9 @@ p {
 }
 
 .feature h3 {
-  font-size: 2rem;
+  font-size: 2.25rem;
+  text-align: center;
   font-weight: 600;
-  text-align: left;
   margin-bottom: 1rem;
   color: var(--color-text);
 }
@@ -321,7 +336,7 @@ p {
 /* Support */
 .support-modules {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 2rem;
   margin: 4rem 0;
   align-items: start;
@@ -335,17 +350,16 @@ p {
   border-radius: 1rem;
   display: block;
   color: var(--color-background);
-  background-color: var(--color-hero-background);
+  background-color: var(--color-button-bg);
   padding: 2rem;
   font-size: 2rem;
   font-weight: 600;
   text-align: center;
-  opacity: 0.8;
   transition: opacity 0.3s ease-in-out;
 }
 
 .support-modules .module a:hover {
-  opacity: 1;
+  background-color: var(--color-button-hover-bg);
 }
 
 /* Footer */
@@ -387,6 +401,68 @@ footer.container {
   margin-bottom: 1rem;
 }
 
+/* Image Carousel */
+.image-carousel-section {
+  margin: 0 0 8rem;
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  overflow: hidden;
+}
+
+.image-carousel {
+  position: relative;
+  width: 100%;
+  min-height: 400px;
+  overflow: hidden;
+  background-color: var(--color-background);
+}
+
+.carousel-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.3s ease-in-out;
+  align-items: center;
+}
+
+.carousel-slide {
+  flex-shrink: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0 1rem;
+}
+
+.carousel-slide img {
+  object-fit: contain;
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  aspect-ratio: 8/5; /* All images maintain 8:5 aspect ratio */
+  height: auto;
+  width: min(
+    70.5rem,
+    calc(100vw - 2rem)
+  ); /* All images same size as container width */
+  max-width: 1128px; /* 70.5rem in pixels */
+}
+
+.carousel-slide:not(.active) img {
+  opacity: 0.75;
+}
+
+.carousel-slide:not(.active):hover img {
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* Touch/Swipe Support */
+.image-carousel {
+  touch-action: pan-y;
+  user-select: none;
+}
+
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   body {
@@ -407,10 +483,6 @@ footer.container {
 
   .nav {
     padding: 2rem 1rem;
-  }
-
-  header.hero {
-    height: 85rem;
   }
 
   .hero .container {

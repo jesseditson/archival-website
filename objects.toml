@@ -3,6 +3,7 @@
 
 [app]
 name = "string"
+tagline = "string"
 author = "string"
 logo = "image"
 description = "string"
@@ -27,6 +28,7 @@ desc = "string"
 [support]
 email = "string"
 chat_link = "string"
+discord_link = "string"
 
 [eula]
 content = "markdown"

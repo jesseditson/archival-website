@@ -1,41 +1,44 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>{{ app.name }}{% if title.size > 0 %}
-        - {{ title }}{% endif %}
-    </title>
-    <meta name="description" content="{{ app.description }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta property="og:title" content="{{ title }}">
-    <meta property="og:type" content="website">
-    <!-- <meta property="og:url" content=""> -->
-    {% if app.logo %}
-      <meta property="og:image" content="app.logo.url">
+<head>
+  <meta charset="utf-8">
+  <title>{{ app.name }}{% if title.size > 0 %}
+    - {{ title }}{% endif %}
+  </title>
+  <meta name="description" content="{{ app.description }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <link rel="apple-touch-icon" href="{{app.logo.url}}">
-      <link rel="shortcut icon" href="{{app.logo.url}}">
-    {% endif %}
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:url" content=""> -->
+  {% if app.logo %}
+  <meta property="og:image" content="app.logo.url">
 
-    <link rel="stylesheet" href="/styles.css">
+  <link rel="apple-touch-icon" href="{{app.logo.url}}">
+  <link rel="shortcut icon" href="{{app.logo.url}}">
+  {% endif %}
 
-    <meta name="theme-color" content="#fafafa">
-  </head>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css" />
 
-  <body class="{% if is_legal_page %}legal{% endif %}">
-    {{ page_content }}
+  <meta name="theme-color" content="#fafafa">
+</head>
 
-    <footer class="container">
-      <p>&copy; {{ app.copyright_year }} {{ app.author }}</p>
-      <p class="footer-legal">
-        <a href="privacy.html">Privacy</a>
-        |
-        <a href="tos.html">Terms of Service</a>
-        |
-        <a href="eula.html">EULA</a>
-      </p>
-    </footer>
-  </body>
+<body class="{% if is_legal_page %}legal{% endif %}">
+  {{ page_content }}
+
+  <footer class="container">
+    <p>&copy; {{ app.copyright_year }} {{ app.author }}</p>
+    <p class="footer-legal">
+      <a href="privacy.html">Privacy</a>
+      |
+      <a href="tos.html">Terms of Service</a>
+      |
+      <a href="eula.html">EULA</a>
+    </p>
+  </footer>
+</body>
 
 </html>

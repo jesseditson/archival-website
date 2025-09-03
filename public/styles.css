@@ -298,7 +298,7 @@ p {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, auto);
-  gap: 2rem;
+  gap: 4rem 2rem;
   margin: 8rem 0;
   align-items: start;
   justify-items: center;
@@ -317,8 +317,6 @@ p {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    width: 6rem;
-    height: 2rem;
   }
 }
 

@@ -64,9 +64,8 @@
   <section id="features" class="features-grid">
     {% for feature in features %}
     <div class="feature">
-      <div class="feature-icon {% if feature.icon %}has-image{% endif %}" {% if feature.icon %}
-        style="background-image:url('{{feature.icon.url}}')" {% endif %}>
-        {{ feature.emoji }}
+      <div class="feature-icon {% if feature.icon %}has-image{% endif %}">
+        <i class="ph-bold ph-{{ feature.icon }}"></i>
       </div>
       <div class="feature-text">
         <h3>{{ feature.title }}</h3>

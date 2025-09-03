@@ -15,6 +15,14 @@
   --typo-h1-weight: 800;
   --typo-h2-size: 7rem;
   --typo-body-size: 1.5rem;
+
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 4rem;
+  --spacing-xxxl: 8rem;
 }
 
 /* Reset */
@@ -62,7 +70,7 @@ a {
 .nav {
   position: fixed;
   width: 100%;
-  padding: 2rem 1rem;
+  padding: var(--spacing-xl) var(--spacing-md);
   background-color: var(--color-nav-background);
   -webkit-backdrop-filter: blur(24px);
   backdrop-filter: blur(24px);
@@ -87,15 +95,6 @@ a {
   background: transparent;
 }
 
-.nav-toggle {
-  display: none;
-  font-size: 2rem;
-  color: var(--color-hero-text);
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
 a.nav-item {
   color: var(--color-hero-text);
   opacity: 0.8;
@@ -112,13 +111,6 @@ header.hero {
   margin-bottom: 2.5rem;
   width: 100%;
   background-color: var(--color-hero-background);
-}
-
-.supplement {
-  display: block;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: var(--color-supplement);
 }
 
 .hero .container {
@@ -564,7 +556,7 @@ footer.container {
   }
 
   .nav {
-    padding: 2rem 1rem;
+    padding: var(--spacing-xl) var(--spacing-md);
     position: static;
   }
 

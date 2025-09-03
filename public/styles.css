@@ -83,6 +83,10 @@ a {
   font-weight: 600;
 }
 
+.nav .container .nav-items img {
+  background: transparent;
+}
+
 .nav-toggle {
   display: none;
   font-size: 2rem;
@@ -499,7 +503,7 @@ footer.container {
 
 @media (max-width: 600px) {
   .image-carousel {
-    min-height: 250px;
+    min-height: auto;
   }
 
   .carousel-slide {
@@ -542,8 +546,13 @@ footer.container {
     font-size: 0.9rem;
   }
 
-  h1 {
+  h1,
+  h2 {
     font-size: 4rem;
+  }
+
+  p {
+    padding: 0 1rem;
   }
 
   .button {
@@ -556,9 +565,36 @@ footer.container {
 
   .nav {
     padding: 2rem 1rem;
+    position: static;
   }
 
-  .hero .container {
+  .nav .container {
+    flex-direction: column;
+  }
+
+  .nav .brand {
+    margin-bottom: 2rem;
+  }
+
+  .nav .app-name {
+    font-size: 1.5rem;
+  }
+
+  .nav .container .nav-items {
+    flex-direction: column-reverse;
+    gap: 2rem;
+  }
+
+  .nav .container .nav-items img {
+    height: 5rem;
+  }
+
+  header.hero {
+    padding-top: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  header.hero .container {
     flex-wrap: wrap;
     margin-top: 1rem;
   }
@@ -577,13 +613,13 @@ footer.container {
     margin: 2rem auto 0;
   }
 
+  .image-carousel-section {
+    margin: 0;
+  }
+
   .download-options {
     justify-content: center;
     margin: 0 auto;
-  }
-
-  header.hero {
-    padding-bottom: 3rem;
   }
 
   .features-grid {
@@ -600,6 +636,14 @@ footer.container {
   .support-modules {
     grid-template-columns: 1fr;
     padding: 0 1rem;
+  }
+
+  footer.container {
+    margin: 8rem auto 2rem;
+  }
+
+  footer.container p {
+    font-size: 1rem;
   }
 
   .legal .container {

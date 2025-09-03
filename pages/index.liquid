@@ -46,15 +46,11 @@
 <section class="image-carousel-section">
   <div class="image-carousel" id="imageCarousel">
     <div class="carousel-track" id="carouselTrack">
-      <div class="carousel-slide active" data-index="0">
-        <img src="images/1.png" alt="Image 1" />
+      {% for screenshot in screenshots %}
+      <div class="carousel-slide {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}">
+        <img src="{{screenshot.image.url}}" alt="Image {{ forloop.index }}" />
       </div>
-      <div class="carousel-slide" data-index="1">
-        <img src="images/2.png" alt="Image 2" />
-      </div>
-      <div class="carousel-slide" data-index="2">
-        <img src="images/3.png" alt="Image 3" />
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>

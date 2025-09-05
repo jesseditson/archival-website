@@ -116,6 +116,7 @@ header.hero {
   margin-top: 3rem;
   padding: 0 1rem;
   display: flex;
+  justify-content: space-between;
 }
 
 .download-options {
@@ -461,7 +462,6 @@ footer.container {
   .hero .container {
     flex-wrap: wrap;
     margin-top: 1rem;
-    justify-content: space-between;
   }
 
   .screenshots {

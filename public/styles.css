@@ -63,6 +63,7 @@ a {
   width: 100%;
   padding: 2rem 1rem;
   background-color: var(--color-hero-background);
+  z-index: 9999;
 }
 
 .nav .container {
@@ -143,30 +144,74 @@ header.hero {
   left: 0;
   right: 0;
   bottom: 0;
+  pointer-events: none; /* Prevent frame from interfering with interactions */
+}
+
+.screenshot {
+  position: absolute;
+  object-fit: cover;
+  object-position: center;
+  /* Safari-specific fixes */
+  -webkit-transform: translateZ(0); /* Force hardware acceleration */
+  transform: translateZ(0);
 }
 
 .screenshot-container.iphone-15-portrait {
   width: 22rem;
-  .screenshot-frame {
-    background-image: url("/images/iphone-15-portrait.png");
-  }
-  .screenshot {
-    aspect-ratio: 1419/2796;
-    padding: 1.8rem;
-    border-radius: 4.5rem;
-  }
+  height: 44rem; /* Explicit height for Safari */
+}
+
+.screenshot-container.iphone-15-portrait .screenshot-frame {
+  background-image: url("/images/iphone-15-portrait.png");
+}
+
+.screenshot-container.iphone-15-portrait .screenshot {
+  /* Position to match the screen area of the iPhone frame */
+  top: 1.8rem;
+  left: 1.8rem;
+  right: 1.8rem;
+  bottom: 2.4rem; /* Increased bottom margin to prevent screenshot from being too tall */
+  width: calc(100% - 3.6rem);
+  height: calc(100% - 4.33rem); /* Adjusted height to prevent overflow */
+  border-radius: 2rem;
+  /* Maintain aspect ratio while filling the area */
+  aspect-ratio: 1419/2796;
 }
 
 .screenshot-container.google-pixel-8-rose-portrait {
   width: 20rem;
-  .screenshot-frame {
-    background-image: url("/images/google-pixel-8-rose-portrait.png");
+  height: 44rem; /* Explicit height for Safari */
+}
+
+.screenshot-container.google-pixel-8-rose-portrait .screenshot-frame {
+  background-image: url("/images/google-pixel-8-rose-portrait.png");
+}
+
+.screenshot-container.google-pixel-8-rose-portrait .screenshot {
+  /* Position to match the screen area of the Pixel frame - adjusted positioning */
+  top: 1.04rem; /* Moved down slightly to align properly */
+  left: 0.6rem;
+  right: 0.6rem;
+  bottom: 2.2rem;
+  width: calc(100% - 1.49rem);
+  height: calc(100% - 3.07rem); /* Adjusted for new top position */
+  border-radius: 1rem;
+  /* Maintain aspect ratio while filling the area */
+  aspect-ratio: 978/2100;
+}
+
+/* Safari-specific fixes using @supports for older versions */
+@supports not (aspect-ratio: 1) {
+  .screenshot-container.iphone-15-portrait .screenshot {
+    /* Use fixed dimensions based on container size for Safari */
+    width: calc(22rem - 3.6rem);
+    height: calc(44rem - 4.2rem);
   }
-  .screenshot {
-    aspect-ratio: 978/2100;
-    padding: 0.6rem;
-    padding-left: 0.5rem;
-    border-radius: 2rem;
+
+  .screenshot-container.google-pixel-8-rose-portrait .screenshot {
+    /* Use fixed dimensions based on container size for Safari */
+    width: calc(20rem - 1.2rem);
+    height: calc(44rem - 3.3rem);
   }
 }
 
@@ -416,6 +461,7 @@ footer.container {
   .hero .container {
     flex-wrap: wrap;
     margin-top: 1rem;
+    justify-content: space-between;
   }
 
   .screenshots {

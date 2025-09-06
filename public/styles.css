@@ -56,6 +56,8 @@ a {
 .app-logo {
   width: 3rem;
   height: 3rem;
+  border-radius: 0.5rem;
+  box-shadow: 0px 3px 7px -2px rgba(0, 0, 0, 0.4);
 }
 
 .nav {
@@ -99,10 +101,10 @@ a.nav-item:hover {
 /* Hero */
 header.hero {
   padding: 8rem 0;
-  margin-bottom: 4rem;
+  margin-bottom: 19rem;
   width: 100%;
   background-color: var(--color-hero-background);
-  height: 50rem;
+  height: 43rem;
 }
 
 .supplement {
@@ -324,6 +326,7 @@ p {
 .hero .button {
   background-color: var(--color-hero-text);
   color: var(--color-hero-background);
+  height: 40px;
 }
 
 /* Features Grid */
@@ -434,7 +437,7 @@ footer.container {
 }
 
 /* Responsive Adjustments */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   body {
     font-size: 0.9rem;
   }
@@ -456,12 +459,14 @@ footer.container {
   }
 
   header.hero {
-    height: 85rem;
+    height: 65rem;
+    margin-bottom: 13rem;
   }
 
   .hero .container {
     flex-wrap: wrap;
     margin-top: 1rem;
+    flex-direction: column-reverse;
   }
 
   .screenshots {
@@ -475,7 +480,7 @@ footer.container {
 
   .hero-statement {
     text-align: center;
-    margin: 2rem auto 0;
+    margin: 2rem auto 4rem;
   }
 
   .download-options {

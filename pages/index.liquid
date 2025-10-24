@@ -54,7 +54,7 @@
           <a href="{{ service.path }}.html" class="service-moreinfo">More info &rarr;</a>
           <div class="service-footer">
             <span class="service-price">{{ service.price }}</span>
-            <a href="#book" class="service-cta">Book</a>
+            <a href="#book?service={{ service.name | url_encode }}" class="service-cta">Book</a>
           </div>
         </div>
       {% endfor %}

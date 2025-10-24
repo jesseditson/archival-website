@@ -66,10 +66,11 @@
     <section id="testimonials" class="body-section container">
       <h2 class="heading">Client Testimonials</h2>
     </section>
-    {% assign half_testimonial_count = testimonials.size | divided_by: 2 | round %}
-    <div class="testimonial-marquee">
-      <div class="testimonial-track">
-        {% for testimonial in testimonials limit: half_testimonial_count %}
+
+    {% if testimonials.size == 1 %}
+      <!-- Single testimonial: full width -->
+      <div class="testimonial-grid single">
+        {% for testimonial in testimonials %}
           <div class="testimonial-item">
             <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
             <div class="testimonial-footer">
@@ -84,10 +85,83 @@
           </div>
         {% endfor %}
       </div>
-    </div>
-    {% if testimonials.size > 1 %}
+    {% elsif testimonials.size == 2 %}
+      <!-- Two testimonials: 2 column grid -->
+      <div class="testimonial-grid two">
+        {% for testimonial in testimonials %}
+          <div class="testimonial-item">
+            <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
+            <div class="testimonial-footer">
+              {% if testimonial.thumbnail.url %}
+                <img
+                  src="{{testimonial.thumbnail.url}}"
+                  alt="{{testimonial.author}}"
+                  class="testimonial-avatar" />
+              {% endif %}
+              <p class="testimonial-author">{{ testimonial.author }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% elsif testimonials.size == 3 %}
+      <!-- Three testimonials: 2 on top, 1 full width below -->
+      <div class="testimonial-grid three">
+        {% for testimonial in testimonials %}
+          <div class="testimonial-item">
+            <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
+            <div class="testimonial-footer">
+              {% if testimonial.thumbnail.url %}
+                <img
+                  src="{{testimonial.thumbnail.url}}"
+                  alt="{{testimonial.author}}"
+                  class="testimonial-avatar" />
+              {% endif %}
+              <p class="testimonial-author">{{ testimonial.author }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% elsif testimonials.size == 4 %}
+      <!-- Four testimonials: 2x2 grid -->
+      <div class="testimonial-grid four">
+        {% for testimonial in testimonials %}
+          <div class="testimonial-item">
+            <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
+            <div class="testimonial-footer">
+              {% if testimonial.thumbnail.url %}
+                <img
+                  src="{{testimonial.thumbnail.url}}"
+                  alt="{{testimonial.author}}"
+                  class="testimonial-avatar" />
+              {% endif %}
+              <p class="testimonial-author">{{ testimonial.author }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <!-- Five or more testimonials: scrolling marquee -->
+      {% assign half_testimonial_count = testimonials.size | divided_by: 2 | round %}
       <div class="testimonial-marquee">
         <div class="testimonial-track">
+          {% for testimonial in testimonials limit: half_testimonial_count %}
+            <div class="testimonial-item">
+              <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
+              <div class="testimonial-footer">
+                {% if testimonial.thumbnail.url %}
+                  <img
+                    src="{{testimonial.thumbnail.url}}"
+                    alt="{{testimonial.author}}"
+                    class="testimonial-avatar" />
+                {% endif %}
+                <p class="testimonial-author">{{ testimonial.author }}</p>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="testimonial-marquee">
+        <div class="testimonial-track reverse">
           {% for testimonial in testimonials offset: half_testimonial_count %}
             <div class="testimonial-item">
               <p class="testimonial-quote">"{{ testimonial.quote }}"</p>

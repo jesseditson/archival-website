@@ -18,10 +18,18 @@ class PodcastPlayer {
     this.skipBackBtn = document.getElementById('skipBackBtn');
     this.skipForwardBtn = document.getElementById('skipForwardBtn');
 
+    // Progress controls
+    this.progressBar = document.getElementById('progressBar');
+    this.progressFill = document.getElementById('progressFill');
+    this.progressHandle = document.getElementById('progressHandle');
+    this.currentTimeSpan = document.getElementById('currentTime');
+    this.totalTimeSpan = document.getElementById('totalTime');
+
     this.currentEpisode = null;
     this.isPlaying = false;
     this.isMuted = false;
     this.previousVolume = 100;
+    this.isSeeking = false;
 
     this.init();
   }
@@ -94,6 +102,69 @@ class PodcastPlayer {
 
     // Set initial volume
     this.audioElement.volume = 1;
+
+    // Progress bar event listeners
+    this.progressBar.addEventListener('click', (e) => {
+      this.seek(e);
+    });
+
+    this.progressBar.addEventListener('mousedown', (e) => {
+      this.isSeeking = true;
+      this.seek(e);
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (this.isSeeking) {
+        this.seek(e);
+      }
+    });
+
+    document.addEventListener('mouseup', () => {
+      this.isSeeking = false;
+    });
+
+    // Time update listener
+    this.audioElement.addEventListener('timeupdate', () => {
+      this.updateProgress();
+    });
+
+    // Duration loaded listener
+    this.audioElement.addEventListener('loadedmetadata', () => {
+      this.updateTotalTime();
+    });
+  }
+
+  seek(e) {
+    if (!this.audioElement.duration) return;
+
+    const rect = this.progressBar.getBoundingClientRect();
+    const percent = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    const time = percent * this.audioElement.duration;
+
+    this.audioElement.currentTime = time;
+    this.updateProgress();
+  }
+
+  updateProgress() {
+    if (!this.audioElement.duration) return;
+
+    const percent = (this.audioElement.currentTime / this.audioElement.duration) * 100;
+    this.progressFill.style.width = `${percent}%`;
+    this.progressHandle.style.left = `${percent}%`;
+
+    this.currentTimeSpan.textContent = this.formatTime(this.audioElement.currentTime);
+  }
+
+  updateTotalTime() {
+    this.totalTimeSpan.textContent = this.formatTime(this.audioElement.duration);
+  }
+
+  formatTime(seconds) {
+    if (!seconds || isNaN(seconds)) return '0:00';
+
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
   }
 
   toggleVolumeSlider() {

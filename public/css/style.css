@@ -39,14 +39,13 @@ body {
   position: fixed;
   top: 20px;
   right: 20px;
-  background: white;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-radius: 30px;
-  padding: 12px 20px;
+  padding: 1rem 1.25rem;
   box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 0.15);
   z-index: 1000;
-  display: flex;
-  align-items: center;
-  gap: 16px;
   min-width: 320px;
   border: 2px solid var(--primary-color);
   transition: all 0.3s ease;
@@ -59,9 +58,22 @@ body {
 
 .player-content {
   display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.player-top {
+  display: flex;
   align-items: center;
   gap: 14px;
-  flex: 1;
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
 }
 
 .play-pause-btn {
@@ -97,6 +109,33 @@ body {
 
 .play-pause-btn .pause-icon {
   margin-left: 0;
+}
+
+.skip-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.skip-btn:hover {
+  transform: scale(1.15);
+}
+
+.skip-btn:active {
+  transform: scale(0.95);
+}
+
+.skip-btn img {
+  width: 36px;
+  height: 36px;
 }
 
 .player-info {
@@ -154,10 +193,9 @@ body {
 }
 
 .volume-control {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  position: relative;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 }
 
 .volume-slider-container {
@@ -848,7 +886,7 @@ body {
     flex-direction: column;
     gap: 20px;
     text-align: center;
-    padding-bottom: 100px;
+    padding-bottom: 140px;
   }
 
   .copyright {
@@ -1361,7 +1399,7 @@ body {
     flex-direction: column;
     gap: 20px;
     text-align: center;
-    padding-bottom: 100px;
+    padding-bottom: 140px;
   }
 
   .copyright {

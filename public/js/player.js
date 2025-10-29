@@ -14,6 +14,10 @@ class PodcastPlayer {
     this.volumeIcon = this.volumeBtn.querySelector('.volume-icon');
     this.volumeMuteIcon = this.volumeBtn.querySelector('.volume-mute-icon');
 
+    // Skip controls
+    this.skipBackBtn = document.getElementById('skipBackBtn');
+    this.skipForwardBtn = document.getElementById('skipForwardBtn');
+
     this.currentEpisode = null;
     this.isPlaying = false;
     this.isMuted = false;
@@ -30,6 +34,15 @@ class PodcastPlayer {
       } else {
         this.play();
       }
+    });
+
+    // Skip buttons event listeners
+    this.skipBackBtn.addEventListener('click', () => {
+      this.skip(-15);
+    });
+
+    this.skipForwardBtn.addEventListener('click', () => {
+      this.skip(30);
     });
 
     // Volume button event listener
@@ -100,7 +113,14 @@ class PodcastPlayer {
       this.volumeMuteIcon.style.display = 'none';
     }
   }
-  
+
+  skip(seconds) {
+    if (this.audioElement.src) {
+      const newTime = this.audioElement.currentTime + seconds;
+      this.audioElement.currentTime = Math.max(0, Math.min(newTime, this.audioElement.duration || 0));
+    }
+  }
+
   loadEpisode(audioUrl, episodeTitle) {
     this.currentEpisode = {
       url: audioUrl,

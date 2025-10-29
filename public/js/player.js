@@ -6,13 +6,22 @@ class PodcastPlayer {
     this.currentEpisodeSpan = document.getElementById('currentEpisode');
     this.playIcon = this.playPauseBtn.querySelector('.play-icon');
     this.pauseIcon = this.playPauseBtn.querySelector('.pause-icon');
-    
+
+    // Volume controls
+    this.volumeBtn = document.getElementById('volumeBtn');
+    this.volumeSliderContainer = document.getElementById('volumeSliderContainer');
+    this.volumeSlider = document.getElementById('volumeSlider');
+    this.volumeIcon = this.volumeBtn.querySelector('.volume-icon');
+    this.volumeMuteIcon = this.volumeBtn.querySelector('.volume-mute-icon');
+
     this.currentEpisode = null;
     this.isPlaying = false;
-    
+    this.isMuted = false;
+    this.previousVolume = 100;
+
     this.init();
   }
-  
+
   init() {
     // Play/Pause button event listener
     this.playPauseBtn.addEventListener('click', () => {
@@ -22,28 +31,74 @@ class PodcastPlayer {
         this.play();
       }
     });
-    
+
+    // Volume button event listener
+    this.volumeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.toggleVolumeSlider();
+    });
+
+    // Volume slider event listener
+    this.volumeSlider.addEventListener('input', (e) => {
+      const volume = e.target.value / 100;
+      this.audioElement.volume = volume;
+      this.updateVolumeIcon(volume);
+      if (volume > 0 && this.isMuted) {
+        this.isMuted = false;
+      }
+    });
+
+    // Close volume slider when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!this.volumeSliderContainer.contains(e.target) &&
+          !this.volumeBtn.contains(e.target) &&
+          this.volumeSliderContainer.style.display === 'block') {
+        this.volumeSliderContainer.style.display = 'none';
+      }
+    });
+
     // Audio element event listeners
     this.audioElement.addEventListener('play', () => {
       this.isPlaying = true;
       this.updatePlayButton();
     });
-    
+
     this.audioElement.addEventListener('pause', () => {
       this.isPlaying = false;
       this.updatePlayButton();
     });
-    
+
     this.audioElement.addEventListener('ended', () => {
       this.isPlaying = false;
       this.updatePlayButton();
     });
-    
+
     this.audioElement.addEventListener('error', (e) => {
       console.error('Audio playback error:', e);
       this.isPlaying = false;
       this.updatePlayButton();
     });
+
+    // Set initial volume
+    this.audioElement.volume = 1;
+  }
+
+  toggleVolumeSlider() {
+    if (this.volumeSliderContainer.style.display === 'none') {
+      this.volumeSliderContainer.style.display = 'block';
+    } else {
+      this.volumeSliderContainer.style.display = 'none';
+    }
+  }
+
+  updateVolumeIcon(volume) {
+    if (volume === 0) {
+      this.volumeIcon.style.display = 'none';
+      this.volumeMuteIcon.style.display = 'block';
+    } else {
+      this.volumeIcon.style.display = 'block';
+      this.volumeMuteIcon.style.display = 'none';
+    }
   }
   
   loadEpisode(audioUrl, episodeTitle) {
@@ -163,25 +218,26 @@ document.addEventListener('DOMContentLoaded', function() {
 // Handle responsive audio player positioning
 function handleResponsivePlayer() {
   const audioPlayer = document.getElementById('audio-player');
-  const nav = document.querySelector('.main-nav');
-  
+
   if (window.innerWidth <= 768) {
-    // On mobile, position player below navigation
-    if (nav && audioPlayer) {
-      nav.appendChild(audioPlayer);
-      audioPlayer.style.position = 'relative';
+    // On mobile, keep fixed positioning at bottom
+    if (audioPlayer) {
+      audioPlayer.style.position = 'fixed';
       audioPlayer.style.top = 'auto';
-      audioPlayer.style.right = 'auto';
-      audioPlayer.style.margin = '20px auto';
-      audioPlayer.style.maxWidth = '90%';
+      audioPlayer.style.bottom = '10px';
+      audioPlayer.style.right = '10px';
+      audioPlayer.style.left = '10px';
+      audioPlayer.style.margin = '0';
+      audioPlayer.style.maxWidth = 'none';
     }
   } else {
-    // On desktop, keep fixed positioning
+    // On desktop, keep fixed positioning at top right
     if (audioPlayer) {
-      document.body.appendChild(audioPlayer);
       audioPlayer.style.position = 'fixed';
       audioPlayer.style.top = '20px';
+      audioPlayer.style.bottom = 'auto';
       audioPlayer.style.right = '20px';
+      audioPlayer.style.left = 'auto';
       audioPlayer.style.margin = '0';
       audioPlayer.style.maxWidth = 'none';
     }

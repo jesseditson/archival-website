@@ -2,9 +2,9 @@ order = 1
 title = "Gallery Installation (Five Works)"
 
 [file]
-display_type = "image"
 filename = "fourteen-americans.jpg"
-mime = "image/jpeg"
-sha = "384dd1aac086843fb46b6f2c17c690fc4bdd1ce1e47bb41c18bcf2bf54e2df7a"
-description = "Black and white gallery photograph showing five abstract sculptures on pedestals. Credit: HANU MOGICHU."
 name = "Fourteen Americans (gallery view)"
+display_type = "image"
+sha = "384dd1aac086843fb46b6f2c17c690fc4bdd1ce1e47bb41c18bcf2bf54e2df7a"
+mime = "image/jpeg"
+description = "Black and white gallery photograph showing five abstract sculptures on pedestals. Credit: HANU MOGICHU."

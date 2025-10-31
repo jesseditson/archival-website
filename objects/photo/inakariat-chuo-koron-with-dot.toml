@@ -2,9 +2,9 @@ order = 3
 title = "Lantern Study (Interior Installation)"
 
 [file]
-sha = "68be36012c87c431ad4142667f0958da0d9ceaf8f266190f0e18d83cfa2e1d08"
-filename = "INAkariatChuoKoron.jpg"
-mime = "image/jpeg"
-description = "Black and white photograph of square paper lanterns suspended on a curved wooden support, featuring ink-like markings and geometric patterns."
-name = "Paper Lantern Installation"
 display_type = "image"
+filename = "INAkariatChuoKoron.jpg"
+sha = "68be36012c87c431ad4142667f0958da0d9ceaf8f266190f0e18d83cfa2e1d08"
+mime = "image/jpeg"
+name = "Paper Lantern Installation"
+description = "Black and white photograph of square paper lanterns suspended on a curved wooden support, featuring ink-like markings and geometric patterns."

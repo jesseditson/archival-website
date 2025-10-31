@@ -1,8 +1,0 @@
-order = 4
-title = "4"
-
-[file]
-sha = "488e25a5c2bc7341017b93c832d87f10b0fe82aa4ff39d3103f6e6ad17b180a0"
-filename = "04.jpg"
-mime = "image/jpeg"
-display_type = "image"

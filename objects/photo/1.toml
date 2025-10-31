@@ -1,8 +1,0 @@
-order = 1
-title = "1"
-
-[file]
-sha = "7c0d0dad5950c297e5a33c8531a5f5defce5b2c3449b2517f856d687a3e986c6"
-filename = "01.jpg"
-mime = "image/jpeg"
-display_type = "image"

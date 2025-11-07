@@ -4,5 +4,181 @@
 
 <!-- Contact Section -->
 <div class="contact-section">
-  {{ objects.contact.content }}
+  <!-- Contact Hero -->
+  <div class="contact-hero animate-on-scroll">
+    <h2 class="section-title">Let's Create Something Amazing</h2>
+    <p class="lead-text">Have a project in mind? I'd love to hear about it. Drop me a message and let's discuss how we can bring your vision to life.</p>
+  </div>
+
+  <!-- Contact Grid -->
+  <div class="contact-grid">
+    <!-- Contact Form -->
+    <div class="contact-form-wrapper animate-on-scroll">
+      <form class="contact-form" id="contact-form">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="John Doe" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="john@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="project-type">Project Type</label>
+          <select id="project-type" name="project-type" required>
+            <option value="">Select a project type</option>
+            <option value="portrait">Portrait Photography</option>
+            <option value="landscape">Landscape & Nature</option>
+            <option value="urban">Urban & Street</option>
+            <option value="commercial">Commercial Work</option>
+            <option value="editorial">Editorial & Documentary</option>
+            <option value="fine-art">Fine Art</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="budget">Budget Range</label>
+          <select id="budget" name="budget">
+            <option value="">Select budget range</option>
+            <option value="under-5k">Under $5,000</option>
+            <option value="5k-10k">$5,000 - $10,000</option>
+            <option value="10k-25k">$10,000 - $25,000</option>
+            <option value="25k-50k">$25,000 - $50,000</option>
+            <option value="50k-plus">$50,000+</option>
+          </select>
+        </div>
+
+        <div class="form-group full-width">
+          <label for="message">Tell Me About Your Project</label>
+          <textarea id="message" name="message" rows="6" placeholder="Share your vision, timeline, and any specific requirements..." required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">
+          <span class="btn-text">Send Message</span>
+          <span class="btn-icon">→</span>
+        </button>
+      </form>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="contact-info-wrapper">
+      <div class="contact-info-card animate-on-scroll">
+        <h3>Get In Touch</h3>
+        <div class="contact-methods">
+          <div class="contact-method">
+            <div class="method-icon">📧</div>
+            <div class="method-details">
+              <h4>Email</h4>
+              <a href="mailto:hello@photographica.com">hello@photographica.com</a>
+            </div>
+          </div>
+
+          <div class="contact-method">
+            <div class="method-icon">📱</div>
+            <div class="method-details">
+              <h4>Phone</h4>
+              <a href="tel:+12125551234">+1 (212) 555-1234</a>
+            </div>
+          </div>
+
+          <div class="contact-method">
+            <div class="method-icon">📍</div>
+            <div class="method-details">
+              <h4>Location</h4>
+              <p>New York, NY<br>Tokyo, Japan</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="social-links-card animate-on-scroll">
+        <h3>Follow My Work</h3>
+        <div class="social-links">
+          <a href="#" class="social-link" data-platform="instagram">
+            <span class="social-icon">📷</span>
+            <span class="social-name">Instagram</span>
+          </a>
+          <a href="#" class="social-link" data-platform="twitter">
+            <span class="social-icon">🐦</span>
+            <span class="social-name">Twitter</span>
+          </a>
+          <a href="#" class="social-link" data-platform="behance">
+            <span class="social-icon">🎨</span>
+            <span class="social-name">Behance</span>
+          </a>
+          <a href="#" class="social-link" data-platform="linkedin">
+            <span class="social-icon">💼</span>
+            <span class="social-name">LinkedIn</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="availability-card animate-on-scroll">
+        <div class="availability-status">
+          <div class="status-indicator"></div>
+          <span class="status-text">Available for projects</span>
+        </div>
+        <p class="availability-note">Currently booking for Q2 2025. Limited slots available.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ Section -->
+  <div class="faq-section animate-on-scroll">
+    <h3 class="content-title">Frequently Asked Questions</h3>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>What's your typical turnaround time?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Turnaround times vary by project type. Portrait sessions typically take 2-3 weeks, while larger commercial or editorial projects may take 4-6 weeks. Rush delivery is available for an additional fee.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Do you travel for shoots?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Absolutely! I frequently travel for projects both domestically and internationally. Travel expenses are typically added to the project quote.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>What's included in your packages?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Each package includes pre-production planning, the photo shoot, professional editing and retouching, and high-resolution digital files. Print rights and licensing can be discussed based on your needs.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>How do you handle licensing and usage rights?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Licensing is customized based on your intended use. We'll discuss the scope during our initial consultation and structure the agreement accordingly.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Can I see more examples of your work?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Of course! Check out my full portfolio in the Photos section, or request a custom portfolio tailored to your project type.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

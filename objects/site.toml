@@ -1,9 +1,9 @@
 order = -1
-tagline = "The best bagels in DeKalb county!"
 name = "Brandwein's Bagels"
+tagline = "The best bagels in DeKalb county!"
 
 [logo_image]
-mime = "image/png"
 display_type = "image"
-sha = "0123983214089dd5d426ceb84c331e4cb45c9cefd656754c5ba11b02cb23b415"
 filename = "logo.png"
+sha = "0123983214089dd5d426ceb84c331e4cb45c9cefd656754c5ba11b02cb23b415"
+mime = "image/png"

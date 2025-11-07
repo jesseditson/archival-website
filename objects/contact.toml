@@ -1,1 +1,4 @@
-content = "contact page"
+hero_title = "Let's Create Something Amazing"
+hero_lead = "Have a project in mind? I'd love to hear about it. Drop me a message and let's discuss how we can bring your vision to life."
+availability_status = "Available for projects"
+availability_note = "Currently booking for Q2 2025. Limited slots available."

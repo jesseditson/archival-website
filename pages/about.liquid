@@ -1,51 +1,51 @@
 {% assign title = objects.site.name | append: " | About" %}
 {% layout 'theme' title: title
   , active_page: "about" %}
+{% assign about = objects.about %}
+{% assign story_blocks = about_stories | sort: "order" %}
+{% assign stats = about_stats | sort: "order" %}
+{% assign expertise_items = about_expertises | sort: "order" %}
+{% assign process_steps = about_processes | sort: "order" %}
+{% assign featured_logos = about_features | sort: "order" %}
 
 <!-- About Section -->
 <div class="about-section">
   <!-- Hero Introduction -->
   <div class="about-hero">
     <div class="about-hero-content animate-on-scroll">
-      <h2 class="section-title">The Art of Visual Storytelling</h2>
-      <p class="lead-text">Capturing moments that transcend time and space, transforming fleeting instances into eternal memories through the lens.</p>
+      <h2 class="section-title">{{ about.hero_title }}</h2>
+      <p class="lead-text">{{ about.hero_lead }}</p>
     </div>
   </div>
 
   <!-- Stats Counter -->
-  <div class="stats-grid animate-on-scroll">
-    <div class="stat-item" data-count="500">
-      <span class="stat-number">0</span>
-      <span class="stat-label">Projects Completed</span>
+  {% if stats and stats.size > 0 %}
+    <div class="stats-grid animate-on-scroll">
+      {% for stat in stats %}
+        <div class="stat-item" data-count="{{ stat.value }}">
+          <span class="stat-number">0</span>
+          <span class="stat-label">{{ stat.label }}</span>
+        </div>
+      {% endfor %}
     </div>
-    <div class="stat-item" data-count="50">
-      <span class="stat-number">0</span>
-      <span class="stat-label">Countries Visited</span>
-    </div>
-    <div class="stat-item" data-count="15">
-      <span class="stat-number">0</span>
-      <span class="stat-label">Years Experience</span>
-    </div>
-    <div class="stat-item" data-count="100">
-      <span class="stat-number">0</span>
-      <span class="stat-label">Awards Won</span>
-    </div>
-  </div>
+  {% endif %}
 
   <!-- Story Section -->
   <div class="about-story">
     <div class="story-content animate-on-scroll">
-      <h3 class="content-title">My Journey</h3>
-      <p>Photography has been my passion for over 15 years. What started as a simple hobby with a borrowed camera has evolved into a lifelong pursuit of capturing the extraordinary in the ordinary.</p>
+      <h3 class="content-title">{{ about.story_title }}</h3>
+      {% for block in story_blocks %}
+        <p>{{ block.body }}</p>
+      {% endfor %}
 
-      <p>My work spans across multiple genres—from intimate portraits that reveal the soul, to vast landscapes that showcase nature's grandeur, to street photography that captures the raw energy of urban life. Each photograph is a story waiting to be told, a moment frozen in time that speaks to the viewer's heart.</p>
-
-      <blockquote class="quote">
-        "Photography is the story I fail to put into words."
-        <cite>— Destin Sparks</cite>
-      </blockquote>
-
-      <p>Based between New York and Tokyo, I've had the privilege of working with incredible clients around the world, from Fortune 500 companies to indie artists just starting their journey. My approach is simple: authenticity over perfection, emotion over technicality, and connection over composition.</p>
+      {% if about.quote_text %}
+        <blockquote class="quote">
+          {{ about.quote_text }}
+          {% if about.quote_citation %}
+            <cite>{{ about.quote_citation }}</cite>
+          {% endif %}
+        </blockquote>
+      {% endif %}
     </div>
 
     <div class="story-image animate-on-scroll">
@@ -58,94 +58,48 @@
   </div>
 
   <!-- Expertise Areas -->
-  <div class="expertise-section animate-on-scroll">
-    <h3 class="content-title">Expertise</h3>
-    <div class="expertise-grid">
-      <div class="expertise-card">
-        <div class="expertise-icon">📸</div>
-        <h4>Portrait Photography</h4>
-        <p>Capturing the essence of personality through intimate, powerful portraits that tell a story.</p>
-      </div>
-      <div class="expertise-card">
-        <div class="expertise-icon">🌄</div>
-        <h4>Landscape & Nature</h4>
-        <p>Showcasing the breathtaking beauty of our natural world, from mountains to oceans.</p>
-      </div>
-      <div class="expertise-card">
-        <div class="expertise-icon">🏙️</div>
-        <h4>Urban & Street</h4>
-        <p>Finding beauty in the chaos of city life, documenting the human experience in motion.</p>
-      </div>
-      <div class="expertise-card">
-        <div class="expertise-icon">💼</div>
-        <h4>Commercial Work</h4>
-        <p>Creating compelling visual content for brands that want to make an impact.</p>
-      </div>
-      <div class="expertise-card">
-        <div class="expertise-icon">🎬</div>
-        <h4>Editorial & Documentary</h4>
-        <p>Long-form visual storytelling that dives deep into subjects and communities.</p>
-      </div>
-      <div class="expertise-card">
-        <div class="expertise-icon">🎨</div>
-        <h4>Fine Art</h4>
-        <p>Pushing creative boundaries with conceptual work that challenges perspectives.</p>
+  {% if expertise_items and expertise_items.size > 0 %}
+    <div class="expertise-section animate-on-scroll">
+      <h3 class="content-title">Expertise</h3>
+      <div class="expertise-grid">
+        {% for card in expertise_items %}
+          <div class="expertise-card">
+            <div class="expertise-icon">{{ card.icon }}</div>
+            <h4>{{ card.title }}</h4>
+            <p>{{ card.description }}</p>
+          </div>
+        {% endfor %}
       </div>
     </div>
-  </div>
+  {% endif %}
 
   <!-- Process Timeline -->
-  <div class="process-section animate-on-scroll">
-    <h3 class="content-title">My Process</h3>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-marker"></div>
-        <div class="timeline-content">
-          <h4>01. Discovery</h4>
-          <p>We start with a conversation about your vision, goals, and the story you want to tell.</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-marker"></div>
-        <div class="timeline-content">
-          <h4>02. Planning</h4>
-          <p>Location scouting, mood boards, shot lists—meticulous preparation for the perfect shoot.</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-marker"></div>
-        <div class="timeline-content">
-          <h4>03. Production</h4>
-          <p>The magic happens. I capture the moments that matter with precision and creativity.</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-marker"></div>
-        <div class="timeline-content">
-          <h4>04. Post-Production</h4>
-          <p>Careful editing and retouching to bring out the best in every image.</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-marker"></div>
-        <div class="timeline-content">
-          <h4>05. Delivery</h4>
-          <p>High-resolution finals delivered in your preferred format, ready to share with the world.</p>
-        </div>
+  {% if process_steps and process_steps.size > 0 %}
+    <div class="process-section animate-on-scroll">
+      <h3 class="content-title">My Process</h3>
+      <div class="timeline">
+        {% for step in process_steps %}
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h4>{{ step.title }}</h4>
+              <p>{{ step.description }}</p>
+            </div>
+          </div>
+        {% endfor %}
       </div>
     </div>
-  </div>
+  {% endif %}
 
   <!-- Featured In -->
-  <div class="featured-section animate-on-scroll">
-    <h3 class="content-title">As Featured In</h3>
-    <div class="featured-logos">
-      <div class="logo-item">National Geographic</div>
-      <div class="logo-item">Vogue</div>
-      <div class="logo-item">Time Magazine</div>
-      <div class="logo-item">Adobe</div>
-      <div class="logo-item">The Guardian</div>
-      <div class="logo-item">Rolling Stone</div>
+  {% if featured_logos and featured_logos.size > 0 %}
+    <div class="featured-section animate-on-scroll">
+      <h3 class="content-title">As Featured In</h3>
+      <div class="featured-logos">
+        {% for logo in featured_logos %}
+          <div class="logo-item">{{ logo.name }}</div>
+        {% endfor %}
+      </div>
     </div>
-  </div>
+  {% endif %}
 </div>

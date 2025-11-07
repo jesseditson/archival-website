@@ -5,10 +5,60 @@ name = "string"
 description = "string"
 
 [about]
-content = "markdown"
+hero_title = "string"
+hero_lead = "markdown"
+story_title = "string"
+quote_text = "markdown"
+quote_citation = "string"
+
+[about_story]
+title = "string"
+body = "markdown"
+
+[about_stat]
+value = "number"
+label = "string"
+
+[about_expertise]
+icon = "string"
+title = "string"
+description = "markdown"
+
+[about_process]
+title = "string"
+description = "markdown"
+
+[about_feature]
+name = "string"
 
 [contact]
-content = "markdown"
+hero_title = "string"
+hero_lead = "markdown"
+availability_status = "string"
+availability_note = "string"
+
+[contact_project_type]
+value = "string"
+label = "string"
+
+[contact_budget]
+value = "string"
+label = "string"
+
+[contact_method]
+icon = "string"
+label = "string"
+value = "string"
+url = "string"
+
+[contact_social]
+icon = "string"
+name = "string"
+url = "string"
+
+[contact_faq]
+question = "string"
+answer = "markdown"
 
 [photo]
 title = "string"

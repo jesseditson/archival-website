@@ -1,0 +1,5 @@
+order = 2
+icon = "📱"
+label = "Phone"
+value = "+1 (212) 555-1234"
+url = "tel:+12125551234"

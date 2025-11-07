@@ -1,4 +1,4 @@
-name="Some Content"
-body="""
+name = "Some Content"
+body = """
 Here is some *content*
 """

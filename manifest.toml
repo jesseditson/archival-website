@@ -1,1 +1,4 @@
-prebuild = ["npm ci", "npm run build"]
+prebuild = [
+    "npm ci",
+    "npm run build",
+]

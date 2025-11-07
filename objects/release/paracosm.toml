@@ -1,12 +1,12 @@
 order = -1
 date = 2013-08-07T00:00:00
+title = "Paracosm"
 description = """
 Suspendisse tincidunt nibh sem, sit amet bibendum magna rutrum sit amet. Quisque rhoncus purus sed nulla aliquam, at congue mi iaculis. Fusce vitae aliquam neque. Integer ullamcorper justo sagittis consequat porta. Fusce id iaculis nisi. Vestibulum luctus gravida.
 """
-title = "Paracosm"
 
 [image]
 display_type = "image"
-mime = "image/jpeg"
-sha = "fa7f97c5e61e192ab597018f628ed0c8fb86d0d69ef5f478fc976ba55746c8d6"
 filename = "paracosm.jpg"
+sha = "fa7f97c5e61e192ab597018f628ed0c8fb86d0d69ef5f478fc976ba55746c8d6"
+mime = "image/jpeg"

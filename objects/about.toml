@@ -1,12 +1,11 @@
 order = -1
-
 title = "Ernest Greene"
 description = """
 Ernest Greene, known professionally as Washed Out, is an American singer-songwriter and record producer. His style has been identified with the chillwave movement. He has released three albums, Within and Without, Paracosm, and Mister Mellow.
 """
 
 [image]
+display_type = "image"
 filename = "about.jpg"
 sha = "bbdd00ea1bdc040e936a46d871386608f680343ce641e38058ce9ddcc154d286"
 mime = "image/jpeg"
-display_type = "image"

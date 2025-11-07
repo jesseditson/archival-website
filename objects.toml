@@ -8,12 +8,13 @@ description = "string"
 hero_title = "string"
 hero_lead = "markdown"
 story_title = "string"
-quote_text = "markdown"
+quote_text = "string"
 quote_citation = "string"
 
 [about_story]
 title = "string"
 body = "markdown"
+after_quote = "boolean"
 
 [about_stat]
 value = "number"

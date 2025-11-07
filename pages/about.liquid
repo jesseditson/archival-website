@@ -37,7 +37,9 @@
     <div class="story-content animate-on-scroll">
       <h3 class="content-title">{{ about.story_title }}</h3>
       {% for block in story_blocks %}
-        {{ block.body }}
+        {% unless block.after_quote %}
+          {{ block.body }}
+        {% endunless %}
       {% endfor %}
 
       {% if about.quote_text %}
@@ -48,6 +50,12 @@
           {% endif %}
         </blockquote>
       {% endif %}
+
+      {% for block in story_blocks %}
+        {% if block.after_quote %}
+          {{ block.body }}
+        {% endif %}
+      {% endfor %}
     </div>
 
     <div class="story-image animate-on-scroll">

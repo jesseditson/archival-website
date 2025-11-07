@@ -2,7 +2,7 @@ order = 8
 title = "8"
 
 [file]
-sha = "16b21258cb9ff989bf1a6eaa8f2dc8b956e778495b521c514af80c9ec4b64c7e"
-filename = "08.jpg"
-mime = "image/jpeg"
 display_type = "image"
+filename = "08.jpg"
+sha = "16b21258cb9ff989bf1a6eaa8f2dc8b956e778495b521c514af80c9ec4b64c7e"
+mime = "image/jpeg"

@@ -13,7 +13,9 @@
   <!-- Contact Hero -->
   <div class="contact-hero animate-on-scroll">
     <h2 class="section-title">{{ contact.hero_title }}</h2>
-    <p class="lead-text">{{ contact.hero_lead }}</p>
+    <div class="lead-text">
+      {{ contact.hero_lead }}
+    </div>
   </div>
 
   <!-- Contact Grid -->
@@ -103,7 +105,9 @@
           <div class="status-indicator"></div>
           <span class="status-text">{{ contact.availability_status }}</span>
         </div>
-        <p class="availability-note">{{ contact.availability_note }}</p>
+        <div class="availability-note">
+          {{ contact.availability_note }}
+        </div>
       </div>
     </div>
   </div>
@@ -120,7 +124,7 @@
               <span class="faq-icon">+</span>
             </button>
             <div class="faq-answer">
-              <p>{{ faq.answer }}</p>
+              {{ faq.answer }}
             </div>
           </div>
         {% endfor %}

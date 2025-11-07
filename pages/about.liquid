@@ -14,7 +14,9 @@
   <div class="about-hero">
     <div class="about-hero-content animate-on-scroll">
       <h2 class="section-title">{{ about.hero_title }}</h2>
-      <p class="lead-text">{{ about.hero_lead }}</p>
+      <div class="lead-text">
+        {{ about.hero_lead }}
+      </div>
     </div>
   </div>
 
@@ -35,7 +37,7 @@
     <div class="story-content animate-on-scroll">
       <h3 class="content-title">{{ about.story_title }}</h3>
       {% for block in story_blocks %}
-        <p>{{ block.body }}</p>
+        {{ block.body }}
       {% endfor %}
 
       {% if about.quote_text %}

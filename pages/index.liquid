@@ -7,11 +7,10 @@
   <header class="header">
     <div class="container">
       <div class="logo-container">
-        {% if objects.site.logo_image %}
-          <img
-            src="{{ objects.site.logo_image.url }}"
-            alt="{{ objects.site.name }} Logo"
-            class="logo">
+        {% if objects.site.logo_image.url %}
+        <img src="{{ objects.site.logo_image.url }}" alt="{{ objects.site.name }} Logo" class="logo">
+        {% else %}
+        <img src="/images/logo.png" alt="{{ objects.site.name }} Logo" class="logo">
         {% endif %}
       </div>
       <h1 class="business-name">{{ objects.site.name }}</h1>
@@ -24,9 +23,18 @@
       <div class="container">
         <h2>Hours</h2>
         <ul>
-          <li>Monday - Friday: {{ objects.hours.monday_friday }}</li>
-          <li>Saturday: {{ objects.hours.saturday }}</li>
-          <li>Sunday: {{ objects.hours.sunday }}</li>
+          <li>
+            <span>Monday – Friday</span>
+            <span>{{ objects.hours.monday_friday }}</span>
+          </li>
+          <li>
+            <span>Saturday</span>
+            <span>{{ objects.hours.saturday }}</span>
+          </li>
+          <li>
+            <span>Sunday</span>
+            <span>{{ objects.hours.sunday }}</span>
+          </li>
         </ul>
       </div>
     </section>
@@ -36,13 +44,7 @@
         <h2>Location</h2>
         <p>{{ objects.location.address }}</p>
         <div class="map">
-          <iframe
-            src="{{ map_embed_url }}"
-            width="600"
-            height="450"
-            style="border:0;"
-            allowfullscreen=""
-            loading="lazy"
+          <iframe src="{{ map_embed_url }}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
@@ -61,7 +63,59 @@
     <section class="about">
       <div class="container">
         <h2>About Us</h2>
-        <p>{{ objects.about.description }}</p>
+
+        <div class="about-content">
+          <div class="about-text">
+            <p>Brandwein's Bagels is a modern, family-owned bagel shop dedicated to bringing the authentic taste of New
+              York bagels to the heart of the community. At Brandwein's, every bagel is hand-rolled, boiled, and baked
+              fresh daily, preserving the classic textures and flavors that make bagels so beloved.</p>
+
+            <p>The shop's signature offerings include a wide variety of bagels—from classic plain, sesame, and poppy
+              seed to more adventurous options like rosemary-garlic and jalapeño-cheddar. Every bagel pairs perfectly
+              with a selection of house-made cream cheeses, smoked salmon, and locally sourced ingredients.</p>
+          </div>
+
+          <div class="about-images">
+            <div class="image-card">
+              {% if objects.about.image1.url %}
+              <img src="{{ objects.about.image1.url }}" alt="Freshly baked bagels" loading="lazy">
+              {% else %}
+              <img src="https://images.unsplash.com/photo-1551106652-a5bcf4b29ab6?w=800&q=80" alt="Freshly baked bagels"
+                loading="lazy">
+              {% endif %}
+            </div>
+            <div class="image-card">
+              {% if objects.about.image2.url %}
+              <img src="{{ objects.about.image2.url }}" alt="Assorted bagels with toppings" loading="lazy">
+              {% else %}
+              <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&q=80"
+                alt="Assorted bagels with toppings" loading="lazy">
+              {% endif %}
+            </div>
+            <div class="image-card">
+              {% if objects.about.image3.url %}
+              <img src="{{ objects.about.image3.url }}" alt="Bagel with cream cheese" loading="lazy">
+              {% else %}
+              <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=800&q=80"
+                alt="Bagel with cream cheese" loading="lazy">
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="about-text">
+            <p>Brandwein's warm, inviting atmosphere, with its vibrant logo and friendly staff, makes it the perfect
+              spot for breakfast gatherings, quick lunch stops, or leisurely weekend brunches. Beyond the bagels,
+              Brandwein's is committed to fostering a strong sense of community.</p>
+
+            <p>The shop frequently partners with local businesses and farms to create unique, seasonal specials and
+              offers catering services that add a fresh twist to any event. Brandwein's also prides itself on supporting
+              environmental sustainability, using eco-friendly packaging and implementing practices to reduce food
+              waste.</p>
+
+            <p>Whether you're a bagel enthusiast or a first-timer, Brandwein's Bagels promises an unforgettable bagel
+              experience rooted in tradition and innovation.</p>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -70,9 +124,9 @@
     <div class="container">
       <p class="summary">{{ objects.site.name }} | {{ objects.contact.phone }} | {{ objects.location.address }}
       </p>
-      <p class="hours-summary">Hours: Mon-Fri {{ objects.hours.monday_friday }} | Sat {{ objects.hours.saturday }} | 
+      <p class="hours-summary">Hours: Mon-Fri {{ objects.hours.monday_friday }} | Sat {{ objects.hours.saturday }} |
         Closed Sun</p>
-      <p class="copyright">&copy; 2024 {{ objects.site.name }}</p>
+      <p class="copyright">&copy; {{ "now" | date: "%Y" }} {{ objects.site.name }}</p>
     </div>
   </footer>
 </div>

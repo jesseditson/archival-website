@@ -18,12 +18,10 @@
         <a href="#contact">Contact</a>
       </li>
       {% if objects.resume.file %}
-        <li>
-          <a
-            href="{{ objects.resume.file.url }}"
-            class="resume-button"
-            download="{{ objects.resume.file.filename }}">Resume</a>
-        </li>
+      <li>
+        <a href="{{ objects.resume.file.url }}" class="resume-button"
+          download="{{ objects.resume.file.filename }}">Resume</a>
+      </li>
       {% endif %}
     </ul>
     <div class="hamburger">
@@ -43,7 +41,7 @@
     <p class="description">
       {{ objects.personal.tagline }}
     </p>
-    <a href="#about" class="cta">More about me 👇</a>
+    <a href="#about" class="cta">More about me</a>
   </div>
 </section>
 
@@ -76,7 +74,43 @@
     <h2 class="section-title">Some Things I've Built</h2>
     <!-- Projects -->
     <div class="projects">
-      {{ objects.work.description }}
+      <!-- Project 1: MindfulSpace -->
+      <div class="project-item">
+        <div class="project-content">
+          <h3>MindfulSpace</h3>
+          <p>A mobile app for mental health awareness that helps users manage stress and anxiety. Developed through
+            end-to-end design process including user interviews, journey mapping, and interactive prototyping. The app
+            has helped thousands of users with its user-centric design approach.</p>
+          <div class="project-tech">
+            <span>Mobile App</span>
+            <span>UX/UI Design</span>
+            <span>User Research</span>
+          </div>
+        </div>
+        <div class="project-image">
+          <img src="https://images.unsplash.com/photo-1512428559087-560fa5ceab42?w=800&h=600&fit=crop"
+            alt="MindfulSpace App">
+        </div>
+      </div>
+
+      <!-- Project 2: EcoTrack -->
+      <div class="project-item">
+        <div class="project-content">
+          <h3>EcoTrack</h3>
+          <p>A web platform that encourages sustainable living by tracking personal environmental impact. Features
+            gamification elements and a clean, intuitive interface to engage users in making eco-friendly choices.
+            Recognized in the "Best for the World" list by a leading environmental organization.</p>
+          <div class="project-tech">
+            <span>Web Platform</span>
+            <span>Gamification</span>
+            <span>Sustainability</span>
+          </div>
+        </div>
+        <div class="project-image">
+          <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&h=600&fit=crop"
+            alt="EcoTrack Platform">
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -84,9 +118,22 @@
 <!-- Contact Section -->
 <section id="contact">
   <div class="container">
-    <h2 class="section-title">Get In Touch</h2>
-    {{ objects.contact.description }}
-    <a href="mailto:{{ objects.contact.email }}" class="email-link">Say Hello</a>
+    <div class="contact-card">
+      <h2 class="section-title">Get In Touch</h2>
+      <div>
+        {{ objects.contact.description }}
+        <a href="mailto:{{ objects.contact.email }}" class="email-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            style="position: relative; z-index: 1;">
+            <path
+              d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" />
+            <path d="m21.854 2.147-10.94 10.939" />
+          </svg>
+          <span style="position: relative; z-index: 1;">Say Hello</span>
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 

@@ -8,9 +8,10 @@
     <div class="container">
       <div class="logo-container">
         {% if objects.site.logo_image.url %}
-        <img src="{{ objects.site.logo_image.url }}" alt="{{ objects.site.name }} Logo" class="logo">
-        {% else %}
-        <img src="/images/logo.png" alt="{{ objects.site.name }} Logo" class="logo">
+          <img
+            src="{{ objects.site.logo_image.url }}"
+            alt="{{ objects.site.name }} Logo"
+            class="logo">
         {% endif %}
       </div>
       <h1 class="business-name">{{ objects.site.name }}</h1>

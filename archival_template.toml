@@ -5,6 +5,7 @@ This template is intended to be used for a professional website for an individua
 """
 context = """
 This template shows information about a person, and could be generated from a resume or other professional information about a person.
+When filling the action_line field, make sure that the value makes sense when preceded by "Hi, my name is <something> and "
 """
 tags = ["resume", "about"]
 tlds = ["com", "me"]

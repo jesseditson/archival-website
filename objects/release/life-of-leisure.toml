@@ -6,7 +6,7 @@ Suspendisse tincidunt nibh sem, sit amet bibendum magna rutrum sit amet. Quisque
 """
 
 [image]
-display_type = "image"
-filename = "life-of-leisure.jpg"
 sha = "931dc6e6643015151dd48df95abd77994a1ac515f604309d8c32e09622fd03bf"
+filename = "band-1-life-of-leisure.jpg"
 mime = "image/jpeg"
+display_type = "image"

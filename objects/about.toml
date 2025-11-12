@@ -5,7 +5,7 @@ Ernest Greene, known professionally as Washed Out, is an American singer-songwri
 """
 
 [image]
-display_type = "image"
-filename = "about.jpg"
 sha = "bbdd00ea1bdc040e936a46d871386608f680343ce641e38058ce9ddcc154d286"
+filename = "band-1-about.jpg"
 mime = "image/jpeg"
+display_type = "image"

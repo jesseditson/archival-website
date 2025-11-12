@@ -6,7 +6,7 @@ Suspendisse tincidunt nibh sem, sit amet bibendum magna rutrum sit amet. Quisque
 """
 
 [image]
-display_type = "image"
-filename = "paracosm.jpg"
-sha = "fa7f97c5e61e192ab597018f628ed0c8fb86d0d69ef5f478fc976ba55746c8d6"
+sha = "651f44fab5f176b54d049f44bc1e50335d8acab02f651733d35e1e096e2680df"
+filename = "paracosm-cover.jpg"
 mime = "image/jpeg"
+display_type = "image"

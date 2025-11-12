@@ -33,29 +33,9 @@
           <input type="email" id="email" name="email" placeholder="john@example.com" required>
         </div>
 
-        <div class="form-group">
-          <label for="project-type">Project Type</label>
-          <select id="project-type" name="project-type" required>
-            <option value="">Select a project type</option>
-            {% for option in project_types %}
-              <option value="{{ option.value }}">{{ option.label }}</option>
-            {% endfor %}
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="budget">Budget Range</label>
-          <select id="budget" name="budget">
-            <option value="">Select budget range</option>
-            {% for option in budget_ranges %}
-              <option value="{{ option.value }}">{{ option.label }}</option>
-            {% endfor %}
-          </select>
-        </div>
-
         <div class="form-group full-width">
-          <label for="message">Tell Me About Your Project</label>
-          <textarea id="message" name="message" rows="6" placeholder="Share your vision, timeline, and any specific requirements..." required></textarea>
+          <label for="message">Your Message</label>
+          <textarea id="message" name="message" rows="6" placeholder="Say hello, ask a question, or just share your thoughts..." required></textarea>
         </div>
 
         <button type="submit" class="submit-btn">
@@ -99,36 +79,6 @@
           </div>
         </div>
       {% endif %}
-
-      <div class="availability-card animate-on-scroll">
-        <div class="availability-status">
-          <div class="status-indicator"></div>
-          <span class="status-text">{{ contact.availability_status }}</span>
-        </div>
-        <div class="availability-note">
-          {{ contact.availability_note }}
-        </div>
-      </div>
     </div>
   </div>
-
-  <!-- FAQ Section -->
-  {% if faq_items and faq_items.size > 0 %}
-    <div class="faq-section animate-on-scroll">
-      <h3 class="content-title">Frequently Asked Questions</h3>
-      <div class="faq-list">
-        {% for faq in faq_items %}
-          <div class="faq-item">
-            <button class="faq-question">
-              <span>{{ faq.question }}</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-              {{ faq.answer }}
-            </div>
-          </div>
-        {% endfor %}
-      </div>
-    </div>
-  {% endif %}
 </div>

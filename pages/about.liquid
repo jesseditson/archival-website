@@ -67,10 +67,10 @@
     </div>
   </div>
 
-  <!-- Expertise Areas -->
+  <!-- Photography Interests -->
   {% if expertise_items and expertise_items.size > 0 %}
     <div class="expertise-section animate-on-scroll">
-      <h3 class="content-title">Expertise</h3>
+      <h3 class="content-title">Photography Interests</h3>
       <div class="expertise-grid">
         {% for card in expertise_items %}
           <div class="expertise-card">
@@ -78,36 +78,6 @@
             <h4>{{ card.title }}</h4>
             <p>{{ card.description }}</p>
           </div>
-        {% endfor %}
-      </div>
-    </div>
-  {% endif %}
-
-  <!-- Process Timeline -->
-  {% if process_steps and process_steps.size > 0 %}
-    <div class="process-section animate-on-scroll">
-      <h3 class="content-title">My Process</h3>
-      <div class="timeline">
-        {% for step in process_steps %}
-          <div class="timeline-item">
-            <div class="timeline-marker"></div>
-            <div class="timeline-content">
-              <h4>{{ step.title }}</h4>
-              <p>{{ step.description }}</p>
-            </div>
-          </div>
-        {% endfor %}
-      </div>
-    </div>
-  {% endif %}
-
-  <!-- Featured In -->
-  {% if featured_logos and featured_logos.size > 0 %}
-    <div class="featured-section animate-on-scroll">
-      <h3 class="content-title">As Featured In</h3>
-      <div class="featured-logos">
-        {% for logo in featured_logos %}
-          <div class="logo-item">{{ logo.name }}</div>
         {% endfor %}
       </div>
     </div>

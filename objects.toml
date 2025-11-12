@@ -28,26 +28,9 @@ icon = "string"
 title = "string"
 description = "markdown"
 
-[about_process]
-title = "string"
-description = "markdown"
-
-[about_feature]
-name = "string"
-
 [contact]
 hero_title = "string"
 hero_lead = "markdown"
-availability_status = "string"
-availability_note = "string"
-
-[contact_project_type]
-value = "string"
-label = "string"
-
-[contact_budget]
-value = "string"
-label = "string"
 
 [contact_method]
 icon = "string"
@@ -59,10 +42,6 @@ url = "string"
 icon = "string"
 name = "string"
 url = "string"
-
-[contact_faq]
-question = "string"
-answer = "markdown"
 
 [photo]
 title = "string"

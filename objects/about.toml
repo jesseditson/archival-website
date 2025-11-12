@@ -3,3 +3,21 @@ hero_lead = "Capturing moments that transcend time and space, transforming fleet
 story_title = "My Journey"
 quote_text = "Photography is the story I fail to put into words."
 quote_citation = "— Destin Sparks"
+
+[image_1]
+sha = "2b56a9ad97842176aae9b77cbf7844a093cc81d6f0c5c3ba2b9f4ad5b4ee1f17"
+filename = "photographica-about-1.jpeg"
+mime = "image/jpeg"
+display_type = "image"
+
+[image_2]
+sha = "83b6c6904925e3397b00992d3f82ba19253a70d41c573b9b903cd004df651ecf"
+filename = "photographica-about-2.jpeg"
+mime = "image/jpeg"
+display_type = "image"
+
+[image_3]
+sha = "9aa500a03bc23b4380221cb2fb5bf9f29fd42b232266b1c9031c851bcb842c55"
+filename = "photographica-about-3.jpeg"
+mime = "image/jpeg"
+display_type = "image"

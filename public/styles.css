@@ -864,7 +864,6 @@ body.light-theme .thumbnail-item.active {
     top: 0;
     left: 0;
     z-index: 3;
-    background-image: url('https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=400&h=500&fit=crop&auto=format&q=80&sat=-100');
 }
 
 .stack-item-2 {
@@ -872,7 +871,6 @@ body.light-theme .thumbnail-item.active {
     left: 80px;
     z-index: 2;
     opacity: 0.8;
-    background-image: url('https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=400&h=500&fit=crop&auto=format&q=80&sat=-100');
 }
 
 .stack-item-3 {
@@ -880,7 +878,6 @@ body.light-theme .thumbnail-item.active {
     left: 160px;
     z-index: 1;
     opacity: 0.6;
-    background-image: url('https://images.unsplash.com/photo-1502945015378-0e284ca1a5be?w=400&h=500&fit=crop&auto=format&q=80&sat=-100');
 }
 
 /* Expertise Section */

@@ -10,6 +10,9 @@ hero_lead = "markdown"
 story_title = "string"
 quote_text = "string"
 quote_citation = "string"
+image_1 = "image"
+image_2 = "image"
+image_3 = "image"
 
 [about_story]
 title = "string"

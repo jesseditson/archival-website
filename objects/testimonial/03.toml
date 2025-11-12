@@ -1,2 +1,8 @@
 quote = "Therapy was the best investment I’ve ever made in myself, and Robin helped me every step."
 author = "Sarah D."
+
+[thumbnail]
+sha = "500c31a230581dd5d0b5ced178ba1919f690ca412ad881d5c17a637fe46e5946"
+filename = "professional-1-testimonial-avatar-3.jpg"
+mime = "image/jpeg"
+display_type = "image"

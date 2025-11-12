@@ -1,2 +1,8 @@
 quote = "I finally feel like I’m becoming the version of myself I’ve always wanted to be."
 author = "Jesse R."
+
+[thumbnail]
+sha = "61a613cb5d8d82a483816fc5a8df5497f5822b42e91aea6a505125152842c783"
+filename = "professional-1-testimonial-avatar-7.jpg"
+mime = "image/jpeg"
+display_type = "image"

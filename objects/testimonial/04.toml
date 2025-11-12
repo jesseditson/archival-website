@@ -1,2 +1,8 @@
 quote = "I always leave our sessions feeling lighter, more grounded, and more hopeful every time."
 author = "Jan R."
+
+[thumbnail]
+sha = "e0ae659f5da9c7d3027acf71564e75cdfbd1f40a5db2689f20f781e13970579f"
+filename = "professional-1-testimonial-avatar-4.jpg"
+mime = "image/jpeg"
+display_type = "image"

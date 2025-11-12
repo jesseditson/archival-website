@@ -1,2 +1,8 @@
 quote = "She blends compassion with practical tools that actually work. Robin is a true gem."
 author = "Tasha B."
+
+[thumbnail]
+sha = "f5da624a508f44c5270f1a1f80b7bf28e0f11e33e1840fb130d3145ad8ca383e"
+filename = "professional-1-testimonial-avatar-2.jpg"
+mime = "image/jpeg"
+display_type = "image"

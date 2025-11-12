@@ -1,2 +1,8 @@
 quote = "Robin helped me become the absolute best version of myself. Highly recommend."
 author = "Devon T."
+
+[thumbnail]
+sha = "9be218778c71ebc85bd2185e29d0c2282047657335290a9059b9e700c0a0df03"
+filename = "professional-1-testimonial-avatar-5.jpg"
+mime = "image/jpeg"
+display_type = "image"

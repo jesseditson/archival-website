@@ -1,27 +1,17 @@
 {% assign title = objects.site.name | append: " | Contact" %}
 {% layout 'theme' title: title
-  , active_page: "contact" %}
+, active_page: "contact" %}
 {% assign contact = objects.contact %}
-{% assign project_types = contact_project_types | sort: "order" %}
-{% assign budget_ranges = contact_budgets | sort: "order" %}
 {% assign contact_channels = contact_methods | sort: "order" %}
 {% assign social_links = contact_socials | sort: "order" %}
-{% assign faq_items = contact_faqs | sort: "order" %}
 
 <!-- Contact Section -->
 <div class="contact-section">
-  <!-- Contact Hero -->
-  <div class="contact-hero animate-on-scroll">
-    <h2 class="section-title">{{ contact.hero_title }}</h2>
-    <div class="lead-text">
-      {{ contact.hero_lead }}
-    </div>
-  </div>
-
   <!-- Contact Grid -->
   <div class="contact-grid">
     <!-- Contact Form -->
     <div class="contact-form-wrapper animate-on-scroll">
+      <h3 class="content-title">Get In Touch</h3>
       <form class="contact-form" id="contact-form">
         <div class="form-group">
           <label for="name">Your Name</label>
@@ -35,7 +25,8 @@
 
         <div class="form-group full-width">
           <label for="message">Your Message</label>
-          <textarea id="message" name="message" rows="6" placeholder="Say hello, ask a question, or just share your thoughts..." required></textarea>
+          <textarea id="message" name="message" rows="6"
+            placeholder="Say hello, ask a question, or just share your thoughts..." required></textarea>
         </div>
 
         <button type="submit" class="submit-btn">
@@ -48,36 +39,36 @@
     <!-- Contact Info -->
     <div class="contact-info-wrapper">
       <div class="contact-info-card animate-on-scroll">
-        <h3>Get In Touch</h3>
+        <h3>Other Contact Info</h3>
         <div class="contact-methods">
           {% for method in contact_channels %}
-            <div class="contact-method">
-              <div class="method-icon">{{ method.icon }}</div>
-              <div class="method-details">
-                <h4>{{ method.label }}</h4>
-                {% if method.url %}
-                  <a href="{{ method.url }}">{{ method.value }}</a>
-                {% else %}
-                  <p>{{ method.value }}</p>
-                {% endif %}
-              </div>
+          <div class="contact-method">
+            <div class="method-icon">{{ method.icon }}</div>
+            <div class="method-details">
+              <h4>{{ method.label }}</h4>
+              {% if method.url %}
+              <a href="{{ method.url }}">{{ method.value }}</a>
+              {% else %}
+              <p>{{ method.value }}</p>
+              {% endif %}
             </div>
+          </div>
           {% endfor %}
         </div>
       </div>
 
       {% if social_links and social_links.size > 0 %}
-        <div class="social-links-card animate-on-scroll">
-          <h3>Follow My Work</h3>
-          <div class="social-links">
-            {% for social in social_links %}
-              <a href="{{ social.url }}" class="social-link">
-                <span class="social-icon">{{ social.icon }}</span>
-                <span class="social-name">{{ social.name }}</span>
-              </a>
-            {% endfor %}
-          </div>
+      <div class="social-links-card animate-on-scroll">
+        <h3>Follow My Work</h3>
+        <div class="social-links">
+          {% for social in social_links %}
+          <a href="{{ social.url }}" class="social-link">
+            <span class="social-icon">{{ social.icon }}</span>
+            <span class="social-name">{{ social.name }}</span>
+          </a>
+          {% endfor %}
         </div>
+      </div>
       {% endif %}
     </div>
   </div>

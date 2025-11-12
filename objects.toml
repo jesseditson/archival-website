@@ -19,10 +19,6 @@ title = "string"
 body = "markdown"
 after_quote = "boolean"
 
-[about_stat]
-value = "number"
-label = "string"
-
 [about_expertise]
 icon = "string"
 title = "string"

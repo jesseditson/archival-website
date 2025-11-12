@@ -3,35 +3,10 @@
   , active_page: "about" %}
 {% assign about = objects.about %}
 {% assign story_blocks = about_stories | sort: "order" %}
-{% assign stats = about_stats | sort: "order" %}
 {% assign expertise_items = about_expertises | sort: "order" %}
-{% assign process_steps = about_processes | sort: "order" %}
-{% assign featured_logos = about_features | sort: "order" %}
 
 <!-- About Section -->
 <div class="about-section">
-  <!-- Hero Introduction -->
-  <div class="about-hero">
-    <div class="about-hero-content animate-on-scroll">
-      <h2 class="section-title">{{ about.hero_title }}</h2>
-      <div class="lead-text">
-        {{ about.hero_lead }}
-      </div>
-    </div>
-  </div>
-
-  <!-- Stats Counter -->
-  {% if stats and stats.size > 0 %}
-    <div class="stats-grid animate-on-scroll">
-      {% for stat in stats %}
-        <div class="stat-item" data-count="{{ stat.value }}">
-          <span class="stat-number">0</span>
-          <span class="stat-label">{{ stat.label }}</span>
-        </div>
-      {% endfor %}
-    </div>
-  {% endif %}
-
   <!-- Story Section -->
   <div class="about-story">
     <div class="story-content animate-on-scroll">
@@ -70,7 +45,7 @@
   <!-- Photography Interests -->
   {% if expertise_items and expertise_items.size > 0 %}
     <div class="expertise-section animate-on-scroll">
-      <h3 class="content-title">Photography Interests</h3>
+      <h3 class="content-title">My Interests</h3>
       <div class="expertise-grid">
         {% for card in expertise_items %}
           <div class="expertise-card">

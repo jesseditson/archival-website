@@ -509,45 +509,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ==================== About Page Animations ====================
 function initializeAboutPage() {
-    // Animate stats counters
-    const statItems = document.querySelectorAll('.stat-item');
-    if (statItems.length === 0) return;
-
-    const observerOptions = {
-        threshold: 0.5,
-        rootMargin: '0px'
-    };
-
-    const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
-                entry.target.classList.add('counted');
-                const targetCount = parseInt(entry.target.getAttribute('data-count'));
-                const numberElement = entry.target.querySelector('.stat-number');
-
-                // Anime.js v4 counter animation - using modifier instead of round
-                animate({value: 0}, {
-                    value: targetCount,
-                    duration: 2000,
-                    ease: 'outExpo',  // Changed from 'easeOutExpo'
-                    modifier: animeUtils.round(0),  // Changed from round: 1
-                    onUpdate: function(animation) {
-                        numberElement.textContent = Math.round(animation.targets[0].value);
-                    }
-                });
-
-                // Pulse animation on the stat item
-                animate(entry.target, {
-                    scale: [1, 1.05, 1],
-                    duration: 600,
-                    ease: 'outElastic(1, .6)'
-                });
-            }
-        });
-    }, observerOptions);
-
-    statItems.forEach(item => statsObserver.observe(item));
-
     // Animate image stack with parallax effect
     const stackItems = document.querySelectorAll('.stack-item');
     if (stackItems.length > 0) {

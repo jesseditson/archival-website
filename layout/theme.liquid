@@ -57,9 +57,16 @@
       {{ page_content }}
     </div>
 
-    <!-- Anime.js Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js" integrity="sha512-aNMyYYxdIxIaot0Y1/PLuEu3eipGCmsEUBrUq+7aVyPGMFH8z0eTP0tkqAvv34fzN6z+201d3T8HPb1svWSKHQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="/script.js" type="application/javascript"></script>
+    <!-- Anime.js Library v4.2.2 -->
+    <script type="module">
+      import { animate, createTimeline, stagger, utils } from 'https://cdn.jsdelivr.net/npm/animejs/+esm';
+      // Make animate available globally for the main script
+      window.animate = animate;
+      window.createTimeline = createTimeline;
+      window.stagger = stagger;
+      window.animeUtils = utils;
+    </script>
+    <script src="/script.js" type="module"></script>
   </body>
 
 </html>

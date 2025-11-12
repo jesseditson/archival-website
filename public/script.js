@@ -67,14 +67,16 @@ function setupLazyLoading(photoItems) {
 function animateGalleryEntrance() {
     const photoItems = document.querySelectorAll(".photo-item");
 
-    // Simpler, faster stagger animation using Anime.js
-    anime({
-        targets: photoItems,
+    // Only animate if photo items exist
+    if (photoItems.length === 0) return;
+
+    // Updated for Anime.js v4: anime() → animate(), anime.stagger() → stagger()
+    animate(photoItems, {
         opacity: [0, 1],
         translateY: [30, 0],
-        delay: anime.stagger(50, {start: 100}),
+        delay: stagger(50, {start: 100}),
         duration: 400,
-        easing: 'easeOutQuad'
+        ease: 'outQuad'  // Changed from 'easeOutQuad'
     });
 }
 
@@ -101,12 +103,11 @@ function openLightbox(index) {
         generateThumbnails();
     }
 
-    // Faster backdrop animation
-    anime({
-        targets: '.lightbox-backdrop',
+    // Updated for v4: easing → ease
+    animate('.lightbox-backdrop', {
         opacity: [0, 1],
         duration: 250,
-        easing: 'easeOutQuad'
+        ease: 'outQuad'
     });
 
     // Show loader
@@ -119,15 +120,14 @@ function openLightbox(index) {
         lightboxImg.src = galleryImages[currentImageIndex].src;
         lightboxImg.alt = galleryImages[currentImageIndex].title;
 
-        // Hide loader and animate image entrance (faster)
+        // Hide loader and animate image entrance
         loader.classList.remove('active');
 
-        anime({
-            targets: lightboxImg,
+        animate(lightboxImg, {
             opacity: [0, 1],
             scale: [0.9, 1],
             duration: 350,
-            easing: 'easeOutQuad'
+            ease: 'outQuad'
         });
 
         updateLightboxInfo();
@@ -146,25 +146,26 @@ function closeLightbox() {
     const lightboxImg = document.getElementById('lightbox-img');
 
     // Animate exit
-    anime({
-        targets: lightboxImg,
+    animate(lightboxImg, {
         opacity: 0,
         scale: 0.8,
         duration: 300,
-        easing: 'easeInQuad'
+        ease: 'inQuad'  // Changed from 'easeInQuad'
     });
 
-    anime({
-        targets: '.lightbox-backdrop',
+    animate('.lightbox-backdrop', {
         opacity: 0,
         duration: 300,
-        easing: 'easeInQuad',
-        complete: function() {
+        ease: 'inQuad',
+        onComplete: function() {
             lightbox.classList.remove('active');
             document.body.style.overflow = '';
         }
     });
 }
+
+// Expose functions globally for inline event handlers
+window.closeLightbox = closeLightbox;
 
 function navigateLightbox(direction) {
     const lightboxImg = document.getElementById('lightbox-img');
@@ -174,13 +175,12 @@ function navigateLightbox(direction) {
     currentImageIndex = (currentImageIndex + direction + galleryImages.length) % galleryImages.length;
 
     // Animate current image exit
-    anime({
-        targets: lightboxImg,
+    animate(lightboxImg, {
         opacity: 0,
         translateX: direction > 0 ? -100 : 100,
         duration: 300,
-        easing: 'easeInQuad',
-        complete: function() {
+        ease: 'inQuad',
+        onComplete: function() {
             // Show loader
             loader.classList.add('active');
 
@@ -194,12 +194,11 @@ function navigateLightbox(direction) {
                 loader.classList.remove('active');
 
                 // Animate new image entrance
-                anime({
-                    targets: lightboxImg,
+                animate(lightboxImg, {
                     opacity: [0, 1],
                     translateX: [direction > 0 ? 100 : -100, 0],
                     duration: 400,
-                    easing: 'easeOutQuad'
+                    ease: 'outQuad'
                 });
 
                 updateLightboxInfo();
@@ -213,13 +212,15 @@ function navigateLightbox(direction) {
 
     // Animate navigation button
     const button = direction > 0 ? '.lightbox-next' : '.lightbox-prev';
-    anime({
-        targets: button,
+    animate(button, {
         scale: [1, 0.9, 1],
         duration: 300,
-        easing: 'easeOutElastic(1, .6)'
+        ease: 'outElastic(1, .6)'  // Changed from 'easeOutElastic(1, .6)'
     });
 }
+
+// Expose functions globally for inline event handlers
+window.navigateLightbox = navigateLightbox;
 
 function updateLightboxInfo() {
     document.getElementById('lightbox-current').textContent = currentImageIndex + 1;
@@ -227,11 +228,10 @@ function updateLightboxInfo() {
     document.getElementById('lightbox-title').textContent = galleryImages[currentImageIndex].title;
 
     // Animate info update
-    anime({
-        targets: '.lightbox-info',
+    animate('.lightbox-info', {
         scale: [0.95, 1],
         duration: 300,
-        easing: 'easeOutBack'
+        ease: 'outBack'  // Changed from 'easeOutBack'
     });
 }
 
@@ -317,13 +317,12 @@ function navigateToIndex(index) {
     const loader = document.querySelector('.lightbox-loader');
 
     // Animate transition
-    anime({
-        targets: lightboxImg,
+    animate(lightboxImg, {
         opacity: 0,
         scale: 0.9,
         duration: 200,
-        easing: 'easeInQuad',
-        complete: function() {
+        ease: 'inQuad',
+        onComplete: function() {
             loader.classList.add('active');
 
             const img = new Image();
@@ -333,12 +332,11 @@ function navigateToIndex(index) {
 
                 loader.classList.remove('active');
 
-                anime({
-                    targets: lightboxImg,
+                animate(lightboxImg, {
                     opacity: [0, 1],
                     scale: [0.9, 1],
                     duration: 300,
-                    easing: 'easeOutQuad'
+                    ease: 'outQuad'
                 });
 
                 updateLightboxInfo();
@@ -415,34 +413,34 @@ function toggleFullscreen() {
     }
 
     // Animate button
-    anime({
-        targets: '.lightbox-fullscreen',
+    animate('.lightbox-fullscreen', {
         scale: [1, 1.2, 1],
         rotate: [0, 180, 360],
         duration: 500,
-        easing: 'easeOutElastic(1, .6)'
+        ease: 'outElastic(1, .6)'
     });
 }
 
+// Expose functions globally for inline event handlers
+window.toggleFullscreen = toggleFullscreen;
+
 // ==================== Lightbox Controls Animation ====================
 function animateLightboxControls() {
-    // Lighter, faster animation for controls
-    anime({
-        targets: ['.lightbox-close', '.lightbox-fullscreen', '.lightbox-nav', '.lightbox-info'],
+    // Updated for v4: anime.stagger() → stagger()
+    animate(['.lightbox-close', '.lightbox-fullscreen', '.lightbox-nav', '.lightbox-info'], {
         opacity: [0, 1],
         scale: [0.95, 1],
-        delay: anime.stagger(30, {start: 100}),
+        delay: stagger(30, {start: 100}),
         duration: 250,
-        easing: 'easeOutQuad'
+        ease: 'outQuad'
     });
 
     // Only fade in thumbnails wrapper - no transforms to avoid conflicts
-    anime({
-        targets: '.lightbox-thumbnails-wrapper',
+    animate('.lightbox-thumbnails-wrapper', {
         opacity: [0, 1],
         delay: 150,
         duration: 250,
-        easing: 'easeOutQuad'
+        ease: 'outQuad'
     });
 }
 
@@ -464,20 +462,18 @@ function initializeThemeToggle() {
         const theme = document.body.classList.contains('light-theme') ? 'light' : 'dark';
         localStorage.setItem('theme', theme);
 
-        // Animate toggle button with Anime.js
-        anime({
-            targets: themeToggle,
+        // Animate toggle button with Anime.js v4
+        animate(themeToggle, {
             scale: [1, 1.2, 1],
             rotate: [0, 360],
             duration: 600,
-            easing: 'easeOutElastic(1, .6)'
+            ease: 'outElastic(1, .6)'
         });
 
         // Animate theme transition effect
-        anime({
-            targets: 'body',
+        animate('body', {
             duration: 300,
-            easing: 'easeInOutQuad'
+            ease: 'inOutQuad'  // Changed from 'easeInOutQuad'
         });
     });
 }
@@ -529,24 +525,22 @@ function initializeAboutPage() {
                 const targetCount = parseInt(entry.target.getAttribute('data-count'));
                 const numberElement = entry.target.querySelector('.stat-number');
 
-                // Anime.js counter animation
-                anime({
-                    targets: {value: 0},
+                // Anime.js v4 counter animation - using modifier instead of round
+                animate({value: 0}, {
                     value: targetCount,
                     duration: 2000,
-                    easing: 'easeOutExpo',
-                    round: 1,
-                    update: function(anim) {
-                        numberElement.textContent = Math.round(anim.animations[0].currentValue);
+                    ease: 'outExpo',  // Changed from 'easeOutExpo'
+                    modifier: animeUtils.round(0),  // Changed from round: 1
+                    onUpdate: function(animation) {
+                        numberElement.textContent = Math.round(animation.targets[0].value);
                     }
                 });
 
                 // Pulse animation on the stat item
-                anime({
-                    targets: entry.target,
+                animate(entry.target, {
                     scale: [1, 1.05, 1],
                     duration: 600,
-                    easing: 'easeOutElastic(1, .6)'
+                    ease: 'outElastic(1, .6)'
                 });
             }
         });
@@ -557,33 +551,30 @@ function initializeAboutPage() {
     // Animate image stack with parallax effect
     const stackItems = document.querySelectorAll('.stack-item');
     if (stackItems.length > 0) {
-        anime({
-            targets: '.stack-item-1',
+        animate('.stack-item-1', {
             translateY: [100, 0],
             opacity: [0, 1],
             rotate: [-5, 0],
             duration: 1000,
-            easing: 'easeOutCubic',
+            ease: 'outCubic',  // Changed from 'easeOutCubic'
             delay: 200
         });
 
-        anime({
-            targets: '.stack-item-2',
+        animate('.stack-item-2', {
             translateY: [120, 0],
             opacity: [0, 0.8],
             rotate: [5, 0],
             duration: 1000,
-            easing: 'easeOutCubic',
+            ease: 'outCubic',
             delay: 400
         });
 
-        anime({
-            targets: '.stack-item-3',
+        animate('.stack-item-3', {
             translateY: [140, 0],
             opacity: [0, 0.6],
             rotate: [-8, 0],
             duration: 1000,
-            easing: 'easeOutCubic',
+            ease: 'outCubic',
             delay: 600
         });
     }
@@ -595,12 +586,11 @@ function initializeAboutPage() {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting && !entry.target.classList.contains('card-animated')) {
                     entry.target.classList.add('card-animated');
-                    anime({
-                        targets: entry.target,
+                    animate(entry.target, {
                         translateY: [50, 0],
                         opacity: [0, 1],
                         duration: 600,
-                        easing: 'easeOutCubic',
+                        ease: 'outCubic',
                         delay: index * 100
                     });
                 }
@@ -619,20 +609,18 @@ function initializeAboutPage() {
                     entry.target.classList.add('timeline-animated');
 
                     // Marker pulse
-                    anime({
-                        targets: entry.target.querySelector('.timeline-marker'),
+                    animate(entry.target.querySelector('.timeline-marker'), {
                         scale: [0, 1],
                         duration: 400,
-                        easing: 'easeOutElastic(1, .8)'
+                        ease: 'outElastic(1, .8)'
                     });
 
                     // Content slide in
-                    anime({
-                        targets: entry.target.querySelector('.timeline-content'),
+                    animate(entry.target.querySelector('.timeline-content'), {
                         translateX: [-30, 0],
                         opacity: [0, 1],
                         duration: 600,
-                        easing: 'easeOutCubic',
+                        ease: 'outCubic',
                         delay: 200
                     });
                 }
@@ -651,13 +639,12 @@ function initializeAboutPage() {
                     const items = Array.from(entry.target.parentElement.children);
                     items.forEach((item, i) => {
                         item.classList.add('logo-animated');
-                        anime({
-                            targets: item,
+                        animate(item, {
                             opacity: [0, 1],
                             translateY: [20, 0],
                             delay: i * 100,
                             duration: 500,
-                            easing: 'easeOutQuad'
+                            ease: 'outQuad'
                         });
                     });
                 }
@@ -676,11 +663,10 @@ function initializeContactPage() {
     const formInputs = document.querySelectorAll('.form-group input, .form-group select, .form-group textarea');
     formInputs.forEach(input => {
         input.addEventListener('focus', (e) => {
-            anime({
-                targets: e.target,
+            animate(e.target, {
                 scale: [1, 1.02, 1],
                 duration: 300,
-                easing: 'easeOutQuad'
+                ease: 'outQuad'
             });
         });
     });
@@ -703,21 +689,19 @@ function initializeContactPage() {
             item.classList.toggle('active');
 
             // Animate icon rotation
-            anime({
-                targets: question.querySelector('.faq-icon'),
+            animate(question.querySelector('.faq-icon'), {
                 rotate: wasActive ? 0 : 45,
                 duration: 300,
-                easing: 'easeOutQuad'
+                ease: 'outQuad'
             });
 
             // Animate answer
             if (!wasActive) {
-                anime({
-                    targets: item.querySelector('.faq-answer'),
+                animate(item.querySelector('.faq-answer'), {
                     opacity: [0, 1],
                     translateY: [-10, 0],
                     duration: 400,
-                    easing: 'easeOutQuad'
+                    ease: 'outQuad'
                 });
             }
         });
@@ -727,11 +711,10 @@ function initializeContactPage() {
     const socialLinks = document.querySelectorAll('.social-link');
     socialLinks.forEach(link => {
         link.addEventListener('mouseenter', (e) => {
-            anime({
-                targets: e.currentTarget.querySelector('.social-icon'),
+            animate(e.currentTarget.querySelector('.social-icon'), {
                 rotate: [0, 360],
                 duration: 600,
-                easing: 'easeOutElastic(1, .6)'
+                ease: 'outElastic(1, .6)'
             });
         });
     });
@@ -745,13 +728,12 @@ function initializeContactPage() {
             const submitBtn = contactForm.querySelector('.submit-btn');
 
             // Success animation
-            anime({
-                targets: submitBtn,
+            animate(submitBtn, {
                 scale: [1, 0.95, 1.05, 1],
                 backgroundColor: ['#00d4aa', '#00ffcc', '#00d4aa'],
                 duration: 800,
-                easing: 'easeOutElastic(1, .6)',
-                complete: () => {
+                ease: 'outElastic(1, .6)',
+                onComplete: () => {
                     // Show success message (you can customize this)
                     submitBtn.innerHTML = '<span>✓ Message Sent!</span>';
                     setTimeout(() => {
@@ -766,12 +748,11 @@ function initializeContactPage() {
     // Availability indicator pulse
     const statusIndicator = document.querySelector('.status-indicator');
     if (statusIndicator) {
-        anime({
-            targets: statusIndicator,
+        animate(statusIndicator, {
             scale: [1, 1.3, 1],
             duration: 2000,
-            easing: 'easeInOutQuad',
-            loop: true
+            ease: 'inOutQuad',  // Changed from 'easeInOutQuad'
+            loop: true  // In v4, loop: true means infinite
         });
     }
 }
@@ -780,17 +761,19 @@ function initializeContactPage() {
 function setupScrollAnimations() {
     const animateElements = document.querySelectorAll('.animate-on-scroll');
 
+    // Only set up observer if elements exist
+    if (animateElements.length === 0) return;
+
     const scrollObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
                 entry.target.classList.add('animated');
 
-                anime({
-                    targets: entry.target,
+                animate(entry.target, {
                     opacity: [0, 1],
                     translateY: [30, 0],
                     duration: 800,
-                    easing: 'easeOutCubic'
+                    ease: 'outCubic'
                 });
             }
         });

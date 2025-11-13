@@ -132,6 +132,8 @@ function openPostViewer(index) {
     const postHTML = buildPostHTML(post);
     viewerContent.innerHTML = postHTML;
 
+    // Enhance markdown extras (task lists, code blocks)
+    enhanceTaskLists(viewerContent);
     // Fix code block content and highlight with Prism
     fixCodeBlocks(viewerContent);
 
@@ -254,6 +256,8 @@ function navigatePostViewer(direction) {
             const post = filteredPosts[currentPostIndex];
             viewerContent.innerHTML = buildPostHTML(post);
 
+            // Enhance markdown extras (task lists, code blocks)
+            enhanceTaskLists(viewerContent);
             // Fix code block content and highlight with Prism
             fixCodeBlocks(viewerContent);
 
@@ -624,6 +628,36 @@ function fixCodeBlocks(container) {
     if (window.Prism) {
         Prism.highlightAllUnder(container);
     }
+}
+
+function enhanceTaskLists(container) {
+    if (!container) return;
+
+    const listItems = container.querySelectorAll('li');
+
+    listItems.forEach(li => {
+        if (li.dataset.taskProcessed) return;
+        const match = li.textContent.trim().match(/^\[(x|X|\s)\]\s+(.*)$/s);
+        if (!match) return;
+
+        const isChecked = match[1].toLowerCase() === 'x';
+        const contentHtml = li.innerHTML.replace(/^\s*\[(x|X|\s)\]\s*/i, '');
+
+        li.classList.add('task-item');
+        li.dataset.taskProcessed = 'true';
+
+        const parentList = li.closest('ul');
+        if (parentList) {
+            parentList.classList.add('task-list');
+        }
+
+        li.innerHTML = `
+            <label class="task-item-label">
+                <input type="checkbox" ${isChecked ? 'checked' : ''} disabled>
+                <span>${contentHtml}</span>
+            </label>
+        `;
+    });
 }
 
 function decodeHtmlEntities(str) {

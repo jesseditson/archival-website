@@ -46,6 +46,10 @@
       </div>
 
       {{ page_content }}
+
+      <footer class="site-footer">
+        <small>&copy; <span id="footer-year">{{ 'now' | date: '%Y' }}</span> {{ site.name }}. All rights reserved.</small>
+      </footer>
     </div>
 
     <!-- imagesLoaded for proper layout calculation -->

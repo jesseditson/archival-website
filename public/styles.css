@@ -1125,3 +1125,22 @@ body.light-theme .token.variable {
 button {
   cursor: pointer;
 }
+
+.site-footer {
+  margin-top: var(--spacing-4xl);
+  padding-top: var(--spacing-xl);
+  border-top: 1px solid var(--border-subtle);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.site-footer small {
+  color: var(--text-muted);
+}
+
+body.light-theme .site-footer {
+  border-top-color: rgba(0, 0, 0, 0.08);
+}

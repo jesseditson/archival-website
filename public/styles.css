@@ -1119,6 +1119,13 @@ body.light-theme .token.variable {
   font-family: var(--font-mono);
 }
 
+body.light-theme .viewer-counter {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: var(--text-secondary);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
 /* ==================== Loading States ==================== */
 
 .loader-spinner {

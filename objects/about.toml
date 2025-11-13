@@ -1,5 +1,19 @@
 description = """
-Brandwein’s Bagels is a modern, family-owned bagel shop dedicated to bringing the authentic taste of New York bagels to the heart of the community. At Brandwein’s, every bagel is hand-rolled, boiled, and baked fresh daily, preserving the classic textures and flavors that make bagels so beloved. The shop’s signature offerings include a wide variety of bagels—from classic plain, sesame, and poppy seed to more adventurous options like rosemary-garlic and jalapeño-cheddar. Every bagel pairs perfectly with a selection of house-made cream cheeses, smoked salmon, and locally sourced ingredients. Brandwein’s warm, inviting atmosphere, with its vibrant logo and friendly staff, makes it the perfect spot for breakfast gatherings, quick lunch stops, or leisurely weekend brunches.
+Brandwein's Bagels is a modern, family-owned bagel shop dedicated to bringing the authentic taste of New York bagels to the heart of the community. At Brandwein's, every bagel is hand-rolled, boiled, and baked fresh daily, preserving the classic textures and flavors that make bagels so beloved.
 
-Beyond the bagels, Brandwein’s is committed to fostering a strong sense of community. The shop frequently partners with local businesses and farms to create unique, seasonal specials and offers catering services that add a fresh twist to any event. Brandwein’s also prides itself on supporting environmental sustainability, using eco-friendly packaging and implementing practices to reduce food waste. Customers can enjoy their favorite bagels with coffee or tea in the cozy seating area, or take them to go, knowing they’re supporting a local shop that values quality, authenticity, and community connection. Whether you’re a bagel enthusiast or a first-timer, Brandwein’s Bagels promises an unforgettable bagel experience rooted in tradition and innovation.
+The shop's signature offerings include a wide variety of bagels—from classic plain, sesame, and poppy seed to more adventurous options like rosemary-garlic and jalapeño-cheddar. Every bagel pairs perfectly with a selection of house-made cream cheeses, smoked salmon, and locally sourced ingredients.
+
+<div class="image-grid-3">
+
+![Freshly baked bagels](https://images.unsplash.com/photo-1551106652-a5bcf4b29ab6?w=800&q=80)
+![Assorted bagels with toppings](https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&q=80)
+![Bagel with cream cheese](https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=800&q=80)
+
+</div>
+
+Brandwein's warm, inviting atmosphere, with its vibrant logo and friendly staff, makes it the perfect spot for breakfast gatherings, quick lunch stops, or leisurely weekend brunches. Beyond the bagels, Brandwein's is committed to fostering a strong sense of community.
+
+The shop frequently partners with local businesses and farms to create unique, seasonal specials and offers catering services that add a fresh twist to any event. Brandwein's also prides itself on supporting environmental sustainability, using eco-friendly packaging and implementing practices to reduce food waste.
+
+Whether you're a bagel enthusiast or a first-timer, Brandwein's Bagels promises an unforgettable bagel experience rooted in tradition and innovation.
 """

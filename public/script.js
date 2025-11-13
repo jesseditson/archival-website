@@ -27,6 +27,7 @@ function initializeBlog() {
         const excerpt = card.querySelector('.post-excerpt')?.textContent || '';
         const date = card.querySelector('.post-date')?.textContent || '';
         const tags = card.getAttribute('data-tags') || '';
+        const content = card.getAttribute('data-content') || '';
 
         // Extract image if present
         const img = card.querySelector('.post-image img');
@@ -38,6 +39,7 @@ function initializeBlog() {
             excerpt,
             date,
             tags,
+            content,
             imageUrl,
             element: card
         };
@@ -162,9 +164,13 @@ function buildPostHTML(post) {
         html += `<div class="viewer-post-image"><img src="${post.imageUrl}" alt="${post.title}"></div>`;
     }
 
-    // Excerpt as content preview (in real implementation, you'd fetch full markdown content)
+    // Full content (simple markdown rendering)
     html += `<div class="viewer-post-content">`;
-    html += `<p>${post.excerpt}</p>`;
+    if (post.content) {
+        html += renderMarkdown(post.content);
+    } else {
+        html += `<p>${post.excerpt}</p>`;
+    }
     html += `</div>`;
 
     return html;
@@ -402,9 +408,21 @@ function initializeIsotope() {
     });
 
     // Use imagesLoaded to ensure layout recalculates as images load
-    imagesLoaded(grid).on('progress', function() {
-        // Layout Isotope after each image loads
+    const imgLoad = imagesLoaded(grid);
+    let initialLoadComplete = false;
+
+    imgLoad.on('progress', function() {
+        // Only layout during initial load, not on subsequent filters
+        if (!initialLoadComplete) {
+            iso.layout();
+        }
+    });
+
+    // Show grid once all images are loaded
+    imgLoad.on('always', function() {
         iso.layout();
+        grid.classList.add('isotope-ready');
+        initialLoadComplete = true;
     });
 }
 
@@ -441,7 +459,18 @@ function initializeTagFilters() {
             // Filter using Isotope
             if (iso) {
                 const filterValue = selectedTag === 'all' ? '*' : `.tag-${selectedTag}`;
-                iso.arrange({ filter: filterValue });
+
+                // Temporarily disable transitions to prevent jitter
+                iso.options.transitionDuration = 0;
+                iso.arrange({
+                    filter: filterValue,
+                    transitionDuration: 0
+                });
+
+                // Re-enable transitions after a brief delay
+                setTimeout(() => {
+                    iso.options.transitionDuration = '0.4s';
+                }, 50);
             }
         });
     });
@@ -558,6 +587,80 @@ function parseSimpleMarkdown(text) {
         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
         .replace(/\*(.*?)\*/g, '<em>$1</em>')
         .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+}
+
+function renderMarkdown(markdown) {
+    if (!markdown) return '';
+
+    let html = '';
+    const lines = markdown.split('\n');
+    let inList = false;
+    let inParagraph = false;
+
+    for (let i = 0; i < lines.length; i++) {
+        let line = lines[i];
+
+        // Skip empty lines
+        if (line.trim() === '') {
+            if (inParagraph) {
+                html += '</p>';
+                inParagraph = false;
+            }
+            if (inList) {
+                html += '</ul>';
+                inList = false;
+            }
+            continue;
+        }
+
+        // Headers
+        if (line.startsWith('## ')) {
+            if (inParagraph) { html += '</p>'; inParagraph = false; }
+            if (inList) { html += '</ul>'; inList = false; }
+            html += `<h2>${line.substring(3)}</h2>`;
+        }
+        else if (line.startsWith('# ')) {
+            if (inParagraph) { html += '</p>'; inParagraph = false; }
+            if (inList) { html += '</ul>'; inList = false; }
+            html += `<h1>${line.substring(2)}</h1>`;
+        }
+        // Blockquotes
+        else if (line.startsWith('> ')) {
+            if (inParagraph) { html += '</p>'; inParagraph = false; }
+            if (inList) { html += '</ul>'; inList = false; }
+            let quoteContent = line.substring(2);
+            // Collect multi-line quotes
+            while (i + 1 < lines.length && lines[i + 1].startsWith('> ')) {
+                i++;
+                quoteContent += '\n' + lines[i].substring(2);
+            }
+            html += `<blockquote>${parseSimpleMarkdown(quoteContent)}</blockquote>`;
+        }
+        // List items
+        else if (line.startsWith('- ')) {
+            if (inParagraph) { html += '</p>'; inParagraph = false; }
+            if (!inList) {
+                html += '<ul>';
+                inList = true;
+            }
+            html += `<li>${parseSimpleMarkdown(line.substring(2))}</li>`;
+        }
+        // Regular paragraph
+        else {
+            if (inList) { html += '</ul>'; inList = false; }
+            if (!inParagraph) {
+                html += '<p>';
+                inParagraph = true;
+            }
+            html += parseSimpleMarkdown(line) + ' ';
+        }
+    }
+
+    // Close any open tags
+    if (inParagraph) html += '</p>';
+    if (inList) html += '</ul>';
+
+    return html;
 }
 
 // ==================== Date Formatting ====================

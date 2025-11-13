@@ -35,7 +35,8 @@
     {% endfor %}
     <article class="post-card{{ tag_classes }}"
              data-index="{{ forloop.index0 }}"
-             data-tags="{{ post.tags }}">
+             data-tags="{{ post.tags }}"
+             data-content="{{ post.content | escape }}">
 
       <!-- Optional Image -->
       {% if post.image_url %}
@@ -68,7 +69,7 @@
 
 <!-- Post Viewer (Gallery-style) -->
 <div id="post-viewer" class="post-viewer">
-  <div class="viewer-backdrop" onclick="closePostViewer()"></div>
+  <div class="viewer-backdrop"></div>
 
   <button class="viewer-close" onclick="closePostViewer()" aria-label="Close post viewer">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

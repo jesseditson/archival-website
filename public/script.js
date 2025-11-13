@@ -132,6 +132,9 @@ function openPostViewer(index) {
     const postHTML = buildPostHTML(post);
     viewerContent.innerHTML = postHTML;
 
+    // Fix code block content and highlight with Prism
+    fixCodeBlocks(viewerContent);
+
     // Scroll viewer to top
     viewer.scrollTop = 0;
 
@@ -179,7 +182,12 @@ function buildPostHTML(post) {
     // Full content (simple markdown rendering)
     html += `<div class="viewer-post-content">`;
     if (post.content) {
-        html += renderMarkdown(post.content);
+        const decodedContent = decodeHtmlEntities(post.content);
+        if (hasHtmlContent(decodedContent)) {
+            html += decodedContent;
+        } else {
+            html += renderMarkdown(decodedContent);
+        }
     } else {
         html += `<p>${post.excerpt}</p>`;
     }
@@ -245,6 +253,9 @@ function navigatePostViewer(direction) {
             // Update content from filtered posts
             const post = filteredPosts[currentPostIndex];
             viewerContent.innerHTML = buildPostHTML(post);
+
+            // Fix code block content and highlight with Prism
+            fixCodeBlocks(viewerContent);
 
             // Scroll viewer to top
             viewer.scrollTop = 0;
@@ -589,13 +600,66 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+// ==================== Code Block Fixing ====================
+function fixCodeBlocks(container) {
+    // Find all code blocks with stored content
+    const codeBlocks = container.querySelectorAll('pre code[data-code-id]');
+
+    codeBlocks.forEach(codeBlock => {
+        const codeId = codeBlock.getAttribute('data-code-id');
+
+        if (window.codeBlockStore && window.codeBlockStore[codeId]) {
+            // Set the code as textContent to preserve all whitespace and newlines
+            codeBlock.textContent = window.codeBlockStore[codeId];
+
+            // Clean up the stored code
+            delete window.codeBlockStore[codeId];
+
+            // Remove the data attribute
+            codeBlock.removeAttribute('data-code-id');
+        }
+    });
+
+    // Now highlight with Prism
+    if (window.Prism) {
+        Prism.highlightAllUnder(container);
+    }
+}
+
+function decodeHtmlEntities(str) {
+    if (!str) return '';
+    const textarea = document.createElement('textarea');
+    textarea.innerHTML = str;
+    return textarea.value;
+}
+
+function hasHtmlContent(str) {
+    if (!str) return false;
+    return /<\s*(?:p|h[1-6]|ul|ol|li|blockquote|pre|code|table|thead|tbody|tr|td|th|img|hr|br|figure|figcaption)/i.test(str);
+}
+
 // ==================== Utility: Parse Markdown-style Content ====================
 function parseSimpleMarkdown(text) {
-    // Simple markdown parsing for bold, italic, links
+    // Enhanced markdown parsing with more formatting options
     return text
-        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\*(.*?)\*/g, '<em>$1</em>')
-        .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+        // Bold + Italic combined (must come before individual)
+        .replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>')
+        // Bold
+        .replace(/\*\*([^*]+?)\*\*/g, '<strong>$1</strong>')
+        // Italic
+        .replace(/\*([^*]+?)\*/g, '<em>$1</em>')
+        // Strikethrough
+        .replace(/~~(.*?)~~/g, '<del>$1</del>')
+        // Highlight
+        .replace(/==(.*?)==/g, '<mark>$1</mark>')
+        // Inline code
+        .replace(/`([^`]+)`/g, '<code>$1</code>')
+        // Links
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+        // Subscript
+        .replace(/~([^~\s]+?)~/g, '<sub>$1</sub>')
+        // Superscript
+        .replace(/\^([^^\\s]+?)\^/g, '<sup>$1</sup>');
 }
 
 function renderMarkdown(markdown) {
@@ -604,10 +668,52 @@ function renderMarkdown(markdown) {
     let html = '';
     const lines = markdown.split('\n');
     let inList = false;
+    let inOrderedList = false;
     let inParagraph = false;
+    let inCodeBlock = false;
+    let codeBlockContent = '';
+    let codeLanguage = '';
+    let listDepth = 0;
 
     for (let i = 0; i < lines.length; i++) {
         let line = lines[i];
+
+        // Code blocks
+        if (line.trim().startsWith('```')) {
+            if (!inCodeBlock) {
+                if (inParagraph) { html += '</p>'; inParagraph = false; }
+                if (inList) { html += '</ul>'; inList = false; }
+                if (inOrderedList) { html += '</ol>'; inOrderedList = false; }
+                inCodeBlock = true;
+                codeBlockContent = '';
+                // Extract language identifier (e.g., ```javascript)
+                codeLanguage = line.trim().substring(3).trim();
+            } else {
+                // Trim trailing newline
+                const trimmedCode = codeBlockContent.replace(/\n$/, '');
+
+                // Use Prism language class if specified, otherwise use generic
+                const langClass = codeLanguage ? `language-${codeLanguage}` : 'language-none';
+
+                // Use a special marker that we'll replace later with the actual code
+                const codeId = `CODE_BLOCK_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+                html += `<pre><code class="${langClass}" data-code-id="${codeId}"></code></pre>`;
+
+                // Store the code content for later insertion
+                if (!window.codeBlockStore) window.codeBlockStore = {};
+                window.codeBlockStore[codeId] = trimmedCode;
+
+                inCodeBlock = false;
+                codeBlockContent = '';
+                codeLanguage = '';
+            }
+            continue;
+        }
+
+        if (inCodeBlock) {
+            codeBlockContent += line + '\n';
+            continue;
+        }
 
         // Skip empty lines
         if (line.trim() === '') {
@@ -618,45 +724,106 @@ function renderMarkdown(markdown) {
             if (inList) {
                 html += '</ul>';
                 inList = false;
+                listDepth = 0;
+            }
+            if (inOrderedList) {
+                html += '</ol>';
+                inOrderedList = false;
             }
             continue;
         }
 
-        // Headers
-        if (line.startsWith('## ')) {
+        // Horizontal rule
+        if (line.trim() === '---' || line.trim() === '***' || line.trim() === '___') {
             if (inParagraph) { html += '</p>'; inParagraph = false; }
             if (inList) { html += '</ul>'; inList = false; }
-            html += `<h2>${line.substring(3)}</h2>`;
+            if (inOrderedList) { html += '</ol>'; inOrderedList = false; }
+            html += '<hr>';
+            continue;
+        }
+
+        // Headers (#### ### ## #)
+        if (line.startsWith('#### ')) {
+            if (inParagraph) { html += '</p>'; inParagraph = false; }
+            if (inList) { html += '</ul>'; inList = false; }
+            if (inOrderedList) { html += '</ol>'; inOrderedList = false; }
+            html += `<h4>${parseSimpleMarkdown(line.substring(5))}</h4>`;
+        }
+        else if (line.startsWith('### ')) {
+            if (inParagraph) { html += '</p>'; inParagraph = false; }
+            if (inList) { html += '</ul>'; inList = false; }
+            if (inOrderedList) { html += '</ol>'; inOrderedList = false; }
+            html += `<h3>${parseSimpleMarkdown(line.substring(4))}</h3>`;
+        }
+        else if (line.startsWith('## ')) {
+            if (inParagraph) { html += '</p>'; inParagraph = false; }
+            if (inList) { html += '</ul>'; inList = false; }
+            if (inOrderedList) { html += '</ol>'; inOrderedList = false; }
+            html += `<h2>${parseSimpleMarkdown(line.substring(3))}</h2>`;
         }
         else if (line.startsWith('# ')) {
             if (inParagraph) { html += '</p>'; inParagraph = false; }
             if (inList) { html += '</ul>'; inList = false; }
-            html += `<h1>${line.substring(2)}</h1>`;
+            if (inOrderedList) { html += '</ol>'; inOrderedList = false; }
+            html += `<h1>${parseSimpleMarkdown(line.substring(2))}</h1>`;
         }
         // Blockquotes
         else if (line.startsWith('> ')) {
             if (inParagraph) { html += '</p>'; inParagraph = false; }
             if (inList) { html += '</ul>'; inList = false; }
+            if (inOrderedList) { html += '</ol>'; inOrderedList = false; }
             let quoteContent = line.substring(2);
             // Collect multi-line quotes
             while (i + 1 < lines.length && lines[i + 1].startsWith('> ')) {
                 i++;
-                quoteContent += '\n' + lines[i].substring(2);
+                quoteContent += '<br>' + lines[i].substring(2);
             }
             html += `<blockquote>${parseSimpleMarkdown(quoteContent)}</blockquote>`;
         }
-        // List items
-        else if (line.startsWith('- ')) {
+        // Ordered list items
+        else if (line.match(/^\d+\.\s/)) {
             if (inParagraph) { html += '</p>'; inParagraph = false; }
+            if (inList) { html += '</ul>'; inList = false; }
+            if (!inOrderedList) {
+                html += '<ol>';
+                inOrderedList = true;
+            }
+            const content = line.replace(/^\d+\.\s/, '');
+            html += `<li>${parseSimpleMarkdown(content)}</li>`;
+        }
+        // Unordered list items (with nesting support)
+        else if (line.match(/^(\s*)[-*+]\s/)) {
+            if (inParagraph) { html += '</p>'; inParagraph = false; }
+            if (inOrderedList) { html += '</ol>'; inOrderedList = false; }
+
+            const spaces = line.match(/^(\s*)/)[1].length;
+            const currentDepth = Math.floor(spaces / 2);
+            const content = line.replace(/^(\s*)[-*+]\s/, '');
+
             if (!inList) {
                 html += '<ul>';
                 inList = true;
+                listDepth = currentDepth;
             }
-            html += `<li>${parseSimpleMarkdown(line.substring(2))}</li>`;
+
+            html += `<li class="depth-${currentDepth}">${parseSimpleMarkdown(content)}</li>`;
+        }
+        // Task lists
+        else if (line.match(/^(\s*)- \[([ x])\]\s/)) {
+            if (inParagraph) { html += '</p>'; inParagraph = false; }
+            if (inOrderedList) { html += '</ol>'; inOrderedList = false; }
+            if (!inList) {
+                html += '<ul class="task-list">';
+                inList = true;
+            }
+            const checked = line.includes('[x]');
+            const content = line.replace(/^(\s*)- \[([ x])\]\s/, '');
+            html += `<li class="task-item"><input type="checkbox" ${checked ? 'checked' : ''} disabled> ${parseSimpleMarkdown(content)}</li>`;
         }
         // Regular paragraph
         else {
             if (inList) { html += '</ul>'; inList = false; }
+            if (inOrderedList) { html += '</ol>'; inOrderedList = false; }
             if (!inParagraph) {
                 html += '<p>';
                 inParagraph = true;
@@ -668,6 +835,8 @@ function renderMarkdown(markdown) {
     // Close any open tags
     if (inParagraph) html += '</p>';
     if (inList) html += '</ul>';
+    if (inOrderedList) html += '</ol>';
+    if (inCodeBlock) html += `<pre><code>${codeBlockContent}</code></pre>`;
 
     return html;
 }

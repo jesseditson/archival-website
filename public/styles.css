@@ -157,21 +157,23 @@ body {
   justify-content: center;
   cursor: pointer;
   transition: all var(--transition-base);
+  color: var(--text-primary);
 }
 
 .theme-toggle:hover {
-  background: var(--bg-tertiary);
-  border-color: var(--text-muted);
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    background: var(--accent-muted);
 }
 
 .theme-toggle .sun-icon {
   display: none;
-  color: var(--text-primary);
+  color: inherit;
 }
 
 .theme-toggle .moon-icon {
   display: block;
-  color: var(--text-primary);
+  color: inherit;
 }
 
 body.light-theme .theme-toggle .sun-icon {
@@ -202,8 +204,9 @@ body.light-theme .theme-toggle .moon-icon {
 }
 
 .notify-toggle:hover {
-    background: var(--bg-tertiary);
-    border-color: var(--text-muted);
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    background: var(--accent-muted);
 }
 
 .notify-toggle svg {

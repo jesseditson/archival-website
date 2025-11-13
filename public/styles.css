@@ -387,6 +387,7 @@ body.light-theme .theme-toggle .moon-icon {
   z-index: var(--z-viewer);
   display: none;
   overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .post-viewer.active {
@@ -403,6 +404,9 @@ body.light-theme .theme-toggle .moon-icon {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   pointer-events: none;
+  will-change: opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Viewer Controls */

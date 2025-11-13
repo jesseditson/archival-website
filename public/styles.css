@@ -182,17 +182,7 @@ body.light-theme .theme-toggle .moon-icon {
 /* ==================== Blog Grid (Masonry) ==================== */
 
 .blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: var(--spacing-lg);
     margin-bottom: var(--spacing-4xl);
-}
-
-@media (max-width: 768px) {
-    .blog-grid {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-md);
-    }
 }
 
 /* Post Card */
@@ -204,10 +194,26 @@ body.light-theme .theme-toggle .moon-icon {
     cursor: pointer;
     transition: all var(--transition-base);
     position: relative;
-    opacity: 0;
-    transform: translateY(20px);
     display: flex;
     flex-direction: column;
+    width: 32%;
+    margin-bottom: 24px;
+}
+
+@media (max-width: 1024px) {
+    .post-card {
+        width: 48%;
+    }
+}
+
+@media (max-width: 768px) {
+    .post-card {
+        width: 100%;
+    }
+}
+
+.post-card.hidden {
+    display: none;
 }
 
 .post-card:hover {

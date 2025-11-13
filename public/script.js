@@ -1,8 +1,11 @@
 // ==================== Blog State ====================
 let blogPosts = [];
+let filteredPosts = []; // Currently filtered posts
 let currentPostIndex = 0;
 let touchStartX = 0;
 let touchEndX = 0;
+let iso = null; // Isotope instance
+let activeFilter = 'all'; // Track current filter state
 
 // ==================== Initialization ====================
 window.onload = function() {
@@ -10,8 +13,8 @@ window.onload = function() {
     initializeBlog();
     initializePostViewer();
     initializeThemeToggle();
+    initializeIsotope(); // Initialize Isotope FIRST
     initializeTagFilters();
-    animateBlogEntrance();
 };
 
 // ==================== Blog Initialization ====================
@@ -35,14 +38,21 @@ function initializeBlog() {
             excerpt,
             date,
             tags,
-            imageUrl
+            imageUrl,
+            element: card
         };
     });
+
+    // Initially, all posts are "filtered" (visible)
+    filteredPosts = [...blogPosts];
 
     // Add click listeners to post cards
     postCards.forEach((card, index) => {
         card.addEventListener("click", function() {
-            openPostViewer(index);
+            // Find the index of this post in the filtered posts array
+            const postData = blogPosts[index];
+            const filteredIndex = filteredPosts.findIndex(p => p.index === postData.index);
+            openPostViewer(filteredIndex);
         });
     });
 
@@ -82,30 +92,6 @@ function setupPostObserver(postCards) {
     });
 }
 
-// ==================== Blog Grid Entrance Animation ====================
-function animateBlogEntrance() {
-    const postCards = document.querySelectorAll(".post-card");
-
-    if (postCards.length === 0) return;
-
-    // Animate header first
-    animate('.masthead', {
-        opacity: [0, 1],
-        translateY: [-20, 0],
-        duration: 800,
-        ease: 'outCubic'
-    });
-
-    // Stagger animation for initial visible posts using Anime.js 4.2.2
-    animate(Array.from(postCards).slice(0, 6), {
-        opacity: [0, 1],
-        translateY: [40, 0],
-        scale: [0.95, 1],
-        delay: stagger(80, {start: 400}),
-        duration: 600,
-        ease: 'outCubic'
-    });
-}
 
 // ==================== Post Viewer Functions ====================
 function initializePostViewer() {
@@ -117,7 +103,7 @@ function openPostViewer(index) {
     currentPostIndex = index;
     const viewer = document.getElementById('post-viewer');
     const viewerContent = document.getElementById('viewer-content');
-    const post = blogPosts[currentPostIndex];
+    const post = filteredPosts[currentPostIndex];
 
     // Show viewer
     viewer.classList.add('active');
@@ -214,8 +200,8 @@ window.closePostViewer = closePostViewer;
 function navigatePostViewer(direction) {
     const viewerContent = document.getElementById('viewer-content');
 
-    // Calculate new index with wrapping
-    currentPostIndex = (currentPostIndex + direction + blogPosts.length) % blogPosts.length;
+    // Calculate new index with wrapping based on filtered posts
+    currentPostIndex = (currentPostIndex + direction + filteredPosts.length) % filteredPosts.length;
 
     // Animate current content exit with rotation
     animate(viewerContent, {
@@ -225,8 +211,8 @@ function navigatePostViewer(direction) {
         duration: 350,
         ease: 'inQuad',
         onComplete: function() {
-            // Update content
-            const post = blogPosts[currentPostIndex];
+            // Update content from filtered posts
+            const post = filteredPosts[currentPostIndex];
             viewerContent.innerHTML = buildPostHTML(post);
 
             // Animate new content entrance with opposite rotation
@@ -257,7 +243,7 @@ window.navigatePostViewer = navigatePostViewer;
 
 function updateViewerInfo() {
     document.getElementById('viewer-current').textContent = currentPostIndex + 1;
-    document.getElementById('viewer-total').textContent = blogPosts.length;
+    document.getElementById('viewer-total').textContent = filteredPosts.length;
 
     // Animate info update with bounce
     animate('.viewer-counter', {
@@ -268,12 +254,12 @@ function updateViewerInfo() {
 }
 
 function preloadAdjacentPosts() {
-    // Preload images from adjacent posts for smooth navigation
-    const prevIndex = (currentPostIndex - 1 + blogPosts.length) % blogPosts.length;
-    const nextIndex = (currentPostIndex + 1) % blogPosts.length;
+    // Preload images from adjacent posts for smooth navigation (based on filtered posts)
+    const prevIndex = (currentPostIndex - 1 + filteredPosts.length) % filteredPosts.length;
+    const nextIndex = (currentPostIndex + 1) % filteredPosts.length;
 
     [prevIndex, nextIndex].forEach(index => {
-        const post = blogPosts[index];
+        const post = filteredPosts[index];
         if (post.imageUrl) {
             const img = new Image();
             img.src = post.imageUrl;
@@ -391,14 +377,45 @@ function initializeThemeToggle() {
     });
 }
 
+// ==================== Isotope Initialization ====================
+function initializeIsotope() {
+    const grid = document.querySelector('#blog-grid');
+
+    // Initialize Isotope with masonry layout
+    iso = new Isotope(grid, {
+        itemSelector: '.post-card',
+        layoutMode: 'masonry',
+        percentPosition: true,
+        transitionDuration: '0.4s',
+        hiddenStyle: {
+            opacity: 0,
+            transform: 'scale(0.85)'
+        },
+        visibleStyle: {
+            opacity: 1,
+            transform: 'scale(1)'
+        },
+        masonry: {
+            columnWidth: '.post-card',
+            gutter: 24
+        }
+    });
+
+    // Use imagesLoaded to ensure layout recalculates as images load
+    imagesLoaded(grid).on('progress', function() {
+        // Layout Isotope after each image loads
+        iso.layout();
+    });
+}
+
 // ==================== Tag Filtering ====================
 function initializeTagFilters() {
     const filterBtns = document.querySelectorAll('.filter-btn');
-    const postCards = document.querySelectorAll('.post-card');
 
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             const selectedTag = btn.getAttribute('data-tag');
+            activeFilter = selectedTag;
 
             // Update active state
             filterBtns.forEach(b => b.classList.remove('active'));
@@ -411,66 +428,23 @@ function initializeTagFilters() {
                 ease: 'outQuad'
             });
 
-            // Filter posts with animation
-            filterPosts(selectedTag, postCards);
-        });
-    });
-}
-
-function filterPosts(tag, postCards) {
-    const cardsArray = Array.from(postCards);
-
-    // Determine which cards should be visible and which should be hidden
-    const visibleCards = cardsArray.filter(card => {
-        if (tag === 'all') return true;
-
-        const cardTags = card.getAttribute('data-tags');
-        if (!cardTags) return false;
-
-        const tagList = cardTags.split(',').map(t => t.trim());
-        return tagList.includes(tag);
-    });
-
-    const hiddenCards = cardsArray.filter(card => !visibleCards.includes(card));
-
-    // Cards that are currently hidden but need to be shown
-    const cardsToShow = visibleCards.filter(card => card.style.display === 'none');
-
-    // Cards that are currently visible but need to be hidden
-    const cardsToHide = hiddenCards.filter(card => card.style.display !== 'none');
-
-    // Fade out cards that need to be hidden
-    if (cardsToHide.length > 0) {
-        animate(cardsToHide, {
-            opacity: 0,
-            scale: 0.9,
-            duration: 300,
-            ease: 'outQuad',
-            onComplete: () => {
-                cardsToHide.forEach(card => {
-                    card.style.display = 'none';
+            // Update filtered posts array
+            if (selectedTag === 'all') {
+                filteredPosts = [...blogPosts];
+            } else {
+                filteredPosts = blogPosts.filter(post => {
+                    const postTags = post.tags.split(',').map(t => t.trim());
+                    return postTags.includes(selectedTag);
                 });
             }
-        });
-    }
 
-    // Show and fade in cards that need to be shown
-    if (cardsToShow.length > 0) {
-        // First set display and initial state
-        cardsToShow.forEach(card => {
-            card.style.display = 'flex';
-            card.style.opacity = '0';
+            // Filter using Isotope
+            if (iso) {
+                const filterValue = selectedTag === 'all' ? '*' : `.tag-${selectedTag}`;
+                iso.arrange({ filter: filterValue });
+            }
         });
-
-        // Then animate them in with stagger
-        animate(cardsToShow, {
-            opacity: [0, 1],
-            scale: [0.9, 1],
-            delay: stagger(60, {start: 150}),
-            duration: 400,
-            ease: 'outCubic'
-        });
-    }
+    });
 }
 
 // ==================== Scroll-Triggered Animations ====================

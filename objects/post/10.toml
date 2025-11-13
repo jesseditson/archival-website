@@ -2,7 +2,7 @@ order = 10
 title = "Weekend Project"
 excerpt = "Built a tiny tool for tracking reading progress. Nothing fancy, just useful."
 date = "2024-11-03"
-tags = "coding, projects"
+tags = "code"
 
 content = """
 Spent the weekend building a small reading tracker. No features beyond the absolute essentials:

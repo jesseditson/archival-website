@@ -27,7 +27,13 @@
 <!-- Masonry Blog Grid -->
 <div class="blog-grid" id="blog-grid">
   {% for post in posts %}
-    <article class="post-card"
+    {% assign tag_list = post.tags | split: ", " %}
+    {% assign tag_classes = "" %}
+    {% for tag in tag_list %}
+      {% assign trimmed_tag = tag | strip %}
+      {% assign tag_classes = tag_classes | append: " tag-" | append: trimmed_tag %}
+    {% endfor %}
+    <article class="post-card{{ tag_classes }}"
              data-index="{{ forloop.index0 }}"
              data-tags="{{ post.tags }}">
 

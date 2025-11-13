@@ -33,6 +33,12 @@ function initializeBlog() {
         const img = card.querySelector('.post-image img');
         const imageUrl = img ? img.src : '';
 
+        // Extract link preview data
+        const linkUrl = card.getAttribute('data-link-url') || '';
+        const linkTitle = card.getAttribute('data-link-title') || '';
+        const linkDescription = card.getAttribute('data-link-description') || '';
+        const linkImage = card.getAttribute('data-link-image') || '';
+
         return {
             index,
             title,
@@ -41,6 +47,10 @@ function initializeBlog() {
             tags,
             content,
             imageUrl,
+            linkUrl,
+            linkTitle,
+            linkDescription,
+            linkImage,
             element: card
         };
     });
@@ -114,28 +124,30 @@ function openPostViewer(index) {
     // Animate backdrop entrance with blur
     animate('.viewer-backdrop', {
         opacity: [0, 1],
-        duration: 400,
-        ease: 'outQuad'
+        duration: 300,
+        ease: 'outCubic'
     });
 
     // Build post content HTML
     const postHTML = buildPostHTML(post);
     viewerContent.innerHTML = postHTML;
 
-    // Animate content entrance with spring physics (Anime.js 4.2.2 feature)
+    // Scroll viewer to top
+    viewer.scrollTop = 0;
+
+    // Animate content entrance
     animate(viewerContent, {
         opacity: [0, 1],
-        scale: [0.9, 1],
-        translateY: [60, 0],
-        duration: 600,
-        ease: 'spring(1, 80, 10, 0)' // Spring physics: mass, stiffness, damping, velocity
+        translateY: [30, 0],
+        duration: 400,
+        ease: 'outCubic'
     });
 
     // Animate controls entrance with stagger
     animateViewerControls();
 
-    // Update counter
-    updateViewerInfo();
+    // Update counter (without animation on initial load)
+    updateViewerInfo(false);
 
     // Preload adjacent posts for smooth navigation
     preloadAdjacentPosts();
@@ -173,6 +185,20 @@ function buildPostHTML(post) {
     }
     html += `</div>`;
 
+    // Link preview card if link data exists
+    if (post.linkUrl && post.linkTitle) {
+        html += `
+            <a href="${post.linkUrl}" target="_blank" rel="noopener noreferrer" class="link-preview-card">
+                ${post.linkImage ? `<div class="link-preview-image" style="background-image: url('${post.linkImage}')"></div>` : ''}
+                <div class="link-preview-content">
+                    <div class="link-preview-title">${post.linkTitle}</div>
+                    ${post.linkDescription ? `<div class="link-preview-description">${post.linkDescription}</div>` : ''}
+                    <div class="link-preview-url">${new URL(post.linkUrl).hostname}</div>
+                </div>
+            </a>
+        `;
+    }
+
     return html;
 }
 
@@ -180,19 +206,18 @@ function closePostViewer() {
     const viewer = document.getElementById('post-viewer');
     const viewerContent = document.getElementById('viewer-content');
 
-    // Animate exit with spring
+    // Animate exit
     animate(viewerContent, {
         opacity: 0,
-        scale: 0.85,
-        translateY: 40,
-        duration: 400,
-        ease: 'inQuad'
+        translateY: 30,
+        duration: 300,
+        ease: 'inCubic'
     });
 
     animate('.viewer-backdrop', {
         opacity: 0,
-        duration: 400,
-        ease: 'inQuad',
+        duration: 300,
+        ease: 'inCubic',
         onComplete: function() {
             viewer.classList.remove('active');
             document.body.style.overflow = '';
@@ -204,29 +229,31 @@ function closePostViewer() {
 window.closePostViewer = closePostViewer;
 
 function navigatePostViewer(direction) {
+    const viewer = document.getElementById('post-viewer');
     const viewerContent = document.getElementById('viewer-content');
 
     // Calculate new index with wrapping based on filtered posts
     currentPostIndex = (currentPostIndex + direction + filteredPosts.length) % filteredPosts.length;
 
-    // Animate current content exit with rotation
+    // Animate current content exit
     animate(viewerContent, {
         opacity: 0,
-        translateX: direction > 0 ? -60 : 60,
-        rotateY: direction > 0 ? -15 : 15,
-        duration: 350,
-        ease: 'inQuad',
+        translateX: direction > 0 ? -40 : 40,
+        duration: 250,
+        ease: 'inCubic',
         onComplete: function() {
             // Update content from filtered posts
             const post = filteredPosts[currentPostIndex];
             viewerContent.innerHTML = buildPostHTML(post);
 
-            // Animate new content entrance with opposite rotation
+            // Scroll viewer to top
+            viewer.scrollTop = 0;
+
+            // Animate new content entrance
             animate(viewerContent, {
                 opacity: [0, 1],
-                translateX: [direction > 0 ? 60 : -60, 0],
-                rotateY: [direction > 0 ? 15 : -15, 0],
-                duration: 500,
+                translateX: [direction > 0 ? 40 : -40, 0],
+                duration: 350,
                 ease: 'outCubic'
             });
 
@@ -235,28 +262,30 @@ function navigatePostViewer(direction) {
         }
     });
 
-    // Animate navigation button with elastic bounce
+    // Animate navigation button
     const button = direction > 0 ? '.viewer-next' : '.viewer-prev';
     animate(button, {
-        scale: [1, 0.85, 1.1, 1],
-        duration: 500,
-        ease: 'outElastic(1, .6)'
+        scale: [1, 0.9, 1],
+        duration: 300,
+        ease: 'outCubic'
     });
 }
 
 // Expose globally
 window.navigatePostViewer = navigatePostViewer;
 
-function updateViewerInfo() {
+function updateViewerInfo(shouldAnimate = true) {
     document.getElementById('viewer-current').textContent = currentPostIndex + 1;
     document.getElementById('viewer-total').textContent = filteredPosts.length;
 
-    // Animate info update with bounce
-    animate('.viewer-counter', {
-        scale: [0.9, 1.05, 1],
-        duration: 400,
-        ease: 'outBack'
-    });
+    // Only animate when navigating between posts, not on initial load
+    if (shouldAnimate) {
+        animate('.viewer-counter', {
+            scale: [0.9, 1.05, 1],
+            duration: 400,
+            ease: 'outBack'
+        });
+    }
 }
 
 function preloadAdjacentPosts() {
@@ -290,12 +319,9 @@ function animateViewerControls() {
             opacity: [0, 1],
             scale: [0.8, 1],
             duration: 400
-        }, '-=300')
-        .add('.viewer-info', {
-            opacity: [0, 1],
-            translateY: [20, 0],
-            duration: 400
         }, '-=300');
+
+    // No animation for .viewer-info - just appears immediately
 }
 
 // ==================== Keyboard Navigation ====================

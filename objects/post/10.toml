@@ -3,6 +3,10 @@ title = "Weekend Project"
 excerpt = "Built a tiny tool for tracking reading progress. Nothing fancy, just useful."
 date = "2024-11-03"
 tags = "code"
+link_url = "https://github.com"
+link_title = "GitHub: Where the world builds software"
+link_description = "GitHub is where over 100 million developers shape the future of software, together. Contribute to the open source community, manage your Git repositories, review code like a pro, track bugs and features, power your CI/CD and DevOps workflows, and secure code before you commit it."
+link_image = "https://github.githubassets.com/images/modules/site/social-cards/github-social.png"
 
 content = """
 Spent the weekend building a small reading tracker. No features beyond the absolute essentials:

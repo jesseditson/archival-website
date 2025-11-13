@@ -4,10 +4,10 @@ excerpt = "The animation library just got even better with spring physics and im
 date = "2024-11-08"
 tags = "code, design"
 link_url = "https://animejs.com"
-link_title = "Visit Anime.js →"
+link_title = "anime.js • JavaScript animation engine"
+link_description = "Anime.js (/ˈæn.ə.meɪ/) is a lightweight JavaScript animation library with a simple, yet powerful API. It works with CSS properties, SVG, DOM attributes and JavaScript Objects."
+link_image = "https://animejs.com/media/site/5e9b48763d-1744100039/anime-js-sharing-image.png"
 
 content = """
 Version 4.2 brings some incredible new features—spring physics, better stagger controls, and significant performance improvements. Worth checking out if you do any web animation work.
-
-[Visit Anime.js →](https://animejs.com)
 """

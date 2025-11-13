@@ -36,7 +36,11 @@
     <article class="post-card{{ tag_classes }}"
              data-index="{{ forloop.index0 }}"
              data-tags="{{ post.tags }}"
-             data-content="{{ post.content | escape }}">
+             data-content="{{ post.content | escape }}"
+             data-link-url="{{ post.link_url | escape }}"
+             data-link-title="{{ post.link_title | escape }}"
+             data-link-description="{{ post.link_description | escape }}"
+             data-link-image="{{ post.link_image | escape }}">
 
       <!-- Optional Image -->
       {% if post.image_url %}

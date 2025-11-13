@@ -15,6 +15,7 @@ window.onload = function() {
     initializeThemeToggle();
     initializeIsotope(); // Initialize Isotope FIRST
     initializeTagFilters();
+    animateMastheadTitle();
 };
 
 // ==================== Blog Initialization ====================
@@ -109,6 +110,21 @@ function setupPostObserver(postCards) {
 function initializePostViewer() {
     setupKeyboardNavigation();
     setupTouchNavigation();
+}
+
+function animateMastheadTitle() {
+    if (typeof animate !== 'function') return;
+    const masthead = document.querySelector('.masthead');
+    if (!masthead || masthead.dataset.animated === 'true') return;
+
+    masthead.dataset.animated = 'true';
+
+    animate(masthead, {
+        color: ['var(--accent-primary)', 'var(--text-primary)'],
+        duration: 1600,
+        delay: 300,
+        easing: 'easeInOutCubic'
+    });
 }
 
 function openPostViewer(index) {

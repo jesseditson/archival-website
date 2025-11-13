@@ -133,11 +133,12 @@ body {
 }
 
 .masthead {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  text-align: center;
-  color: var(--text-primary);
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: var(--text-primary);
+    font-family: 'SF Pro Rounded', 'SF Pro Display', 'Segoe UI Rounded', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Inter', 'Roboto', sans-serif;
 }
 
 /* Theme Toggle */

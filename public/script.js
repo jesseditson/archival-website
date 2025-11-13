@@ -115,16 +115,25 @@ function initializePostViewer() {
 function animateMastheadTitle() {
     if (typeof animate !== 'function') return;
     const masthead = document.querySelector('.masthead');
-    if (!masthead || masthead.dataset.animated === 'true') return;
+    if (!masthead) return;
 
-    masthead.dataset.animated = 'true';
+    if (masthead.dataset.animationInstance) {
+        const prevAnimation = window[masthead.dataset.animationInstance];
+        if (prevAnimation && typeof prevAnimation.pause === 'function') {
+            prevAnimation.pause();
+        }
+    }
 
-    animate(masthead, {
+    const animation = animate(masthead, {
         color: ['var(--accent-primary)', 'var(--text-primary)'],
         duration: 1600,
         delay: 300,
         easing: 'easeInOutCubic'
     });
+
+    const animationId = `mastheadAnim_${Date.now()}`;
+    window[animationId] = animation;
+    masthead.dataset.animationInstance = animationId;
 }
 
 function openPostViewer(index) {
@@ -406,20 +415,20 @@ function initializeThemeToggle() {
         const theme = document.body.classList.contains('light-theme') ? 'light' : 'dark';
         localStorage.setItem('theme', theme);
 
-        // Animate toggle button with elastic rotation
-        animate(themeToggle, {
-            scale: [1, 1.3, 1],
-            rotate: [0, 360],
-            duration: 700,
-            ease: 'outElastic(1, .5)'
-        });
-
-        // Subtle page transition animation
-        animate('.container', {
-            opacity: [0.7, 1],
-            duration: 300,
-            ease: 'inOutQuad'
-        });
+        const masthead = document.querySelector('.masthead');
+        if (masthead) {
+            masthead.style.color = '';
+            if (masthead.dataset.animationInstance) {
+                const prevAnimation = window[masthead.dataset.animationInstance];
+                if (prevAnimation && typeof prevAnimation.pause === 'function') {
+                    prevAnimation.pause();
+                }
+                delete window[masthead.dataset.animationInstance];
+                delete masthead.dataset.animationInstance;
+            }
+            // Restart animation gently in new theme
+            requestAnimationFrame(() => animateMastheadTitle());
+        }
     });
 }
 

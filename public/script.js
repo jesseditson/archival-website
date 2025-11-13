@@ -261,14 +261,6 @@ function navigatePostViewer(direction) {
             preloadAdjacentPosts();
         }
     });
-
-    // Animate navigation button
-    const button = direction > 0 ? '.viewer-next' : '.viewer-prev';
-    animate(button, {
-        scale: [1, 0.9, 1],
-        duration: 300,
-        ease: 'outCubic'
-    });
 }
 
 // Expose globally
@@ -303,25 +295,16 @@ function preloadAdjacentPosts() {
 }
 
 function animateViewerControls() {
-    // Stagger animation for controls with different delays
-    const timeline = createTimeline({
+    // Only animate the close button
+    animate('.viewer-close', {
+        opacity: [0, 1],
+        scale: [0.8, 1],
+        rotate: [-90, 0],
+        duration: 400,
         ease: 'outCubic'
     });
 
-    timeline
-        .add('.viewer-close', {
-            opacity: [0, 1],
-            scale: [0.8, 1],
-            rotate: [-90, 0],
-            duration: 400
-        })
-        .add('.viewer-nav', {
-            opacity: [0, 1],
-            scale: [0.8, 1],
-            duration: 400
-        }, '-=300');
-
-    // No animation for .viewer-info - just appears immediately
+    // No animation for .viewer-nav and .viewer-info - they just appear immediately
 }
 
 // ==================== Keyboard Navigation ====================

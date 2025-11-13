@@ -1,0 +1,10 @@
+order = 2
+title = "Golden Hour"
+excerpt = "Light filtered through dust"
+date = "2024-11-11"
+tags = "photography, light"
+image_url = "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&auto=format&fit=crop"
+
+content = """
+Caught this moment right before sunset. The way light transforms ordinary spaces never gets old.
+"""

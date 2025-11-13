@@ -18,7 +18,7 @@
 
     <link rel="stylesheet" href="/styles.css">
 
-    <meta name="theme-color" content="#1a1a1a">
+    <meta name="theme-color" content="#0a0a0a">
   </head>
 
   <body>
@@ -44,15 +44,6 @@
           </svg>
         </button>
       </div>
-
-      <!-- Navigation -->
-      <nav class="navigation">
-        <ul>
-          <li><a class="{% if active_page == "photos" %}active{% endif %}" href="/index.html">Photos</a></li>
-          <li><a class="{% if active_page == "about" %}active{% endif %}" href="/about.html">About</a></li>
-          <li><a class="{% if active_page == "contact" %}active{% endif %}" href="/contact.html">Contact</a></li>
-        </ul>
-      </nav>
 
       {{ page_content }}
     </div>

@@ -42,3 +42,13 @@ url = "string"
 [photo]
 title = "string"
 file = "image"
+
+[post]
+title = "string"
+content = "markdown"
+excerpt = "string"
+date = "string"
+tags = "string"
+image_url = "string"
+link_url = "string"
+link_title = "string"

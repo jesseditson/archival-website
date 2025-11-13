@@ -1,0 +1,16 @@
+order = 10
+title = "Weekend Project"
+excerpt = "Built a tiny tool for tracking reading progress. Nothing fancy, just useful."
+date = "2024-11-03"
+tags = "coding, projects"
+
+content = """
+Spent the weekend building a small reading tracker. No features beyond the absolute essentials:
+- Add a book
+- Mark progress
+- See what you've read
+
+Sometimes the constraint of "minimal" is the most freeing constraint of all.
+
+Code on GitHub if anyone's curious. MIT licensed.
+"""

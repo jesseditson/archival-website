@@ -1,0 +1,10 @@
+order = 7
+title = "Urban Geometry"
+excerpt = "Lines and shadows in the city"
+date = "2024-11-06"
+tags = "photography, architecture"
+image_url = "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&auto=format&fit=crop"
+
+content = """
+The city reveals itself in patterns if you look long enough.
+"""

@@ -1,0 +1,11 @@
+order = 3
+title = "On Simplicity"
+excerpt = "Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away."
+date = "2024-11-10"
+tags = "quotes, design"
+
+content = """
+> Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.
+>
+> — Antoine de Saint-Exupéry
+"""

@@ -1,0 +1,12 @@
+order = 15
+title = "Morning Coffee"
+excerpt = "A peaceful ambient soundscape"
+date = "2024-11-14"
+tags = "audio, ambient"
+audio_url = "https://alexki.ng/higher-thoughts.m4a"
+
+content = """
+This ambient audio piece creates a calming atmosphere, perfect for focus or relaxation.
+
+The waveform visualization lets you see the audio's dynamics and scrub through different sections by clicking anywhere on the waveform.
+"""

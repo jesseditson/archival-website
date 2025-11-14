@@ -1,0 +1,12 @@
+order = 14
+title = "Ocean Waves"
+excerpt = "The rhythmic motion of coastal waters"
+date = "2024-11-14"
+tags = "nature, video"
+video_url = "https://videos.pexels.com/video-files/3571264/3571264-uhd_2560_1440_30fps.mp4"
+
+content = """
+There's something mesmerizing about watching the ocean. This short clip captures the endless rhythm of waves rolling onto the shore.
+
+The continuous motion is both calming and powerful, a reminder of nature's perpetual energy.
+"""

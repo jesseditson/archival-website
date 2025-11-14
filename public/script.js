@@ -34,6 +34,14 @@ function initializeBlog() {
         const img = card.querySelector('.post-image img');
         const imageUrl = img ? img.src : '';
 
+        // Extract video if present
+        const video = card.querySelector('.post-video video');
+        const videoUrl = video ? video.src : '';
+
+        // Extract audio if present
+        const audioContainer = card.querySelector('.post-audio');
+        const audioUrl = audioContainer ? audioContainer.getAttribute('data-audio-url') : '';
+
         // Extract link preview data
         const linkUrl = card.getAttribute('data-link-url') || '';
         const linkTitle = card.getAttribute('data-link-title') || '';
@@ -48,6 +56,8 @@ function initializeBlog() {
             tags,
             content,
             imageUrl,
+            videoUrl,
+            audioUrl,
             linkUrl,
             linkTitle,
             linkDescription,
@@ -71,6 +81,12 @@ function initializeBlog() {
 
     // Setup intersection observer for lazy loading
     setupPostObserver(postCards);
+
+    // Setup video play button handlers
+    setupVideoPlayButtons();
+
+    // Setup audio players
+    setupAudioPlayers();
 }
 
 // ==================== Lazy Loading with Intersection Observer ====================
@@ -162,6 +178,12 @@ function openPostViewer(index) {
     // Fix code block content and highlight with Prism
     fixCodeBlocks(viewerContent);
 
+    // Setup video play buttons
+    setupVideoPlayButtonsInViewer();
+
+    // Setup audio players
+    setupAudioPlayersInViewer();
+
     // Scroll viewer to top
     viewer.scrollTop = 0;
 
@@ -204,6 +226,44 @@ function buildPostHTML(post) {
     // Optional image
     if (post.imageUrl) {
         html += `<div class="viewer-post-image"><img src="${post.imageUrl}" alt="${post.title}"></div>`;
+    }
+
+    // Optional video
+    if (post.videoUrl) {
+        html += `
+            <div class="viewer-post-video">
+                <video src="${post.videoUrl}" preload="metadata" playsinline>
+                    Your browser does not support the video tag.
+                </video>
+                <button class="video-play-overlay" aria-label="Play video">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" fill="rgba(255, 255, 255, 0.9)" />
+                        <path d="M10 8l6 4-6 4V8z" fill="currentColor" />
+                    </svg>
+                </button>
+            </div>
+        `;
+    }
+
+    // Optional audio
+    if (post.audioUrl) {
+        html += `
+            <div class="viewer-post-audio" data-audio-url="${post.audioUrl}">
+                <canvas class="audio-waveform"></canvas>
+                <div class="audio-controls">
+                    <button class="audio-play-btn" aria-label="Play audio">
+                        <svg class="play-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M8 5v14l11-7z" fill="currentColor"/>
+                        </svg>
+                        <svg class="pause-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" style="display: none;">
+                            <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" fill="currentColor"/>
+                        </svg>
+                    </button>
+                    <span class="audio-time">0:00</span>
+                    <span class="audio-duration">0:00</span>
+                </div>
+            </div>
+        `;
     }
 
     // Full content (simple markdown rendering)
@@ -286,6 +346,12 @@ function navigatePostViewer(direction) {
             // Fix code block content and highlight with Prism
             fixCodeBlocks(viewerContent);
 
+            // Setup video play buttons
+            setupVideoPlayButtonsInViewer();
+
+            // Setup audio players
+            setupAudioPlayersInViewer();
+
             // Scroll viewer to top
             viewer.scrollTop = 0;
 
@@ -321,7 +387,7 @@ function updateViewerInfo(shouldAnimate = true) {
 }
 
 function preloadAdjacentPosts() {
-    // Preload images from adjacent posts for smooth navigation (based on filtered posts)
+    // Preload images and videos from adjacent posts for smooth navigation (based on filtered posts)
     const prevIndex = (currentPostIndex - 1 + filteredPosts.length) % filteredPosts.length;
     const nextIndex = (currentPostIndex + 1) % filteredPosts.length;
 
@@ -330,6 +396,11 @@ function preloadAdjacentPosts() {
         if (post.imageUrl) {
             const img = new Image();
             img.src = post.imageUrl;
+        }
+        if (post.videoUrl) {
+            const video = document.createElement('video');
+            video.preload = 'metadata';
+            video.src = post.videoUrl;
         }
     });
 }
@@ -924,4 +995,283 @@ function formatAllDates() {
         const originalDate = el.textContent.trim();
         el.textContent = formatDate(originalDate);
     });
+}
+
+// ==================== Video Controls ====================
+function setupVideoPlayButtons() {
+    // Setup play button handlers for all videos on the page
+    const videoContainers = document.querySelectorAll('.post-video, .viewer-post-video');
+
+    videoContainers.forEach(container => {
+        const video = container.querySelector('video');
+        const playButton = container.querySelector('.video-play-overlay');
+
+        if (!video || !playButton) return;
+
+        // Play button click handler
+        playButton.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent opening the post viewer
+            playVideo(container, video);
+        });
+
+        // When video ends, show play button again
+        video.addEventListener('ended', () => {
+            container.classList.remove('playing');
+            video.removeAttribute('controls');
+        });
+
+        // If user pauses, keep controls but consider showing overlay again after a delay
+        video.addEventListener('pause', () => {
+            if (video.currentTime === 0 || video.ended) {
+                container.classList.remove('playing');
+                video.removeAttribute('controls');
+            }
+        });
+    });
+}
+
+function playVideo(container, video) {
+    container.classList.add('playing');
+    video.setAttribute('controls', 'controls');
+    video.play();
+}
+
+// Re-setup video handlers when content changes (like in post viewer)
+function setupVideoPlayButtonsInViewer() {
+    // Wait a tick for DOM to update
+    setTimeout(() => {
+        setupVideoPlayButtons();
+    }, 0);
+}
+
+// ==================== Audio Player with Waveform ====================
+const audioPlayers = new Map(); // Store audio player instances
+
+class AudioPlayer {
+    constructor(container) {
+        this.container = container;
+        this.audioUrl = container.getAttribute('data-audio-url');
+        this.canvas = container.querySelector('.audio-waveform');
+        this.ctx = this.canvas.getContext('2d');
+        this.playBtn = container.querySelector('.audio-play-btn');
+        this.playIcon = container.querySelector('.play-icon');
+        this.pauseIcon = container.querySelector('.pause-icon');
+        this.timeDisplay = container.querySelector('.audio-time');
+        this.durationDisplay = container.querySelector('.audio-duration');
+
+        this.audio = new Audio(this.audioUrl);
+        this.audioContext = null;
+        this.analyser = null;
+        this.source = null;
+        this.waveformData = null;
+        this.isPlaying = false;
+        this.isLoaded = false;
+
+        this.init();
+    }
+
+    async init() {
+        // Setup canvas size
+        this.resizeCanvas();
+
+        // Load and analyze audio
+        await this.loadAudio();
+
+        // Setup event listeners
+        this.setupEventListeners();
+
+        // Draw initial waveform
+        this.drawWaveform(0);
+    }
+
+    resizeCanvas() {
+        const rect = this.canvas.getBoundingClientRect();
+        this.canvas.width = rect.width * window.devicePixelRatio;
+        this.canvas.height = rect.height * window.devicePixelRatio;
+        this.ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    }
+
+    async loadAudio() {
+        try {
+            // Fetch audio file
+            const response = await fetch(this.audioUrl);
+            const arrayBuffer = await response.arrayBuffer();
+
+            // Create audio context
+            this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+            // Decode audio data
+            const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
+
+            // Extract waveform data
+            this.waveformData = this.extractWaveformData(audioBuffer);
+
+            // Update duration display
+            this.durationDisplay.textContent = this.formatTime(this.audio.duration || audioBuffer.duration);
+
+            this.isLoaded = true;
+        } catch (error) {
+            console.error('Error loading audio:', error);
+        }
+    }
+
+    extractWaveformData(audioBuffer) {
+        const rawData = audioBuffer.getChannelData(0); // Get first channel
+        const samples = 500; // Number of samples for waveform
+        const blockSize = Math.floor(rawData.length / samples);
+        const filteredData = [];
+
+        for (let i = 0; i < samples; i++) {
+            let blockStart = blockSize * i;
+            let sum = 0;
+            for (let j = 0; j < blockSize; j++) {
+                sum += Math.abs(rawData[blockStart + j]);
+            }
+            filteredData.push(sum / blockSize);
+        }
+
+        // Normalize data
+        const max = Math.max(...filteredData);
+        return filteredData.map(n => n / max);
+    }
+
+    drawWaveform(progress = 0) {
+        if (!this.waveformData) return;
+
+        const width = this.canvas.width / window.devicePixelRatio;
+        const height = this.canvas.height / window.devicePixelRatio;
+        const progressX = width * progress;
+
+        // Clear canvas
+        this.ctx.clearRect(0, 0, width, height);
+
+        // Get colors from CSS variables
+        const styles = getComputedStyle(document.body);
+        const accentColor = styles.getPropertyValue('--accent-primary').trim();
+        const mutedColor = styles.getPropertyValue('--text-muted').trim();
+
+        const barWidth = width / this.waveformData.length;
+        const centerY = height / 2;
+
+        this.waveformData.forEach((value, index) => {
+            const barHeight = value * (height * 0.8);
+            const x = index * barWidth;
+
+            // Determine color based on progress
+            this.ctx.fillStyle = x < progressX ? accentColor : mutedColor;
+
+            // Draw bar (centered vertically)
+            this.ctx.fillRect(
+                x,
+                centerY - barHeight / 2,
+                barWidth * 0.8,
+                barHeight
+            );
+        });
+
+        // Draw progress line
+        if (progress > 0) {
+            this.ctx.strokeStyle = accentColor;
+            this.ctx.lineWidth = 2;
+            this.ctx.beginPath();
+            this.ctx.moveTo(progressX, 0);
+            this.ctx.lineTo(progressX, height);
+            this.ctx.stroke();
+        }
+    }
+
+    setupEventListeners() {
+        // Play/pause button
+        this.playBtn.addEventListener('click', () => this.togglePlay());
+
+        // Canvas click for scrubbing
+        this.canvas.addEventListener('click', (e) => this.handleCanvasClick(e));
+
+        // Audio events
+        this.audio.addEventListener('timeupdate', () => this.updateProgress());
+        this.audio.addEventListener('ended', () => this.handleEnded());
+        this.audio.addEventListener('loadedmetadata', () => {
+            this.durationDisplay.textContent = this.formatTime(this.audio.duration);
+        });
+    }
+
+    async togglePlay() {
+        if (!this.isLoaded) return;
+
+        if (this.isPlaying) {
+            this.audio.pause();
+            this.isPlaying = false;
+            this.playIcon.style.display = 'block';
+            this.pauseIcon.style.display = 'none';
+        } else {
+            // Resume audio context if suspended (browser autoplay policy)
+            if (this.audioContext.state === 'suspended') {
+                await this.audioContext.resume();
+            }
+
+            this.audio.play();
+            this.isPlaying = true;
+            this.playIcon.style.display = 'none';
+            this.pauseIcon.style.display = 'block';
+        }
+    }
+
+    handleCanvasClick(e) {
+        if (!this.isLoaded) return;
+
+        const rect = this.canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const progress = x / rect.width;
+
+        this.audio.currentTime = progress * this.audio.duration;
+        this.drawWaveform(progress);
+    }
+
+    updateProgress() {
+        const progress = this.audio.currentTime / this.audio.duration;
+        this.drawWaveform(progress);
+        this.timeDisplay.textContent = this.formatTime(this.audio.currentTime);
+    }
+
+    handleEnded() {
+        this.isPlaying = false;
+        this.playIcon.style.display = 'block';
+        this.pauseIcon.style.display = 'none';
+        this.audio.currentTime = 0;
+        this.drawWaveform(0);
+    }
+
+    formatTime(seconds) {
+        if (isNaN(seconds)) return '0:00';
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    destroy() {
+        this.audio.pause();
+        this.audio.src = '';
+        if (this.audioContext) {
+            this.audioContext.close();
+        }
+    }
+}
+
+function setupAudioPlayers() {
+    const audioContainers = document.querySelectorAll('.post-audio, .viewer-post-audio');
+
+    audioContainers.forEach(container => {
+        // Skip if already initialized
+        if (audioPlayers.has(container)) return;
+
+        const player = new AudioPlayer(container);
+        audioPlayers.set(container, player);
+    });
+}
+
+function setupAudioPlayersInViewer() {
+    // Wait a tick for DOM to update
+    setTimeout(() => {
+        setupAudioPlayers();
+    }, 0);
 }

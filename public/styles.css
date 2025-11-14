@@ -285,6 +285,108 @@ body.light-theme .theme-toggle .moon-icon {
   transform: scale(1.05);
 }
 
+/* Post Video */
+.post-video {
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  background: var(--bg-tertiary);
+  position: relative;
+}
+
+.post-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-play-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+  transition: all var(--transition-base);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bg-primary);
+  opacity: 0.9;
+}
+
+.video-play-overlay:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  opacity: 1;
+}
+
+.video-play-overlay svg {
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+}
+
+.post-video.playing .video-play-overlay {
+  display: none;
+}
+
+/* Post Audio */
+.post-audio {
+  width: 100%;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.audio-waveform {
+  width: 100%;
+  height: 80px;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  background: var(--bg-secondary);
+}
+
+.audio-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.audio-play-btn {
+  background: var(--accent-primary);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  color: white;
+  flex-shrink: 0;
+}
+
+.audio-play-btn:hover {
+  background: var(--accent-hover);
+  transform: scale(1.05);
+}
+
+.audio-time,
+.audio-duration {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+}
+
+.audio-time {
+  margin-left: auto;
+}
+
 /* Post Content */
 .post-content {
   padding: var(--spacing-lg);
@@ -578,6 +680,107 @@ body.light-theme .theme-toggle .moon-icon {
   width: 100%;
   height: auto;
   display: block;
+}
+
+.viewer-post-video {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-xl);
+  overflow: hidden;
+  position: relative;
+}
+
+.viewer-post-video video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.viewer-post-video .video-play-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+  transition: all var(--transition-base);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bg-primary);
+  opacity: 0.9;
+}
+
+.viewer-post-video .video-play-overlay:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  opacity: 1;
+}
+
+.viewer-post-video .video-play-overlay svg {
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+}
+
+.viewer-post-video.playing .video-play-overlay {
+  display: none;
+}
+
+.viewer-post-audio {
+  width: 100%;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.viewer-post-audio .audio-waveform {
+  width: 100%;
+  height: 120px;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  background: var(--bg-secondary);
+}
+
+.viewer-post-audio .audio-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.viewer-post-audio .audio-play-btn {
+  background: var(--accent-primary);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  color: white;
+  flex-shrink: 0;
+}
+
+.viewer-post-audio .audio-play-btn:hover {
+  background: var(--accent-hover);
+  transform: scale(1.05);
+}
+
+.viewer-post-audio .audio-time,
+.viewer-post-audio .audio-duration {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+}
+
+.viewer-post-audio .audio-time {
+  margin-left: auto;
 }
 
 .viewer-post-content {

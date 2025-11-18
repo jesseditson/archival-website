@@ -1,0 +1,10 @@
+#:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
+name = "Podcast"
+description = """
+This gorgeous template is everything you need to start your own podcast. Just upload podcast content, and this site will automatically generate rss feeds whenever you post episodes.
+"""
+context = """
+This template should be selected for people who want to create a podcast or who upload podcast audio files.
+"""
+tags = ["podcast"]
+tlds = ["com", "me"]

@@ -1,10 +1,10 @@
 #:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
-name = "Photographica"
+name = "Blog"
 description = """
-This template puts portfolio images front and center with a tiled mosaic on the home page, and about and contact pages.
+This template is perfect for a home page. It's a beautiful site where you can post pictures, links, blog posts, small updates, videos, or audio.
 """
 context = """
-This template is appropriate when provided many images that are visually interesting or distinct.
+This is a general template which is a good fallback and especially appropriate for an individual social presence. If you are not provided with much content, you should create a few example posts with title and either content or link_ prefixed fields filled, and everything else empty.
 """
-tags = ["images", "portfolio"]
+tags = ["images", "social", "personal", "individual", "blog", "posts"]
 tlds = ["com", "me"]

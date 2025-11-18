@@ -1,8 +1,0 @@
-order = 20
-title = "Nordic Fjord Cabin"
-
-[file]
-display_type = "image"
-filename = "20.jpg"
-sha = "c499950034e7d98bd1d0390dd73a757250dbc71ee17998cdabcebcca8d4d6cec"
-mime = "image/jpeg"

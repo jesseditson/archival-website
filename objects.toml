@@ -4,45 +4,6 @@
 name = "string"
 description = "string"
 
-[about]
-hero_title = "string"
-hero_lead = "markdown"
-story_title = "string"
-quote_text = "string"
-quote_citation = "string"
-image_1 = "image"
-image_2 = "image"
-image_3 = "image"
-
-[about_story]
-title = "string"
-body = "markdown"
-after_quote = "boolean"
-
-[about_expertise]
-icon = "string"
-title = "string"
-description = "markdown"
-
-[contact]
-hero_title = "string"
-hero_lead = "markdown"
-
-[contact_method]
-icon = "string"
-label = "string"
-value = "string"
-url = "string"
-
-[contact_social]
-icon = "string"
-name = "string"
-url = "string"
-
-[photo]
-title = "string"
-file = "image"
-
 [post]
 title = "string"
 content = "markdown"

@@ -1,8 +1,0 @@
-order = 5
-title = "Sunbeam Cathedral Nave"
-
-[file]
-display_type = "image"
-filename = "05.jpg"
-sha = "98f172f27e2f428108b8369945e42d12a0fd43e6d6d5ba1f2a8039aee885460d"
-mime = "image/jpeg"

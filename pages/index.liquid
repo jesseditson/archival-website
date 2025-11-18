@@ -6,7 +6,7 @@
   {% comment %} Collect all unique tags {% endcomment %}
   {% assign all_tags = "" %}
   {% for post in posts %}
-    {% if post.tags %}
+    {% unless post.tags == blank %}
       {% assign post_tags = post.tags | split: ", " %}
       {% for tag in post_tags %}
         {% assign trimmed_tag = tag | strip %}
@@ -14,7 +14,7 @@
           {% assign all_tags = all_tags | append: trimmed_tag | append: "," %}
         {% endunless %}
       {% endfor %}
-    {% endif %}
+    {% endunless %}
   {% endfor %}
   {% assign unique_tags = all_tags | split: "," | sort %}
   {% for tag in unique_tags %}
@@ -43,14 +43,14 @@
              data-link-image="{{ post.link_image | escape }}">
 
       <!-- Optional Image -->
-      {% if post.image_url %}
+      {% unless post.image_url == blank %}
         <div class="post-image">
           <img src="{{ post.image_url }}" alt="{{ post.title }}" loading="lazy">
         </div>
-      {% endif %}
+      {% endunless %}
 
       <!-- Optional Video -->
-      {% if post.video_url %}
+      {% unless post.video_url == blank %}
         <div class="post-video">
           <video src="{{ post.video_url }}" preload="metadata" playsinline>
             Your browser does not support the video tag.
@@ -62,10 +62,10 @@
             </svg>
           </button>
         </div>
-      {% endif %}
+      {% endunless %}
 
       <!-- Optional Audio -->
-      {% if post.audio_url %}
+      {% unless post.audio_url == blank %}
         <div class="post-audio" data-audio-url="{{ post.audio_url }}">
           <canvas class="audio-waveform"></canvas>
           <div class="audio-controls">
@@ -81,25 +81,25 @@
             <span class="audio-duration">0:00</span>
           </div>
         </div>
-      {% endif %}
+      {% endunless %}
 
       <!-- Post Content -->
       <div class="post-content">
         <h2 class="post-title">{{ post.title }}</h2>
-        {% if post.excerpt %}
+        {% unless post.excerpt == blank%}
           <p class="post-excerpt">{{ post.excerpt }}</p>
-        {% endif %}
+        {% endunless %}
         <time class="post-date">{{ post.date }}</time>
 
         <!-- Tags in bottom right -->
-        {% if post.tags %}
+        {% unless post.tags == blank %}
           <div class="post-tags">
             {% assign tag_list = post.tags | split: ", " %}
             {% for tag in tag_list %}
               <span class="tag">{{ tag }}</span>
             {% endfor %}
           </div>
-        {% endif %}
+        {% endunless %}
       </div>
     </article>
   {% endfor %}

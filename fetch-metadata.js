@@ -54,7 +54,7 @@ for (const file of posts) {
                     fields.push({field, value: data[field]})
                 }
             }
-            execSync(`cargo run import post/${file} -c _link_meta -f json - ../archival-website`, {
+            execSync(`archival import post/${file} -c _link_meta -f json - ../archival-website`, {
                 input: JSON.stringify(fields),
                 cwd: "../archival"
             })

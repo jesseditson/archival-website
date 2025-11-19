@@ -288,7 +288,7 @@ function updateHistory() {
         const post = filteredPosts[currentPostIndex];
         url = post.path;
     }
-    if (activeFilter) {
+    if (activeFilter && activeFilter !== "all") {
         url += `?tag=${activeFilter}`;
     }
     window.history.pushState(url, "", url);
@@ -456,24 +456,17 @@ function selectTag(selectedTag) {
     });
 
     // Update filtered posts array
-    const filteredPostPaths = new Set();
     if (selectedTag === 'all') {
         filteredPosts = [...state.blogPosts];
-        filteredPostPaths = new Set(...state.blogPosts.map(p => p.path))
     } else {
         filteredPosts = state.blogPosts.filter(post => {
             const postTags = post.tags.map(t => t.trim());
-            const isSelected = postTags.includes(selectedTag);
-            if (isSelected) {
-                filteredPostPaths.add(post.path);
-            }
-            return isSelected;
+            return postTags.includes(selectedTag);
         });
     }
 
     // Filter using Isotope
     const filterValue = selectedTag === 'all' ? '*' : `.tag-${selectedTag}`;
-    console.log(filterValue)
 
     // Temporarily disable transitions to prevent jitter
     iso.options.transitionDuration = 0;

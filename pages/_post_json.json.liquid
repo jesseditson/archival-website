@@ -1,7 +1,7 @@
 {
-    "link": "{{ site_url }}/{{ post.path }}",
+    "link": "{{ site_url }}/{{ post.path }}.html",
     "title": "{{ post.title }}",
-    "date": "{{ post.date | date: "%d/%m/%Y" }}",
+    "date": "{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}",
     {%- unless post.excerpt == blank -%}"excerpt": "{{post.excerpt}}",{% endunless %}
     {%- unless post.content == blank -%}"content": "{{post.content | strip_newlines | escape}}",{% endunless %}
     {%- unless post.image == blank -%}"imageUrl": "{{post.image.url}}",{% endunless %}

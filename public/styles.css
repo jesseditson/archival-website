@@ -203,6 +203,11 @@ body.light-theme .theme-toggle .moon-icon {
   transition: all var(--transition-base);
   color: var(--text-primary);
   padding: 0;
+  &.enabled {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    background: var(--accent-muted);
+  }
 }
 
 .notify-toggle:hover {

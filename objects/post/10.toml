@@ -1,13 +1,5 @@
 order = 10
 title = "Weekend Project"
-excerpt = "Built a tiny tool for tracking reading progress. Nothing fancy, just useful."
-date = "2024-11-03"
-tags = "code"
-link_url = "https://github.com"
-link_title = "GitHub: Where the world builds software"
-link_description = "GitHub is where over 100 million developers shape the future of software, together. Contribute to the open source community, manage your Git repositories, review code like a pro, track bugs and features, power your CI/CD and DevOps workflows, and secure code before you commit it."
-link_image = "https://github.githubassets.com/images/modules/site/social-cards/github-social.png"
-
 content = """
 Spent the weekend building a small reading tracker. No features beyond the absolute essentials:
 - Add a book
@@ -18,3 +10,19 @@ Sometimes the constraint of "minimal" is the most freeing constraint of all.
 
 Code on GitHub if anyone's curious. MIT licensed.
 """
+excerpt = "Built a tiny tool for tracking reading progress. Nothing fancy, just useful."
+date = 2024-11-03T00:00:00
+tags = "code"
+link = "https://github.com"
+
+[[_link_meta]]
+field = "title"
+value = "GitHub · Change is constant. GitHub keeps you ahead."
+
+[[_link_meta]]
+field = "description"
+value = "Join the world’s most widely adopted, AI-powered developer platform where millions of developers, businesses, and the largest open source community build software that advances humanity."
+
+[[_link_meta]]
+field = "image"
+value = "https://images.ctfassets.net/8aevphvgewt8/4pe4eOtUJ0ARpZRE4fNekf/f52b1f9c52f059a33170229883731ed0/GH-Homepage-Universe-img.png"

@@ -1,9 +1,5 @@
 order = 8
 title = "On Attention"
-excerpt = "What you pay attention to grows."
-date = "2024-11-05"
-tags = "thoughts"
-
 content = """
 I've been experimenting with attention as a design constraint. Not time management or productivity—attention.
 
@@ -47,3 +43,6 @@ The real shift though? I stopped trying to "be productive" and started asking: w
 
 Trust the attention. Follow what's alive.
 """
+excerpt = "What you pay attention to grows."
+date = 2024-11-05T00:00:00
+tags = "thoughts"

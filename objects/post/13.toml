@@ -1,10 +1,6 @@
 order = 13
 title = "Markdown Elements Guide"
-excerpt = "A comprehensive showcase of all markdown formatting elements and their beautiful rendering."
-date = "2024-11-13"
-tags = "design, test"
-
-content = """
+content = '''
 This post demonstrates every markdown element supported by the blog, showcasing the clean, minimal design system that makes content readable and beautiful.
 
 ## Typography
@@ -96,7 +92,7 @@ Code deserves special formatting with syntax awareness:
 function renderMarkdown(markdown) {
     if (!markdown) return '';
 
-    const lines = markdown.split('\\n');
+    const lines = markdown.split('\n');
     let html = '';
 
     return html;
@@ -233,7 +229,7 @@ Smart quotes "like this" and apostrophes don't create issues. Em dashes—like t
 
 ## Escape Characters
 
-Sometimes you need to show \\*actual asterisks\\* without formatting.
+Sometimes you need to show \*actual asterisks\* without formatting.
 
 ## Combination Examples
 
@@ -270,4 +266,7 @@ This comprehensive example showcases every markdown element with beautiful, cons
 - **Elegance** - Minimal aesthetics that never distract
 
 Whether you're writing technical documentation, creative essays, or anything in between, these elements provide all the tools you need for clear, beautiful communication.
-"""
+'''
+excerpt = "A comprehensive showcase of all markdown formatting elements and their beautiful rendering."
+date = 2024-11-13T00:00:00
+tags = "design, test"

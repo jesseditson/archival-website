@@ -1,9 +1,5 @@
 order = 4
 title = "Building in Public"
-excerpt = "Why sharing the messy middle matters more than polished outcomes."
-date = "2024-11-09"
-tags = "creativity, thoughts"
-
 content = """
 The internet loves before-and-afters. The struggle, then the triumph. What gets lost is everything in between.
 
@@ -35,3 +31,6 @@ This blog is my experiment in building in public. No grand announcements. No pre
 
 Some posts will be polished essays. Others will be rough notes. All of it will be real.
 """
+excerpt = "Why sharing the messy middle matters more than polished outcomes."
+date = 2024-11-09T00:00:00
+tags = "creativity, thoughts"

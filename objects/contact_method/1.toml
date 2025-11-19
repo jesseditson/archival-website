@@ -1,5 +1,0 @@
-order = 1
-icon = "📧"
-label = "Email"
-value = "hello@photographica.com"
-url = "mailto:hello@photographica.com"

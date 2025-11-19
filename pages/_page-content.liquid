@@ -132,6 +132,15 @@
 
   <div class="viewer-info">
     <div class="viewer-counter">
+        {%- assign initial_index = 0 -%}
+        {%- if post -%}
+            {%- for p in posts -%}
+                {%- if p.path == post.path -%}
+                    {%- assign initial_index = forloop.index -%}
+                    {%- break -%}
+                {%- endif -%}
+            {%- endfor -%}
+        {%- endif -%}
       <span id="viewer-current">{{ initial_index }}</span> / <span id="viewer-total">{{ posts | size }}</span>
     </div>
   </div>

@@ -4,27 +4,28 @@ let iso = null; // Isotope instance
 let touchStartX = 0;
 let touchEndX = 0;
 let filteredPosts = []; // Currently filtered posts
-let currentPostIndex = 0;
+let currentPostIndex = -1;
 let activeFilter = 'all'; // Track current filter state
 
 // ==================== Initialization ====================
 window.onload = function() {
+    initializeIsotope(); // Initialize Isotope FIRST
     formatAllDates();
     initializeBlog();
     initializePostViewer();
     initializeThemeToggle();
-    initializeIsotope(); // Initialize Isotope FIRST
     initializeTagFilters();
     animateMastheadTitle();
 };
 
 // ==================== Blog Initialization ====================
 function initializeBlog() {
-    // Initially, all posts are "filtered" (visible)
-    filteredPosts = [...state.blogPosts];
+    // initialize our tag, which will also update filteredPosts
+    const initialTag = new URL(window.location.href).searchParams.get("tag") || "all";
+    selectTag(initialTag);
 
     // Update the current index
-    currentPostIndex = state.blogPosts.findIndex(p => p.path === state.initialPostPath);
+    currentPostIndex = filteredPosts.findIndex(p => p.path === state.initialPostPath);
     updateViewerInfo();
 
     // Add click listeners to post cards
@@ -167,7 +168,7 @@ function openPostViewer(index) {
     // Preload adjacent posts for smooth navigation
     preloadAdjacentPosts();
 
-    updateHistory(filteredPosts[index]);
+    updateHistory();
 }
 
 function closePostViewer() {
@@ -189,6 +190,8 @@ function closePostViewer() {
         onComplete: function() {
             viewer.classList.remove('active');
             document.body.style.overflow = '';
+            currentPostIndex = -1;
+            updateHistory();
         }
     });
 }
@@ -238,7 +241,7 @@ function navigatePostViewer(direction) {
             updateViewerInfo();
             preloadAdjacentPosts();
 
-            updateHistory(filteredPosts[currentPostIndex]);
+            updateHistory();
         }
     });
 }
@@ -279,8 +282,16 @@ function preloadAdjacentPosts() {
     });
 }
 
-function updateHistory(post) {
-    window.history.pushState(post.path, "", post.path);
+function updateHistory() {
+    let url = "/";
+    if (currentPostIndex !== -1) {
+        const post = filteredPosts[currentPostIndex];
+        url = post.path;
+    }
+    if (activeFilter) {
+        url += `?tag=${activeFilter}`;
+    }
+    window.history.pushState(url, "", url);
 }
 
 function animateViewerControls() {
@@ -425,51 +436,65 @@ function initializeIsotope() {
 }
 
 // ==================== Tag Filtering ====================
+function selectTag(selectedTag) {
+    activeFilter = selectedTag;
+
+    const filterBtns = document.querySelectorAll('.filter-btn');
+
+    // Update active state
+    filterBtns.forEach(b => {
+        const isSelected = b.dataset.tag === selectedTag;
+        b.classList.toggle('active', isSelected);
+        if (isSelected) {
+            // Animate button
+            animate(b, {
+                scale: [1, 0.95, 1],
+                duration: 300,
+                ease: 'outQuad'
+            });
+        }
+    });
+
+    // Update filtered posts array
+    const filteredPostPaths = new Set();
+    if (selectedTag === 'all') {
+        filteredPosts = [...state.blogPosts];
+        filteredPostPaths = new Set(...state.blogPosts.map(p => p.path))
+    } else {
+        filteredPosts = state.blogPosts.filter(post => {
+            const postTags = post.tags.map(t => t.trim());
+            const isSelected = postTags.includes(selectedTag);
+            if (isSelected) {
+                filteredPostPaths.add(post.path);
+            }
+            return isSelected;
+        });
+    }
+
+    // Filter using Isotope
+    const filterValue = selectedTag === 'all' ? '*' : `.tag-${selectedTag}`;
+    console.log(filterValue)
+
+    // Temporarily disable transitions to prevent jitter
+    iso.options.transitionDuration = 0;
+    iso.arrange({
+        filter: filterValue,
+        transitionDuration: 0
+    });
+
+    // Re-enable transitions after a brief delay
+    setTimeout(() => {
+        iso.options.transitionDuration = '0.4s';
+    }, 50);
+}
 function initializeTagFilters() {
     const filterBtns = document.querySelectorAll('.filter-btn');
 
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             const selectedTag = btn.getAttribute('data-tag');
-            activeFilter = selectedTag;
-
-            // Update active state
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            // Animate button
-            animate(btn, {
-                scale: [1, 0.95, 1],
-                duration: 300,
-                ease: 'outQuad'
-            });
-
-            // Update filtered posts array
-            if (selectedTag === 'all') {
-                filteredPosts = [...state.blogPosts];
-            } else {
-                filteredPosts = state.blogPosts.filter(post => {
-                    const postTags = post.tags.split(',').map(t => t.trim());
-                    return postTags.includes(selectedTag);
-                });
-            }
-
-            // Filter using Isotope
-            if (iso) {
-                const filterValue = selectedTag === 'all' ? '*' : `.tag-${selectedTag}`;
-
-                // Temporarily disable transitions to prevent jitter
-                iso.options.transitionDuration = 0;
-                iso.arrange({
-                    filter: filterValue,
-                    transitionDuration: 0
-                });
-
-                // Re-enable transitions after a brief delay
-                setTimeout(() => {
-                    iso.options.transitionDuration = '0.4s';
-                }, 50);
-            }
+            selectTag(selectedTag);
+            updateHistory();
         });
     });
 }

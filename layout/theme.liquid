@@ -53,7 +53,11 @@
         </button>
       </div>
 
-      {% include "page-content" viewer_content: page_content %}
+      {{ page_content }}
+        
+      {% if show_blog %}
+        {% include "page-content" %}
+      {% endif %}
 
       <footer class="site-footer">
         <small>&copy; <span id="footer-year">{{ 'now' | date: '%Y' }}</span> {{ site.name }}. All rights reserved.</small>
@@ -83,8 +87,8 @@
     <!-- injected vars -->
     <script>
       window.blogState = {
-        {% if initial_post_path %}
-        initialPostPath: "/{{ initial_post_path }}.html",
+        {% if post %}
+        initialPostPath: "/{{ post.path }}.html",
         {% endif %}
         blogPosts: [
           {%- for post in posts -%}

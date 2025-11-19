@@ -1,10 +1,10 @@
 // ==================== Blog State ====================
-let blogPosts = [];
-let filteredPosts = []; // Currently filtered posts
-let currentPostIndex = 0;
+const state = window.blogState;
+let iso = null; // Isotope instance
 let touchStartX = 0;
 let touchEndX = 0;
-let iso = null; // Isotope instance
+let filteredPosts = []; // Currently filtered posts
+let currentPostIndex = 0;
 let activeFilter = 'all'; // Track current filter state
 
 // ==================== Initialization ====================
@@ -20,60 +20,19 @@ window.onload = function() {
 
 // ==================== Blog Initialization ====================
 function initializeBlog() {
-    const postCards = document.querySelectorAll(".post-card");
-
-    // Build blog posts array with all data
-    blogPosts = Array.from(postCards).map((card, index) => {
-        const title = card.querySelector('.post-title')?.textContent || '';
-        const excerpt = card.querySelector('.post-excerpt')?.textContent || '';
-        const date = card.querySelector('.post-date')?.textContent || '';
-        const tags = card.getAttribute('data-tags') || '';
-        const content = card.getAttribute('data-content') || '';
-
-        // Extract image if present
-        const img = card.querySelector('.post-image img');
-        const imageUrl = img ? img.src : '';
-
-        // Extract video if present
-        const video = card.querySelector('.post-video video');
-        const videoUrl = video ? video.src : '';
-
-        // Extract audio if present
-        const audioContainer = card.querySelector('.post-audio');
-        const audioUrl = audioContainer ? audioContainer.getAttribute('data-audio-url') : '';
-
-        // Extract link preview data
-        const linkUrl = card.getAttribute('data-link-url') || '';
-        const linkTitle = card.getAttribute('data-link-title') || '';
-        const linkDescription = card.getAttribute('data-link-description') || '';
-        const linkImage = card.getAttribute('data-link-image') || '';
-
-        return {
-            index,
-            title,
-            excerpt,
-            date,
-            tags,
-            content,
-            imageUrl,
-            videoUrl,
-            audioUrl,
-            linkUrl,
-            linkTitle,
-            linkDescription,
-            linkImage,
-            element: card
-        };
-    });
-
     // Initially, all posts are "filtered" (visible)
-    filteredPosts = [...blogPosts];
+    filteredPosts = [...state.blogPosts];
+
+    // Update the current index
+    currentPostIndex = state.blogPosts.findIndex(p => p.path === state.initialPostPath);
+    updateViewerInfo();
 
     // Add click listeners to post cards
+    const postCards = document.querySelectorAll(".post-card");
     postCards.forEach((card, index) => {
         card.addEventListener("click", function() {
             // Find the index of this post in the filtered posts array
-            const postData = blogPosts[index];
+            const postData = state.blogPosts[index];
             const filteredIndex = filteredPosts.findIndex(p => p.index === postData.index);
             openPostViewer(filteredIndex);
         });
@@ -152,11 +111,16 @@ function animateMastheadTitle() {
     masthead.dataset.animationInstance = animationId;
 }
 
+function renderPost(post) {
+    const parser = new DOMParser();
+    const dom = parser.parseFromString(post.content, 'text/html');
+    return dom.documentElement.textContent;
+}
+
 function openPostViewer(index) {
     currentPostIndex = index;
     const viewer = document.getElementById('post-viewer');
     const viewerContent = document.getElementById('viewer-content');
-    const post = filteredPosts[currentPostIndex];
 
     // Show viewer
     viewer.classList.add('active');
@@ -170,8 +134,7 @@ function openPostViewer(index) {
     });
 
     // Build post content HTML
-    const postHTML = buildPostHTML(post);
-    viewerContent.innerHTML = postHTML;
+    viewerContent.innerHTML = renderPost(filteredPosts[index]);
 
     // Enhance markdown extras (task lists, code blocks)
     enhanceTaskLists(viewerContent);
@@ -203,98 +166,8 @@ function openPostViewer(index) {
 
     // Preload adjacent posts for smooth navigation
     preloadAdjacentPosts();
-}
 
-function buildPostHTML(post) {
-    let html = `<h1 class="viewer-post-title">${post.title}</h1>`;
-
-    // Meta information
-    html += `<div class="viewer-post-meta">`;
-    if (post.date) {
-        html += `<time class="viewer-post-date">${post.date}</time>`;
-    }
-    if (post.tags) {
-        const tagList = post.tags.split(', ');
-        html += `<div class="viewer-post-tags">`;
-        tagList.forEach(tag => {
-            html += `<span class="tag">${tag.trim()}</span>`;
-        });
-        html += `</div>`;
-    }
-    html += `</div>`;
-
-    // Optional image
-    if (post.imageUrl) {
-        html += `<div class="viewer-post-image"><img src="${post.imageUrl}" alt="${post.title}"></div>`;
-    }
-
-    // Optional video
-    if (post.videoUrl) {
-        html += `
-            <div class="viewer-post-video">
-                <video src="${post.videoUrl}" preload="metadata" playsinline>
-                    Your browser does not support the video tag.
-                </video>
-                <button class="video-play-overlay" aria-label="Play video">
-                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
-                        <circle cx="12" cy="12" r="10" fill="rgba(255, 255, 255, 0.9)" />
-                        <path d="M10 8l6 4-6 4V8z" fill="currentColor" />
-                    </svg>
-                </button>
-            </div>
-        `;
-    }
-
-    // Optional audio
-    if (post.audioUrl) {
-        html += `
-            <div class="viewer-post-audio" data-audio-url="${post.audioUrl}">
-                <canvas class="audio-waveform"></canvas>
-                <div class="audio-controls">
-                    <button class="audio-play-btn" aria-label="Play audio">
-                        <svg class="play-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
-                            <path d="M8 5v14l11-7z" fill="currentColor"/>
-                        </svg>
-                        <svg class="pause-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" style="display: none;">
-                            <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" fill="currentColor"/>
-                        </svg>
-                    </button>
-                    <span class="audio-time">0:00</span>
-                    <span class="audio-duration">0:00</span>
-                </div>
-            </div>
-        `;
-    }
-
-    // Full content (simple markdown rendering)
-    html += `<div class="viewer-post-content">`;
-    if (post.content) {
-        const decodedContent = decodeHtmlEntities(post.content);
-        if (hasHtmlContent(decodedContent)) {
-            html += decodedContent;
-        } else {
-            html += renderMarkdown(decodedContent);
-        }
-    } else {
-        html += `<p>${post.excerpt}</p>`;
-    }
-    html += `</div>`;
-
-    // Link preview card if link data exists
-    if (post.linkUrl && post.linkTitle) {
-        html += `
-            <a href="${post.linkUrl}" target="_blank" rel="noopener noreferrer" class="link-preview-card">
-                ${post.linkImage ? `<div class="link-preview-image" style="background-image: url('${post.linkImage}')"></div>` : ''}
-                <div class="link-preview-content">
-                    <div class="link-preview-title">${post.linkTitle}</div>
-                    ${post.linkDescription ? `<div class="link-preview-description">${post.linkDescription}</div>` : ''}
-                    <div class="link-preview-url">${new URL(post.linkUrl).hostname}</div>
-                </div>
-            </a>
-        `;
-    }
-
-    return html;
+    updateHistory(filteredPosts[index]);
 }
 
 function closePostViewer() {
@@ -338,8 +211,7 @@ function navigatePostViewer(direction) {
         ease: 'inCubic',
         onComplete: function() {
             // Update content from filtered posts
-            const post = filteredPosts[currentPostIndex];
-            viewerContent.innerHTML = buildPostHTML(post);
+            viewerContent.innerHTML = renderPost(filteredPosts[currentPostIndex]);
 
             // Enhance markdown extras (task lists, code blocks)
             enhanceTaskLists(viewerContent);
@@ -365,6 +237,8 @@ function navigatePostViewer(direction) {
 
             updateViewerInfo();
             preloadAdjacentPosts();
+
+            updateHistory(filteredPosts[currentPostIndex]);
         }
     });
 }
@@ -403,6 +277,10 @@ function preloadAdjacentPosts() {
             video.src = post.videoUrl;
         }
     });
+}
+
+function updateHistory(post) {
+    window.history.pushState(post.path, "", post.path);
 }
 
 function animateViewerControls() {
@@ -568,9 +446,9 @@ function initializeTagFilters() {
 
             // Update filtered posts array
             if (selectedTag === 'all') {
-                filteredPosts = [...blogPosts];
+                filteredPosts = [...state.blogPosts];
             } else {
-                filteredPosts = blogPosts.filter(post => {
+                filteredPosts = state.blogPosts.filter(post => {
                     const postTags = post.tags.split(',').map(t => t.trim());
                     return postTags.includes(selectedTag);
                 });

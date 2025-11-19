@@ -79,7 +79,7 @@ content = "The quote text..."
 #### Link Post
 ```toml
 post_type = "link"
-link_url = "https://example.com"
+link = "https://example.com"
 content = "Description of the link..."
 ```
 

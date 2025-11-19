@@ -1,0 +1,11 @@
+{
+    "lastBuildDate": "{{ "now" | date: "%a, %d %b %Y %H:%M:%S %z" }}",
+	"posts": [
+        {%- capture posts_json -%}
+        {%- assign sorted_posts = objects.post | sort: "date" -%}
+        {%- for post in sorted_posts -%}{% include "post_json" post: post %}{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+        {%- endcapture -%}
+        {{ posts_json | replace: '\s+', ' ' }}
+	]
+}

@@ -53,7 +53,7 @@
         </button>
       </div>
 
-      {{ page_content }}
+      {% include "page-content" viewer_content: page_content %}
 
       <footer class="site-footer">
         <small>&copy; <span id="footer-year">{{ 'now' | date: '%Y' }}</span> {{ site.name }}. All rights reserved.</small>
@@ -80,6 +80,32 @@
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
 
+    <!-- injected vars -->
+    <script>
+      window.blogState = {
+        {% if initial_post_path %}
+        initialPostPath: "/{{ initial_post_path }}.html",
+        {% endif %}
+        blogPosts: [
+          {%- for post in posts -%}
+            {%- capture html -%}
+              {% include "post" post: post %}
+            {%- endcapture -%}
+            {
+              path: "/{{ post.path }}.html",
+              content: "{{ html | strip_newlines |  escape }}",
+              index: {{ forloop.index }},
+              tags: [
+                {%- assign tag_list = post.tags | split: "," -%}
+                {%- for tag in tag_list -%}
+                    {%- assign trimmed_tag = tag | strip -%}
+                    "{{tag}}"{% unless forloop.last %},{% endunless %}
+                {%- endfor -%}
+              ]
+            }{% unless forloop.last %},{% endunless %}{% endfor %}
+          ]
+      }
+    </script>
     <script src="/script.js" type="module"></script>
   </body>
 

@@ -477,58 +477,74 @@ function initializeThemeToggle() {
 function initializeIsotope() {
     const grid = document.querySelector('#blog-grid');
 
-    // Initialize Isotope with masonry layout
-    iso = new Isotope(grid, {
-        itemSelector: '.post-card',
-        layoutMode: 'masonry',
-        percentPosition: true,
-        transitionDuration: '0.4s',
-        hiddenStyle: {
-            opacity: 0,
-            transform: 'scale(0.85)'
-        },
-        visibleStyle: {
-            opacity: 1,
-            transform: 'scale(1)'
-        },
-        masonry: {
-            columnWidth: '.post-card',
-            gutter: 24,
-            fitWidth: false
-        }
-    });
+    // Wait for next frame to ensure DOM is fully rendered
+    requestAnimationFrame(() => {
+        // Initialize Isotope with masonry layout
+        iso = new Isotope(grid, {
+            itemSelector: '.post-card',
+            layoutMode: 'masonry',
+            percentPosition: true,
+            transitionDuration: '0.4s',
+            hiddenStyle: {
+                opacity: 0,
+                transform: 'scale(0.85)'
+            },
+            visibleStyle: {
+                opacity: 1,
+                transform: 'scale(1)'
+            },
+            masonry: {
+                columnWidth: '.post-card',
+                gutter: 24,
+                fitWidth: false
+            },
+            stagger: 30
+        });
 
-    // Use imagesLoaded to ensure layout recalculates as images load
-    const imgLoad = imagesLoaded(grid);
-    let initialLoadComplete = false;
+        // Use imagesLoaded to ensure layout recalculates as images load
+        const imgLoad = imagesLoaded(grid);
+        let initialLoadComplete = false;
 
-    imgLoad.on('progress', function() {
-        // Only layout during initial load, not on subsequent filters
-        if (!initialLoadComplete) {
+        imgLoad.on('progress', function() {
+            // Only layout during initial load, not on subsequent filters
+            if (!initialLoadComplete) {
+                iso.layout();
+            }
+        });
+
+        // Show grid once all images are loaded
+        imgLoad.on('always', function() {
             iso.layout();
-        }
+            grid.classList.add('isotope-ready');
+            initialLoadComplete = true;
+        });
+
+        // Additional safety: recalculate layout after a short delay
+        // This handles edge cases where fonts or other resources load late
+        setTimeout(() => {
+            if (iso) {
+                iso.layout();
+            }
+        }, 100);
+
+        setTimeout(() => {
+            if (iso) {
+                iso.layout();
+            }
+        }, 300);
+
+        setTimeout(() => {
+            if (iso) {
+                iso.layout();
+            }
+        }, 600);
+
+        setTimeout(() => {
+            if (iso) {
+                iso.layout();
+            }
+        }, 1000);
     });
-
-    // Show grid once all images are loaded
-    imgLoad.on('always', function() {
-        iso.layout();
-        grid.classList.add('isotope-ready');
-        initialLoadComplete = true;
-    });
-
-    // Additional safety: recalculate layout after a short delay
-    // This handles edge cases where fonts or other resources load late
-    setTimeout(() => {
-        if (iso) {
-            iso.layout();
-        }
-    }, 100);
-
-    setTimeout(() => {
-        if (iso) {
-            iso.layout();
-        }
-    }, 500);
 }
 
 // ==================== Tag Filtering ====================
@@ -561,20 +577,15 @@ function selectTag(selectedTag) {
         });
     }
 
-    // Filter using Isotope
+    // Filter using Isotope (only if initialized)
+    if (!iso) return;
+
     const filterValue = selectedTag === 'all' ? '*' : `.tag-${selectedTag}`;
 
-    // Temporarily disable transitions to prevent jitter
-    iso.options.transitionDuration = 0;
+    // Use Isotope's arrange with transitions enabled for smooth animation
     iso.arrange({
-        filter: filterValue,
-        transitionDuration: 0
+        filter: filterValue
     });
-
-    // Re-enable transitions after a brief delay
-    setTimeout(() => {
-        iso.options.transitionDuration = '0.4s';
-    }, 50);
 }
 function initializeTagFilters() {
     const filterBtns = document.querySelectorAll('.filter-btn');
@@ -639,14 +650,27 @@ function setupScrollAnimations() {
 
 // ==================== Performance: Debounce Resize ====================
 let resizeTimer;
+
 window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
+
     resizeTimer = setTimeout(() => {
         // Recalculate Isotope layout on resize
         if (iso) {
+            // Temporarily disable transitions for the layout recalculation
+            const originalDuration = iso.options.transitionDuration;
+            iso.options.transitionDuration = 0;
+
             iso.layout();
+
+            // Re-enable transitions immediately after layout
+            setTimeout(() => {
+                if (iso) {
+                    iso.options.transitionDuration = originalDuration;
+                }
+            }, 10);
         }
-    }, 250);
+    }, 100);
 });
 
 // ==================== Accessibility: Focus Management ====================

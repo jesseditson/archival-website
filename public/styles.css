@@ -244,14 +244,20 @@ body.light-theme .theme-toggle .moon-icon {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 32%;
+  width: calc(33.333% - 16px);
   margin-bottom: 24px;
   max-height: 550px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1247px) {
   .post-card {
-    width: 48%;
+    width: calc(33.333% - 16px);
+  }
+}
+
+@media (max-width: 1023px) {
+  .post-card {
+    width: calc(50% - 12px);
   }
 }
 

@@ -493,7 +493,8 @@ function initializeIsotope() {
         },
         masonry: {
             columnWidth: '.post-card',
-            gutter: 24
+            gutter: 24,
+            fitWidth: false
         }
     });
 
@@ -514,6 +515,20 @@ function initializeIsotope() {
         grid.classList.add('isotope-ready');
         initialLoadComplete = true;
     });
+
+    // Additional safety: recalculate layout after a short delay
+    // This handles edge cases where fonts or other resources load late
+    setTimeout(() => {
+        if (iso) {
+            iso.layout();
+        }
+    }, 100);
+
+    setTimeout(() => {
+        if (iso) {
+            iso.layout();
+        }
+    }, 500);
 }
 
 // ==================== Tag Filtering ====================
@@ -627,8 +642,10 @@ let resizeTimer;
 window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
-        // Recalculate layouts if needed
-        console.log('Window resized');
+        // Recalculate Isotope layout on resize
+        if (iso) {
+            iso.layout();
+        }
     }, 250);
 });
 

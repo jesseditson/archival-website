@@ -644,9 +644,20 @@ window.addEventListener('resize', () => {
     resizeTimer = setTimeout(() => {
         // Recalculate Isotope layout on resize
         if (iso) {
+            // Temporarily disable transitions for smoother resize
+            const originalDuration = iso.options.transitionDuration;
+            iso.options.transitionDuration = 0;
+
             iso.layout();
+
+            // Re-enable transitions after layout completes
+            requestAnimationFrame(() => {
+                if (iso) {
+                    iso.options.transitionDuration = originalDuration;
+                }
+            });
         }
-    }, 250);
+    }, 150);
 });
 
 // ==================== Accessibility: Focus Management ====================

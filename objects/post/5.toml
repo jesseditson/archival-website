@@ -8,14 +8,3 @@ date = 2024-11-08T00:00:00
 tags = "code, design"
 link = "https://animejs.com"
 
-[[_link_meta]]
-field = "title"
-value = "Anime.js | JavaScript Animation Engine"
-
-[[_link_meta]]
-field = "description"
-value = "A fast and versatile JavaScript animation library"
-
-[[_link_meta]]
-field = "image"
-value = "https://animejs.com/media/site/5e9b48763d-1744100039/anime-js-sharing-image.png"

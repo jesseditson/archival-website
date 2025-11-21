@@ -194,9 +194,10 @@ function animateMastheadTitle() {
 }
 
 function renderPost(post) {
-    const parser = new DOMParser();
-    const dom = parser.parseFromString(post.content, 'text/html');
-    return dom.documentElement.textContent;
+    // The content is HTML-escaped in the JSON, so we need to decode it
+    const textarea = document.createElement('textarea');
+    textarea.innerHTML = post.content;
+    return textarea.value;
 }
 
 function openPostViewer(index) {
@@ -1053,26 +1054,63 @@ function setupVideoPlayButtonsInViewer() {
 const audioPlayers = new Map(); // Store audio player instances
 
 class AudioPlayer {
-    constructor(container) {
+    constructor(container, existingPlayer = null) {
         this.container = container;
         this.audioUrl = container.getAttribute('data-audio-url');
         this.canvas = container.querySelector('.audio-waveform');
-        this.ctx = this.canvas.getContext('2d');
         this.playBtn = container.querySelector('.audio-play-btn');
         this.playIcon = container.querySelector('.play-icon');
         this.pauseIcon = container.querySelector('.pause-icon');
         this.timeDisplay = container.querySelector('.audio-time');
         this.durationDisplay = container.querySelector('.audio-duration');
 
-        this.audio = new Audio(this.audioUrl);
-        this.audioContext = null;
-        this.analyser = null;
-        this.source = null;
-        this.waveformData = null;
-        this.isPlaying = false;
-        this.isLoaded = false;
+        this.ctx = this.canvas.getContext('2d');
 
-        this.init();
+        // If we have an existing player with the same audio URL, reuse it
+        if (existingPlayer && existingPlayer.audioUrl === this.audioUrl) {
+            this.audio = existingPlayer.audio;
+            this.audioContext = existingPlayer.audioContext;
+            this.waveformData = existingPlayer.waveformData;
+            this.isPlaying = existingPlayer.isPlaying;
+            this.isLoaded = existingPlayer.isLoaded;
+            this.isLoading = existingPlayer.isLoading;
+
+            // Sync UI state
+            this.syncUIState();
+            this.setupEventListeners();
+
+            // If already loaded, draw the waveform
+            if (this.isLoaded) {
+                this.resizeCanvas();
+                this.drawWaveform(this.audio.currentTime / this.audio.duration);
+            }
+        } else {
+            this.audio = new Audio(this.audioUrl);
+            this.audioContext = null;
+            this.analyser = null;
+            this.source = null;
+            this.waveformData = null;
+            this.isPlaying = false;
+            this.isLoaded = false;
+            this.isLoading = false;
+
+            this.init();
+        }
+    }
+
+    syncUIState() {
+        // Sync play/pause button state
+        if (this.isPlaying) {
+            this.playIcon.style.display = 'none';
+            this.pauseIcon.style.display = 'block';
+        } else {
+            this.playIcon.style.display = 'block';
+            this.pauseIcon.style.display = 'none';
+        }
+
+        // Sync time displays
+        this.timeDisplay.textContent = this.formatTime(this.audio.currentTime);
+        this.durationDisplay.textContent = this.formatTime(this.audio.duration);
     }
 
     async init() {
@@ -1098,9 +1136,37 @@ class AudioPlayer {
 
     async loadAudio() {
         try {
+            // Show loading state
+            this.isLoading = true;
+
+            // Create loading UI
+            this.showLoadingUI();
+
             // Fetch audio file
             const response = await fetch(this.audioUrl);
-            const arrayBuffer = await response.arrayBuffer();
+            const reader = response.body.getReader();
+
+            let receivedLength = 0;
+            const chunks = [];
+
+            // Download
+            while(true) {
+                const {done, value} = await reader.read();
+
+                if (done) break;
+
+                chunks.push(value);
+                receivedLength += value.length;
+            }
+
+            // Combine chunks
+            const chunksAll = new Uint8Array(receivedLength);
+            let position = 0;
+            for(let chunk of chunks) {
+                chunksAll.set(chunk, position);
+                position += chunk.length;
+            }
+            const arrayBuffer = chunksAll.buffer;
 
             // Create audio context
             this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -1108,16 +1174,100 @@ class AudioPlayer {
             // Decode audio data
             const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
 
-            // Extract waveform data
-            this.waveformData = this.extractWaveformData(audioBuffer);
+            // Extract waveform progressively
+            this.waveformData = await this.extractWaveformDataProgressive(audioBuffer);
 
             // Update duration display
             this.durationDisplay.textContent = this.formatTime(this.audio.duration || audioBuffer.duration);
 
+            this.isLoading = false;
             this.isLoaded = true;
+
+            // Remove loading UI
+            this.removeLoadingUI();
+
+            // Draw final waveform
+            this.drawWaveform(0);
         } catch (error) {
             console.error('Error loading audio:', error);
+            this.isLoading = false;
+            this.removeLoadingUI();
         }
+    }
+
+    showLoadingUI() {
+        // Create loading container
+        const loadingContainer = document.createElement('div');
+        loadingContainer.className = 'audio-loading';
+        loadingContainer.dataset.audioLoading = 'true';
+
+        // Create text
+        const loadingText = document.createElement('div');
+        loadingText.className = 'audio-loading-text';
+        loadingText.textContent = 'Loading Audio...';
+
+        // Create bars container
+        const barsContainer = document.createElement('div');
+        barsContainer.className = 'audio-loading-bars';
+
+        // Create 5 animated bars
+        for (let i = 0; i < 5; i++) {
+            const bar = document.createElement('div');
+            bar.className = 'audio-loading-bar';
+            barsContainer.appendChild(bar);
+        }
+
+        loadingContainer.appendChild(loadingText);
+        loadingContainer.appendChild(barsContainer);
+
+        // Wrap canvas in a positioned container if not already wrapped
+        if (!this.canvas.parentElement.classList.contains('audio-waveform-container')) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'audio-waveform-container';
+            this.canvas.parentElement.insertBefore(wrapper, this.canvas);
+            wrapper.appendChild(this.canvas);
+        }
+
+        // Add loading UI to the wrapper
+        this.canvas.style.opacity = '0.3';
+        this.canvas.parentElement.appendChild(loadingContainer);
+    }
+
+    removeLoadingUI() {
+        const loadingContainer = this.canvas.parentElement.querySelector('[data-audio-loading="true"]');
+        if (loadingContainer) {
+            loadingContainer.remove();
+        }
+        this.canvas.style.opacity = '1';
+    }
+
+
+    async extractWaveformDataProgressive(audioBuffer) {
+        const rawData = audioBuffer.getChannelData(0); // Get first channel
+        const samples = 500; // Number of samples for waveform
+        const blockSize = Math.floor(rawData.length / samples);
+        const filteredData = [];
+
+        for (let i = 0; i < samples; i++) {
+            let blockStart = blockSize * i;
+            let sum = 0;
+            for (let j = 0; j < blockSize; j++) {
+                sum += Math.abs(rawData[blockStart + j]);
+            }
+            filteredData.push(sum / blockSize);
+
+            // Draw progressively every 10 samples
+            if (i % 10 === 0 || i === samples - 1) {
+                const progress = 0.8 + (i / samples) * 0.2;
+                this.drawLoadingProgress(progress, filteredData.slice());
+                // Yield to UI thread
+                await new Promise(resolve => setTimeout(resolve, 0));
+            }
+        }
+
+        // Normalize data
+        const max = Math.max(...filteredData);
+        return filteredData.map(n => n / max);
     }
 
     extractWaveformData(audioBuffer) {
@@ -1138,6 +1288,99 @@ class AudioPlayer {
         // Normalize data
         const max = Math.max(...filteredData);
         return filteredData.map(n => n / max);
+    }
+
+    drawLoadingState() {
+        const width = this.canvas.width / window.devicePixelRatio;
+        const height = this.canvas.height / window.devicePixelRatio;
+
+        // Clear canvas
+        this.ctx.clearRect(0, 0, width, height);
+
+        // Draw placeholder bars
+        const styles = getComputedStyle(document.body);
+        const mutedColor = styles.getPropertyValue('--text-muted').trim();
+        this.ctx.fillStyle = mutedColor;
+        this.ctx.globalAlpha = 0.2;
+
+        const barCount = 500;
+        const barWidth = width / barCount;
+        const centerY = height / 2;
+
+        for (let i = 0; i < barCount; i++) {
+            const x = i * barWidth;
+            const barHeight = height * 0.3; // Placeholder height
+            this.ctx.fillRect(
+                x,
+                centerY - barHeight / 2,
+                barWidth * 0.8,
+                barHeight
+            );
+        }
+        this.ctx.globalAlpha = 1;
+    }
+
+    drawLoadingProgress(progress, partialWaveformData = null) {
+        const width = this.canvas.width / window.devicePixelRatio;
+        const height = this.canvas.height / window.devicePixelRatio;
+
+        // Clear canvas
+        this.ctx.clearRect(0, 0, width, height);
+
+        // Get colors from CSS variables
+        const styles = getComputedStyle(document.body);
+        const accentColor = styles.getPropertyValue('--accent-primary').trim();
+        const mutedColor = styles.getPropertyValue('--text-muted').trim();
+
+        const centerY = height / 2;
+
+        if (partialWaveformData && partialWaveformData.length > 0) {
+            // Draw the waveform we have so far
+            const max = Math.max(...partialWaveformData);
+            const normalizedData = partialWaveformData.map(n => n / max);
+            const barWidth = width / 500; // Total expected samples
+
+            normalizedData.forEach((value, index) => {
+                const barHeight = value * (height * 0.8);
+                const x = index * barWidth;
+
+                this.ctx.fillStyle = accentColor;
+                this.ctx.fillRect(
+                    x,
+                    centerY - barHeight / 2,
+                    barWidth * 0.8,
+                    barHeight
+                );
+            });
+
+            // Draw placeholder for remaining bars
+            this.ctx.fillStyle = mutedColor;
+            this.ctx.globalAlpha = 0.2;
+            for (let i = normalizedData.length; i < 500; i++) {
+                const x = i * barWidth;
+                const barHeight = height * 0.3;
+                this.ctx.fillRect(
+                    x,
+                    centerY - barHeight / 2,
+                    barWidth * 0.8,
+                    barHeight
+                );
+            }
+            this.ctx.globalAlpha = 1;
+        } else {
+            // Show download progress bar
+            const progressWidth = width * progress;
+
+            // Background
+            this.ctx.fillStyle = mutedColor;
+            this.ctx.globalAlpha = 0.2;
+            this.ctx.fillRect(0, centerY - 2, width, 4);
+            this.ctx.globalAlpha = 1;
+
+            // Progress
+            this.ctx.fillStyle = accentColor;
+            this.ctx.fillRect(0, centerY - 2, progressWidth, 4);
+        }
     }
 
     drawWaveform(progress = 0) {
@@ -1186,11 +1429,17 @@ class AudioPlayer {
     }
 
     setupEventListeners() {
-        // Play/pause button
-        this.playBtn.addEventListener('click', () => this.togglePlay());
+        // Play/pause button - stop propagation to prevent opening viewer
+        this.playBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.togglePlay();
+        });
 
-        // Canvas click for scrubbing
-        this.canvas.addEventListener('click', (e) => this.handleCanvasClick(e));
+        // Canvas click for scrubbing - stop propagation to prevent opening viewer
+        this.canvas.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.handleCanvasClick(e);
+        });
 
         // Audio events
         this.audio.addEventListener('timeupdate', () => this.updateProgress());
@@ -1265,18 +1514,38 @@ class AudioPlayer {
 function setupAudioPlayers() {
     const audioContainers = document.querySelectorAll('.post-audio, .viewer-post-audio');
 
+    // Clean up any players whose containers are no longer in the DOM
+    const containersToRemove = [];
+    audioPlayers.forEach((_player, container) => {
+        if (!document.body.contains(container)) {
+            containersToRemove.push(container);
+        }
+    });
+    containersToRemove.forEach(container => audioPlayers.delete(container));
+
     audioContainers.forEach(container => {
         // Skip if already initialized
         if (audioPlayers.has(container)) return;
 
-        const player = new AudioPlayer(container);
+        const audioUrl = container.getAttribute('data-audio-url');
+
+        // Check if there's an existing player with the same URL (from grid view)
+        let existingPlayer = null;
+        for (const [existingContainer, player] of audioPlayers.entries()) {
+            if (player.audioUrl === audioUrl && existingContainer !== container) {
+                existingPlayer = player;
+                break;
+            }
+        }
+
+        const player = new AudioPlayer(container, existingPlayer);
         audioPlayers.set(container, player);
     });
 }
 
 function setupAudioPlayersInViewer() {
-    // Wait a tick for DOM to update
+    // Wait for DOM to update and elements to be fully rendered
     setTimeout(() => {
         setupAudioPlayers();
-    }, 0);
+    }, 100);
 }

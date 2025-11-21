@@ -5,7 +5,7 @@ date = 2024-11-11T00:00:00
 tags = "photography, light"
 
 [image]
-display_type = "image"
-filename = "photo-1506905925346-21bda4d32df4.avif"
-sha = "04f79eb0515dfc9fea051829055d3a5338c5790a20ad5e9eb2a3f33b1f863d1d"
+sha = "b30f27890ad41e7aecf532e3f7ef95b258dc48cf1c63ce9302ba3b67fbb5bcb8"
+filename = "golden-hour.avif"
 mime = "image/avif"
+display_type = "image"

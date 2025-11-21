@@ -6,5 +6,5 @@ This ambient audio piece creates a calming atmosphere, perfect for focus or rela
 The waveform visualization lets you see the audio's dynamics and scrub through different sections by clicking anywhere on the waveform.
 """
 excerpt = "A peaceful ambient soundscape"
-date = 2024-11-14T00:00:00
+date = 2024-11-15T00:00:00
 tags = "audio, ambient"

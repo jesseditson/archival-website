@@ -1,10 +1,14 @@
 order = 14
-title = "Ocean Waves"
+title = "Barbershop Simulator"
 content = """
-There's something mesmerizing about watching the ocean. This short clip captures the endless rhythm of waves rolling onto the shore.
-
-The continuous motion is both calming and powerful, a reminder of nature's perpetual energy.
+A classic mixtape from a game that never was.
 """
-excerpt = "The rhythmic motion of coastal waters"
+excerpt = "A classic mixtape from a game that never was."
 date = 2024-11-14T00:00:00
 tags = "nature, video"
+
+[audio]
+sha = "dc03cadf2ed61bf9003fdc5268f26051ec9b3603ae099167b59609d05fe56055"
+filename = "barbershop-simulator.mp3"
+mime = "audio/mpeg"
+display_type = "audio"

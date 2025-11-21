@@ -586,12 +586,9 @@ body.light-theme .theme-toggle .moon-icon {
     height: 48px;
   }
 
-  .viewer-prev {
-    left: var(--spacing-md);
-  }
-
-  .viewer-next {
-    right: var(--spacing-md);
+  .viewer-nav,
+  .viewer-counter {
+    display: none;
   }
 }
 

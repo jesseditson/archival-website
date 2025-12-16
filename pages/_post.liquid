@@ -80,25 +80,6 @@
     target="_blank"
     rel="noopener noreferrer"
     class="link-preview-card">
-    {%- for meta in post._link_meta -%}
-      {%- if meta.field == "image" -%}
-        <div class="link-preview-image" style="background-image: url('{{meta.value}}')"></div>
-      {%- endif -%}
-    {%- endfor -%}
-    <div class="link-preview-content">
-      {%- for meta in post._link_meta -%}
-        {%- if meta.field != "image" -%}
-          <div class="link-preview-{{meta.field}}">{{ meta.value }}</div>
-        {%- endif -%}
-      {%- endfor -%}
-      {%- assign link_parts = post.link | split: '/' -%}
-      <div class="link-preview-url">
-        {%- if link_parts.size > 2 -%}
-          {{ link_parts[0] }}//{{ link_parts[2] }}
-        {%- else -%}
-          {{ post.link }}
-        {%- endif -%}
-      </div>
-    </div>
+    <div class="link-preview-content"></div>
   </a>
 {%- endunless -%}

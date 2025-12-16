@@ -15,6 +15,3 @@ video = "video"
 audio = "audio"
 link = "string"
 template = "post"
-[post._link_meta]
-field = "string"
-value = "string"

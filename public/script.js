@@ -120,6 +120,9 @@ function initializeBlog() {
         });
     });
 
+    // Add Link Previews
+    addLinkPreviews();
+
     // Setup intersection observer for lazy loading
     setupPostObserver(postCards);
 
@@ -128,6 +131,41 @@ function initializeBlog() {
 
     // Setup audio players
     setupAudioPlayers();
+}
+
+function addLinkPreviews() {
+    const previewCards = document.querySelectorAll(".link-preview-card");
+    previewCards.forEach((card) => {
+        const url = card.getAttribute("href");
+        if (url) {
+            const contentEl = card.querySelector(".link-preview-content");
+            const linkEl = document.createElement("div");
+            linkEl.classList.add("link-preview-url");
+            linkEl.innerText = url;
+            contentEl.appendChild(linkEl);
+            fetch(`/carriers/metadata?url=${url}`).then(async (response) => {
+                const metadata = await response.json();
+                const {description, image, title} = metadata;
+                if (image) {
+                    const imageEl = document.createElement("div");
+                    imageEl.classList.add("link-preview-image");
+                    imageEl.style.backgroundImage = `url('${image}')`;
+                    console.log(card, contentEl, imageEl)
+                    card.insertBefore(imageEl, contentEl);
+                }
+                for (const [name, value] of Object.entries({title, description})) {
+                    if (value) {
+                        const fieldEl = document.createElement("div");
+                        fieldEl.classList.add(`link-preview-${name}`);
+                        fieldEl.innerText = value;
+                        contentEl.appendChild(fieldEl);
+                    }
+                }
+            }).catch(e => {
+                console.log(`Failed loading ${url}: ${e.toString()}`);
+            })
+        }
+    });
 }
 
 // ==================== Lazy Loading with Intersection Observer ====================

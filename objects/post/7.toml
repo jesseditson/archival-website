@@ -4,7 +4,9 @@ excerpt = "Lines and shadows in the city"
 date = 2024-11-06T00:00:00
 tags = "photography, design"
 
-[image]
+[media]
+type = "image"
+[media.value]
 display_type = "image"
 filename = "photo-1480714378408-67cf0d13bc1b.avif"
 sha = "e05d6761d263f64ace056f2b4e05707b3a0f2d4a0add3fe97032b74c71ec76f0"

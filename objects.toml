@@ -10,8 +10,16 @@ content = "markdown"
 excerpt = "string"
 date = "date"
 tags = "string"
-image = "image"
-video = "video"
-audio = "audio"
-link = "string"
 template = "post"
+[[post.media]]
+name = "image"
+type = "image"
+[[post.media]]
+name = "video"
+type = "video"
+[[post.media]]
+name = "audio"
+type = "audio"
+[[post.media]]
+name = "link"
+type = "string"

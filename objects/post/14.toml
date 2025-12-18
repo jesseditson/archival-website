@@ -7,7 +7,9 @@ excerpt = "A classic mixtape from a game that never was."
 date = 2024-11-14T00:00:00
 tags = "nature, video"
 
-[audio]
+[media]
+type = "audio"
+[media.value]
 sha = "dc03cadf2ed61bf9003fdc5268f26051ec9b3603ae099167b59609d05fe56055"
 filename = "barbershop-simulator.mp3"
 mime = "audio/mpeg"

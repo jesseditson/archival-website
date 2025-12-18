@@ -36,49 +36,47 @@
     <article class="post-card{{ tag_classes }}"
              data-path="{{post.path}}"
              data-index="{{ forloop.index0 }}"
-             data-tags="{{ post.tags }}"
-             data-link="{{ post.link | escape }}">
+             data-tags="{{ post.tags }}">
 
-      <!-- Optional Image -->
-      {% unless post.image == blank %}
-        <div class="post-image">
-          <img src="{{ post.image.url }}" alt="{{ post.title }}" loading="lazy">
-        </div>
-      {% endunless %}
-
-      <!-- Optional Video -->
-      {% unless post.video == blank %}
-        <div class="post-video">
-          <video src="{{ post.video.url }}" preload="metadata" playsinline>
-            Your browser does not support the video tag.
-          </video>
-          <button class="video-play-overlay" aria-label="Play video">
-            <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
-              <circle cx="12" cy="12" r="10" fill="rgba(255, 255, 255, 0.9)" />
-              <path d="M10 8l6 4-6 4V8z" fill="currentColor" />
-            </svg>
-          </button>
-        </div>
-      {% endunless %}
-
-      <!-- Optional Audio -->
-      {% unless post.audio == blank %}
-        <div class="post-audio" data-audio-url="{{ post.audio.url }}">
-          <canvas class="audio-waveform"></canvas>
-          <div class="audio-controls">
-            <button class="audio-play-btn" aria-label="Play audio">
-              <svg class="play-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path d="M8 5v14l11-7z" fill="currentColor"/>
-              </svg>
-              <svg class="pause-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" style="display: none;">
-                <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" fill="currentColor"/>
+    {%- unless post.media == blank -%}
+      {%- case post.media.type -%}
+        {%- when "image" -%}
+          <!-- Optional Image -->
+          <div class="post-image">
+            <img src="{{ post.media.value.url }}" alt="{{ post.title }}" loading="lazy">
+          </div>
+        {%- when "video" -%}
+          <!-- Optional Video -->
+          <div class="post-video">
+            <video src="{{ post.media.value.url }}" preload="metadata" playsinline>
+              Your browser does not support the video tag.
+            </video>
+            <button class="video-play-overlay" aria-label="Play video">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="10" fill="rgba(255, 255, 255, 0.9)" />
+                <path d="M10 8l6 4-6 4V8z" fill="currentColor" />
               </svg>
             </button>
-            <span class="audio-time">0:00</span>
-            <span class="audio-duration">0:00</span>
           </div>
-        </div>
-      {% endunless %}
+        {%- when "audio" -%}
+          <!-- Optional Audio -->
+          <div class="post-audio" data-audio-url="{{ post.media.value.url }}">
+            <canvas class="audio-waveform"></canvas>
+            <div class="audio-controls">
+              <button class="audio-play-btn" aria-label="Play audio">
+                <svg class="play-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M8 5v14l11-7z" fill="currentColor"/>
+                </svg>
+                <svg class="pause-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" style="display: none;">
+                  <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" fill="currentColor"/>
+                </svg>
+              </button>
+              <span class="audio-time">0:00</span>
+              <span class="audio-duration">0:00</span>
+            </div>
+          </div>
+        {%- endcase -%}
+      {%- endunless -%}
 
       <!-- Post Content -->
       <div class="post-content">

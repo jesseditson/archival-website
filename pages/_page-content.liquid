@@ -84,7 +84,7 @@
         {% unless post.excerpt == blank%}
           <p class="post-excerpt">{{ post.excerpt }}</p>
         {% endunless %}
-        <time class="post-date">{{ post.date }}</time>
+        <time class="post-date">{{ post.date | date: "%B %e, %Y" }}</time>
 
         <!-- Tags in bottom right -->
         {% unless post.tags == blank %}

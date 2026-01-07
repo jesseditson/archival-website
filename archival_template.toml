@@ -4,7 +4,7 @@ description = """
 This template is perfect for a home page. It's a beautiful site where you can post pictures, links, blog posts, small updates, videos, or audio.
 """
 context = """
-This is a general template which is a good fallback and especially appropriate for an individual social presence. If you are provided media, make blog posts for them. Always make at least 5 posts.
+This is a general template which is a good fallback and especially appropriate for an individual social presence. If you are provided media, make blog posts for them. Always make at least 5 posts. Never make more than 3 tags on a post.
 """
 tags = ["images", "social", "personal", "individual", "blog", "posts"]
 tlds = ["com", "me"]

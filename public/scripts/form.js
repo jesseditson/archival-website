@@ -24,9 +24,9 @@ document.addEventListener('click', (e) => {
       }
 
       // Scroll to the booking section quickly
-      const bookSection = document.getElementById('book');
-      if (bookSection) {
-        const targetPosition = bookSection.getBoundingClientRect().top + window.pageYOffset;
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        const targetPosition = contactSection.getBoundingClientRect().top + window.pageYOffset;
         const startPosition = window.pageYOffset;
         const distance = targetPosition - startPosition;
         const duration = 400; // milliseconds (faster scroll)
@@ -58,8 +58,10 @@ document.addEventListener('click', (e) => {
 document.addEventListener('DOMContentLoaded', () => {
   // Check both hash and search params for service parameter
   let serviceParam = null;
+  let submitParam = null;
+  let errorMessage = null;
 
-  // Check if service is in the hash (e.g., #book?service=ServiceName)
+  // Check if service is in the hash (e.g., #contact?service=ServiceName)
   if (window.location.hash.includes('?')) {
     const hashParams = new URLSearchParams(window.location.hash.split('?')[1]);
     serviceParam = hashParams.get('service');
@@ -69,6 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!serviceParam) {
     const urlParams = new URLSearchParams(window.location.search);
     serviceParam = urlParams.get('service');
+    submitParam = urlParams.get('submitStatus');
+    errorMessage = urlParams.get('error');
   }
 
   if (serviceParam) {
@@ -85,5 +89,19 @@ document.addEventListener('DOMContentLoaded', () => {
         sessionSelect.value = matchingOption.value;
       }
     }
+  }
+
+  if (submitParam) {
+    const contactElement = document.querySelector("#contact");
+    const completeElement = document.querySelector("#contact-complete");
+    const errorElement = document.querySelector("#contact-complete-error");
+    if (errorMessage) {
+      const messageElement = document.querySelector("#contact-complete-message");
+      errorElement.innerText = errorMessage;
+      errorElement.style.removeProperty("display");
+      messageElement.style.setProperty("display", "none");
+    }
+    completeElement.style.removeProperty("display");
+    contactElement.style.setProperty("display", "none");
   }
 });

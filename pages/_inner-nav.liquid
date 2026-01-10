@@ -1,20 +1,27 @@
 <header class="header condensed">
   <div class="container">
     <a href="/" class="professional-home">
-      <div class="avatar-wrapper">
-        <img src="{{objects.professional.image.url}}"
-          alt="{{ objects.professional.first_name }} {{ objects.professional.last_name }}" class="avatar" />
-      </div>
+      {% unless info.image == blank %}
+        <div class="avatar-wrapper">
+          <img
+            src="{{info.image.url}}"
+            alt="{{ info.first_name }} {{ info.last_name }}"
+            class="avatar" />
+        </div>
+      {% endunless %}
       <div class="professional-name-title">
-        <span class="professional-name">{{ objects.professional.first_name }} {{ objects.professional.last_name
-          }}</span>
+        <span class="professional-name">{{ info.first_name }} {{ info.last_name
+}}</span>
         <span class="professional-title">
-          {{ objects.professional.title }}</span>
+          {{ info.title }}</span>
       </div>
     </a>
 
     <nav class="primary-nav">
-      <button class="mobile-nav-toggle" aria-controls="nav-items" aria-expanded="false">
+      <button
+        class="mobile-nav-toggle"
+        aria-controls="nav-items"
+        aria-expanded="false">
         <span class="sr-only">Menu</span>
       </button>
       <div class="nav-items-wrapper">

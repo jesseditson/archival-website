@@ -1,6 +1,6 @@
 # This file is used to define the objects available on your site.
 
-[professional]
+[info]
 first_name = "string"
 last_name = "string"
 business_name = "string"
@@ -8,6 +8,10 @@ title = "string"
 location = "string"
 image = "image"
 about = "markdown"
+contact_header = "string"
+contact_message = "string"
+contact_complete_header = "string"
+contact_complete_message = "string"
 
 [service]
 template = "service"
@@ -20,3 +24,11 @@ price = "string"
 quote = "string"
 author = "string"
 thumbnail = "image"
+
+[google_form]
+form_id = "string"
+name_field_id="string"
+email_field_id="string"
+phone_field_id="string"
+service_field_id="string"
+comments_field_id="string"

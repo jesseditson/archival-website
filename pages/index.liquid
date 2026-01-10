@@ -7,20 +7,22 @@
 
     <!-- Professional photo -->
     <div class="avatar-wrapper">
-      <img src="{{objects.professional.image.url}}"
-        alt="{{ objects.professional.first_name }} {{ objects.professional.last_name }}" class="avatar" />
+      <img
+        src="{{info.image.url}}"
+        alt="{{ info.first_name }} {{ info.last_name }}"
+        class="avatar" />
     </div>
 
     <!-- Professional name, title, location -->
     <div class="masthead">
-      <h1 class="heading professional-name">{{ objects.professional.first_name }} {{ objects.professional.last_name }}
+      <h1 class="heading professional-name">{{ info.first_name }} {{ info.last_name }}
       </h1>
-      <p class="subheading title">{{ objects.professional.title }}</p>
-      <p class="subheading location">{{ objects.professional.location }}</p>
+      <p class="subheading title">{{ info.title }}</p>
+      <p class="subheading location">{{ info.location }}</p>
     </div>
 
     <!-- Masthead CTA -->
-    <a href="#book" class="primary-cta-large">Book a Session</a>
+    <a href="#contact" class="primary-cta-large">Get in Touch</a>
   </div>
 </header>
 
@@ -37,158 +39,194 @@
 
   <!-- About Me -->
   <section id="about-me" class="body-section container">
-    <h2 class="heading">Hi, I'm {{ objects.professional.first_name }}</h2>
-    {{ objects.professional.about }}
+    <h2 class="heading">Hi, I'm {{ info.first_name }}</h2>
+    {{ info.about }}
   </section>
 
   <!-- Services -->
   <section id="services" class="body-section container">
     <h2 class="heading">Services Offered</h2>
     <div class="services-grid">
-      {% for service in objects.service %}
-      <div class="service-item">
-        <h3 class="service-title">{{ service.name }}</h3>
-        <p class="service-description">{{ service.description }}</p>
-        <a href="{{ service.path }}.html" class="service-moreinfo">More info &rarr;</a>
-        <div class="service-footer">
-          <span class="service-price">{{ service.price }}</span>
-          <a href="#book?service={{ service.name | url_encode }}" class="service-cta">Book</a>
+      {% for service in services %}
+        <div class="service-item">
+          <h3 class="service-title">{{ service.name }}</h3>
+          <p class="service-description">{{ service.description }}</p>
+          <a href="{{ service.path }}.html" class="service-moreinfo">More info &rarr;</a>
+          <div class="service-footer">
+            <span class="service-price">{{ service.price }}</span>
+            <a href="#contact?service={{ service.name | url_encode }}" class="service-cta">Contact</a>
+          </div>
         </div>
-      </div>
       {% endfor %}
     </div>
   </section>
 
   <!-- Testimonials -->
   {% if testimonials.size > 0 %}
-  <section id="testimonials" class="body-section container">
-    <h2 class="heading">Client Testimonials</h2>
+    <section id="testimonials" class="body-section container">
+      <h2 class="heading">Client Testimonials</h2>
+    </section>
+
+    {% if testimonials.size == 1 %}
+      <!-- Single testimonial: full width -->
+      <div class="testimonial-grid single">
+        {% for testimonial in testimonials %}
+          <div class="testimonial-item">
+            <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
+            <div class="testimonial-footer">
+              {% if testimonial.thumbnail.url %}
+                <img
+                  src="{{testimonial.thumbnail.url}}"
+                  alt="{{testimonial.author}}"
+                  class="testimonial-avatar" />
+              {% endif %}
+              <p class="testimonial-author">{{ testimonial.author }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% elsif testimonials.size == 2 %}
+      <!-- Two testimonials: 2 column grid -->
+      <div class="testimonial-grid two">
+        {% for testimonial in testimonials %}
+          <div class="testimonial-item">
+            <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
+            <div class="testimonial-footer">
+              {% if testimonial.thumbnail.url %}
+                <img
+                  src="{{testimonial.thumbnail.url}}"
+                  alt="{{testimonial.author}}"
+                  class="testimonial-avatar" />
+              {% endif %}
+              <p class="testimonial-author">{{ testimonial.author }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% elsif testimonials.size == 3 %}
+      <!-- Three testimonials: 2 on top, 1 full width below -->
+      <div class="testimonial-grid three">
+        {% for testimonial in testimonials %}
+          <div class="testimonial-item">
+            <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
+            <div class="testimonial-footer">
+              {% if testimonial.thumbnail.url %}
+                <img
+                  src="{{testimonial.thumbnail.url}}"
+                  alt="{{testimonial.author}}"
+                  class="testimonial-avatar" />
+              {% endif %}
+              <p class="testimonial-author">{{ testimonial.author }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% elsif testimonials.size == 4 %}
+      <!-- Four testimonials: 2x2 grid -->
+      <div class="testimonial-grid four">
+        {% for testimonial in testimonials %}
+          <div class="testimonial-item">
+            <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
+            <div class="testimonial-footer">
+              {% if testimonial.thumbnail.url %}
+                <img
+                  src="{{testimonial.thumbnail.url}}"
+                  alt="{{testimonial.author}}"
+                  class="testimonial-avatar" />
+              {% endif %}
+              <p class="testimonial-author">{{ testimonial.author }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <!-- Five or more testimonials: scrolling marquee -->
+      {% assign half_testimonial_count = testimonials.size | divided_by: 2 | round %}
+      <div class="testimonial-marquee">
+        <div class="testimonial-track">
+          {% for testimonial in testimonials limit: half_testimonial_count %}
+            <div class="testimonial-item">
+              <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
+              <div class="testimonial-footer">
+                {% if testimonial.thumbnail.url %}
+                  <img
+                    src="{{testimonial.thumbnail.url}}"
+                    alt="{{testimonial.author}}"
+                    class="testimonial-avatar" />
+                {% endif %}
+                <p class="testimonial-author">{{ testimonial.author }}</p>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="testimonial-marquee">
+        <div class="testimonial-track reverse">
+          {% for testimonial in testimonials offset: half_testimonial_count %}
+            <div class="testimonial-item">
+              <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
+              <div class="testimonial-footer">
+                {% if testimonial.thumbnail.url %}
+                  <img
+                    src="{{testimonial.thumbnail.url}}"
+                    alt="{{testimonial.author}}"
+                    class="testimonial-avatar" />
+                {% endif %}
+                <p class="testimonial-author">{{ testimonial.author }}</p>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  {% endif %}
+
+  <!-- Contact session -->
+  <section
+    id="contact-complete"
+    class="body-section container"
+    style="display: none;">
+    <h2 class="heading">{{ info.contact_complete_header | default: "Thanks for reaching out!" }}</h2>
+    <p id="contact-complete-message" class="main-body">{{ info.contact_complete_message | default: "We'll be in touch soon." }}</p>
+    <p
+      id="contact-complete-error"
+      class="main-body error"
+      style="display: none;"></p>
   </section>
-
-  {% if testimonials.size == 1 %}
-  <!-- Single testimonial: full width -->
-  <div class="testimonial-grid single">
-    {% for testimonial in testimonials %}
-    <div class="testimonial-item">
-      <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
-      <div class="testimonial-footer">
-        {% if testimonial.thumbnail.url %}
-        <img src="{{testimonial.thumbnail.url}}" alt="{{testimonial.author}}" class="testimonial-avatar" />
-        {% endif %}
-        <p class="testimonial-author">{{ testimonial.author }}</p>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-  {% elsif testimonials.size == 2 %}
-  <!-- Two testimonials: 2 column grid -->
-  <div class="testimonial-grid two">
-    {% for testimonial in testimonials %}
-    <div class="testimonial-item">
-      <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
-      <div class="testimonial-footer">
-        {% if testimonial.thumbnail.url %}
-        <img src="{{testimonial.thumbnail.url}}" alt="{{testimonial.author}}" class="testimonial-avatar" />
-        {% endif %}
-        <p class="testimonial-author">{{ testimonial.author }}</p>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-  {% elsif testimonials.size == 3 %}
-  <!-- Three testimonials: 2 on top, 1 full width below -->
-  <div class="testimonial-grid three">
-    {% for testimonial in testimonials %}
-    <div class="testimonial-item">
-      <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
-      <div class="testimonial-footer">
-        {% if testimonial.thumbnail.url %}
-        <img src="{{testimonial.thumbnail.url}}" alt="{{testimonial.author}}" class="testimonial-avatar" />
-        {% endif %}
-        <p class="testimonial-author">{{ testimonial.author }}</p>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-  {% elsif testimonials.size == 4 %}
-  <!-- Four testimonials: 2x2 grid -->
-  <div class="testimonial-grid four">
-    {% for testimonial in testimonials %}
-    <div class="testimonial-item">
-      <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
-      <div class="testimonial-footer">
-        {% if testimonial.thumbnail.url %}
-        <img src="{{testimonial.thumbnail.url}}" alt="{{testimonial.author}}" class="testimonial-avatar" />
-        {% endif %}
-        <p class="testimonial-author">{{ testimonial.author }}</p>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-  {% else %}
-  <!-- Five or more testimonials: scrolling marquee -->
-  {% assign half_testimonial_count = testimonials.size | divided_by: 2 | round %}
-  <div class="testimonial-marquee">
-    <div class="testimonial-track">
-      {% for testimonial in testimonials limit: half_testimonial_count %}
-      <div class="testimonial-item">
-        <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
-        <div class="testimonial-footer">
-          {% if testimonial.thumbnail.url %}
-          <img src="{{testimonial.thumbnail.url}}" alt="{{testimonial.author}}" class="testimonial-avatar" />
-          {% endif %}
-          <p class="testimonial-author">{{ testimonial.author }}</p>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-  <div class="testimonial-marquee">
-    <div class="testimonial-track reverse">
-      {% for testimonial in testimonials offset: half_testimonial_count %}
-      <div class="testimonial-item">
-        <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
-        <div class="testimonial-footer">
-          {% if testimonial.thumbnail.url %}
-          <img src="{{testimonial.thumbnail.url}}" alt="{{testimonial.author}}" class="testimonial-avatar" />
-          {% endif %}
-          <p class="testimonial-author">{{ testimonial.author }}</p>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-  {% endif %}
-  {% endif %}
-
-  <!-- Book a session -->
-  <section id="book" class="body-section container">
-    <h2 class="heading">Book a Session</h2>
-    <p class="main-body">I would love to hear from you. Please fill out the form below so we can get started.</p>
-    <form class="form-container">
+  <section id="contact" class="body-section container">
+    <h2 class="heading">{{ info.contact_header | default: "Book a Session" }}</h2>
+    <p class="main-body">{{ info.contact_message | default: "I would love to hear from you. Please fill out the form below so we can get started." }}</p>
+    <form
+      class="form-container"
+      action="/carriers/submit-form"
+      method="POST">
+      <input
+        type="hidden"
+        name="form_id"
+        value="{{google_form.form_id}}" />
       <div class="form-grid">
         <!-- Row 1, Col 1 -->
         <label>
           <span>Your name</span>
-          <input type="text" name="name" />
+          <input type="text" name="{{google_form.name_field_id}}" />
         </label>
         <!-- Row 1, Col 2 -->
         <label>
           <span>Email address</span>
-          <input type="email" name="email" />
+          <input name="{{google_form.email_field_id}}" type="email" />
         </label>
 
         <!-- Row 2, Col 1 -->
         <label>
           <span>Phone number</span>
-          <input type="tel" name="phone" />
+          <input name="{{google_form.phone_field_id}}" type="tel" />
         </label>
         <!-- Row 2, Col 2 -->
         <label>
-          <span>Session type</span>
-          <select name="session">
+          <span>Service type</span>
+          <select name="{{google_form.service_field_id}}">
             {% for service in services %}
-            <option>{{ service.name }}</option>
+              <option>{{ service.name }}</option>
             {% endfor %}
           </select>
         </label>
@@ -196,7 +234,7 @@
         <!-- Full-width Comments row -->
         <label class="comments">
           <span>Comments</span>
-          <textarea name="comments"></textarea>
+          <textarea name="{{google_form.comments_field_id}}"></textarea>
         </label>
 
         <!-- Submit button in bottom-left -->

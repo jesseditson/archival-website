@@ -6,14 +6,23 @@ tagline = "string"
 full_about = "markdown"
 
 [experience]
-description = "markdown"
-
-[work]
+title = "string"
 description = "markdown"
 
 [contact]
+title = "string"
 description = "markdown"
 email = "string"
 
 [resume]
 file = "upload"
+
+[work]
+title = "string"
+description = "markdown"
+
+[work.project]
+name = "string"
+description = "markdown"
+tags = "string"
+image = "image"

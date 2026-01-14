@@ -8,3 +8,5 @@ This template is for a professional that is selling a service or group of servic
 """
 tags = ["professional", "service"]
 tlds = ["com", "me"]
+
+keep_objects = ["google_form"]

@@ -1,1 +1,2 @@
 upload_prefix = "archival-template-uploads/"
+uploads_url = "https://uploads.archival.dev"

@@ -4,7 +4,7 @@ description = """
 This template puts portfolio images front and center with a tiled mosaic on the home page, and about and contact pages.
 """
 context = """
-This template is appropriate when provided many images that are visually interesting or distinct.
+This template is appropriate when provided many images that are visually interesting or distinct. When filling in photo objects, fill in at least 8 objects.
 """
 tags = ["images", "portfolio"]
 tlds = ["com", "me"]

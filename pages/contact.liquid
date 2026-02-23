@@ -1,12 +1,6 @@
-{% assign title = objects.site.name | append: " | Contact" %}
+{% assign title = site.name | append: " | Contact" %}
 {% layout 'theme' title: title
   , active_page: "contact" %}
-{% assign contact = objects.contact %}
-{% assign project_types = contact_project_types | sort: "order" %}
-{% assign budget_ranges = contact_budgets | sort: "order" %}
-{% assign contact_channels = contact_methods | sort: "order" %}
-{% assign social_links = contact_socials | sort: "order" %}
-{% assign faq_items = contact_faqs | sort: "order" %}
 
 <!-- Contact Section -->
 <div class="contact-section">
@@ -37,8 +31,9 @@
           <label for="project-type">Project Type</label>
           <select id="project-type" name="project-type" required>
             <option value="">Select a project type</option>
+            {% assign project_types = contact.project_types | split: "," %}
             {% for option in project_types %}
-              <option value="{{ option.value }}">{{ option.label }}</option>
+              <option value="{{ option | downcase | url_encode }}">{{ option }}</option>
             {% endfor %}
           </select>
         </div>
@@ -47,8 +42,9 @@
           <label for="budget">Budget Range</label>
           <select id="budget" name="budget">
             <option value="">Select budget range</option>
-            {% for option in budget_ranges %}
-              <option value="{{ option.value }}">{{ option.label }}</option>
+            {% assign budgets = contact.budgets | split: "/" %}
+            {% for option in budgets %}
+            <option value="{{ option | downcase | url_encode }}">{{ option }}</option>
             {% endfor %}
           </select>
         </div>
@@ -70,7 +66,7 @@
       <div class="contact-info-card animate-on-scroll">
         <h3>Get In Touch</h3>
         <div class="contact-methods">
-          {% for method in contact_channels %}
+          {% for method in contact.contact_method %}
             <div class="contact-method">
               <div class="method-icon">{{ method.icon }}</div>
               <div class="method-details">
@@ -90,7 +86,7 @@
         <div class="social-links-card animate-on-scroll">
           <h3>Follow My Work</h3>
           <div class="social-links">
-            {% for social in social_links %}
+            {% for social in contact.social %}
               <a href="{{ social.url }}" class="social-link">
                 <span class="social-icon">{{ social.icon }}</span>
                 <span class="social-name">{{ social.name }}</span>
@@ -117,7 +113,7 @@
     <div class="faq-section animate-on-scroll">
       <h3 class="content-title">Frequently Asked Questions</h3>
       <div class="faq-list">
-        {% for faq in faq_items %}
+        {% for faq in contact.faq %}
           <div class="faq-item">
             <button class="faq-question">
               <span>{{ faq.question }}</span>

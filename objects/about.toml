@@ -21,3 +21,100 @@ sha = "9aa500a03bc23b4380221cb2fb5bf9f29fd42b232266b1c9031c851bcb842c55"
 filename = "photographica-about-3.jpeg"
 mime = "image/jpeg"
 display_type = "image"
+
+[[expertise]]
+icon = "📸"
+title = "Portrait Photography"
+description = "Capturing the essence of personality through intimate, powerful portraits that tell a story."
+
+[[expertise]]
+icon = "🌄"
+title = "Landscape & Nature"
+description = "Showcasing the breathtaking beauty of our natural world, from mountains to oceans."
+
+[[expertise]]
+icon = "🏙️"
+title = "Urban & Street"
+description = "Finding beauty in the chaos of city life, documenting the human experience in motion."
+
+[[expertise]]
+icon = "💼"
+title = "Commercial Work"
+description = "Creating compelling visual content for brands that want to make an impact."
+
+[[expertise]]
+icon = "🎬"
+title = "Editorial & Documentary"
+description = "Long-form visual storytelling that dives deep into subjects and communities."
+
+[[expertise]]
+icon = "🎨"
+title = "Fine Art"
+description = "Pushing creative boundaries with conceptual work that challenges perspectives."
+
+[[feature]]
+name = "National Geographic"
+
+[[feature]]
+name = "Vogue"
+
+[[feature]]
+name = "Time Magazine"
+
+[[feature]]
+name = "Adobe"
+
+[[feature]]
+name = "The Guardian"
+
+[[feature]]
+name = "Rolling Stone"
+
+[[process]]
+title = "01. Discovery"
+description = "We start with a conversation about your vision, goals, and the story you want to tell."
+
+[[process]]
+title = "02. Planning"
+description = "Location scouting, mood boards, shot lists—meticulous preparation for the perfect shoot."
+
+[[process]]
+title = "03. Production"
+description = "The magic happens. I capture the moments that matter with precision and creativity."
+
+[[process]]
+title = "04. Post-Production"
+description = "Careful editing and retouching to bring out the best in every image."
+
+[[process]]
+title = "05. Delivery"
+description = "High-resolution finals delivered in your preferred format, ready to share with the world."
+
+[[stat]]
+value = 500
+label = "Projects Completed"
+
+[[stat]]
+value = 50
+label = "Countries Visited"
+
+[[stat]]
+value = 15
+label = "Years Experience"
+
+[[stat]]
+value = 100
+label = "Awards Won"
+
+[[story]]
+title = ""
+body = "Photography has been my passion for over 15 years. What started as a simple hobby with a borrowed camera has evolved into a lifelong pursuit of capturing the extraordinary in the ordinary."
+
+[[story]]
+title = ""
+body = "My work spans across multiple genres—from intimate portraits that reveal the soul, to vast landscapes that showcase nature's grandeur, to street photography that captures the raw energy of urban life. Each photograph is a story waiting to be told, a moment frozen in time that speaks to the viewer's heart."
+
+[[story]]
+title = ""
+body = "Based between New York and Tokyo, I've had the privilege of working with incredible clients around the world, from Fortune 500 companies to indie artists just starting their journey. My approach is simple: authenticity over perfection, emotion over technicality, and connection over composition."
+after_quote = true

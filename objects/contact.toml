@@ -2,3 +2,63 @@ hero_title = "Let's Create Something Amazing"
 hero_lead = "Have a project in mind? I'd love to hear about it. Drop me a message and let's discuss how we can bring your vision to life."
 availability_status = "Available for projects"
 availability_note = "Currently booking for Q2 2025. Limited slots available."
+project_types = "Portrait Photography,Landscape & Nature,Urban & Street,Commercial Work,Editorial & Documentary,Fine Art,Other"
+budgets = "Under $5,000/$5,000 - $10,000/$10,000 - $25,000/$25,000 - $50,000/$50,000+"
+
+[[faq]]
+question = "What's your typical turnaround time?"
+answer = "Turnaround times vary by project type. Portrait sessions typically take 2-3 weeks, while larger commercial or editorial projects may take 4-6 weeks. Rush delivery is available for an additional fee."
+
+[[faq]]
+question = "Do you travel for shoots?"
+answer = "Absolutely! I frequently travel for projects both domestically and internationally. Travel expenses are typically added to the project quote."
+
+[[faq]]
+question = "What's included in your packages?"
+answer = "Each package includes pre-production planning, the photo shoot, professional editing and retouching, and high-resolution digital files. Print rights and licensing can be discussed based on your needs."
+
+[[faq]]
+question = "How do you handle licensing and usage rights?"
+answer = "Licensing is customized based on your intended use. We'll discuss the scope during our initial consultation and structure the agreement accordingly."
+
+[[faq]]
+question = "Can I see more examples of your work?"
+answer = "Of course! Check out my full portfolio in the Photos section, or request a custom portfolio tailored to your project type."
+
+[[contact_method]]
+icon = "📧"
+label = "Email"
+value = "hello@photographica.com"
+url = "mailto:hello@photographica.com"
+
+[[contact_method]]
+icon = "📱"
+label = "Phone"
+value = "+1 (212) 555-1234"
+url = "tel:+12125551234"
+
+[[contact_method]]
+icon = "📍"
+label = "Locations"
+value = "New York, NY | Tokyo, Japan"
+url = ""
+
+[[social]]
+icon = "📷"
+name = "Instagram"
+url = "https://instagram.com/yourhandle"
+
+[[social]]
+icon = "🐦"
+name = "Twitter"
+url = "https://twitter.com/yourhandle"
+
+[[social]]
+icon = "🎨"
+name = "Behance"
+url = "https://behance.net/yourhandle"
+
+[[social]]
+icon = "💼"
+name = "LinkedIn"
+url = "https://linkedin.com/in/yourhandle"

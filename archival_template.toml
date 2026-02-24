@@ -5,6 +5,24 @@ This template puts portfolio images front and center with a tiled mosaic on the 
 """
 context = """
 This template is appropriate when provided many images that are visually interesting or distinct. When filling in photo objects, fill in at least 8 objects.
+Always add 3 stories to the about object. On the last one, set after_quote to true.
+Always add 3 stats to the about object.
+Always add 2 expertises to the about object.
 """
+keep_objects = [
+    "about.image_1",
+    "about.image_2",
+    "about.image_3",
+    "about.process.0",
+    "about.process.1",
+    "about.process.2",
+    "about.process.3",
+    "about.process.4",
+    "about.feature.0",
+    "about.feature.1",
+    "about.feature.2",
+    "about.feature.3",
+    "about.feature.4"
+]
 tags = ["images", "portfolio"]
 tlds = ["com", "me"]

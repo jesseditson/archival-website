@@ -4,5 +4,106 @@
 
 <!-- About Section -->
 <div class="about-section">
-  {{ objects.about.content }}
+  <!-- Hero Introduction -->
+  <div class="about-hero">
+    <div class="about-hero-content animate-on-scroll">
+      <h2 class="section-title">{{ about.hero_title }}</h2>
+      <div class="lead-text">
+        {{ about.hero_lead }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Counter -->
+  {% if stats and stats.size > 0 %}
+    <div class="stats-grid animate-on-scroll">
+      {% for stat in stats %}
+        <div class="stat-item" data-count="{{ stat.value }}">
+          <span class="stat-number">0</span>
+          <span class="stat-label">{{ stat.label }}</span>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <!-- Story Section -->
+  <div class="about-story">
+    <div class="story-content animate-on-scroll">
+      <h3 class="content-title">{{ about.story_title }}</h3>
+      {% for block in about.story %}
+        {% unless block.after_quote %}
+          {{ block.body }}
+        {% endunless %}
+      {% endfor %}
+
+      {% if about.quote_text %}
+        <blockquote class="quote">
+          {{ about.quote_text }}
+          {% if about.quote_citation %}
+            <cite>{{ about.quote_citation }}</cite>
+          {% endif %}
+        </blockquote>
+      {% endif %}
+
+      {% for block in about.story %}
+        {% if block.after_quote %}
+          {{ block.body }}
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="story-image animate-on-scroll">
+      <div class="image-stack">
+        {% if about.image_1 %}<div class="stack-item stack-item-1" style="background-image: url('{{ about.image_1.url }}');"></div>{% endif %}
+        {% if about.image_2 %}<div class="stack-item stack-item-2" style="background-image: url('{{ about.image_2.url }}');"></div>{% endif %}
+        {% if about.image_3 %}<div class="stack-item stack-item-3" style="background-image: url('{{ about.image_3.url }}');"></div>{% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Expertise Areas -->
+  {% if about.expertise.size > 0 %}
+    <div class="expertise-section animate-on-scroll">
+      <h3 class="content-title">Expertise</h3>
+      <div class="expertise-grid">
+        {% for card in about.expertise %}
+          <div class="expertise-card">
+            <div class="expertise-icon">{{ card.icon }}</div>
+            <h4>{{ card.title }}</h4>
+            <p>{{ card.description }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  <!-- Process Timeline -->
+  {% if about.process.size > 0 %}
+    <div class="process-section animate-on-scroll">
+      <h3 class="content-title">My Process</h3>
+      <div class="timeline">
+        {% for step in about.process %}
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h4>{{ step.title }}</h4>
+              <p>{{ step.description }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  <!-- Featured In -->
+  {% if about.feature.size > 0 %}
+    <div class="featured-section animate-on-scroll">
+      <h3 class="content-title">As Featured In</h3>
+      <div class="featured-logos">
+        {% for logo in about.feature %}
+          <div class="logo-item">{{ logo.name }}</div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
 </div>

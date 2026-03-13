@@ -22,17 +22,17 @@
   <main>
     <section class="hours">
       <div class="container">
-        <h2>Hours</h2>
-        <ul>
-          <li>
+        <h2 class="reveal">Hours</h2>
+        <ul class="reveal-stagger">
+          <li class="reveal">
             <span>Monday – Friday</span>
             <span>{{ objects.hours.monday_friday }}</span>
           </li>
-          <li>
+          <li class="reveal">
             <span>Saturday</span>
             <span>{{ objects.hours.saturday }}</span>
           </li>
-          <li>
+          <li class="reveal">
             <span>Sunday</span>
             <span>{{ objects.hours.sunday }}</span>
           </li>
@@ -42,9 +42,9 @@
 
     <section class="location">
       <div class="container">
-        <h2>Location</h2>
-        <p>{{ objects.location.address }}</p>
-        <div class="map">
+        <h2 class="reveal">Location</h2>
+        <p class="reveal">{{ objects.location.address }}</p>
+        <div class="map reveal">
           <iframe
             src="{{ map_embed_url }}"
             width="600"
@@ -59,19 +59,25 @@
 
     <section class="contact-info">
       <div class="container">
-        <h2>Contact Us</h2>
-        <p>Phone: {{ objects.contact.phone }}</p>
-        <p>Email:
-          <a href="mailto:{{ objects.contact.email }}">{{ objects.contact.email }}</a>
-        </p>
+        <h2 class="reveal">Contact Us</h2>
+        <div class="contact-cards reveal-stagger">
+          <a href="tel:{{ objects.contact.phone }}" class="contact-card reveal">
+            <span class="contact-card-label">Phone</span>
+            <span class="contact-card-value">{{ objects.contact.phone }}</span>
+          </a>
+          <a href="mailto:{{ objects.contact.email }}" class="contact-card reveal">
+            <span class="contact-card-label">Email</span>
+            <span class="contact-card-value">{{ objects.contact.email }}</span>
+          </a>
+        </div>
       </div>
     </section>
 
     <section class="about">
       <div class="container">
-        <h2>About Us</h2>
+        <h2 class="reveal">About Us</h2>
 
-        <div class="about-content">
+        <div class="about-content reveal">
           <div class="about-text">
             {{ about.description }}
           </div>
@@ -82,11 +88,27 @@
 
   <footer class="footer">
     <div class="container">
-      <p class="summary">{{ objects.site.name }} | {{ objects.contact.phone }} | {{ objects.location.address }}
-      </p>
-      <p class="hours-summary">Hours: Mon-Fri {{ objects.hours.monday_friday }} | Sat {{ objects.hours.saturday }} | 
-        Closed Sun</p>
-      <p class="copyright">&copy; {{ "now" | date: "%Y" }} {{ objects.site.name }}</p>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <p class="footer-name">{{ objects.site.name }}</p>
+          <p class="footer-tagline">{{ objects.site.tagline }}</p>
+        </div>
+        <div class="footer-details">
+          {% assign address_parts = objects.location.address | split: ", " %}
+          <p>{{ address_parts[0] }}</p>
+          <p>{{ address_parts[1] }}, {{ address_parts[2] }}</p>
+          <p>{{ objects.contact.phone }}</p>
+          <p><a href="mailto:{{ objects.contact.email }}">{{ objects.contact.email }}</a></p>
+        </div>
+        <div class="footer-hours">
+          <p>Mon–Fri {{ objects.hours.monday_friday }}</p>
+          <p>Sat {{ objects.hours.saturday }}</p>
+          <p>Sun {{ objects.hours.sunday }}</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="copyright">&copy; {{ "now" | date: "%Y" }} {{ objects.site.name }}</p>
+      </div>
     </div>
   </footer>
 </div>

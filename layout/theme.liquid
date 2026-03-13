@@ -4,13 +4,15 @@
   <head>
     <meta charset="utf-8">
     <title>{{ title }}</title>
-    <meta name="description" content="">
+    <meta name="description" content="{{ objects.site.tagline }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ objects.site.tagline }}">
     <meta property="og:type" content="website">
-    <!-- <meta property="og:url" content=""> -->
-    <!-- <meta property="og:image" content=""> -->
+    {% if objects.site.logo_image.url %}
+    <meta property="og:image" content="{{ objects.site.logo_image.url }}">
+    {% endif %}
 
     <link rel="manifest" href="/site.webmanifest">
     <link rel="apple-touch-icon" href="/icon.png">
@@ -23,6 +25,14 @@
 
   <body>
     {{ page_content }}
+    <script>
+      const o = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('in-view'); o.unobserve(e.target); }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => o.observe(el));
+    </script>
   </body>
 
 </html>

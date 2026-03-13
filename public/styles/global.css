@@ -527,6 +527,45 @@ section#testimonials {
   animation-direction: reverse;
 }
 
+/* Mobile testimonial fade */
+.testimonial-mobile-fade {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .testimonial-marquee {
+    display: none;
+  }
+
+  .testimonial-mobile-fade {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    width: 100%;
+    max-width: var(--max-col-width);
+    padding: 0 var(--col-padding);
+    margin: 0 auto 4rem;
+  }
+
+  .testimonial-mobile-slot {
+    display: grid;
+  }
+
+  .testimonial-mobile-slot .testimonial-item {
+    grid-area: 1 / 1;
+    opacity: 1;
+    transition: opacity 0.6s ease;
+  }
+
+  .testimonial-mobile-slot .testimonial-item.fade-out {
+    opacity: 0;
+  }
+
+  .testimonial-mobile-slot .testimonial-item:hover {
+    transform: none;
+  }
+}
+
 /* Contact form */
 .form-container {
   display: flex;

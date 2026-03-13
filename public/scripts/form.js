@@ -11,15 +11,15 @@ document.addEventListener('click', (e) => {
       const serviceName = decodeURIComponent(match[1]);
 
       // Select the service in the dropdown
-      const sessionSelect = document.querySelector('select[name="session"]');
-      if (sessionSelect) {
-        const options = Array.from(sessionSelect.options);
+      const serviceSelect = document.getElementById('contact-service');
+      if (serviceSelect) {
+        const options = Array.from(serviceSelect.options);
         const matchingOption = options.find(option =>
           option.value === serviceName || option.textContent.trim() === serviceName
         );
 
         if (matchingOption) {
-          sessionSelect.value = matchingOption.value;
+          serviceSelect.value = matchingOption.value;
         }
       }
 
@@ -37,7 +37,12 @@ document.addEventListener('click', (e) => {
           const timeElapsed = currentTime - start;
           const run = ease(timeElapsed, startPosition, distance, duration);
           window.scrollTo(0, run);
-          if (timeElapsed < duration) requestAnimationFrame(animation);
+          if (timeElapsed < duration) {
+            requestAnimationFrame(animation);
+          } else {
+            const nameInput = document.getElementById('contact-name');
+            if (nameInput) nameInput.focus();
+          }
         }
 
         // Easing function for smooth animation
@@ -52,6 +57,16 @@ document.addEventListener('click', (e) => {
       }
     }
   }
+});
+
+// Focus the name field when navigating to #contact via any anchor link
+document.querySelectorAll('a[href="#contact"], a[href="/#contact"]').forEach(link => {
+  link.addEventListener('click', () => {
+    setTimeout(() => {
+      const nameInput = document.getElementById('contact-name');
+      if (nameInput) nameInput.focus();
+    }, 50);
+  });
 });
 
 // Auto-select service in booking form based on URL parameter (for page loads with hash)
@@ -75,18 +90,26 @@ document.addEventListener('DOMContentLoaded', () => {
     errorMessage = urlParams.get('error');
   }
 
-  if (serviceParam) {
-    const sessionSelect = document.querySelector('select[name="session"]');
+  // Focus the name field when arriving at the page with #contact in the URL
+  if (window.location.hash.startsWith('#contact')) {
+    setTimeout(() => {
+      const nameInput = document.getElementById('contact-name');
+      if (nameInput) nameInput.focus();
+    }, 100);
+  }
 
-    if (sessionSelect) {
+  if (serviceParam) {
+    const serviceSelect = document.getElementById('contact-service');
+
+    if (serviceSelect) {
       // Find and select the matching option
-      const options = Array.from(sessionSelect.options);
+      const options = Array.from(serviceSelect.options);
       const matchingOption = options.find(option =>
         option.value === serviceParam || option.textContent.trim() === serviceParam
       );
 
       if (matchingOption) {
-        sessionSelect.value = matchingOption.value;
+        serviceSelect.value = matchingOption.value;
       }
     }
   }

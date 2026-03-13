@@ -208,12 +208,12 @@
         <!-- Row 1, Col 1 -->
         <label>
           <span>Your name</span>
-          <input type="text" name="{{google_form.name_field_id}}" />
+          <input type="text" name="{{google_form.name_field_id}}" id="contact-name" data-1p-ignore />
         </label>
         <!-- Row 1, Col 2 -->
         <label>
           <span>Email address</span>
-          <input name="{{google_form.email_field_id}}" type="email" />
+          <input name="{{google_form.email_field_id}}" type="email" data-1p-ignore />
         </label>
 
         <!-- Row 2, Col 1 -->
@@ -224,7 +224,7 @@
         <!-- Row 2, Col 2 -->
         <label>
           <span>Service type</span>
-          <select name="{{google_form.service_field_id}}">
+          <select name="{{google_form.service_field_id}}" id="contact-service">
             {% for service in services %}
               <option>{{ service.name }}</option>
             {% endfor %}

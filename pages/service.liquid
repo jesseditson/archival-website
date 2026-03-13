@@ -20,6 +20,6 @@
     </div>
 
     <span class="service-price-large">{{ service.price }}</span>
-    <a href="/#contact" class="primary-cta-large">Get more information</a>
+    <a href="/#contact?service={{ service.name | url_encode }}" class="primary-cta-large">Get more information</a>
   </section>
 </main>

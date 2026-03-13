@@ -1,7 +1,13 @@
 {% layout 'theme' active_page: "photos" %}
 
 <!-- Photo gallery -->
-<div class="photo-gallery" id="photo-gallery">
+{% assign photo_count = 0 %}
+{% for photo in photos %}
+  {% if photo.file %}
+    {% assign photo_count = photo_count | plus: 1 %}
+  {% endif %}
+{% endfor %}
+<div class="photo-gallery gallery-count-{{ photo_count }}" id="photo-gallery">
   {% for photo in photos %}
     {% if photo.file %}
       {% assign photo_src = photo.file.url | default: "#" %}

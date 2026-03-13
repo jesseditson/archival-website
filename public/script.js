@@ -6,11 +6,88 @@ let touchEndX = 0;
 
 // ==================== Initialization ====================
 window.onload = function() {
+    distributeGallery();
     initializeGallery();
     initializeLightbox();
     initializeThemeToggle();
     animateGalleryEntrance();
+
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(distributeGallery, 150);
+    });
 };
+
+// ==================== Gallery Distribution ====================
+// Distributes photo items into explicit column wrappers round-robin
+// so that items are evenly spread across all columns.
+function distributeGallery(items) {
+    const gallery = document.getElementById('photo-gallery');
+
+    // Collect items: either passed in, or pulled from existing columns/gallery
+    if (!items) {
+        items = Array.from(gallery.querySelectorAll('.photo-item'))
+            .sort((a, b) => Number(a.dataset.index) - Number(b.dataset.index));
+    }
+
+    const count = items.length;
+    if (count === 0) return;
+
+    // Determine max columns based on image count
+    let maxCols;
+    if (count === 1) maxCols = 1;
+    else if (count === 2) maxCols = 2;
+    else if (count === 3) maxCols = 3;
+    else maxCols = 4;
+
+    // Clamp to viewport-appropriate column count
+    const width = window.innerWidth;
+    let cols;
+    if (width < 768) cols = 1;
+    else if (width < 992) cols = Math.min(maxCols, 2);
+    else if (width < 1400) cols = Math.min(maxCols, 3);
+    else cols = maxCols;
+
+    // Remove existing column wrappers
+    gallery.querySelectorAll('.gallery-column').forEach(col => {
+        // Move items out before removing the wrapper
+        while (col.firstChild) gallery.appendChild(col.firstChild);
+        col.remove();
+    });
+
+    // Create column wrappers
+    const columns = [];
+    for (let i = 0; i < cols; i++) {
+        const col = document.createElement('div');
+        col.className = 'gallery-column';
+        columns.push(col);
+        gallery.appendChild(col);
+    }
+
+    // Distribute items to the shortest column for balanced heights.
+    // Use natural image aspect ratios when available, otherwise round-robin.
+    const columnHeights = new Array(cols).fill(0);
+    items.forEach((item) => {
+        item.style.display = '';
+
+        // Find the shortest column
+        let shortest = 0;
+        for (let c = 1; c < cols; c++) {
+            if (columnHeights[c] < columnHeights[shortest]) shortest = c;
+        }
+
+        columns[shortest].appendChild(item);
+
+        // Estimate height from image aspect ratio
+        const img = item.querySelector('img');
+        const aspectRatio = img && img.naturalHeight && img.naturalWidth
+            ? img.naturalHeight / img.naturalWidth
+            : 1;
+        columnHeights[shortest] += aspectRatio;
+    });
+}
+
 
 // ==================== Gallery Initialization ====================
 function initializeGallery() {

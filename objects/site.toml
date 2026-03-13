@@ -1,9 +1,9 @@
 order = -1
-name = "Brandwein's Bagels"
-tagline = "The best bagels in DeKalb county!"
+name = "Acme Widgets"
+tagline = "The best widgets around!"
 
 [logo_image]
-sha = "0123983214089dd5d426ceb84c331e4cb45c9cefd656754c5ba11b02cb23b415"
-filename = "logo.png"
-mime = "image/png"
+sha = "72536418000029c98601f73afd5c197ba8c8798bae04bb9aeff8d1126de6c797"
+filename = "logo-placeholder.svg"
+mime = "image/svg+xml"
 display_type = "image"

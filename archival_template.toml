@@ -1,0 +1,7 @@
+#:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
+name = ""
+description = ""
+context = ""
+tags = []
+tlds = []
+keep_objects = []

@@ -1,0 +1,27 @@
+headline = "We Need to Talk About the Algorithm"
+subheadline = "The systems that shape what we see deserve more scrutiny — and more imagination"
+slug = "talk-about-the-algorithm"
+section = "Opinion"
+author = "John Smith"
+date = "March 12, 2026"
+cover_url = "/images/story-4.jpg"
+image_caption = ""
+featured = ""
+
+body = """
+There is a strange passivity in the way we talk about algorithms. We speak of them as weather — something that happens to us, beyond our control. The algorithm showed me this. The algorithm buried that.
+
+But algorithms are not weather. They are products, built by people, reflecting choices about what matters and what doesn't. And those choices deserve the same scrutiny we apply to any powerful institution.
+
+## The Visibility Problem
+
+The core issue is not that algorithms exist. Curation is inevitable; no one can see everything. The problem is that the logic of curation is invisible. We cannot interrogate a system whose rules we cannot see.
+
+This is not a technical limitation. It is a business decision. Opacity protects competitive advantage. It also prevents accountability.
+
+## A Better Model
+
+What would it look like to build recommendation systems that served readers rather than advertisers? The answer is not to abolish algorithms but to demand better ones — systems that optimize for understanding rather than engagement, for breadth rather than confirmation.
+
+The technology exists. What's missing is the will.
+"""

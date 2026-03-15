@@ -1,6 +1,4 @@
-# Configure how objects appear in the Archival editor.
-# Example:
-# [[object_name.views]]
-# name = "default"
-# primary = "image"
-# secondary = "description"
+[[stories.views]]
+name = "default"
+primary = "image"
+secondary = "headline"

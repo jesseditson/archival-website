@@ -1,1 +1,32 @@
+#:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/main/objects.schema.json
 # This file is used to define the objects available on your site.
+
+[publication]
+name = "string"
+tagline = "string"
+logo = "image"
+copyright_year = "string"
+
+[sections]
+name = "string"
+slug = "string"
+
+[authors]
+name = "string"
+title = "string"
+photo = "image"
+bio = "string"
+
+[stories]
+template = "story"
+headline = "string"
+subheadline = "string"
+slug = "string"
+section = "string"
+author = "string"
+date = "string"
+image = "image"
+cover_url = "string"
+image_caption = "string"
+featured = "string"
+body = "markdown"

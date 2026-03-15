@@ -1,0 +1,25 @@
+headline = "The Vanishing Art of the Long Conversation"
+subheadline = "In an age of quick takes, some are rediscovering the power of talking for hours"
+slug = "vanishing-art-long-conversation"
+section = "Culture"
+author = "Jane Doe"
+date = "March 11, 2026"
+cover_url = "/images/story-5.jpg"
+image_caption = ""
+featured = ""
+
+body = """
+When was the last time you talked to someone for three hours straight? Not a meeting. Not a phone call squeezed between errands. A real conversation — the kind that wanders, circles back, and leaves you thinking differently about something you thought you understood.
+
+## The Compression of Talk
+
+Modern communication favors compression. Texts, tweets, voice memos, emoji reactions. Each medium shapes the message toward brevity. Efficiency is the aesthetic.
+
+But something is lost in compression. The philosopher Hans-Georg Gadamer argued that real understanding only emerges through sustained dialogue — the kind where both participants are changed by the exchange.
+
+## The Dinner Table Revival
+
+A small but growing counter-movement is pushing back. Supper clubs, salon-style gatherings, and "slow conversation" meetups are popping up in cities across the country, all built around a simple premise: sit down, put away your phone, and talk.
+
+The format varies, but the principle is the same. Depth requires time. Understanding requires patience. And some things can only be said slowly.
+"""

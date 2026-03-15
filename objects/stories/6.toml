@@ -1,0 +1,27 @@
+headline = "Inside the Race to Map the Ocean Floor"
+subheadline = "We know more about the surface of Mars than the bottom of our own oceans. A global effort aims to change that by 2030."
+slug = "race-to-map-ocean-floor"
+section = "Technology"
+author = "John Smith"
+date = "March 10, 2026"
+cover_url = "/images/story-6.jpg"
+image_caption = "The research vessel Falkor at sea"
+featured = ""
+
+body = """
+Beneath the surface of the Pacific Ocean, three miles down, there are mountains taller than the Alps and canyons deeper than the Grand Canyon. Most of them don't have names. Many have never been seen.
+
+As of 2026, roughly 28 percent of the ocean floor has been mapped to modern standards. The rest — an area larger than the surface of Mars — remains essentially unknown.
+
+## The Seabed 2030 Project
+
+An ambitious international initiative called Seabed 2030 is trying to change that. Launched in 2017, the project aims to produce a complete, high-resolution map of the entire ocean floor by the end of the decade.
+
+The challenge is staggering. Sound waves, the primary tool for deep-ocean mapping, travel slowly through water. Surveying a single square kilometer of deep ocean takes hours. The entire ocean floor covers 361 million square kilometers.
+
+## Why It Matters
+
+The ocean floor shapes climate, governs currents, and harbors ecosystems we are only beginning to understand. Submarine volcanoes influence weather patterns. Underwater landslides can trigger tsunamis. And the deep ocean is the largest carbon sink on the planet.
+
+Mapping it is not just an act of exploration. It is a prerequisite for understanding the systems that sustain life on Earth.
+"""

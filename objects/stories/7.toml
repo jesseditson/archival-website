@@ -1,0 +1,27 @@
+headline = "What Happens When a City Bans Cars From Its Center"
+subheadline = "Barcelona's superblocks experiment is reshaping urban life — and other cities are watching closely"
+slug = "city-bans-cars"
+section = "Politics"
+author = "Jane Doe"
+date = "March 9, 2026"
+cover_url = "/images/story-7.jpg"
+image_caption = "Children playing in a Barcelona superblock"
+featured = ""
+
+body = """
+On a Tuesday morning in Barcelona's Eixample district, a scene that would have been unthinkable five years ago: children kicking a soccer ball across what used to be a four-lane intersection. Where cars once idled in traffic, there are now planters, benches, and a small playground.
+
+This is a superblock — a cluster of city blocks where through-traffic has been eliminated and streets returned to pedestrians. Barcelona now has more than a dozen of them, and the results are striking.
+
+## The Numbers
+
+Air pollution in superblock areas has dropped by 25 percent. Noise levels have fallen by more than 5 decibels. Retail activity, contrary to merchants' initial fears, has increased.
+
+But the most significant change may be the hardest to measure: the return of public life to the street. Neighbors who never interacted now share the space where cars used to pass. The street, once a conduit, has become a commons.
+
+## The Political Challenge
+
+Superblocks are popular after they are built. They are deeply controversial before. Car owners, delivery services, and some business groups have opposed nearly every implementation.
+
+The lesson from Barcelona is that urban transformation requires political courage — the willingness to endure short-term opposition for long-term gain. Not every city has it.
+"""

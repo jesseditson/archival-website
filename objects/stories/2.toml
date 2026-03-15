@@ -1,0 +1,27 @@
+headline = "Why the Novel Isn't Dead"
+subheadline = "Reports of fiction's demise have been greatly exaggerated. A new generation of writers is proving it."
+slug = "why-the-novel-isnt-dead"
+section = "Culture"
+author = "John Smith"
+date = "March 14, 2026"
+cover_url = "/images/story-2.jpg"
+image_caption = "A reader at Powell's Books in Portland, Oregon"
+featured = ""
+
+body = """
+Every decade or so, someone writes the eulogy for the novel. The attention economy, the streaming wars, the infinite scroll — surely this time the long-form narrative is finished.
+
+And yet the numbers tell a different story. Fiction sales rose 9 percent last year, driven largely by readers under 35. Independent bookstores are opening at their fastest rate since the 1990s.
+
+## The TikTok Effect
+
+The most unlikely engine of this renaissance is social media itself. BookTok, the reading community on TikTok, has turned backlist titles into overnight bestsellers and given debut authors the kind of visibility that once required years of literary networking.
+
+"I sold 300 copies in my first year," said novelist Amara Obi, whose debut was published by a small press in 2024. "Then a BookTok video hit, and I sold 30,000 in a month."
+
+## Beyond the Hype
+
+But the revival goes deeper than viral moments. Writing programs are oversubscribed. Literary magazines are experimenting with new formats. And a cohort of young writers is producing work that feels urgent and formally adventurous in equal measure.
+
+The novel, it turns out, is the cockroach of art forms. It survives everything.
+"""

@@ -1,7 +1,11 @@
 #:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
-name = ""
-description = ""
-context = ""
-tags = []
-tlds = []
+name = "Publication"
+description = """
+An independent news publication template inspired by The Atlantic and New York Times. Features a grid-based front page layout of stories, beautiful serif typography optimized for long-form reading, and generous use of whitespace.
+"""
+context = """
+This template is for an independent online publication or magazine. It features editorial-quality typography with large serif headlines, a responsive grid of stories on the front page, and a clean story detail page with a narrow reading column. When generating stories, create 7 of them with varied headline lengths. One story should be marked as featured. Generate 3-4 sections like Opinion, Culture, Technology, Politics.
+"""
+tags = ["publication", "magazine", "news", "editorial"]
+tlds = ["com", "org", "news", "press"]
 keep_objects = []

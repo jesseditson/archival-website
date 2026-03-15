@@ -1,0 +1,25 @@
+headline = "The Quiet Revolution in Battery Technology"
+subheadline = "Solid-state batteries promise to reshape everything from electric vehicles to the power grid"
+slug = "battery-technology-revolution"
+section = "Technology"
+author = "Jane Doe"
+date = "March 13, 2026"
+cover_url = "/images/story-3.jpg"
+image_caption = "A solid-state battery prototype at MIT's energy lab"
+featured = ""
+
+body = """
+In a lab on the outskirts of Cambridge, Massachusetts, a team of researchers is holding a small, flat rectangle that could change the world. It doesn't look like much — roughly the size of a playing card, encased in silver foil. But this solid-state battery prototype holds twice the energy of its lithium-ion equivalent in half the space.
+
+## Why It Matters
+
+The transition to renewable energy has always had a storage problem. Solar panels and wind turbines generate power intermittently, and the batteries needed to smooth out supply have been too expensive, too heavy, and too short-lived to make the economics work at scale.
+
+Solid-state batteries could change that equation entirely. By replacing the liquid electrolyte in conventional batteries with a solid material, they eliminate the primary source of degradation and fire risk.
+
+## The Manufacturing Challenge
+
+The science is promising. The engineering is hard. Producing solid-state cells at scale requires manufacturing tolerances measured in microns — the width of a human hair.
+
+Several companies have announced timelines, but the history of battery technology is littered with promises that arrived late or not at all. The researchers here are cautiously optimistic, which in academia is practically euphoria.
+"""

@@ -1,0 +1,39 @@
+headline = "The Town That Turned Off the Internet at 10 PM"
+subheadline = "A small French commune's experiment in digital curfews has sparked a national debate about screen time, liberty, and sleep."
+slug = "town-turned-off-internet"
+section = "Culture"
+author = "Jane Doe"
+date = "March 11, 2026"
+cover_url = ""
+image_caption = ""
+featured = ""
+
+body = """
+In the commune of Saint-Lunaire, a seaside town of 2,300 on the Brittany coast, the Wi-Fi goes dark at ten o'clock every night. Not in every household — participation is voluntary — but in enough of them that the effect is unmistakable. By half past ten, the streets are quiet. By eleven, the town is asleep.
+
+## How It Started
+
+The experiment began, as many local experiments do, with a complaint at a town council meeting. A schoolteacher named Hélène Moreau stood up and said that her students were arriving exhausted every morning, having spent hours on TikTok and YouTube after their parents went to bed. She proposed a simple intervention: what if the town's municipal internet provider offered an optional nightly shutoff?
+
+The mayor, amused but sympathetic, agreed to a three-month trial. The local ISP, which serves roughly 80 percent of the commune's households, added a toggle to its customer portal. Families could opt in to have their connection suspended from 10 PM to 6 AM.
+
+Within two weeks, 61 percent of households had signed up.
+
+## The Results
+
+The effects were immediate and measurable. The local school reported a 23 percent decrease in tardiness within the first month. The town pharmacy noted a decline in melatonin sales. Parents described quieter evenings. Children described boredom, followed by adjustment, followed — reluctantly — by better sleep.
+
+"The first week was terrible," said 14-year-old Lucas Bertrand. "I didn't know what to do with myself. Then I started reading again. Actual books. It was weird."
+
+## The Backlash
+
+Not everyone was charmed. Civil liberties advocates argued that even a voluntary internet curfew set a dangerous precedent. Several residents complained that the shutoff interfered with remote work and international communication. A petition to end the program gathered 200 signatures — nearly a tenth of the population.
+
+The town council voted to extend the trial indefinitely. The opt-in rate has since risen to 74 percent.
+
+## A Larger Conversation
+
+Saint-Lunaire's experiment has attracted attention far beyond Brittany. French media covered it extensively, and the Minister of Digital Affairs visited in February. Similar programs are now being discussed in communes across Normandy and Provence.
+
+The question the town has inadvertently posed is not really about Wi-Fi. It is about what we are willing to do — collectively, voluntarily, imperfectly — to reclaim the hours that screens have quietly taken from us.
+"""

@@ -1,0 +1,35 @@
+headline = "The Dangerous Comfort of Consensus"
+subheadline = "We've confused agreement with truth. That confusion is making us worse at solving problems."
+slug = "dangerous-comfort-of-consensus"
+section = "Opinion"
+author = "John Smith"
+date = "March 16, 2026"
+cover_url = ""
+image_caption = ""
+featured = ""
+
+body = """
+There is a scene that plays out in conference rooms, faculty meetings, and city council chambers across the country, so often that we barely notice it anymore. A proposal is made. A few heads nod. Someone asks a mild clarifying question. The proposal is adopted.
+
+Afterward, in the hallway, in the parking lot, in the group chat, the real conversation begins. I didn't love that idea. Neither did I. Why didn't you say something? Why didn't you?
+
+## The Consensus Trap
+
+We have built a culture that treats agreement as a virtue and disagreement as a character flaw. To push back is to be difficult. To question is to be negative. To dissent is to be disloyal. And so we sit in rooms full of private doubts and public silence, and we call the result consensus.
+
+This is not a new observation. Irving Janis identified the phenomenon as "groupthink" in 1972, studying how the Kennedy administration stumbled into the Bay of Pigs invasion despite the private reservations of nearly every advisor in the room. What is new is the scale at which it operates.
+
+## Digital Amplification
+
+Social media has turbocharged the consensus trap. Platforms that reward engagement have taught us to perform agreement loudly and express doubt quietly, if at all. The result is a public sphere where the most confident voices dominate, the most cautious voices retreat, and the distance between what people say and what they believe grows wider by the day.
+
+"We've created a world where it's easier to agree with a thousand strangers than to disagree with one friend," said sociologist Dr. Rachel Greenwald. "That's not community. That's conformity."
+
+## The Cost
+
+The cost of this false consensus is not abstract. It shows up in bad policy decisions that nobody questioned. In products that shipped despite known flaws. In organizational cultures where problems fester because raising them feels career-threatening.
+
+The antidote is not more disagreement for its own sake. It is the deliberate cultivation of environments where dissent is not merely tolerated but expected — where the absence of pushback is treated as a warning sign, not a success metric.
+
+The next time everyone in the room agrees, ask yourself: is this consensus, or is this silence?
+"""

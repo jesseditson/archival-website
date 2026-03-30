@@ -1,0 +1,31 @@
+headline = "The Return of the Night Train"
+subheadline = "Across Europe, sleeper rail services are making a comeback — and changing how a generation thinks about travel."
+slug = "return-of-the-night-train"
+section = "Culture"
+author = "John Smith"
+date = "March 20, 2026"
+cover_url = ""
+image_caption = ""
+featured = ""
+
+body = """
+At 11:14 on a Friday evening, the NightJet from Vienna pulls into platform 3 at Zurich Hauptbahnhof. A handful of passengers in rumpled clothing step onto the platform, blinking under the fluorescent lights, dragging rolling bags behind them. They went to sleep in Austria. They woke up in Switzerland.
+
+## A Quiet Revolution on Rails
+
+Five years ago, this service didn't exist. Europe's network of overnight trains had been gutted through the 2000s and 2010s, casualties of budget airlines and high-speed rail. The routes that remained felt like relics — aging rolling stock, indifferent service, schedules designed for nobody in particular.
+
+Then something shifted. Austrian Federal Railways launched its NightJet brand in 2016 with a handful of routes. By 2026, the network spans 25 countries. Sweden, France, and Spain have all announced new domestic sleeper services. Ticket sales across the continent have tripled since 2021.
+
+## The Climate Calculation
+
+The numbers are hard to argue with. A sleeper train from Amsterdam to Barcelona emits roughly 30 kilograms of carbon dioxide per passenger. The equivalent flight produces nearly ten times that. For a growing segment of European travelers — particularly those under 40 — this arithmetic has become impossible to ignore.
+
+"I stopped flying within Europe three years ago," said Maren Lindqvist, a 34-year-old architect from Gothenburg. "The train is slower, obviously. But you arrive rested, in the city center, with no security theater. It's not a sacrifice. It's just better."
+
+## The Romance Factor
+
+There is, of course, something else at work — something harder to quantify than carbon savings or ticket prices. The night train is romantic in a way that no other form of modern travel can match. The gentle rocking of the carriage. The changing landscape at dawn. The strangers who become temporary companions in the dining car.
+
+It is travel that asks you to be patient, to watch the world go by at a human pace, to arrive not just at a destination but at a state of mind.
+"""

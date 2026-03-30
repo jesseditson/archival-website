@@ -1,0 +1,33 @@
+headline = "Why Your Smart Home Is Listening to Your Neighbors"
+subheadline = "The mesh networks that make smart devices work also create unexpected surveillance problems no one planned for."
+slug = "smart-home-listening-neighbors"
+section = "Technology"
+author = "Jane Doe"
+date = "March 17, 2026"
+cover_url = ""
+image_caption = ""
+featured = ""
+
+body = """
+When David Park installed a Ring doorbell at his apartment in Seattle, he assumed it would record his front door. He did not expect it to pick up conversations from the hallway, the elevator, and — thanks to a quirk of the building's acoustics — his neighbor's living room.
+
+"I could hear them arguing about dinner," Park said. "I didn't want to know that."
+
+## The Mesh Problem
+
+Park's experience is not unusual. The smart home ecosystem runs on mesh networking — a protocol that allows devices to communicate with each other by passing signals through intermediate nodes. Your smart light bulb talks to your thermostat, which relays to your hub, which connects to the internet.
+
+The problem is that mesh networks don't respect property lines. A Sidewalk-enabled device in one apartment can detect and relay data from devices in neighboring units. Amazon's Sidewalk network, which launched in 2021, automatically enrolls Ring and Echo devices into a shared neighborhood mesh unless users explicitly opt out.
+
+## What Gets Captured
+
+Security researchers at the University of Michigan tested a standard smart home setup in a multifamily building and found that devices routinely captured ambient audio, motion data, and network identifiers from adjacent units. In some configurations, a single Echo device could detect occupancy patterns — when people came and went, how many were present, even rough sleep schedules — for up to three neighboring apartments.
+
+"The technical term is data leakage," said Dr. Anika Patel, who led the study. "But what it really means is that your neighbor's smart speaker is doing passive surveillance on you, and neither of you knows it."
+
+## The Regulatory Gap
+
+Current privacy law offers little protection. The Electronic Communications Privacy Act, written in 1986, was designed for telephone wiretaps, not ambient mesh data. The FCC has no jurisdiction over device-to-device communications within a private network. And terms of service agreements — which almost no one reads — typically grant manufacturers broad rights to collect and process data from any device on the network.
+
+For now, the only reliable defense is awareness. And the off switch.
+"""

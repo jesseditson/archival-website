@@ -17,13 +17,18 @@
           </a>
         </div>
         <div class="featured-text">
-          <p class="featured-section">{{ story.section }}</p>
+          <p class="featured-section">
+            <a href="/sections/{{ story.section | downcase }}.html">{{ story.section }}</a>
+          </p>
           <h2 class="featured-headline">
             <a href="{{ story.path }}.html">{{ story.headline }}</a>
           </h2>
           <p class="featured-subheadline">{{ story.subheadline }}</p>
+          {% assign words = story.body | strip_html | split: ' ' | size %}
+          {% assign reading_time = words | plus: 199 | divided_by: 200 %}
+          {% if reading_time < 1 %}{% assign reading_time = 1 %}{% endif %}
           <p class="featured-meta">
-            By {{ story.author }} &middot; {{ story.date }}
+            By {{ story.author }} &middot; {{ story.date }} &middot; {{ reading_time }} min read
           </p>
         </div>
       </article>
@@ -46,13 +51,18 @@
               <div class="story-card-image-placeholder"></div>
             {% endif %}
           </a>
-          <p class="story-card-section">{{ story.section }}</p>
+          <p class="story-card-section">
+            <a href="/sections/{{ story.section | downcase }}.html">{{ story.section }}</a>
+          </p>
           <h3 class="story-card-headline">
             <a href="{{ story.path }}.html">{{ story.headline }}</a>
           </h3>
           <p class="story-card-subheadline">{{ story.subheadline }}</p>
+          {% assign words = story.body | strip_html | split: ' ' | size %}
+          {% assign reading_time = words | plus: 199 | divided_by: 200 %}
+          {% if reading_time < 1 %}{% assign reading_time = 1 %}{% endif %}
           <p class="story-card-meta">
-            By {{ story.author }} &middot; {{ story.date }}
+            By {{ story.author }} &middot; {{ story.date }} &middot; {{ reading_time }} min read
           </p>
         </article>
       {% endif %}

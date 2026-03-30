@@ -271,11 +271,11 @@ img {
 
 .section-lead-headline {
   font-family: var(--font-serif);
-  font-size: var(--text-3xl);
+  font-size: var(--text-5xl);
   font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  margin-bottom: var(--space-sm);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-md);
 }
 
 .section-lead-headline a:hover {
@@ -890,7 +890,7 @@ img {
   }
 
   .section-lead-headline {
-    font-size: var(--text-2xl);
+    font-size: var(--text-3xl);
   }
 
   .section-page-name {
@@ -950,7 +950,7 @@ img {
   }
 
   .section-lead-headline {
-    font-size: var(--text-xl);
+    font-size: var(--text-2xl);
   }
 
   .section-page-name {

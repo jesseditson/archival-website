@@ -8,6 +8,7 @@ logo = "image"
 copyright_year = "string"
 
 [sections]
+template = "section"
 name = "string"
 slug = "string"
 

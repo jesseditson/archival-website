@@ -6,13 +6,15 @@
     <div class="front-page">
       <article class="featured-story">
         <div class="featured-image-wrap">
-          {% if story.image %}
-            <img class="featured-image" src="{{ story.image.url }}" alt="{{ story.image_caption }}">
-          {% elsif story.cover_url != empty %}
-            <img class="featured-image" src="{{ story.cover_url }}" alt="{{ story.image_caption }}">
-          {% else %}
-            <div class="featured-image-placeholder"></div>
-          {% endif %}
+          <a href="{{ story.path }}.html">
+            {% if story.image %}
+              <img class="featured-image" src="{{ story.image.url }}" alt="{{ story.image_caption }}">
+            {% elsif story.cover_url != empty %}
+              <img class="featured-image" src="{{ story.cover_url }}" alt="{{ story.image_caption }}">
+            {% else %}
+              <div class="featured-image-placeholder"></div>
+            {% endif %}
+          </a>
         </div>
         <div class="featured-text">
           <p class="featured-section">{{ story.section }}</p>
@@ -35,13 +37,15 @@
     {% for story in stories %}
       {% if story.featured != "yes" %}
         <article class="story-card">
-          {% if story.image %}
-            <img class="story-card-image" src="{{ story.image.url }}" alt="{{ story.image_caption }}">
-          {% elsif story.cover_url != empty %}
-            <img class="story-card-image" src="{{ story.cover_url }}" alt="{{ story.image_caption }}">
-          {% else %}
-            <div class="story-card-image-placeholder"></div>
-          {% endif %}
+          <a href="{{ story.path }}.html">
+            {% if story.image %}
+              <img class="story-card-image" src="{{ story.image.url }}" alt="{{ story.image_caption }}">
+            {% elsif story.cover_url != empty %}
+              <img class="story-card-image" src="{{ story.cover_url }}" alt="{{ story.image_caption }}">
+            {% else %}
+              <div class="story-card-image-placeholder"></div>
+            {% endif %}
+          </a>
           <p class="story-card-section">{{ story.section }}</p>
           <h3 class="story-card-headline">
             <a href="{{ story.path }}.html">{{ story.headline }}</a>

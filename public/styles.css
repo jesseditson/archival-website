@@ -198,6 +198,21 @@ img {
   background: var(--color-bg-warm);
 }
 
+.featured-image-wrap a,
+.story-card > a {
+  display: block;
+}
+
+.featured-image-wrap a:hover img,
+.story-card > a:hover img {
+  opacity: 0.9;
+}
+
+.featured-image,
+.story-card-image {
+  transition: opacity 0.2s ease;
+}
+
 .featured-section {
   font-family: var(--font-sans);
   font-size: var(--text-xs);

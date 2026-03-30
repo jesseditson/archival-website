@@ -23,15 +23,19 @@
         <nav class="nav-sections">
           {% unless active_section %}{% assign active_section = "" %}{% endunless %}
           {% if sections.slug %}
-            {% assign nav_seen = "" %}
+            {% assign nav_slugs_str = "" %}
             {% for story in stories %}
               {% assign nav_slug = story.section | downcase %}
               {% assign nav_check = nav_slug | prepend: "|" | append: "|" %}
-              {% unless nav_seen contains nav_check %}
-                {% assign nav_seen = nav_seen | append: nav_check %}
-                <a class="nav-link{% if story.section == active_section %} nav-link--active{% endif %}" href="/sections/{{ nav_slug }}.html">{{ story.section }}</a>
+              {% unless nav_slugs_str contains nav_check %}
+                {% assign nav_slugs_str = nav_slugs_str | append: nav_slug | append: "," %}
               {% endunless %}
             {% endfor %}
+            {% assign nav_slugs = nav_slugs_str | split: "," | sort %}
+            {% assign active_slug = active_section | downcase %}
+            {% for slug in nav_slugs %}{% if slug != "" %}
+              <a class="nav-link{% if slug == active_slug %} nav-link--active{% endif %}" href="/sections/{{ slug }}.html">{{ slug | capitalize }}</a>
+            {% endif %}{% endfor %}
           {% else %}
             {% for section in sections %}
               <a class="nav-link{% if section.name == active_section %} nav-link--active{% endif %}" href="/sections/{{ section.slug }}.html">{{ section.name }}</a>

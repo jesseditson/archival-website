@@ -650,6 +650,17 @@ img {
   border-top: 1px solid var(--color-rule-light);
 }
 
+.story-header-rule {
+  max-width: var(--reading-width);
+  margin: 0 auto;
+  padding: 0 var(--space-xl);
+}
+
+.story-header-rule-line {
+  border-bottom: 1px solid var(--color-rule-light);
+  margin-bottom: var(--space-2xl);
+}
+
 .story-detail-author {
   font-weight: 600;
   color: var(--color-text);

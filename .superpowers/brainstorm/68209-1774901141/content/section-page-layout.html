@@ -1,0 +1,102 @@
+<h2>Section Page Layout</h2>
+<p class="subtitle">Each section (Politics, Culture, Technology, Opinion) gets its own page at <code>/sections/{slug}.html</code></p>
+
+<div class="cards">
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background: #faf8f5; padding: 24px; font-family: Georgia, serif; min-height: 400px;">
+        <!-- Simulated section page: Magazine-style -->
+        <div style="text-align: center; padding-bottom: 16px; border-bottom: 1px solid #e0e0e0; margin-bottom: 24px;">
+          <div style="font-size: 11px; font-family: -apple-system, sans-serif; text-transform: uppercase; letter-spacing: 0.12em; color: #888; margin-bottom: 4px;">
+            <span style="color: #c0392b;">Home</span> <span style="color: #aaa;">/</span> Technology
+          </div>
+          <div style="font-size: 28px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 4px;">Technology</div>
+          <div style="font-size: 13px; color: #888;">6 stories</div>
+        </div>
+
+        <!-- Lead story (larger) -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #e0e0e0;">
+          <div style="background: #ddd; aspect-ratio: 4/3; border-radius: 2px;"></div>
+          <div>
+            <div style="font-size: 11px; font-family: -apple-system, sans-serif; text-transform: uppercase; letter-spacing: 0.1em; color: #c0392b; font-weight: 700; margin-bottom: 4px;">Technology</div>
+            <div style="font-size: 22px; font-weight: 700; line-height: 1.15; margin-bottom: 8px;">The Quiet Revolution in Battery Technology</div>
+            <div style="font-size: 14px; color: #666; line-height: 1.5; margin-bottom: 8px;">How solid-state batteries are about to change everything from electric vehicles to grid storage.</div>
+            <div style="font-size: 11px; font-family: -apple-system, sans-serif; color: #888; text-transform: uppercase; letter-spacing: 0.05em;">By Jane Doe &middot; 5 min read</div>
+          </div>
+        </div>
+
+        <!-- Remaining stories (grid) -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div style="padding-bottom: 12px; border-bottom: 1px solid #e0e0e0;">
+            <div style="background: #ddd; aspect-ratio: 3/2; border-radius: 2px; margin-bottom: 8px;"></div>
+            <div style="font-size: 11px; font-family: -apple-system, sans-serif; text-transform: uppercase; color: #c0392b; font-weight: 700; margin-bottom: 2px;">Technology</div>
+            <div style="font-size: 16px; font-weight: 700; line-height: 1.2; margin-bottom: 4px;">Inside the Race to Map the Ocean Floor</div>
+            <div style="font-size: 11px; font-family: -apple-system, sans-serif; color: #888;">By John Smith &middot; 4 min read</div>
+          </div>
+          <div style="padding-bottom: 12px; border-bottom: 1px solid #e0e0e0;">
+            <div style="background: #ddd; aspect-ratio: 3/2; border-radius: 2px; margin-bottom: 8px;"></div>
+            <div style="font-size: 11px; font-family: -apple-system, sans-serif; text-transform: uppercase; color: #c0392b; font-weight: 700; margin-bottom: 2px;">Technology</div>
+            <div style="font-size: 16px; font-weight: 700; line-height: 1.2; margin-bottom: 4px;">Another Technology Story</div>
+            <div style="font-size: 11px; font-family: -apple-system, sans-serif; color: #888;">By Jane Doe &middot; 6 min read</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A) Lead Story + Grid</h3>
+      <p>First story in the section gets a larger, featured-style 2-column layout. Remaining stories show in a card grid below. Mirrors the homepage pattern — familiar to the reader.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background: #faf8f5; padding: 24px; font-family: Georgia, serif; min-height: 400px;">
+        <!-- Simulated section page: List-style -->
+        <div style="text-align: center; padding-bottom: 16px; border-bottom: 1px solid #e0e0e0; margin-bottom: 24px;">
+          <div style="font-size: 11px; font-family: -apple-system, sans-serif; text-transform: uppercase; letter-spacing: 0.12em; color: #888; margin-bottom: 4px;">
+            <span style="color: #c0392b;">Home</span> <span style="color: #aaa;">/</span> Technology
+          </div>
+          <div style="font-size: 28px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 4px;">Technology</div>
+          <div style="font-size: 13px; color: #888;">6 stories</div>
+        </div>
+
+        <!-- All stories as list rows -->
+        <div style="display: grid; grid-template-columns: 120px 1fr; gap: 16px; align-items: center; padding-bottom: 16px; border-bottom: 1px solid #e0e0e0; margin-bottom: 16px;">
+          <div style="background: #ddd; aspect-ratio: 3/2; border-radius: 2px;"></div>
+          <div>
+            <div style="font-size: 18px; font-weight: 700; line-height: 1.2; margin-bottom: 4px;">The Quiet Revolution in Battery Technology</div>
+            <div style="font-size: 13px; color: #666; line-height: 1.4; margin-bottom: 4px;">How solid-state batteries are about to change everything.</div>
+            <div style="font-size: 11px; font-family: -apple-system, sans-serif; color: #888;">By Jane Doe &middot; 5 min read</div>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 120px 1fr; gap: 16px; align-items: center; padding-bottom: 16px; border-bottom: 1px solid #e0e0e0; margin-bottom: 16px;">
+          <div style="background: #ddd; aspect-ratio: 3/2; border-radius: 2px;"></div>
+          <div>
+            <div style="font-size: 18px; font-weight: 700; line-height: 1.2; margin-bottom: 4px;">Inside the Race to Map the Ocean Floor</div>
+            <div style="font-size: 13px; color: #666; line-height: 1.4; margin-bottom: 4px;">The ambitious project to chart Earth's last frontier.</div>
+            <div style="font-size: 11px; font-family: -apple-system, sans-serif; color: #888;">By John Smith &middot; 4 min read</div>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 120px 1fr; gap: 16px; align-items: center; padding-bottom: 16px; border-bottom: 1px solid #e0e0e0; margin-bottom: 16px;">
+          <div style="background: #ddd; aspect-ratio: 3/2; border-radius: 2px;"></div>
+          <div>
+            <div style="font-size: 18px; font-weight: 700; line-height: 1.2; margin-bottom: 4px;">Another Technology Story</div>
+            <div style="font-size: 13px; color: #666; line-height: 1.4; margin-bottom: 4px;">A brief description of what this story covers.</div>
+            <div style="font-size: 11px; font-family: -apple-system, sans-serif; color: #888;">By Jane Doe &middot; 6 min read</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B) Uniform List</h3>
+      <p>All stories treated equally in a compact list with small thumbnails. Scannable and clean. Scales well to many stories, but less visual impact.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top: 24px;">
+  <h3>Nav Link Changes</h3>
+  <p>In both options, the header nav links change from <code>/#slug</code> to <code>/sections/slug.html</code>. The current section gets an active state (accent color underline). Section tags on story cards also become links to the section page.</p>
+</div>

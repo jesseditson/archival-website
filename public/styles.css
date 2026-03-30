@@ -659,7 +659,6 @@ img {
 
 .story-header-rule-line {
   border-bottom: 1px solid var(--color-rule-light);
-  padding-bottom: var(--space-lg);
   margin-bottom: var(--space-2xl);
 }
 

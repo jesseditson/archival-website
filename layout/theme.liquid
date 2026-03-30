@@ -26,8 +26,9 @@
             {% assign nav_slugs_str = "" %}
             {% for story in stories %}
               {% assign nav_slug = story.section | downcase %}
-              {% assign nav_check = nav_slug | prepend: "|" | append: "|" %}
-              {% unless nav_slugs_str contains nav_check %}
+              {% assign slug_check = nav_slug | prepend: "," | append: "," %}
+              {% assign str_check = nav_slugs_str | prepend: "," %}
+              {% unless str_check contains slug_check %}
                 {% assign nav_slugs_str = nav_slugs_str | append: nav_slug | append: "," %}
               {% endunless %}
             {% endfor %}

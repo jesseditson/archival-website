@@ -21,6 +21,7 @@
     <header class="site-header">
       <div class="header-inner">
         <nav class="nav-sections">
+          {% unless active_section %}{% assign active_section = "" %}{% endunless %}
           {% if sections.slug %}
             {% assign nav_seen = "" %}
             {% for story in stories %}

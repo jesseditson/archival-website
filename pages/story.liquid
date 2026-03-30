@@ -45,6 +45,10 @@
     {% if stories.image_caption.size > 0 %}
       <p class="story-image-caption">{{ stories.image_caption }}</p>
     {% endif %}
+  {% else %}
+    <div class="story-hero-image">
+      <div class="image-placeholder story-hero-placeholder" data-section="{{ stories.section | downcase }}"><span class="image-placeholder-text">{{ stories.section }}</span></div>
+    </div>
   {% endif %}
 
   <div class="story-body">

@@ -35,7 +35,7 @@
               {% elsif story.cover_url != empty %}
                 <img class="section-lead-image" src="{{ story.cover_url }}" alt="{{ story.image_caption }}">
               {% else %}
-                <div class="section-lead-image-placeholder"></div>
+                <div class="image-placeholder section-lead-image-placeholder" data-section="{{ story.section | downcase }}"><span class="image-placeholder-text">{{ story.section }}</span></div>
               {% endif %}
             </a>
           </div>
@@ -72,7 +72,7 @@
                 {% elsif story.cover_url != empty %}
                   <img class="story-card-image" src="{{ story.cover_url }}" alt="{{ story.image_caption }}">
                 {% else %}
-                  <div class="story-card-image-placeholder"></div>
+                  <div class="image-placeholder story-card-image-placeholder" data-section="{{ story.section | downcase }}"><span class="image-placeholder-text">{{ story.section }}</span></div>
                 {% endif %}
               </a>
               <p class="story-card-section">

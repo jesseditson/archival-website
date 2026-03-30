@@ -554,7 +554,7 @@ img {
 
 .story-hero-image {
   max-width: 900px;
-  margin: 0 auto var(--space-xs);
+  margin: 0 auto var(--space-2xl);
   padding: 0 var(--space-xl);
 }
 
@@ -572,7 +572,7 @@ img {
 
 .story-image-caption {
   max-width: 900px;
-  margin: 0 auto var(--space-2xl);
+  margin: calc(-1 * var(--space-2xl) + var(--space-xs)) auto var(--space-2xl);
   padding: 0 var(--space-xl);
   font-family: var(--font-sans);
   font-size: var(--text-xs);

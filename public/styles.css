@@ -214,7 +214,7 @@ img {
 
 .breadcrumb-sep {
   margin: 0 var(--space-sm);
-  color: var(--color-rule-light);
+  color: var(--color-text-secondary);
 }
 
 .breadcrumb-current {

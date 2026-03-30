@@ -1,7 +1,100 @@
 {% layout 'theme' title: sections.name
-  , page: 'section-page' %}
+  , page: 'section-page'
+  , active_section: sections.name %}
 
 <div class="section-page">
-  <h1>{{ sections.name }}</h1>
-  <p>Section page placeholder</p>
+  <div class="section-page-header">
+    <nav class="section-breadcrumb">
+      <a class="breadcrumb-link" href="/">Home</a>
+      <span class="breadcrumb-sep">/</span>
+      <span class="breadcrumb-current">{{ sections.name }}</span>
+    </nav>
+    <h1 class="section-page-name">{{ sections.name }}</h1>
+    {% assign story_count = 0 %}
+    {% for story in stories %}
+      {% if story.section == sections.name %}
+        {% assign story_count = story_count | plus: 1 %}
+      {% endif %}
+    {% endfor %}
+    <p class="section-page-count">{{ story_count }} {% if story_count == 1 %}story{% else %}stories{% endif %}</p>
+  </div>
+
+  {% if story_count == 0 %}
+    <p class="section-page-empty">No stories yet.</p>
+  {% endif %}
+
+  {% assign match_index = 0 %}
+  {% for story in stories %}
+    {% if story.section == sections.name %}
+      {% if match_index == 0 %}
+        <article class="section-lead-story">
+          <div class="section-lead-image-wrap">
+            <a href="/{{ story.path }}.html">
+              {% if story.image %}
+                <img class="section-lead-image" src="{{ story.image.url }}" alt="{{ story.image_caption }}">
+              {% elsif story.cover_url != empty %}
+                <img class="section-lead-image" src="{{ story.cover_url }}" alt="{{ story.image_caption }}">
+              {% else %}
+                <div class="section-lead-image-placeholder"></div>
+              {% endif %}
+            </a>
+          </div>
+          <div class="section-lead-text">
+            <h2 class="section-lead-headline">
+              <a href="/{{ story.path }}.html">{{ story.headline }}</a>
+            </h2>
+            {% if story.subheadline.size > 0 %}
+              <p class="section-lead-subheadline">{{ story.subheadline }}</p>
+            {% endif %}
+            {% assign words = story.body | strip_html | split: ' ' | size %}
+            {% assign reading_time = words | plus: 199 | divided_by: 200 %}
+            {% if reading_time < 1 %}{% assign reading_time = 1 %}{% endif %}
+            <p class="section-lead-meta">
+              By {{ story.author }} &middot; {{ story.date }} &middot; {{ reading_time }} min read
+            </p>
+          </div>
+        </article>
+      {% endif %}
+      {% assign match_index = match_index | plus: 1 %}
+    {% endif %}
+  {% endfor %}
+
+  {% if story_count > 1 %}
+    <div class="story-grid">
+      {% assign match_index = 0 %}
+      {% for story in stories %}
+        {% if story.section == sections.name %}
+          {% if match_index > 0 %}
+            <article class="story-card">
+              <a href="/{{ story.path }}.html">
+                {% if story.image %}
+                  <img class="story-card-image" src="{{ story.image.url }}" alt="{{ story.image_caption }}">
+                {% elsif story.cover_url != empty %}
+                  <img class="story-card-image" src="{{ story.cover_url }}" alt="{{ story.image_caption }}">
+                {% else %}
+                  <div class="story-card-image-placeholder"></div>
+                {% endif %}
+              </a>
+              <p class="story-card-section">
+                <a href="/sections/{{ story.section | downcase }}.html">{{ story.section }}</a>
+              </p>
+              <h3 class="story-card-headline">
+                <a href="/{{ story.path }}.html">{{ story.headline }}</a>
+              </h3>
+              {% if story.subheadline.size > 0 %}
+                <p class="story-card-subheadline">{{ story.subheadline }}</p>
+              {% endif %}
+              {% assign words = story.body | strip_html | split: ' ' | size %}
+              {% assign reading_time = words | plus: 199 | divided_by: 200 %}
+              {% if reading_time < 1 %}{% assign reading_time = 1 %}{% endif %}
+              <p class="story-card-meta">
+                By {{ story.author }} &middot; {{ story.date }} &middot; {{ reading_time }} min read
+              </p>
+            </article>
+          {% endif %}
+          {% assign match_index = match_index | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
 </div>

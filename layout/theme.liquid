@@ -21,9 +21,21 @@
     <header class="site-header">
       <div class="header-inner">
         <nav class="nav-sections">
-          {% for section in sections %}
-            <a class="nav-link" href="/#{{ section.slug }}">{{ section.name }}</a>
-          {% endfor %}
+          {% if sections.slug %}
+            {% assign nav_seen = "" %}
+            {% for story in stories %}
+              {% assign nav_slug = story.section | downcase %}
+              {% assign nav_check = nav_slug | prepend: "|" | append: "|" %}
+              {% unless nav_seen contains nav_check %}
+                {% assign nav_seen = nav_seen | append: nav_check %}
+                <a class="nav-link{% if story.section == active_section %} nav-link--active{% endif %}" href="/sections/{{ nav_slug }}.html">{{ story.section }}</a>
+              {% endunless %}
+            {% endfor %}
+          {% else %}
+            {% for section in sections %}
+              <a class="nav-link{% if section.name == active_section %} nav-link--active{% endif %}" href="/sections/{{ section.slug }}.html">{{ section.name }}</a>
+            {% endfor %}
+          {% endif %}
         </nav>
         <div class="masthead">
           <a href="/" class="masthead-link">

@@ -136,6 +136,12 @@ img {
   color: var(--color-text);
 }
 
+.nav-link--active {
+  color: var(--color-accent);
+  border-bottom: 2px solid var(--color-accent);
+  padding-bottom: 2px;
+}
+
 .masthead {
   padding-bottom: var(--space-lg);
 }

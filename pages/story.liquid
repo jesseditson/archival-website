@@ -1,15 +1,33 @@
 {% layout 'theme' title: stories.headline
-  , page: 'story-detail' %}
+  , page: 'story-detail'
+  , active_section: stories.section %}
 
 <article>
+  <nav class="story-breadcrumb">
+    <a class="breadcrumb-link" href="/">Home</a>
+    <span class="breadcrumb-sep">/</span>
+    {% if stories.section.size > 0 %}
+      <a class="breadcrumb-link" href="/sections/{{ stories.section | downcase }}.html">{{ stories.section }}</a>
+      <span class="breadcrumb-sep">/</span>
+    {% endif %}
+    <span class="breadcrumb-current">{{ stories.headline }}</span>
+  </nav>
+
   <header class="story-header">
-    <p class="story-detail-section">{{ stories.section }}</p>
+    {% if stories.section.size > 0 %}
+      <p class="story-detail-section">
+        <a href="/sections/{{ stories.section | downcase }}.html">{{ stories.section }}</a>
+      </p>
+    {% endif %}
     <h1 class="story-detail-headline">{{ stories.headline }}</h1>
     {% if stories.subheadline.size > 0 %}
       <p class="story-detail-subheadline">{{ stories.subheadline }}</p>
     {% endif %}
+    {% assign words = stories.body | strip_html | split: ' ' | size %}
+    {% assign reading_time = words | plus: 199 | divided_by: 200 %}
+    {% if reading_time < 1 %}{% assign reading_time = 1 %}{% endif %}
     <p class="story-detail-meta">
-      By <span class="story-detail-author">{{ stories.author }}</span> &middot; {{ stories.date }}
+      By <span class="story-detail-author">{{ stories.author }}</span> &middot; {{ stories.date }} &middot; {{ reading_time }} min read
     </p>
   </header>
 
@@ -33,3 +51,57 @@
     {{ stories.body }}
   </div>
 </article>
+
+{% assign related_count = 0 %}
+{% for story in stories %}
+  {% if story.section == stories.section and story.slug != stories.slug %}
+    {% assign related_count = related_count | plus: 1 %}
+  {% endif %}
+{% endfor %}
+
+{% if related_count >= 2 %}
+  <div class="more-from-section">
+    <div class="section-divider">
+      <div class="section-divider-inner">
+        <div class="section-divider-line"></div>
+        <span class="section-divider-label">More from {{ stories.section }}</span>
+        <div class="section-divider-line"></div>
+      </div>
+    </div>
+
+    <div class="more-from-grid">
+      {% assign shown = 0 %}
+      {% for story in stories %}
+        {% if story.section == stories.section and story.slug != stories.slug %}
+          {% if shown < 3 %}
+            <article class="more-from-card">
+              <a href="/{{ story.path }}.html">
+                {% if story.image %}
+                  <img class="more-from-image" src="{{ story.image.url }}" alt="{{ story.image_caption }}">
+                {% elsif story.cover_url != empty %}
+                  <img class="more-from-image" src="{{ story.cover_url }}" alt="{{ story.image_caption }}">
+                {% else %}
+                  <div class="more-from-image-placeholder"></div>
+                {% endif %}
+              </a>
+              <h3 class="more-from-headline">
+                <a href="/{{ story.path }}.html">{{ story.headline }}</a>
+              </h3>
+              {% assign words = story.body | strip_html | split: ' ' | size %}
+              {% assign reading_time = words | plus: 199 | divided_by: 200 %}
+              {% if reading_time < 1 %}{% assign reading_time = 1 %}{% endif %}
+              <p class="more-from-meta">
+                By {{ story.author }} &middot; {{ reading_time }} min read
+              </p>
+            </article>
+            {% assign shown = shown | plus: 1 %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="more-from-link-wrap">
+      <a class="more-from-link" href="/sections/{{ stories.section | downcase }}.html">All {{ stories.section }} Stories &rarr;</a>
+    </div>
+  </div>
+{% endif %}

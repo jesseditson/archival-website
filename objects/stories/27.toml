@@ -1,0 +1,33 @@
+headline = "Architecture's New Obsession with Impermanence"
+subheadline = "A generation of designers is building structures meant to be dismantled — and asking what permanence was ever for."
+slug = "architecture-impermanence"
+section = "Culture"
+author = "John Smith"
+date = "March 14, 2026"
+cover_url = ""
+image_caption = ""
+featured = ""
+
+body = """
+The pavilion at this year's Venice Architecture Biennale will not be there next year. That is the point. Designed by a collective of architects from Rotterdam, the structure — a hall of bent laminated timber and tensioned fabric, assembled without permanent fasteners — is explicitly intended to be dismantled, its components catalogued, and its materials reused in a community building project in rural Mozambique. Every design decision was made with disassembly in mind.
+
+The pavilion is a provocation, but it is not a lonely one.
+
+## A Movement Takes Shape
+
+Across architecture schools and practices, the idea of designing for disassembly, reuse, and material recovery is moving from the theoretical margin toward the mainstream. It goes by several names — circular design, cradle-to-cradle architecture, design for deconstruction — and it is driven partly by environmental urgency and partly by an intellectual reaction against the assumption that permanence is inherently a virtue.
+
+"The twentieth century built for a thousand years," said Prof. Elsa Reinhard, who teaches sustainable structures at ETH Zurich. "We are building for fifty, with the explicit intention that the materials come back."
+
+## The Technical Challenges
+
+The appeal of circular design runs into significant technical and regulatory obstacles. Building codes in most jurisdictions are written for permanent construction; they do not have categories for structures designed to be taken apart and reassembled. Material recertification — the process of verifying that a structural element is safe to reuse in a new context — has no standardized process in most countries.
+
+Several pilot projects have navigated these obstacles through custom agreements with local authorities, but scaling requires systemic change that is, at best, beginning.
+
+## What It Asks of Us
+
+The deeper challenge posed by architecture's impermanence turn is cultural rather than technical. Buildings encode a society's aspirations and self-image. A building meant to last a century says something different about its makers than one designed to be disassembled and redistributed. Whether that message is liberating or melancholy probably depends on who you ask.
+
+"I think people assume we're pessimists," said one member of the Rotterdam collective. "We are the opposite. We think materials are too valuable to bury in the ground forever."
+"""

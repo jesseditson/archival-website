@@ -1,0 +1,35 @@
+headline = "The Myth of the Undecided Voter"
+subheadline = "Campaigns spend billions trying to persuade people who have already made up their minds. The electorate they're ignoring could decide everything."
+slug = "myth-of-the-undecided-voter"
+section = "Opinion"
+author = "John Smith"
+date = "March 23, 2026"
+cover_url = ""
+image_caption = ""
+featured = ""
+
+body = """
+Every two years, American political campaigns spend an aggregate of several billion dollars chasing a population that is, depending on the election cycle and how you measure it, somewhere between five and twelve percent of the electorate. These are the so-called undecided voters, the persuadables, the swing voters in swing districts in swing states. They are the obsessive focus of campaign strategy, polling methodology, and most of what passes for electoral analysis in the American media.
+
+They are also, increasingly, not where elections are decided.
+
+## The Turnout Reality
+
+Political scientists have known for at least fifteen years that the dominant driver of election outcomes in most competitive races is differential turnout among voters who are already aligned, not persuasion of voters who are genuinely uncommitted. A Republican who increases enthusiasm and turnout among low-propensity base voters in a target district can win without moving a single undecided voter. The same is true for Democrats.
+
+The campaigns know this. Their field programs, their small-dollar fundraising appeals, their social media spending — all of it is increasingly oriented toward base mobilization. Their public rhetoric, and their media coverage, has not caught up.
+
+## Who the Real Undecided Voters Are
+
+The small number of voters who are genuinely undecided in most elections are not, on average, unusually thoughtful centrists carefully weighing competing policy arguments. They are, statistically, lower-information voters with weaker partisan identification, lower media consumption, and often significant ambivalence about political engagement entirely.
+
+This matters because campaigns and media that aim at undecided voters optimize for different things than campaigns and media that aim at mobilizing the already-inclined. One of those optimizations produces substantive policy contrast. The other produces memorable insults and vivid emotional appeals.
+
+## What an Honest Reckoning Would Look Like
+
+If we accepted that mobilization, not persuasion, drives most elections, we would have to ask different questions. Not "what do swing voters think?" but "what keeps base voters home?" Not "how do we appeal to the middle?" but "what barriers make voting harder for the people who are already with you?"
+
+Those questions point toward policy and structural changes — automatic registration, expanded early voting, same-day registration — that tend to be more controversial than the current obsession with undecided voters, which conveniently leaves the structural status quo unchanged.
+
+The myth of the persuadable center is politically convenient for incumbents and for a media industry that covers elections like horse races. It is less useful for understanding how elections actually work.
+"""

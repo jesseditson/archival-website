@@ -1,0 +1,33 @@
+headline = "Foreign Influence Operations Are Getting Cheaper and Harder to Detect"
+subheadline = "As AI tools lower the cost of disinformation, election security officials are rethinking what defense looks like."
+slug = "foreign-influence-operations-cheaper"
+section = "Politics"
+author = "Jane Doe"
+date = "March 9, 2026"
+cover_url = ""
+image_caption = ""
+featured = ""
+
+body = """
+Three years ago, running a large-scale foreign influence operation required significant infrastructure: server farms, human operators fluent in the target language, teams to create and maintain fake social media personas, and resources to promote content at scale. It was expensive. It left traces. Intelligence agencies had learned to find those traces.
+
+That model is now obsolete.
+
+## The New Economics of Disinformation
+
+The same language model capabilities that help small businesses write marketing copy and students draft essays have dramatically lowered the barrier to creating convincing, culturally fluent content at industrial scale. A researcher at Stanford's Internet Observatory recently demonstrated that a disinformation operation with a budget of $400 and freely available AI tools could generate, in an afternoon, the equivalent content output that would have cost a state actor roughly $200,000 in 2019.
+
+The quality is uneven. But quantity, as Stalin reportedly said of artillery, has a quality all its own.
+
+## What the 2025 Cycle Showed
+
+The midterm election cycle produced a meaningful increase in what CISA and academic monitoring groups describe as "gray zone" content: material that is not straightforwardly foreign propaganda but that originates from or is substantially amplified by foreign-adjacent networks. Unlike the blunter influence campaigns of 2016, much of this content does not argue for a specific candidate. It argues against institutions — against the integrity of the vote count, against the reliability of public health information, against the trustworthiness of courts.
+
+"You don't need to pick a winner," said one intelligence official who was not authorized to speak publicly. "You just need to convince people that there is no such thing as a winner worth trusting."
+
+## The Defense Problem
+
+Platform moderation, which was the primary line of defense after 2016, has become less effective as operations have become more sophisticated at mimicking organic behavior. CISA's election security division has shifted its focus toward what officials describe as "resilience" — the capacity of voters and institutions to function despite the presence of disinformation — rather than the probably impossible goal of eliminating it.
+
+Whether resilience can be built fast enough to matter is the question that keeps election security officials awake at night.
+"""

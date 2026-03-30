@@ -1,0 +1,37 @@
+headline = "The Satellite Internet Gap Is Narrowing — But Not for Everyone"
+subheadline = "Low-Earth orbit broadband has transformed connectivity in remote areas. It has also introduced a new kind of digital inequality."
+slug = "satellite-internet-gap-narrowing"
+section = "Technology"
+author = "Jane Doe"
+date = "March 25, 2026"
+cover_url = ""
+image_caption = ""
+featured = ""
+
+body = """
+Three years ago, the Martinez family's ranch in the mountains of northern New Mexico had no broadband. Their children did schoolwork on a mobile hotspot that cost $80 a month and delivered, on a good day, 8 megabits per second. On bad days, it didn't deliver anything. Then they subscribed to a low-Earth orbit satellite service, installed the small dish that came in the mail, pointed it at the sky, and got 180 megabits per second for the first time in their lives.
+
+"It changed everything," said Carmen Martinez. "Homework. Telehealth appointments. My husband's accounting work. All of it."
+
+## The Coverage Revolution
+
+The deployment of low-Earth orbit satellite constellations has been, by the metric of raw coverage expansion, one of the more remarkable infrastructure achievements of the past decade. Connectivity that was previously available only in urban and suburban areas with fiber or cable infrastructure is now technically accessible from virtually any point on Earth's surface that has a clear view of the sky.
+
+The FCC's most recent broadband map, updated in January, shows a substantial reduction in the number of addresses classified as unserved — a change driven almost entirely by satellite availability.
+
+## The Cost Problem
+
+What the coverage map does not show is affordability. The leading LEO satellite services currently cost between $65 and $120 per month for residential service, plus an upfront hardware cost of $200 to $600 for the antenna. In rural areas where median household income is below the national average, these prices are not accessible for many of the households that the coverage map counts as served.
+
+Federal rural broadband subsidies have partially addressed this gap. The FCC's Affordable Connectivity Program, which provided a monthly subsidy of up to $30, expired in 2024 amid congressional funding disputes and has not been fully replaced. Several states have created their own subsidy programs; most have not.
+
+## The New Divide
+
+The equity problem satellite internet has introduced is subtler than the old one. In the pre-satellite era, the divide was between places that had broadband and places that didn't. The new divide is between places where people can afford the satellite service and places where they can't — a divide that maps imperfectly but meaningfully onto income.
+
+For the Martinez family, the monthly cost is manageable. For their neighbor, a retired farmworker on a fixed income, it is not. Both live in the same coverage zone. The FCC map treats them identically.
+
+## What Comes Next
+
+The cost of LEO satellite service has declined since initial deployment and is expected to continue declining as constellation capacity increases and competition intensifies. Whether it will reach price points accessible to the lowest-income rural households without sustained subsidy programs is, at present, uncertain. The technology has largely solved the coverage problem. The policy has not kept pace with the affordability one.
+"""

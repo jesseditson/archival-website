@@ -1,0 +1,33 @@
+headline = "AI-Generated Code Is Flooding Open Source Repositories"
+subheadline = "GitHub's maintainers are struggling with a surge of low-quality pull requests written by language models — and no one agrees on what to do about it."
+slug = "ai-code-flooding-open-source"
+section = "Technology"
+author = "Jane Doe"
+date = "March 7, 2026"
+cover_url = ""
+image_caption = ""
+featured = ""
+
+body = """
+The maintainer of a widely used open-source logging library received 47 pull requests in February. In a typical month, he gets three or four. The difference, he quickly determined, was AI-generated code: submissions that were syntactically correct, plausibly relevant, and subtly wrong in ways that were sometimes immediately obvious and sometimes not.
+
+"It's not that the code is bad in an obvious way," said the maintainer, who asked to be identified only by his GitHub username. "It's that it's bad in a way that takes me an hour to diagnose. And there are forty-seven of them."
+
+## The Scale of the Problem
+
+Maintainers across the open-source ecosystem are reporting similar patterns. A survey conducted by the Open Source Initiative in January found that 61 percent of projects with more than 500 stars on GitHub had experienced what maintainers described as a notable increase in AI-generated contribution attempts. Most of these submissions are from users who appear to be using coding assistants to generate contributions to projects they do not fully understand, in some cases to fulfill learning challenges or course assignments that require open-source participation.
+
+The problem is not limited to inexperienced contributors. Several projects have identified AI-generated code in pull requests from accounts with established histories, suggesting that experienced developers are also using language models to speed up contribution workflows — sometimes without adequately reviewing the output.
+
+## What Maintainers Are Doing
+
+Responses have varied from the pragmatic to the drastic. Some maintainers have added contribution guidelines explicitly discouraging or requiring disclosure of AI-assisted code. Others have closed their repositories to outside contributions entirely, a decision that sacrifices community engagement for sustainability.
+
+The Linux kernel project updated its submission policy in January to require that contributors certify they have personally reviewed and tested any AI-generated code they submit. Several major foundations are drafting similar language.
+
+## The Harder Question
+
+Underneath the policy debate is a more fundamental tension. Open-source software runs on volunteer labor, and the tooling that makes AI-assisted contribution easy was, in part, built and celebrated by the same community now grappling with its side effects. GitHub Copilot, which is trained substantially on open-source code, is now producing contributions back to the repositories that trained it — a loop that many maintainers find more ironic than comforting.
+
+"We built these tools," one maintainer wrote in a widely shared forum post. "We are going to have to figure out how to live with them."
+"""

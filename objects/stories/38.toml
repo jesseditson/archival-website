@@ -1,0 +1,35 @@
+headline = "The Lobbyist Reform Bill Has a Lobbying Problem"
+subheadline = "Legislation designed to curb the influence of professional advocates is being revised in committee — by the people it would regulate."
+slug = "lobbyist-reform-bill-lobbying-problem"
+section = "Politics"
+author = "Jane Doe"
+date = "March 24, 2026"
+cover_url = ""
+image_caption = ""
+featured = ""
+
+body = """
+The Federal Lobbying Transparency and Reform Act, which its sponsors introduced with considerable fanfare in January, has been in the Senate Judiciary Committee for nine weeks. In that time, it has been the subject of 23 registered lobbying contacts from advocacy firms that would be directly affected by its provisions. Three of the bill's co-sponsors have received campaign contributions from political action committees associated with lobbying industry groups since the legislation was introduced.
+
+None of this is illegal. All of it is precisely the kind of dynamic the bill is designed to address.
+
+## What the Bill Would Do
+
+As introduced, the legislation would require real-time disclosure of lobbying contacts with members of Congress and their staff, mandate the publication of meeting logs within 48 hours, close the so-called "strategic consulting" exemption that allows many influence professionals to avoid registering as lobbyists, and extend the revolving-door cooling-off period for senior executive branch officials from one year to three.
+
+The bill passed out of a Senate working group with bipartisan support in December. What has happened to it since is a case study in how legislation gets modified into something its sponsors no longer recognize.
+
+## The Amendments
+
+Thirteen amendments have been submitted for committee consideration, ten of them from offices that have received lobbying attention on the bill. The most consequential would narrow the definition of a "lobbying contact" to exclude communications that do not include explicit requests for legislative action — a change that would effectively exempt most of what influence professionals actually do. Another would reduce the real-time disclosure requirement to a 30-day window, matching current law and eliminating the transparency advantage the bill was designed to provide.
+
+The bill's lead sponsor, Senator Michelle Tanaka of Washington, has described the amendment process as "frustrating but expected." She declined to say whether the legislation would survive committee in recognizable form.
+
+## Why This Keeps Happening
+
+The structural problem is not difficult to identify: the people who have the strongest incentive and the greatest expertise to engage with lobbying reform legislation are the lobbyists. They understand the regulatory definitions, the compliance burdens, and the enforcement mechanisms better than most members of Congress or their staff. They use that understanding to propose amendments that are nominally reasonable and functionally protective of their industry.
+
+Reform advocates argue that the solution is more robust staff capacity for oversight committees and more rigorous conflict-of-interest rules for amendment consideration. Neither is straightforward to implement within the current institutional culture of the Senate.
+
+The bill is expected to come to a committee vote in April. Its sponsors are cautiously optimistic. The lobbyists are working.
+"""

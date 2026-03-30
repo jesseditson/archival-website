@@ -1,0 +1,33 @@
+headline = "I Reported on War for Twenty Years. Here Is What I Got Wrong."
+subheadline = "A veteran correspondent reflects on the stories we tell about conflict — and the ones we don't."
+slug = "war-reporter-what-i-got-wrong"
+section = "Opinion"
+author = "John Smith"
+date = "March 12, 2026"
+cover_url = ""
+image_caption = ""
+featured = ""
+
+body = """
+I have spent the better part of my adult life in places where people were trying to kill each other. I have filed dispatches from four continents, been evacuated from two cities, and watched two colleagues die. I have also, I believe, misled my readers in systematic and important ways — not through dishonesty, but through the logic of the form.
+
+This is an attempt to account for some of that.
+
+## The Problem With the Story
+
+War reporting, by its nature, selects for the dramatic. The airstrike makes the news. The bread line does not, unless it is bombed. The corridor negotiation that averts a massacre is invisible; the massacre is not. I spent years writing about events — attacks, offensives, massacres, negotiations — while spending far less time on the texture of daily life that surrounded and preceded those events and that would shape whatever came after them.
+
+The result, multiplied across hundreds of reporters over years of coverage, is a picture of conflict that is accurate about its worst moments and systematically misleading about everything else.
+
+## What Ordinary Life Looks Like
+
+In my experience, most people in conflict zones spend most of their time doing ordinary things: working, worrying about money, raising children, arguing with their neighbors. The war is a fact of their lives, sometimes an overwhelming one, but it is rarely the totality of their lives. When journalists describe populations primarily through their suffering and their victimhood, we flatten them. We make them easier to feel bad about and harder to think clearly about.
+
+The people who do the actual work of reconstruction and reconciliation — the local officials, the community leaders, the NGO staff — are almost never on television. They do not generate the kind of content that earns airtime or clicks. Their work is the most important thing happening in a post-conflict society, and it is structurally invisible to most foreign coverage.
+
+## What I Would Do Differently
+
+I am not sure the problem is solvable within the economic constraints of contemporary journalism. The incentives that produce dramatic coverage are real and not easily reversed. But I think there are individual choices that matter: more time in a place before filing, more attention to the people who are not spokespeople, more willingness to report on the absence of drama.
+
+The hardest story I ever tried to write was about a town that was not being bombed. My editor wanted to know why. I could not explain it in a way that would get it published. I still think it was the most important story I didn't file.
+"""

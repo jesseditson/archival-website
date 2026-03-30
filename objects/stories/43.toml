@@ -1,0 +1,33 @@
+headline = "The Libraries That Became Something Else"
+subheadline = "Across the country, public libraries are navigating a transformation from book repositories to community infrastructure — and not everyone is happy about it."
+slug = "libraries-became-something-else"
+section = "Culture"
+author = "John Smith"
+date = "March 25, 2026"
+cover_url = ""
+image_caption = ""
+featured = ""
+
+body = """
+The Multnomah County Library branch on Southeast Belmont Street in Portland has, on a Tuesday afternoon, a man sleeping in a chair near the periodicals, a teenager using a 3D printer in the makerspace, three people attending a free tax preparation assistance session in a small meeting room, a social worker from a partnering nonprofit meeting with a client in a private consultation space, and a toddler in a storytime circle who is deeply engaged with a book about trucks. It also has books. Quite a lot of them. But books are no longer most of what happens here.
+
+## A Transformation Nobody Planned
+
+The expansion of public library services beyond circulating physical materials has been gradual and largely uncoordinated — a response to community needs as libraries encountered them rather than a planned strategic shift. Mental health resource navigation appeared as staff noticed patrons in crisis. Social services partnerships formed as librarians began referring people who needed more than a library could provide. Digital literacy programs launched as the gap between people with internet skills and people without became unmistakable.
+
+The result, in many urban branches, is an institution that looks quite different from what existed twenty years ago — and that serves populations that might not otherwise have access to the services they are now receiving.
+
+## The Funding Squeeze
+
+The transformation has happened without a commensurate increase in funding in most jurisdictions. Libraries are doing more with budgets that have, in many cases, not kept pace with inflation. Staff who were trained as librarians are navigating interactions that require social work skills. Buildings designed for different use patterns are being repurposed under maintenance budgets that assumed less wear.
+
+"We are the last public space with no barrier to entry," said one branch manager in a mid-sized Midwestern city. "That means we absorb a lot of what has nowhere else to go. I think that's right. I also think we need the resources to do it."
+
+## The Political Argument
+
+The expansion of library services has generated genuine political controversy in some communities. Critics on the right argue that libraries have strayed from their core function and are providing social services that should be handled by other institutions. Critics from the left argue that libraries are being used to fill gaps created by the underfunding of those other institutions, and that the solution is not to limit libraries but to fund the safety net they are compensating for.
+
+Both critiques contain something true. The libraries are filling gaps. The gaps are real. What is worth asking is whether we want this particular institution, with its particular traditions and constraints, to be the gap-filler — or whether the reliance on libraries is a symptom of something we should address more directly.
+
+The man sleeping in the chair near the periodicals wakes up, returns a book to the returns slot, and leaves. He has been coming here for three years. He has nowhere else warm to go.
+"""

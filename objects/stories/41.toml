@@ -1,0 +1,33 @@
+headline = "What the Death of the Expert Class Actually Means"
+subheadline = "Distrust of expertise is real, warranted in some cases, and being weaponized in ways that hurt the people most angry about it."
+slug = "death-of-the-expert-class"
+section = "Opinion"
+author = "John Smith"
+date = "March 25, 2026"
+cover_url = ""
+image_caption = ""
+featured = ""
+
+body = """
+The experts were wrong about Iraq. They were wrong, or at least silent, about the financial crisis. They were inconsistent about masks in the early months of the pandemic, overconfident about certain pharmaceutical interventions, and often contemptuous of the questions people were asking. The distrust of expert institutions that has spread across the American electorate is not irrational. It has causes. It has receipts.
+
+This acknowledgment, which I think is required for honest discussion, is immediately followed by a problem: the people most furiously rejecting expert authority are not primarily doing so because they've done a careful accounting of institutional failures. They are doing so because it has been made easy, rewarding, and entertaining to do so by forces that benefit from the rejection.
+
+## Two Different Things
+
+There is a meaningful difference between earned skepticism and wholesale rejection. Earned skepticism says: this institution got this wrong, and I want to understand why, and I want reforms that make similar failures less likely. Wholesale rejection says: expertise itself is a fraud, credentials are a form of class contempt, and anyone who cites evidence is probably hiding something.
+
+The first is healthy. It is what science and democracy require. The second is being industrialized and monetized at scale, primarily through media ecosystems that profit from outrage and suspicion.
+
+## Who Gets Hurt
+
+The people most harmed by wholesale rejection of expertise are not, in most cases, the credentialed professionals being rejected. They are the people who need reliable information to make consequential decisions and are being deprived of it by an information environment designed to make everything uncertain.
+
+A farmer who doesn't trust USDA crop forecasts because he's been told the government lies about everything is not striking a blow for the common man. He is farming blind in a volatile commodity market. A parent who doesn't trust vaccine safety data because she's learned to treat all institutional claims as suspect is not being a critical thinker. She is navigating a risk environment without a map.
+
+## The Reform These Institutions Actually Need
+
+The answer to the expert crisis is not to defend the credentialed class against all criticism. It is to hold expert institutions to genuinely higher standards of transparency, accountability, and humility — and to do so loudly enough that it is distinguishable from the nihilism that benefits no one.
+
+Institutions that acknowledge their failures, explain their reasoning, update their guidance publicly when evidence changes, and engage with legitimate criticism rather than dismissing it earn back something that cannot be granted by credential or title. They earn it the hard way, which is the only way that works.
+"""

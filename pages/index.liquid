@@ -68,4 +68,43 @@
       {% endif %}
     {% endfor %}
   </div>
+  <div class="load-more-sentinel" id="load-more-sentinel">
+    <div class="load-more-inner">
+      <div class="load-more-spinner"></div>
+      <span>Loading more stories</span>
+    </div>
+  </div>
 </div>
+
+<script>
+(function() {
+  var BATCH = 9;
+  var grid = document.querySelector('.story-grid');
+  if (!grid) return;
+  var cards = grid.querySelectorAll('.story-card');
+  if (cards.length <= BATCH) return;
+
+  var shown = BATCH;
+  for (var i = shown; i < cards.length; i++) {
+    cards[i].classList.add('story-card--hidden');
+  }
+
+  var sentinel = document.getElementById('load-more-sentinel');
+  sentinel.classList.add('load-more-sentinel--active');
+
+  var observer = new IntersectionObserver(function(entries) {
+    if (!entries[0].isIntersecting) return;
+    var end = Math.min(shown + BATCH, cards.length);
+    for (var i = shown; i < end; i++) {
+      cards[i].classList.remove('story-card--hidden');
+    }
+    shown = end;
+    if (shown >= cards.length) {
+      sentinel.classList.remove('load-more-sentinel--active');
+      observer.disconnect();
+    }
+  }, { rootMargin: '400px' });
+
+  observer.observe(sentinel);
+})();
+</script>

@@ -1,0 +1,33 @@
+headline = "We Need to Talk About How We Talk About the Economy"
+subheadline = "The gap between economic data and economic experience is real — and the way journalists and politicians describe it makes things worse."
+slug = "how-we-talk-about-the-economy"
+section = "Opinion"
+author = "John Smith"
+date = "March 16, 2026"
+cover_url = ""
+image_caption = ""
+featured = ""
+
+body = """
+Here is a sentence you will read in some form several times a week: "The economy added 180,000 jobs last month, and unemployment remained at 4.1 percent." Here is something that sentence does not tell you: whether the jobs pay enough to live on, whether the people taking them feel secure in them, whether the people who are counted as employed are working as many hours as they want, or whether the people counted as not-unemployed have simply stopped looking because they could not find anything.
+
+The sentence is not wrong. It is incomplete in ways that consistently bias the picture in an optimistic direction.
+
+## The Measures We Use
+
+The official unemployment rate, known as U-3, counts as employed anyone who did any paid work in the reference week. A person who wanted full-time work and found two days of gig-economy delivery jobs is, by this measure, employed. The broader U-6 measure, which includes people who want more hours and people who have given up searching, typically runs four to six percentage points higher than U-3 — but it appears in far fewer headlines.
+
+Inflation measures have similar problems. The headline CPI reflects a basket of goods weighted toward the expenditure patterns of a median household. For people who spend a higher-than-average share of income on rent, childcare, and healthcare — which are, not coincidentally, the categories that have increased fastest — the headline number understates the actual inflation they experience.
+
+## Why This Matters Politically
+
+The persistent gap between aggregate economic data and lived economic experience has real political consequences. When people hear that the economy is doing well and their own lives don't feel that way, they do not typically update their sense of their lives. They update their trust in institutions.
+
+Journalism that leads with aggregate statistics and buries distributional detail is not simply incomplete — it actively contributes to the sense that the people reporting on the economy do not understand or care about the people living in it.
+
+## A More Honest Approach
+
+This is not an argument for pessimism or for ignoring data that shows real progress. It is an argument for precision. A jobs report story that says "employment grew broadly, though gains were concentrated in part-time work and the share of prime-age workers in full-time employment declined" is harder to write but more true. It asks more of readers. It also respects them.
+
+The economy is not the stock market. It is the material condition of how people live. The way we describe it should reflect that.
+"""

@@ -1,0 +1,31 @@
+headline = "Inside the Race to Build a Battery That Lasts a Week"
+subheadline = "Solid-state technology has been 'five years away' for a decade. This time, the labs say they mean it."
+slug = "solid-state-battery-race"
+section = "Technology"
+author = "Jane Doe"
+date = "March 3, 2026"
+cover_url = ""
+image_caption = ""
+featured = ""
+
+body = """
+In a clean room outside Tokyo, researchers at QuantaCell are running a test that would have been impossible three years ago. A solid-state battery the size of a deck of cards has been cycling — charging and discharging — continuously for eight months. At 2,200 cycles, it retains 94 percent of its original capacity. By the standards of current lithium-ion technology, this is extraordinary. By the standards QuantaCell has set for itself, it is merely a starting point.
+
+## The Promise Has Always Been There
+
+Solid-state batteries replace the liquid electrolyte in conventional lithium-ion cells with a rigid ceramic or glass compound. In theory, this eliminates the risk of fire, enables faster charging, and allows for far greater energy density — the amount of power stored per unit of weight. In practice, the ceramic electrolyte has proven maddeningly difficult to manufacture at scale without cracking under the stress of repeated expansion and contraction.
+
+That problem, researchers now believe, is finally yielding to a combination of new materials science and precision manufacturing techniques borrowed from the semiconductor industry.
+
+## Who Is Winning
+
+The competitive landscape is crowded and secretive. Toyota has committed $3 billion to solid-state development and claims it will have a production vehicle with the technology by 2028. Samsung SDI and CATL are pursuing parallel tracks. In the United States, a startup called Ionic Materials, backed by Breakthrough Energy Ventures, has attracted attention for an approach using polymer rather than ceramic electrolytes — a different solution to the same cracking problem.
+
+QuantaCell declines to name its investors or its potential customers. But the company's CEO, Dr. Yuki Tanaka, was willing to state one thing plainly: "We are not doing a press release. We are building a factory."
+
+## What It Would Mean
+
+A battery capable of powering an electric vehicle for 600 miles on a single charge, with a lifespan measured in decades rather than years, would reshape the economics of transportation. It would also, potentially, reshape grid storage — making large-scale renewable energy finally reliable enough to replace dispatchable fossil fuel generation.
+
+The skeptics are not gone. Manufacturing yield, thermal management, and cost-per-kilowatt-hour remain open questions. But in the clean rooms and university labs where the work is happening, something has shifted. The people doing the research have stopped hedging quite so carefully when asked if this time is different.
+"""

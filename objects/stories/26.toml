@@ -1,0 +1,33 @@
+headline = "The Quiet Consolidation of Local Government"
+subheadline = "Across rural America, counties and municipalities are merging services, sharing staff, and occasionally disappearing. Residents have complicated feelings about it."
+slug = "local-government-consolidation"
+section = "Politics"
+author = "Jane Doe"
+date = "March 13, 2026"
+cover_url = ""
+image_caption = ""
+featured = ""
+
+body = """
+The last full-time employee of Harwick Township, population 1,840, retired in November. The township no longer has a clerk, a treasurer, or an administrative office of its own. Its functions — road maintenance, permit processing, tax assessment — have been absorbed by the county. The township still exists on paper. For most practical purposes, it does not exist at all.
+
+Harwick is not an anomaly. According to data compiled by the National League of Cities, more than 200 sub-county governmental units have dissolved or entered formal service-sharing agreements with larger jurisdictions in the past two years. The trend is concentrated in the rural Midwest and Appalachia, where declining tax bases and aging infrastructure have made standalone municipal administration increasingly difficult to sustain.
+
+## The Logic of Consolidation
+
+The financial case is straightforward. A county that operates one dispatch center, one fleet maintenance facility, and one HR department is almost always more efficient than the collection of townships that previously maintained their own. Studies in Ohio and Indiana, where consolidation has been most extensive, show per-resident administrative costs dropping by 15 to 30 percent in merged jurisdictions.
+
+The efficiency gains are real. What is also real is what gets lost.
+
+## What Residents Say
+
+At a public meeting in an adjacent county last month, residents who had recently seen their township merge with county administration described the change in mostly practical terms: the pot holes are being filled faster, the permits come back sooner. But several also described a diffuse sense of diminishment — a feeling that something had changed in their relationship to local governance even if they could not say precisely what.
+
+"We used to know the people making decisions," said one longtime resident. "Now I'm not sure who to call."
+
+## The Bigger Picture
+
+Political scientists who study local government argue that the consolidation wave raises questions that efficiency data alone cannot answer. Local government — even very local government — is a site of civic participation and identity. When it disappears, the habits it sustained sometimes disappear with it.
+
+Whether the trade-off is worth it is a calculation that residents of consolidating jurisdictions are making, often with limited information and under fiscal conditions that leave them little real choice.
+"""

@@ -1,0 +1,37 @@
+headline = "How a Provision Nobody Read Is Reshaping Federal Land Policy"
+subheadline = "A single paragraph buried in a 2024 appropriations bill is being used to accelerate mineral extraction on millions of acres of public land."
+slug = "federal-land-policy-buried-provision"
+section = "Politics"
+author = "Jane Doe"
+date = "March 17, 2026"
+cover_url = ""
+image_caption = ""
+featured = ""
+
+body = """
+On page 847 of the Consolidated Appropriations Act of 2024, between a provision funding a new federal courthouse in Mississippi and a technical amendment to the Wild Horse and Burro Act, sits a paragraph that its drafters declined to discuss publicly and that most members of Congress who voted for it did not read. Fourteen months later, that paragraph is the legal basis for a series of expedited mineral leasing approvals covering more than 4 million acres of Bureau of Land Management territory in six Western states.
+
+## What the Provision Does
+
+The language, known informally among land-use attorneys as Section 1127, modifies the timeline for environmental review under the National Environmental Policy Act for certain categories of mineral extraction on federal lands. It does not eliminate review; it compresses the timeline for "critical mineral" projects to 90 days from a process that typically takes 18 to 36 months. It also limits the categories of public comment that the reviewing agency is required to incorporate.
+
+The administration has used Section 1127 to approve leases at a pace that conservation groups and several Western governors argue is incompatible with meaningful environmental oversight. The BLM disputes this characterization.
+
+## Who Wrote It
+
+The provision's origins trace to a coalition of mining industry associations and their lobbyists, who had been seeking NEPA reform for years. Its insertion into the appropriations bill was facilitated by a senior appropriations subcommittee staffer who has since left government for a position with a mining industry consulting firm.
+
+The staffer declined to comment. The firm did not respond to requests for comment.
+
+## The Legal Challenges
+
+Three environmental organizations have filed suit in federal district court in Nevada, arguing that Section 1127 violates the Administrative Procedure Act and, in any case, does not authorize the specific approvals that have been issued under it. The case is assigned to a judge whose previous rulings on federal land law are considered favorable to conservation interests.
+
+The administration's solicitor general has signaled that it will argue the provision is constitutional and that the approvals comply with its requirements. A ruling is expected before the end of the year.
+
+## What Is at Stake
+
+The acres in question include habitat for several threatened species, recharge zones for aquifers that supply drinking water to rural communities, and areas with cultural significance to several tribal nations that were not consulted before approval decisions were made. Whether Section 1127 required consultation is, at the moment, an open legal question.
+
+It is also the kind of question that tends to have a clearer answer after the mining has started.
+"""

@@ -1,0 +1,31 @@
+headline = "Senate Deadlock Over Infrastructure Bill Enters Third Week"
+subheadline = "A bipartisan deal seemed close — until it wasn't. Inside the negotiations that keep falling apart."
+slug = "senate-infrastructure-deadlock"
+section = "Politics"
+author = "Jane Doe"
+date = "March 1, 2026"
+cover_url = ""
+image_caption = ""
+featured = ""
+
+body = """
+For eleven days, the floor of the United States Senate has been the site of something increasingly rare: sustained, genuine negotiation. Senators from both parties have been seen lingering in hallways, ducking into each other's offices, and breaking for extended lunches at the Capitol Hill Club. The subject is a $940 billion infrastructure package that, depending on who you ask, is either a generational investment or a fiscal catastrophe.
+
+## What's in the Bill
+
+The legislation as drafted would fund repairs to roughly 45,000 bridges rated structurally deficient, expand rural broadband to an estimated 22 million households, and establish a new federal agency to coordinate climate resilience investments. It also includes a controversial provision requiring states to certify that new road projects account for projected sea-level rise over the next 50 years.
+
+That last provision is where talks have repeatedly stalled.
+
+## The Sticking Points
+
+Senators from landlocked states have balked at what they call an unfunded mandate disguised as climate policy. "My constituents in Nebraska are not going to fund Miami's drainage problems," said Senator Dale Hurst, a Republican who had initially signaled openness to the broader package. His counterpart across the aisle, Democratic Senator Patricia Okafor of Maryland, called the framing "spectacularly wrong" and pointed out that the provision applies equally to all coastal infrastructure nationwide.
+
+Behind closed doors, the disagreement is reportedly more tractable. Three people familiar with the negotiations said a modified version of the climate provision — one that makes the 50-year projections advisory rather than mandatory — has circulated as a possible compromise. None would say whether it had gained traction.
+
+## Why It Matters Now
+
+The White House has made clear that it considers the bill a legacy priority for the current administration's second year. Press Secretary Anita Reyes declined to set a deadline but acknowledged that "the window for this kind of legislation does not stay open indefinitely." With midterm positioning already beginning to shape floor schedules, most analysts give the package a narrow but real chance of passage before the summer recess.
+
+A vote that was expected this week has been pushed to at least next Thursday. For now, the hallway conversations continue.
+"""

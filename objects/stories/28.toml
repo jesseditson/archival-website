@@ -1,0 +1,33 @@
+headline = "The Neuroscience of Why We Can't Stop Scrolling"
+subheadline = "New research is mapping the brain circuits that social media exploits — and pointing toward interventions that might actually work."
+slug = "neuroscience-why-we-cant-stop-scrolling"
+section = "Technology"
+author = "Jane Doe"
+date = "March 15, 2026"
+cover_url = ""
+image_caption = ""
+featured = ""
+
+body = """
+The experiment began with a simple instruction: stop scrolling whenever you want to. Participants in a study at University College London were placed in an fMRI scanner and shown a simulated social media feed. They were told they could stop looking at any time with no consequence. Almost none of them did.
+
+More interesting than the behavior was what the scanner showed. The anterior cingulate cortex — a region associated with decision-making and conflict monitoring — showed elevated activity during scrolling, consistent with what researchers call "approach-avoidance conflict": the brain simultaneously wanting to continue and wanting to stop. The wanting to continue won, reliably, even when participants later reported that they had wanted to stop.
+
+## What the Brain Is Actually Doing
+
+The neurological literature on compulsive technology use has matured significantly in the past five years. What emerges is a picture that is more nuanced than the simple "dopamine slot machine" metaphor that has dominated popular coverage.
+
+Scrolling activates what researchers call the seeking circuit — a dopamine-mediated system that motivates exploration and information-gathering. This system was not evolved for modern media; it was evolved for foraging and social monitoring in environments where information was scarce. In an environment of unlimited information, the seeking circuit does not naturally saturate. There is always one more post, one more story, one more signal about social standing to evaluate.
+
+## The Intermittent Reward Problem
+
+The key mechanism, according to Dr. Priya Rajan at Stanford's Social Neuroscience Lab, is intermittent reinforcement. "Not every post is interesting. That is the feature, not the bug," she said. "Intermittent, unpredictable reward is the most powerful driver of persistent behavior we know of. Slot machines are designed around this principle. So, apparently, are social media feeds."
+
+The implication is that approaches focused on willpower — apps that tell you how much time you've spent, prompts asking if you really want to keep going — may be addressing the wrong mechanism. The relevant circuitry is not responsive to that kind of intervention in most people.
+
+## What Might Actually Work
+
+Research published last month suggests that two types of intervention show genuine promise: friction (introducing deliberate delays or confirmation steps before the feed loads, giving the prefrontal cortex time to engage) and substitution (providing an alternative behavior that activates a related circuit without the compulsive properties of infinite scroll). Neither is a cure. Both show measurable effects in controlled settings.
+
+The harder question is whether platforms will implement them voluntarily or whether regulation will need to require it.
+"""

@@ -1,0 +1,33 @@
+headline = "The Fight Over Who Controls Municipal Water Is Coming to a Head"
+subheadline = "In dozens of cities, private equity-backed water utilities are seeking rate increases that dwarf inflation. Regulators are divided on how to respond."
+slug = "municipal-water-private-equity"
+section = "Politics"
+author = "Jane Doe"
+date = "March 21, 2026"
+cover_url = ""
+image_caption = ""
+featured = ""
+
+body = """
+The water bill for a family of four in Bridgemont, New Jersey has increased 61 percent over the past four years. The utility serving the city, Aqua America Mid-Atlantic, submitted a rate case in January requesting an additional 22 percent increase over the next three years. The state's Board of Public Utilities has scheduled hearings. The hearings are expected to take a year.
+
+Bridgemont is not unique. Across the fourteen states where private water utilities serve significant populations, rate cases are multiplying, increases are accelerating, and the regulatory processes designed to protect consumers are straining under the workload.
+
+## The Private Equity Playbook
+
+The consolidation of municipal water systems by private equity-backed holding companies has accelerated since 2018, when low interest rates made infrastructure acquisition attractive and several large water utilities came to market. The typical acquisition pattern involves purchasing a water system that has deferred infrastructure investment, submitting a rate case that attributes costs to a capital improvement program, and structuring returns around the regulated rate of return.
+
+Critics of the model argue that it does not create incentives for efficiency — it creates incentives for capital expenditure, which generates a regulated return, regardless of whether the expenditure was necessary.
+
+## The Regulatory Divide
+
+State utility regulators are structurally equipped to adjudicate individual rate cases. They are less equipped to evaluate the systemic dynamics of an industry that is consolidating rapidly and filing cases faster than the regulatory apparatus can process them.
+
+Pennsylvania and New Jersey have both created working groups to examine the issue. Neither has produced policy changes. In California, a bill that would have established a presumption against water rate increases above the rate of inflation failed in committee last year after significant utility lobbying.
+
+## The Remunicipalization Option
+
+Several cities that previously privatized their water systems have moved to buy them back. Pittsburgh completed a remunicipalization process in 2023. Camden, New Jersey has been exploring the option for two years. The process is expensive and legally complicated, but in each case the impetus has been the same: rate increases that residents and elected officials deemed incompatible with water as a basic public service.
+
+The courts have generally upheld the right of municipalities to pursue remunicipalization. The cost of doing so, in most cases, is the primary obstacle.
+"""

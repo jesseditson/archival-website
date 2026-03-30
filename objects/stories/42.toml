@@ -1,0 +1,35 @@
+headline = "The Redistricting War Has a New Front: Algorithmic Maps"
+subheadline = "Both parties are now using AI-powered mapping tools to draw district lines. The technology has changed. The incentives haven't."
+slug = "redistricting-algorithmic-maps"
+section = "Politics"
+author = "Jane Doe"
+date = "March 25, 2026"
+cover_url = ""
+image_caption = ""
+featured = ""
+
+body = """
+The congressional district maps that will govern the 2028 and 2030 election cycles are, in several states, being designed right now — three years before the next census triggers the official redistricting process. They are being designed not by humans drawing lines on paper, as in previous cycles, but by optimization algorithms running on high-performance computing clusters, generating and evaluating millions of possible configurations against criteria that their operators select.
+
+The technology is genuinely new. What it is being used for is not.
+
+## What the Algorithms Can Do
+
+Modern redistricting software can, in seconds, generate district maps that satisfy every stated legal criterion — population equality, contiguity, racial and language minority protections under the Voting Rights Act, preservation of political subdivisions — while simultaneously maximizing whatever partisan outcome the operator is trying to achieve. The algorithms are, in a narrow technical sense, neutral. The objectives they optimize for are not.
+
+"You can make any map look like it satisfies the law," said Dr. Wendy Chen, a political scientist at Princeton who has studied computational redistricting for a decade. "The question is what the algorithm was actually told to do."
+
+## The Transparency Problem
+
+In the 2021 cycle, several states that used algorithmic mapping tools declined to disclose the objective functions — the specific criteria the algorithms were optimizing for — citing proprietary software agreements. Courts in two states ordered disclosure; in one, the disclosed objectives revealed that partisan advantage had been included as an optimization criterion, in violation of the state constitution.
+
+Advocacy groups are pushing for legislation requiring states to disclose algorithmic parameters as public records. Several states are considering such requirements. Most are not.
+
+## What Independent Redistricting Gets Right
+
+The states that have moved to independent redistricting commissions — Arizona, California, Michigan, Colorado — have produced maps that most independent analysts rate as substantially less gerrymandered than legislatively drawn maps, regardless of the technology involved. The key variable is not the software; it is who controls the objective function.
+
+Algorithmic tools in the hands of an independent commission, optimizing for neutral criteria in a transparent process, can produce genuinely fair maps. The same tools in the hands of a partisan legislature, optimizing for different criteria behind a proprietary shield, produce something else.
+
+The fight over redistricting has always been about who controls the rules. The new technology has not changed the fight. It has just made the stakes larger and the manipulation, in some ways, easier to hide.
+"""

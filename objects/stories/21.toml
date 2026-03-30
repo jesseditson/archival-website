@@ -1,0 +1,31 @@
+headline = "The Case for Boring Government"
+subheadline = "We have spent years demanding authenticity and disruption from our public officials. The results speak for themselves."
+slug = "case-for-boring-government"
+section = "Opinion"
+author = "John Smith"
+date = "March 8, 2026"
+cover_url = ""
+image_caption = ""
+featured = ""
+
+body = """
+I want to make an unfashionable argument: competent, undramatic, process-respecting governance is a profound public good, and we have spent the better part of a decade treating it like a failure of imagination. The hunger for disruption, for leaders who "tell it like it is" and "shake things up," has produced a great deal of shaking. The results are instructive.
+
+## What Boring Government Actually Does
+
+The unglamorous machinery of effective administration — career civil servants, interagency coordination, regulatory review processes, inspector general offices — is not bureaucratic obstruction. It is the accumulated institutional memory of what happens when you don't do it. The civil servant who flags a contract irregularity, the rule that requires an environmental review before breaking ground, the inspector general who insists on documentation: these are not obstacles to progress. They are the lessons of previous scandals, disasters, and failures, encoded in procedure.
+
+We forget this because boring government rarely makes headlines. It is, by design, invisible when it is working.
+
+## The Authenticity Trap
+
+The demand for political authenticity — leaders who speak without a filter, who treat norms as obstacles, who perform contempt for process — is understandable. It arises from real frustrations with a political class that has earned some of the suspicion directed at it. But the alternative to polished inauthenticity is not chaos. There is a third option, which is competence without theater: leaders who are neither smooth nor erratic, who simply know their jobs and do them.
+
+The mayors, governors, and agency heads who make the most consequential difference in people's lives rarely appear on cable news. They are running transit systems, managing flood insurance programs, and updating building codes. Their work is invisible until it isn't.
+
+## What We Should Ask For
+
+This is not an argument for complacency or for deference to expertise as a substitute for democratic accountability. It is an argument for reorienting what we find exciting about governance. A transportation secretary who delivers a highway repair project on time and under budget should be as celebrated as one who gives a combative press conference. A city council that updates its zoning code to allow housing construction is making a dramatic intervention in people's lives, even if it does not feel that way.
+
+Boring government does not mean unambitious government. It means government that is ambitious about outcomes rather than about its own image. We should want more of it, and we should be better at recognizing it when we have it.
+"""

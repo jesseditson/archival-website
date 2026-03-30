@@ -1,0 +1,33 @@
+headline = "The Telescope That Sees in Radio Waves Is Rewriting Cosmology"
+subheadline = "New data from the Next Generation Very Large Array is challenging assumptions about the first billion years of the universe."
+slug = "ngvla-rewriting-cosmology"
+section = "Technology"
+author = "Jane Doe"
+date = "March 11, 2026"
+cover_url = ""
+image_caption = ""
+featured = ""
+
+body = """
+In the high desert of New Mexico, 263 radio telescope dishes are being trained on a patch of sky that, to the naked eye, contains nothing remarkable. What they are seeing, according to a paper published last week in Nature Astronomy, is a galaxy that should not, by current models, exist: a fully formed, rapidly star-forming system at a redshift of 12.4, meaning we are observing it as it existed roughly 400 million years after the Big Bang.
+
+The finding is not a crisis for cosmology. It is, however, a complication — the kind that tends to precede revision.
+
+## What the ngVLA Is
+
+The Next Generation Very Large Array, which reached operational capacity last year, is a radio telescope array with roughly ten times the sensitivity and four times the spatial resolution of its predecessor. Where earlier instruments could detect the presence of large-scale structures in the early universe, the ngVLA can resolve the internal dynamics of individual galaxies — the rotation of gas clouds, the signatures of active star formation, the early signatures of supermassive black holes.
+
+The instrument is optimized for the radio frequencies that penetrate the dust and gas clouds that obscure the most interesting early structures from optical telescopes. It is, in a sense, a machine for seeing through walls.
+
+## The Galaxy That Shouldn't Be There
+
+The galaxy designated ngVLA-J0237+0004 has a stellar mass roughly equivalent to our own Milky Way. Under the Lambda-CDM model, which has governed cosmological understanding for three decades, galaxies of this mass should not be able to assemble within the universe's first 400 million years. The processes of gas accretion, star formation, and gravitational assembly take time that the current model does not leave available.
+
+Several explanations are under active discussion, none yet favored. Dark matter density fluctuations in the early universe may have seeded structure formation faster than models predict. The initial mass function of early stars may have differed significantly from present-day assumptions. Or the finding may indicate a deeper problem with the model itself.
+
+## What Happens Next
+
+The team has submitted proposals for follow-up observations using the James Webb Space Telescope, which can complement the ngVLA's radio data with infrared imaging. The goal is to characterize the galaxy's stellar population and, potentially, its central black hole.
+
+"We are not saying Lambda-CDM is wrong," said Dr. Carmen Iglesias, the paper's lead author. "We are saying it has something to explain. That is how science works."
+"""

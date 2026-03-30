@@ -1,0 +1,35 @@
+headline = "In Defense of the Long Commute"
+subheadline = "Everyone agrees commuting is bad. But the research is more complicated, and what we've lost in eliminating it is worth naming."
+slug = "defense-of-the-long-commute"
+section = "Opinion"
+author = "John Smith"
+date = "March 20, 2026"
+cover_url = ""
+image_caption = ""
+featured = ""
+
+body = """
+Before you object: I am not arguing that the 90-minute crawl in gridlock traffic is good for you. It is not. I am making a narrower claim, which is that the transit commute — train, bus, subway, ferry — performed a set of social and psychological functions that we did not fully understand until the work-from-home transition revealed their absence.
+
+I am also arguing that in our enthusiasm for eliminating commuting entirely, we have been too careless about what we are actually eliminating.
+
+## What the Commute Did
+
+The transit commute was, for many urban workers, the only time in the day that was structurally unscheduled. Not free, exactly — you were going somewhere — but unaccountable. No meeting invite could reach you with real urgency. No task management system was watching. You were in motion, which is a distinct psychological state from being at rest or at work.
+
+People read on commutes. They listened to music and podcasts. They thought, without the ambient guilt that thinking-while-stationary can generate in a productivity-saturated culture. They sat next to strangers and occasionally talked to them.
+
+## The Evidence We Have
+
+Several studies conducted in 2022 and 2023, when remote work patterns were more varied and researchers could compare populations with different commute situations, found something counterintuitive: people with short or moderate commutes reported higher life satisfaction than fully remote workers on several dimensions, including sense of routine, social connection, and the ability to mentally transition between work and home life.
+
+This does not mean commuting is good. It means commuting was doing work that we assumed it was simply imposing on us.
+
+## What We Should Build
+
+The answer is not to restore commuting for its own sake. The specific misery of traffic, unreliable transit, and the sheer time cost of long commutes is real and not worth romanticizing. The answer is to ask honestly what the commute provided that we valued — transition time, a third space, low-stakes social exposure — and to design those things into life deliberately.
+
+Some companies have experimented with deliberate "commute rituals" for remote employees: a defined walk, a coffee routine, a podcast or book that exists only in the threshold space. It sounds slightly absurd. The people doing it tend to say it helps.
+
+What we want is not the commute. It is the gap it created. We could design that gap. We have just not decided to.
+"""

@@ -1,0 +1,35 @@
+headline = "Can Your Doctor's AI Actually Be Trusted?"
+subheadline = "Clinical AI tools are proliferating faster than the evidence for their safety. Regulators are struggling to keep up."
+slug = "clinical-ai-trusted"
+section = "Technology"
+author = "Jane Doe"
+date = "March 19, 2026"
+cover_url = ""
+image_caption = ""
+featured = ""
+
+body = """
+When Dr. Angela Reyes reviewed the AI-generated differential diagnosis that appeared in her hospital's electronic health record system last October, she noticed something wrong. The algorithm had ranked a common benign condition at the top of the list for a patient whose presentation, to an experienced clinician, clearly pointed elsewhere. The system had been trained, she later learned, on a patient population that differed significantly from her hospital's demographics. No one had told her this.
+
+"The tool looked authoritative," she said. "It had percentages next to everything. It looked like a lab result."
+
+## The Regulatory Gap
+
+Clinical AI — software that assists in diagnosis, treatment planning, medication dosing, and patient risk stratification — is proliferating across American healthcare at a pace that has outrun both regulatory oversight and the clinical evidence needed to evaluate it responsibly. The FDA, which regulates AI-enabled medical devices, has cleared more than 700 such products. Independent research has found that the majority of clearances relied on manufacturer-provided data rather than independent validation.
+
+The gap matters because AI systems trained on one patient population often perform differently on another — sometimes dramatically so. A radiology algorithm trained predominantly on images from urban academic medical centers may perform worse in rural settings where disease prevalence and patient demographics differ.
+
+## What Hospitals Are Buying
+
+Hospital systems under cost and efficiency pressure have strong incentives to adopt AI tools that promise to reduce administrative burden, flag high-risk patients, and support clinical decision-making. The vendors making these promises are sophisticated marketers. The evidence they present in sales materials is not always the evidence that would satisfy a peer-reviewed journal.
+
+A study published last month in JAMA Internal Medicine found that fewer than 40 percent of AI tools currently in active clinical use at surveyed hospitals had been validated on populations similar to those hospitals' patient demographics.
+
+## The Doctors in the Middle
+
+For clinicians, the proliferation of clinical AI creates a new professional burden: the need to evaluate not just the patient in front of them, but the reliability of the tool suggesting what to do next. Most have not been trained to do this. Many were not aware they needed to be.
+
+"We teach residents how to interpret a CT scan," said Dr. Reyes. "We are going to need to teach them how to interrogate an algorithm."
+
+The regulatory frameworks to support that kind of clinical AI literacy do not yet exist. Several professional medical associations are working on guidance. They are working faster than they expected to need to.
+"""

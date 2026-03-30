@@ -463,6 +463,46 @@ img {
   border-bottom: 1px solid var(--color-rule-light);
 }
 
+.story-card--hidden {
+  display: none;
+}
+
+/* Load More Sentinel */
+
+.load-more-sentinel {
+  display: none;
+}
+
+.load-more-sentinel--active {
+  display: block;
+  padding: var(--space-2xl) 0;
+  text-align: center;
+}
+
+.load-more-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-secondary);
+}
+
+.load-more-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--color-rule-light);
+  border-top-color: var(--color-text-secondary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 .story-card-image {
   width: 100%;
   aspect-ratio: 3 / 2;

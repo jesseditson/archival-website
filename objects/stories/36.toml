@@ -1,0 +1,35 @@
+headline = "The Company Trying to Sequence the Ocean"
+subheadline = "A startup called Thalassa is using environmental DNA to build the first comprehensive map of marine biodiversity — before it disappears."
+slug = "thalassa-sequencing-the-ocean"
+section = "Technology"
+author = "Jane Doe"
+date = "March 22, 2026"
+cover_url = ""
+image_caption = ""
+featured = ""
+
+body = """
+Every liter of seawater contains the genetic traces of every organism that has recently passed through it: shed skin cells, mucus, feces, decomposing tissue. This environmental DNA, or eDNA, persists in the water column for hours to days before it degrades. During that window, it is, in principle, readable.
+
+Thalassa, a San Francisco-based startup, is attempting to read it systematically, at global scale, before the ecosystems that produced it change beyond recognition.
+
+## The Technical Achievement
+
+The challenge is not sequencing — that technology is relatively mature. The challenge is sampling at volume, in remote ocean environments, with enough consistency to produce comparable data across sites and time points. Thalassa has spent four years developing a submersible sampling system that can be deployed from research vessels or fixed ocean platforms, filter and preserve water samples, and return DNA extracts for sequencing at the company's processing facility in Oakland.
+
+The current deployment includes 340 sampling units across 28 ocean regions. The company says it will double that coverage within 18 months.
+
+## What the Data Shows
+
+The preliminary results are already producing findings of scientific value. In three locations in the South Pacific, Thalassa's sampling has identified the presence of species previously undocumented in those waters — including two that appear to be previously unknown to science entirely. In the North Atlantic, the data shows measurable shifts in the seasonal distribution of several cold-water species, consistent with oceanographic models predicting range contraction as sea surface temperatures rise.
+
+"We are watching things move in real time," said Dr. Fatima Osei, Thalassa's chief scientist. "The baseline we're establishing will matter enormously for understanding what we lose."
+
+## The Business Model Question
+
+Thalassa's investors expect a return, and the company's business model — licensing its biodiversity data to conservation organizations, pharmaceutical companies interested in novel marine compounds, and governments developing marine protected area policy — has not yet been tested at scale.
+
+Scientists who have reviewed the company's methodology are generally positive about the data quality. Several have noted that the eDNA approach, while powerful, samples presence rather than abundance, a limitation that matters for certain types of conservation assessment.
+
+The company has published its sampling protocols and is negotiating with several academic institutions about data sharing arrangements. Whether it survives long enough to assemble the decades-long baseline its scientists believe is necessary remains an open question that depends, as all startup questions do, on money.
+"""

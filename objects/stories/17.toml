@@ -1,0 +1,31 @@
+headline = "Stop Pretending the Primary System Is Working"
+subheadline = "Voters deserve a nomination process that represents them — and what we have now does the opposite."
+slug = "primary-system-not-working"
+section = "Opinion"
+author = "John Smith"
+date = "March 4, 2026"
+cover_url = ""
+image_caption = ""
+featured = ""
+
+body = """
+Let me say plainly what political scientists have been saying in hedged academic language for twenty years: the American primary system is a disaster, and everyone in a position to fix it has a vested interest in not fixing it. This is not a partisan observation. The structural incentives that produce extremist nominees and unrepresentative outcomes apply equally to both parties. The problem is the architecture, not the inhabitants.
+
+## Who Actually Votes in Primaries
+
+The numbers have not meaningfully changed in decades. In a typical congressional primary, turnout runs between 15 and 22 percent of registered voters — and those voters are not a cross-section of the electorate. They are older, more ideologically sorted, and more likely to consume partisan media. They are, by almost every measure, less representative of the general-election constituency the winner will need to serve.
+
+This is not a critique of any individual voter's right to participate. It is a structural observation: a system that elects representatives through a low-turnout filter dominated by activated partisans will reliably produce representatives who reflect those partisans, not the broader public.
+
+## What the Alternatives Look Like
+
+Ranked-choice voting in primaries, combined with top-four or top-five primary formats that advance multiple candidates regardless of party, has shown genuine promise in Alaska, where it was adopted in 2020. Candidates running under that system have — empirically — behaved differently on the floor than their colleagues from traditional primary states. They have voted across party lines more often. They have faced less pressure to perform outrage for a base.
+
+California's top-two primary is a partial version of this logic, though it has limitations that a ranked-choice variant would address.
+
+## The Honest Obstacle
+
+Reform happens slowly because the people who would need to enact it — party leadership, incumbents, campaign operatives — benefit from the current system. Closed primaries favor candidates who can mobilize the ideological base. That is not a coincidence. It is a design feature.
+
+Until voters in primary states demand something different, the incentive structure will not change, and neither will the candidates it produces. The question is not whether reform is possible. It is whether the frustration is loud enough to overcome the institutional inertia that profits from the status quo.
+"""

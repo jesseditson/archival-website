@@ -1,1 +1,117 @@
-{% layout 'theme' title: "Archival Website" %}
+{% layout 'theme' page: 'home' %}
+
+<!-- Hero -->
+<section class="hero">
+  {% if objects.site.hero_image.url %}
+    <div class="hero-bg" style="background-image: url('{{ objects.site.hero_image.url }}');"></div>
+  {% endif %}
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-tagline">{{ objects.site.tagline }}</p>
+    <h1>{{ objects.site.name }}</h1>
+    <div class="hero-ctas">
+      <a href="/menu" class="btn">View Menu</a>
+      {% if objects.site.reservation_url %}
+        <a href="{{ objects.site.reservation_url }}" class="btn btn-filled" target="_blank" rel="noopener noreferrer">Reserve a Table</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- Featured Items -->
+{% assign featured = objects.menu_item | where: "featured", true %}
+{% if featured.size > 0 %}
+<section class="section featured fade-in">
+  <div class="container">
+    <span class="label">From Our Kitchen &amp; Bar</span>
+    <h2>The Signatures</h2>
+    <div class="featured-grid">
+      {% for item in featured %}
+        <div class="featured-item">
+          {% if item.image.url %}
+            <img class="featured-item-image" src="{{ item.image.url }}" alt="{{ item.name }}">
+          {% endif %}
+          <h3>{{ item.name }}</h3>
+          <p>{{ item.description }}</p>
+          <span class="price">{{ item.price }}</span>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<hr class="divider">
+
+<!-- About / Vibe -->
+<section class="section about fade-in">
+  <div class="container">
+    <span class="label">Our Story</span>
+    <h2>The Vibe</h2>
+    <div class="about-body">
+      {{ objects.site.description }}
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- Hours & Location -->
+<section class="section info fade-in">
+  <div class="container">
+    <span class="label">Find Us</span>
+    <h2>Hours &amp; Location</h2>
+    <div class="info-grid">
+      <div class="info-block">
+        <h3>Location</h3>
+        <p>{{ objects.site.address }}</p>
+        {% if objects.site.address %}
+          <p style="margin-top: 0.75rem;">
+            <a href="https://www.google.com/maps/search/?api=1&query={{ objects.site.address | url_encode }}" target="_blank" rel="noopener noreferrer" class="btn" style="margin-top: 0.5rem;">Get Directions</a>
+          </p>
+        {% endif %}
+        {% if objects.site.phone %}
+          <p style="margin-top: 1rem;"><a href="tel:{{ objects.site.phone | remove: '(' | remove: ')' | remove: ' ' | remove: '-' }}">{{ objects.site.phone }}</a></p>
+        {% endif %}
+        {% if objects.site.email %}
+          <p><a href="mailto:{{ objects.site.email }}">{{ objects.site.email }}</a></p>
+        {% endif %}
+      </div>
+      <div class="info-block hours-block">
+        <h3>Hours</h3>
+        {{ objects.site.hours }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Events -->
+{% if objects.event.size > 0 %}
+<hr class="divider">
+<section class="section events fade-in">
+  <div class="container">
+    <span class="label">What's Happening</span>
+    <h2>Upcoming Events</h2>
+    <div class="events-grid">
+      {% for event in objects.event %}
+        {% include 'event-card'
+          event_title: event.title,
+          event_date: event.date,
+          event_description: event.description,
+          event_image: event.image.url,
+          event_link: event.link
+        %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Instagram CTA -->
+{% if objects.site.instagram %}
+<hr class="divider">
+<section class="instagram-cta fade-in">
+  <span class="label">Follow Along</span>
+  <a href="https://instagram.com/{{ objects.site.instagram }}" target="_blank" rel="noopener noreferrer">@{{ objects.site.instagram }}</a>
+</section>
+{% endif %}

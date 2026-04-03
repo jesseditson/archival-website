@@ -1,6 +1,6 @@
 <article class="event-card">
-  {% if event_image %}
-    <img class="event-card-image" src="{{ event_image }}" alt="{{ event_title }}">
+  {% if event_image.url %}
+    <img class="event-card-image" src="{{ event_image.url }}" alt="{{ event_title }}">
   {% endif %}
   <span class="label">{{ event_date | date: "%B %d, %Y" }}</span>
   <h3>{{ event_title }}</h3>

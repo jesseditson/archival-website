@@ -93,13 +93,13 @@
     <span class="label">What's Happening</span>
     <h2>Upcoming Events</h2>
     <div class="events-grid">
-      {% for event in objects.event %}
+      {% for ev in objects.event %}
         {% include 'event-card'
-          event_title: event.title,
-          event_date: event.date,
-          event_description: event.description,
-          event_image: event.image.url,
-          event_link: event.link
+          event_title: ev.title,
+          event_date: ev.date,
+          event_description: ev.description,
+          event_image: ev.image,
+          event_link: ev.link
         %}
       {% endfor %}
     </div>

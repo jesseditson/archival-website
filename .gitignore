@@ -5,5 +5,8 @@ bin/tmp
 # Dependencies
 node_modules
 
+# Superpowers
+.superpowers
+
 # MacOS
 .DS_Store

@@ -1,0 +1,17 @@
+order = -1
+name = "The Gilded Hour"
+tagline = "Cocktails & Kitchen"
+description = """An intimate evening awaits at The Gilded Hour, where craft cocktails meet bold, seasonal cuisine. Nestled in the heart of Los Angeles, we bring together inventive drinks and a kitchen that doesn't play it safe — all in a space designed to make you lose track of time."""
+address = "742 N La Brea Ave, Los Angeles, CA 90038"
+phone = "(323) 555-0178"
+email = "hello@thegildedhour.com"
+instagram = "thegildedhour"
+hours = """**Tuesday – Thursday** 5:00 PM – 12:00 AM
+
+**Friday – Saturday** 5:00 PM – 2:00 AM
+
+**Sunday** 4:00 PM – 11:00 PM
+
+**Monday** Closed"""
+reservation_url = "https://resy.com"
+accent_color = "#c9a96e"

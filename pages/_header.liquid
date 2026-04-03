@@ -1,0 +1,28 @@
+<header class="site-header{% if page == 'home' %} site-header-transparent{% endif %}">
+  <div class="container">
+    {% if objects.site.logo.url %}
+      <a href="/" class="site-logo" aria-label="{{ objects.site.name }} — Home">
+        <img src="{{ objects.site.logo.url }}" alt="{{ objects.site.name }}" style="height: 40px; width: auto;">
+      </a>
+    {% else %}
+      <a href="/" class="site-logo">{{ objects.site.name }}</a>
+    {% endif %}
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle-checkbox" aria-hidden="true">
+    <label for="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+
+    <label for="nav-toggle" class="nav-overlay" aria-hidden="true"></label>
+
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="/"{% if page == 'home' %} class="active"{% endif %}>Home</a>
+      <a href="/menu"{% if page == 'menu' %} class="active"{% endif %}>Menu</a>
+      {% if objects.site.reservation_url %}
+        <a href="{{ objects.site.reservation_url }}" class="btn" target="_blank" rel="noopener noreferrer">Reserve</a>
+      {% endif %}
+    </nav>
+  </div>
+</header>

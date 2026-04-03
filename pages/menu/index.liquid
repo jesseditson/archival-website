@@ -10,7 +10,7 @@
   </ul>
 </nav>
 
-<div class="container" style="padding-top: 1rem; padding-bottom: 4rem;">
+<div class="container menu-page-content" style="padding-bottom: 4rem;">
 
   {% assign cocktails = objects.menu_item | where: "category", "Cocktails" %}
   {% include 'menu-section' category_name: "Cocktails", items: cocktails %}

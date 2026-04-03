@@ -1,6 +1,6 @@
 order = 1
 name = "Wagyu Burger"
-description = "Double-smashed wagyu patties, aged gruyère, caramelized onion, black truffle aioli, brioche."
+description = "Double-smashed wagyu patties, aged gruyère, caramelized onion, truffle aioli."
 price = "28"
 category = "Entrees"
 featured = true

@@ -1,4 +1,8 @@
+{% if event_link != "" %}
+<a href="{{ event_link }}" class="event-card event-card-clickable" target="_blank" rel="noopener noreferrer">
+{% else %}
 <article class="event-card">
+{% endif %}
   {% if event_image.url %}
     <img class="event-card-image" src="{{ event_image.url }}" alt="{{ event_title }}">
   {% endif %}
@@ -6,6 +10,10 @@
   <h3>{{ event_title }}</h3>
   <div>{{ event_description }}</div>
   {% if event_link != "" %}
-    <a href="{{ event_link }}" class="event-card-link" target="_blank" rel="noopener noreferrer">Learn More &rarr;</a>
+    <span class="event-card-link">Learn More &rarr;</span>
   {% endif %}
+{% if event_link != "" %}
+</a>
+{% else %}
 </article>
+{% endif %}

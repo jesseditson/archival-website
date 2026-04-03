@@ -21,7 +21,7 @@
       <a href="/"{% if page == 'home' %} class="active"{% endif %}>Home</a>
       <a href="/menu"{% if page == 'menu' %} class="active"{% endif %}>Menu</a>
       {% if objects.site.reservation_url %}
-        <a href="{{ objects.site.reservation_url }}" class="btn" target="_blank" rel="noopener noreferrer">Reserve</a>
+        <a href="{{ objects.site.reservation_url }}" class="btn btn-filled" target="_blank" rel="noopener noreferrer">Reserve</a>
       {% endif %}
     </nav>
   </div>

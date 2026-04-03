@@ -1,5 +1,5 @@
-order = 1
+order = 2
 title = "Live Jazz Friday"
 date = 2026-04-11
-description = """Join us every Friday evening for live jazz from some of LA's finest musicians. This week featuring the **Marcus Cole Quartet** — smooth, soulful, and the perfect backdrop to a well-made cocktail."""
-link = ""
+description = """Join us every Friday evening for live jazz from some of LA's finest musicians. This week featuring the **Marcus Cole Quartet**:smooth, soulful, and the perfect backdrop to a well-made cocktail."""
+link = "https://resy.com"

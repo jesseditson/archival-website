@@ -1,9 +1,23 @@
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
+      <div class="footer-col footer-brand">
+        <a href="/" class="footer-brand-link">
+          {% if objects.site.logo.url %}
+            <img src="{{ objects.site.logo.url }}" alt="{{ objects.site.name }}" class="footer-brand-logo">
+          {% else %}
+            <span class="footer-brand-name">{{ objects.site.name }}</span>
+          {% endif %}
+          {% if objects.site.tagline %}
+            <span class="footer-brand-tagline">{{ objects.site.tagline }}</span>
+          {% endif %}
+        </a>
+      </div>
+
       <div class="footer-col">
         <h4>Visit</h4>
-        <p>{{ objects.site.address }}</p>
+        {% assign address_parts = objects.site.address | split: ", " %}
+        <p>{{ address_parts[0] }}<br>{{ address_parts | slice: 1, address_parts.size | join: ", " }}</p>
         {% if objects.site.phone %}
           <p><a href="tel:{{ objects.site.phone | remove: '(' | remove: ')' | remove: ' ' | remove: '-' }}">{{ objects.site.phone }}</a></p>
         {% endif %}
@@ -12,11 +26,14 @@
         {% endif %}
       </div>
 
-      <div class="footer-col">
+      <div class="footer-col footer-hours">
         <h4>Hours</h4>
-        <div class="hours-block">
-          {{ objects.site.hours }}
-        </div>
+        <table class="footer-hours-table">
+          <tr><td>Tue - Thu</td><td>5 - 12 AM</td></tr>
+          <tr><td>Fri - Sat</td><td>5 PM - 2 AM</td></tr>
+          <tr><td>Sunday</td><td>4 - 11 PM</td></tr>
+          <tr><td>Monday</td><td>Closed</td></tr>
+        </table>
       </div>
 
       <div class="footer-col">

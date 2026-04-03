@@ -4,6 +4,8 @@
 <section class="hero">
   {% if objects.site.hero_image.url %}
     <div class="hero-bg" style="background-image: url('{{ objects.site.hero_image.url }}');"></div>
+  {% else %}
+    <div class="hero-bg" style="background-image: url('/images/hero-placeholder.jpg');"></div>
   {% endif %}
   <div class="hero-overlay"></div>
   <div class="hero-content">
@@ -37,6 +39,7 @@
         </div>
       {% endfor %}
     </div>
+    <a href="/menu" class="btn featured-cta">View Full Menu</a>
   </div>
 </section>
 {% endif %}
@@ -46,10 +49,27 @@
 <!-- About / Vibe -->
 <section class="section about fade-in">
   <div class="container">
-    <span class="label">Our Story</span>
-    <h2>The Vibe</h2>
-    <div class="about-body">
-      {{ objects.site.description }}
+    <div class="about-grid">
+      <div class="about-text">
+        <span class="label">Our Story</span>
+        <h2>The Vibe</h2>
+        <div class="about-body">
+          {{ objects.site.description }}
+          <p>We opened our doors with a simple idea: great drinks deserve great food, and both deserve a room that feels like it was built just for tonight. Every detail, from the hand-selected vinyl on the turntable to the locally sourced ingredients on your plate, is intentional.</p>
+          <p>Whether you're here for a quiet midweek cocktail or a long Saturday night with friends, The Gilded Hour is your place to slow down, look up, and savor the moment.</p>
+        </div>
+      </div>
+      <div class="about-photos">
+        <div class="polaroid polaroid-1 fade-in">
+          <img src="/images/polaroid-1.jpg" alt="Cocktail preparation">
+        </div>
+        <div class="polaroid polaroid-2 fade-in">
+          <img src="/images/polaroid-2.jpg" alt="Dark bar interior with booth seating">
+        </div>
+        <div class="polaroid polaroid-3 fade-in">
+          <img src="/images/polaroid-3.jpg" alt="Fine dining plated dish">
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -61,25 +81,57 @@
   <div class="container">
     <span class="label">Find Us</span>
     <h2>Hours &amp; Location</h2>
-    <div class="info-grid">
-      <div class="info-block">
-        <h3>Location</h3>
-        <p>{{ objects.site.address }}</p>
+
+    <div class="info-location-grid">
+      <div class="info-map">
         {% if objects.site.address %}
-          <p style="margin-top: 0.75rem;">
-            <a href="https://www.google.com/maps/search/?api=1&query={{ objects.site.address | url_encode }}" target="_blank" rel="noopener noreferrer" class="btn" style="margin-top: 0.5rem;">Get Directions</a>
-          </p>
+          <iframe
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q={{ objects.site.address | url_encode }}&zoom=15&maptype=roadmap"
+            width="100%"
+            height="100%"
+            style="border: 0; filter: grayscale(1) invert(1) brightness(0.55) contrast(1.3) hue-rotate(180deg);"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Map showing {{ objects.site.name }} location">
+          </iframe>
         {% endif %}
+      </div>
+      <div class="info-details">
+        <span class="label">Location</span>
+        {% assign address_parts = objects.site.address | split: ", " %}
+        <p class="info-address">{{ address_parts[0] }}<br>{{ address_parts | slice: 1, address_parts.size | join: ", " }}</p>
         {% if objects.site.phone %}
-          <p style="margin-top: 1rem;"><a href="tel:{{ objects.site.phone | remove: '(' | remove: ')' | remove: ' ' | remove: '-' }}">{{ objects.site.phone }}</a></p>
+          <p><a href="tel:{{ objects.site.phone | remove: '(' | remove: ')' | remove: ' ' | remove: '-' }}">{{ objects.site.phone }}</a></p>
         {% endif %}
         {% if objects.site.email %}
           <p><a href="mailto:{{ objects.site.email }}">{{ objects.site.email }}</a></p>
         {% endif %}
+        {% if objects.site.address %}
+          <a href="https://www.google.com/maps/search/?api=1&query={{ objects.site.address | url_encode }}" target="_blank" rel="noopener noreferrer" class="btn info-directions-btn">Get Directions</a>
+        {% endif %}
       </div>
-      <div class="info-block hours-block">
-        <h3>Hours</h3>
-        {{ objects.site.hours }}
+    </div>
+
+    <div class="hours-grid">
+      <h3 class="hours-heading">Hours</h3>
+      <div class="hours-cards">
+        <div class="hours-card">
+          <span class="hours-day">Tue – Thu</span>
+          <span class="hours-range"><span class="hours-time">5 PM</span> <span class="hours-to">–</span> <span class="hours-time">12 AM</span></span>
+        </div>
+        <div class="hours-card">
+          <span class="hours-day">Fri – Sat</span>
+          <span class="hours-range"><span class="hours-time">5 PM</span> <span class="hours-to">–</span> <span class="hours-time">2 AM</span></span>
+        </div>
+        <div class="hours-card">
+          <span class="hours-day">Sunday</span>
+          <span class="hours-range"><span class="hours-time">4 PM</span> <span class="hours-to">–</span> <span class="hours-time">11 PM</span></span>
+        </div>
+        <div class="hours-card hours-card-closed">
+          <span class="hours-day">Monday</span>
+          <span class="hours-range"><span class="hours-closed">Closed</span></span>
+        </div>
       </div>
     </div>
   </div>

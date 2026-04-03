@@ -1,0 +1,82 @@
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+
+<h2>Hours & Location Redesign</h2>
+<p class="subtitle">Top row: dark-styled embedded map + location info. Bottom: hours in a full-width layout. Which hours style?</p>
+
+<div class="section">
+  <h3>Map + Location (same for both options)</h3>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; background: #0a0a0a; padding: 2.5rem; border-radius: 4px; max-width: 800px; margin: 1rem auto;">
+    <div style="background: #1a1a1a; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; color: #555; font-family: 'Outfit', sans-serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase;">Dark-styled Map Embed</div>
+    <div style="display: flex; flex-direction: column; justify-content: center; font-family: 'Outfit', sans-serif;">
+      <div style="font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #c9a96e; margin-bottom: 12px; font-weight: 500;">Location</div>
+      <div style="font-size: 15px; color: #f5f0e8; margin-bottom: 16px; line-height: 1.6;">742 N La Brea Ave<br>Los Angeles, CA 90038</div>
+      <div style="font-size: 14px; color: #9a9088; margin-bottom: 6px;">(323) 555-0178</div>
+      <div style="font-size: 14px; color: #9a9088; margin-bottom: 20px;">hello@thegildedhour.com</div>
+      <div><span style="border: 1px solid #c9a96e; color: #c9a96e; padding: 8px 18px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase;">Get Directions</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="cards" style="margin-top: 2rem;">
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: #0a0a0a; padding: 2.5rem; min-height: 140px;">
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 24px; color: #c9a96e; text-align: center; margin-bottom: 24px; font-weight: 600;">Hours</div>
+      <div style="display: flex; justify-content: center; gap: 0; max-width: 700px; margin: 0 auto;">
+        <div style="flex: 1; text-align: center; padding: 0 12px; border-right: 1px solid #1a1a1a;">
+          <div style="font-family: 'Outfit', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #f5f0e8; margin-bottom: 6px; font-weight: 500;">Tue – Thu</div>
+          <div style="font-family: 'Outfit', sans-serif; font-size: 13px; color: #9a9088;">5 PM – 12 AM</div>
+        </div>
+        <div style="flex: 1; text-align: center; padding: 0 12px; border-right: 1px solid #1a1a1a;">
+          <div style="font-family: 'Outfit', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #f5f0e8; margin-bottom: 6px; font-weight: 500;">Fri – Sat</div>
+          <div style="font-family: 'Outfit', sans-serif; font-size: 13px; color: #9a9088;">5 PM – 2 AM</div>
+        </div>
+        <div style="flex: 1; text-align: center; padding: 0 12px; border-right: 1px solid #1a1a1a;">
+          <div style="font-family: 'Outfit', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #f5f0e8; margin-bottom: 6px; font-weight: 500;">Sunday</div>
+          <div style="font-family: 'Outfit', sans-serif; font-size: 13px; color: #9a9088;">4 PM – 11 PM</div>
+        </div>
+        <div style="flex: 1; text-align: center; padding: 0 12px;">
+          <div style="font-family: 'Outfit', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #f5f0e8; margin-bottom: 6px; font-weight: 500;">Monday</div>
+          <div style="font-family: 'Outfit', sans-serif; font-size: 13px; color: #555;">Closed</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Horizontal Columns with Dividers</h3>
+      <p>Days across in a row, separated by vertical lines. Clean and scannable. Collapses to 2x2 grid on mobile.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="background: #0a0a0a; padding: 2.5rem; min-height: 140px;">
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 24px; color: #c9a96e; text-align: center; margin-bottom: 24px; font-weight: 600;">Hours</div>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; max-width: 700px; margin: 0 auto;">
+        <div style="background: #141414; padding: 20px 12px; text-align: center;">
+          <div style="font-family: 'Outfit', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #c9a96e; margin-bottom: 8px; font-weight: 500;">Tue – Thu</div>
+          <div style="font-family: 'Outfit', sans-serif; font-size: 14px; color: #f5f0e8; font-weight: 300;">5 PM</div>
+          <div style="font-family: 'Outfit', sans-serif; font-size: 11px; color: #555; margin: 4px 0;">to</div>
+          <div style="font-family: 'Outfit', sans-serif; font-size: 14px; color: #f5f0e8; font-weight: 300;">12 AM</div>
+        </div>
+        <div style="background: #141414; padding: 20px 12px; text-align: center;">
+          <div style="font-family: 'Outfit', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #c9a96e; margin-bottom: 8px; font-weight: 500;">Fri – Sat</div>
+          <div style="font-family: 'Outfit', sans-serif; font-size: 14px; color: #f5f0e8; font-weight: 300;">5 PM</div>
+          <div style="font-family: 'Outfit', sans-serif; font-size: 11px; color: #555; margin: 4px 0;">to</div>
+          <div style="font-family: 'Outfit', sans-serif; font-size: 14px; color: #f5f0e8; font-weight: 300;">2 AM</div>
+        </div>
+        <div style="background: #141414; padding: 20px 12px; text-align: center;">
+          <div style="font-family: 'Outfit', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #c9a96e; margin-bottom: 8px; font-weight: 500;">Sunday</div>
+          <div style="font-family: 'Outfit', sans-serif; font-size: 14px; color: #f5f0e8; font-weight: 300;">4 PM</div>
+          <div style="font-family: 'Outfit', sans-serif; font-size: 11px; color: #555; margin: 4px 0;">to</div>
+          <div style="font-family: 'Outfit', sans-serif; font-size: 14px; color: #f5f0e8; font-weight: 300;">11 PM</div>
+        </div>
+        <div style="background: #141414; padding: 20px 12px; text-align: center;">
+          <div style="font-family: 'Outfit', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #c9a96e; margin-bottom: 8px; font-weight: 500;">Monday</div>
+          <div style="font-family: 'Outfit', sans-serif; font-size: 14px; color: #555; font-weight: 300; margin-top: 12px;">Closed</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Card Grid</h3>
+      <p>Each time block as a surface card. Day in accent color, times stacked vertically. More visual weight.</p>
+    </div>
+  </div>
+</div>

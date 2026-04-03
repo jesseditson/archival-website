@@ -1,0 +1,22 @@
+{% if items.size > 0 %}
+<section class="menu-section fade-in" id="{{ category_name | downcase | replace: ' ', '-' }}">
+  <h2>{{ category_name }}</h2>
+  <div class="menu-items">
+    {% for item in items %}
+      <div class="menu-item">
+        {% if item.image.url %}
+          <img class="menu-item-image" src="{{ item.image.url }}" alt="{{ item.name }}">
+        {% endif %}
+        <div class="menu-item-header">
+          <span class="menu-item-name">{{ item.name }}</span>
+          <span class="menu-item-dots"></span>
+          <span class="menu-item-price">{{ item.price }}</span>
+        </div>
+        {% if item.description %}
+          <p class="menu-item-description">{{ item.description }}</p>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}

@@ -1,0 +1,6 @@
+order = 2
+name = "Pan-Seared Branzino"
+description = "Mediterranean sea bass, roasted fennel, castelvetrano olives, caper-lemon butter."
+price = "36"
+category = "Entrees"
+featured = false

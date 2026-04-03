@@ -1,0 +1,6 @@
+order = 2
+name = "Tuna Tartare"
+description = "Sushi-grade ahi, avocado mousse, crispy wontons, togarashi, ponzu."
+price = "19"
+category = "Small Plates"
+featured = true

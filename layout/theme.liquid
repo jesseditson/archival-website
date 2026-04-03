@@ -1,15 +1,48 @@
 <!doctype html>
-<html lang="">
+<html lang="en">
 
   <head>
     <meta charset="utf-8">
-    <title>{{ title }}</title>
-    <meta name="description" content="">
+    <title>{% if title %}{{ title }} — {{ objects.site.name }}{% else %}{{ objects.site.name }}{% endif %}</title>
+    <meta name="description" content="{{ objects.site.description | strip_html | strip_newlines | truncate: 160 }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{ objects.site.name }}">
+    <meta property="og:description" content="{{ objects.site.description | strip_html | strip_newlines | truncate: 160 }}">
+    <meta property="og:type" content="website">
+    {% if objects.site.hero_image.url %}
+    <meta property="og:image" content="{{ objects.site.hero_image.url }}">
+    {% endif %}
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="/style/theme.css">
+
+    <!-- Dynamic accent color -->
+    {% if objects.site.accent_color %}
+    <style>
+      :root {
+        --accent: {{ objects.site.accent_color }};
+      }
+    </style>
+    {% endif %}
   </head>
 
   <body>
-    {{ page_content }}
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    {% include 'header' page: page %}
+
+    <main id="main-content">
+      {{ page_content }}
+    </main>
+
+    {% include 'footer' %}
   </body>
 
 </html>

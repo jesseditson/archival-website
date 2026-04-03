@@ -1,7 +1,7 @@
 #:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
-name = ""
-description = ""
-context = ""
-tags = []
-tlds = []
+name = "Bar & Restaurant"
+description = "A dark, sophisticated template for bars and restaurants. Features a centered menu with dotted-leader pricing, events section, and warm gold accent theming."
+context = "This template is designed for upscale bars, cocktail lounges, and contemporary restaurants. It features a dark color scheme with customizable accent color, a dedicated menu page with category navigation, event listings, and all the essential info a venue needs."
+tags = ["restaurant", "bar", "food", "cocktails", "menu"]
+tlds = ["com", "bar", "restaurant", "menu"]
 keep_objects = []

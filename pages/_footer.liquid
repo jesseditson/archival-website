@@ -1,0 +1,37 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Visit</h4>
+        <p>{{ objects.site.address }}</p>
+        {% if objects.site.phone %}
+          <p><a href="tel:{{ objects.site.phone | remove: '(' | remove: ')' | remove: ' ' | remove: '-' }}">{{ objects.site.phone }}</a></p>
+        {% endif %}
+        {% if objects.site.email %}
+          <p><a href="mailto:{{ objects.site.email }}">{{ objects.site.email }}</a></p>
+        {% endif %}
+      </div>
+
+      <div class="footer-col">
+        <h4>Hours</h4>
+        <div class="hours-block">
+          {{ objects.site.hours }}
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Connect</h4>
+        {% if objects.site.instagram %}
+          <p><a href="https://instagram.com/{{ objects.site.instagram }}" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram">Instagram</a></p>
+        {% endif %}
+        {% if objects.site.reservation_url %}
+          <p><a href="{{ objects.site.reservation_url }}" target="_blank" rel="noopener noreferrer">Reservations</a></p>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; {{ "now" | date: "%Y" }} {{ objects.site.name }}. Powered by <a href="https://archival.dev" target="_blank" rel="noopener noreferrer">Archival</a>.</p>
+    </div>
+  </div>
+</footer>

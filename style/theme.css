@@ -1,0 +1,870 @@
+/* ============================================
+   Bar & Restaurant Template — Theme CSS
+   ============================================ */
+
+/* ----- 1. Custom Properties ----- */
+
+:root {
+  /* Accent — overridden by site object in theme.liquid */
+  --accent: #c9a96e;
+
+  /* Backgrounds */
+  --bg-primary: #0a0a0a;
+  --bg-surface: #141414;
+  --bg-surface-hover: #1a1a1a;
+
+  /* Text */
+  --text-primary: #f5f0e8;
+  --text-secondary: #9a9088;
+  --text-muted: #555;
+
+  /* Borders */
+  --border: #1a1a1a;
+  --border-dotted: #333;
+
+  /* Typography */
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Outfit', system-ui, sans-serif;
+
+  /* Spacing */
+  --section-gap: 6rem;
+  --container-width: 1100px;
+  --container-padding: 1.5rem;
+}
+
+/* ----- 2. Reset / Base ----- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  background-color: var(--bg-primary);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--text-primary);
+}
+
+/* ----- 3. Typography ----- */
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  color: var(--text-primary);
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+}
+
+h2 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  color: var(--accent);
+}
+
+h3 {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+}
+
+.label {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* ----- 4. Layout Utilities ----- */
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.section {
+  padding: var(--section-gap) 0;
+}
+
+.section-narrow {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* ----- 5. Skip Link ----- */
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  background: var(--accent);
+  color: var(--bg-primary);
+  padding: 0.5rem 1rem;
+  z-index: 1000;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.skip-link:focus {
+  top: 1rem;
+  color: var(--bg-primary);
+}
+
+/* ----- 6. Header ----- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 1.25rem 0;
+  background-color: transparent;
+  transition: background-color 0.4s ease;
+}
+
+.site-header-scrolled,
+.site-header:not(.site-header-transparent) {
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-logo {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.site-logo:hover {
+  color: var(--accent);
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.site-nav a {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.site-nav a:hover,
+.site-nav a.active {
+  color: var(--text-primary);
+}
+
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.75rem 1.75rem;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+  background: transparent;
+}
+
+.btn:hover {
+  background-color: var(--accent);
+  color: var(--bg-primary);
+}
+
+.btn-filled {
+  background-color: var(--accent);
+  color: var(--bg-primary);
+}
+
+.btn-filled:hover {
+  background-color: var(--text-primary);
+  border-color: var(--text-primary);
+  color: var(--bg-primary);
+}
+
+/* Mobile nav toggle */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--text-primary);
+  margin: 5px 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Mobile nav checkbox hack */
+.nav-toggle-checkbox {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+    z-index: 110;
+  }
+
+  .site-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 280px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    background-color: var(--bg-primary);
+    border-left: 1px solid var(--border);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 105;
+  }
+
+  .site-nav a {
+    font-size: 0.9rem;
+  }
+
+  .nav-toggle-checkbox:checked ~ .site-nav {
+    transform: translateX(0);
+  }
+
+  .nav-toggle-checkbox:checked ~ .nav-toggle span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .nav-toggle-checkbox:checked ~ .nav-toggle span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle-checkbox:checked ~ .nav-toggle span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  .nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 102;
+  }
+
+  .nav-toggle-checkbox:checked ~ .nav-overlay {
+    display: block;
+  }
+}
+
+/* ----- 7. Hero ----- */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  /* Offset for the sticky header overlap */
+  margin-top: -72px;
+  padding-top: 72px;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 10, 0.4) 0%,
+    rgba(10, 10, 10, 0.7) 60%,
+    rgba(10, 10, 10, 1) 100%
+  );
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  padding: 2rem var(--container-padding);
+}
+
+.hero-tagline {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.hero h1 {
+  margin-bottom: 1.5rem;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+/* ----- 8. Featured Items ----- */
+
+.featured {
+  text-align: center;
+}
+
+.featured h2 {
+  margin-bottom: 1rem;
+}
+
+.featured .label {
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2.5rem;
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.featured-item {
+  padding: 2rem 1.5rem;
+}
+
+.featured-item-image {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+.featured-item h3 {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.featured-item p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+.featured-item .price {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+
+/* ----- 9. About Section ----- */
+
+.about {
+  text-align: center;
+}
+
+.about-body {
+  max-width: 640px;
+  margin: 1.5rem auto 0;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.about-body p {
+  margin-bottom: 1rem;
+}
+
+/* Horizontal rule divider */
+.divider {
+  width: 60px;
+  border: none;
+  border-top: 1px solid var(--accent);
+  margin: 3rem auto;
+}
+
+/* ----- 10. Hours & Location ----- */
+
+.info {
+  text-align: center;
+}
+
+.info h2 {
+  margin-bottom: 2rem;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+@media (max-width: 600px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+.info-block h3 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: var(--accent);
+}
+
+.info-block p,
+.info-block a {
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+.info-block a {
+  color: var(--text-secondary);
+}
+
+.info-block a:hover {
+  color: var(--accent);
+}
+
+.hours-block p {
+  margin-bottom: 0.25rem;
+}
+
+/* ----- 11. Events ----- */
+
+.events {
+  text-align: center;
+}
+
+.events h2 {
+  margin-bottom: 2.5rem;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  text-align: left;
+}
+
+.event-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  padding: 2rem;
+  transition: border-color 0.3s ease, transform 0.2s ease;
+}
+
+.event-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.event-card-image {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  margin-bottom: 1.25rem;
+  opacity: 0.9;
+}
+
+.event-card .label {
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.event-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.75rem;
+}
+
+.event-card p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.event-card-link {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.event-card-link:hover {
+  color: var(--text-primary);
+}
+
+/* ----- 12. Instagram CTA ----- */
+
+.instagram-cta {
+  text-align: center;
+  padding: var(--section-gap) 0;
+}
+
+.instagram-cta .label {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.instagram-cta a {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.instagram-cta a:hover {
+  color: var(--accent);
+}
+
+/* ----- 13. Footer ----- */
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 3rem 0 2rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-col h4 {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.footer-col p,
+.footer-col a {
+  font-size: 0.85rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+
+.footer-col a:hover {
+  color: var(--accent);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.footer-bottom a {
+  color: var(--text-muted);
+}
+
+.footer-bottom a:hover {
+  color: var(--accent);
+}
+
+/* ----- 14. Menu Page — Category Nav ----- */
+
+.menu-nav {
+  position: sticky;
+  top: 62px; /* Below site header */
+  z-index: 50;
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.menu-nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.menu-nav-list a {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.menu-nav-list a:hover {
+  color: var(--accent);
+}
+
+/* ----- 15. Menu Page — Sections & Items ----- */
+
+.menu-section {
+  padding: 3.5rem 0;
+}
+
+.menu-section h2 {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+}
+
+.menu-items {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.menu-item {
+  margin-bottom: 1.75rem;
+  transition: opacity 0.3s ease;
+}
+
+.menu-item:hover {
+  opacity: 0.85;
+}
+
+.menu-item-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.menu-item-name {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.menu-item-dots {
+  flex: 1;
+  border-bottom: 1px dotted var(--border-dotted);
+  margin-bottom: 0.25rem;
+}
+
+.menu-item-price {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.menu-item-description {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.35rem;
+  line-height: 1.5;
+}
+
+.menu-item-image {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
+/* ----- 16. 404 Page ----- */
+
+.page-404 {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem var(--container-padding);
+}
+
+.page-404 h1 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  margin-bottom: 1rem;
+}
+
+.page-404 p {
+  margin-bottom: 2rem;
+  font-size: 1.05rem;
+}
+
+/* ----- 17. Animations ----- */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+  animation-timeline: view();
+  animation-range: entry 0% entry 30%;
+}
+
+@supports not (animation-timeline: view()) {
+  .fade-in {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+/* ----- 18. Print Styles ----- */
+
+@media print {
+  .site-header,
+  .site-footer,
+  .hero,
+  .menu-nav,
+  .events,
+  .instagram-cta,
+  .skip-link {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #111;
+    font-size: 11pt;
+  }
+
+  h1, h2, h3, h4 {
+    color: #111;
+  }
+
+  .menu-section {
+    padding: 1.5rem 0;
+    break-inside: avoid;
+  }
+
+  .menu-section h2 {
+    color: #333;
+  }
+
+  .menu-item-name {
+    color: #111;
+  }
+
+  .menu-item-price {
+    color: #333;
+  }
+
+  .menu-item-dots {
+    border-bottom-color: #ccc;
+  }
+
+  .menu-item-description {
+    color: #555;
+  }
+
+  a {
+    color: #111;
+    text-decoration: none;
+  }
+}
+
+/* ----- 19. Focus Styles ----- */
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+a:focus:not(:focus-visible) {
+  outline: none;
+}

@@ -1,0 +1,11 @@
+<article class="event-card">
+  {% if event_image %}
+    <img class="event-card-image" src="{{ event_image }}" alt="{{ event_title }}">
+  {% endif %}
+  <span class="label">{{ event_date | date: "%B %d, %Y" }}</span>
+  <h3>{{ event_title }}</h3>
+  <div>{{ event_description }}</div>
+  {% if event_link != "" %}
+    <a href="{{ event_link }}" class="event-card-link" target="_blank" rel="noopener noreferrer">Learn More &rarr;</a>
+  {% endif %}
+</article>

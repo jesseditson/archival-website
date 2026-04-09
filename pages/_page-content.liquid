@@ -38,17 +38,14 @@
              data-index="{{ forloop.index0 }}"
              data-tags="{{ post.tags }}">
 
-    {%- unless post.media == blank -%}
-      {%- case post.media.type -%}
-        {%- when "image" -%}
-          <!-- Optional Image -->
+    {%- unless post.image == blank -%}
           <div class="post-image">
-            <img src="{{ post.media.value.url }}" alt="{{ post.title }}" loading="lazy">
+            <img src="{{ post.image.url }}" alt="{{ post.title }}" loading="lazy">
           </div>
-        {%- when "video" -%}
-          <!-- Optional Video -->
+    {%- endunless -%}
+    {%- unless post.video == blank -%}
           <div class="post-video">
-            <video src="{{ post.media.value.url }}" preload="metadata" playsinline>
+            <video src="{{ post.video.url }}" preload="metadata" playsinline>
               Your browser does not support the video tag.
             </video>
             <button class="video-play-overlay" aria-label="Play video">
@@ -58,9 +55,9 @@
               </svg>
             </button>
           </div>
-        {%- when "audio" -%}
-          <!-- Optional Audio -->
-          <div class="post-audio" data-audio-url="{{ post.media.value.url }}">
+    {%- endunless -%}
+    {%- unless post.audio == blank -%}
+          <div class="post-audio" data-audio-url="{{ post.audio.url }}">
             <canvas class="audio-waveform"></canvas>
             <div class="audio-controls">
               <button class="audio-play-btn" aria-label="Play audio">
@@ -75,8 +72,7 @@
               <span class="audio-duration">0:00</span>
             </div>
           </div>
-        {%- endcase -%}
-      {%- endunless -%}
+    {%- endunless -%}
 
       <!-- Post Content -->
       <div class="post-content">

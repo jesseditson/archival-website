@@ -4,14 +4,10 @@
     "date": "{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}",
     {%- unless post.excerpt == blank -%}"excerpt": "{{post.excerpt}}",{% endunless %}
     {%- unless post.content == blank -%}"content": "{{post.content | strip_newlines | escape}}",{% endunless %}
-    {%- unless post.media == blank -%}
-    {%- case post.media.type -%}
-    {%- when "image" -%}"imageUrl": "{{post.media.value.url}}",
-    {%- when "video" -%}"videoUrl": "{{post.media.value.url}}",
-    {%- when "audio" -%}"audioUrl": "{{post.media.value.url}}",
-    {%- when "link" -%}"linkUrl": "{{post.media.value}}",
-    {%- endcase -%}
-    {%- endunless -%}
+    {%- unless post.image == blank -%}"imageUrl": "{{post.image.url}}",{%- endunless -%}
+    {%- unless post.video == blank -%}"videoUrl": "{{post.video.url}}",{%- endunless -%}
+    {%- unless post.audio == blank -%}"audioUrl": "{{post.audio.url}}",{%- endunless -%}
+    {%- unless post.link == blank -%}"linkUrl": "{{post.link}}",{%- endunless -%}
     "index": {{ forloop.index }},
     "tags": [
         {%- assign tag_list = post.tags | split: "," -%}

@@ -12,62 +12,61 @@
     </div>
   {%- endunless -%}
 </div>
-{%- unless post.media == blank -%}
-  {%- case post.media.type -%}
-    {%- when "image" -%}
-      <div class="viewer-post-image"><img src="{{ post.media.value.url }}" alt="{{ post.title }}"></div>
-    {%- when "video" -%}
-      <div class="viewer-post-video">
-        <video
-          src="{{post.media.value.url}}"
-          preload="metadata"
-          playsinline>
-          Your browser does not support the video tag.
-        </video>
-        <button class="video-play-overlay" aria-label="Play video">
-          <svg
-            width="64"
-            height="64"
-            viewBox="0 0 24 24"
-            fill="none">
-            <circle
-              cx="12"
-              cy="12"
-              r="10"
-              fill="rgba(255, 255, 255, 0.9)" />
-            <path d="M10 8l6 4-6 4V8z" fill="currentColor" />
-          </svg>
-        </button>
-      </div>
-    {%- when "audio" -%}
-      <div class="viewer-post-audio" data-audio-url="{{ post.media.value.url }}">
-        <canvas class="audio-waveform"></canvas>
-        <div class="audio-controls">
-          <button class="audio-play-btn" aria-label="Play audio">
-            <svg
-              class="play-icon"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none">
-              <path d="M8 5v14l11-7z" fill="currentColor" />
-            </svg>
-            <svg
-              class="pause-icon"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              style="display: none;">
-              <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" fill="currentColor" />
-            </svg>
-          </button>
-          <span class="audio-time">0:00</span>
-          <span class="audio-duration">0:00</span>
-        </div>
-      </div>
-  {%- endcase -%}
-{% endunless %}
+{%- unless post.image == blank -%}
+  <div class="viewer-post-image"><img src="{{ post.image.url }}" alt="{{ post.title }}"></div>
+{%- endunless -%}
+{%- unless post.video == blank -%}
+  <div class="viewer-post-video">
+    <video
+      src="{{ post.video.url }}"
+      preload="metadata"
+      playsinline>
+      Your browser does not support the video tag.
+    </video>
+    <button class="video-play-overlay" aria-label="Play video">
+      <svg
+        width="64"
+        height="64"
+        viewBox="0 0 24 24"
+        fill="none">
+        <circle
+          cx="12"
+          cy="12"
+          r="10"
+          fill="rgba(255, 255, 255, 0.9)" />
+        <path d="M10 8l6 4-6 4V8z" fill="currentColor" />
+      </svg>
+    </button>
+  </div>
+{%- endunless -%}
+{%- unless post.audio == blank -%}
+  <div class="viewer-post-audio" data-audio-url="{{ post.audio.url }}">
+    <canvas class="audio-waveform"></canvas>
+    <div class="audio-controls">
+      <button class="audio-play-btn" aria-label="Play audio">
+        <svg
+          class="play-icon"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none">
+          <path d="M8 5v14l11-7z" fill="currentColor" />
+        </svg>
+        <svg
+          class="pause-icon"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          style="display: none;">
+          <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" fill="currentColor" />
+        </svg>
+      </button>
+      <span class="audio-time">0:00</span>
+      <span class="audio-duration">0:00</span>
+    </div>
+  </div>
+{%- endunless -%}
 <div class="viewer-post-content">
   {%- unless post.content == blank -%}
     {{ post.content }}
@@ -75,12 +74,12 @@
     {{ post.excerpt }}
   {%- endunless -%}
 </div>
-{%- if post.media and post.media.type == "link" -%}
+{%- unless post.link == blank -%}
   <a
-    href="{{ post.media.value }}"
+    href="{{ post.link }}"
     target="_blank"
     rel="noopener noreferrer"
     class="link-preview-card">
     <div class="link-preview-content"></div>
   </a>
-{%- endif -%}
+{%- endunless -%}

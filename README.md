@@ -86,7 +86,7 @@ Through **files**: Replace the image reference in the object's `.toml` file. Ima
 ## Local Development
 
 ```bash
-archival serve
+archival run
 ```
 
 Visit `http://localhost:3000` to preview your site.

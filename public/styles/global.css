@@ -624,3 +624,7 @@ body {
   font-size: 0.75rem;
   opacity: 0.25;
 }
+
+.site-footer a {
+  color: inherit;
+}

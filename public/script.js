@@ -180,15 +180,7 @@ if (window.innerWidth > 768) {
 }
 
 
-// ============================================
-// Year Auto-Update in Footer
-// ============================================
-window.addEventListener('load', () => {
-    const footer = document.querySelector('footer p');
-    if (footer) {
-        footer.textContent = footer.textContent.replace('2024', new Date().getFullYear());
-    }
-});
+// Year auto-update in footer removed — now handled by Liquid template
 
 
 // ============================================

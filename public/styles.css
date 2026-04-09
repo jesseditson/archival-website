@@ -752,6 +752,8 @@ footer {
   text-align: center;
   color: var(--text-muted);
   border-top: 1px solid var(--glass-border);
+  position: relative;
+  z-index: 1;
   background: linear-gradient(
     180deg,
     transparent 0%,

@@ -615,3 +615,12 @@ body {
     display: none;
   }
 }
+
+/* Footer */
+.site-footer {
+  margin-top: auto;
+  padding: 4rem 2rem 2rem;
+  text-align: center;
+  font-size: 0.75rem;
+  opacity: 0.25;
+}

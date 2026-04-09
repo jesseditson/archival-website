@@ -1364,3 +1364,12 @@ body.light-theme .thumbnail-item.active {
         gap: var(--spacing-md);
     }
 }
+
+.site-footer {
+  margin-top: auto;
+  padding: 4rem 2rem 2rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  opacity: 0.6;
+}

@@ -1373,3 +1373,12 @@ body.light-theme .thumbnail-item.active {
   color: var(--text-muted);
   opacity: 0.6;
 }
+
+.site-footer a {
+  color: inherit;
+  transition: opacity 0.2s ease;
+}
+
+.site-footer a:hover {
+  opacity: 1;
+}

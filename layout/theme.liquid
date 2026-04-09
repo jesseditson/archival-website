@@ -73,8 +73,7 @@
             </span>
           </button>
         </div>
-        <p class="footer-name">{{ publication.name }}</p>
-        <p class="footer-copyright">&copy; {{ publication.copyright_year }}</p>
+        <p class="footer-copyright">&copy; {{ "now" | date: "%Y" }} {{ publication.name }}. Powered by <a href="https://archival.dev">Archival</a>.</p>
       </div>
     </footer>
 

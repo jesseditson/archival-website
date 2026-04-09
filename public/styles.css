@@ -1376,9 +1376,10 @@ body.light-theme .thumbnail-item.active {
 
 .site-footer a {
   color: inherit;
-  transition: opacity 0.2s ease;
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .site-footer a:hover {
-  opacity: 1;
+  color: var(--text-primary, #fff);
 }

@@ -131,6 +131,6 @@
 <!-- Footer -->
 <footer>
   <div class="container">
-    <p>&copy; 2024 {{ objects.personal.name }}</p>
+    <p>&copy; {{ "now" | date: "%Y" }} {{ objects.personal.name }}</p>
   </div>
 </footer>

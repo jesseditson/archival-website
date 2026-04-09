@@ -1,12 +1,12 @@
 order = -1
-date = 2013-08-07T00:00:00
-title = "Paracosm"
+date = 2024-03-15T00:00:00
+title = "Half Light"
 description = """
-Suspendisse tincidunt nibh sem, sit amet bibendum magna rutrum sit amet. Quisque rhoncus purus sed nulla aliquam, at congue mi iaculis. Fusce vitae aliquam neque. Integer ullamcorper justo sagittis consequat porta. Fusce id iaculis nisi. Vestibulum luctus gravida.
+The sophomore album from Pale Stations explores themes of memory and distance through lush arrangements and propulsive rhythms. Recorded over six months in a converted warehouse, Half Light captures the tension between stillness and motion that defines the band's live sound.
 """
 
 [image]
-sha = "651f44fab5f176b54d049f44bc1e50335d8acab02f651733d35e1e096e2680df"
-filename = "paracosm-cover.jpg"
+sha = "aeda0ee5e085b6705ba988743e509997d0e89551349dc5928bbee872a847db4a"
+filename = "album-art-placeholder-01.jpg"
 mime = "image/jpeg"
 display_type = "image"

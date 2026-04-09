@@ -1,0 +1,8 @@
+order = 1
+title = "Silver Corridor"
+
+[audio]
+sha = "ddc7cec156c15a22718064968c13b0ca7c7bf245efbff9fb833c208753c77904"
+filename = "band-track-01.mp3"
+mime = "audio/mpeg"
+display_type = "audio"

@@ -7,8 +7,8 @@
   <title>{{objects.band.name}} | {{ title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
-  <meta name="keywords" content="Band keywords">
-  <meta name="author" content="Band name">
+  <meta name="keywords" content="Pale Stations, indie rock, electronic, music">
+  <meta name="author" content="Pale Stations">
   <link rel="stylesheet" href="/styles/global.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <style>
@@ -66,16 +66,31 @@
           </ul>
         </nav>
         <div class="player">
-          <button class="play-pause"></button>
+          <div class="player-progress-clip"><div class="player-progress"></div></div>
+          <button class="play-pause" aria-label="Play/Pause"></button>
           <div class="now-playing">
             <span class="now-playing-label">Now Playing:</span>
-            <span class="now-playing-item">Feel It All Around</span>
+            <span class="now-playing-item"></span>
           </div>
-          <button class="volume"></button>
+          <div class="volume-wrapper">
+            <button class="volume" aria-label="Volume"></button>
+            <div class="volume-flyout">
+              <input type="range" class="volume-slider" min="0" max="100" value="80" aria-label="Volume">
+            </div>
+          </div>
         </div>
+        <script>
+          window.__tracks = [
+            {% for track in objects.track %}
+              { title: "{{ track.title }}", url: "{{ track.audio.url }}" }{% unless forloop.last %},{% endunless %}
+            {% endfor %}
+          ];
+        </script>
       </div>
 
-      {{ page_content }}
+      <div class="page-content">
+        {{ page_content }}
+      </div>
     </div>
   </div>
   <script src="/scripts/global.js"></script>

@@ -1,8 +1,8 @@
 order = -1
-name = "Washed Out"
+name = "Pale Stations"
 
 [image]
-sha = "aea6fa2d3416d9ab5a73152d84006fca627db4237a88fe2e34c10e8feab28568"
-filename = "band-1-background.png"
-mime = "image/png"
+sha = "4e05635b75ae6e626518874ad0ebff3e4a5ce759a379e1722e50c89291674891"
+filename = "band-bg-placeholder-01.jpg"
+mime = "image/jpeg"
 display_type = "image"

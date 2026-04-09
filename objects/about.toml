@@ -1,11 +1,11 @@
 order = -1
-title = "Ernest Greene"
+title = "About Pale Stations"
 description = """
-Ernest Greene, known professionally as Washed Out, is an American singer-songwriter and record producer. His style has been identified with the chillwave movement. He has released three albums, Within and Without, Paracosm, and Mister Mellow.
+Pale Stations is a four-piece band blending atmospheric indie rock with shimmering electronic textures. Formed in 2018, the group has built a devoted following through hypnotic live performances and a sound that drifts between dreamy introspection and driving energy. Their music has been featured across independent radio and streaming playlists worldwide.
 """
 
 [image]
-sha = "bbdd00ea1bdc040e936a46d871386608f680343ce641e38058ce9ddcc154d286"
-filename = "band-1-about.jpg"
+sha = "3410f8558ba90d407f1b3284eaf03dc1076c97de86cda83c446390035f3236a0"
+filename = "band-about-placeholder-01.jpg"
 mime = "image/jpeg"
 display_type = "image"

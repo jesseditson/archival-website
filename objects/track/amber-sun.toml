@@ -1,0 +1,8 @@
+order = 2
+title = "Amber Sun"
+
+[audio]
+sha = "56cc12bc6273f3ac043e2b3f0dcd1f3318b9f17c9d343b26ca7cf464ac101ebe"
+filename = "band-track-02.mp3"
+mime = "audio/mpeg"
+display_type = "audio"

@@ -171,12 +171,32 @@ body {
 .player {
   display: flex;
   align-items: center;
-  gap: 1rem;
   max-width: 28rem;
+  height: 3rem;
   margin: 0 auto;
   padding: 0.25rem;
   border-radius: 2rem;
   background: rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.player-progress-clip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 2rem;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.player-progress {
+  height: 100%;
+  width: 0%;
+  background: rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+  transition: width 0.3s linear;
 }
 
 .now-playing {
@@ -185,6 +205,9 @@ body {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  position: relative;
+  z-index: 1;
+  padding: 0 0.75rem;
 }
 
 .play-pause {
@@ -196,6 +219,21 @@ body {
   border: none;
   background: rgba(255, 255, 255, 0.1) url(/images/icon-pause.svg) no-repeat 50%
     50%;
+  position: relative;
+  z-index: 1;
+}
+
+.play-pause.paused {
+  background-image: url(/images/icon-play.svg);
+}
+
+.volume-wrapper {
+  position: relative;
+  flex-shrink: 0;
+  z-index: 1;
+  width: 2.5rem;
+  height: 2.5rem;
+  line-height: 0;
 }
 
 .volume {
@@ -205,8 +243,58 @@ body {
   flex-shrink: 0;
   border-radius: 2rem;
   border: none;
+  padding: 0;
   background: rgba(255, 255, 255, 0.1) url(/images/icon-speaker.svg) no-repeat
     50% 50%;
+}
+
+.volume-flyout {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 0.5rem);
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  padding: 0.75rem 1rem;
+  width: 8rem;
+  height: 2.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.volume-flyout.active {
+  display: flex;
+}
+
+.volume-slider {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  outline: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  border: none;
 }
 
 .now-playing-label {

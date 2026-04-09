@@ -19,3 +19,7 @@ ticket_url = "string"
 image = "image"
 title = "string"
 description = "markdown"
+
+[track]
+title = "string"
+audio = "audio"

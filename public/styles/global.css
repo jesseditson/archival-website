@@ -109,7 +109,7 @@ body {
 
 .logo-wrapper {
   text-decoration: none;
-  width: 28rem;
+  width: min(28rem, 100%);
   display: block;
   margin: 0 auto;
 }
@@ -118,7 +118,7 @@ body {
   display: block;
   font-family: "Kaffe", sans-serif;
   font-weight: 400;
-  font-size: 5rem;
+  font-size: clamp(2.5rem, 12vw, 5rem);
   text-align: center;
   text-transform: uppercase;
   margin: 0 auto 2rem;

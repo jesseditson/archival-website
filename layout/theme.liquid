@@ -31,7 +31,7 @@
   {{ page_content }}
 
   <footer class="container">
-    <p>&copy; {{ app.copyright_year }} {{ app.author }}</p>
+    <p>&copy; {{ "now" | date: "%Y" }} {{ app.author }}. Powered by <a href="https://archival.dev">Archival</a>.</p>
     <p class="footer-legal">
       <a href="privacy.html">Privacy</a>
       |

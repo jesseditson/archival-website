@@ -438,14 +438,6 @@ h3 {
   padding: 2rem 1.5rem;
 }
 
-.featured-item-image {
-  width: 100%;
-  aspect-ratio: 4/3;
-  object-fit: cover;
-  margin-bottom: 1.5rem;
-  opacity: 0.9;
-}
-
 .featured-item h3 {
   font-family: var(--font-body);
   font-size: 1.35rem;
@@ -918,14 +910,6 @@ a.event-card-clickable {
   cursor: pointer;
 }
 
-.event-card-image {
-  width: 100%;
-  aspect-ratio: 16/9;
-  object-fit: cover;
-  margin-bottom: 1.25rem;
-  opacity: 0.9;
-}
-
 .event-card .label {
   margin-bottom: 0.75rem;
   display: block;
@@ -1216,14 +1200,6 @@ a.event-card-clickable {
   color: var(--text-secondary);
   margin-top: 0.35rem;
   line-height: 1.5;
-}
-
-.menu-item-image {
-  width: 100%;
-  aspect-ratio: 16/9;
-  object-fit: cover;
-  margin-bottom: 1rem;
-  opacity: 0.9;
 }
 
 /* ----- 16. 404 Page ----- */

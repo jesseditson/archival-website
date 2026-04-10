@@ -25,11 +25,9 @@ description = "string"
 price = "string"
 category = "string"
 featured = "boolean"
-image = "image"
 
 [event]
 title = "string"
 date = "date"
 description = "markdown"
-image = "image"
 link = "string"

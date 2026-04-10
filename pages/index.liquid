@@ -28,9 +28,6 @@
     <div class="featured-grid">
       {% for item in featured %}
         <div class="featured-item">
-          {% if item.image %}{% if item.image.url != "" %}
-            <img class="featured-item-image" src="{{ item.image.url }}" alt="{{ item.name }}">
-          {% endif %}{% endif %}
           <h3>{{ item.name }}</h3>
           <p>{{ item.description }}</p>
           <span class="price">{{ item.price }}</span>
@@ -140,7 +137,6 @@
           event_title: ev.title,
           event_date: ev.date,
           event_description: ev.description,
-          event_image: ev.image,
           event_link: ev.link
         %}
       {% endfor %}

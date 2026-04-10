@@ -113,7 +113,7 @@
     <div class="hours-grid">
       <h3 class="hours-heading">Hours</h3>
       <div class="hours-cards">
-        {% for h in objects.hours %}
+        {% for h in objects.site.hours %}
         <div class="hours-card{% if h.time == 'Closed' %} hours-card-closed{% endif %}">
           <span class="hours-day">{{ h.day }}</span>
           <span class="hours-range">{% if h.time == 'Closed' %}<span class="hours-closed">Closed</span>{% else %}<span class="hours-time">{{ h.time }}</span>{% endif %}</span>

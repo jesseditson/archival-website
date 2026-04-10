@@ -31,3 +31,19 @@ sha = "3cf1fc4aa2c37078c27a07d2b9f46ecee427bc9c39d5eec42162e53ee49bd203"
 filename = "[bar-restaurant-1] polaroid-3.jpg"
 mime = "image/jpeg"
 display_type = "image"
+
+[[hours]]
+day = "Tue – Thu"
+time = "5 PM – 12 AM"
+
+[[hours]]
+day = "Fri – Sat"
+time = "5 PM – 2 AM"
+
+[[hours]]
+day = "Sunday"
+time = "4 PM – 11 PM"
+
+[[hours]]
+day = "Monday"
+time = "Closed"

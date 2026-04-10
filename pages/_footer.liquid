@@ -30,7 +30,7 @@
       <div class="footer-col footer-hours">
         <h4>Hours</h4>
         <table class="footer-hours-table">
-          {% for h in objects.hours %}
+          {% for h in objects.site.hours %}
           <tr><td>{{ h.day }}</td><td>{{ h.time }}</td></tr>
           {% endfor %}
         </table>

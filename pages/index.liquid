@@ -2,7 +2,7 @@
 
 <!-- Hero -->
 <section class="hero">
-  {% if objects.site.hero_image.url %}
+  {% if objects.site.hero_image and objects.site.hero_image.url != "" %}
     <div class="hero-bg" style="background-image: url('{{ objects.site.hero_image.url }}');"></div>
   {% else %}
     <div class="hero-bg" style="background-image: url('/images/hero-placeholder.jpg');"></div>
@@ -30,7 +30,7 @@
     <div class="featured-grid">
       {% for item in featured %}
         <div class="featured-item">
-          {% if item.image.url != "" and item.image.url %}
+          {% if item.image and item.image.url != "" %}
             <img class="featured-item-image" src="{{ item.image.url }}" alt="{{ item.name }}">
           {% endif %}
           <h3>{{ item.name }}</h3>

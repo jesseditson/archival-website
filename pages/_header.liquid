@@ -1,6 +1,6 @@
 <header class="site-header{% if page == 'home' %} site-header-transparent{% endif %}">
   <div class="container">
-    {% if objects.site.logo.url != "" and objects.site.logo.url %}
+    {% if objects.site.logo and objects.site.logo.url != "" %}
       <a href="/" class="site-logo" aria-label="{{ objects.site.name }} — Home">
         <img src="{{ objects.site.logo.url }}" alt="{{ objects.site.name }}" style="height: 40px; width: auto;">
       </a>

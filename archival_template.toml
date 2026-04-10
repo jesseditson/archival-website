@@ -1,13 +1,17 @@
 #:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
 name = "About Me"
 description = """
-This template is intended to be used for a professional website for an individual.
+This template is intended to be used for a professional website for an individual. It features a clean, modern layout with sections for personal info, work experience, a project portfolio, and contact details. Ideal for resumes, personal branding, freelancers, and anyone who wants to present themselves professionally online.
 """
 context = """
 This template shows information about a person, and could be generated from a resume or other professional information about a person.
 When filling the action_line field, the text will be preceded in the UI by the string "Hi, my name is <something> and ", so make sure it makes grammatical sense when added to that string.
 When filling the action_line field, make the action line short and catchy - no more than 10 words.
 When filling work.projects, there are some defaults in the template, so just use the defaults if you don't have something appropriate to fill this with.
+The personal object has fields: name (full name), title (job title or role), action_line (a short catchy phrase), tagline (brief professional tagline), and full_about (a markdown bio).
+Generate 2-3 experience entries, each with a title and markdown description of the role or accomplishment.
+The contact object should have a title like "Get In Touch", a short description, and an email address.
+Keep the tone professional but approachable. Write in first person where appropriate.
 """
 tags = ["resume", "about"]
 tlds = ["com", "me"]

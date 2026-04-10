@@ -1,12 +1,18 @@
 #:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
 name = "Small Business"
 description = """
-This template is a simple one pager website for a brick and mortar small business.
+This template is a simple one pager website for a brick and mortar small business. It features a clean single-page layout with the business name and tagline, logo, operating hours, physical address with optional map embed, contact info (phone and email), and an about section. Perfect for shops, cafes, salons, repair services, pop-ups, and other local businesses that need a straightforward online presence.
 """
 context = """
 This template shows information about a local business - it has contact, location, and hours. It is expected that the business it is showcasing is a small brick and mortar.
 This is a good template to choose for shops, stores, locations, pop-ups, and other similar concepts.
 The logo_image field of the site object should show a logo - if there is an upload that seems like a logo, put it there. Otherwise leave it as the default.
+The site object has: name (business name), tagline (short slogan or descriptor like "Family-Owned Since 1985"), and logo_image.
+The hours object has: monday_friday (e.g. "9am - 6pm"), saturday (e.g. "10am - 4pm"), and sunday (e.g. "Closed"). Use realistic hours appropriate for the type of business.
+The location object has: address (full street address) and map_embed_url (leave empty unless the user provides one).
+The contact object has: phone and email.
+The about object has: description (markdown — write 1-2 warm, inviting paragraphs about the business, its history, what makes it special, and what customers can expect).
+Write in a friendly, welcoming, neighborhood-business tone. Keep it concise — this is a one-pager, so every word should count.
 """
 tags = []
 tlds = ["com"]

@@ -1,10 +1,15 @@
 #:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
 name = "Publication"
 description = """
-An independent news publication template inspired by The Atlantic and New York Times. Features a grid-based front page layout of stories, beautiful serif typography optimized for long-form reading, and generous use of whitespace.
+An independent news publication template inspired by The Atlantic and New York Times. Features a grid-based front page layout of stories, beautiful serif typography optimized for long-form reading, and generous use of whitespace. Each story has its own detail page with a narrow reading column, hero image, byline, and section tagging. Includes section-based navigation and author profiles.
 """
 context = """
 This template is for an independent online publication or magazine. It features editorial-quality typography with large serif headlines, a responsive grid of stories on the front page, and a clean story detail page with a narrow reading column. When generating stories, create 7 of them with varied headline lengths. One story should be marked as featured. Generate 3-4 sections like Opinion, Culture, Technology, Politics.
+The publication object has: name (publication name), tagline, logo (image), and copyright_year.
+Generate 3-4 sections entries. Each has a name (display name like "Opinion") and slug (url-safe version like "opinion"). These are used for navigation and story categorization.
+Generate 2-3 authors entries. Each has: name, title (role like "Senior Editor"), photo (image), and bio (short 1-2 sentence bio).
+Generate exactly 7 stories entries. Each has: headline (vary lengths — some short and punchy, some longer), subheadline (optional secondary line), slug (url-safe), section (must match a section slug exactly), author (must match an author name exactly), date (string, use recent dates spread over the past month), image (cover image), cover_url (leave empty), image_caption, featured (string "true" or "false" — mark exactly 1 story as featured), and body (markdown — write 3-5 paragraphs of editorial-quality prose).
+Write in a polished editorial voice. Headlines should be compelling and varied in style — some declarative, some questions, some with colons. Story bodies should read like real journalism or opinion pieces.
 """
 tags = ["publication", "magazine", "news", "editorial"]
 tlds = ["com", "org", "news", "press"]

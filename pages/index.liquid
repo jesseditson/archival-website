@@ -100,7 +100,7 @@
       <div class="info-details">
         <span class="label">Location</span>
         {% assign address_parts = objects.site.address | split: ", " %}
-        <p class="info-address">{{ address_parts[0] }}<br>{{ address_parts | slice: 1, address_parts.size | join: ", " }}</p>
+        <p class="info-address">{{ address_parts.first }}<br>{% assign rest = address_parts | slice: 1, address_parts.size %}{{ rest | join: ", " }}</p>
         {% if objects.site.phone %}
           <p><a href="tel:{{ objects.site.phone | remove: '(' | remove: ')' | remove: ' ' | remove: '-' }}">{{ objects.site.phone }}</a></p>
         {% endif %}

@@ -14,9 +14,9 @@
     <meta property="og:title" content="{{ objects.site.name }}">
     <meta property="og:description" content="{{ objects.site.description | strip_html | strip_newlines | truncate: 160 }}">
     <meta property="og:type" content="website">
-    {% if objects.site.hero_image and objects.site.hero_image.url != "" %}
+    {% if objects.site.hero_image %}{% if objects.site.hero_image.url != "" %}
     <meta property="og:image" content="{{ objects.site.hero_image.url }}">
-    {% endif %}
+    {% endif %}{% endif %}
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -2,7 +2,9 @@
 
 <!-- Hero -->
 <section class="hero">
-  {% if objects.site.hero_image and objects.site.hero_image.url != "" %}
+  {% assign has_hero = false %}
+  {% if objects.site.hero_image %}{% if objects.site.hero_image.url != "" %}{% assign has_hero = true %}{% endif %}{% endif %}
+  {% if has_hero %}
     <div class="hero-bg" style="background-image: url('{{ objects.site.hero_image.url }}');"></div>
   {% else %}
     <div class="hero-bg" style="background-image: url('/images/hero-placeholder.jpg');"></div>
@@ -30,9 +32,9 @@
     <div class="featured-grid">
       {% for item in featured %}
         <div class="featured-item">
-          {% if item.image and item.image.url != "" %}
+          {% if item.image %}{% if item.image.url != "" %}
             <img class="featured-item-image" src="{{ item.image.url }}" alt="{{ item.name }}">
-          {% endif %}
+          {% endif %}{% endif %}
           <h3>{{ item.name }}</h3>
           <p>{{ item.description }}</p>
           <span class="price">{{ item.price }}</span>

@@ -1,10 +1,16 @@
 #:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
 name = "Band Template"
 description = """
-This template is intended to be used by a band or musician
+This template is intended to be used by a band or musician. It features a bold hero section with the band/artist image, a discography section for album releases, an upcoming tour dates section with ticket links, an about page, and an audio track player for streaming music directly on the site.
 """
 context = """
 This template shows information about a musician, band, DJ or other musical entity. This would be a good template to choose if someone uploaded an audio file.
+The band object has name and image fields. Use the artist or band name for the name field.
+Generate 2-3 release entries, each with an image (album art), date, title (album/single name), and a markdown description (short write-up about the release).
+Generate 3-5 tour entries with date, location (city, state/country), venue name, tickets_available (boolean), and ticket_url. Set dates in the near future. Leave ticket_url empty if not provided.
+Generate 2-4 track entries with a title for each. The audio field is for audio file uploads — leave it as default unless the user has provided audio files.
+The about object has an image, title, and markdown description. Write a compelling artist bio in the description. Keep it 2-3 paragraphs.
+Use an energetic, music-industry-appropriate tone throughout.
 """
 tags = ["band", "music"]
 tlds = ["com", "me"]

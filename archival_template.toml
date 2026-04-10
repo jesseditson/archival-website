@@ -1,10 +1,15 @@
 #:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
 name = "Professional Template"
 description = """
-This template is intended to be used by a professional who is offering services
+This template is intended to be used by a professional who is offering services. It features a personal profile section with photo and bio, a service catalog with descriptions and pricing, client testimonials, and a contact form powered by Google Forms. Great for consultants, freelancers, coaches, therapists, tutors, and other service providers.
 """
 context = """
 This template is for a professional that is selling a service or group of services.
+The info object has: first_name, last_name, business_name, title (professional title like "Licensed Therapist" or "Business Consultant"), location, image (headshot/profile photo), about (markdown bio — write 2-3 paragraphs in a warm professional tone), contact_header (e.g. "Let's Work Together"), contact_message (short paragraph inviting contact), contact_complete_header (e.g. "Thank You!"), and contact_complete_message (confirmation text after form submission).
+Generate 3-4 service entries. Each has: name, description (1-2 sentence summary), body (detailed markdown description of the service — what's included, who it's for, how it works), and price (string like "$150/hr" or "Starting at $500"). Make services distinct and complementary.
+Generate 2-3 testimonial entries with a quote (1-3 sentences of praise), author name, and thumbnail (image — leave as default).
+Do not modify the google_form object — it contains form integration configuration that should be kept as-is.
+Write in a professional, trustworthy, client-facing tone. Emphasize value and outcomes rather than just features.
 """
 tags = ["professional", "service"]
 tlds = ["com", "me"]

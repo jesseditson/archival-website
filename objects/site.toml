@@ -7,3 +7,27 @@ phone = "(323) 555-0178"
 email = "hello@thegildedhour.com"
 instagram = "thegildedhour"
 reservation_url = "https://resy.com"
+
+[hero_image]
+sha = "08be9bf95551289d211c59c3b801f8aa49eda7337be33b542562b484ba34beca"
+filename = "[bar-restaurant-1] hero-placeholder.jpg"
+mime = "image/jpeg"
+display_type = "image"
+
+[polaroid_1]
+sha = "adf9a15be695d4b68949da74a45d0bac31a86304cf59d111d2740d6be06e3aa8"
+filename = "[bar-restaurant-1] polaroid-1.jpg"
+mime = "image/jpeg"
+display_type = "image"
+
+[polaroid_2]
+sha = "94b03708ec5b025e1555212da0033e9c8778547ba54bac344702992ba534400d"
+filename = "[bar-restaurant-1] polaroid-2.jpg"
+mime = "image/jpeg"
+display_type = "image"
+
+[polaroid_3]
+sha = "3cf1fc4aa2c37078c27a07d2b9f46ecee427bc9c39d5eec42162e53ee49bd203"
+filename = "[bar-restaurant-1] polaroid-3.jpg"
+mime = "image/jpeg"
+display_type = "image"

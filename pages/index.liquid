@@ -2,13 +2,9 @@
 
 <!-- Hero -->
 <section class="hero">
-  {% assign has_hero = false %}
-  {% if objects.site.hero_image %}{% if objects.site.hero_image.url != "" %}{% assign has_hero = true %}{% endif %}{% endif %}
-  {% if has_hero %}
+  {% if objects.site.hero_image %}{% if objects.site.hero_image.url != "" %}
     <div class="hero-bg" style="background-image: url('{{ objects.site.hero_image.url }}');"></div>
-  {% else %}
-    <div class="hero-bg" style="background-image: url('/images/hero-placeholder.jpg');"></div>
-  {% endif %}
+  {% endif %}{% endif %}
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <p class="hero-tagline">{{ objects.site.tagline }}</p>
@@ -62,15 +58,21 @@
         </div>
       </div>
       <div class="about-photos">
+        {% if objects.site.polaroid_1 %}{% if objects.site.polaroid_1.url != "" %}
         <div class="polaroid polaroid-1 fade-in">
-          <img src="/images/polaroid-1.jpg" alt="Cocktail preparation">
+          <img src="{{ objects.site.polaroid_1.url }}" alt="Cocktail preparation">
         </div>
+        {% endif %}{% endif %}
+        {% if objects.site.polaroid_2 %}{% if objects.site.polaroid_2.url != "" %}
         <div class="polaroid polaroid-2 fade-in">
-          <img src="/images/polaroid-2.jpg" alt="Dark bar interior with booth seating">
+          <img src="{{ objects.site.polaroid_2.url }}" alt="Dark bar interior with booth seating">
         </div>
+        {% endif %}{% endif %}
+        {% if objects.site.polaroid_3 %}{% if objects.site.polaroid_3.url != "" %}
         <div class="polaroid polaroid-3 fade-in">
-          <img src="/images/polaroid-3.jpg" alt="Fine dining plated dish">
+          <img src="{{ objects.site.polaroid_3.url }}" alt="Fine dining plated dish">
         </div>
+        {% endif %}{% endif %}
       </div>
     </div>
   </div>

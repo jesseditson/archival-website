@@ -11,6 +11,9 @@ phone = "string"
 email = "string"
 instagram = "string"
 reservation_url = "string"
+polaroid_1 = "image"
+polaroid_2 = "image"
+polaroid_3 = "image"
 
 [hours]
 day = "string"

@@ -81,6 +81,7 @@
 <hr class="divider">
 
 <!-- Hours & Location -->
+{% assign address = objects.site.address | default: "20 W 34th St, New York, NY 10001" %}
 <section class="section info fade-in">
   <div class="container">
     <span class="label">Find Us</span>
@@ -88,31 +89,27 @@
 
     <div class="info-location-grid">
       <div class="info-map">
-        {% if objects.site.address %}
-          <iframe
-            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q={{ objects.site.address | url_encode }}&zoom=15&maptype=roadmap"
-            width="100%"
-            height="100%"
-            style="border: 0; filter: grayscale(1) invert(1) brightness(0.55) contrast(1.3) hue-rotate(180deg);"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="Map showing {{ objects.site.name }} location">
-          </iframe>
-        {% endif %}
+        <iframe
+          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q={{ address | url_encode }}&zoom=15&maptype=roadmap"
+          width="100%"
+          height="100%"
+          style="border: 0; filter: grayscale(1) invert(1) brightness(0.55) contrast(1.3) hue-rotate(180deg);"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Map showing {{ objects.site.name }} location">
+        </iframe>
       </div>
       <div class="info-details">
         <span class="label">Location</span>
-        <p class="info-address">{{ objects.site.address | replace_first: ", ", "<br>" }}</p>
+        <p class="info-address">{{ address | replace_first: ", ", "<br>" }}</p>
         {% if objects.site.phone %}
           <p><a href="tel:{{ objects.site.phone | remove: '(' | remove: ')' | remove: ' ' | remove: '-' }}">{{ objects.site.phone }}</a></p>
         {% endif %}
         {% if objects.site.email %}
           <p><a href="mailto:{{ objects.site.email }}">{{ objects.site.email }}</a></p>
         {% endif %}
-        {% if objects.site.address %}
-          <a href="https://www.google.com/maps/search/?api=1&query={{ objects.site.address | url_encode }}" target="_blank" rel="noopener noreferrer" class="btn info-directions-btn">Get Directions</a>
-        {% endif %}
+        <a href="https://www.google.com/maps/search/?api=1&query={{ address | url_encode }}" target="_blank" rel="noopener noreferrer" class="btn info-directions-btn">Get Directions</a>
       </div>
     </div>
 

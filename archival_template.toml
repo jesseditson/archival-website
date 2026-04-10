@@ -1,10 +1,15 @@
 #:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
 name = "App"
 description = """
-This website showcases a mobile app, highlights key features, and contains support email links and example privacy policy and EULA pages for your mobile app.
+This website showcases a mobile app, highlights key features, and contains support email links and example privacy policy and EULA pages for your mobile app. This variant features a tagline field, icon-based features with a rich icon picker, and Discord support link integration.
 """
 context = """
 This template shows information about an app that is for sale on an app store - for instance google play or the iOS app store. When generating features, for this template, generate 6 of them.
+The app object contains: name, tagline (short catchy phrase), author, logo (image), description, appstore_download_link, playstore_download_link, direct_download_link, country, legal_email, and copyright_year. If the user hasn't provided store links, leave them empty.
+Each feature has an icon (selected from a predefined set of icon names like nature, animals, food, people, tools, science, transportation, objects, communication, business, education, entertainment, health, lifestyle, security, miscellaneous), a title, and a desc (short description). Pick icons that best represent each feature. Keep feature descriptions to 1-2 sentences.
+Generate 3-4 screenshots.
+Do not modify the eula, terms_of_service, or privacy_policy objects — they have template defaults that should be kept.
+The support object has email, chat_link, and discord_link fields. Fill the email with the same value as legal_email if not otherwise specified. Leave discord_link empty unless the user mentions Discord.
 """
 tags = []
 tlds = ["com", "app"]

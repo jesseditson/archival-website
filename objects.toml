@@ -6,15 +6,18 @@ tagline = "string"
 description = "markdown"
 hero_image = "image"
 logo = "image"
-address = "string"
-phone = "string"
-email = "string"
-instagram = "string"
 reservation_url = "string"
 polaroid_1 = "image"
 polaroid_2 = "image"
 polaroid_3 = "image"
-[site.hours]
+
+[contact]
+address = "string"
+phone = "string"
+email = "string"
+instagram = "string"
+
+[hours]
 day = "string"
 time = "string"
 

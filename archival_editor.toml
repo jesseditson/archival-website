@@ -9,3 +9,8 @@ secondary = "category"
 name = "default"
 primary = "title"
 secondary = "date"
+
+[[hours.views]]
+name = "default"
+primary = "day"
+secondary = "time"

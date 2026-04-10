@@ -1,10 +1,15 @@
 #:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
 name = "Blog"
 description = """
-This template is perfect for a home page. It's a beautiful site where you can post pictures, links, blog posts, small updates, videos, or audio.
+This template is perfect for a home page. It's a beautiful site where you can post pictures, links, blog posts, small updates, videos, or audio. It features a feed-style layout where posts appear in reverse chronological order. Each post can include rich markdown content, images, video, audio, and external links — making it versatile for personal blogs, micro-blogs, creative journals, or social-style updates.
 """
 context = """
 This is a general template which is a good fallback and especially appropriate for an individual social presence. If you are provided media, make blog posts for them. Always make at least 5 posts. Never make more than 3 tags on a post.
+The site object has a name and description field. The name is the site/blog title. The description is a short tagline.
+Each post has: title, content (markdown body), excerpt (a short plain-text summary), date, tags (comma-separated string, max 3 tags), image, video, audio, and link (external URL). Not every post needs every media type — vary the post types for a natural feel.
+When generating posts, give them realistic dates spread over recent weeks. Write the content in a personal, conversational voice. Make excerpts 1-2 sentences that tease the full content.
+If the user provides images or media, create posts that feature them. If not, focus on text-based posts with varied topics relevant to the user's description.
+Tags should be lowercase, short, and relevant. Use consistent tags across related posts.
 """
 tags = ["images", "social", "personal", "individual", "blog", "posts"]
 tlds = ["com", "me"]

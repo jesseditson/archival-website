@@ -1,13 +1,22 @@
 #:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
 name = "Photographica"
 description = """
-This template puts portfolio images front and center with a tiled mosaic on the home page, and about and contact pages.
+This template puts portfolio images front and center with a tiled mosaic on the home page, and about and contact pages. It features a dramatic grid gallery, an extensive about section with stories, statistics, expertise areas, and a detailed process breakdown, plus a contact page with availability status, project types, budgets, FAQ, and social links. Ideal for photographers, visual artists, designers, and other creative professionals.
 """
 context = """
 This template is appropriate when provided many images that are visually interesting or distinct. When filling in photo objects, fill in at least 8 objects.
 Always add 3 stories to the about object. On the last one, set after_quote to true.
 Always add 3 stats to the about object.
 Always add 2 expertises to the about object.
+The site object has a name and description. Use the photographer/artist name or studio name.
+Each photo has a title and a file (image). Generate at least 8 photo entries with descriptive, artistic titles.
+The about object is complex: hero_title (bold heading), hero_lead (markdown intro), story_title, quote_text (an inspirational or personal quote), quote_citation, and three images (image_1, image_2, image_3 — these are kept from the template defaults so leave them alone).
+For about.story entries, generate exactly 3. Each has a title, markdown body (1-2 paragraphs), and after_quote boolean. Set after_quote to true ONLY on the third/last story.
+For about.stat entries, generate exactly 3. Each has a numeric value and a label (e.g. value: 500, label: "Projects Completed").
+For about.expertise entries, generate exactly 2. Each has an icon (emoji or short string), title, and markdown description.
+Do not modify about.process or about.feature entries — they are kept from template defaults.
+The contact object has: hero_title, hero_lead (markdown), availability_status (e.g. "Available"), availability_note, project_types (comma-separated like "Weddings, Portraits, Commercial"), and budgets (slash-separated like "$500 - $1,000 / $1,000 - $5,000 / $5,000+"). Generate 2-3 contact_method entries, 2-3 social entries, and 3-4 faq entries.
+Write in a creative, confident, artistic voice.
 """
 keep_objects = [
     "about.image_1",

@@ -1,7 +1,15 @@
 #:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
 name = "Bar & Restaurant"
-description = "A dark, sophisticated template for bars and restaurants. Features a centered menu with dotted-leader pricing, events section, and warm gold accent theming."
-context = "This template is designed for upscale bars, cocktail lounges, and contemporary restaurants. It features a dark color scheme with customizable accent color, a dedicated menu page with category navigation, event listings, and all the essential info a venue needs."
+description = "A dark, sophisticated template for bars and restaurants. Features a centered menu with dotted-leader pricing, events section, and warm gold accent theming. Includes a hero image, polaroid-style gallery images, reservation link, operating hours, and full contact details. The dedicated menu page groups items by category with an elegant dotted-leader price layout."
+context = """
+This template is designed for upscale bars, cocktail lounges, and contemporary restaurants. It features a dark color scheme with customizable accent color, a dedicated menu page with category navigation, event listings, and all the essential info a venue needs.
+The site object has: name (venue name), tagline (short catchphrase), description (markdown about the venue), hero_image, logo, reservation_url, and three polaroid images (polaroid_1, polaroid_2, polaroid_3) for atmospheric gallery shots.
+The contact object has: address, phone, email, and instagram handle.
+Generate 5-7 hours entries with day (e.g. "Monday - Thursday") and time (e.g. "5pm - 12am"). Group days with the same hours together.
+Generate 8-12 menu_item entries. Each has: name, description (1 sentence), price (as a string like "$14" or "$18"), category (e.g. "Cocktails", "Small Plates", "Entrees", "Desserts"), and featured (boolean, mark 2-3 items as featured). Use 3-4 distinct categories. Write descriptions in a refined, appetizing style.
+Generate 2-3 event entries with title, date (upcoming), markdown description, and optional link.
+Use a sophisticated, upscale hospitality tone. Think cocktail menu copywriting — concise, evocative, slightly luxurious.
+"""
 tags = ["restaurant", "bar", "food", "cocktails", "menu"]
 tlds = ["com", "bar", "restaurant", "menu"]
 keep_objects = []

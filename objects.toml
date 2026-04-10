@@ -10,9 +10,11 @@ address = "string"
 phone = "string"
 email = "string"
 instagram = "string"
-hours = "markdown"
 reservation_url = "string"
-accent_color = "string"
+
+[hours]
+day = "string"
+time = "string"
 
 [menu_item]
 name = "string"

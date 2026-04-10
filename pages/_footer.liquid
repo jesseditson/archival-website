@@ -30,10 +30,9 @@
       <div class="footer-col footer-hours">
         <h4>Hours</h4>
         <table class="footer-hours-table">
-          <tr><td>Tue - Thu</td><td>5 - 12 AM</td></tr>
-          <tr><td>Fri - Sat</td><td>5 PM - 2 AM</td></tr>
-          <tr><td>Sunday</td><td>4 - 11 PM</td></tr>
-          <tr><td>Monday</td><td>Closed</td></tr>
+          {% for h in objects.hours %}
+          <tr><td>{{ h.day }}</td><td>{{ h.time }}</td></tr>
+          {% endfor %}
         </table>
       </div>
 

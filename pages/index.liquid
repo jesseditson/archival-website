@@ -117,22 +117,12 @@
     <div class="hours-grid">
       <h3 class="hours-heading">Hours</h3>
       <div class="hours-cards">
-        <div class="hours-card">
-          <span class="hours-day">Tue – Thu</span>
-          <span class="hours-range"><span class="hours-time">5 PM</span> <span class="hours-to">–</span> <span class="hours-time">12 AM</span></span>
+        {% for h in objects.hours %}
+        <div class="hours-card{% if h.time == 'Closed' %} hours-card-closed{% endif %}">
+          <span class="hours-day">{{ h.day }}</span>
+          <span class="hours-range">{% if h.time == 'Closed' %}<span class="hours-closed">Closed</span>{% else %}<span class="hours-time">{{ h.time }}</span>{% endif %}</span>
         </div>
-        <div class="hours-card">
-          <span class="hours-day">Fri – Sat</span>
-          <span class="hours-range"><span class="hours-time">5 PM</span> <span class="hours-to">–</span> <span class="hours-time">2 AM</span></span>
-        </div>
-        <div class="hours-card">
-          <span class="hours-day">Sunday</span>
-          <span class="hours-range"><span class="hours-time">4 PM</span> <span class="hours-to">–</span> <span class="hours-time">11 PM</span></span>
-        </div>
-        <div class="hours-card hours-card-closed">
-          <span class="hours-day">Monday</span>
-          <span class="hours-range"><span class="hours-closed">Closed</span></span>
-        </div>
+        {% endfor %}
       </div>
     </div>
   </div>

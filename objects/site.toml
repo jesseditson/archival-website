@@ -6,12 +6,4 @@ address = "742 N La Brea Ave, Los Angeles, CA 90038"
 phone = "(323) 555-0178"
 email = "hello@thegildedhour.com"
 instagram = "thegildedhour"
-hours = """**Tuesday – Thursday** 5:00 PM – 12:00 AM
-
-**Friday – Saturday** 5:00 PM – 2:00 AM
-
-**Sunday** 4:00 PM – 11:00 PM
-
-**Monday** Closed"""
 reservation_url = "https://resy.com"
-accent_color = "#c9a96e"

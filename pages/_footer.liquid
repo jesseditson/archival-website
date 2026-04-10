@@ -16,8 +16,7 @@
 
       <div class="footer-col">
         <h4>Visit</h4>
-        {% assign address_parts = objects.site.address | split: ", " %}
-        <p>{{ address_parts.first }}<br>{% assign rest = address_parts | slice: 1, address_parts.size %}{{ rest | join: ", " }}</p>
+        <p>{{ objects.site.address | replace_first: ", ", "<br>" }}</p>
         {% if objects.site.phone %}
           <p><a href="tel:{{ objects.site.phone | remove: '(' | remove: ')' | remove: ' ' | remove: '-' }}">{{ objects.site.phone }}</a></p>
         {% endif %}

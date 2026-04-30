@@ -11,8 +11,8 @@
     <p class="hero-subtitle">{{ podcast.subtitle }}</p>
 
     {% assign latest_episode = episode | where: "draft", false | sort: "order" | reverse | first %}
-    {% if latest_episode %}
-    <button class="cta-button" onclick="playEpisode('{{ latest_episode.audio_url }}', '{{ latest_episode.title }}')">
+    {% if latest_episode and latest_episode.audio_url %}
+    <button class="cta-button" onclick="playEpisode('{{ latest_episode.audio_url.url }}', '{{ latest_episode.title }}')">
       LISTEN TO LATEST EPISODE
     </button>
     {% endif %}
@@ -26,7 +26,7 @@
   <div class="container">
     <div class="episode-card featured">
       <div class="episode-image"
-        onclick="playEpisode('{{ featured_episode.audio_url }}', '{{ featured_episode.title }}')">
+        {% if featured_episode.audio_url %}onclick="playEpisode('{{ featured_episode.audio_url.url }}', '{{ featured_episode.title }}')"{% endif %}>
         <img src="/images/episodes/episode-{{ featured_episode.number }}-thumb.jpg" alt="{{ featured_episode.title }}">
         <button class="play-button">
           <svg viewBox="0 0 24 24" fill="currentColor">
@@ -73,7 +73,7 @@
       {% assign counter = 0 %}
       {% for ep in all_recent %}
       {% if counter < 6 %} {% assign counter=counter | plus: 1 %} <div class="episode-card">
-        <div class="episode-image" onclick="playEpisode('{{ ep.audio_url }}', '{{ ep.title }}')">
+        <div class="episode-image" {% if ep.audio_url %}onclick="playEpisode('{{ ep.audio_url.url }}', '{{ ep.title }}')"{% endif %}>
           <img src="/images/episodes/episode-{{ ep.number }}-thumb.jpg" alt="{{ ep.title }}">
           <button class="play-button">
             <svg viewBox="0 0 24 24" fill="currentColor">

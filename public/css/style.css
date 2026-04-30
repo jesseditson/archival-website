@@ -1180,8 +1180,16 @@ a.episode-content {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  transition: opacity 0.2s ease, transform 0.3s ease, background 0.3s ease;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.episode-image-large:hover .play-button-large,
+.episode-image-large:focus-within .play-button-large {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .play-button-large:hover {

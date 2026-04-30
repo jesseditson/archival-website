@@ -193,11 +193,6 @@ class PodcastPlayer {
   }
 
   loadEpisode(audioUrl, episodeTitle) {
-    // Avoid reloading the same episode (preserves playback position across SPA nav)
-    if (this.currentEpisode && this.currentEpisode.url === audioUrl) {
-      return;
-    }
-
     this.currentEpisode = {
       url: audioUrl,
       title: episodeTitle

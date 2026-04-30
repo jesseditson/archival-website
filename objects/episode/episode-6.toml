@@ -6,7 +6,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac ultrices o
 We dive deep into why podcasting has become such a powerful medium for storytelling 
 and community building.
 """
-audio_url = "/audio/episode-6.mp3"
 duration = "38:15"
 publish_date = "2025-01-03"
 featured = false
@@ -16,3 +15,10 @@ tag2 = "news"
 host1 = "host-1"
 host2 = "host-2"
 order = 6
+
+[audio_url]
+uploaded = 9
+sha = "ddc7cec156c15a22718064968c13b0ca7c7bf245efbff9fb833c208753c77904"
+filename = "band-track-01.mp3"
+mime = "audio/mpeg"
+display_type = "audio"

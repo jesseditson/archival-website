@@ -9,9 +9,9 @@
     <title>{{ podcast.title }}</title>
     <link>{{ site_url }}</link>
     <description>{{ podcast.description | strip_html }}</description>
-    <language>en-us</language>
+    <language>{{ podcast.language }}</language>
     <lastBuildDate>{{ "now" | date: "%a, %d %b %Y %H:%M:%S %z" }}</lastBuildDate>
-    <itunes:author>{{ podcast.title }}</itunes:author>
+    <itunes:author>{{ podcast.author }}</itunes:author>
     <itunes:summary>{{ podcast.subtitle }}</itunes:summary>
     <itunes:owner>
       <itunes:name>{{ podcast.title }}</itunes:name>
@@ -20,8 +20,8 @@
     {% if podcast.logo %}
     <itunes:image href="{{ site_url }}{{ podcast.logo }}"/>
     {% endif %}
-    <itunes:category text="Technology"/>
-    <itunes:explicit>false</itunes:explicit>
+    <itunes:category text="{{ podcast.category }}"/>
+    <itunes:explicit>{{ podcast.explicit }}</itunes:explicit>
     {% assign feed_episodes = episode | where: "draft", false | sort: "order" | reverse %}
     {% for ep in feed_episodes %}
     {% if ep.audio_url %}
@@ -34,7 +34,6 @@
       <enclosure url="{{ ep.audio_url.url }}" length="0" type="{{ ep.audio_url.mime }}"/>
       <itunes:duration>{{ ep.duration }}</itunes:duration>
       <itunes:episode>{{ ep.number }}</itunes:episode>
-      <itunes:explicit>false</itunes:explicit>
     </item>
     {% endif %}
     {% endfor %}

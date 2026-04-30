@@ -1,0 +1,43 @@
+{% assign podcast = objects.podcast %}
+{% assign settings = objects.settings %}
+{% assign episode = objects.episode %}
+{% assign site_url = podcast.website_url %}
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+     xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>{{ podcast.title }}</title>
+    <link>{{ site_url }}</link>
+    <description>{{ podcast.description | strip_html }}</description>
+    <language>en-us</language>
+    <lastBuildDate>{{ "now" | date: "%a, %d %b %Y %H:%M:%S %z" }}</lastBuildDate>
+    <itunes:author>{{ podcast.title }}</itunes:author>
+    <itunes:summary>{{ podcast.subtitle }}</itunes:summary>
+    <itunes:owner>
+      <itunes:name>{{ podcast.title }}</itunes:name>
+      <itunes:email>{{ podcast.email }}</itunes:email>
+    </itunes:owner>
+    {% if podcast.logo %}
+    <itunes:image href="{{ site_url }}{{ podcast.logo }}"/>
+    {% endif %}
+    <itunes:category text="Technology"/>
+    <itunes:explicit>false</itunes:explicit>
+    {% assign feed_episodes = episode | where: "draft", false | sort: "order" | reverse %}
+    {% for ep in feed_episodes %}
+    {% if ep.audio_url %}
+    <item>
+      <title>{{ ep.title }}</title>
+      <link>{{ site_url }}/episode/episode-{{ ep.number }}.html</link>
+      <guid isPermaLink="true">{{ site_url }}/episode/episode-{{ ep.number }}.html</guid>
+      <description><![CDATA[{{ ep.description }}]]></description>
+      <pubDate>{{ ep.publish_date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
+      <enclosure url="{{ ep.audio_url.url }}" length="0" type="{{ ep.audio_url.mime }}"/>
+      <itunes:duration>{{ ep.duration }}</itunes:duration>
+      <itunes:episode>{{ ep.number }}</itunes:episode>
+      <itunes:explicit>false</itunes:explicit>
+    </item>
+    {% endif %}
+    {% endfor %}
+  </channel>
+</rss>

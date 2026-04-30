@@ -11,7 +11,7 @@ when this template is used for individual episode pages
   <div class="container">
     <!-- Episode Header -->
     <header class="episode-header">
-      <div class="episode-image-large" {% if episode.audio_url %}onclick="playEpisode('{{ episode.audio_url.url }}', '{{ episode.title }}')"{% endif %}>
+      <div class="episode-image-large" {% if episode.audio_url %}data-audio-url="{{ episode.audio_url.url }}" data-episode-title="{{ episode.title }}"{% endif %}>
         <img src="/images/episodes/episode-{{ episode.number }}-thumb.jpg" alt="{{ episode.title }}">
         <button class="play-button-large">
           <svg viewBox="0 0 24 24" fill="currentColor">
@@ -41,7 +41,7 @@ when this template is used for individual episode pages
             <span class="tag">{{ episode.tag2 }}</span>
             {% endif %}
           </div>
-          <span class="episode-duration">{{ episode.duration }}</span>
+          <span class="episode-duration"{% if episode.audio_url %} data-duration-src="{{ episode.audio_url.url }}"{% endif %}>{{ episode.duration }}</span>
         </div>
       </div>
     </header>
@@ -52,7 +52,7 @@ when this template is used for individual episode pages
       {% if episode.audio_url %}
       <div class="episode-player">
         <h3>Listen to this episode</h3>
-        <button class="play-episode-btn" onclick="playEpisode('{{ episode.audio_url.url }}', '{{ episode.title }}')">
+        <button class="play-episode-btn" data-audio-url="{{ episode.audio_url.url }}" data-episode-title="{{ episode.title }}">
           <svg viewBox="0 0 24 24" fill="currentColor">
             <path d="M8 5v14l11-7z" />
           </svg>

@@ -12,7 +12,7 @@
 
     {% assign latest_episode = episode | where: "draft", false | sort: "order" | reverse | first %}
     {% if latest_episode and latest_episode.audio_url %}
-    <button class="cta-button" onclick="playEpisode('{{ latest_episode.audio_url.url }}', '{{ latest_episode.title }}')">
+    <button class="cta-button" data-audio-url="{{ latest_episode.audio_url.url }}" data-episode-title="{{ latest_episode.title }}">
       LISTEN TO LATEST EPISODE
     </button>
     {% endif %}
@@ -26,7 +26,7 @@
   <div class="container">
     <div class="episode-card featured">
       <div class="episode-image"
-        {% if featured_episode.audio_url %}onclick="playEpisode('{{ featured_episode.audio_url.url }}', '{{ featured_episode.title }}')"{% endif %}>
+        {% if featured_episode.audio_url %}data-audio-url="{{ featured_episode.audio_url.url }}" data-episode-title="{{ featured_episode.title }}"{% endif %}>
         <img src="/images/episodes/episode-{{ featured_episode.number }}-thumb.jpg" alt="{{ featured_episode.title }}">
         <button class="play-button">
           <svg viewBox="0 0 24 24" fill="currentColor">
@@ -35,7 +35,7 @@
         </button>
       </div>
 
-      <div class="episode-content" onclick="window.location.href='/episode/episode-{{ featured_episode.number }}.html'">
+      <a href="/episode/episode-{{ featured_episode.number }}.html" class="episode-content">
         <div class="episode-meta">
           <span class="episode-number">Episode {{ featured_episode.number }}</span>
           <span class="episode-date">{{ featured_episode.publish_date | date: "%b %d, %Y" }}</span>
@@ -54,9 +54,9 @@
             <span class="tag">{{ featured_episode.tag2 }}</span>
             {% endif %}
           </div>
-          <span class="episode-duration">{{ featured_episode.duration }}</span>
+          <span class="episode-duration"{% if featured_episode.audio_url %} data-duration-src="{{ featured_episode.audio_url.url }}"{% endif %}>{{ featured_episode.duration }}</span>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </section>
@@ -73,7 +73,7 @@
       {% assign counter = 0 %}
       {% for ep in all_recent %}
       {% if counter < 6 %} {% assign counter=counter | plus: 1 %} <div class="episode-card">
-        <div class="episode-image" {% if ep.audio_url %}onclick="playEpisode('{{ ep.audio_url.url }}', '{{ ep.title }}')"{% endif %}>
+        <div class="episode-image" {% if ep.audio_url %}data-audio-url="{{ ep.audio_url.url }}" data-episode-title="{{ ep.title }}"{% endif %}>
           <img src="/images/episodes/episode-{{ ep.number }}-thumb.jpg" alt="{{ ep.title }}">
           <button class="play-button">
             <svg viewBox="0 0 24 24" fill="currentColor">
@@ -82,7 +82,7 @@
           </button>
         </div>
 
-        <div class="episode-content" onclick="window.location.href='/episode/episode-{{ ep.number }}.html'">
+        <a href="/episode/episode-{{ ep.number }}.html" class="episode-content">
           <div class="episode-meta">
             <span class="episode-number">Episode {{ ep.number }}</span>
             <span class="episode-date">{{ ep.publish_date | date: "%b %d, %Y" }}</span>
@@ -100,9 +100,9 @@
               <span class="tag">{{ ep.tag2 }}</span>
               {% endif %}
             </div>
-            <span class="episode-duration">{{ ep.duration }}</span>
+            <span class="episode-duration"{% if ep.audio_url %} data-duration-src="{{ ep.audio_url.url }}"{% endif %}>{{ ep.duration }}</span>
           </div>
-        </div>
+        </a>
     </div>
     {% endif %}
     {% endfor %}

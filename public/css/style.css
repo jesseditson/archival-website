@@ -537,6 +537,12 @@ body {
   margin-left: 2px;
 }
 
+a.episode-content {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+}
+
 .episode-content {
   padding: 1.5rem;
 }

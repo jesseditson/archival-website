@@ -48,3 +48,8 @@ spotify = "string"
 apple_podcasts = "string"
 google_podcasts = "string"
 youtube = "string"
+
+[legal]
+title = "string"
+content = "markdown"
+template = "legal"

@@ -1,0 +1,19 @@
+{% assign podcast = objects.podcast %}
+{% layout 'theme' title: legal.title %}
+
+<article class="legal-document">
+  <div class="container">
+    <h1 class="page-title">{{ legal.title }}</h1>
+    {% if legal.content != blank %}
+    <div class="legal-content">
+      {{ legal.content
+         | replace: "{{podcast.title}}", podcast.title
+         | replace: "{{podcast.author}}", podcast.author
+         | replace: "{{podcast.email}}", podcast.email
+         | replace: "{{podcast.website_url}}", podcast.website_url }}
+    </div>
+    {% else %}
+    <p>This document is not yet available.</p>
+    {% endif %}
+  </div>
+</article>

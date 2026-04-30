@@ -29,7 +29,7 @@
       {% for current_host in host %}
       <div class="host-card">
         <div class="host-image">
-          <img src="/images/hosts/{{ current_host.path | split: '/' | last }}-avatar.jpg" alt="{{ current_host.name }}">
+          {% if current_host.avatar %}<img src="{{ current_host.avatar.url }}" alt="{{ current_host.name }}">{% endif %}
         </div>
 
         <div class="host-info">

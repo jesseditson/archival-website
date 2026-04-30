@@ -193,19 +193,26 @@ class PodcastPlayer {
   }
 
   loadEpisode(audioUrl, episodeTitle) {
+    // Avoid reloading the same episode (preserves playback position across SPA nav)
+    if (this.currentEpisode && this.currentEpisode.url === audioUrl) {
+      return;
+    }
+
     this.currentEpisode = {
       url: audioUrl,
       title: episodeTitle
     };
-    
+
     this.audioElement.src = audioUrl;
     this.currentEpisodeSpan.textContent = episodeTitle;
-    
+
     // Update the "Now Playing" text in the player
     const nowPlayingSpan = document.querySelector('.now-playing');
-    nowPlayingSpan.textContent = 'Now Playing:';
+    if (nowPlayingSpan) {
+      nowPlayingSpan.textContent = 'Now Playing:';
+    }
   }
-  
+
   play() {
     if (this.currentEpisode) {
       this.audioElement.play().catch(error => {
@@ -213,11 +220,11 @@ class PodcastPlayer {
       });
     }
   }
-  
+
   pause() {
     this.audioElement.pause();
   }
-  
+
   updatePlayButton() {
     if (this.isPlaying) {
       this.playIcon.style.display = 'none';
@@ -229,84 +236,247 @@ class PodcastPlayer {
   }
 }
 
-// Global function to play episodes (called from HTML)
-function playEpisode(audioUrl, episodeTitle) {
-  if (window.podcastPlayer) {
-    window.podcastPlayer.loadEpisode(audioUrl, episodeTitle);
-    window.podcastPlayer.play();
+// ----- Top-level helpers -----
+
+function formatDuration(seconds) {
+  if (!seconds || !isFinite(seconds) || seconds < 0) return '0:00';
+
+  const totalSeconds = Math.floor(seconds);
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const secs = totalSeconds % 60;
+
+  const pad = (n) => n.toString().padStart(2, '0');
+
+  if (hours > 0) {
+    return `${hours}:${pad(minutes)}:${pad(secs)}`;
   }
+  return `${minutes}:${pad(secs)}`;
 }
 
-// Initialize player when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-  window.podcastPlayer = new PodcastPlayer();
-  
-  // Add smooth scrolling for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
+function probeDurations() {
+  const spans = document.querySelectorAll('span.episode-duration[data-duration-src]');
+  spans.forEach((span) => {
+    if (span.dataset.probed === 'true') return;
+    span.dataset.probed = 'true';
+
+    const src = span.dataset.durationSrc;
+    if (!src) return;
+
+    const audio = new Audio();
+    audio.preload = 'metadata';
+
+    audio.addEventListener('loadedmetadata', () => {
+      if (isFinite(audio.duration) && audio.duration > 0) {
+        span.textContent = formatDuration(audio.duration);
       }
     });
-  });
-  
-  // Add loading states for episode cards
-  const episodeCards = document.querySelectorAll('.episode-card');
-  episodeCards.forEach(card => {
-    const playButton = card.querySelector('.play-button');
-    if (playButton) {
-      playButton.addEventListener('click', function() {
-        // Add a brief loading state
-        this.style.opacity = '0.7';
-        setTimeout(() => {
-          this.style.opacity = '1';
-        }, 200);
-      });
-    }
-  });
-  
-  // Handle browse all episodes button
-  const browseButton = document.querySelector('.browse-button');
-  if (browseButton) {
-    browseButton.addEventListener('click', function() {
-      // For now, just scroll to top - you can implement navigation later
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
+
+    audio.addEventListener('error', () => {
+      // Leave the TOML-supplied value in place
     });
-  }
-  
-  // Add intersection observer for fade-in animations
+
+    audio.src = src;
+  });
+}
+
+let _episodeCardObserver = null;
+
+function ensureEpisodeCardObserver() {
+  if (_episodeCardObserver) return _episodeCardObserver;
+
   const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
   };
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+
+  _episodeCardObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.style.opacity = '1';
         entry.target.style.transform = 'translateY(0)';
       }
     });
   }, observerOptions);
-  
-  // Observe episode cards for animations
-  document.querySelectorAll('.episode-card').forEach(card => {
+
+  return _episodeCardObserver;
+}
+
+function attachEpisodeCardAnimations() {
+  const observer = ensureEpisodeCardObserver();
+  document.querySelectorAll('.episode-card:not([data-animated])').forEach((card) => {
     card.style.opacity = '0';
     card.style.transform = 'translateY(20px)';
     card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    card.setAttribute('data-animated', 'true');
     observer.observe(card);
   });
+}
+
+function runPageEnhancements() {
+  probeDurations();
+  attachEpisodeCardAnimations();
+}
+
+// ----- Play delegation -----
+
+function attachPlayDelegation() {
+  document.addEventListener('click', (e) => {
+    const trigger = e.target.closest('[data-audio-url]');
+    if (!trigger) return;
+
+    const url = trigger.dataset.audioUrl;
+    const title = trigger.dataset.episodeTitle;
+
+    if (!url || !title) return;
+
+    e.preventDefault();
+
+    if (window.podcastPlayer) {
+      window.podcastPlayer.loadEpisode(url, title);
+      window.podcastPlayer.play();
+    }
+  });
+
+  // Brief loading-state dim on .play-button click (delegated so it survives SPA nav)
+  document.addEventListener('click', (e) => {
+    const playButton = e.target.closest('.play-button');
+    if (!playButton) return;
+    playButton.style.opacity = '0.7';
+    setTimeout(() => {
+      playButton.style.opacity = '1';
+    }, 200);
+  });
+
+  // Smooth scrolling for in-page anchor links
+  document.addEventListener('click', (e) => {
+    const anchor = e.target.closest('a[href^="#"]');
+    if (!anchor) return;
+    const href = anchor.getAttribute('href');
+    if (!href || href === '#') return;
+    const target = document.querySelector(href);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+}
+
+// ----- SPA navigation -----
+
+const NAV_ROUTES = [
+  { path: '/', name: 'home' },
+  { path: '/episodes/', name: 'episodes' },
+  { path: '/about/', name: 'about' }
+];
+
+function updateActiveNav(path) {
+  const navLinks = document.querySelectorAll('.main-nav .nav-link');
+  if (!navLinks.length) return;
+
+  // Find matching top-level route. Episode detail pages match nothing.
+  const match = NAV_ROUTES.find((route) => route.path === path);
+
+  navLinks.forEach((link) => {
+    const linkPath = link.getAttribute('href');
+    if (match && linkPath === match.path) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
+}
+
+async function navigateTo(url, pushState) {
+  let response;
+  try {
+    response = await fetch(url);
+  } catch (err) {
+    console.error('SPA navigation fetch failed:', err);
+    window.location.href = url;
+    return;
+  }
+
+  if (!response.ok) {
+    window.location.href = url;
+    return;
+  }
+
+  const html = await response.text();
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+
+  const newContent = doc.querySelector('.page-content');
+  const currentContent = document.querySelector('.page-content');
+
+  if (!newContent || !currentContent) {
+    // Fallback: full navigation
+    window.location.href = url;
+    return;
+  }
+
+  currentContent.replaceWith(newContent);
+
+  // Update document title
+  const newTitle = doc.querySelector('title');
+  if (newTitle) {
+    document.title = newTitle.textContent;
+  }
+
+  const targetPath = new URL(url, location.origin).pathname;
+
+  if (pushState) {
+    history.pushState(null, '', targetPath);
+  }
+
+  window.scrollTo(0, 0);
+
+  runPageEnhancements();
+  updateActiveNav(targetPath);
+}
+
+function setupSpaNavigation() {
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (!link) return;
+
+    // Allow modifier-key clicks (open in new tab, etc.) and non-primary buttons
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    if (e.button !== undefined && e.button !== 0) return;
+
+    if (link.target && link.target !== '' && link.target !== '_self') return;
+
+    const href = link.getAttribute('href');
+    if (!href) return;
+    if (href === '' || href === '#') return;
+    if (href.startsWith('http://') || href.startsWith('https://')) return;
+    if (href.startsWith('mailto:')) return;
+
+    e.preventDefault();
+    navigateTo(href, true);
+  });
+
+  window.addEventListener('popstate', () => {
+    navigateTo(location.pathname, false);
+  });
+
+  // Initial active nav state
+  updateActiveNav(location.pathname);
+}
+
+// ----- Bootstrap -----
+
+document.addEventListener('DOMContentLoaded', () => {
+  window.podcastPlayer = new PodcastPlayer();
+  attachPlayDelegation();
+  setupSpaNavigation();
+  runPageEnhancements();
 });
 
-// Handle responsive audio player positioning
+// ----- Responsive audio player positioning -----
+
 function handleResponsivePlayer() {
   const audioPlayer = document.getElementById('audio-player');
 

@@ -27,7 +27,7 @@
     <div class="episode-card featured">
       <div class="episode-image"
         {% if featured_episode.audio_url %}data-audio-url="{{ featured_episode.audio_url.url }}" data-episode-title="{{ featured_episode.title }}"{% endif %}>
-        <img src="/images/episodes/episode-{{ featured_episode.number }}-thumb.jpg" alt="{{ featured_episode.title }}">
+        {% if featured_episode.thumbnail %}<img src="{{ featured_episode.thumbnail.url }}" alt="{{ featured_episode.title }}">{% endif %}
         <button class="play-button">
           <svg viewBox="0 0 24 24" fill="currentColor">
             <path d="M8 5v14l11-7z" />
@@ -74,7 +74,7 @@
       {% for ep in all_recent %}
       {% if counter < 6 %} {% assign counter=counter | plus: 1 %} <div class="episode-card">
         <div class="episode-image" {% if ep.audio_url %}data-audio-url="{{ ep.audio_url.url }}" data-episode-title="{{ ep.title }}"{% endif %}>
-          <img src="/images/episodes/episode-{{ ep.number }}-thumb.jpg" alt="{{ ep.title }}">
+          {% if ep.thumbnail %}<img src="{{ ep.thumbnail.url }}" alt="{{ ep.title }}">{% endif %}
           <button class="play-button">
             <svg viewBox="0 0 24 24" fill="currentColor">
               <path d="M8 5v14l11-7z" />

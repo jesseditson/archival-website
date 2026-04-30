@@ -20,3 +20,9 @@ sha = "ddc7cec156c15a22718064968c13b0ca7c7bf245efbff9fb833c208753c77904"
 filename = "band-track-01.mp3"
 mime = "audio/mpeg"
 display_type = "audio"
+
+[thumbnail]
+sha = "aeda0ee5e085b6705ba988743e509997d0e89551349dc5928bbee872a847db4a"
+filename = "album-art-placeholder-01.jpg"
+mime = "image/jpeg"
+display_type = "image"

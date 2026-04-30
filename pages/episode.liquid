@@ -12,7 +12,7 @@ when this template is used for individual episode pages
     <!-- Episode Header -->
     <header class="episode-header">
       <div class="episode-image-large" {% if episode.audio_url %}data-audio-url="{{ episode.audio_url.url }}" data-episode-title="{{ episode.title }}"{% endif %}>
-        <img src="/images/episodes/episode-{{ episode.number }}-thumb.jpg" alt="{{ episode.title }}">
+        {% if episode.thumbnail %}<img src="{{ episode.thumbnail.url }}" alt="{{ episode.title }}">{% endif %}
         <button class="play-button-large">
           <svg viewBox="0 0 24 24" fill="currentColor">
             <path d="M8 5v14l11-7z" />

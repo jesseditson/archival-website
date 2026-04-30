@@ -21,3 +21,9 @@ sha = "ddc7cec156c15a22718064968c13b0ca7c7bf245efbff9fb833c208753c77904"
 filename = "band-track-01.mp3"
 mime = "audio/mpeg"
 display_type = "audio"
+
+[thumbnail]
+sha = "b30f27890ad41e7aecf532e3f7ef95b258dc48cf1c63ce9302ba3b67fbb5bcb8"
+filename = "golden-hour.avif"
+mime = "image/avif"
+display_type = "image"

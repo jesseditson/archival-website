@@ -40,13 +40,13 @@
 
           <div class="host-social">
             {% if current_host.twitter %}
-            <a href="{{ settings.twitter }}" class="social-link light">
+            <a href="{{ current_host.twitter }}" class="social-link light">
               <img src="/images/platforms/twitter.svg" height="24" width="24" alt="Twitter">
             </a>
             {% endif %}
 
             {% if current_host.instagram %}
-            <a href="{{ settings.instagram }}" class="social-link light">
+            <a href="{{ current_host.instagram }}" class="social-link light">
               <img src="/images/platforms/instagram.svg" height="24" width="24" alt="Instagram">
             </a>
             {% endif %}
@@ -75,12 +75,16 @@
           <div class="contact-method">
             <h4>Follow Us</h4>
             <div class="social-links">
+              {% if settings.twitter %}
               <a href="{{ settings.twitter }}" class="social-link light">
                 <img src="/images/platforms/twitter.svg" height="24" width="24" alt="Twitter">
               </a>
+              {% endif %}
+              {% if settings.instagram %}
               <a href="{{ settings.instagram }}" class="social-link light">
                 <img src="/images/platforms/instagram.svg" height="24" width="24" alt="Instagram">
               </a>
+              {% endif %}
             </div>
           </div>
         </div>

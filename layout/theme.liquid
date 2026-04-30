@@ -11,11 +11,13 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="{% if title %}{{ title }} - {% endif %}{{ podcast.title }}">
   <meta property="og:description" content="{{ podcast.description | strip_html | truncate: 160 }}">
+  {% if podcast.logo %}<meta property="og:image" content="{{ podcast.website_url }}{{ podcast.logo }}">{% endif %}
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:title" content="{% if title %}{{ title }} - {% endif %}{{ podcast.title }}">
   <meta property="twitter:description" content="{{ podcast.description | strip_html | truncate: 160 }}">
+  {% if podcast.logo %}<meta property="twitter:image" content="{{ podcast.website_url }}{{ podcast.logo }}">{% endif %}
 
   <!-- Favicon -->
   {% assign words = podcast.title | split: " " %}{% assign initials = "" %}{% if words.size == 1 %}{% assign initials = words[0] | slice: 0, 2 | upcase %}{% else %}{% for word in words limit: 2 %}{% assign letter = word | slice: 0, 1 | upcase %}{% assign initials = initials | append: letter %}{% endfor %}{% endif %}{% assign initials = initials | replace: "&", "" | replace: "<", "" | replace: ">", "" | replace: "'", "" | replace: '"', "" %}
@@ -113,7 +115,7 @@
       <div class="footer-content">
         <div class="footer-brand">
           <h3>{{ podcast.title }}</h3>
-          <p>{{ podcast.description | strip_html }}</p>
+          <p>{{ podcast.description | strip_html | truncate: 200 }}</p>
         </div>
 
         <div class="footer-links">
@@ -126,18 +128,26 @@
           <div class="footer-section">
             <h4>Listen on your favorite platform:</h4>
             <div class="platform-links">
+              {% if settings.apple_podcasts %}
               <a href="{{ settings.apple_podcasts }}" class="platform-link">
                 <img src="/images/platforms/apple-podcasts.svg" height="22" alt="Apple Podcasts">
               </a>
+              {% endif %}
+              {% if settings.google_podcasts %}
               <a href="{{ settings.google_podcasts }}" class="platform-link">
                 <img src="/images/platforms/google.svg" height="22" width="122" alt="Google Podcasts">
               </a>
+              {% endif %}
+              {% if settings.spotify %}
               <a href="{{ settings.spotify }}" class="platform-link">
                 <img src="/images/platforms/spotify.svg" height="22" alt="Spotify">
               </a>
+              {% endif %}
+              {% if settings.youtube %}
               <a href="{{ settings.youtube }}" class="platform-link">
                 <img src="/images/platforms/youtube.svg" height="22" alt="YouTube">
               </a>
+              {% endif %}
             </div>
           </div>
         </div>
@@ -145,24 +155,25 @@
 
       <div class="footer-bottom">
         <div class="social-links">
+          {% if settings.twitter %}
           <a href="{{ settings.twitter }}" class="social-link">
             <img src="/images/platforms/twitter.svg" height="24" width="24" alt="Twitter">
           </a>
+          {% endif %}
+          {% if settings.instagram %}
           <a href="{{ settings.instagram }}" class="social-link">
             <img src="/images/platforms/instagram.svg" height="24" width="24" alt="Instagram">
           </a>
+          {% endif %}
+          {% if settings.tiktok %}
           <a href="{{ settings.tiktok }}" class="social-link">
             <img src="/images/platforms/tiktok.svg" height="24" width="24" alt="TikTok">
           </a>
-          </a>
+          {% endif %}
         </div>
 
         <div class="copyright">
           <p>&copy; {{ "now" | date: "%Y" }} {{ podcast.title }}. Powered by <a href="https://archival.dev">Archival</a>.</p>
-          <div class="footer-legal">
-            <a href="/terms">Terms</a>
-            <a href="/privacy">Privacy</a>
-          </div>
         </div>
       </div>
     </div>

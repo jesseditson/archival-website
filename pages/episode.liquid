@@ -65,18 +65,26 @@ when this template is used for individual episode pages
       <div class="platform-section">
         <h3>or listen on your favorite platform</h3>
         <div class="platform-links">
+          {% if settings.apple_podcasts %}
           <a href="{{ settings.apple_podcasts }}" class="platform-link" target="_blank">
             <img src="/images/platforms/apple-podcasts.svg" alt="Apple Podcasts">
           </a>
+          {% endif %}
+          {% if settings.google_podcasts %}
           <a href="{{ settings.google_podcasts }}" class="platform-link" target="_blank">
             <img src="/images/platforms/google.svg" alt="Google Podcasts">
           </a>
+          {% endif %}
+          {% if settings.spotify %}
           <a href="{{ settings.spotify }}" class="platform-link" target="_blank">
             <img src="/images/platforms/spotify.svg" alt="Spotify">
           </a>
+          {% endif %}
+          {% if settings.youtube %}
           <a href="{{ settings.youtube }}" class="platform-link" target="_blank">
             <img src="/images/platforms/youtube.svg" alt="YouTube">
           </a>
+          {% endif %}
         </div>
       </div>
     </div>

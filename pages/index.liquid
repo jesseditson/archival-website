@@ -1,9 +1,14 @@
+{% assign personal = objects.personal %}
+{% assign experience = objects.experience %}
+{% assign work = objects.work %}
+{% assign contact = objects.contact %}
+{% assign resume = objects.resume %}
 {% layout 'theme' title: "Archival Website" %}
 
 <!-- Navigation Bar -->
 <nav class="navbar">
   <div class="container">
-    <a href="#" class="logo">{{ objects.personal.name }}</a>
+    <a href="#" class="logo">{{ personal.name }}</a>
     <ul class="nav-links">
       <li>
         <a href="#about">About</a>
@@ -17,12 +22,12 @@
       <li>
         <a href="#contact">Contact</a>
       </li>
-      {% if objects.resume.file %}
+      {% if resume.file %}
         <li>
           <a
-            href="{{ objects.resume.file.url }}"
+            href="{{ resume.file.url }}"
             class="resume-button"
-            download="{{ objects.resume.file.filename }}">Resume</a>
+            download="{{ resume.file.filename }}">Resume</a>
         </li>
       {% endif %}
     </ul>
@@ -38,10 +43,10 @@
 <section id="hero">
   <div class="container">
     <p class="intro">Hi, my name is</p>
-    <h1 class="name">{{ objects.personal.name }} &amp;</h1>
-    <h2 class="profession">{{ objects.personal.action_line }}</h2>
+    <h1 class="name">{{ personal.name }} &amp;</h1>
+    <h2 class="profession">{{ personal.action_line }}</h2>
     <p class="description">
-      {{ objects.personal.tagline }}
+      {{ personal.tagline }}
     </p>
     <a href="#about" class="cta">More about me</a>
   </div>
@@ -53,7 +58,7 @@
     <h2 class="section-title">About Me</h2>
     <div class="content">
       <div class="text">
-        {{ objects.personal.full_about }}
+        {{ personal.full_about }}
       </div>
     </div>
   </div>
@@ -65,7 +70,7 @@
     <h2 class="section-title">{{ experience.title }}</h2>
     <!-- Experience Tabs -->
     <div class="experience">
-      {{ objects.experience.description }}
+      {{ experience.description }}
     </div>
   </div>
 </section>
@@ -105,8 +110,8 @@
     <div class="contact-card">
       <h2 class="section-title">{{ contact.title }}</h2>
       <div>
-        {{ objects.contact.description }}
-        <a href="mailto:{{ objects.contact.email }}" class="email-link">
+        {{ contact.description }}
+        <a href="mailto:{{ contact.email }}" class="email-link">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -131,6 +136,6 @@
 <!-- Footer -->
 <footer>
   <div class="container">
-    <p>&copy; {{ "now" | date: "%Y" }} {{ objects.personal.name }}. Powered by <a href="https://archival.dev">Archival</a>.</p>
+    <p>&copy; {{ "now" | date: "%Y" }} {{ personal.name }}. Powered by <a href="https://archival.dev">Archival</a>.</p>
   </div>
 </footer>

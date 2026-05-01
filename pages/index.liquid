@@ -3,9 +3,9 @@
 <nav class="nav">
   <div class="container">
     <div class="brand">
-      {% if app.logo %}
+      {% if app.logo != blank %}
       <a href="/">
-        <img class="app-logo" src="{{ app.logo.url }}" alt="{{ app.name }} logo" />
+        <img class="app-logo" src="{{ app.logo.url }}" alt="{{ app.name }}" />
       </a>
       {% endif %}
       <span class="app-name">
@@ -13,27 +13,29 @@
       </span>
     </div>
     <div class="nav-items">
-      <a class="nav-item" href="#support">Support</a>
+      {% if support.title != blank %}<a class="nav-item" href="#support">{{ support.title }}</a>{% endif %}
       <div class="download-options">
-        {% if app.direct_download_link != empty %}
-        <a href="{{app.direct_download_link}}">
+        {% if app.direct_download_link != blank %}
+        <a href="{{ app.direct_download_link }}">
           <button class="button">Download</button>
         </a>
         {% endif %}
-        {% if app.playstore_download_link != empty %}
-        <a href="{{app.playstore_download_link}}">
-          <img class="play-store-download" src="images/play-store-black.svg" />
+        {% if app.playstore_download_link != blank %}
+        <a href="{{ app.playstore_download_link }}">
+          <img class="play-store-download" src="/images/play-store-black.svg" alt="Get it on Google Play" />
         </a>
         {% endif %}
-        {% if app.appstore_download_link != empty %}
-        <a href="{{app.appstore_download_link}}">
-          <img class="app-store-download" src="images/app-store-black.svg" />
+        {% if app.appstore_download_link != blank %}
+        <a href="{{ app.appstore_download_link }}">
+          <img class="app-store-download" src="/images/app-store-black.svg" alt="Download on the App Store" />
         </a>
         {% endif %}
       </div>
     </div>
   </div>
 </nav>
+
+<main id="main">
 
 <header class="hero">
   <div class="container">
@@ -48,20 +50,20 @@
     <div class="carousel-track" id="carouselTrack">
       {% for screenshot in screenshots %}
       <div class="carousel-slide {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}">
-        <img src="{{screenshot.image.url}}" alt="Image {{ forloop.index }}" />
+        <img src="{{ screenshot.image.url }}" alt="Screenshot {{ forloop.index }}" />
       </div>
       {% endfor %}
     </div>
   </div>
 </section>
 
-<main class="container">
+<div class="container">
 
   <section id="features" class="features-grid">
     {% for feature in features %}
     <div class="feature">
-      <div class="feature-icon {% if feature.icon %}has-image{% endif %}">
-        <i class="ph-bold ph-{{ feature.icon }}"></i>
+      <div class="feature-icon">
+        {% if feature.icon != blank %}<i class="ph-bold ph-{{ feature.icon }}"></i>{% endif %}
       </div>
       <div class="feature-text">
         <h3>{{ feature.title }}</h3>
@@ -70,22 +72,22 @@
     {% endfor %}
   </section>
 
-  {% if support.email != "" or support.chat_link != "" %}
+  {% if support.email != blank or support.chat_link != blank or support.discord_link != blank %}
   <section id="support" class="support">
-    <h2>Need help?</h2>
-    <p class="description">Reach out to us through one of the methods below:</p>
+    {% if support.title != blank %}<h2>{{ support.title }}</h2>{% endif %}
+    {% if support.description != blank %}<p class="description">{{ support.description }}</p>{% endif %}
     <div class="support-modules">
-      {% if support.chat_link != empty %}
+      {% if support.chat_link != blank %}
       <div class="chat-support module">
-        <a href="{{ support.chat_link }}">Zendesk</a>
+        <a href="{{ support.chat_link }}">Chat</a>
       </div>
       {% endif %}
-      {% if support.email != empty %}
+      {% if support.email != blank %}
       <div class="email-support module">
-        <a href="mailto: {{ support.email }}">Email</a>
+        <a href="mailto:{{ support.email }}">Email</a>
       </div>
       {% endif %}
-      {% if support.discord_link != empty %}
+      {% if support.discord_link != blank %}
       <div class="discord-support module">
         <a href="{{ support.discord_link }}">Discord</a>
       </div>
@@ -94,6 +96,7 @@
   </section>
   {% endif %}
 
+</div>
 </main>
 
 <script src="/carousel.js" type="application/javascript" defer></script>

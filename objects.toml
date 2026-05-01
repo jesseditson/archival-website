@@ -14,6 +14,10 @@ quote_citation = "string"
 image_1 = "image"
 image_2 = "image"
 image_3 = "image"
+show_stats = "boolean"
+show_expertise = "boolean"
+show_process = "boolean"
+show_features = "boolean"
 
 [about.story]
 title = "string"
@@ -41,6 +45,8 @@ hero_title = "string"
 hero_lead = "markdown"
 availability_status = "string"
 availability_note = "string"
+show_project_types = "boolean"
+show_budgets = "boolean"
 
 [contact.project_type]
 name = "string"

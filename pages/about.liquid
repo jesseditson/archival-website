@@ -13,7 +13,7 @@
   </div>
 
   <!-- Stats Counter -->
-  {% if about.stat.size > 0 %}
+  {% if about.show_stats != false and about.stat.size > 0 %}
     <div class="stats-grid animate-on-scroll">
       {% for stat in about.stat %}
         <div class="stat-item" data-count="{{ stat.value }}">
@@ -60,7 +60,7 @@
   </div>
 
   <!-- Expertise Areas -->
-  {% if about.expertise.size > 0 %}
+  {% if about.show_expertise != false and about.expertise.size > 0 %}
     <div class="expertise-section animate-on-scroll">
       <h3 class="content-title">Expertise</h3>
       <div class="expertise-grid">
@@ -76,7 +76,7 @@
   {% endif %}
 
   <!-- Process Timeline -->
-  {% if about.process.size > 0 %}
+  {% if about.show_process != false and about.process.size > 0 %}
     <div class="process-section animate-on-scroll">
       <h3 class="content-title">My Process</h3>
       <div class="timeline">
@@ -94,7 +94,7 @@
   {% endif %}
 
   <!-- Featured In -->
-  {% if about.feature.size > 0 %}
+  {% if about.show_features != false and about.feature.size > 0 %}
     <div class="featured-section animate-on-scroll">
       <h3 class="content-title">As Featured In</h3>
       <div class="featured-logos">

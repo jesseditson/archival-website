@@ -25,7 +25,7 @@
           <input type="email" id="email" name="email" placeholder="john@example.com" required>
         </div>
 
-        {% if contact.project_type.size > 0 %}
+        {% if contact.show_project_types != false and contact.project_type.size > 0 %}
           <div class="form-group">
             <label for="project-type">Project Type</label>
             <select id="project-type" name="project-type" required>
@@ -37,7 +37,7 @@
           </div>
         {% endif %}
 
-        {% if contact.budget.size > 0 %}
+        {% if contact.show_budgets != false and contact.budget.size > 0 %}
           <div class="form-group">
             <label for="budget">Budget Range</label>
             <select id="budget" name="budget">
@@ -50,8 +50,8 @@
         {% endif %}
 
         <div class="form-group full-width">
-          <label for="message">Tell Me About Your Project</label>
-          <textarea id="message" name="message" rows="6" placeholder="Share your vision, timeline, and any specific requirements..." required></textarea>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="6" placeholder="Share what's on your mind..." required></textarea>
         </div>
 
         <button type="submit" class="submit-btn">

@@ -3,6 +3,10 @@ hero_lead = "Capturing moments that transcend time and space, transforming fleet
 story_title = "My Journey"
 quote_text = "Photography is the story I fail to put into words."
 quote_citation = "— Destin Sparks"
+show_stats = true
+show_expertise = true
+show_process = true
+show_features = true
 
 [image_1]
 sha = "2b56a9ad97842176aae9b77cbf7844a093cc81d6f0c5c3ba2b9f4ad5b4ee1f17"

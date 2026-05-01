@@ -1021,6 +1021,7 @@ body.light-theme .thumbnail-item.active {
     grid-template-columns: 1.5fr 1fr;
     gap: var(--spacing-2xl);
     margin: var(--spacing-xl) 0;
+    align-items: start;
 }
 
 /* Contact Form */

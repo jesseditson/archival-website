@@ -75,13 +75,11 @@
   <section id="features" class="features-grid">
     {% for feature in features %}
       <div class="feature">
-        <div
-          class="feature-icon {% if feature.icon != blank %}has-image{% endif %}"
-          {% if feature.icon != blank %}
-          style="background-image:url('{{ feature.icon.url }}')"
-          {% endif %}>
-          {{ feature.emoji }}
-        </div>
+        {% if feature.icon != blank %}
+          <div class="feature-icon has-image" style="background-image:url('{{ feature.icon.url }}')"></div>
+        {% else %}
+          <div class="feature-icon">{{ feature.emoji }}</div>
+        {% endif %}
         <div class="feature-text">
           <h3>{{ feature.title }}</h3>
           <p class="feature-description">

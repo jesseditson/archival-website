@@ -802,3 +802,88 @@ textarea {
     font-size: 13vw;
   }
 }
+
+/* ==================== Skip Link ==================== */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: #111;
+  color: #fff;
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  z-index: 99999;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid #e5ff00;
+  outline-offset: -2px;
+}
+
+/* ==================== Legal Pages ==================== */
+.legal-page .body-section {
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+.legal-page .back-to-home {
+  margin-bottom: 2rem;
+}
+.legal-page h1,
+.legal-page h2,
+.legal-page h3 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+.legal-page p,
+.legal-page ul,
+.legal-page ol {
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+/* ==================== 404 Page ==================== */
+#not-found {
+  text-align: center;
+  padding: 4rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.not-found-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  opacity: 0.6;
+}
+.not-found-code {
+  font-size: clamp(7rem, 22vw, 12rem);
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+.not-found-title {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  margin-bottom: 1rem;
+}
+.not-found-description {
+  max-width: 32rem;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+  opacity: 0.8;
+}
+
+/* ==================== Reduced Motion ==================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

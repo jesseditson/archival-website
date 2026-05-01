@@ -5,11 +5,15 @@ name = "string"
 tagline = "string"
 description = "markdown"
 hero_image = "image"
+og_image = "image"
 logo = "image"
 reservation_url = "string"
 polaroid_1 = "image"
 polaroid_2 = "image"
 polaroid_3 = "image"
+
+[site.category]
+name = "string"
 
 [contact]
 address = "string"

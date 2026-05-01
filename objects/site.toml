@@ -1,4 +1,3 @@
-order = -1
 name = "The Gilded Hour"
 tagline = "Cocktails & Kitchen"
 description = """An intimate evening awaits at The Gilded Hour, where craft cocktails meet bold, seasonal cuisine. Nestled in the heart of Los Angeles, we bring together inventive drinks and a modern kitchen... in a space designed to make you lose track of time."""
@@ -27,3 +26,12 @@ sha = "3cf1fc4aa2c37078c27a07d2b9f46ecee427bc9c39d5eec42162e53ee49bd203"
 filename = "[bar-restaurant-1] polaroid-3.jpg"
 mime = "image/jpeg"
 display_type = "image"
+
+[[category]]
+name = "Cocktails"
+[[category]]
+name = "Small Plates"
+[[category]]
+name = "Entrees"
+[[category]]
+name = "Desserts"

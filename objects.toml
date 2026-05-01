@@ -4,6 +4,7 @@ title = "string"
 action_line = "string"
 tagline = "string"
 full_about = "markdown"
+og_image = "image"
 
 [experience]
 title = "string"
@@ -22,9 +23,6 @@ email = "string"
 
 [resume]
 file = "upload"
-
-[seo]
-og_image = "image"
 
 [work]
 title = "string"

@@ -12,6 +12,8 @@
         <span class="tickets sold-out">Sold Out</span>
       {% elsif tourdate.ticket_url != blank %}
         <a href="{{ tourdate.ticket_url }}" class="tickets">Tickets</a>
+      {% else %}
+        <span class="tickets tba">Tickets TBA</span>
       {% endif %}
     </div>
     {% endfor %}

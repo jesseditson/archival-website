@@ -14,7 +14,7 @@
       </div>
       <div class="release-information-container">
         <h3 class="release-title">{{ latest_release.title }}</h3>
-        <p class="release-description">{{ latest_release.description }}</p>
+        <div class="release-description">{{ latest_release.description }}</div>
       </div>
     </div>
   </div>
@@ -32,6 +32,8 @@
           <span class="tickets sold-out">Sold Out</span>
         {% elsif tourdate.ticket_url != blank %}
           <a href="{{ tourdate.ticket_url }}" class="tickets">Tickets</a>
+        {% else %}
+          <span class="tickets tba">Tickets TBA</span>
         {% endif %}
       </div>
     {% endfor %}

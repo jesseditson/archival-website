@@ -1,14 +1,13 @@
 {% layout 'theme' title: "About", page: "about" %}
 
 <div class="inner-section">
-  <h2 class="subheader">About</h2>
+  <h2 class="subheader">{{ objects.about.title }}</h2>
   <div class="about-container">
     <div class="about-image-container">
-      <img src="{{objects.about.image.url}}" alt="{{objects.about.title}}" class="about-image">
+      <img src="{{ objects.about.image.url }}" alt="{{ objects.about.title }}" class="about-image">
     </div>
     <div class="about-information-container">
-      <h3 class="about-title">{{objects.about.title}}</h3>
-      <p class="about-description">{{objects.about.description}}</p>
+      <div class="about-description">{{ objects.about.description }}</div>
     </div>
   </div>
 </div>

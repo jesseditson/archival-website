@@ -109,15 +109,16 @@
             {% endif %}
           </ul>
         </nav>
+        {% if objects.track.size > 0 %}
         <div class="player">
           <div class="player-progress-clip"><div class="player-progress"></div></div>
           <button class="play-pause" aria-label="Play/Pause"></button>
           <div class="now-playing">
-            <span class="now-playing-label">Now Playing:</span>
-            <span class="now-playing-item"></span>
+            <span class="now-playing-label">Press Play</span>
+            <span class="now-playing-item hidden"></span>
           </div>
           <div class="volume-wrapper">
-            <button class="volume" aria-label="Volume"></button>
+            <button class="volume" aria-label="Adjust volume"></button>
             <div class="volume-flyout">
               <input type="range" class="volume-slider" min="0" max="100" value="80" aria-label="Volume">
             </div>
@@ -130,6 +131,7 @@
             {% endfor %}
           ];
         </script>
+        {% endif %}
       </div>
 
       <main id="main" class="page-content">

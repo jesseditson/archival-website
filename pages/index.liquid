@@ -1,4 +1,4 @@
-{% layout 'theme' title: "Profressional" %}
+{% layout 'theme' title: "" %}
 
 <!-- Header masthead -->
 <header class="header">
@@ -35,7 +35,7 @@
 </div>
 
 <!-- Main content -->
-<main class="main">
+<main id="main" class="main">
 
   <!-- About Me -->
   <section id="about-me" class="body-section container">
@@ -74,7 +74,7 @@
           <div class="testimonial-item">
             <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
             <div class="testimonial-footer">
-              {% if testimonial.thumbnail.url %}
+              {% if testimonial.thumbnail != blank %}
                 <img
                   src="{{testimonial.thumbnail.url}}"
                   alt="{{testimonial.author}}"
@@ -92,7 +92,7 @@
           <div class="testimonial-item">
             <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
             <div class="testimonial-footer">
-              {% if testimonial.thumbnail.url %}
+              {% if testimonial.thumbnail != blank %}
                 <img
                   src="{{testimonial.thumbnail.url}}"
                   alt="{{testimonial.author}}"
@@ -110,7 +110,7 @@
           <div class="testimonial-item">
             <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
             <div class="testimonial-footer">
-              {% if testimonial.thumbnail.url %}
+              {% if testimonial.thumbnail != blank %}
                 <img
                   src="{{testimonial.thumbnail.url}}"
                   alt="{{testimonial.author}}"
@@ -128,7 +128,7 @@
           <div class="testimonial-item">
             <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
             <div class="testimonial-footer">
-              {% if testimonial.thumbnail.url %}
+              {% if testimonial.thumbnail != blank %}
                 <img
                   src="{{testimonial.thumbnail.url}}"
                   alt="{{testimonial.author}}"
@@ -148,7 +148,7 @@
             <div class="testimonial-item">
               <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
               <div class="testimonial-footer">
-                {% if testimonial.thumbnail.url %}
+                {% if testimonial.thumbnail != blank %}
                   <img
                     src="{{testimonial.thumbnail.url}}"
                     alt="{{testimonial.author}}"
@@ -166,7 +166,7 @@
             <div class="testimonial-item">
               <p class="testimonial-quote">"{{ testimonial.quote }}"</p>
               <div class="testimonial-footer">
-                {% if testimonial.thumbnail.url %}
+                {% if testimonial.thumbnail != blank %}
                   <img
                     src="{{testimonial.thumbnail.url}}"
                     alt="{{testimonial.author}}"

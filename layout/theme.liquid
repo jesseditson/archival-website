@@ -1,30 +1,76 @@
+{% capture default_title %}{{ info.first_name }} {{ info.last_name }}, {{ info.title }}{% endcapture %}
+{% assign site_name = info.business_name | default: default_title %}
+{% if title != blank %}
+  {% assign page_title = title | append: " — " | append: site_name %}
+{% else %}
+  {% assign page_title = default_title %}
+{% endif %}
+{% assign og_image_url = "" %}
+{% if info.og_image != blank %}
+  {% assign og_image_url = info.og_image.url %}
+{% elsif info.image != blank %}
+  {% assign og_image_url = info.image.url %}
+{% endif %}
+{% capture jsonld_name %}{{ info.first_name | append: " " | append: info.last_name | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+{% capture jsonld_jobtitle %}{{ info.title | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+{% capture jsonld_desc %}{{ info.description | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
 <!doctype html>
 <html lang="en">
 
   <head>
     <meta charset="utf-8">
-    <title>
-      {{ info.first_name }} {{ info.last_name }}, {{ info.title }}
-    </title>
-    <meta name="description" content="">
+    <title>{{ page_title }}</title>
+    <meta name="description" content="{{ info.description }}">
+    <meta name="author" content="{{ info.first_name }} {{ info.last_name }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:title" content="{{ page_title }}">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="{{ info.description }}">
+    <meta property="og:site_name" content="{{ site_name }}">
+    {% if og_image_url != blank %}
+    <meta property="og:image" content="{{ og_image_url }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="{{ og_image_url }}">
+    {% else %}
+    <meta name="twitter:card" content="summary">
+    {% endif %}
+    <meta name="twitter:title" content="{{ page_title }}">
+    <meta name="twitter:description" content="{{ info.description }}">
 
     <link rel="stylesheet" href="/styles/global.css">
   {% assign _favicon_name = info.first_name | append: " " | append: info.last_name %}{% assign words = _favicon_name | split: " " %}{% assign initials = "" %}{% if words.size == 1 %}{% assign initials = words[0] | slice: 0, 2 | upcase %}{% else %}{% for word in words limit: 2 %}{% assign letter = word | slice: 0, 1 | upcase %}{% assign initials = initials | append: letter %}{% endfor %}{% endif %}{% assign initials = initials | replace: "&", "" | replace: "<", "" | replace: ">", "" | replace: "'", "" | replace: '"', "" %}
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='bold' font-size='13' fill='%23e5ff00'%3E{{ initials }}%3C/text%3E%3C/svg%3E">
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "{{ jsonld_name }}"
+        {%- if info.title != blank -%}, "jobTitle": "{{ jsonld_jobtitle }}"{%- endif -%}
+        {%- if info.description != blank -%}, "description": "{{ jsonld_desc }}"{%- endif -%}
+        {%- if og_image_url != blank -%}, "image": "{{ og_image_url }}"{%- endif -%}
+        {%- if info.location != blank -%}, "areaServed": "{{ info.location }}"{%- endif -%}
+      }
+    </script>
   </head>
 
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     {{ page_content }}
     <!-- Footer -->
     <footer class="footer">
       <div class="footer-content">
         <p><span class="footer-static">&copy; {{ "now" | date: "%Y" }} {{ info.business_name }}. Powered by</span> <a href="https://archival.dev">Archival</a><span class="footer-static">.</span></p>
+        {% assign has_privacy = privacy_policy.content | strip %}
+        {% assign has_terms = terms_of_service.content | strip %}
+        {% if has_privacy != blank or has_terms != blank %}
         <p>
-          <a href="/privacy.html">Privacy Policy</a>
-          <span class="footer-static">&bull;</span>
-          <a href="/terms.html">Terms of Service</a>
+          {% if has_privacy != blank %}<a href="/privacy.html">Privacy Policy</a>{% endif %}
+          {% if has_privacy != blank and has_terms != blank %}<span class="footer-static">&bull;</span>{% endif %}
+          {% if has_terms != blank %}<a href="/terms.html">Terms of Service</a>{% endif %}
         </p>
+        {% endif %}
       </div>
     </footer>
 

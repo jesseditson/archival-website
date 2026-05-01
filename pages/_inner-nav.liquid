@@ -1,14 +1,14 @@
 <header class="header condensed">
   <div class="container">
     <a href="/" class="professional-home">
-      {% unless info.image == blank %}
+      {% if info.image != blank %}
         <div class="avatar-wrapper">
           <img
             src="{{info.image.url}}"
             alt="{{ info.first_name }} {{ info.last_name }}"
             class="avatar" />
         </div>
-      {% endunless %}
+      {% endif %}
       <div class="professional-name-title">
         <span class="professional-name">{{ info.first_name }} {{ info.last_name
 }}</span>

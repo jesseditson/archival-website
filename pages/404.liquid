@@ -1,5 +1,13 @@
-{% layout 'theme' title: 'Page Not Found'
-  , page: '404' %}
+{% layout 'theme' title: "Page Not Found", page: '404' %}
 
-<h1>Page Not Found</h1>
-<p>Sorry, but the page you were trying to view does not exist.</p>
+<main id="main" class="main inner">
+  <section id="not-found" class="body-section container">
+    <p class="not-found-eyebrow">Page Not Found</p>
+    <p class="not-found-code">404</p>
+    <h2 class="not-found-title">This page took a wrong turn.</h2>
+    <p class="not-found-description">
+      The page you were looking for doesn't exist. It may have moved, been renamed, or never been here at all.
+    </p>
+    <a href="/" class="primary-cta-large">Take me home</a>
+  </section>
+</main>

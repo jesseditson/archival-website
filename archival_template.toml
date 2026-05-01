@@ -5,7 +5,7 @@ This template shows a single video in a beautiful, color-synced background. The 
 """
 context = """
 This template is built around a single uploaded video file. It's best chosen when the user has a video they want to feature.
-The site object has: name (publisher / brand name), home_title (the video presentation's title — shown as the on-page h1 and as the browser tab prefix), description (one-line tagline used for SEO/meta description and social cards), author, video (uploaded video file — leave empty by default; user uploads one through the editor), og_image (optional override for the social-share preview image), and copyright_name. Set copyright_name to the same value as author to begin.
+The site object has: name (publisher / brand name), home_title (the video presentation's title — shown as the on-page h1 and as the browser tab prefix), description (one-line tagline used for SEO/meta description and social cards), author, video (uploaded video file — preferred when set), video_url (optional fallback URL pointing at an externally-hosted video; the template default keeps an example URL pointing at archival's demo CDN so the page renders something on first load even before the user uploads), og_image (optional override for the social-share preview image), and copyright_name. Set copyright_name to the same value as author to begin.
 The bias-lighting effect requires a video; it auto-disables when prefers-reduced-motion is set.
 """
 tags = ["theatre", "video", "one-page"]

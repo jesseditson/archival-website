@@ -11,6 +11,12 @@
 {% capture jsonld_name %}{{ objects.site.name | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
 {% capture jsonld_desc %}{{ objects.site.description | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
 {% capture jsonld_video_name %}{{ objects.site.home_title | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+{% assign video_src = "" %}
+{% if objects.site.video != blank %}
+  {% assign video_src = objects.site.video.url %}
+{% elsif objects.site.video_url != blank %}
+  {% assign video_src = objects.site.video_url %}
+{% endif %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -38,14 +44,14 @@
 
     <link rel="stylesheet" href="/styles/global.css">
 
-    {% if objects.site.video != blank %}
+    {% if video_src != blank %}
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "VideoObject",
         "name": "{{ jsonld_video_name }}"
         {%- if objects.site.description != blank -%}, "description": "{{ jsonld_desc }}"{%- endif -%}
-        , "contentUrl": "{{ objects.site.video.url }}"
+        , "contentUrl": "{{ video_src }}"
         {%- if og_image_url != blank -%}, "thumbnailUrl": "{{ og_image_url }}"{%- endif -%}
         {%- if objects.site.author != blank -%}, "publisher": { "@type": "Organization", "name": "{{ jsonld_name }}" }{%- endif -%}
       }

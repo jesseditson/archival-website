@@ -12,6 +12,12 @@
         id="myVideo"
         src="{{ objects.site.video.url }}"
         controls></video>
+    {% elsif objects.site.video_url != blank %}
+      <video
+        crossOrigin="anonymous"
+        id="myVideo"
+        src="{{ objects.site.video_url }}"
+        controls></video>
     {% endif %}
   </section>
 
@@ -19,5 +25,5 @@
 </div>
 
 <footer>
-  <p>&copy; {{ "now" | date: "%Y" }} {{ objects.site.copyright_name }}. All rights reserved.</p>
+  <p>&copy; {{ "now" | date: "%Y" }} {{ objects.site.copyright_name }}. Powered by <a href="https://archival.dev">Archival</a>.</p>
 </footer>

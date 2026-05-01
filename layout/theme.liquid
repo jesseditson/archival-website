@@ -5,6 +5,13 @@
   <meta charset="UTF-8">
   <title>{{ objects.personal.name }} | {{ objects.personal.title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{ objects.personal.tagline }}">
+  <meta property="og:title" content="{{ objects.personal.name }} | {{ objects.personal.title }}">
+  <meta property="og:description" content="{{ objects.personal.tagline }}">
+  <meta property="og:type" content="profile">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{{ objects.personal.name }} | {{ objects.personal.title }}">
+  <meta name="twitter:description" content="{{ objects.personal.tagline }}">
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

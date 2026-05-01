@@ -1027,3 +1027,35 @@ footer a:hover {
     padding: 32px 24px;
   }
 }
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  body.animations-enabled #hero .intro,
+  body.animations-enabled #hero .name,
+  body.animations-enabled #hero .profession,
+  body.animations-enabled #hero .description,
+  body.animations-enabled #hero .cta,
+  body.animations-enabled section:not(#hero) .section-title,
+  body.animations-enabled section:not(#hero) .content,
+  body.animations-enabled section:not(#hero) .experience,
+  body.animations-enabled section:not(#hero) .projects,
+  body.animations-enabled section:not(#hero) .email-link,
+  body.animations-enabled section:not(#hero) p,
+  body.animations-enabled .project-item {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

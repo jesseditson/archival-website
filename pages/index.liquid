@@ -41,6 +41,9 @@
   <div class="container">
     <div class="hero-statement">
       <h1>{{ app.tagline }}</h1>
+      {% if app.hero_description != blank %}
+        <p class="hero-description">{{ app.hero_description }}</p>
+      {% endif %}
     </div>
   </div>
 </header>
@@ -79,7 +82,7 @@
     <div class="support-modules">
       {% if support.chat_link != blank %}
       <div class="chat-support module">
-        <a href="{{ support.chat_link }}">Chat</a>
+        <a href="{{ support.chat_link }}">{{ support.chat_label | default: "Chat" }}</a>
       </div>
       {% endif %}
       {% if support.email != blank %}

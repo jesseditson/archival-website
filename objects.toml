@@ -4,6 +4,7 @@
 [app]
 name = "string"
 tagline = "string"
+hero_description = "string"
 author = "string"
 logo = "image"
 og_image = "image"
@@ -76,6 +77,7 @@ title = "string"
 description = "string"
 email = "string"
 chat_link = "string"
+chat_label = "string"
 discord_link = "string"
 
 [eula]

@@ -1,5 +1,6 @@
 name = "App Name"
 tagline = "Create Amazing Websites"
+hero_description = ""
 description = "A short description of your app"
 appstore_download_link = ""
 playstore_download_link = ""

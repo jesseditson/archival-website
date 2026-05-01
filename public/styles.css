@@ -138,6 +138,12 @@ header.hero {
   justify-content: center;
 }
 
+.hero-description {
+  margin: 1.5rem auto 0;
+  max-width: 40rem;
+  color: var(--color-text);
+}
+
 .download-options {
   display: flex;
   gap: 1rem;

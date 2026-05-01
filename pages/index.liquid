@@ -3,13 +3,13 @@
 {% assign work = objects.work %}
 {% assign contact = objects.contact %}
 {% assign resume = objects.resume %}
-{% layout 'theme' title: "Archival Website" %}
+{% layout 'theme' title: "" %}
 
 <!-- Navigation Bar -->
 <nav class="navbar">
   <div class="container">
     <div class="logo-group">
-      <a href="#" class="logo">{{ personal.name }}</a>
+      <a href="#hero" class="logo">{{ personal.name }}</a>
       {% if personal.title != blank %}<span class="logo-pill">{{ personal.title }}</span>{% endif %}
     </div>
     <ul class="nav-links" id="primary-nav">
@@ -25,7 +25,7 @@
       <li>
         <a href="#contact">Contact</a>
       </li>
-      {% if resume.file %}
+      {% if resume.file != blank %}
         <li>
           <a
             href="{{ resume.file.url }}"
@@ -79,8 +79,8 @@
         <div class="experience-item">
           <div class="experience-header">
             <h3 class="experience-job-title">{{ job.title }}</h3>
-            {% if job.company %}<span class="experience-company">{{ job.company }}</span>{% endif %}
-            {% if job.dates %}<span class="experience-dates">{{ job.dates }}</span>{% endif %}
+            {% if job.company != blank %}<span class="experience-company">{{ job.company }}</span>{% endif %}
+            {% if job.dates != blank %}<span class="experience-dates">{{ job.dates }}</span>{% endif %}
           </div>
           <div class="experience-description">
             {{ job.description }}
@@ -95,6 +95,9 @@
 <section id="work">
   <div class="container">
     <h2 class="section-title">{{ work.title }}</h2>
+    {% if work.description != blank %}
+    <div class="work-intro">{{ work.description }}</div>
+    {% endif %}
     <!-- Projects -->
     <div class="projects">
       {% for project in work.project %}
@@ -109,11 +112,11 @@
               {%- endfor -%}
             </div>
           </div>
-          {%- unless project.image == blank -%}
+          {%- if project.image != blank -%}
             <div class="project-image">
               <img src="{{project.image.url}}" alt="{{project.name}}">
             </div>
-          {%- endunless -%}
+          {%- endif -%}
         </div>
       {% endfor %}
     </div>

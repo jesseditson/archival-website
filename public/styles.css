@@ -583,8 +583,9 @@ body.animations-enabled section:not(#hero).in-view p {
   transform: scale(1.02);
 }
 
-/* Experience Section */
-.experience-intro {
+/* Section intros (Experience, Work, etc.) */
+.experience-intro,
+.work-intro {
   color: var(--text-secondary);
   margin-bottom: 32px;
   max-width: 720px;

@@ -1,6 +1,6 @@
-order = -1
 name = "Acme Widgets"
 tagline = "The best widgets around!"
+description = "Family-owned shop crafting precision widgets and custom solutions for our community."
 
 [logo_image]
 sha = "72536418000029c98601f73afd5c197ba8c8798bae04bb9aeff8d1126de6c797"

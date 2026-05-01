@@ -1,12 +1,10 @@
-{% layout 'theme' title: objects.site.name %}
-{% assign map_address = objects.location.address | url_encode %}
-{% assign map_embed_url = "https://maps.google.com/maps?q=" | append: map_address | append: "&output=embed" %}
+{% layout 'theme' title: "" %}
 
 <div class="content">
   <header class="header">
     <div class="container">
       <div class="logo-container">
-        {% if objects.site.logo_image.url %}
+        {% if objects.site.logo_image != blank %}
           <img
             src="{{ objects.site.logo_image.url }}"
             alt="{{ objects.site.name }} Logo"
@@ -18,31 +16,29 @@
     </div>
   </header>
 
-  <main>
+  {% if objects.hours.size > 0 %}
     <section class="hours">
       <div class="container">
         <h2 class="reveal">Hours</h2>
         <ul class="reveal-stagger">
-          <li class="reveal">
-            <span>Monday – Friday</span>
-            <span>{{ objects.hours.monday_friday }}</span>
-          </li>
-          <li class="reveal">
-            <span>Saturday</span>
-            <span>{{ objects.hours.saturday }}</span>
-          </li>
-          <li class="reveal">
-            <span>Sunday</span>
-            <span>{{ objects.hours.sunday }}</span>
-          </li>
+          {% for h in objects.hours %}
+            <li class="reveal">
+              <span>{{ h.day }}</span>
+              <span>{% if h.closed %}Closed{% else %}{{ h.time }}{% endif %}</span>
+            </li>
+          {% endfor %}
         </ul>
       </div>
     </section>
+  {% endif %}
 
+  {% if objects.location.address != blank %}
     <section class="location">
       <div class="container">
         <h2 class="reveal">Location</h2>
-        <p class="reveal">{{ objects.location.address }}</p>
+        <p class="reveal">{{ objects.location.address | replace_first: ", ", "<br>" }}</p>
+        {% assign map_address = objects.location.address | url_encode %}
+        {% assign map_embed_url = "https://maps.google.com/maps?q=" | append: map_address | append: "&output=embed" %}
         <div class="map reveal">
           <iframe
             src="{{ map_embed_url }}"
@@ -51,27 +47,36 @@
             style="border:0;"
             allowfullscreen=""
             loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Map showing {{ objects.site.name }} location"></iframe>
         </div>
       </div>
     </section>
+  {% endif %}
 
+  {% if objects.contact.phone != blank or objects.contact.email != blank %}
     <section class="contact-info">
       <div class="container">
         <h2 class="reveal">Contact Us</h2>
         <div class="contact-cards reveal-stagger">
-          <a href="tel:{{ objects.contact.phone }}" class="contact-card reveal">
-            <span class="contact-card-label">Phone</span>
-            <span class="contact-card-value">{{ objects.contact.phone }}</span>
-          </a>
-          <a href="mailto:{{ objects.contact.email }}" class="contact-card reveal">
-            <span class="contact-card-label">Email</span>
-            <span class="contact-card-value">{{ objects.contact.email }}</span>
-          </a>
+          {% if objects.contact.phone != blank %}
+            <a href="tel:{{ objects.contact.phone }}" class="contact-card reveal">
+              <span class="contact-card-label">Phone</span>
+              <span class="contact-card-value">{{ objects.contact.phone }}</span>
+            </a>
+          {% endif %}
+          {% if objects.contact.email != blank %}
+            <a href="mailto:{{ objects.contact.email }}" class="contact-card reveal">
+              <span class="contact-card-label">Email</span>
+              <span class="contact-card-value">{{ objects.contact.email }}</span>
+            </a>
+          {% endif %}
         </div>
       </div>
     </section>
+  {% endif %}
 
+  {% if about.description != blank %}
     <section class="about">
       <div class="container">
         <h2 class="reveal">About Us</h2>
@@ -83,7 +88,7 @@
         </div>
       </div>
     </section>
-  </main>
+  {% endif %}
 
   <footer class="footer">
     <div class="container">
@@ -93,17 +98,23 @@
           <p class="footer-tagline">{{ objects.site.tagline }}</p>
         </div>
         <div class="footer-details">
-          {% assign address_parts = objects.location.address | split: ", " %}
-          <p>{{ address_parts[0] }}</p>
-          <p>{{ address_parts[1] }}, {{ address_parts[2] }}</p>
-          <p>{{ objects.contact.phone }}</p>
-          <p><a href="mailto:{{ objects.contact.email }}">{{ objects.contact.email }}</a></p>
+          {% if objects.location.address != blank %}
+            <p>{{ objects.location.address | replace_first: ", ", "<br>" }}</p>
+          {% endif %}
+          {% if objects.contact.phone != blank %}
+            <p>{{ objects.contact.phone }}</p>
+          {% endif %}
+          {% if objects.contact.email != blank %}
+            <p><a href="mailto:{{ objects.contact.email }}">{{ objects.contact.email }}</a></p>
+          {% endif %}
         </div>
-        <div class="footer-hours">
-          <p>Mon–Fri {{ objects.hours.monday_friday }}</p>
-          <p>Sat {{ objects.hours.saturday }}</p>
-          <p>Sun {{ objects.hours.sunday }}</p>
-        </div>
+        {% if objects.hours.size > 0 %}
+          <div class="footer-hours">
+            {% for h in objects.hours %}
+              <p>{{ h.day }} {% if h.closed %}Closed{% else %}{{ h.time }}{% endif %}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
       </div>
       <div class="footer-bottom">
         <p class="copyright">&copy; {{ "now" | date: "%Y" }} {{ objects.site.name }}. Powered by <a href="https://archival.dev">Archival</a>.</p>

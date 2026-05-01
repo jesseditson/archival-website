@@ -3,12 +3,14 @@
 [site]
 name = "string"
 tagline = "string"
+description = "string"
 logo_image = "image"
+og_image = "image"
 
 [hours]
-monday_friday = "string"
-saturday = "string"
-sunday = "string"
+day = "string"
+time = "string"
+closed = "boolean"
 
 [location]
 address = "string"

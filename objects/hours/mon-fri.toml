@@ -1,0 +1,4 @@
+order = 1
+day = "Monday – Friday"
+time = "9 AM – 6 PM"
+closed = false

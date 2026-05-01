@@ -1,31 +1,74 @@
+{% assign site_name = objects.site.name %}
+{% if title != blank %}
+  {% assign page_title = title | append: " — " | append: site_name %}
+{% else %}
+  {% assign page_title = site_name %}
+{% endif %}
+{% assign og_image_url = "" %}
+{% if objects.site.og_image != blank %}
+  {% assign og_image_url = objects.site.og_image.url %}
+{% elsif objects.site.logo_image != blank %}
+  {% assign og_image_url = objects.site.logo_image.url %}
+{% endif %}
+{% assign social_description = objects.site.description %}
+{% if social_description == blank %}
+  {% assign social_description = objects.site.tagline %}
+{% endif %}
+{% capture jsonld_name %}{{ objects.site.name | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+{% capture jsonld_desc %}{{ social_description | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+{% capture jsonld_address %}{{ objects.location.address | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+{% capture jsonld_phone %}{{ objects.contact.phone | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+{% capture jsonld_email %}{{ objects.contact.email | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
 <!doctype html>
-<html class="no-js" lang="">
+<html lang="en">
 
   <head>
     <meta charset="utf-8">
-    <title>{{ title }}</title>
-    <meta name="description" content="{{ objects.site.tagline }}">
+    <title>{{ page_title }}</title>
+    <meta name="description" content="{{ social_description }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta property="og:title" content="{{ title }}">
-    <meta property="og:description" content="{{ objects.site.tagline }}">
+    <meta property="og:title" content="{{ page_title }}">
+    <meta property="og:description" content="{{ social_description }}">
     <meta property="og:type" content="website">
-    {% if objects.site.logo_image.url %}
-    <meta property="og:image" content="{{ objects.site.logo_image.url }}">
+    <meta property="og:site_name" content="{{ site_name }}">
+    {% if og_image_url != blank %}
+    <meta property="og:image" content="{{ og_image_url }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="{{ og_image_url }}">
+    {% else %}
+    <meta name="twitter:card" content="summary">
     {% endif %}
+    <meta name="twitter:title" content="{{ page_title }}">
+    <meta name="twitter:description" content="{{ social_description }}">
 
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="apple-touch-icon" href="/icon.png">
   {% assign words = objects.site.name | split: " " %}{% assign initials = "" %}{% if words.size == 1 %}{% assign initials = words[0] | slice: 0, 2 | upcase %}{% else %}{% for word in words limit: 2 %}{% assign letter = word | slice: 0, 1 | upcase %}{% assign initials = initials | append: letter %}{% endfor %}{% endif %}{% assign initials = initials | replace: "&", "" | replace: "<", "" | replace: ">", "" | replace: "'", "" | replace: '"', "" %}
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='bold' font-size='13' fill='%23e5ff00'%3E{{ initials }}%3C/text%3E%3C/svg%3E">
 
     <link rel="stylesheet" href="/style.css">
 
-    <meta name="theme-color" content="#fafafa">
+    <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "{{ jsonld_name }}"
+        {%- if social_description != blank -%}, "description": "{{ jsonld_desc }}"{%- endif -%}
+        {%- if og_image_url != blank -%}, "image": "{{ og_image_url }}"{%- endif -%}
+        {%- if objects.location.address != blank -%}, "address": "{{ jsonld_address }}"{%- endif -%}
+        {%- if objects.contact.phone != blank -%}, "telephone": "{{ jsonld_phone }}"{%- endif -%}
+        {%- if objects.contact.email != blank -%}, "email": "{{ jsonld_email }}"{%- endif -%}
+      }
+    </script>
   </head>
 
   <body>
-    {{ page_content }}
+    <a class="skip-link" href="#main">Skip to content</a>
+    <main id="main">
+      {{ page_content }}
+    </main>
     <script>
       const o = new IntersectionObserver((entries) => {
         entries.forEach(e => {

@@ -540,3 +540,84 @@ button:focus-visible {
     animation-duration: 0.01ms !important;
   }
 }
+
+/* ==================== Skip Link ==================== */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--color-black);
+  color: var(--color-white);
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  z-index: 99999;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid var(--color-accent);
+  outline-offset: -2px;
+}
+
+/* ==================== 404 Page ==================== */
+#not-found {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6rem 1.5rem;
+}
+
+#not-found .container {
+  max-width: 36rem;
+  margin: 0 auto;
+}
+
+.not-found-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 1.25rem;
+}
+
+.not-found-code {
+  font-size: clamp(7rem, 22vw, 12rem);
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 1.25rem;
+  color: var(--color-black);
+  letter-spacing: -0.04em;
+}
+
+.not-found-title {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--color-black);
+}
+
+.not-found-description {
+  color: var(--color-gray);
+  margin: 0 auto 2rem;
+  max-width: 30rem;
+  line-height: 1.6;
+}
+
+.not-found-cta {
+  display: inline-block;
+  padding: 0.9rem 1.75rem;
+  border-radius: 980px;
+  background: var(--color-accent);
+  color: var(--color-white);
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.not-found-cta:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}

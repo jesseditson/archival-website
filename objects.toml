@@ -31,5 +31,7 @@ description = "markdown"
 [work.project]
 name = "string"
 description = "markdown"
-tags = "string"
 image = "image"
+
+[work.project.tag]
+name = "string"

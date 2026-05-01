@@ -11,12 +11,17 @@ description = """
 A mobile app for mental health awareness that helps users manage stress and anxiety. Developed through end-to-end design process including user interviews, journey mapping, and interactive prototyping.
 The app has helped thousands of users with its user-centric design approach.
 """
-tags = "Mobile App,UX/UI Design,User Research"
     [project.image]
     sha = "27c04defa4c87f16bd5ccff0e43f4bd7b028019f301aa112dc9d084a0fafe950"
     filename = "mindfulspace.jpeg"
     mime = "image/jpeg"
     display_type = "image"
+    [[project.tag]]
+    name = "Mobile App"
+    [[project.tag]]
+    name = "UX/UI Design"
+    [[project.tag]]
+    name = "User Research"
 
 [[project]]
 name = "EcoTrack"
@@ -24,9 +29,14 @@ description = """
 A web platform that encourages sustainable living by tracking personal environmental impact. Features gamification elements and a clean, intuitive interface to engage users in making eco-friendly choices.
 Recognized in the "Best for the World" list by a leading environmental organization.
 """
-tags = "Web Platform,Gamification,Sustainability"
     [project.image]
     sha = "b37248b98719cc860d496181001f5680396ebee418ef84daeadb734c220e82cf"
     filename = "ecotrack.jpeg"
     mime = "image/jpeg"
     display_type = "image"
+    [[project.tag]]
+    name = "Web Platform"
+    [[project.tag]]
+    name = "Gamification"
+    [[project.tag]]
+    name = "Sustainability"

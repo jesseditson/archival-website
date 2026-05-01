@@ -106,9 +106,8 @@
             <h3>{{ project.name }}</h3>
             <p>{{ project.description }}</p>
             <div class="project-tags">
-              {%- assign tags = project.tags | split: "," -%}
-              {%- for tag in tags -%}
-                <span>{{ tag | strip }}</span>
+              {%- for tag in project.tag -%}
+                <span>{{ tag.name }}</span>
               {%- endfor -%}
             </div>
           </div>

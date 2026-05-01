@@ -5,13 +5,14 @@ This template is intended to be used by a professional who is offering services.
 """
 context = """
 This template is for a professional that is selling a service or group of services.
-The info object has: first_name, last_name, business_name, title (professional title like "Licensed Therapist" or "Business Consultant"), location, image (headshot/profile photo), about (markdown bio — write 2-3 paragraphs in a warm professional tone), contact_header (e.g. "Let's Work Together"), contact_message (short paragraph inviting contact), contact_complete_header (e.g. "Thank You!"), and contact_complete_message (confirmation text after form submission).
+The info object has: first_name, last_name, business_name, title (professional title like "Licensed Therapist" or "Business Consultant"), location, image (headshot/profile photo), og_image (optional override for the social-share preview image — leave blank to fall back to image), about (markdown bio — write 2-3 paragraphs in a warm professional tone), description (one-line tagline used for SEO/meta description and social cards), contact_header (e.g. "Let's Work Together"), contact_message (short paragraph inviting contact), contact_complete_header (e.g. "Thank You!"), and contact_complete_message (confirmation text after form submission).
 Generate 3-4 service entries. Each has: name, description (1-2 sentence summary), body (detailed markdown description of the service — what's included, who it's for, how it works), and price (string like "$150/hr" or "Starting at $500"). Make services distinct and complementary.
 Generate 2-3 testimonial entries with a quote (1-3 sentences of praise), author name, and thumbnail (image — leave as default).
 Do not modify the google_form object — it contains form integration configuration that should be kept as-is.
+The privacy_policy and terms_of_service objects are optional. Leave their `content` empty by default — the footer auto-hides the legal links when content is blank, so users can opt in later. If a user explicitly asks for legal docs, fill the content with appropriate boilerplate markdown.
 Write in a professional, trustworthy, client-facing tone. Emphasize value and outcomes rather than just features.
 """
 tags = ["professional", "service"]
 tlds = ["com", "me"]
 
-keep_objects = ["google_form"]
+keep_objects = ["google_form", "privacy_policy", "terms_of_service"]

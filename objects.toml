@@ -7,7 +7,9 @@ business_name = "string"
 title = "string"
 location = "string"
 image = "image"
+og_image = "image"
 about = "markdown"
+description = "string"
 contact_header = "string"
 contact_message = "string"
 contact_complete_header = "string"
@@ -32,3 +34,9 @@ email_field_id="string"
 phone_field_id="string"
 service_field_id="string"
 comments_field_id="string"
+
+[privacy_policy]
+content = "markdown"
+
+[terms_of_service]
+content = "markdown"

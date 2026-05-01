@@ -1,0 +1,29 @@
+{% layout 'theme' title: objects.site.home_title %}
+
+<header>
+  <h1 class="masthead">{{ objects.site.home_title }}</h1>
+</header>
+
+<main class="main-container">
+  <section id="video-section" class="video-container">
+    {% if objects.site.video.url %}
+      <video
+        crossOrigin="anonymous"
+        id="myVideo"
+        src="{{objects.site.video.url}}"
+        controls></video>
+    {% elsif objects.site.video_url %}
+      <video
+        crossOrigin="anonymous"
+        id="myVideo"
+        src="{{objects.site.video_url}}"
+        controls></video>
+    {% endif %}
+  </section>
+
+  <section id="widgets"></section>
+</main>
+
+<footer>
+  <p>&copy; 2024 {{ objects.site.copyright_name }}. All rights reserved.</p>
+</footer>

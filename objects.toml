@@ -1,0 +1,10 @@
+# This file is used to define the objects available on your site.
+
+[site]
+name = "string"
+home_title = "string"
+description = "string"
+author = "string"
+video_url = "string"
+video = "video"
+copyright_name = "string"

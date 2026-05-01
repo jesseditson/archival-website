@@ -1,0 +1,65 @@
+{
+  "$id": "https://theatre.onarchival.dev/site.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "author": {
+      "description": "author",
+      "type": "string"
+    },
+    "copyright_name": {
+      "description": "copyright_name",
+      "type": "string"
+    },
+    "description": {
+      "description": "description",
+      "type": "string"
+    },
+    "home_title": {
+      "description": "home_title",
+      "type": "string"
+    },
+    "name": {
+      "description": "name",
+      "type": "string"
+    },
+    "video": {
+      "description": "video",
+      "properties": {
+        "display_type": {
+          "const": "video",
+          "description": "the display type of this content"
+        },
+        "filename": {
+          "description": "the filename that this upload was generated from",
+          "type": "string"
+        },
+        "mime": {
+          "description": "the mime type of this content",
+          "type": "string"
+        },
+        "name": {
+          "description": "the name of the file",
+          "type": "string"
+        },
+        "sha": {
+          "description": "a unique sha representing the hashed content of this file",
+          "maxLength": 64,
+          "minLength": 64,
+          "type": "string"
+        }
+      },
+      "required": [
+        "sha",
+        "filename",
+        "mime",
+        "display_type"
+      ],
+      "type": "object"
+    },
+    "video_url": {
+      "description": "video_url",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

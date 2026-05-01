@@ -1,0 +1,10 @@
+name = "Theatre"
+description = """
+This template shows a single video in a beautiful, color-synced background.
+"""
+context = """
+This template has only one video, so is best for content that has a video file and a title.
+site.copyright_name should be the same as the site.author name to begin.
+"""
+tags = ["theatre", "video", "one-page"]
+tlds = ["com", "app"]

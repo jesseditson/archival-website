@@ -1,0 +1,7 @@
+#:schema ../schemas/site.schema.json
+name = "Archival"
+home_title = "Archival Video"
+description = "A simple video presentation template."
+author = "Archival"
+video_url = "https://archival-uploads.jesseditson.com/example.mp4"
+copyright_name = "Your Name"

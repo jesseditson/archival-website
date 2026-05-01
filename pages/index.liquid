@@ -22,11 +22,12 @@
   </div>
 </nav>
 
+<main id="main">
 <header class="hero">
   <div class="container">
     <div class="hero-statement">
-      {% if app.hero_supplement != blank %}<span class="supplement">{{ app.hero_supplement }}</span>{% endif %}
       <h1>{{ app.name }}</h1>
+      {% if app.hero_supplement != blank %}<span class="supplement">{{ app.hero_supplement }}</span>{% endif %}
       <div class="download-options">
         {% if app.appstore_download_link != blank %}
           <a href="{{ app.appstore_download_link }}">
@@ -68,7 +69,7 @@
   </div>
 </header>
 
-<main id="main" class="container">
+<div class="container">
 
   {% if app.features_title != blank %}<h2>{{ app.features_title }}</h2>{% endif %}
 
@@ -108,6 +109,7 @@
     </section>
   {% endif %}
 
+</div>
 </main>
 
 <script

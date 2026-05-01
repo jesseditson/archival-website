@@ -3,14 +3,13 @@
   {%- unless post.date == blank -%}
     <time class="viewer-post-date">{{ post.date | date: "%B %e, %Y" }}</time>
   {%- endunless -%}
-  {%- unless post.tags == blank -%}
+  {%- if post.tag.size > 0 -%}
     <div class="viewer-post-tags">
-      {%- assign tags = post.tags | split: "," -%}
-      {%- for tag in tags -%}
-        <span class="tag">{{ tag | strip }}</span>
+      {%- for tag in post.tag -%}
+        <span class="tag">{{ tag.name }}</span>
       {%- endfor -%}
     </div>
-  {%- endunless -%}
+  {%- endif -%}
 </div>
 {%- unless post.image == blank -%}
   <div class="viewer-post-image"><img src="{{ post.image.url }}" alt="{{ post.title }}"></div>

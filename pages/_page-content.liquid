@@ -3,18 +3,14 @@
 <!-- Tag Filters -->
 <div class="tag-filters" id="tag-filters">
   <button class="filter-btn active" data-tag="all">All</button>
-  {% comment %} Collect all unique tags {% endcomment %}
+  {% comment %} Collect all unique tags from post.tag child collection {% endcomment %}
   {% assign all_tags = "" %}
   {% for post in posts %}
-    {% unless post.tags == blank %}
-      {% assign post_tags = post.tags | split: "," %}
-      {% for tag in post_tags %}
-        {% assign trimmed_tag = tag | strip %}
-        {% unless all_tags contains trimmed_tag %}
-          {% assign all_tags = all_tags | append: trimmed_tag | append: "," %}
-        {% endunless %}
-      {% endfor %}
-    {% endunless %}
+    {% for tag in post.tag %}
+      {% unless all_tags contains tag.name %}
+        {% assign all_tags = all_tags | append: tag.name | append: "," %}
+      {% endunless %}
+    {% endfor %}
   {% endfor %}
   {% assign unique_tags = all_tags | split: "," | sort %}
   {% for tag in unique_tags %}
@@ -26,17 +22,14 @@
 
 <!-- Masonry Blog Grid -->
 <div class="blog-grid" id="blog-grid">
+  <div class="grid-sizer"></div>
   {% for post in posts %}
-    {% assign tag_list = post.tags | split: "," %}
-    {% assign tag_classes = "" %}
-    {% for tag in tag_list %}
-      {% assign trimmed_tag = tag | strip %}
-      {% assign tag_classes = tag_classes | append: " tag-" | append: trimmed_tag %}
-    {% endfor %}
+    {% capture tag_classes %}{% for tag in post.tag %} tag-{{ tag.name | downcase | replace: ' ', '-' }}{% endfor %}{% endcapture %}
+    {% capture tag_csv %}{% for tag in post.tag %}{{ tag.name }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
     <article class="post-card{{ tag_classes }}"
              data-path="{{post.path}}"
              data-index="{{ forloop.index0 }}"
-             data-tags="{{ post.tags }}">
+             data-tags="{{ tag_csv }}">
 
     {%- unless post.image == blank -%}
           <div class="post-image">
@@ -77,20 +70,19 @@
       <!-- Post Content -->
       <div class="post-content">
         <h2 class="post-title">{{ post.title }}</h2>
-        {% unless post.excerpt == blank%}
+        {% unless post.excerpt == blank %}
           <p class="post-excerpt">{{ post.excerpt }}</p>
         {% endunless %}
         <time class="post-date">{{ post.date | date: "%B %e, %Y" }}</time>
 
         <!-- Tags in bottom right -->
-        {% unless post.tags == blank %}
+        {% if post.tag.size > 0 %}
           <div class="post-tags">
-            {% assign tag_list = post.tags | split: "," %}
-            {% for tag in tag_list %}
-              <span class="tag">{{ tag }}</span>
+            {% for tag in post.tag %}
+              <span class="tag">{{ tag.name }}</span>
             {% endfor %}
           </div>
-        {% endunless %}
+        {% endif %}
       </div>
     </article>
   {% endfor %}
@@ -100,20 +92,20 @@
 <div id="post-viewer" class="post-viewer {% if post %} active{% endif %}">
   <div class="viewer-backdrop"></div>
 
-  <button class="viewer-close" onclick="closePostViewer()" aria-label="Close post viewer">
+  <button class="viewer-close" id="viewer-close" aria-label="Close post viewer">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <line x1="18" y1="6" x2="6" y2="18"></line>
       <line x1="6" y1="6" x2="18" y2="18"></line>
     </svg>
   </button>
 
-  <button class="viewer-nav viewer-prev" onclick="navigatePostViewer(-1)" aria-label="Previous post">
+  <button class="viewer-nav viewer-prev" id="viewer-prev" aria-label="Previous post">
     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <polyline points="15 18 9 12 15 6"></polyline>
     </svg>
   </button>
 
-  <button class="viewer-nav viewer-next" onclick="navigatePostViewer(1)" aria-label="Next post">
+  <button class="viewer-nav viewer-next" id="viewer-next" aria-label="Next post">
     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <polyline points="9 18 15 12 9 6"></polyline>
     </svg>

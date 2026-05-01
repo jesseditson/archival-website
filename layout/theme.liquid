@@ -1,29 +1,82 @@
+{% assign site_name = site.name %}
+{% if title != blank %}
+  {% assign page_title = title | append: " — " | append: site_name %}
+{% else %}
+  {% assign page_title = site_name %}
+{% endif %}
+{% assign og_image_url = "" %}
+{% assign social_description = site.description %}
+{% if site.og_image != blank %}
+  {% assign og_image_url = site.og_image.url %}
+{% endif %}
+{% if post %}
+  {% if og_image_url == "" and post.image != blank %}
+    {% assign og_image_url = post.image.url %}
+  {% endif %}
+  {% if post.excerpt != blank %}
+    {% assign social_description = post.excerpt %}
+  {% endif %}
+  {% capture jsonld_post_title %}{{ post.title | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+  {% capture jsonld_post_excerpt %}{{ post.excerpt | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+{% endif %}
+{% capture jsonld_name %}{{ site.name | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+{% capture jsonld_desc %}{{ site.description | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
 <!doctype html>
-<html class="no-js" lang="">
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{{ site.name }}</title>
+    <title>{{ page_title }}</title>
     <meta name="description" content="{{ site.description }}">
+    <meta name="author" content="{{ site.name }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta property="og:title" content="{{ site.name }}">
-    <meta property="og:type" content="website">
-    <meta property="og:description" content="{{ site.description }}">
-    <!-- <meta property="og:url" content=""> -->
-    <!-- <meta property="og:image" content=""> -->
+    <meta property="og:title" content="{{ page_title }}">
+    <meta property="og:type" content="{% if post %}article{% else %}website{% endif %}">
+    <meta property="og:description" content="{{ social_description }}">
+    <meta property="og:site_name" content="{{ site_name }}">
+    {% if og_image_url != blank %}
+    <meta property="og:image" content="{{ og_image_url }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="{{ og_image_url }}">
+    {% else %}
+    <meta name="twitter:card" content="summary">
+    {% endif %}
+    <meta name="twitter:title" content="{{ page_title }}">
+    <meta name="twitter:description" content="{{ social_description }}">
 
-    {% comment %} <link rel="manifest" href="/site.webmanifest"> {% endcomment %}
-    <link rel="apple-touch-icon" href="/icon.png">
-      <!-- Place favicon.ico in the root directory -->
-  {% assign words = site.name | split: " " %}{% assign initials = "" %}{% if words.size == 1 %}{% assign initials = words[0] | slice: 0, 2 | upcase %}{% else %}{% for word in words limit: 2 %}{% assign letter = word | slice: 0, 1 | upcase %}{% assign initials = initials | append: letter %}{% endfor %}{% endif %}{% assign initials = initials | replace: "&", "" | replace: "<", "" | replace: ">", "" | replace: "'", "" | replace: '"', "" %}
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='bold' font-size='13' fill='%23e5ff00'%3E{{ initials }}%3C/text%3E%3C/svg%3E">
+    {% assign words = site.name | split: " " %}{% assign initials = "" %}{% if words.size == 1 %}{% assign initials = words[0] | slice: 0, 2 | upcase %}{% else %}{% for word in words limit: 2 %}{% assign letter = word | slice: 0, 1 | upcase %}{% assign initials = initials | append: letter %}{% endfor %}{% endif %}{% assign initials = initials | replace: "&", "" | replace: "<", "" | replace: ">", "" | replace: "'", "" | replace: '"', "" %}
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='bold' font-size='13' fill='%23e5ff00'%3E{{ initials }}%3C/text%3E%3C/svg%3E">
 
     <link rel="stylesheet" href="/styles.css">
 
-    <meta name="theme-color" content="#0a0a0a">
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+
+    <script type="application/ld+json">
+      {% if post %}
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "{{ jsonld_post_title }}"
+        {%- if post.excerpt != blank -%}, "description": "{{ jsonld_post_excerpt }}"{%- endif -%}
+        {%- if post.image != blank -%}, "image": "{{ post.image.url }}"{%- endif -%}
+        {%- if post.date != blank -%}, "datePublished": "{{ post.date | date: '%Y-%m-%d' }}"{%- endif -%}
+        , "author": { "@type": "Person", "name": "{{ jsonld_name }}" }
+      }
+      {% else %}
+      {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "{{ jsonld_name }}"
+        {%- if site.description != blank -%}, "description": "{{ jsonld_desc }}"{%- endif -%}
+        {%- if og_image_url != blank -%}, "image": "{{ og_image_url }}"{%- endif -%}
+      }
+      {% endif %}
+    </script>
   </head>
 
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <div class="container">
       <div class="header-wrapper">
         <button class="notify-toggle" aria-label="Notifications">
@@ -34,7 +87,11 @@
             <path d="M20.002 14.464a9 9 0 0 0 .738.863A1 1 0 0 1 20 17H4a1 1 0 0 1-.74-1.673C4.59 13.956 6 12.499 6 8a6 6 0 0 1 8.75-5.332"></path>
           </svg>
         </button>
-        <h1 class="masthead">{{ site.name }}</h1>
+        {% if post %}
+          <p class="masthead"><a href="/">{{ site.name }}</a></p>
+        {% else %}
+          <h1 class="masthead"><a href="/">{{ site.name }}</a></h1>
+        {% endif %}
 
         <!-- Dark Mode Toggle -->
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
@@ -55,11 +112,13 @@
         </button>
       </div>
 
-      {{ page_content }}
-        
-      {% if show_blog %}
-        {% include "page-content" %}
-      {% endif %}
+      <main id="main">
+        {{ page_content }}
+
+        {% if show_blog %}
+          {% include "page-content" %}
+        {% endif %}
+      </main>
 
       <footer class="site-footer">
         <small>&copy; {{ "now" | date: "%Y" }} {{ site.name }}. Powered by <a href="https://archival.dev">Archival</a>.</small>
@@ -103,10 +162,8 @@
               content: "{{ html | strip_newlines |  escape }}",
               index: {{ forloop.index }},
               tags: [
-                {%- assign tag_list = post.tags | split: "," -%}
-                {%- for tag in tag_list -%}
-                    {%- assign trimmed_tag = tag | strip -%}
-                    "{{tag}}"{% unless forloop.last %},{% endunless %}
+                {%- for tag in post.tag -%}
+                    "{{ tag.name }}"{% unless forloop.last %},{% endunless %}
                 {%- endfor -%}
               ]
             }{% unless forloop.last %},{% endunless %}{% endfor %}

@@ -10,10 +10,8 @@
     {%- unless post.link == blank -%}"linkUrl": "{{post.link}}",{%- endunless -%}
     "index": {{ forloop.index }},
     "tags": [
-        {%- assign tag_list = post.tags | split: "," -%}
-        {%- for tag in tag_list -%}
-            {%- assign trimmed_tag = tag | strip -%}
-            "{{tag}}"{% unless forloop.last %},{% endunless %}
+        {%- for tag in post.tag -%}
+            "{{ tag.name }}"{% unless forloop.last %},{% endunless %}
         {%- endfor -%}
     ]
 }

@@ -162,6 +162,18 @@ function initializeLightbox() {
     // Don't generate thumbnails until lightbox is opened (performance optimization)
     setupKeyboardNavigation();
     setupTouchNavigation();
+
+    // Wire up control buttons (replaces inline onclick= handlers)
+    const closeBtn = document.getElementById('lightbox-close');
+    const prevBtn = document.getElementById('lightbox-prev');
+    const nextBtn = document.getElementById('lightbox-next');
+    const fullscreenBtn = document.getElementById('lightbox-fullscreen');
+    const backdrop = document.getElementById('lightbox-backdrop');
+    if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+    if (prevBtn) prevBtn.addEventListener('click', () => navigateLightbox(-1));
+    if (nextBtn) nextBtn.addEventListener('click', () => navigateLightbox(1));
+    if (fullscreenBtn) fullscreenBtn.addEventListener('click', toggleFullscreen);
+    if (backdrop) backdrop.addEventListener('click', closeLightbox);
 }
 
 function openLightbox(index) {
@@ -242,7 +254,6 @@ function closeLightbox() {
 }
 
 // Expose functions globally for inline event handlers
-window.closeLightbox = closeLightbox;
 
 function navigateLightbox(direction) {
     const lightboxImg = document.getElementById('lightbox-img');
@@ -297,7 +308,6 @@ function navigateLightbox(direction) {
 }
 
 // Expose functions globally for inline event handlers
-window.navigateLightbox = navigateLightbox;
 
 function updateLightboxInfo() {
     document.getElementById('lightbox-current').textContent = currentImageIndex + 1;
@@ -499,7 +509,6 @@ function toggleFullscreen() {
 }
 
 // Expose functions globally for inline event handlers
-window.toggleFullscreen = toggleFullscreen;
 
 // ==================== Lightbox Controls Animation ====================
 function animateLightboxControls() {

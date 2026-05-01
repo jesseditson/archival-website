@@ -387,19 +387,21 @@ section:nth-child(even) {
   font-size: 1.25rem;
   font-weight: 600;
   color: var(--color-white);
-  margin-bottom: var(--spacing-xs);
+  margin: 0 0 var(--spacing-xs);
 }
 
 .footer-tagline {
   color: rgba(255, 255, 255, 0.5);
   font-size: 0.95rem;
+  margin: 0;
 }
 
 .footer-details p,
 .footer-hours p {
   color: rgba(255, 255, 255, 0.6);
   font-size: 0.875rem;
-  margin-bottom: var(--spacing-xs);
+  margin: 0 0 var(--spacing-xs);
+  line-height: 1.5;
 }
 
 .footer a {

@@ -37,11 +37,15 @@
       <div class="container">
         <h2 class="reveal">Location</h2>
         <p class="reveal">{{ objects.location.address | replace_first: ", ", "<br>" }}</p>
-        {% assign map_address = objects.location.address | url_encode %}
-        {% assign map_embed_url = "https://maps.google.com/maps?q=" | append: map_address | append: "&output=embed" %}
+        {% if objects.location.map_embed_url != blank %}
+          {% assign map_src = objects.location.map_embed_url %}
+        {% else %}
+          {% assign map_address = objects.location.address | url_encode %}
+          {% assign map_src = "https://maps.google.com/maps?q=" | append: map_address | append: "&output=embed" %}
+        {% endif %}
         <div class="map reveal">
           <iframe
-            src="{{ map_embed_url }}"
+            src="{{ map_src }}"
             width="600"
             height="450"
             style="border:0;"

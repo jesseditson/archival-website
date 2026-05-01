@@ -98,6 +98,17 @@ footer {
     width: 100%;
 }
 
+footer a {
+    color: rgba(255, 255, 255, 0.55);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+footer a:hover,
+footer a:focus-visible {
+    color: var(--color-type-primary);
+}
+
 /* ==================== Skip Link ==================== */
 .skip-link {
     position: absolute;

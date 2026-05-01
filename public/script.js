@@ -6,12 +6,14 @@ const navLinks = document.querySelector('.nav-links');
 const navbar = document.querySelector('.navbar');
 
 // Toggle Mobile Navigation Menu
-hamburger.addEventListener('click', () => {
-    const isOpen = navLinks.classList.toggle('nav-active');
-    hamburger.classList.toggle('toggle', isOpen);
-    hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-});
+if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('nav-active');
+        hamburger.classList.toggle('toggle', isOpen);
+        hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+}
 
 // Smooth Scrolling for Anchor Links
 const links = document.querySelectorAll('.nav-links a');
@@ -49,18 +51,20 @@ function clickHandler(e) {
 // ============================================
 let lastScroll = 0;
 
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
+if (navbar) {
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
 
-    // Add scrolled class for glass effect
-    if (currentScroll > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
+        // Add scrolled class for glass effect
+        if (currentScroll > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
 
-    lastScroll = currentScroll;
-});
+        lastScroll = currentScroll;
+    });
+}
 
 
 // ============================================

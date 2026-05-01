@@ -1,6 +1,6 @@
 name = "Pale Stations"
 description = "Atmospheric indie rock and shimmering electronic textures."
-merch_url = ""
+merch_url = "https://yourbandname.bandcamp.com"
 
 [image]
 sha = "4e05635b75ae6e626518874ad0ebff3e4a5ce759a379e1722e50c89291674891"

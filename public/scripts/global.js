@@ -80,6 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (tracks.length === 0) return;
 
   var playPauseBtn = document.querySelector(".play-pause");
+  var nowPlayingLabel = document.querySelector(".now-playing-label");
   var nowPlayingItem = document.querySelector(".now-playing-item");
   var volumeBtn = document.querySelector(".volume");
   var volumeFlyout = document.querySelector(".volume-flyout");
@@ -99,34 +100,44 @@ document.addEventListener("DOMContentLoaded", function () {
     progressBar.style.width = "0%";
   }
 
+  // Drive the label and play/pause classes off the audio element's
+  // own state events so they stay in sync regardless of cause
+  // (button click, track ended, etc.).
+  audio.addEventListener("play", function () {
+    nowPlayingLabel.textContent = "Now Playing:";
+    nowPlayingItem.classList.remove("hidden");
+    playPauseBtn.classList.remove("paused");
+  });
+  audio.addEventListener("pause", function () {
+    nowPlayingLabel.textContent = "Press Play";
+    nowPlayingItem.classList.add("hidden");
+    playPauseBtn.classList.add("paused");
+  });
+
   audio.addEventListener("timeupdate", function () {
     if (audio.duration) {
       progressBar.style.width = (audio.currentTime / audio.duration * 100) + "%";
     }
   });
 
-  function playNext() {
+  audio.addEventListener("ended", function () {
     var nextIndex = (currentIndex + 1) % tracks.length;
     loadTrack(nextIndex);
     audio.play();
-    playPauseBtn.classList.remove("paused");
-  }
+  });
 
-  audio.addEventListener("ended", playNext);
-
-  // Load the first track but stay paused — playback starts only on
-  // explicit user interaction (no autoplay).
+  // Initial state: load the first track but stay paused — no autoplay.
   loadTrack(currentIndex);
+  nowPlayingLabel.textContent = "Press Play";
+  nowPlayingItem.classList.add("hidden");
   playPauseBtn.classList.add("paused");
 
   playPauseBtn.addEventListener("click", function (e) {
     e.stopPropagation();
     if (audio.paused) {
       audio.play();
-      playPauseBtn.classList.remove("paused");
     } else {
       audio.pause();
-      playPauseBtn.classList.add("paused");
     }
   });
 

@@ -4,17 +4,24 @@ document.addEventListener("DOMContentLoaded", function () {
   const openBtn = document.querySelector(".menu-toggle");
   const closeBtn = document.querySelector(".close-menu");
 
-  openBtn.addEventListener("click", () => {
-    menu.classList.add("active");
-  });
+  function setMenuOpen(open) {
+    menu.classList.toggle("active", open);
+    openBtn.setAttribute("aria-expanded", open ? "true" : "false");
+  }
 
-  closeBtn.addEventListener("click", () => {
-    menu.classList.remove("active");
-  });
+  openBtn.addEventListener("click", () => setMenuOpen(true));
+  closeBtn.addEventListener("click", () => setMenuOpen(false));
 
   document.addEventListener("click", (event) => {
     if (!menu.contains(event.target) && !openBtn.contains(event.target)) {
-      menu.classList.remove("active");
+      setMenuOpen(false);
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && menu.classList.contains("active")) {
+      setMenuOpen(false);
+      openBtn.focus();
     }
   });
 
@@ -107,32 +114,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   audio.addEventListener("ended", playNext);
 
-  var hasStarted = false;
-
-  function startPlayback() {
-    if (hasStarted) return;
-    hasStarted = true;
-    audio.play().catch(function () {});
-    playPauseBtn.classList.remove("paused");
-  }
-
+  // Load the first track but stay paused — playback starts only on
+  // explicit user interaction (no autoplay).
   loadTrack(currentIndex);
   playPauseBtn.classList.add("paused");
 
-  audio.play().then(function () {
-    hasStarted = true;
-    playPauseBtn.classList.remove("paused");
-  }).catch(function () {
-    document.addEventListener("click", startPlayback, { once: true });
-    document.addEventListener("keydown", startPlayback, { once: true });
-  });
-
   playPauseBtn.addEventListener("click", function (e) {
     e.stopPropagation();
-    if (!hasStarted) {
-      startPlayback();
-      return;
-    }
     if (audio.paused) {
       audio.play();
       playPauseBtn.classList.remove("paused");

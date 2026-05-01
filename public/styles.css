@@ -294,6 +294,9 @@ body::after {
   cursor: pointer;
   padding: 8px;
   z-index: 1001;
+  background: transparent;
+  border: 0;
+  color: inherit;
 }
 
 .hamburger span {

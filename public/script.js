@@ -7,9 +7,10 @@ const navbar = document.querySelector('.navbar');
 
 // Toggle Mobile Navigation Menu
 hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('nav-active');
-    hamburger.classList.toggle('toggle');
-    document.body.style.overflow = navLinks.classList.contains('nav-active') ? 'hidden' : '';
+    const isOpen = navLinks.classList.toggle('nav-active');
+    hamburger.classList.toggle('toggle', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    document.body.style.overflow = isOpen ? 'hidden' : '';
 });
 
 // Smooth Scrolling for Anchor Links
@@ -37,6 +38,7 @@ function clickHandler(e) {
       if (navLinks.classList.contains('nav-active')) {
           navLinks.classList.remove('nav-active');
           hamburger.classList.remove('toggle');
+          hamburger.setAttribute('aria-expanded', 'false');
           document.body.style.overflow = '';
       }
   }

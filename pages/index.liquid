@@ -12,7 +12,7 @@
       <a href="#" class="logo">{{ personal.name }}</a>
       {% if personal.title != blank %}<span class="logo-pill">{{ personal.title }}</span>{% endif %}
     </div>
-    <ul class="nav-links">
+    <ul class="nav-links" id="primary-nav">
       <li>
         <a href="#about">About</a>
       </li>
@@ -34,11 +34,11 @@
         </li>
       {% endif %}
     </ul>
-    <div class="hamburger">
+    <button type="button" class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
       <span></span>
       <span></span>
       <span></span>
-    </div>
+    </button>
   </div>
 </nav>
 

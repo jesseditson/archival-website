@@ -8,9 +8,11 @@
       <span class="date">{{tourdate.date | date: "%b %d, %Y"}}</span>
       <span class="location">{{tourdate.location}}</span>
       <span class="venue">{{tourdate.venue}}</span>
-      <a href="{{tourdate.ticket_url}}"
-        class="tickets{% if tourdate.tickets_available == false %} sold-out{% endif %}">{% if tourdate.tickets_available
-        == false %}Sold Out{% else %}Tickets{% endif %}</a>
+      {% if tourdate.tickets_available == false %}
+        <span class="tickets sold-out">Sold Out</span>
+      {% elsif tourdate.ticket_url != blank %}
+        <a href="{{ tourdate.ticket_url }}" class="tickets">Tickets</a>
+      {% endif %}
     </div>
     {% endfor %}
   </div>

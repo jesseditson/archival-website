@@ -2,8 +2,32 @@ hero_title = "Let's Create Something Amazing"
 hero_lead = "Have a project in mind? I'd love to hear about it. Drop me a message and let's discuss how we can bring your vision to life."
 availability_status = "Available for projects"
 availability_note = "Currently booking for Q2 2025. Limited slots available."
-project_types = "Portrait Photography,Landscape & Nature,Urban & Street,Commercial Work,Editorial & Documentary,Fine Art,Other"
-budgets = "Under $5,000/$5,000 - $10,000/$10,000 - $25,000/$25,000 - $50,000/$50,000+"
+
+[[project_type]]
+name = "Portrait Photography"
+[[project_type]]
+name = "Landscape & Nature"
+[[project_type]]
+name = "Urban & Street"
+[[project_type]]
+name = "Commercial Work"
+[[project_type]]
+name = "Editorial & Documentary"
+[[project_type]]
+name = "Fine Art"
+[[project_type]]
+name = "Other"
+
+[[budget]]
+name = "Under $5,000"
+[[budget]]
+name = "$5,000 - $10,000"
+[[budget]]
+name = "$10,000 - $25,000"
+[[budget]]
+name = "$25,000 - $50,000"
+[[budget]]
+name = "$50,000+"
 
 [[faq]]
 question = "What's your typical turnaround time?"

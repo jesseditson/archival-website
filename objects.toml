@@ -3,6 +3,7 @@
 [site]
 name = "string"
 description = "string"
+og_image = "image"
 
 [about]
 hero_title = "string"
@@ -40,8 +41,12 @@ hero_title = "string"
 hero_lead = "markdown"
 availability_status = "string"
 availability_note = "string"
-project_types = "string" # Comma-separated list
-budgets = "string" # Slash-separated list
+
+[contact.project_type]
+name = "string"
+
+[contact.budget]
+name = "string"
 
 [contact.contact_method]
 icon = "string"

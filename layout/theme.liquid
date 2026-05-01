@@ -48,6 +48,7 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='bold' font-size='13' fill='%23e5ff00'%3E{{ initials }}%3C/text%3E%3C/svg%3E">
 
     <link rel="stylesheet" href="/styles.css">
+    <link rel="alternate" type="application/rss+xml" title="{{ site.name }}" href="/feed.rss">
 
     <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
@@ -163,7 +164,8 @@
               index: {{ forloop.index }},
               tags: [
                 {%- for tag in post.tag -%}
-                    "{{ tag.name }}"{% unless forloop.last %},{% endunless %}
+                    {%- capture jsonld_tag_name -%}{{ tag.name | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{%- endcapture -%}
+                    "{{ jsonld_tag_name }}"{% unless forloop.last %},{% endunless %}
                 {%- endfor -%}
               ]
             }{% unless forloop.last %},{% endunless %}{% endfor %}

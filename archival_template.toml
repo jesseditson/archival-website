@@ -6,10 +6,15 @@ This template is perfect for a home page. It's a beautiful site where you can po
 context = """
 This is a general template which is a good fallback and especially appropriate for an individual social presence. If you are provided media, make blog posts for them. Always make at least 5 posts. Never make more than 3 tags on a post.
 The site object has a name and description field. The name is the site/blog title. The description is a short tagline.
-Each post has: title, content (markdown body), excerpt (a short plain-text summary), date, tags (comma-separated string, max 3 tags), image, video, audio, and link (external URL). Not every post needs every media type — vary the post types for a natural feel.
+Each post has: title, content (markdown body), excerpt (a short plain-text summary), date, image, video, audio, and link (external URL). Not every post needs every media type — vary the post types for a natural feel.
+Tags live as a [[tag]] child collection inside each post .toml file: each tag is its own entry with a `name` field. Generate up to 3 tags per post — short, lowercase, relevant — and reuse the same tag names across related posts so the homepage filter buttons group them naturally. Example:
+[[tag]]
+name = "design"
+[[tag]]
+name = "thoughts"
+
 When generating posts, give them realistic dates spread over recent weeks. Write the content in a personal, conversational voice. Make excerpts 1-2 sentences that tease the full content.
 If the user provides images or media, create posts that feature them. If not, focus on text-based posts with varied topics relevant to the user's description.
-Tags should be lowercase, short, and relevant. Use consistent tags across related posts.
 """
 tags = ["images", "social", "personal", "individual", "blog", "posts"]
 tlds = ["com", "me"]

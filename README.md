@@ -110,10 +110,20 @@ Output will be in the `dist/` directory.
 ## Tips
 
 1. **Featured Posts**: Set `featured = true` to highlight important posts with a star badge
-2. **Tags**: Use comma-separated tags for categorization
+2. **Tags**: Each post has a `[[tag]]` child collection — add one block per tag with a `name` field. Tags drive the filter buttons at the top of the homepage and the per-card class names used by the masonry grid.
 3. **Order**: Control post order with the `order` field
 4. **Images**: Place images in the appropriate uploads directory
 5. **Excerpts**: Keep excerpts concise (1-2 sentences) for best layout
+
+## RSS Feed
+
+The site automatically generates `feed.rss` (and `posts.json`) at the site root. Set your production URL in `manifest.toml` so the feed's `<link>` and per-item URLs are valid absolute URLs:
+
+```toml
+site_url = "https://your-domain.com"
+```
+
+Without this, the feed still builds but uses empty/relative URLs that most feed readers won't resolve. Also point feed readers at the file by adding it to their subscribe field as `https://your-domain.com/feed.rss`.
 
 ## Next Steps
 

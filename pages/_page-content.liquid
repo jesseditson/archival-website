@@ -24,7 +24,9 @@
 <div class="blog-grid" id="blog-grid">
   <div class="grid-sizer"></div>
   {% for post in posts %}
-    {% capture tag_classes %}{% for tag in post.tag %} tag-{{ tag.name | downcase | replace: ' ', '-' }}{% endfor %}{% endcapture %}
+    {% comment %} Dedupe tag class names so a duplicate tag entry doesn't emit `tag-foo tag-foo`. {% endcomment %}
+    {% assign seen_slugs = "" %}
+    {% capture tag_classes %}{% for tag in post.tag %}{% assign slug = tag.name | downcase | replace: ' ', '-' %}{% unless seen_slugs contains slug %}{% assign seen_slugs = seen_slugs | append: "," | append: slug %} tag-{{ slug }}{% endunless %}{% endfor %}{% endcapture %}
     {% capture tag_csv %}{% for tag in post.tag %}{{ tag.name }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
     <article class="post-card{{ tag_classes }}"
              data-path="{{post.path}}"

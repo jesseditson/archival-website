@@ -3,12 +3,12 @@
 <nav class="nav">
   <div class="container">
     <div class="brand">
-      {% if app.logo %}
+      {% if app.logo != blank %}
         <a href="/">
           <img
             class="app-logo"
             src="{{ app.logo.url }}"
-            alt="{{ app.name }} logo" />
+            alt="{{ app.name }}" />
         </a>
       {% endif %}
       <span class="app-name">
@@ -25,21 +25,21 @@
 <header class="hero">
   <div class="container">
     <div class="hero-statement">
-      <span class="supplement">Introducing</span>
+      {% if app.hero_supplement != blank %}<span class="supplement">{{ app.hero_supplement }}</span>{% endif %}
       <h1>{{ app.name }}</h1>
       <div class="download-options">
-        {% if app.appstore_download_link != empty %}
-          <a href="{{app.appstore_download_link}}">
-            <img class="app-store-download" src="images/app-store-black.svg" />
+        {% if app.appstore_download_link != blank %}
+          <a href="{{ app.appstore_download_link }}">
+            <img class="app-store-download" src="/images/app-store-black.svg" alt="Download on the App Store" />
           </a>
         {% endif %}
-        {% if app.playstore_download_link != empty %}
-          <a href="{{app.playstore_download_link}}">
-            <img class="play-store-download" src="images/play-store-black.svg" />
+        {% if app.playstore_download_link != blank %}
+          <a href="{{ app.playstore_download_link }}">
+            <img class="play-store-download" src="/images/play-store-black.svg" alt="Get it on Google Play" />
           </a>
         {% endif %}
-        {% if app.direct_download_link != empty %}
-          <a href="{{app.direct_download_link}}">
+        {% if app.direct_download_link != blank %}
+          <a href="{{ app.direct_download_link }}">
             <button class="button">Download</button>
           </a>
         {% endif %}
@@ -48,18 +48,18 @@
     {% if screenshots.size > 0 %}
       <div class="screenshots">
         {% for screenshot in screenshots %}
-          <div class="screenshot-container {{screenshot.frame}} {% unless forloop.first %}hidden{% endunless %}">
+          <div class="screenshot-container {{ screenshot.frame }} {% unless forloop.first %}hidden{% endunless %}">
             <img
               class="screenshot"
-              src="{{screenshot.image.url}}"
-              alt="{{screenshot.description}}" />
+              src="{{ screenshot.image.url }}"
+              alt="{{ screenshot.description }}" />
             <div class="screenshot-frame"></div>
           </div>
         {% endfor %}
         {% if screenshots.size > 1 %}
           <div class="screenshot-page-icons">
             {% for page in (1..screenshots.size) %}
-              <div data-page="{{page}}" class="screenshot-page-icon {% if forloop.first %}active{% endif %}"></div>
+              <div data-page="{{ page }}" class="screenshot-page-icon {% if forloop.first %}active{% endif %}"></div>
             {% endfor %}
           </div>
         {% endif %}
@@ -68,17 +68,17 @@
   </div>
 </header>
 
-<main class="container">
+<main id="main" class="container">
 
-  <h2>Features</h2>
+  {% if app.features_title != blank %}<h2>{{ app.features_title }}</h2>{% endif %}
 
   <section id="features" class="features-grid">
     {% for feature in features %}
       <div class="feature">
         <div
-          class="feature-icon {% if feature.icon %}has-image{% endif %}"
-          {% if feature.icon %}
-          style="background-image:url('{{feature.icon.url}}')"
+          class="feature-icon {% if feature.icon != blank %}has-image{% endif %}"
+          {% if feature.icon != blank %}
+          style="background-image:url('{{ feature.icon.url }}')"
           {% endif %}>
           {{ feature.emoji }}
         </div>
@@ -92,16 +92,16 @@
     {% endfor %}
   </section>
 
-  {% if support.email != "" or support.chat_link != "" %}
+  {% if support.email != blank or support.chat_link != blank %}
     <section id="support" class="support">
-      <h2>Need support?</h2>
+      {% if support.title != blank %}<h2>{{ support.title }}</h2>{% endif %}
       <div class="support-modules">
-        {% if support.email != empty %}
+        {% if support.email != blank %}
           <div class="email-support module">
-            <a href="mailto: {{ support.email }}">Send us an email &rarr;</a>
+            <a href="mailto:{{ support.email }}">Send us an email &rarr;</a>
           </div>
         {% endif %}
-        {% if support.chat_link != empty %}
+        {% if support.chat_link != blank %}
           <div class="chat-support module">
             <a href="{{ support.chat_link }}">Live chat support &rarr;</a>
           </div>

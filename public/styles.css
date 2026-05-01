@@ -16,6 +16,24 @@
   --typo-h2-size: 3rem;
 }
 
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--color-hero-background);
+  color: var(--color-hero-text);
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  z-index: 99999;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid var(--color-supplement);
+  outline-offset: -2px;
+}
+
 /* Reset */
 *,
 *::before,

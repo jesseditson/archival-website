@@ -1,5 +1,9 @@
 const AUTO_CYCLE_INTERVAL = 10000;
 
+const prefersReducedMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)"
+).matches;
+
 const windowPromise = new Promise((resolve) => {
   if (document.readyState === "loading") {
     // Loading hasn't finished yet
@@ -60,17 +64,19 @@ windowPromise.then(() => {
     }
   });
 
-  const cycleInterval = setInterval(() => {
-    let nextPage = currentPage + 1;
-    if (nextPage === totalPages) {
-      nextPage = 0;
-    }
-    showPage(nextPage);
-  }, AUTO_CYCLE_INTERVAL);
+  const cycleInterval = prefersReducedMotion
+    ? null
+    : setInterval(() => {
+        let nextPage = currentPage + 1;
+        if (nextPage === totalPages) {
+          nextPage = 0;
+        }
+        showPage(nextPage);
+      }, AUTO_CYCLE_INTERVAL);
 });
 
 const animationTiming = {
-  duration: 400,
+  duration: prefersReducedMotion ? 0 : 400,
   iterations: 1,
   easing: "ease-in-out",
 };

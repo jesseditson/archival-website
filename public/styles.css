@@ -97,15 +97,6 @@ a {
   gap: 2rem;
 }
 
-.nav-toggle {
-  display: none;
-  font-size: 2rem;
-  color: var(--color-hero-text);
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
 a.nav-item {
   color: var(--color-hero-text);
   opacity: 0.8;

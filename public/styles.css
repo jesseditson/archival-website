@@ -357,14 +357,19 @@ p {
 
 .feature-icon {
   font-size: 2rem;
+  line-height: 1;
   margin-right: 2rem;
   align-self: flex-start;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
   &.has-image {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    width: 6rem;
-    height: 2rem;
   }
 }
 

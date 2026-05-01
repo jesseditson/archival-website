@@ -3,14 +3,12 @@
     <div class="footer-grid">
       <div class="footer-col footer-brand">
         <a href="/" class="footer-brand-link">
-          {% assign show_footer_logo = false %}
-          {% if objects.site.logo %}{% if objects.site.logo.url != "" %}{% assign show_footer_logo = true %}{% endif %}{% endif %}
-          {% if show_footer_logo %}
+          {% if objects.site.logo != blank %}
             <img src="{{ objects.site.logo.url }}" alt="{{ objects.site.name }}" class="footer-brand-logo">
           {% else %}
             <span class="footer-brand-name">{{ objects.site.name }}</span>
           {% endif %}
-          {% if objects.site.tagline %}
+          {% if objects.site.tagline != blank %}
             <span class="footer-brand-tagline">{{ objects.site.tagline }}</span>
           {% endif %}
         </a>
@@ -18,11 +16,13 @@
 
       <div class="footer-col">
         <h4>Visit</h4>
-        <p>{{ objects.contact.address | replace_first: ", ", "<br>" }}</p>
-        {% if objects.contact.phone %}
+        {% if objects.contact.address != blank %}
+          <p>{{ objects.contact.address | replace_first: ", ", "<br>" }}</p>
+        {% endif %}
+        {% if objects.contact.phone != blank %}
           <p><a href="tel:{{ objects.contact.phone | remove: '(' | remove: ')' | remove: ' ' | remove: '-' }}">{{ objects.contact.phone }}</a></p>
         {% endif %}
-        {% if objects.contact.email %}
+        {% if objects.contact.email != blank %}
           <p><a href="mailto:{{ objects.contact.email }}">{{ objects.contact.email }}</a></p>
         {% endif %}
       </div>
@@ -38,11 +38,11 @@
 
       <div class="footer-col">
         <h4>Connect</h4>
-        {% if objects.contact.instagram %}
+        {% if objects.contact.instagram != blank %}
           {% assign ig_handle = objects.contact.instagram | remove: '@' %}
           <p><a href="https://instagram.com/{{ ig_handle }}" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram">Instagram</a></p>
         {% endif %}
-        {% if objects.site.reservation_url %}
+        {% if objects.site.reservation_url != blank %}
           <p><a href="{{ objects.site.reservation_url }}" target="_blank" rel="noopener noreferrer">Reservations</a></p>
         {% endif %}
       </div>

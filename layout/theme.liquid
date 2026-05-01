@@ -1,22 +1,45 @@
+{% assign site_name = objects.site.name %}
+{% if title != blank %}
+  {% assign page_title = title | append: " — " | append: site_name %}
+{% else %}
+  {% assign page_title = site_name %}
+{% endif %}
+{% if objects.site.og_image != blank %}
+  {% assign og_image_url = objects.site.og_image.url %}
+{% elsif objects.site.hero_image != blank %}
+  {% assign og_image_url = objects.site.hero_image.url %}
+{% endif %}
+{% assign meta_description = objects.site.description | strip_html | strip_newlines | truncate: 160 %}
+{% capture jsonld_name %}{{ objects.site.name | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+{% capture jsonld_desc %}{{ meta_description | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+{% capture jsonld_address %}{{ objects.contact.address | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+{% capture jsonld_phone %}{{ objects.contact.phone | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
 <!doctype html>
 <html lang="en">
 
   <head>
     <meta charset="utf-8">
-    <title>{% if title %}{{ title }} — {{ objects.site.name }}{% else %}{{ objects.site.name }}{% endif %}</title>
-    <meta name="description" content="{{ objects.site.description | strip_html | strip_newlines | truncate: 160 }}">
+    <title>{{ page_title }}</title>
+    <meta name="description" content="{{ meta_description }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     {% assign words = objects.site.name | split: " " %}{% assign initials = "" %}{% if words.size == 1 %}{% assign initials = words[0] | slice: 0, 2 | upcase %}{% else %}{% for word in words limit: 2 %}{% assign letter = word | slice: 0, 1 | upcase %}{% assign initials = initials | append: letter %}{% endfor %}{% endif %}{% assign initials = initials | replace: "&", "" | replace: "<", "" | replace: ">", "" | replace: "'", "" | replace: '"', "" %}
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='bold' font-size='13' fill='%23e5ff00'%3E{{ initials }}%3C/text%3E%3C/svg%3E">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="{{ objects.site.name }}">
-    <meta property="og:description" content="{{ objects.site.description | strip_html | strip_newlines | truncate: 160 }}">
+    <meta property="og:title" content="{{ page_title }}">
+    <meta property="og:description" content="{{ meta_description }}">
     <meta property="og:type" content="website">
-    {% if objects.site.hero_image %}{% if objects.site.hero_image.url != "" %}
-    <meta property="og:image" content="{{ objects.site.hero_image.url }}">
-    {% endif %}{% endif %}
+    <meta property="og:site_name" content="{{ site_name }}">
+    {% if og_image_url != blank %}
+    <meta property="og:image" content="{{ og_image_url }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="{{ og_image_url }}">
+    {% else %}
+    <meta name="twitter:card" content="summary">
+    {% endif %}
+    <meta name="twitter:title" content="{{ page_title }}">
+    <meta name="twitter:description" content="{{ meta_description }}">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,6 +48,19 @@
 
     <!-- Theme CSS -->
     <link rel="stylesheet" href="/style/theme.css">
+
+    <!-- Schema.org Restaurant -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "{{ jsonld_name }}"
+        {%- if meta_description != blank -%}, "description": "{{ jsonld_desc }}"{%- endif -%}
+        {%- if og_image_url != blank -%}, "image": "{{ og_image_url }}"{%- endif -%}
+        {%- if objects.contact.address != blank -%}, "address": "{{ jsonld_address }}"{%- endif -%}
+        {%- if objects.contact.phone != blank -%}, "telephone": "{{ jsonld_phone }}"{%- endif -%}
+      }
+    </script>
   </head>
 
   <body>
@@ -39,19 +75,50 @@
     {% include 'footer' %}
 
     <!-- Lightbox -->
-    <div class="lightbox" id="lightbox" onclick="this.classList.remove('lightbox-open')">
+    <div class="lightbox" id="lightbox" role="dialog" aria-label="Image preview" aria-hidden="true">
       <img class="lightbox-img" id="lightbox-img" src="" alt="">
     </div>
     <script>
-      document.querySelectorAll('.polaroid img').forEach(function(img) {
-        img.style.cursor = 'pointer';
-        img.addEventListener('click', function() {
-          var lb = document.getElementById('lightbox');
-          document.getElementById('lightbox-img').src = this.src;
-          document.getElementById('lightbox-img').alt = this.alt;
+      (function () {
+        var lb = document.getElementById('lightbox');
+        var lbImg = document.getElementById('lightbox-img');
+
+        function openLightbox(src, alt) {
+          lbImg.src = src;
+          lbImg.alt = alt || '';
           lb.classList.add('lightbox-open');
+          lb.setAttribute('aria-hidden', 'false');
+        }
+        function closeLightbox() {
+          lb.classList.remove('lightbox-open');
+          lb.setAttribute('aria-hidden', 'true');
+        }
+
+        document.querySelectorAll('.polaroid img').forEach(function (img) {
+          img.style.cursor = 'pointer';
+          img.addEventListener('click', function () {
+            openLightbox(this.src, this.alt);
+          });
         });
-      });
+        lb.addEventListener('click', closeLightbox);
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && lb.classList.contains('lightbox-open')) {
+            closeLightbox();
+          }
+        });
+
+        // Sync aria-expanded on the mobile nav toggle
+        var navToggle = document.getElementById('nav-toggle');
+        var navLabel = document.querySelector('label[for="nav-toggle"].nav-toggle');
+        if (navToggle && navLabel) {
+          navLabel.setAttribute('role', 'button');
+          navLabel.setAttribute('aria-expanded', 'false');
+          navLabel.setAttribute('aria-controls', 'site-nav');
+          navToggle.addEventListener('change', function () {
+            navLabel.setAttribute('aria-expanded', navToggle.checked ? 'true' : 'false');
+          });
+        }
+      })();
     </script>
   </body>
 

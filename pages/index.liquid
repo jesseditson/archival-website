@@ -49,7 +49,7 @@
 </header>
 
 <section class="image-carousel-section">
-  <div class="image-carousel" id="imageCarousel">
+  <div class="image-carousel" id="imageCarousel" role="region" aria-roledescription="carousel" aria-label="Screenshots">
     <div class="carousel-track" id="carouselTrack">
       {% for screenshot in screenshots %}
       <div class="carousel-slide {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}">

@@ -23,6 +23,9 @@ email = "string"
 [resume]
 file = "upload"
 
+[seo]
+og_image = "image"
+
 [work]
 title = "string"
 description = "markdown"

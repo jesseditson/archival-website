@@ -9,7 +9,13 @@
   <meta property="og:title" content="{{ objects.personal.name }} | {{ objects.personal.title }}">
   <meta property="og:description" content="{{ objects.personal.tagline }}">
   <meta property="og:type" content="profile">
+  {% if objects.seo.og_image != blank %}
+  <meta property="og:image" content="{{ objects.seo.og_image.url }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{{ objects.seo.og_image.url }}">
+  {% else %}
   <meta name="twitter:card" content="summary">
+  {% endif %}
   <meta name="twitter:title" content="{{ objects.personal.name }} | {{ objects.personal.title }}">
   <meta name="twitter:description" content="{{ objects.personal.tagline }}">
   <!-- Google Fonts -->

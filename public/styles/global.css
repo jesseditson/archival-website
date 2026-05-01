@@ -661,7 +661,7 @@ textarea {
   opacity: 0.5;
 }
 
-.footer-content p:last-child a {
+.footer-legal a {
   margin: 0 0.5rem;
 }
 
@@ -843,6 +843,9 @@ textarea {
 }
 
 /* ==================== 404 Page ==================== */
+/* Selectors scoped under #not-found so they outrank
+   .body-section > p which would otherwise re-style the .not-found-code
+   paragraph at body text size. */
 #not-found {
   text-align: center;
   padding: 4rem 1.5rem;
@@ -851,7 +854,7 @@ textarea {
   align-items: center;
   gap: 0.5rem;
 }
-.not-found-eyebrow {
+#not-found .not-found-eyebrow {
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -859,17 +862,17 @@ textarea {
   margin-bottom: 1rem;
   opacity: 0.6;
 }
-.not-found-code {
+#not-found .not-found-code {
   font-size: clamp(7rem, 22vw, 12rem);
   font-weight: 800;
   line-height: 1;
   margin-bottom: 1rem;
 }
-.not-found-title {
+#not-found .not-found-title {
   font-size: clamp(1.4rem, 3vw, 2rem);
   margin-bottom: 1rem;
 }
-.not-found-description {
+#not-found .not-found-description {
   max-width: 32rem;
   margin: 0 auto 2rem;
   line-height: 1.6;

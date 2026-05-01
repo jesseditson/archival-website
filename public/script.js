@@ -205,6 +205,13 @@ function setupPostObserver(postCards) {
 function initializePostViewer() {
     setupKeyboardNavigation();
     setupTouchNavigation();
+
+    const closeBtn = document.getElementById('viewer-close');
+    const prevBtn = document.getElementById('viewer-prev');
+    const nextBtn = document.getElementById('viewer-next');
+    if (closeBtn) closeBtn.addEventListener('click', closePostViewer);
+    if (prevBtn) prevBtn.addEventListener('click', () => navigatePostViewer(-1));
+    if (nextBtn) nextBtn.addEventListener('click', () => navigatePostViewer(1));
 }
 
 function animateMastheadTitle() {
@@ -316,8 +323,6 @@ function closePostViewer() {
     });
 }
 
-// Expose globally for onclick handlers
-window.closePostViewer = closePostViewer;
 
 function navigatePostViewer(direction) {
     const viewer = document.getElementById('post-viewer');
@@ -365,9 +370,6 @@ function navigatePostViewer(direction) {
         }
     });
 }
-
-// Expose globally
-window.navigatePostViewer = navigatePostViewer;
 
 function updateViewerInfo(shouldAnimate = true) {
     document.getElementById('viewer-current').textContent = currentPostIndex + 1;
@@ -516,7 +518,11 @@ function initializeThemeToggle() {
 function initializeIsotope() {
     const grid = document.querySelector('#blog-grid');
 
-    // Initialize Isotope with masonry layout
+    // Initialize Isotope with masonry layout. The .grid-sizer element
+    // (a zero-height sibling sized via CSS to match .post-card width)
+    // gives Isotope a stable column-width reference even before any
+    // post-card images have loaded, which fixes a class of layout bugs
+    // where the first card's pre-load width caused gaps or overlaps.
     iso = new Isotope(grid, {
         itemSelector: '.post-card',
         layoutMode: 'masonry',
@@ -531,9 +537,8 @@ function initializeIsotope() {
             transform: 'scale(1)'
         },
         masonry: {
-            columnWidth: '.post-card',
-            gutter: 24,
-            fitWidth: false
+            columnWidth: '.grid-sizer',
+            gutter: 24
         }
     });
 
@@ -600,8 +605,11 @@ function selectTag(selectedTag) {
         });
     }
 
-    // Filter using Isotope
-    const filterValue = selectedTag === 'all' ? '*' : `.tag-${selectedTag}`;
+    // Filter using Isotope. Slugify the selected tag so filter values
+    // match the .tag-* class names emitted by the template (which
+    // downcase + replace spaces with dashes).
+    const tagSlug = selectedTag.toLowerCase().replace(/\s+/g, '-');
+    const filterValue = selectedTag === 'all' ? '*' : `.tag-${tagSlug}`;
 
     // Temporarily disable transitions to prevent jitter
     iso.options.transitionDuration = 0;

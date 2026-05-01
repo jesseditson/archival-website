@@ -6,7 +6,7 @@ author = "Jane Doe"
 date = "March 18, 2026"
 cover_url = "/images/story-2.jpg"
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 Martha Colvin has been a public librarian for 22 years. She has weathered budget cuts, a pandemic that closed her building for fourteen months, and the slow erosion of public funding that has left her branch operating with half the staff it had a decade ago.

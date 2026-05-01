@@ -6,7 +6,7 @@ author = "Jane Doe"
 date = "March 11, 2026"
 cover_url = "/images/story-5.jpg"
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 In the commune of Saint-Lunaire, a seaside town of 2,300 on the Brittany coast, the Wi-Fi goes dark at ten o'clock every night. Not in every household — participation is voluntary — but in enough of them that the effect is unmistakable. By half past ten, the streets are quiet. By eleven, the town is asleep.

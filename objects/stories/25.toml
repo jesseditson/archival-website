@@ -6,7 +6,7 @@ author = "John Smith"
 date = "March 12, 2026"
 cover_url = "/images/story-2.jpg"
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 I have spent the better part of my adult life in places where people were trying to kill each other. I have filed dispatches from four continents, been evacuated from two cities, and watched two colleagues die. I have also, I believe, misled my readers in systematic and important ways — not through dishonesty, but through the logic of the form.

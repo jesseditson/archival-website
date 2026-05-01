@@ -6,7 +6,7 @@ author = "Jane Doe"
 date = "March 9, 2026"
 cover_url = "/images/story-7.jpg"
 image_caption = "Children playing in a Barcelona superblock"
-featured = ""
+featured = false
 
 body = """
 On a Tuesday morning in Barcelona's Eixample district, a scene that would have been unthinkable five years ago: children kicking a soccer ball across what used to be a four-lane intersection. Where cars once idled in traffic, there are now planters, benches, and a small playground.

@@ -6,7 +6,7 @@ author = "Jane Doe"
 date = "March 22, 2026"
 cover_url = "/images/story-5.jpg"
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 Every liter of seawater contains the genetic traces of every organism that has recently passed through it: shed skin cells, mucus, feces, decomposing tissue. This environmental DNA, or eDNA, persists in the water column for hours to days before it degrades. During that window, it is, in principle, readable.

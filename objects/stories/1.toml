@@ -6,7 +6,7 @@ author = "Jane Doe"
 date = "March 15, 2026"
 cover_url = "/images/story-1.jpg"
 image_caption = "Voters gather at a town hall in rural Pennsylvania"
-featured = "yes"
+featured = true
 
 body = """
 The fluorescent lights of the community center hummed overhead as two dozen residents of this small Pennsylvania town filed into folding chairs arranged in a circle. They had come not to debate, but to listen.

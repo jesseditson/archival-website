@@ -6,7 +6,7 @@ author = "Jane Doe"
 date = "March 9, 2026"
 cover_url = "/images/story-6.jpg"
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 Three years ago, running a large-scale foreign influence operation required significant infrastructure: server farms, human operators fluent in the target language, teams to create and maintain fake social media personas, and resources to promote content at scale. It was expensive. It left traces. Intelligence agencies had learned to find those traces.

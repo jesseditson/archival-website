@@ -2,14 +2,14 @@
   , page: 'home' %}
 
 {% for story in stories %}
-  {% if story.featured == "yes" %}
+  {% if story.featured %}
     <div class="front-page">
       <article class="featured-story">
         <div class="featured-image-wrap">
           <a href="{{ story.path }}.html">
-            {% if story.image %}
+            {% if story.image != blank %}
               <img class="featured-image" src="{{ story.image.url }}" alt="{{ story.image_caption }}">
-            {% elsif story.cover_url != empty %}
+            {% elsif story.cover_url != blank %}
               <img class="featured-image" src="{{ story.cover_url }}" alt="{{ story.image_caption }}">
             {% else %}
               <div class="image-placeholder featured-image-placeholder" data-section="{{ story.section | downcase }}"><span class="image-placeholder-text">{{ story.section }}</span></div>
@@ -40,12 +40,12 @@
 <div class="front-page">
   <div class="story-grid">
     {% for story in stories %}
-      {% if story.featured != "yes" %}
+      {% unless story.featured %}
         <article class="story-card">
           <a href="{{ story.path }}.html">
-            {% if story.image %}
+            {% if story.image != blank %}
               <img class="story-card-image" src="{{ story.image.url }}" alt="{{ story.image_caption }}">
-            {% elsif story.cover_url != empty %}
+            {% elsif story.cover_url != blank %}
               <img class="story-card-image" src="{{ story.cover_url }}" alt="{{ story.image_caption }}">
             {% else %}
               <div class="image-placeholder story-card-image-placeholder" data-section="{{ story.section | downcase }}"><span class="image-placeholder-text">{{ story.section }}</span></div>
@@ -65,7 +65,7 @@
             By {{ story.author }} &middot; {{ story.date }} &middot; {{ reading_time }} min read
           </p>
         </article>
-      {% endif %}
+      {% endunless %}
     {% endfor %}
   </div>
   <div class="load-more-sentinel" id="load-more-sentinel">

@@ -6,7 +6,7 @@ author = "Jane Doe"
 date = "March 1, 2026"
 cover_url = "/images/story-6.jpg"
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 For eleven days, the floor of the United States Senate has been the site of something increasingly rare: sustained, genuine negotiation. Senators from both parties have been seen lingering in hallways, ducking into each other's offices, and breaking for extended lunches at the Capitol Hill Club. The subject is a $940 billion infrastructure package that, depending on who you ask, is either a generational investment or a fiscal catastrophe.

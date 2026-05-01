@@ -6,7 +6,7 @@ author = "John Smith"
 date = "March 20, 2026"
 cover_url = "/images/story-3.jpg"
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 Before you object: I am not arguing that the 90-minute crawl in gridlock traffic is good for you. It is not. I am making a narrower claim, which is that the transit commute — train, bus, subway, ferry — performed a set of social and psychological functions that we did not fully understand until the work-from-home transition revealed their absence.

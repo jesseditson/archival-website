@@ -6,7 +6,7 @@ author = "Jane Doe"
 date = "March 13, 2026"
 cover_url = "/images/story-3.jpg"
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 The last full-time employee of Harwick Township, population 1,840, retired in November. The township no longer has a clerk, a treasurer, or an administrative office of its own. Its functions — road maintenance, permit processing, tax assessment — have been absorbed by the county. The township still exists on paper. For most practical purposes, it does not exist at all.

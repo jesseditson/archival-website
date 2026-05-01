@@ -6,7 +6,7 @@ author = "John Smith"
 date = "March 24, 2026"
 cover_url = "/images/story-1.jpg"
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 Mirela Voss's last film, "Still Water," runs 104 minutes and contains 23 lines of dialogue. There is no score. There are no chase sequences, no romantic arcs, no scenes in which characters explain their feelings to each other. What there is, for the duration, is an elderly man restoring a wooden boat in a shed in Nova Scotia, in real time, with occasional departures to watch the light change over the water.

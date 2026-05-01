@@ -6,7 +6,7 @@ author = "Jane Doe"
 date = "March 11, 2026"
 cover_url = "/images/story-1.jpg"
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 In the high desert of New Mexico, 263 radio telescope dishes are being trained on a patch of sky that, to the naked eye, contains nothing remarkable. What they are seeing, according to a paper published last week in Nature Astronomy, is a galaxy that should not, by current models, exist: a fully formed, rapidly star-forming system at a redshift of 12.4, meaning we are observing it as it existed roughly 400 million years after the Big Bang.

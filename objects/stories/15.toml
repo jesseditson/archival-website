@@ -6,7 +6,7 @@ author = "John Smith"
 date = "March 2, 2026"
 cover_url = "/images/story-7.jpg"
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 The shelves at Turnstile Records in Chicago's Logan Square neighborhood are stacked floor to ceiling with vinyl. On a Saturday afternoon, the store is packed — but not, notably, with the middle-aged men who dominated its early years. Today's crowd skews younger, louder, and considerably less reverent about genre purity. A 22-year-old in a vintage Radiohead shirt is flipping through a Bachata crate. Two teenagers are debating the merits of a original pressing of Fleetwood Mac's "Rumours" they clearly cannot afford.

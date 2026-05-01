@@ -1,49 +1,93 @@
+{% assign site_name = publication.name %}
+{% if title != blank %}
+  {% assign page_title = title | append: " — " | append: site_name %}
+{% else %}
+  {% assign page_title = site_name %}
+{% endif %}
+{% assign og_image_url = "" %}
+{% if publication.og_image != blank %}
+  {% assign og_image_url = publication.og_image.url %}
+{% endif %}
+{% assign social_description = publication.tagline %}
+{% if page == 'story-detail' and stories %}
+  {% if og_image_url == "" and stories.image != blank %}
+    {% assign og_image_url = stories.image.url %}
+  {% endif %}
+  {% if stories.subheadline != blank %}
+    {% assign social_description = stories.subheadline %}
+  {% endif %}
+{% endif %}
+{% capture jsonld_pub_name %}{{ publication.name | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+{% capture jsonld_pub_desc %}{{ publication.tagline | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+{% if page == 'story-detail' and stories %}
+  {% capture jsonld_headline %}{{ stories.headline | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+  {% capture jsonld_subhead %}{{ stories.subheadline | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+  {% capture jsonld_author %}{{ stories.author | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+{% endif %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{% if title.size > 0 %}{{ title }} — {% endif %}{{ publication.name }}</title>
-    <meta name="description" content="{{ publication.tagline }}">
+    <title>{{ page_title }}</title>
+    <meta name="description" content="{{ social_description }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta property="og:title" content="{% if title.size > 0 %}{{ title }} — {% endif %}{{ publication.name }}">
-    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ page_title }}">
+    <meta property="og:type" content="{% if page == 'story-detail' %}article{% else %}website{% endif %}">
+    <meta property="og:description" content="{{ social_description }}">
+    <meta property="og:site_name" content="{{ site_name }}">
+    {% if og_image_url != blank %}
+    <meta property="og:image" content="{{ og_image_url }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="{{ og_image_url }}">
+    {% else %}
+    <meta name="twitter:card" content="summary">
+    {% endif %}
+    <meta name="twitter:title" content="{{ page_title }}">
+    <meta name="twitter:description" content="{{ social_description }}">
 
     <script>
       (function(){var s=localStorage.getItem('theme');if(s==='dark'||(! s&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.setAttribute('data-theme','dark')}})();
     </script>
     <link rel="stylesheet" href="/styles.css">
 
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
     {% assign words = publication.name | split: " " %}{% assign initials = "" %}{% if words.size == 1 %}{% assign initials = words[0] | slice: 0, 2 | upcase %}{% else %}{% for word in words limit: 2 %}{% assign letter = word | slice: 0, 1 | upcase %}{% assign initials = initials | append: letter %}{% endfor %}{% endif %}{% assign initials = initials | replace: "&", "" | replace: "<", "" | replace: ">", "" | replace: "'", "" | replace: '"', "" %}
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='bold' font-size='13' fill='%23e5ff00'%3E{{ initials }}%3C/text%3E%3C/svg%3E">
+
+    <script type="application/ld+json">
+      {% if page == 'story-detail' and stories %}
+      {
+        "@context": "https://schema.org",
+        "@type": "NewsArticle",
+        "headline": "{{ jsonld_headline }}"
+        {%- if stories.subheadline != blank -%}, "description": "{{ jsonld_subhead }}"{%- endif -%}
+        {%- if stories.image != blank -%}, "image": "{{ stories.image.url }}"{%- endif -%}
+        {%- if stories.author != blank -%}, "author": { "@type": "Person", "name": "{{ jsonld_author }}" }{%- endif -%}
+        , "publisher": { "@type": "NewsMediaOrganization", "name": "{{ jsonld_pub_name }}" }
+      }
+      {% else %}
+      {
+        "@context": "https://schema.org",
+        "@type": "NewsMediaOrganization",
+        "name": "{{ jsonld_pub_name }}"
+        {%- if publication.tagline != blank -%}, "description": "{{ jsonld_pub_desc }}"{%- endif -%}
+        {%- if og_image_url != blank -%}, "image": "{{ og_image_url }}"{%- endif -%}
+      }
+      {% endif %}
+    </script>
   </head>
 
   <body class="{{ page }}">
+    <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <div class="header-inner">
-        <nav class="nav-sections">
+        <nav class="nav-sections" aria-label="Sections">
           {% unless active_section %}{% assign active_section = "" %}{% endunless %}
-          {% if sections.slug %}
-            {% assign nav_slugs_str = "" %}
-            {% for story in stories %}
-              {% assign nav_slug = story.section | downcase %}
-              {% assign slug_check = nav_slug | prepend: "," | append: "," %}
-              {% assign str_check = nav_slugs_str | prepend: "," %}
-              {% unless str_check contains slug_check %}
-                {% assign nav_slugs_str = nav_slugs_str | append: nav_slug | append: "," %}
-              {% endunless %}
-            {% endfor %}
-            {% assign nav_slugs = nav_slugs_str | split: "," | sort %}
-            {% assign active_slug = active_section | downcase %}
-            {% for slug in nav_slugs %}{% if slug != "" %}
-              <a class="nav-link{% if slug == active_slug %} nav-link--active{% endif %}" href="/sections/{{ slug }}.html">{{ slug | capitalize }}</a>
-            {% endif %}{% endfor %}
-          {% else %}
-            {% for section in sections %}
-              <a class="nav-link{% if section.name == active_section %} nav-link--active{% endif %}" href="/sections/{{ section.slug }}.html">{{ section.name }}</a>
-            {% endfor %}
-          {% endif %}
+          {% for section in objects.sections %}
+            <a class="nav-link{% if section.name == active_section %} nav-link--active{% endif %}" href="/sections/{{ section.slug }}.html">{{ section.name }}</a>
+          {% endfor %}
         </nav>
         <div class="masthead">
           <a href="/" class="masthead-link">
@@ -55,7 +99,7 @@
       </div>
     </header>
 
-    <main>
+    <main id="main">
       {{ page_content }}
     </main>
 

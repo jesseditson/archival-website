@@ -6,7 +6,7 @@ author = "John Smith"
 date = "March 23, 2026"
 cover_url = "/images/story-6.jpg"
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 Every two years, American political campaigns spend an aggregate of several billion dollars chasing a population that is, depending on the election cycle and how you measure it, somewhere between five and twelve percent of the electorate. These are the so-called undecided voters, the persuadables, the swing voters in swing districts in swing states. They are the obsessive focus of campaign strategy, polling methodology, and most of what passes for electoral analysis in the American media.

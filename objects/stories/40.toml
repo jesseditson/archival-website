@@ -6,7 +6,7 @@ author = "Jane Doe"
 date = "March 25, 2026"
 cover_url = ""
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 Three years ago, the Martinez family's ranch in the mountains of northern New Mexico had no broadband. Their children did schoolwork on a mobile hotspot that cost $80 a month and delivered, on a good day, 8 megabits per second. On bad days, it didn't deliver anything. Then they subscribed to a low-Earth orbit satellite service, installed the small dish that came in the mail, pointed it at the sky, and got 180 megabits per second for the first time in their lives.

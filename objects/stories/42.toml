@@ -6,7 +6,7 @@ author = "Jane Doe"
 date = "March 25, 2026"
 cover_url = "/images/story-3.jpg"
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 The congressional district maps that will govern the 2028 and 2030 election cycles are, in several states, being designed right now — three years before the next census triggers the official redistricting process. They are being designed not by humans drawing lines on paper, as in previous cycles, but by optimization algorithms running on high-performance computing clusters, generating and evaluating millions of possible configurations against criteria that their operators select.

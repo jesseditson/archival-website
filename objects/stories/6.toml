@@ -6,7 +6,7 @@ author = "John Smith"
 date = "March 10, 2026"
 cover_url = "/images/story-6.jpg"
 image_caption = "The research vessel Falkor at sea"
-featured = ""
+featured = false
 
 body = """
 Beneath the surface of the Pacific Ocean, three miles down, there are mountains taller than the Alps and canyons deeper than the Grand Canyon. Most of them don't have names. Many have never been seen.

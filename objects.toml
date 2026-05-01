@@ -4,8 +4,7 @@
 [publication]
 name = "string"
 tagline = "string"
-logo = "image"
-copyright_year = "string"
+og_image = "image"
 
 [sections]
 template = "section"
@@ -29,5 +28,5 @@ date = "string"
 image = "image"
 cover_url = "string"
 image_caption = "string"
-featured = "string"
+featured = "boolean"
 body = "markdown"

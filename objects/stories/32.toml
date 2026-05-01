@@ -6,7 +6,7 @@ author = "Jane Doe"
 date = "March 19, 2026"
 cover_url = "/images/story-2.jpg"
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 When Dr. Angela Reyes reviewed the AI-generated differential diagnosis that appeared in her hospital's electronic health record system last October, she noticed something wrong. The algorithm had ranked a common benign condition at the top of the list for a patient whose presentation, to an experienced clinician, clearly pointed elsewhere. The system had been trained, she later learned, on a patient population that differed significantly from her hospital's demographics. No one had told her this.

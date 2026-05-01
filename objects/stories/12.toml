@@ -6,7 +6,7 @@ author = "John Smith"
 date = "March 13, 2026"
 cover_url = "/images/story-4.jpg"
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 On a Tuesday morning in March, sixteen-year-old Sofia Reyes straps on a dive mask and slips backward off the gunwale of a research boat into the warm, clear water of the Florida Keys National Marine Sanctuary. Twenty feet below, a lattice of PVC pipe holds dozens of small coral fragments, each one no larger than a thumbnail, each one growing.

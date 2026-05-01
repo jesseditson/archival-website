@@ -6,7 +6,7 @@ author = "Jane Doe"
 date = "March 24, 2026"
 cover_url = "/images/story-7.jpg"
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 The Federal Lobbying Transparency and Reform Act, which its sponsors introduced with considerable fanfare in January, has been in the Senate Judiciary Committee for nine weeks. In that time, it has been the subject of 23 registered lobbying contacts from advocacy firms that would be directly affected by its provisions. Three of the bill's co-sponsors have received campaign contributions from political action committees associated with lobbying industry groups since the legislation was introduced.

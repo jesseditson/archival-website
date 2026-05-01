@@ -6,7 +6,7 @@ author = "John Smith"
 date = "March 20, 2026"
 cover_url = "/images/story-1.jpg"
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 At 11:14 on a Friday evening, the NightJet from Vienna pulls into platform 3 at Zurich Hauptbahnhof. A handful of passengers in rumpled clothing step onto the platform, blinking under the fluorescent lights, dragging rolling bags behind them. They went to sleep in Austria. They woke up in Switzerland.

@@ -30,9 +30,9 @@
         <article class="section-lead-story">
           <div class="section-lead-image-wrap">
             <a href="/{{ story.path }}.html">
-              {% if story.image %}
+              {% if story.image != blank %}
                 <img class="section-lead-image" src="{{ story.image.url }}" alt="{{ story.image_caption }}">
-              {% elsif story.cover_url != empty %}
+              {% elsif story.cover_url != blank %}
                 <img class="section-lead-image" src="{{ story.cover_url }}" alt="{{ story.image_caption }}">
               {% else %}
                 <div class="image-placeholder section-lead-image-placeholder" data-section="{{ story.section | downcase }}"><span class="image-placeholder-text">{{ story.section }}</span></div>
@@ -67,9 +67,9 @@
           {% if match_index > 0 %}
             <article class="story-card">
               <a href="/{{ story.path }}.html">
-                {% if story.image %}
+                {% if story.image != blank %}
                   <img class="story-card-image" src="{{ story.image.url }}" alt="{{ story.image_caption }}">
-                {% elsif story.cover_url != empty %}
+                {% elsif story.cover_url != blank %}
                   <img class="story-card-image" src="{{ story.cover_url }}" alt="{{ story.image_caption }}">
                 {% else %}
                   <div class="image-placeholder story-card-image-placeholder" data-section="{{ story.section | downcase }}"><span class="image-placeholder-text">{{ story.section }}</span></div>

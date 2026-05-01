@@ -6,7 +6,7 @@ author = "John Smith"
 date = "March 16, 2026"
 cover_url = "/images/story-6.jpg"
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 Here is a sentence you will read in some form several times a week: "The economy added 180,000 jobs last month, and unemployment remained at 4.1 percent." Here is something that sentence does not tell you: whether the jobs pay enough to live on, whether the people taking them feel secure in them, whether the people who are counted as employed are working as many hours as they want, or whether the people counted as not-unemployed have simply stopped looking because they could not find anything.

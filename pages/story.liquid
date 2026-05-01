@@ -31,14 +31,14 @@
     </p>
   </header>
 
-  {% if stories.image %}
+  {% if stories.image != blank %}
     <div class="story-hero-image">
       <img src="{{ stories.image.url }}" alt="{{ stories.image_caption }}">
     </div>
     {% if stories.image_caption.size > 0 %}
       <p class="story-image-caption">{{ stories.image_caption }}</p>
     {% endif %}
-  {% elsif stories.cover_url != empty %}
+  {% elsif stories.cover_url != blank %}
     <div class="story-hero-image">
       <img src="{{ stories.cover_url }}" alt="{{ stories.image_caption }}">
     </div>

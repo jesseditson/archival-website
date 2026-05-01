@@ -6,7 +6,7 @@ author = "Jane Doe"
 date = "March 5, 2026"
 cover_url = "/images/story-3.jpg"
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 For most of the past thirty years, the governor's office in this high-desert state has been as safely Republican as a seat can be. The incumbent party has won the last seven cycles by margins ranging from comfortable to overwhelming. Political strategists from both parties treat it as background noise — a state worth visiting for fundraising but not for genuine competition.

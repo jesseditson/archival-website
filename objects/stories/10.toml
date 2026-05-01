@@ -6,7 +6,7 @@ author = "Jane Doe"
 date = "March 17, 2026"
 cover_url = "/images/story-3.jpg"
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 When David Park installed a Ring doorbell at his apartment in Seattle, he assumed it would record his front door. He did not expect it to pick up conversations from the hallway, the elevator, and — thanks to a quirk of the building's acoustics — his neighbor's living room.

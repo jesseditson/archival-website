@@ -6,7 +6,7 @@ author = "John Smith"
 date = "March 22, 2026"
 cover_url = ""
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 Sofia Reyes published her debut novel last fall to reviews that used words like "audacious" and "formally inventive" and "unafraid of reader discomfort." What the reviews did not mention, and what Reyes declined to volunteer, was that she had written more than three million words of fan fiction before she wrote the novel. She started at fourteen on Archive of Our Own, writing in the universes of television shows she loved, with character voices she borrowed and then remade. By the time she turned twenty-six, she had finished a work of wholly original fiction.

@@ -6,7 +6,7 @@ author = "John Smith"
 date = "March 16, 2026"
 cover_url = ""
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 There is a scene that plays out in conference rooms, faculty meetings, and city council chambers across the country, so often that we barely notice it anymore. A proposal is made. A few heads nod. Someone asks a mild clarifying question. The proposal is adopted.

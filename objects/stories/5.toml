@@ -6,7 +6,7 @@ author = "Jane Doe"
 date = "March 11, 2026"
 cover_url = "/images/story-5.jpg"
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 When was the last time you talked to someone for three hours straight? Not a meeting. Not a phone call squeezed between errands. A real conversation — the kind that wanders, circles back, and leaves you thinking differently about something you thought you understood.

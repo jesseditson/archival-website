@@ -6,7 +6,7 @@ author = "John Smith"
 date = "March 4, 2026"
 cover_url = "/images/story-2.jpg"
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 Let me say plainly what political scientists have been saying in hedged academic language for twenty years: the American primary system is a disaster, and everyone in a position to fix it has a vested interest in not fixing it. This is not a partisan observation. The structural incentives that produce extremist nominees and unrepresentative outcomes apply equally to both parties. The problem is the architecture, not the inhabitants.

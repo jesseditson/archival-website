@@ -6,7 +6,7 @@ author = "Jane Doe"
 date = "March 3, 2026"
 cover_url = "/images/story-1.jpg"
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 In a clean room outside Tokyo, researchers at QuantaCell are running a test that would have been impossible three years ago. A solid-state battery the size of a deck of cards has been cycling — charging and discharging — continuously for eight months. At 2,200 cycles, it retains 94 percent of its original capacity. By the standards of current lithium-ion technology, this is extraordinary. By the standards QuantaCell has set for itself, it is merely a starting point.

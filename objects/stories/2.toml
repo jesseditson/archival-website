@@ -6,7 +6,7 @@ author = "John Smith"
 date = "March 14, 2026"
 cover_url = "/images/story-2.jpg"
 image_caption = "A reader at Powell's Books in Portland, Oregon"
-featured = ""
+featured = false
 
 body = """
 Every decade or so, someone writes the eulogy for the novel. The attention economy, the streaming wars, the infinite scroll — surely this time the long-form narrative is finished.

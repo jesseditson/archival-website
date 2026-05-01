@@ -6,7 +6,7 @@ author = "Jane Doe"
 date = "March 21, 2026"
 cover_url = "/images/story-4.jpg"
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 The water bill for a family of four in Bridgemont, New Jersey has increased 61 percent over the past four years. The utility serving the city, Aqua America Mid-Atlantic, submitted a rate case in January requesting an additional 22 percent increase over the next three years. The state's Board of Public Utilities has scheduled hearings. The hearings are expected to take a year.

@@ -6,7 +6,7 @@ author = "John Smith"
 date = "March 18, 2026"
 cover_url = "/images/story-1.jpg"
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 The waiting list at Earthbound Studio in Portland has 340 people on it. The average wait for a spot in a beginner wheel-throwing class is four months. The studio's owner, Keiko Mori, added two kilns in 2024 and is considering a third. She still cannot keep up with demand.

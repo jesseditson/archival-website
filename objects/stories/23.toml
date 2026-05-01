@@ -6,7 +6,7 @@ author = "John Smith"
 date = "March 10, 2026"
 cover_url = "/images/story-7.jpg"
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 The obituaries for the literary magazine have been written many times. In the early days of the internet, it was hyperlinks that would kill it. Then it was the attention economy. Then it was the collapse of print advertising. The Paris Review would not survive. The Kenyon Review would not survive. Ploughshares, Tin House, Zoetrope: all marked for extinction by people who were confidently wrong.

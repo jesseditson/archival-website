@@ -6,7 +6,7 @@ author = "Jane Doe"
 date = "March 15, 2026"
 cover_url = "/images/story-5.jpg"
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 The experiment began with a simple instruction: stop scrolling whenever you want to. Participants in a study at University College London were placed in an fMRI scanner and shown a simulated social media feed. They were told they could stop looking at any time with no consequence. Almost none of them did.

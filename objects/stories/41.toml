@@ -6,7 +6,7 @@ author = "John Smith"
 date = "March 25, 2026"
 cover_url = "/images/story-2.jpg"
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 The experts were wrong about Iraq. They were wrong, or at least silent, about the financial crisis. They were inconsistent about masks in the early months of the pandemic, overconfident about certain pharmaceutical interventions, and often contemptuous of the questions people were asking. The distrust of expert institutions that has spread across the American electorate is not irrational. It has causes. It has receipts.

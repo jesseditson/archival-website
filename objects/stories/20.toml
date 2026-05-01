@@ -6,7 +6,7 @@ author = "Jane Doe"
 date = "March 7, 2026"
 cover_url = ""
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 The maintainer of a widely used open-source logging library received 47 pull requests in February. In a typical month, he gets three or four. The difference, he quickly determined, was AI-generated code: submissions that were syntactically correct, plausibly relevant, and subtly wrong in ways that were sometimes immediately obvious and sometimes not.

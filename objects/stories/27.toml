@@ -6,7 +6,7 @@ author = "John Smith"
 date = "March 14, 2026"
 cover_url = "/images/story-4.jpg"
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 The pavilion at this year's Venice Architecture Biennale will not be there next year. That is the point. Designed by a collective of architects from Rotterdam, the structure — a hall of bent laminated timber and tensioned fabric, assembled without permanent fasteners — is explicitly intended to be dismantled, its components catalogued, and its materials reused in a community building project in rural Mozambique. Every design decision was made with disassembly in mind.

@@ -6,7 +6,7 @@ author = "John Smith"
 date = "March 8, 2026"
 cover_url = "/images/story-5.jpg"
 image_caption = ""
-featured = ""
+featured = false
 
 body = """
 I want to make an unfashionable argument: competent, undramatic, process-respecting governance is a profound public good, and we have spent the better part of a decade treating it like a failure of imagination. The hunger for disruption, for leaders who "tell it like it is" and "shake things up," has produced a great deal of shaking. The results are instructive.

@@ -1,19 +1,18 @@
-{% layout 'theme' active_page: "photos" %}
+{% layout 'theme' title: "", active_page: "photos" %}
 
 <!-- Photo gallery -->
 {% assign photo_count = 0 %}
 {% for photo in photos %}
-  {% if photo.file %}
+  {% if photo.file != blank %}
     {% assign photo_count = photo_count | plus: 1 %}
   {% endif %}
 {% endfor %}
 <div class="photo-gallery gallery-count-{{ photo_count }}" id="photo-gallery">
   {% for photo in photos %}
-    {% if photo.file %}
-      {% assign photo_src = photo.file.url | default: "#" %}
-      <div class="photo-item" data-index="{{ forloop.index0 }}" data-src="{{ photo_src }}" data-title="{{ photo.title }}">
+    {% if photo.file != blank %}
+      <div class="photo-item" data-index="{{ forloop.index0 }}" data-src="{{ photo.file.url }}" data-title="{{ photo.title }}">
         <div class="photo-wrapper">
-          <img src="{{ photo_src }}" alt="{{ photo.title }}" loading="lazy">
+          <img src="{{ photo.file.url }}" alt="{{ photo.title }}" loading="lazy">
           <div class="photo-overlay">
             <span class="photo-title">{{ photo.title }}</span>
           </div>
@@ -25,22 +24,22 @@
 
 <!-- Enhanced Lightbox -->
 <div id="lightbox" class="lightbox">
-  <div class="lightbox-backdrop" onclick="closeLightbox()"></div>
+  <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
 
-  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close lightbox">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close lightbox">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <line x1="18" y1="6" x2="6" y2="18"></line>
       <line x1="6" y1="6" x2="18" y2="18"></line>
     </svg>
   </button>
 
-  <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)" aria-label="Previous image">
+  <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous image">
     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <polyline points="15 18 9 12 15 6"></polyline>
     </svg>
   </button>
 
-  <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)" aria-label="Next image">
+  <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next image">
     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <polyline points="9 18 15 12 9 6"></polyline>
     </svg>
@@ -66,7 +65,7 @@
     </div>
   </div>
 
-  <button class="lightbox-fullscreen" onclick="toggleFullscreen()" aria-label="Toggle fullscreen">
+  <button class="lightbox-fullscreen" id="lightbox-fullscreen" aria-label="Toggle fullscreen">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
     </svg>

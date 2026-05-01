@@ -1,31 +1,65 @@
+{% assign site_name = site.name %}
+{% if title != blank %}
+  {% assign page_title = title | append: " — " | append: site_name %}
+{% else %}
+  {% assign page_title = site_name %}
+{% endif %}
+{% assign og_image_url = "" %}
+{% if site.og_image != blank %}
+  {% assign og_image_url = site.og_image.url %}
+{% endif %}
+{% capture jsonld_name %}{{ site.name | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+{% capture jsonld_desc %}{{ site.description | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
 <!doctype html>
-<html class="no-js" lang="">
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{{ site.name }}</title>
+    <title>{{ page_title }}</title>
     <meta name="description" content="{{ site.description }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta property="og:title" content="{{ site.name }}">
+    <meta property="og:title" content="{{ page_title }}">
     <meta property="og:type" content="website">
     <meta property="og:description" content="{{ site.description }}">
-    <!-- <meta property="og:url" content=""> -->
-    <!-- <meta property="og:image" content=""> -->
+    <meta property="og:site_name" content="{{ site_name }}">
+    {% if og_image_url != blank %}
+    <meta property="og:image" content="{{ og_image_url }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="{{ og_image_url }}">
+    {% else %}
+    <meta name="twitter:card" content="summary">
+    {% endif %}
+    <meta name="twitter:title" content="{{ page_title }}">
+    <meta name="twitter:description" content="{{ site.description }}">
 
-    {% comment %} <link rel="manifest" href="/site.webmanifest"> {% endcomment %}
-    <link rel="apple-touch-icon" href="/icon.png">
   {% assign words = site.name | split: " " %}{% assign initials = "" %}{% if words.size == 1 %}{% assign initials = words[0] | slice: 0, 2 | upcase %}{% else %}{% for word in words limit: 2 %}{% assign letter = word | slice: 0, 1 | upcase %}{% assign initials = initials | append: letter %}{% endfor %}{% endif %}{% assign initials = initials | replace: "&", "" | replace: "<", "" | replace: ">", "" | replace: "'", "" | replace: '"', "" %}
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='bold' font-size='13' fill='%23e5ff00'%3E{{ initials }}%3C/text%3E%3C/svg%3E">
 
     <link rel="stylesheet" href="/styles.css">
 
-    <meta name="theme-color" content="#1a1a1a">
+    <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "{{ jsonld_name }}"
+        {%- if site.description != blank -%}, "description": "{{ jsonld_desc }}"{%- endif -%}
+        {%- if og_image_url != blank -%}, "image": "{{ og_image_url }}"{%- endif -%}
+      }
+    </script>
   </head>
 
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <div class="container">
       <div class="header-wrapper">
-        <h1 class="masthead">{{ site.name }}</h1>
+        {% if active_page == "photos" %}
+          <h1 class="masthead"><a href="/">{{ site.name }}</a></h1>
+        {% else %}
+          <p class="masthead"><a href="/">{{ site.name }}</a></p>
+        {% endif %}
 
         <!-- Dark Mode Toggle -->
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
@@ -47,7 +81,7 @@
       </div>
 
       <!-- Navigation -->
-      <nav class="navigation">
+      <nav class="navigation" aria-label="Main">
         <ul>
           <li><a class="{% if active_page == "photos" %}active{% endif %}" href="/index.html">Photos</a></li>
           <li><a class="{% if active_page == "about" %}active{% endif %}" href="/about.html">About</a></li>
@@ -55,7 +89,9 @@
         </ul>
       </nav>
 
-      {{ page_content }}
+      <main id="main">
+        {{ page_content }}
+      </main>
     <footer class="site-footer">
       <span>&copy; {{ "now" | date: "%Y" }} {{ site.name }}. Powered by <a href="https://archival.dev">Archival</a>.</span>
     </footer>

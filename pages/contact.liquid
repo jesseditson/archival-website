@@ -1,6 +1,4 @@
-{% assign title = site.name | append: " | Contact" %}
-{% layout 'theme' title: title
-  , active_page: "contact" %}
+{% layout 'theme' title: "Contact", active_page: "contact" %}
 
 <!-- Contact Section -->
 <div class="contact-section">
@@ -27,27 +25,29 @@
           <input type="email" id="email" name="email" placeholder="john@example.com" required>
         </div>
 
-        <div class="form-group">
-          <label for="project-type">Project Type</label>
-          <select id="project-type" name="project-type" required>
-            <option value="">Select a project type</option>
-            {% assign project_types = contact.project_types | split: "," %}
-            {% for option in project_types %}
-              <option value="{{ option | downcase | url_encode }}">{{ option }}</option>
-            {% endfor %}
-          </select>
-        </div>
+        {% if contact.project_type.size > 0 %}
+          <div class="form-group">
+            <label for="project-type">Project Type</label>
+            <select id="project-type" name="project-type" required>
+              <option value="">Select a project type</option>
+              {% for option in contact.project_type %}
+                <option value="{{ option.name | downcase | url_encode }}">{{ option.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        {% endif %}
 
-        <div class="form-group">
-          <label for="budget">Budget Range</label>
-          <select id="budget" name="budget">
-            <option value="">Select budget range</option>
-            {% assign budgets = contact.budgets | split: "/" %}
-            {% for option in budgets %}
-            <option value="{{ option | downcase | url_encode }}">{{ option }}</option>
-            {% endfor %}
-          </select>
-        </div>
+        {% if contact.budget.size > 0 %}
+          <div class="form-group">
+            <label for="budget">Budget Range</label>
+            <select id="budget" name="budget">
+              <option value="">Select budget range</option>
+              {% for option in contact.budget %}
+                <option value="{{ option.name | downcase | url_encode }}">{{ option.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        {% endif %}
 
         <div class="form-group full-width">
           <label for="message">Tell Me About Your Project</label>
@@ -63,26 +63,28 @@
 
     <!-- Contact Info -->
     <div class="contact-info-wrapper">
-      <div class="contact-info-card animate-on-scroll">
-        <h3>Get In Touch</h3>
-        <div class="contact-methods">
-          {% for method in contact.contact_method %}
-            <div class="contact-method">
-              <div class="method-icon">{{ method.icon }}</div>
-              <div class="method-details">
-                <h4>{{ method.label }}</h4>
-                {% if method.url %}
-                  <a href="{{ method.url }}">{{ method.value }}</a>
-                {% else %}
-                  <p>{{ method.value }}</p>
-                {% endif %}
+      {% if contact.contact_method.size > 0 %}
+        <div class="contact-info-card animate-on-scroll">
+          <h3>Get In Touch</h3>
+          <div class="contact-methods">
+            {% for method in contact.contact_method %}
+              <div class="contact-method">
+                <div class="method-icon">{{ method.icon }}</div>
+                <div class="method-details">
+                  <h4>{{ method.label }}</h4>
+                  {% if method.url != blank %}
+                    <a href="{{ method.url }}">{{ method.value }}</a>
+                  {% else %}
+                    <p>{{ method.value }}</p>
+                  {% endif %}
+                </div>
               </div>
-            </div>
-          {% endfor %}
+            {% endfor %}
+          </div>
         </div>
-      </div>
+      {% endif %}
 
-      {% if social_links and social_links.size > 0 %}
+      {% if contact.social.size > 0 %}
         <div class="social-links-card animate-on-scroll">
           <h3>Follow My Work</h3>
           <div class="social-links">
@@ -109,7 +111,7 @@
   </div>
 
   <!-- FAQ Section -->
-  {% if faq_items and faq_items.size > 0 %}
+  {% if contact.faq.size > 0 %}
     <div class="faq-section animate-on-scroll">
       <h3 class="content-title">Frequently Asked Questions</h3>
       <div class="faq-list">

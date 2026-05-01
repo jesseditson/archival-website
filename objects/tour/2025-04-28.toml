@@ -2,4 +2,4 @@ date = 2026-06-21T00:00:00
 location = "Denver, CO"
 venue = "Globe Hall"
 tickets_available = true
-ticket_url = "#"
+ticket_url = ""

@@ -1,6 +1,9 @@
 [band]
 name = "string"
+description = "string"
 image = "image"
+og_image = "image"
+merch_url = "string"
 
 [release]
 image = "image"

@@ -199,5 +199,5 @@ If you have any questions about this Privacy Policy, You can contact us:
 - By email: {{app.legal_email}}
 {% endif %}
 
-- By visiting this page on our website: [{{site_url}}/privacy]({{site_url}}/privacy.html)
+- By visiting this page on our website: [/privacy](/privacy.html)
 """

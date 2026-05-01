@@ -1,12 +1,13 @@
 name = "Mobile App Name"
 author = "Your Name"
 description = "A short description of your app"
-appstore_download_link = "#"
-playstore_download_link = "#"
-direct_download_link = "#"
+hero_supplement = "Introducing"
+features_title = "Features"
+appstore_download_link = ""
+playstore_download_link = ""
+direct_download_link = ""
 country = "United States"
 legal_email = "legal@your-app.app"
-copyright_year = "2025"
 
 [logo]
 display_type = "image"

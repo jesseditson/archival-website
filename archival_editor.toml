@@ -1,9 +1,13 @@
 # Configure how objects appear in the Archival editor.
 
-[[menu_item.views]]
+[[site.category.views]]
 name = "default"
 primary = "name"
-secondary = "category"
+
+[[site.category.menu_item.views]]
+name = "default"
+primary = "name"
+secondary = "price"
 
 [[event.views]]
 name = "default"

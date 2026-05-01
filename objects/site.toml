@@ -2,6 +2,9 @@ name = "The Gilded Hour"
 tagline = "Cocktails & Kitchen"
 description = """An intimate evening awaits at The Gilded Hour, where craft cocktails meet bold, seasonal cuisine. Nestled in the heart of Los Angeles, we bring together inventive drinks and a modern kitchen... in a space designed to make you lose track of time."""
 reservation_url = "https://resy.com"
+polaroid_1_description = "A bartender garnishing a smoky cocktail under warm pendant light"
+polaroid_2_description = "Dark bar interior with leather booth seating and brass accents"
+polaroid_3_description = "A plated entree with delicate sauce and herb garnish"
 
 [hero_image]
 sha = "08be9bf95551289d211c59c3b801f8aa49eda7337be33b542562b484ba34beca"
@@ -29,9 +32,62 @@ display_type = "image"
 
 [[category]]
 name = "Cocktails"
+  [[category.menu_item]]
+  name = "Smoked Old Fashioned"
+  description = "Bourbon, demerara, aromatic bitters, finished with a wisp of applewood smoke."
+  price = "18"
+  featured = true
+  [[category.menu_item]]
+  name = "Lavender Collins"
+  description = "Gin, house lavender syrup, fresh lemon, sparkling water. Light, floral, dangerously easy to drink."
+  price = "16"
+  featured = false
+  [[category.menu_item]]
+  name = "Midnight in Oaxaca"
+  description = "Mezcal, activated charcoal, agave nectar, lime, chili salt rim. Dark, smoky, unforgettable."
+  price = "20"
+  featured = false
+
 [[category]]
 name = "Small Plates"
+  [[category.menu_item]]
+  name = "Charred Shishito Peppers"
+  description = "Blistered and tossed with smoked sea salt, bonito flakes, and a squeeze of yuzu."
+  price = "12"
+  featured = false
+  [[category.menu_item]]
+  name = "Tuna Tartare"
+  description = "Sushi-grade ahi, avocado mousse, crispy wontons, togarashi, ponzu."
+  price = "19"
+  featured = true
+  [[category.menu_item]]
+  name = "Burrata & Stone Fruit"
+  description = "Creamy burrata, grilled peaches, prosciutto, aged balsamic, micro basil."
+  price = "17"
+  featured = false
+
 [[category]]
 name = "Entrees"
+  [[category.menu_item]]
+  name = "Wagyu Burger"
+  description = "Double-smashed wagyu patties, aged gruyère, caramelized onion, truffle aioli."
+  price = "28"
+  featured = true
+  [[category.menu_item]]
+  name = "Pan-Seared Branzino"
+  description = "Mediterranean sea bass, roasted fennel, castelvetrano olives, caper-lemon butter."
+  price = "36"
+  featured = false
+  [[category.menu_item]]
+  name = "Mushroom Risotto"
+  description = "Arborio rice, wild mushroom medley, truffle oil, aged parmesan, fresh thyme."
+  price = "24"
+  featured = false
+
 [[category]]
 name = "Desserts"
+  [[category.menu_item]]
+  name = "Dark Chocolate Fondant"
+  description = "Warm-centered 72% cacao fondant, salted caramel, crème fraîche, gold leaf."
+  price = "14"
+  featured = false

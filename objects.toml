@@ -9,11 +9,20 @@ og_image = "image"
 logo = "image"
 reservation_url = "string"
 polaroid_1 = "image"
+polaroid_1_description = "string"
 polaroid_2 = "image"
+polaroid_2_description = "string"
 polaroid_3 = "image"
+polaroid_3_description = "string"
 
 [site.category]
 name = "string"
+
+[site.category.menu_item]
+name = "string"
+description = "string"
+price = "string"
+featured = "boolean"
 
 [contact]
 address = "string"
@@ -25,12 +34,6 @@ instagram = "string"
 day = "string"
 time = "string"
 
-[menu_item]
-name = "string"
-description = "string"
-price = "string"
-category = "string"
-featured = "boolean"
 
 [event]
 title = "string"

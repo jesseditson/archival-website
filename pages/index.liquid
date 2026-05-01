@@ -19,19 +19,28 @@
 </section>
 
 <!-- Featured Items -->
-{% assign featured = objects.menu_item | where: "featured", true %}
-{% if featured.size > 0 %}
+{% assign has_featured = false %}
+{% for cat in objects.site.category %}
+  {% for item in cat.menu_item %}
+    {% if item.featured %}{% assign has_featured = true %}{% endif %}
+  {% endfor %}
+{% endfor %}
+{% if has_featured %}
 <section class="section featured fade-in">
   <div class="container">
     <span class="label">From Our Kitchen &amp; Bar</span>
     <h2>The Signatures</h2>
     <div class="featured-grid">
-      {% for item in featured %}
-        <div class="featured-item">
-          <h3>{{ item.name }}</h3>
-          <p>{{ item.description }}</p>
-          <span class="price">{{ item.price }}</span>
-        </div>
+      {% for cat in objects.site.category %}
+        {% for item in cat.menu_item %}
+          {% if item.featured %}
+            <div class="featured-item">
+              <h3>{{ item.name }}</h3>
+              <p>{{ item.description }}</p>
+              <span class="price">{{ item.price }}</span>
+            </div>
+          {% endif %}
+        {% endfor %}
       {% endfor %}
     </div>
     <a href="/menu" class="btn featured-cta">View Full Menu</a>
@@ -56,17 +65,17 @@
       <div class="about-photos">
         {% if objects.site.polaroid_1 != blank %}
         <div class="polaroid polaroid-1 fade-in">
-          <img src="{{ objects.site.polaroid_1.url }}" alt="">
+          <img src="{{ objects.site.polaroid_1.url }}" alt="{{ objects.site.polaroid_1_description }}">
         </div>
         {% endif %}
         {% if objects.site.polaroid_2 != blank %}
         <div class="polaroid polaroid-2 fade-in">
-          <img src="{{ objects.site.polaroid_2.url }}" alt="">
+          <img src="{{ objects.site.polaroid_2.url }}" alt="{{ objects.site.polaroid_2_description }}">
         </div>
         {% endif %}
         {% if objects.site.polaroid_3 != blank %}
         <div class="polaroid polaroid-3 fade-in">
-          <img src="{{ objects.site.polaroid_3.url }}" alt="">
+          <img src="{{ objects.site.polaroid_3.url }}" alt="{{ objects.site.polaroid_3_description }}">
         </div>
         {% endif %}
       </div>

@@ -23,40 +23,48 @@ All content is managed through `.toml` files in the `objects/` directory — or 
 | `reservation_url` | Link to your reservation service (Resy, OpenTable, etc.) |
 | `og_image` | Optional override for the social-share preview image (defaults to `hero_image`) |
 
-### Menu Items (`objects/menu_item/`)
+### Menu Categories & Items
 
-Each menu item is its own file. To **add a new item**:
+Both categories and the items inside them live in `objects/site.toml`. Each `[[category]]` owns its own list of `[[category.menu_item]]` entries, so the editor groups items under their category visually with add/remove/reorder buttons at each level.
 
-1. Create a new `.toml` file in `objects/menu_item/` (e.g., `my-new-dish.toml`)
-2. Use this format:
+To **add a new item**, append a `[[category.menu_item]]` block under the appropriate `[[category]]`:
 
 ```toml
-order = 1
-name = "Dish Name"
-description = "A short, enticing description."
-price = "24"
-category = "Entrees"
-featured = false
+[[category]]
+name = "Entrees"
+
+  [[category.menu_item]]
+  name = "Dish Name"
+  description = "A short, enticing description."
+  price = "24"
+  featured = false
 ```
 
-- **`order`** — Controls the display order within a category (lower numbers appear first)
-- **`price`** — A string, so you can write "18", "Market Price", or "12 / 18"
-- **`category`** — Must match the `name` of one of the entries in your `[[category]]` list in `objects/site.toml` (default categories are `Cocktails`, `Small Plates`, `Entrees`, `Desserts`)
-- **`featured`** — Set to `true` to show this item on the homepage
-- **`image`** — Optional. Add a photo through the Archival editor
+Field reference:
+
+- **`name`** — The dish or drink name.
+- **`description`** — A short tagline; shown on the menu page and on the homepage if featured.
+- **`price`** — A string, so you can write `"18"`, `"Market Price"`, or `"12 / 18"`.
+- **`featured`** — Set to `true` to surface this item in the "Signatures" block on the homepage.
+
+Items render in the order they appear in `site.toml`.
 
 ### Adding a New Category
 
-To add a new menu category (e.g., "Wine"):
+To add a new menu category (e.g., "Wine"), append a `[[category]]` block to `objects/site.toml`:
 
-1. Add a new `[[category]]` entry to `objects/site.toml`:
-   ```toml
-   [[category]]
-   name = "Wine"
-   ```
-2. Set `category = "Wine"` on any `menu_item` you want to appear there.
+```toml
+[[category]]
+name = "Wine"
 
-The menu page nav and sections render automatically from your category list — no template edits required. You can also reorder categories by rearranging the entries in `site.toml`.
+  [[category.menu_item]]
+  name = "Sangiovese"
+  description = "Cherry, leather, and a hint of cedar."
+  price = "14"
+  featured = false
+```
+
+The menu page nav and sections render automatically from your category list — no template edits required. Reorder categories by rearranging their `[[category]]` blocks.
 
 ### Events (`objects/event/`)
 

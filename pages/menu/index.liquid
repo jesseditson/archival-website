@@ -11,7 +11,6 @@
 
 <div class="container menu-page-content" style="padding-bottom: 4rem;">
   {% for cat in objects.site.category %}
-    {% assign items = objects.menu_item | where: "category", cat.name %}
-    {% include 'menu-section' category_name: cat.name, items: items %}
+    {% include 'menu-section' category_name: cat.name, items: cat.menu_item %}
   {% endfor %}
 </div>

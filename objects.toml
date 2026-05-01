@@ -6,13 +6,13 @@ name = "string"
 tagline = "string"
 author = "string"
 logo = "image"
+og_image = "image"
 description = "string"
 appstore_download_link = "string"
 playstore_download_link = "string"
 direct_download_link = "string"
 country = "string"
 legal_email = "string"
-copyright_year = "string"
 
 [screenshots]
 image = "image"
@@ -72,6 +72,8 @@ title = "string"
 desc = "string"
 
 [support]
+title = "string"
+description = "string"
 email = "string"
 chat_link = "string"
 discord_link = "string"

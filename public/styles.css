@@ -354,15 +354,16 @@ p {
 
 /* Support */
 .support-modules {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
   margin: 4rem 0;
-  align-items: start;
+  justify-content: center;
 }
 
-.support-modules > *:only-child {
-  grid-column: span 2;
+.support-modules .module {
+  flex: 1 1 16rem;
+  max-width: 22rem;
 }
 
 .support-modules .module a {
@@ -615,7 +616,6 @@ footer.container {
   }
 
   .support-modules {
-    grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
   }
 }
@@ -713,7 +713,6 @@ footer.container {
   }
 
   .support-modules {
-    grid-template-columns: 1fr;
     padding: 0 1rem;
   }
 

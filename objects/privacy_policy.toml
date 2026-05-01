@@ -195,9 +195,9 @@ You are advised to review this Privacy Policy periodically for any changes. Chan
 
 If you have any questions about this Privacy Policy, You can contact us:
 
-{% if app.legal_email %}
+{% if app.legal_email != blank %}
 - By email: {{app.legal_email}}
 {% endif %}
 
-- By visiting this page on our website: [{{site_url}}/privacy]({{site_url}}/privacy.html)
+- By visiting this page on our website: [/privacy](/privacy.html)
 """

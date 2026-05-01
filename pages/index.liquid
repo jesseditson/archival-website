@@ -8,7 +8,10 @@
 <!-- Navigation Bar -->
 <nav class="navbar">
   <div class="container">
-    <a href="#" class="logo">{{ personal.name }}</a>
+    <div class="logo-group">
+      <a href="#" class="logo">{{ personal.name }}</a>
+      {% if personal.title != blank %}<span class="logo-pill">{{ personal.title }}</span>{% endif %}
+    </div>
     <ul class="nav-links">
       <li>
         <a href="#about">About</a>

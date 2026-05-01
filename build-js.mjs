@@ -8,7 +8,7 @@ const dev = process.argv.includes("--dev");
 const ctx = await esbuild.context({
   entryPoints: ["src/index.ts"],
   bundle: true,
-  outfile: "dist/scripts/main.js",
+  outfile: "public/scripts/main.js",
   plugins: [metaUrlPlugin()],
   define: {
     DEV: dev ? "true" : "false",

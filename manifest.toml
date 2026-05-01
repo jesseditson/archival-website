@@ -1,2 +1,1 @@
-site_url = "https://theatre.onarchival.dev"
 prebuild = ["npm ci", "npm run build:js"]

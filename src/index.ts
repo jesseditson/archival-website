@@ -1,9 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const video = document.getElementById("myVideo") as HTMLVideoElement;
+  const video = document.getElementById("myVideo") as HTMLVideoElement | null;
   const container = document.querySelector(
     ".video-container"
-  ) as HTMLDivElement;
-  const masthead = document.querySelector(".masthead") as HTMLDivElement;
+  ) as HTMLDivElement | null;
+  const masthead = document.querySelector(".masthead") as HTMLDivElement | null;
+  // Bail out cleanly when the page has no <video> (e.g. user hasn't
+  // uploaded one yet, or on the 404 page where the layout is loaded
+  // but no video element exists).
+  if (!video || !container || !masthead) return;
+
+  // Respect the user's motion preference — the bias-lighting effect
+  // re-paints a blurred radial gradient every frame from the video's
+  // average color. That's exactly the kind of background animation
+  // motion-sensitive users opt out of.
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+  if (prefersReducedMotion) return;
+
   const canvas = document.createElement("canvas") as HTMLCanvasElement;
   const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 

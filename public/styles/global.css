@@ -97,3 +97,97 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+/* ==================== Skip Link ==================== */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: var(--color-type-primary);
+    color: var(--color-sitebg);
+    padding: 1rem 1.25rem;
+    font-weight: 600;
+    z-index: 99999;
+    transition: top 0.2s;
+}
+
+.skip-link:focus {
+    top: 0;
+    outline: 2px solid var(--color-video-outline);
+    outline-offset: -2px;
+}
+
+/* ==================== 404 Page ==================== */
+#not-found {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 1.5rem;
+    color: var(--color-type-primary);
+    gap: 0.5rem;
+}
+
+.not-found-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-type-muted);
+    margin-bottom: 1rem;
+}
+
+.not-found-code {
+    font-size: clamp(7rem, 22vw, 12rem);
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.04em;
+}
+
+.not-found-title {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.not-found-description {
+    color: var(--color-type-muted);
+    max-width: 32rem;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+}
+
+.not-found-cta {
+    display: inline-block;
+    padding: 0.85rem 1.75rem;
+    border: 1px solid var(--color-type-primary);
+    border-radius: var(--radius-video);
+    color: var(--color-type-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+}
+
+.not-found-cta:hover {
+    background: var(--color-type-primary);
+    color: var(--color-sitebg);
+}
+
+/* ==================== Reduced Motion ==================== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    /* Disable the bias-lighting glow gradient transition. */
+    .video-container::before {
+        transition: none;
+    }
+}

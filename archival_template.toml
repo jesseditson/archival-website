@@ -9,7 +9,7 @@ When filling the action_line field, the text will be preceded in the UI by the s
 When filling the action_line field, make the action line short and catchy - no more than 10 words.
 When filling work.projects, there are some defaults in the template, so just use the defaults if you don't have something appropriate to fill this with.
 The personal object has fields: name (full name), title (job title or role), action_line (a short catchy phrase), tagline (brief professional tagline), and full_about (a markdown bio).
-Generate 2-3 experience entries, each with a title and markdown description of the role or accomplishment.
+The experience object has: title (the section heading, e.g. "Where I've Worked"), description (a brief markdown intro that appears under the heading), and a list of jobs. Generate 2-3 jobs, each with: title (job title), company (company name), dates (date range like "2021 — Present" or "2018 — 2021"), and description (markdown describing the role and accomplishments).
 The contact object should have a title like "Get In Touch", a short description, and an email address.
 Keep the tone professional but approachable. Write in first person where appropriate.
 """

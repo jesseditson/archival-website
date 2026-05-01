@@ -68,9 +68,22 @@
 <section id="experience">
   <div class="container">
     <h2 class="section-title">{{ experience.title }}</h2>
-    <!-- Experience Tabs -->
+    {% if experience.description != blank %}
+    <div class="experience-intro">{{ experience.description }}</div>
+    {% endif %}
     <div class="experience">
-      {{ experience.description }}
+      {% for job in experience.job %}
+        <div class="experience-item">
+          <div class="experience-header">
+            <h3 class="experience-job-title">{{ job.title }}</h3>
+            {% if job.company %}<span class="experience-company">{{ job.company }}</span>{% endif %}
+            {% if job.dates %}<span class="experience-dates">{{ job.dates }}</span>{% endif %}
+          </div>
+          <div class="experience-description">
+            {{ job.description }}
+          </div>
+        </div>
+      {% endfor %}
     </div>
   </div>
 </section>

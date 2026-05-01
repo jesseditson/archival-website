@@ -9,6 +9,12 @@ full_about = "markdown"
 title = "string"
 description = "markdown"
 
+[experience.job]
+title = "string"
+company = "string"
+dates = "string"
+description = "markdown"
+
 [contact]
 title = "string"
 description = "markdown"

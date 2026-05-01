@@ -557,8 +557,61 @@ body.animations-enabled section:not(#hero).in-view p {
 }
 
 /* Experience Section */
+.experience-intro {
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+  max-width: 720px;
+}
+
 .experience {
-  /* Experience content */
+  display: grid;
+  gap: 32px;
+}
+
+.experience-item {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 32px;
+}
+
+.experience-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 16px;
+  margin-bottom: 16px;
+}
+
+.experience-job-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.experience-company {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--primary-light);
+}
+
+.experience-company::before {
+  content: "@ ";
+  opacity: 0.5;
+}
+
+.experience-dates {
+  margin-left: auto;
+  font-size: 14px;
+  color: var(--text-muted);
+  font-feature-settings: "tnum";
+}
+
+.experience-description {
+  color: var(--text-secondary);
+  line-height: 1.7;
 }
 
 /* Work Section */

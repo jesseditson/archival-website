@@ -3,25 +3,15 @@
 <!-- Category Navigation -->
 <nav class="menu-nav" aria-label="Menu categories">
   <ul class="menu-nav-list">
-    <li><a href="#cocktails">Cocktails</a></li>
-    <li><a href="#small-plates">Small Plates</a></li>
-    <li><a href="#entrees">Entrees</a></li>
-    <li><a href="#desserts">Desserts</a></li>
+    {% for cat in objects.site.category %}
+      <li><a href="#{{ cat.name | downcase | replace: ' ', '-' }}">{{ cat.name }}</a></li>
+    {% endfor %}
   </ul>
 </nav>
 
 <div class="container menu-page-content" style="padding-bottom: 4rem;">
-
-  {% assign cocktails = objects.menu_item | where: "category", "Cocktails" %}
-  {% include 'menu-section' category_name: "Cocktails", items: cocktails %}
-
-  {% assign small_plates = objects.menu_item | where: "category", "Small Plates" %}
-  {% include 'menu-section' category_name: "Small Plates", items: small_plates %}
-
-  {% assign entrees = objects.menu_item | where: "category", "Entrees" %}
-  {% include 'menu-section' category_name: "Entrees", items: entrees %}
-
-  {% assign desserts = objects.menu_item | where: "category", "Desserts" %}
-  {% include 'menu-section' category_name: "Desserts", items: desserts %}
-
+  {% for cat in objects.site.category %}
+    {% assign items = objects.menu_item | where: "category", cat.name %}
+    {% include 'menu-section' category_name: cat.name, items: items %}
+  {% endfor %}
 </div>

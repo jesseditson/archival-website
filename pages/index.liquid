@@ -1,17 +1,17 @@
-{% layout 'theme' page: 'home' %}
+{% layout 'theme' title: "", page: 'home' %}
 
 <!-- Hero -->
 <section class="hero">
-  {% if objects.site.hero_image %}{% if objects.site.hero_image.url != "" %}
+  {% if objects.site.hero_image != blank %}
     <div class="hero-bg" style="background-image: url('{{ objects.site.hero_image.url }}');"></div>
-  {% endif %}{% endif %}
+  {% endif %}
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <p class="hero-tagline">{{ objects.site.tagline }}</p>
     <h1>{{ objects.site.name }}</h1>
     <div class="hero-ctas">
       <a href="/menu" class="btn">View Menu</a>
-      {% if objects.site.reservation_url %}
+      {% if objects.site.reservation_url != blank %}
         <a href="{{ objects.site.reservation_url }}" class="btn btn-filled" target="_blank" rel="noopener noreferrer">Reserve a Table</a>
       {% endif %}
     </div>
@@ -42,6 +42,7 @@
 <hr class="divider">
 
 <!-- About / Vibe -->
+{% if objects.site.description != blank or objects.site.polaroid_1 != blank or objects.site.polaroid_2 != blank or objects.site.polaroid_3 != blank %}
 <section class="section about fade-in">
   <div class="container">
     <div class="about-grid">
@@ -50,66 +51,71 @@
         <h2>The Vibe</h2>
         <div class="about-body">
           {{ objects.site.description }}
-          <p>We opened our doors with a simple idea: great drinks deserve great food, and both deserve a room that feels like it was built just for tonight. Every detail, from the hand-selected vinyl on the turntable to the locally sourced ingredients on your plate, is intentional.</p>
-          <p>Whether you're here for a quiet midweek cocktail or a long Saturday night with friends, The Gilded Hour is your place to slow down, look up, and savor the moment.</p>
         </div>
       </div>
       <div class="about-photos">
-        {% if objects.site.polaroid_1 %}{% if objects.site.polaroid_1.url != "" %}
+        {% if objects.site.polaroid_1 != blank %}
         <div class="polaroid polaroid-1 fade-in">
-          <img src="{{ objects.site.polaroid_1.url }}" alt="Cocktail preparation">
+          <img src="{{ objects.site.polaroid_1.url }}" alt="">
         </div>
-        {% endif %}{% endif %}
-        {% if objects.site.polaroid_2 %}{% if objects.site.polaroid_2.url != "" %}
+        {% endif %}
+        {% if objects.site.polaroid_2 != blank %}
         <div class="polaroid polaroid-2 fade-in">
-          <img src="{{ objects.site.polaroid_2.url }}" alt="Dark bar interior with booth seating">
+          <img src="{{ objects.site.polaroid_2.url }}" alt="">
         </div>
-        {% endif %}{% endif %}
-        {% if objects.site.polaroid_3 %}{% if objects.site.polaroid_3.url != "" %}
+        {% endif %}
+        {% if objects.site.polaroid_3 != blank %}
         <div class="polaroid polaroid-3 fade-in">
-          <img src="{{ objects.site.polaroid_3.url }}" alt="Fine dining plated dish">
+          <img src="{{ objects.site.polaroid_3.url }}" alt="">
         </div>
-        {% endif %}{% endif %}
+        {% endif %}
       </div>
     </div>
   </div>
 </section>
 
 <hr class="divider">
+{% endif %}
 
 <!-- Hours & Location -->
-{% assign address = objects.contact.address | default: "20 W 34th St, New York, NY 10001" %}
 <section class="section info fade-in">
   <div class="container">
     <span class="label">Find Us</span>
     <h2>Hours &amp; Location</h2>
 
     <div class="info-location-grid">
-      <div class="info-map">
-        <iframe
-          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q={{ address | url_encode }}&zoom=15&maptype=roadmap"
-          width="100%"
-          height="100%"
-          style="border: 0; filter: grayscale(1) invert(1) brightness(0.55) contrast(1.3) hue-rotate(180deg);"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Map showing {{ objects.site.name }} location">
-        </iframe>
-      </div>
+      {% if objects.contact.address != blank %}
+        <div class="info-map">
+          <iframe
+            src="https://www.google.com/maps?q={{ objects.contact.address | url_encode }}&output=embed"
+            width="100%"
+            height="100%"
+            style="border: 0; filter: grayscale(1) invert(1) brightness(0.55) contrast(1.3) hue-rotate(180deg);"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Map showing {{ objects.site.name }} location">
+          </iframe>
+        </div>
+      {% endif %}
       <div class="info-details">
         <span class="label">Location</span>
-        <p class="info-address">{{ address | replace_first: ", ", "<br>" }}</p>
-        {% if objects.contact.phone %}
+        {% if objects.contact.address != blank %}
+          <p class="info-address">{{ objects.contact.address | replace_first: ", ", "<br>" }}</p>
+        {% endif %}
+        {% if objects.contact.phone != blank %}
           <p><a href="tel:{{ objects.contact.phone | remove: '(' | remove: ')' | remove: ' ' | remove: '-' }}">{{ objects.contact.phone }}</a></p>
         {% endif %}
-        {% if objects.contact.email %}
+        {% if objects.contact.email != blank %}
           <p><a href="mailto:{{ objects.contact.email }}">{{ objects.contact.email }}</a></p>
         {% endif %}
-        <a href="https://www.google.com/maps/search/?api=1&query={{ address | url_encode }}" target="_blank" rel="noopener noreferrer" class="btn info-directions-btn">Get Directions</a>
+        {% if objects.contact.address != blank %}
+          <a href="https://www.google.com/maps/search/?api=1&query={{ objects.contact.address | url_encode }}" target="_blank" rel="noopener noreferrer" class="btn info-directions-btn">Get Directions</a>
+        {% endif %}
       </div>
     </div>
 
+    {% if objects.hours.size > 0 %}
     <div class="hours-grid">
       <h3 class="hours-heading">Hours</h3>
       <div class="hours-cards">
@@ -121,6 +127,7 @@
         {% endfor %}
       </div>
     </div>
+    {% endif %}
   </div>
 </section>
 
@@ -146,7 +153,7 @@
 {% endif %}
 
 <!-- Instagram CTA -->
-{% if objects.contact.instagram %}
+{% if objects.contact.instagram != blank %}
 <hr class="divider">
 <section class="instagram-cta fade-in">
   <span class="label">Follow Along</span>

@@ -1204,24 +1204,48 @@ a.event-card-clickable {
 
 /* ----- 16. 404 Page ----- */
 
-.page-404 {
-  min-height: 60vh;
+#not-found {
+  min-height: 70vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 4rem var(--container-padding);
+  padding: 6rem var(--container-padding);
 }
 
-.page-404 h1 {
-  font-size: clamp(2rem, 5vw, 4rem);
+#not-found .container {
+  max-width: 36rem;
+}
+
+.not-found-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.25rem;
+}
+
+.not-found-code {
+  font-family: var(--font-heading);
+  font-size: clamp(7rem, 22vw, 12rem);
+  line-height: 1;
+  margin-bottom: 1.25rem;
+  color: var(--text-primary);
+}
+
+.not-found-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-style: italic;
+  font-weight: 400;
   margin-bottom: 1rem;
 }
 
-.page-404 p {
+.not-found-description {
+  color: var(--text-secondary);
   margin-bottom: 2rem;
-  font-size: 1.05rem;
+  line-height: 1.6;
 }
 
 /* ----- 17. Animations ----- */
@@ -1358,4 +1382,21 @@ a.event-card-clickable {
 
 a:focus:not(:focus-visible) {
   outline: none;
+}
+
+/* ----- 21. Reduced motion ----- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .fade-in {
+    opacity: 1;
+    transform: none;
+  }
 }

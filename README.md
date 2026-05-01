@@ -21,7 +21,7 @@ All content is managed through `.toml` files in the `objects/` directory — or 
 | `instagram` | Your Instagram handle (without the @) |
 | `hours` | Your operating hours — supports **bold** formatting |
 | `reservation_url` | Link to your reservation service (Resy, OpenTable, etc.) |
-| `accent_color` | Hex color code (e.g., `#c9a96e`) — changes the accent color across the entire site |
+| `og_image` | Optional override for the social-share preview image (defaults to `hero_image`) |
 
 ### Menu Items (`objects/menu_item/`)
 
@@ -41,7 +41,7 @@ featured = false
 
 - **`order`** — Controls the display order within a category (lower numbers appear first)
 - **`price`** — A string, so you can write "18", "Market Price", or "12 / 18"
-- **`category`** — Must match one of: `Cocktails`, `Small Plates`, `Entrees`, `Desserts`
+- **`category`** — Must match the `name` of one of the entries in your `[[category]]` list in `objects/site.toml` (default categories are `Cocktails`, `Small Plates`, `Entrees`, `Desserts`)
 - **`featured`** — Set to `true` to show this item on the homepage
 - **`image`** — Optional. Add a photo through the Archival editor
 
@@ -49,10 +49,14 @@ featured = false
 
 To add a new menu category (e.g., "Wine"):
 
-1. Use the new category name in your menu item's `category` field (e.g., `category = "Wine"`)
-2. Edit `pages/menu.liquid` and add the new category to both the navigation and the section list:
-   - Add `<li><a href="#wine">Wine</a></li>` to the nav
-   - Add the assign/include block for the new category
+1. Add a new `[[category]]` entry to `objects/site.toml`:
+   ```toml
+   [[category]]
+   name = "Wine"
+   ```
+2. Set `category = "Wine"` on any `menu_item` you want to appear there.
+
+The menu page nav and sections render automatically from your category list — no template edits required. You can also reorder categories by rearranging the entries in `site.toml`.
 
 ### Events (`objects/event/`)
 
@@ -70,7 +74,7 @@ Remove an event by deleting its file.
 
 ### Changing the Accent Color
 
-Edit the `accent_color` field in `objects/site.toml`. Use any hex color code:
+The accent color is defined as `--accent` in `public/style/theme.css` (default `#c9a96e` — warm gold). To use a different color, edit that variable. Examples:
 
 - `#c9a96e` — warm gold (default)
 - `#e85d4a` — burnt orange

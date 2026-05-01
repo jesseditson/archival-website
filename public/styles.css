@@ -116,8 +116,13 @@ header.hero {
   height: 43rem;
 }
 
+.hero-statement {
+  display: flex;
+  flex-direction: column;
+}
+
 .supplement {
-  display: block;
+  order: -1;
   font-weight: 600;
   margin-bottom: 1rem;
   color: var(--color-supplement);

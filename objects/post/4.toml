@@ -33,4 +33,8 @@ Some posts will be polished essays. Others will be rough notes. All of it will b
 """
 excerpt = "Why sharing the messy middle matters more than polished outcomes."
 date = 2024-11-09T00:00:00
-tags = "creativity, thoughts"
+
+[[tag]]
+name = "creativity"
+[[tag]]
+name = "thoughts"

@@ -29,4 +29,6 @@ Let's see where this goes.
 """
 excerpt = "Sometimes the best way forward is to start fresh with a clean slate."
 date = 2024-11-12T00:00:00
-tags = "thoughts"
+
+[[tag]]
+name = "thoughts"

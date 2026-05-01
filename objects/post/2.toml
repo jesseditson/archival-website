@@ -2,10 +2,14 @@ order = 2
 title = "Golden Hour"
 excerpt = "Light filtered through dust"
 date = 2024-11-11T00:00:00
-tags = "photography, light"
 
 [image]
 sha = "b30f27890ad41e7aecf532e3f7ef95b258dc48cf1c63ce9302ba3b67fbb5bcb8"
 filename = "golden-hour.avif"
 mime = "image/avif"
 display_type = "image"
+
+[[tag]]
+name = "photography"
+[[tag]]
+name = "light"

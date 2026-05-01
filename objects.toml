@@ -3,15 +3,18 @@
 [site]
 name = "string"
 description = "string"
+og_image = "image"
 
 [post]
 title = "string"
 content = "markdown"
 excerpt = "string"
 date = "date"
-tags = "string"
 template = "post"
 image = "image"
 video = "video"
 audio = "audio"
 link = "string"
+
+[post.tag]
+name = "string"

@@ -9,4 +9,6 @@ This is what compounds. This is what matters.
 """
 excerpt = "Celebrating the unremarkable progress that compounds over time."
 date = 2024-11-01T00:00:00
-tags = "thoughts"
+
+[[tag]]
+name = "thoughts"

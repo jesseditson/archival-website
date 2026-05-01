@@ -269,4 +269,8 @@ Whether you're writing technical documentation, creative essays, or anything in 
 '''
 excerpt = "A comprehensive showcase of all markdown formatting elements and their beautiful rendering."
 date = 2024-11-13T00:00:00
-tags = "design, test"
+
+[[tag]]
+name = "design"
+[[tag]]
+name = "test"

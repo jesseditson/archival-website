@@ -7,4 +7,8 @@ The waveform visualization lets you see the audio's dynamics and scrub through d
 """
 excerpt = "A peaceful ambient soundscape"
 date = 2024-11-15T00:00:00
-tags = "audio, ambient"
+
+[[tag]]
+name = "audio"
+[[tag]]
+name = "ambient"

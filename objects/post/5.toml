@@ -5,5 +5,9 @@ Version 4.2 brings some incredible new features—spring physics, better stagger
 """
 excerpt = "The animation library just got even better with spring physics and improved performance."
 date = 2024-11-08T00:00:00
-tags = "code, design"
 link = "https://animejs.com"
+
+[[tag]]
+name = "code"
+[[tag]]
+name = "design"

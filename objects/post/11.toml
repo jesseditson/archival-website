@@ -2,10 +2,14 @@ order = 11
 title = "Foggy Morning Walk"
 excerpt = "When the world softens at the edges"
 date = 2024-11-02T00:00:00
-tags = "photography, nature"
 
 [image]
 display_type = "image"
 filename = "photo-1470071459604-3b5ec3a7fe05.avif"
 sha = "4ca2092b2bac0e2f4adc6112006e8751a62a65d85b676a37f52d993b561e85f1"
 mime = "image/avif"
+
+[[tag]]
+name = "photography"
+[[tag]]
+name = "nature"

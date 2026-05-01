@@ -12,6 +12,8 @@ Code on GitHub if anyone's curious. MIT licensed.
 """
 excerpt = "Built a tiny tool for tracking reading progress. Nothing fancy, just useful."
 date = 2024-11-03T00:00:00
-tags = "code"
 link = "https://github.com"
 
+
+[[tag]]
+name = "code"

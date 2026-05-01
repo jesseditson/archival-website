@@ -45,4 +45,6 @@ Trust the attention. Follow what's alive.
 """
 excerpt = "What you pay attention to grows."
 date = 2024-11-05T00:00:00
-tags = "thoughts"
+
+[[tag]]
+name = "thoughts"

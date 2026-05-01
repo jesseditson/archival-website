@@ -7,4 +7,6 @@ Just coffee, silence, and the blank page. Some mornings I write. Some mornings I
 """
 excerpt = "Coffee, silence, and the blank page."
 date = 2024-11-07T00:00:00
-tags = "thoughts"
+
+[[tag]]
+name = "thoughts"

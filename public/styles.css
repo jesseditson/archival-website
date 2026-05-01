@@ -406,6 +406,71 @@ p {
   opacity: 1;
 }
 
+/* 404 Section */
+#not-found {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 1rem;
+  text-align: center;
+  background-color: var(--color-hero-background);
+}
+
+#not-found .container {
+  max-width: 45rem;
+}
+
+.not-found-eyebrow {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-supplement);
+  margin-bottom: 1rem;
+}
+
+.not-found-code {
+  font-size: clamp(8rem, 22vw, 14rem);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--color-hero-text);
+  margin-bottom: 1.5rem;
+}
+
+.not-found-title {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700;
+  color: var(--color-hero-text);
+  margin-bottom: 1rem;
+}
+
+.not-found-description {
+  color: var(--color-hero-text);
+  opacity: 0.85;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  max-width: 32rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.not-found-cta {
+  display: inline-block;
+  background-color: var(--color-hero-text);
+  color: var(--color-hero-background);
+  padding: 0.9rem 1.6rem;
+  border-radius: 0.4rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.not-found-cta:hover {
+  opacity: 0.85;
+}
+
 /* Footer */
 footer {
   text-align: center;

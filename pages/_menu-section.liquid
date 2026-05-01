@@ -9,7 +9,7 @@
           <span class="menu-item-dots"></span>
           <span class="menu-item-price">{{ item.price }}</span>
         </div>
-        {% if item.description %}
+        {% if item.description != blank %}
           <p class="menu-item-description">{{ item.description }}</p>
         {% endif %}
       </div>

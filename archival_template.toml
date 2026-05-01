@@ -5,8 +5,8 @@ context = """
 This template is designed for upscale bars, cocktail lounges, and contemporary restaurants. It features a dark color scheme with customizable accent color, a dedicated menu page with category navigation, event listings, and all the essential info a venue needs.
 The site object has: name (venue name), tagline (short catchphrase), description (markdown about the venue), hero_image, logo, reservation_url, and three polaroid images (polaroid_1, polaroid_2, polaroid_3) for atmospheric gallery shots.
 The contact object has: address, phone, email, and instagram handle.
-Generate 5-7 hours entries with day (e.g. "Monday - Thursday") and time (e.g. "5pm - 12am"). Group days with the same hours together.
-Generate 8-12 menu_item entries. Each has: name, description (1 sentence), price (as a string like "$14" or "$18"), category (e.g. "Cocktails", "Small Plates", "Entrees", "Desserts"), and featured (boolean, mark 2-3 items as featured). Use 3-4 distinct categories. Write descriptions in a refined, appetizing style.
+Generate 5-7 hours entries with day (e.g. "Monday - Thursday") and time (e.g. "5pm - 12am"), and a boolean `closed` (set to true on closed days, otherwise omit or false). Group days with the same hours together.
+The menu lives in objects/site.toml as a [[category]] list, and each category owns its own [[category.menu_item]] entries. Generate 3-4 categories (typically "Cocktails", "Small Plates", "Entrees", "Desserts") and put 2-4 menu items inside each. Each menu_item has: name, description (1 sentence in a refined, appetizing style), price (a string like "$14" or "$18"), and featured (boolean — mark 2-3 items as featured across the whole menu).
 Generate 2-3 event entries with title, date (upcoming), markdown description, and optional link.
 Use a sophisticated, upscale hospitality tone. Think cocktail menu copywriting — concise, evocative, slightly luxurious.
 """

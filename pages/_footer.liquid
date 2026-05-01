@@ -31,7 +31,7 @@
         <h4>Hours</h4>
         <table class="footer-hours-table">
           {% for h in objects.hours %}
-          <tr><td>{{ h.day }}</td><td>{{ h.time }}</td></tr>
+          <tr><td>{{ h.day }}</td><td>{% if h.closed %}Closed{% else %}{{ h.time }}{% endif %}</td></tr>
           {% endfor %}
         </table>
       </div>

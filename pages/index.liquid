@@ -99,7 +99,6 @@
             src="https://www.google.com/maps?q={{ objects.contact.address | url_encode }}&output=embed"
             width="100%"
             height="100%"
-            style="border: 0; filter: grayscale(1) invert(1) brightness(0.55) contrast(1.3) hue-rotate(180deg);"
             allowfullscreen=""
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
@@ -129,9 +128,9 @@
       <h3 class="hours-heading">Hours</h3>
       <div class="hours-cards">
         {% for h in objects.hours %}
-        <div class="hours-card{% if h.time == 'Closed' %} hours-card-closed{% endif %}">
+        <div class="hours-card{% if h.closed %} hours-card-closed{% endif %}">
           <span class="hours-day">{{ h.day }}</span>
-          <span class="hours-range">{% if h.time == 'Closed' %}<span class="hours-closed">Closed</span>{% else %}<span class="hours-time">{{ h.time }}</span>{% endif %}</span>
+          <span class="hours-range">{% if h.closed %}<span class="hours-closed">Closed</span>{% else %}<span class="hours-time">{{ h.time }}</span>{% endif %}</span>
         </div>
         {% endfor %}
       </div>

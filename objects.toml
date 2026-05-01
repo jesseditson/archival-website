@@ -33,7 +33,7 @@ instagram = "string"
 [hours]
 day = "string"
 time = "string"
-
+closed = "boolean"
 
 [event]
 title = "string"

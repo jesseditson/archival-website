@@ -1,3 +1,4 @@
 order = 4
 day = "Monday"
-time = "Closed"
+time = ""
+closed = true

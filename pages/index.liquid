@@ -16,8 +16,8 @@
       </span>
     </div>
     <div class="nav-items">
-      <a class="nav-item" href="#features">Features</a>
-      <a class="nav-item" href="#support">Support</a>
+      {% if app.features_title != blank %}<a class="nav-item" href="#features">{{ app.features_title }}</a>{% endif %}
+      {% if support.title != blank %}<a class="nav-item" href="#support">{{ support.title }}</a>{% endif %}
     </div>
   </div>
 </nav>

@@ -1,0 +1,20 @@
+order = 3
+name = "Entrees"
+
+[[menu_item]]
+name = "Wagyu Burger"
+description = "Double-smashed wagyu patties, aged gruyère, caramelized onion, truffle aioli."
+price = "28"
+featured = true
+
+[[menu_item]]
+name = "Pan-Seared Branzino"
+description = "Mediterranean sea bass, roasted fennel, castelvetrano olives, caper-lemon butter."
+price = "36"
+featured = false
+
+[[menu_item]]
+name = "Mushroom Risotto"
+description = "Arborio rice, wild mushroom medley, truffle oil, aged parmesan, fresh thyme."
+price = "24"
+featured = false

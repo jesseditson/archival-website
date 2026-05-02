@@ -20,7 +20,7 @@
 
 <!-- Featured Items -->
 {% assign has_featured = false %}
-{% for cat in objects.site.category %}
+{% for cat in objects.menu %}
   {% for item in cat.menu_item %}
     {% if item.featured %}{% assign has_featured = true %}{% endif %}
   {% endfor %}
@@ -31,7 +31,7 @@
     <span class="label">From Our Kitchen &amp; Bar</span>
     <h2>The Signatures</h2>
     <div class="featured-grid">
-      {% for cat in objects.site.category %}
+      {% for cat in objects.menu %}
         {% for item in cat.menu_item %}
           {% if item.featured %}
             <div class="featured-item">

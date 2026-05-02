@@ -3,14 +3,14 @@
 <!-- Category Navigation -->
 <nav class="menu-nav" aria-label="Menu categories">
   <ul class="menu-nav-list">
-    {% for cat in objects.site.category %}
+    {% for cat in objects.menu %}
       <li><a href="#{{ cat.name | downcase | replace: ' ', '-' }}">{{ cat.name }}</a></li>
     {% endfor %}
   </ul>
 </nav>
 
 <div class="container menu-page-content" style="padding-bottom: 4rem;">
-  {% for cat in objects.site.category %}
+  {% for cat in objects.menu %}
     {% include 'menu-section' category_name: cat.name, items: cat.menu_item %}
   {% endfor %}
 </div>

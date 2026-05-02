@@ -15,10 +15,10 @@ polaroid_2_description = "string"
 polaroid_3 = "image"
 polaroid_3_description = "string"
 
-[site.category]
+[menu]
 name = "string"
 
-[site.category.menu_item]
+[menu.menu_item]
 name = "string"
 description = "string"
 price = "string"

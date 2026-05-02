@@ -1,0 +1,20 @@
+order = 2
+name = "Small Plates"
+
+[[menu_item]]
+name = "Charred Shishito Peppers"
+description = "Blistered and tossed with smoked sea salt, bonito flakes, and a squeeze of yuzu."
+price = "12"
+featured = false
+
+[[menu_item]]
+name = "Tuna Tartare"
+description = "Sushi-grade ahi, avocado mousse, crispy wontons, togarashi, ponzu."
+price = "19"
+featured = true
+
+[[menu_item]]
+name = "Burrata & Stone Fruit"
+description = "Creamy burrata, grilled peaches, prosciutto, aged balsamic, micro basil."
+price = "17"
+featured = false

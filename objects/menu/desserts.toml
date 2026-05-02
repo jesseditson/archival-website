@@ -1,0 +1,8 @@
+order = 4
+name = "Desserts"
+
+[[menu_item]]
+name = "Dark Chocolate Fondant"
+description = "Warm-centered 72% cacao fondant, salted caramel, crème fraîche, gold leaf."
+price = "14"
+featured = false

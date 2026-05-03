@@ -136,9 +136,58 @@ table {
     font-size: var(--font-body-size);
     font-weight: var(--font-body-weight);
     width: 100%;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    color: var(--color-text);
+  }
+}
+
+/* Content containers with markdown styling */
+.body-section {
+  p {
+    font-size: var(--font-body-size);
+    font-weight: var(--font-body-weight);
     line-height: 1.5;
     margin-bottom: 2rem;
   }
+
+  h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  ul, ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+
+    li {
+      margin-bottom: 0.75rem;
+      line-height: 1.5;
+    }
+  }
+
+  ul li {
+    list-style: disc;
+  }
+
+  ol li {
+    list-style: decimal;
+  }
+}
+
+.testimonial-marquee .testimonial-item {
+  width: 420px;
+  flex: 0 0 420px;
 }
 
 /* Header */
@@ -148,7 +197,27 @@ table {
   align-items: center;
   padding: 4rem;
   background-color: var(--color-text);
-  color: var(--color-bg);
+  color: rgba(255, 255, 255, 1);
+
+  .primary-nav {
+    .nav-item {
+      color: rgba(255, 255, 255, 1);
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: var(--color-accent);
+      }
+    }
+
+    .nav-item.primary-cta {
+      background-color: var(--color-accent);
+      color: var(--color-text);
+
+      &:hover {
+        background-color: var(--color-accent);
+      }
+    }
+  }
 
   &.condensed {
     padding: 2rem;
@@ -173,10 +242,12 @@ table {
       .professional-name {
         font-size: var(--font-subheader-size);
         font-weight: var(--font-subheader-weight);
+        color: rgba(255, 255, 255, 1);
       }
       .professional-title {
         font-weight: var(--font-subheader-weight);
         color: var(--color-accent);
+        font-size: var(--font-nav-size);
       }
     }
     .avatar-wrapper {
@@ -185,7 +256,7 @@ table {
       margin: 0;
 
       .avatar {
-        border: 2px solid var(--color-bg);
+        border: 2px solid rgba(255, 255, 255, 1);
       }
     }
     .primary-nav {
@@ -202,21 +273,23 @@ table {
   align-items: flex-start;
   color: var(--color-accent);
   margin-bottom: 2rem;
+  font-weight: 600;
 }
 
 .service-body p {
   font-size: var(--font-body-size);
   font-weight: var(--font-body-weight);
   width: 100%;
-  line-height: 1.5;
-  margin-bottom: 2rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  color: var(--color-text);
 }
 
 .service-price-large {
   font-size: var(--font-subheader-size);
   font-weight: var(--font-subheader-weight);
   color: var(--color-accent);
-  margin: 4rem 0 1rem;
+  margin: 2rem 0 1rem;
 }
 
 .primary-nav {
@@ -228,19 +301,24 @@ table {
     gap: 4rem;
   }
 
-  .nav-item:hover {
-    color: var(--color-accent);
+  .nav-item {
+    color: var(--color-text);
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--color-accent);
+    }
   }
 
   .nav-item.primary-cta {
     background-color: var(--color-accent);
-    color: var(--color-bg);
+    color: rgba(255, 255, 255, 1);
     padding: 0.5rem 1rem;
     border-radius: 2rem;
     transition: background-color 0.3s ease;
 
     &:hover {
-      background-color: rgba(223, 68, 7, 0.8);
+      background-color: var(--color-accent);
     }
   }
 }
@@ -255,7 +333,7 @@ table {
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
-    border: 5px solid var(--color-bg);
+    border: 5px solid rgba(255, 255, 255, 1);
     display: block;
   }
 }
@@ -266,10 +344,15 @@ table {
 
   .professional-name {
     margin-bottom: 1rem;
+    font-size: var(--font-header-size);
+    font-weight: var(--font-header-weight);
+    color: var(--color-text);
   }
 
   .title {
     color: var(--color-accent);
+    font-weight: 600;
+    font-size: var(--font-subheader-size);
   }
 
   .location {
@@ -278,12 +361,13 @@ table {
       center;
     width: fit-content;
     margin: 0 auto;
+    color: var(--color-text);
   }
 }
 
 .primary-cta-large {
   background-color: var(--color-accent);
-  color: var(--color-bg);
+  color: rgba(255, 255, 255, 1);
   padding: 1rem 2rem;
   border-radius: 2rem;
   font-size: var(--font-subheader-size);
@@ -292,10 +376,18 @@ table {
   transition: background-color 0.3s ease;
   border: none;
   cursor: pointer;
+  display: inline-block;
+  margin-bottom: 2.5rem;
 
   &:hover {
-    background-color: rgba(223, 68, 7, 0.8);
+    background-color: var(--color-accent);
   }
+}
+
+/* Spacing utility for CTA following content sections */
+.service-body + .primary-cta-large,
+.service-body + .service-price-large + .primary-cta-large {
+  margin-top: 1.5rem;
 }
 
 /* Main content */
@@ -333,24 +425,39 @@ table {
     background-color: rgba(255, 255, 255, 1);
     padding: 2rem;
     border-radius: 1rem;
-    box-shadow: 0px 8px 10px -6px rgba(41, 37, 36, 0.25),
-      0px 20px 25px -5px rgba(41, 37, 36, 0.25);
+    border: 1px solid var(--color-bg);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.12);
+      transform: translateY(-2px);
+    }
 
     .service-title {
       font-size: var(--font-subheader-size);
       font-weight: var(--font-subheader-weight);
       margin-bottom: 1rem;
+      color: var(--color-text);
     }
 
     .service-description {
-      font-size: var(--font-small-size);
-      font-weight: var(--font-small-weight);
+      font-size: var(--font-body-size);
+      font-weight: var(--font-body-weight);
       margin-bottom: 1rem;
+      color: var(--color-text);
+      line-height: 1.6;
     }
 
     .service-moreinfo {
       color: var(--color-accent);
       margin-bottom: 2rem;
+      font-weight: 600;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: var(--color-accent);
+      }
     }
 
     .service-footer {
@@ -363,7 +470,7 @@ table {
     .service-price {
       color: var(--color-accent);
       font-size: var(--font-small-size);
-      font-weight: var(--font-subheader-weight);
+      font-weight: 600;
     }
 
     .service-cta {
@@ -372,13 +479,13 @@ table {
       padding: 0.5rem 1rem;
       border-radius: 2rem;
       font-size: var(--font-small-size);
-      font-weight: var(--font-subheader-weight);
+      font-weight: 600;
       text-align: center;
       transition: background-color 0.3s ease;
       margin-left: auto;
 
       &:hover {
-        background-color: rgba(223, 68, 7, 0.8);
+        background-color: var(--color-accent);
       }
     }
   }
@@ -464,26 +571,24 @@ section#testimonials {
   background-color: rgba(255, 255, 255, 1);
   padding: 2rem;
   border-radius: 1rem;
-  box-shadow: 0px 8px 10px -6px rgba(41, 37, 36, 0.25),
-    0px 20px 25px -5px rgba(41, 37, 36, 0.25);
-  transition: transform 0.3s ease;
+  border: 1px solid var(--color-bg);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   white-space: normal;
-}
 
-.testimonial-marquee .testimonial-item {
-  width: 420px;
-  flex: 0 0 420px;
-}
-
-.testimonial-item:hover {
-  transform: scale(1.05);
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.12);
+  }
 }
 
 .testimonial-quote {
-  font-size: var(--font-subheader-size);
+  font-size: var(--font-body-size);
   font-weight: 400;
   font-style: italic;
   margin-bottom: 1rem;
+  color: var(--color-text);
+  line-height: 1.7;
 }
 
 .testimonial-footer {
@@ -497,7 +602,7 @@ section#testimonials {
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
-  background-color: var(--color-accent);
+  background-color: var(--color-bg);
   flex-shrink: 0;
   flex-grow: 0;
   flex-basis: 2rem;
@@ -505,7 +610,7 @@ section#testimonials {
 
 .testimonial-author {
   font-size: var(--font-small-size);
-  font-weight: var(--font-subheader-weight);
+  font-weight: 600;
   color: var(--color-accent);
 }
 
@@ -609,6 +714,7 @@ section#testimonials {
 label {
   display: flex;
   flex-direction: column;
+  color: var(--color-text);
 }
 label > span {
   margin-bottom: 0.5rem;
@@ -620,11 +726,21 @@ input,
 select,
 textarea {
   padding: 0.8rem 1rem;
-  border: none;
-  border-radius: 1rem;
+  border: 2px solid var(--color-bg);
+  border-radius: 0.5rem;
   font-size: var(--font-body-size);
   font-weight: var(--font-body-weight);
+  font-family: var(--font-base);
   box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 1);
+  color: var(--color-text);
+  transition: border-color 0.3s ease;
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 2px rgba(185, 120, 89, 0.1);
+  }
 }
 textarea {
   min-height: 200px;
@@ -648,17 +764,19 @@ textarea {
   padding: 2rem 0;
   text-align: center;
   font-size: var(--font-small-size);
-  font-weight: var(--font-subheader-weight);
+  font-weight: 400;
+  color: var(--color-text);
 }
 
 .footer-static {
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 .footer a {
   color: inherit;
   text-decoration: none;
-  opacity: 0.5;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
 }
 
 .footer-legal a {
@@ -667,6 +785,7 @@ textarea {
 
 .footer a:hover {
   opacity: 1;
+  color: var(--color-accent);
 }
 
 /* Scroll animate for condensed nav */
@@ -741,10 +860,16 @@ textarea {
         align-items: center;
         padding: 4rem;
         font-size: var(--font-subheader-size);
+        flex-direction: column;
+      }
+
+      .nav-item {
+        color: var(--color-text);
       }
 
       .primary-cta {
         color: rgba(255, 255, 255, 1);
+        background-color: var(--color-accent);
       }
     }
   }
@@ -770,7 +895,7 @@ textarea {
     display: block;
     background: none;
     border: none;
-    color: var(--color-bg);
+    color: rgba(255, 255, 255, 1);
     font-size: 2rem;
     cursor: pointer;
     z-index: 10000;
@@ -832,14 +957,26 @@ textarea {
 .legal-page h1,
 .legal-page h2,
 .legal-page h3 {
+  font-weight: 600;
+  color: var(--color-text);
   margin-top: 2rem;
   margin-bottom: 1rem;
+  line-height: 1.2;
 }
 .legal-page p,
 .legal-page ul,
 .legal-page ol {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   line-height: 1.7;
+  font-size: var(--font-body-size);
+  color: var(--color-text);
+}
+.legal-page ul,
+.legal-page ol {
+  margin-left: 1.5rem;
+}
+.legal-page li {
+  margin-bottom: 0.75rem;
 }
 
 /* ==================== 404 Page ==================== */

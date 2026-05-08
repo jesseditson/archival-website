@@ -2,5 +2,8 @@
 dist
 bin/tmp
 
+# Node
+node_modules
+
 # MacOS
 .DS_Store

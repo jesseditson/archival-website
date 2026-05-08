@@ -5,7 +5,7 @@
 {% endif %}
   <span class="label">{{ event_date | date: "%B %d, %Y" }}</span>
   <h3>{{ event_title }}</h3>
-  <div>{{ event_description }}</div>
+  <div class="markdown event-description">{{ event_description }}</div>
   {% if event_link != blank %}
     <span class="event-card-link">Learn More &rarr;</span>
   {% endif %}

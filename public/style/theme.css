@@ -1404,3 +1404,414 @@ a:focus:not(:focus-visible) {
     transform: none;
   }
 }
+
+/* ============================================
+   22. Markdown content
+   Shared scope for every field rendered through the markdown filter
+   (site.description in the about section, event.description in event
+   cards). Restaurant aesthetic: warm gold accent on a near-black ground,
+   Cormorant Garamond serif for headings, Outfit body type at 300 weight.
+   ============================================ */
+
+.markdown {
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.markdown > *:first-child {
+  margin-top: 0;
+}
+
+.markdown > *:last-child {
+  margin-bottom: 0;
+}
+
+.markdown p {
+  margin: 0 0 1.25rem;
+}
+
+.markdown h1 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  line-height: 1.15;
+  color: var(--text-primary);
+  margin: 2.5rem 0 1.25rem;
+}
+
+.markdown h2 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.15;
+  color: var(--accent);
+  margin: 2.5rem 0 1rem;
+}
+
+.markdown h3 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  line-height: 1.2;
+  color: var(--text-primary);
+  margin: 2rem 0 0.75rem;
+}
+
+.markdown h4 {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 1.5rem 0 0.5rem;
+}
+
+.markdown strong {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.markdown em {
+  font-style: italic;
+}
+
+.markdown del {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.markdown mark {
+  background: rgba(201, 169, 110, 0.25);
+  color: var(--text-primary);
+  padding: 2px 4px;
+  border-radius: 2px;
+}
+
+.markdown sub,
+.markdown sup {
+  font-size: 0.75em;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+.markdown sub {
+  bottom: -0.25em;
+}
+
+.markdown sup {
+  top: -0.5em;
+}
+
+.markdown code {
+  font-family: "JetBrains Mono", "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  font-size: 0.9em;
+  background: var(--bg-surface);
+  color: var(--accent);
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--border-dotted);
+}
+
+.markdown a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201, 169, 110, 0.4);
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.markdown a:hover {
+  color: var(--text-primary);
+  border-bottom-color: var(--text-primary);
+}
+
+/* Empty heading-anchor links injected by the markdown filter */
+.markdown a.anchor {
+  border-bottom: none;
+}
+
+.markdown a.anchor:hover {
+  border-bottom: none;
+}
+
+.markdown blockquote {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+  margin: 2rem 0;
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  border-left: 2px solid var(--accent);
+}
+
+.markdown blockquote p {
+  margin-bottom: 0.75rem;
+}
+
+.markdown blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.markdown blockquote blockquote {
+  margin: 1rem 0;
+  border-left-color: var(--text-muted);
+}
+
+.markdown ul,
+.markdown ol {
+  margin: 1.25rem 0;
+  padding-left: 1.75rem;
+}
+
+.markdown ul {
+  list-style-type: disc;
+}
+
+.markdown ol {
+  list-style-type: decimal;
+}
+
+.markdown li {
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+}
+
+.markdown li::marker {
+  color: var(--accent);
+}
+
+.markdown li > ul,
+.markdown li > ol {
+  margin: 0.5rem 0;
+}
+
+.markdown li.depth-1 {
+  margin-left: 1.5rem;
+}
+
+.markdown li.depth-2 {
+  margin-left: 3rem;
+}
+
+.markdown li.depth-3 {
+  margin-left: 4.5rem;
+}
+
+/* Task lists */
+.markdown ul.task-list,
+.markdown ul.contains-task-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.markdown li.task-list-item {
+  padding: 0.25rem 0;
+  list-style: none;
+}
+
+.markdown li.task-list-item input[type="checkbox"],
+.markdown .task-item input[type="checkbox"] {
+  margin-right: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+  cursor: not-allowed;
+  appearance: none;
+  border: 1px solid var(--border-dotted);
+  border-radius: 2px;
+  background: var(--bg-surface);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  position: relative;
+  vertical-align: -3px;
+}
+
+.markdown li.task-list-item input[type="checkbox"]:checked,
+.markdown .task-item input[type="checkbox"]:checked {
+  border-color: var(--accent);
+  background: rgba(201, 169, 110, 0.15);
+}
+
+.markdown li.task-list-item input[type="checkbox"]:checked::after,
+.markdown .task-item input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  width: 7px;
+  height: 3px;
+  border-left: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  transform: translate(-50%, -55%) rotate(-45deg);
+}
+
+/* Code blocks */
+.markdown pre {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.markdown pre code {
+  font-family: "JetBrains Mono", "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  padding: 0;
+  white-space: pre;
+  display: block;
+}
+
+/* Prism token colors (only render if a Prism stylesheet/runtime is added) */
+.markdown pre[class*="language-"] {
+  background: var(--bg-surface) !important;
+  border: 1px solid var(--border);
+  white-space: pre !important;
+  margin: 1.5rem 0 !important;
+  padding: 1.25rem 1.5rem !important;
+}
+
+.markdown code[class*="language-"] {
+  color: var(--text-primary);
+  text-shadow: none;
+  white-space: pre !important;
+  line-height: 1.6 !important;
+}
+
+.markdown .token.comment,
+.markdown .token.prolog,
+.markdown .token.doctype,
+.markdown .token.cdata {
+  color: var(--text-muted);
+}
+
+.markdown .token.punctuation {
+  color: var(--text-secondary);
+}
+
+.markdown .token.property,
+.markdown .token.tag,
+.markdown .token.boolean,
+.markdown .token.number,
+.markdown .token.constant,
+.markdown .token.symbol,
+.markdown .token.deleted {
+  color: #d97757;
+}
+
+.markdown .token.selector,
+.markdown .token.attr-name,
+.markdown .token.string,
+.markdown .token.char,
+.markdown .token.builtin,
+.markdown .token.inserted {
+  color: #a8b89a;
+}
+
+.markdown .token.operator,
+.markdown .token.entity,
+.markdown .token.url,
+.markdown .language-css .token.string,
+.markdown .style .token.string {
+  color: #b8a98a;
+}
+
+.markdown .token.atrule,
+.markdown .token.attr-value,
+.markdown .token.keyword {
+  color: var(--accent);
+}
+
+.markdown .token.function,
+.markdown .token.class-name {
+  color: #c8b89a;
+}
+
+.markdown .token.regex,
+.markdown .token.important,
+.markdown .token.variable {
+  color: #d97757;
+}
+
+/* Horizontal rule */
+.markdown hr {
+  border: none;
+  border-top: 1px dotted var(--border-dotted);
+  margin: 2.5rem 0;
+}
+
+/* Images */
+.markdown img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin: 1.5rem 0;
+  border: 1px solid var(--border);
+}
+
+/* Tables */
+.markdown table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.markdown table th {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--bg-surface-hover);
+  color: var(--accent);
+  text-align: left;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.markdown table td {
+  padding: 0.85rem 1rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+.markdown table tr:hover td {
+  background: var(--bg-surface-hover);
+}
+
+/* Scrollbar for code blocks */
+.markdown pre::-webkit-scrollbar {
+  height: 8px;
+}
+
+.markdown pre::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.markdown pre::-webkit-scrollbar-thumb {
+  background: var(--border-dotted);
+  border-radius: 4px;
+}
+
+.markdown pre::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}

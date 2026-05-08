@@ -60,7 +60,7 @@
   <div class="container">
     <h2 class="section-title">About Me</h2>
     <div class="content">
-      <div class="text">
+      <div class="text markdown">
         {{ personal.full_about }}
       </div>
     </div>
@@ -72,7 +72,7 @@
   <div class="container">
     <h2 class="section-title">{{ experience.title }}</h2>
     {% if experience.description != blank %}
-    <div class="experience-intro">{{ experience.description }}</div>
+    <div class="experience-intro markdown">{{ experience.description }}</div>
     {% endif %}
     <div class="experience">
       {% for job in experience.job %}
@@ -82,7 +82,7 @@
             {% if job.company != blank %}<span class="experience-company">{{ job.company }}</span>{% endif %}
             {% if job.dates != blank %}<span class="experience-dates">{{ job.dates }}</span>{% endif %}
           </div>
-          <div class="experience-description">
+          <div class="experience-description markdown">
             {{ job.description }}
           </div>
         </div>
@@ -96,7 +96,7 @@
   <div class="container">
     <h2 class="section-title">{{ work.title }}</h2>
     {% if work.description != blank %}
-    <div class="work-intro">{{ work.description }}</div>
+    <div class="work-intro markdown">{{ work.description }}</div>
     {% endif %}
     <!-- Projects -->
     <div class="projects">
@@ -104,7 +104,7 @@
         <div class="project-item">
           <div class="project-content">
             <h3>{{ project.name }}</h3>
-            <p>{{ project.description }}</p>
+            <div class="project-description markdown">{{ project.description }}</div>
             <div class="project-tags">
               {%- for tag in project.tag -%}
                 <span>{{ tag.name }}</span>
@@ -127,7 +127,7 @@
   <div class="container">
     <div class="contact-card">
       <h2 class="section-title">{{ contact.title }}</h2>
-      <div>
+      <div class="contact-description markdown">
         {{ contact.description }}
         <a href="mailto:{{ contact.email }}" class="email-link">
           <svg

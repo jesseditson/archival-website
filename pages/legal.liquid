@@ -5,7 +5,7 @@
   <div class="container">
     <h1 class="page-title">{{ legal.title }}</h1>
     {% if legal.content != blank %}
-    <div class="legal-content">
+    <div class="legal-content markdown">
       {{ legal.content
          | replace: "{{podcast.title}}", podcast.title
          | replace: "{{podcast.author}}", podcast.author

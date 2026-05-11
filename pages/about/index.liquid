@@ -8,7 +8,9 @@
     <h1 class="page-title">About Us</h1>
     <div class="about-content">
       <div class="about-text">
-        {{ podcast.description }}
+        <div class="markdown podcast-description">
+          {{ podcast.description }}
+        </div>
 
         <p>Our podcast brings together diverse voices and perspectives to explore the most important stories shaping our
           world today. From breaking news to deep dives into culture and technology, we're here to inform, entertain,
@@ -34,7 +36,7 @@
 
         <div class="host-info">
           <h3 class="host-name">{{ current_host.name }}</h3>
-          <div class="host-bio">
+          <div class="host-bio markdown">
             {{ current_host.bio }}
           </div>
 

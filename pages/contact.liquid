@@ -5,7 +5,7 @@
   <!-- Contact Hero -->
   <div class="contact-hero animate-on-scroll">
     <h2 class="section-title">{{ contact.hero_title }}</h2>
-    <div class="lead-text">
+    <div class="lead-text markdown">
       {{ contact.hero_lead }}
     </div>
   </div>
@@ -103,7 +103,7 @@
           <div class="status-indicator"></div>
           <span class="status-text">{{ contact.availability_status }}</span>
         </div>
-        <div class="availability-note">
+        <div class="availability-note markdown">
           {{ contact.availability_note }}
         </div>
       </div>
@@ -121,7 +121,7 @@
               <span>{{ faq.question }}</span>
               <span class="faq-icon">+</span>
             </button>
-            <div class="faq-answer">
+            <div class="faq-answer markdown">
               {{ faq.answer }}
             </div>
           </div>

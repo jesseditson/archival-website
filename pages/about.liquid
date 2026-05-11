@@ -6,7 +6,7 @@
   <div class="about-hero">
     <div class="about-hero-content animate-on-scroll">
       <h2 class="section-title">{{ about.hero_title }}</h2>
-      <div class="lead-text">
+      <div class="lead-text markdown">
         {{ about.hero_lead }}
       </div>
     </div>
@@ -30,7 +30,7 @@
       <h3 class="content-title">{{ about.story_title }}</h3>
       {% for block in about.story %}
         {% unless block.after_quote %}
-          {{ block.body }}
+          <div class="markdown">{{ block.body }}</div>
         {% endunless %}
       {% endfor %}
 
@@ -45,7 +45,7 @@
 
       {% for block in about.story %}
         {% if block.after_quote %}
-          {{ block.body }}
+          <div class="markdown">{{ block.body }}</div>
         {% endif %}
       {% endfor %}
     </div>
@@ -68,7 +68,7 @@
           <div class="expertise-card">
             <div class="expertise-icon">{{ card.icon }}</div>
             <h4>{{ card.title }}</h4>
-            <p>{{ card.description }}</p>
+            <div class="markdown expertise-description">{{ card.description }}</div>
           </div>
         {% endfor %}
       </div>
@@ -85,7 +85,7 @@
             <div class="timeline-marker"></div>
             <div class="timeline-content">
               <h4>{{ step.title }}</h4>
-              <p>{{ step.description }}</p>
+              <div class="markdown timeline-description">{{ step.description }}</div>
             </div>
           </div>
         {% endfor %}

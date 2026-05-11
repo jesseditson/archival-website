@@ -165,6 +165,63 @@ override `.not-found-code`'s `clamp()` font size. Adapt the colors to
 the template's palette but keep the eyebrow / oversized code / italic
 or serif headline / outlined CTA structure.
 
+### Markdown content styling
+
+Any field of type `markdown` in the schema can render arbitrary
+markdown — headings, lists, code, tables, blockquotes, etc. Every
+template must:
+
+1. **Wrap each markdown render site in `<div class="markdown">`** so
+   styling targets the wrapper, not bare element selectors. Existing
+   surface classes can stack:
+   `<div class="about-text markdown">{{ about.description }}</div>`.
+   If the markdown emits `<p>` and the wrapper was already a `<p>`,
+   change it to a `<div>` to avoid invalid nested-paragraph HTML.
+
+2. **Include a comprehensive `.markdown { ... }` CSS block** covering
+   every supported element (h1–h6, p, strong, em, a, code, pre,
+   blockquote, ul/ol/li, hr, img, table) plus Prism token colors
+   (kept for parity even when Prism isn't loaded). Use the template's
+   design tokens (CSS custom properties) so the block respects the
+   palette. The block belongs at the **end** of the stylesheet so its
+   element-scoped rules win over earlier defaults via source order.
+
+3. **Reset `text-align: left` on `.markdown`** so rendered prose isn't
+   accidentally centered when the wrapping surface uses
+   `text-align: center` (hero areas, host cards, etc.).
+
+4. **Override the heading anchor link** that the markdown filter
+   injects: `.markdown h1 a.anchor, ... { border-bottom: none; color:
+   inherit; text-decoration: none; }`. Otherwise heading anchors pick
+   up the link styling.
+
+5. **Code blocks should always render dark** even on light themes
+   (hardcoded dark background and light text, not `var(--color-text)`).
+   Without this, themes that swap `--color-text` between light/dark
+   end up with white-on-white code blocks in the wrong mode.
+
+6. **Tables should be contained rounded rectangles** with a shaded
+   header row, soft shadow, and `overflow: hidden` on the table. The
+   newspaper-style top/bottom-border-only look reads as broken in
+   most templates.
+
+Reference: any of the worked branches (`templates/about-1`,
+`templates/photographica-1`, `templates/publication-1`, etc.) ships a
+fully fleshed-out `.markdown` block to crib from.
+
+### CSS units: always rem, never px
+
+Use rem for every dimensional property — padding, margin, border-width,
+border-radius, box-shadow offsets, scrollbar height, hr height,
+everything. Conversion: `1rem = 16px` (so `1px → 0.0625rem`,
+`4px → 0.25rem`, `8px → 0.5rem`, `24px → 1.5rem`). This keeps the UI
+honoring the user's font-size preferences and keeps scaling consistent
+across the template.
+
+Don't introduce px even for "hairline" borders or shadow offsets.
+Existing px in unrelated rules don't need to be retroactively changed
+unless touching that rule.
+
 ---
 
 ## 2. Schema patterns
@@ -420,6 +477,12 @@ A short pre-flight checklist:
 - [ ] 404 page redesigned (not the bare default)
 - [ ] `prefers-reduced-motion` respected in CSS and any JS that
       drives motion
+- [ ] Every `markdown`-typed field is rendered inside a
+      `<div class="markdown">` wrapper, and the stylesheet ships a
+      comprehensive `.markdown { ... }` block covering every element
+      (h1–h6, lists, code/pre with Prism colors, blockquote, table,
+      hr, img, anchor reset) — see Section 1
+- [ ] All CSS dimensions in rem, no `px` (even for hairlines)
 - [ ] Footer year is `{{ "now" | date: "%Y" }}`, not hardcoded
 - [ ] `manifest.toml` does **not** set `site_url` (left for the user
       to configure)

@@ -18,3 +18,103 @@ keep_objects = [
     "terms_of_service",
     "privacy_policy"
 ]
+
+# ---------------------------------------------------------------------------
+# Skin contract
+# ---------------------------------------------------------------------------
+# Declares what an automated skin pass may change, and what it must not.
+#
+# Motivation: the lead-gen skin pass (aider, via `archival-utility preview
+# generate`) has unrestricted write access to this stylesheet. In the journal/US
+# batch it desynchronised the three variables that encode ONE colour below,
+# producing a visible banding stripe under the hero on 2 of 5 generated sites.
+# Nothing in the pipeline caught it before those sites were built and
+# screenshotted for outreach.
+#
+# Anything NOT listed in [skin.variables] is immutable to a skin pass.
+
+[skin]
+files = ["public/styles.css"]
+selector = ":root"
+
+# Variables a skin may set freely.
+[skin.variables]
+"--color-text" = { type = "color" }
+# NOTE: --color-background is dual-role. It is the page surface AND the text
+# colour on --color-button-bg (see .skip-link, .support-modules .module a,
+# .not-found-cta). The contrast rule below covers that second role.
+"--color-background" = { type = "color" }
+"--color-heading" = { type = "color" }
+"--color-footer-text" = { type = "color" }
+"--color-supplement" = { type = "color" }
+# The "ink" colour: button fill, link text, and (via the derive below) the hero
+# button fill and headline. Confirmed by Alex as ONE intentional colour, not a
+# coincidence of the stock black-and-white palette.
+"--color-button-bg" = { type = "color" }
+"--typo-h1-size" = { type = "length", min = "3rem", max = "8rem" }
+"--typo-h1-weight" = { type = "number", min = 400, max = 900 }
+"--typo-h2-size" = { type = "length", min = "2rem", max = "8rem" }
+"--typo-body-size" = { type = "length", min = "1rem", max = "1.75rem" }
+
+# Computed from their source — never authored by a skin.
+#
+# `header.hero` here has no fixed height and only 2.5rem margin-bottom: it is a
+# CONTINUOUS PAGE SURFACE with body, not a distinct band. (Contrast app-1, whose
+# hero is a deliberate 43rem fixed block and therefore correctly has NO such
+# derive.) When these drift apart you get banding.
+[[skin.derive]]
+var = "--color-hero-background"
+from = "--color-background"
+
+[[skin.derive]]
+var = "--color-nav-background"
+from = "--color-background"
+alpha = 0.9
+
+# One ink colour (confirmed by Alex, who authored this CSS). `.hero .button`
+# fills with --color-hero-text while `.button` fills with --color-button-bg; the
+# two must be the same ink or the hero button diverges from every other button.
+# Both are #000000 in stock. (app-1 has them different — there the hero button
+# sits on a blue band — which is why this coupling is declared per-template
+# rather than assumed.)
+[[skin.derive]]
+var = "--color-hero-text"
+from = "--color-button-bg"
+
+# Hover is a shade of the ink, not an independent colour — otherwise the moment a
+# skin moves --color-button-bg, the hover state is left behind pointing at the old
+# colour. Stock is #161616 on a #000000 button, i.e. a 8.6% LIGHTENING (you cannot
+# darken black). Direction is explicit rather than inferred: app-1's equivalent
+# derive darkens, because its button is a mid blue.
+[[skin.derive]]
+var = "--color-button-hover-bg"
+from = "--color-button-bg"
+lighten = 0.086
+
+# Pairs that must stay legible. These are the rules that actually set both a
+# colour and a background via var() — including the dual-role cases, where a
+# dark page background would otherwise silently yield dark-on-dark button text.
+[[skin.contrast]]
+fg = "--color-text"
+bg = "--color-background"
+min = 4.5
+
+[[skin.contrast]]
+fg = "--color-background"
+bg = "--color-button-bg"
+min = 4.5
+
+[[skin.contrast]]
+fg = "--color-hero-background"
+bg = "--color-hero-text"
+min = 4.5
+
+# Families usable without a loader. A skin naming anything else must also add an
+# @font-face / <link>; the journal batch emitted "Playfair Display" and "Inter"
+# with nothing loading them, so they silently fell back to a generic family.
+[skin.fonts]
+stacks = [
+    "system-ui, sans-serif",
+    "ui-serif, Georgia, serif",
+    "ui-monospace, SFMono-Regular, Menlo, monospace",
+]

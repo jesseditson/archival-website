@@ -18,3 +18,81 @@ keep_objects = [
     "terms_of_service",
     "privacy_policy"
 ]
+
+# ---------------------------------------------------------------------------
+# Skin contract
+# ---------------------------------------------------------------------------
+# Declares what an automated skin pass may change, and what it must not.
+#
+# Read this alongside app-2's contract — they are deliberately DIFFERENT, and
+# the difference is the point.
+#
+# app-2's `header.hero` has no fixed height and 2.5rem margin-bottom: it is a
+# continuous page surface, so its --color-hero-background MUST derive from
+# --color-background or the two surfaces band apart.
+#
+# app-1's `header.hero` is `height: 43rem; margin-bottom: 19rem` with a
+# deliberate blue (#184ed8) against an off-white (#f9f9f9) page. That contrast
+# is the design. There is therefore NO derive between --color-background and
+# --color-hero-background here, and any tool that assumes one globally is wrong.
+#
+# Anything NOT listed in [skin.variables] is immutable to a skin pass.
+
+[skin]
+files = ["public/styles.css"]
+selector = ":root"
+
+[skin.variables]
+"--color-text" = { type = "color" }
+# NOTE: dual-role — also the text colour on --color-hero-background
+# (.support-modules .module a). The contrast rule below covers that.
+"--color-background" = { type = "color" }
+"--color-hero-background" = { type = "color" }
+"--color-hero-text" = { type = "color" }
+"--color-heading" = { type = "color" }
+"--color-footer-text" = { type = "color" }
+"--color-supplement" = { type = "color" }
+"--typo-h1-size" = { type = "length", min = "3rem", max = "7rem" }
+"--typo-h1-weight" = { type = "number", min = 400, max = 900 }
+"--typo-h2-size" = { type = "length", min = "2rem", max = "5rem" }
+
+# The hero band and the buttons are ONE accent colour (both #184ed8 in stock) —
+# confirmed by Alex, who authored this CSS. Skins set the accent once, via
+# --color-hero-background, and the buttons follow.
+[[skin.derive]]
+var = "--color-button-bg"
+from = "--color-hero-background"
+
+# BUG FIX: --color-button-hover-bg is #184ed8 in stock — identical to
+# --color-button-bg — so buttons currently have NO visible hover change at all.
+# Confirmed a bug, not a choice. Deriving it as a shade fixes the stock template
+# AND holds for any accent a skin picks; a fixed hex would break as soon as the
+# accent moved. `shade` shifts lightness toward the opposite end (darkens light
+# colours, lightens dark ones), matching app-2's stock #000000 -> #161616.
+[[skin.derive]]
+var = "--color-button-hover-bg"
+from = "--color-button-bg"
+darken = 0.08
+
+[[skin.contrast]]
+fg = "--color-text"
+bg = "--color-background"
+min = 4.5
+
+[[skin.contrast]]
+fg = "--color-hero-text"
+bg = "--color-hero-background"
+min = 4.5
+
+# --color-background is used as TEXT on the hero band here.
+[[skin.contrast]]
+fg = "--color-background"
+bg = "--color-hero-background"
+min = 4.5
+
+[skin.fonts]
+stacks = [
+    "system-ui, sans-serif",
+    "ui-serif, Georgia, serif",
+    "ui-monospace, SFMono-Regular, Menlo, monospace",
+]

@@ -21,53 +21,65 @@ image = "image"
 [features]
 icon = [
 # Nature and Environment
-"acorn","leaf","flower","tree","mountains","sun","moon","planet","island","cloud","cloud-sun","cloud-rain","cloud-snow","cloud-lightning","wave","wind","windmill","volcano","rainbow","seedling","pinecone","rose","sunflower","cactus","forest","rock","sand-clock","terrarium","reef","coral","glacier","palm-tree","river","shell","mushroom","fog","lake","tree-evergreen","beach","hill","branch","clover","desert","flame","seed","iceberg","avalanche","geyser","tornado","hurricane","diamond","crystal","gem","meteor","comet","snowflake",
+"acorn","leaf","flower","tree","mountains","sun","moon","planet","island","cloud","cloud-sun","cloud-rain","cloud-snow","cloud-lightning","wind","windmill","rainbow","cactus","tree-evergreen","clover","flame","tornado","hurricane","diamond","meteor","snowflake",
 
 # Animals and Creatures
-"cat","dog","bird","fish","horse","butterfly","bee","lion","rabbit","cow","pig","turtle","snake","zebra","elephant","frog","bear","monkey","dolphin","crab","octopus","mouse","goat","duck","bat","penguin","fox","owl","deer","wolf","insect","whale","snail","chicken","pigeon","rooster","sheep","seahorse","jellyfish","parrot","camel","bull","kangaroo","lobster","goose","eagle","rhino","shark","squid","seal",
+"cat","dog","bird","fish","horse","butterfly","rabbit","cow","mouse","seal",
 
 # Food and Drink
-"apple","banana","bread","cheese","cake","pizza","sandwich","salad","cookie","cherries","pear","peach","pepper","taco","hotdog","ice-cream","melon","pumpkin","watermelon","coffee","beer-stein","cocktail","tea-bag","wine","mug","bottle","cup","fork-knife","spoon-fork","pot","bowl-food","utensils","toaster","oven","pan","donut","burger","egg","rice-bowl","carrot","lemon","lime","garlic","onion","corn","broccoli","steak","fish-simple","milk","pie","avocado",
+"bread","cheese","cake","pizza","cookie","cherries","pepper","ice-cream","coffee","beer-stein","tea-bag","wine","fork-knife","bowl-food","oven","egg","carrot","fish-simple","avocado",
 
 # People and Professions
-"person","user","student","chef-hat","detective","doctor","nurse","teacher","scientist","pilot","athlete","musician","artist","engineer","firefighter","police-car","construction","gardener","farmer","astronaut","soldier","sailor","judge","diver","writer","actor","dancer","photographer","reporter","programmer","tailor","mechanic","electrician","plumber","miner","designer","babysitter","cleaner","driver","baker","barber","butcher","cashier","dentist","lawyer","librarian","waiter","blacksmith","hairdresser","translator","healer",
+"person","user","student","chef-hat","detective","police-car",
 
 # Tools and Work
-"hammer","screwdriver","wrench","toolbox","ruler","saw","ladder","paint-brush","paint-bucket","palette","magnet","gear","needle","thread","stapler","pen","pencil","pen-nib","pencil-simple","highlighter","lamp","lantern","torch","brush","bucket","mop","vacuum-cleaner","watering-can","broom","tape-measure","compass","measuring-cup","pickaxe","shovel","anvil","drill","pliers","axe","scissors","trowel","spanner","sandpaper","nail","bolt","hook","glue","clip","soldering-iron","helmet","apron","briefcase","clipboard",
+"hammer","screwdriver","wrench","toolbox","ruler","ladder","paint-brush","paint-bucket","palette","magnet","gear","needle","pen","pencil","pen-nib","pencil-simple","highlighter","lamp","broom","compass","shovel","axe","scissors","briefcase","clipboard",
 
 # Science and Technology
-"microscope","telescope","satellite","satellite-dish","atom","test-tube","flask","beaker","thermometer","syringe","dna","chip","cpu","circuit","server","database","monitor","laptop","keyboard","mouse","headphones","microphone","vr-headset","virtual-reality","robot","robot-arm","drone","3d-printer","laser","compass","network","antenna","wifi-high","signal","webcam","camera","video-camera","photo","film-strip","printer","projector-screen","battery-full","lightbulb","remote-control","power","cable","plug","socket","hard-drive","cd","usb","controller","joystick",
+"microscope","atom","test-tube","flask","thermometer","syringe","dna","cpu","database","monitor","laptop","keyboard","headphones","microphone","virtual-reality","robot","drone","network","wifi-high","webcam","camera","video-camera","film-strip","printer","projector-screen","battery-full","lightbulb","power","plug","hard-drive","usb","joystick",
 
 # Transportation and Travel
-"airplane","airplane-landing","airplane-takeoff","boat","ship","canoe","sailboat","submarine","car","bus","truck","tractor","train","tram","motorcycle","bicycle","scooter","taxi","zeppelin","rocket","rocket-launch","spaceship","traffic-cone","traffic-light","map","map-pin","navigation-arrow","compass","globe","passport","luggage","suitcase","ticket","garage","gas-pump","vault","warehouse","bridge","road-horizon","helicopter","airship","bus-stop","car-battery","engine","tyre","sail","wheel",
+"airplane","airplane-landing","airplane-takeoff","boat","sailboat","car","bus","truck","tractor","train","tram","motorcycle","bicycle","scooter","taxi","rocket","rocket-launch","traffic-cone","map-pin","navigation-arrow","globe","suitcase","ticket","garage","gas-pump","vault","warehouse","bridge","road-horizon","car-battery","engine",
 
 # Objects and Household
-"chair","armchair","sofa","table","desk","bed","door","window","lamp","tv","television","radio","washing-machine","refrigerator","stove","toaster","clock","alarm","mailbox","calendar","mirror","hanger","coat-hanger","towel","toothbrush","comb","razor","iron","curtain","soap","bathtub","shower","toilet","sink","fan","washing-basket","trash","lightbulb","notepad","clipboard","wallet","credit-card","bottle","glass","broom","bucket","pillow","blanket","vase","rug","candle","curtain-rod","drawer","bookshelf","wardrobe",
+"chair","armchair","table","desk","bed","door","television","radio","washing-machine","clock","alarm","mailbox","calendar","coat-hanger","towel","bathtub","shower","toilet","fan","trash","notepad","wallet","credit-card","rug",
 
 # Communication and Media
-"phone","phone-call","airplay","envelope","envelope-open","chat","chat-dots","chat-circle","chat-text","mailbox","bell","megaphone","broadcast","rss","antenna","newspaper","book","book-open","bookmark","document","file","file-text","folder","folder-open","presentation","projector-screen","television","microphone","camera","radio","film-strip","vinyl-record","music-note","music-notes","playlist","disc","speaker-high","speaker-low","headphones","magazine","journal","message","quote","announcement","notification","podcast","microphone-stand",
+"phone","phone-call","airplay","envelope","envelope-open","chat","chat-dots","chat-circle","chat-text","bell","megaphone","broadcast","rss","newspaper","book","book-open","bookmark","file","file-text","folder","folder-open","presentation","vinyl-record","music-note","music-notes","playlist","disc","speaker-high","speaker-low","notification",
 
 # Business and Finance
-"bank","briefcase","receipt","invoice","graph","chart-bar","chart-line","chart-pie","cardholder","safe","cash-register","piggy-bank","coin","medal","trophy","ranking","scale","contract","factory","barcode","storefront","shield-check","certificate","law-book","auction","handshake","portfolio","office-chair","ledger","vault","stamp","gavel","presentation","clipboard","calculator","filing-cabinet","id-card","contract-signed","credit-card","piggy-bank-open","puzzle-piece","cube","handshake-deal","chart-increase","chart-decrease","building","megaphone","target","bullseye",
+"bank","receipt","invoice","graph","chart-bar","chart-line","chart-pie","cardholder","cash-register","piggy-bank","coin","medal","trophy","ranking","factory","barcode","storefront","shield-check","certificate","handshake","office-chair","stamp","gavel","calculator","puzzle-piece","cube","building","target",
 
 # Education and Knowledge
-"school","chalkboard","graduation-cap","book","books","pencil","notebook","exam","calendar","compass","lab-coat","test-tube","scroll","microscope","clipboard","student","globe","library","abacus","pen","marker","journal","ink-bottle","brain","lightbulb","infinity","paper-plane","ruler","quill","backpack","apple","certificate","open-book","telescope","atom","math-symbol","dna","trophy","desk","board","museum","notepad","calculator","lecture","glasses","microscope-slide","document","degree","question","idea","notebook-spiral",
+"chalkboard","graduation-cap","books","notebook","exam","scroll","brain","infinity","paper-plane","backpack","question",
 
 # Entertainment and Arts
-"guitar","violin","flute","drum","trumpet","theater-curtains","mask-happy","mask-sad","masks-theater","palette","paint-brush","camera","projector-screen","film-strip","clapperboard","cd","disc","game-controller","joystick","dice","cards","ticket","music-note","vinyl-record","magic-wand","megaphone","trophy","gem","comic","poster","sticker","fireworks","confetti","party-popper","jigsaw","balloon","heart","star","lantern","spotlight","podium","marble","poetry-scroll","radio","guitar-acoustic","brush-pen","stage","paint-tube","easel",
+"guitar","mask-happy","mask-sad","game-controller","cards","magic-wand","sticker","confetti","balloon","heart","star",
 
 # Health and Wellness
-"heart","heartbeat","stethoscope","syringe","pill","bandage","first-aid-kit","tooth","toothbrush","apple","water-bottle","yoga-mat","barbell","runner","bicycle","meditation","brain","dna","wheelchair","crutch","drop","virus","mask-medical","hospital","cross","pill-bottle","thermometer","soap","vaccine","medkit","helmet","lungs","apple-core","hand-wash","heartbeat-monitor","clipboard-medical","fitness-watch","scale-person","stretch","exercise-ball","weight","test-tube-blood","hand-glove","eye","herb","spa-stone","footprint","shield-plus","ambulance","chair-doctor",
+"heartbeat","stethoscope","pill","first-aid-kit","tooth","barbell","wheelchair","drop","virus","hospital","cross","eye","shield-plus","ambulance",
 
 # Lifestyle and Hobbies
-"binoculars","camera","puzzle-piece","map","laptop","book","coffee","guitar","paint-brush","palette","tent","surfboard","soccer-ball","basketball","tennis-ball","football","skateboard","bicycle","canoe","golf","volleyball","snowboard","kite","suitcase","passport","dog","cookbook","pizza","cake","flower","shopping-cart","shopping-bag","wallet","wine","mug","vase","camera-retro","fountain-pen","board-game","journal","photobook","garden-hose","watering-can","knitting","radio","magazine","oven","potted-plant","coin-bank","outdoor-grill","birdhouse","camera-roll", "baseball-cap",
+"binoculars","tent","soccer-ball","basketball","tennis-ball","football","golf","volleyball","shopping-cart","shopping-bag","potted-plant","baseball-cap",
 
 # Security and Identity
-"lock","lock-open","shield","shield-check","shield-slash","fingerprint","id-card","identification-card","key","badge","safe","password","hard-drive","folder-lock","guard","helmet","padlock","cctv","eye-slash","vault","lock-key","firewall","security-camera","door","login-card","lock-combination","alarm-siren","camera-security","monitor-shield","safebox","hand-stop","laser-grid","alert","id-badge","code-lock","biometric-scan","secure-cloud","gate","siren-light","verification-check","alert-triangle","encryption-key","finger-scan","protection","keyhole","safe-open","id-pass","lock-double","eye-scan","user-shield",
+"lock","lock-open","shield","shield-slash","fingerprint","identification-card","key","password","folder-lock","eye-slash","lock-key","security-camera","keyhole",
 
 # Miscellaneous and Symbols
-"yin-yang","infinity","sparkle","flame","hourglass","target","bullseye","lightning","droplet","star","dna","crystal-ball","zodiac-aries","zodiac-taurus","zodiac-gemini","zodiac-cancer","zodiac-leo","zodiac-virgo","zodiac-libra","zodiac-scorpio","zodiac-sagittarius","zodiac-capricorn","zodiac-aquarius","zodiac-pisces","balance","triangle","square","circle","diamond","hexagon","spiral","arrow-circle","flag","bookmark","compass","pulse","ghost","mask","spark","atom-orbit","wave","radiation","crown","cube","flower-lotus","hourglass-half", "aperture"
+"yin-yang","sparkle","hourglass","lightning","triangle","square","circle","hexagon","spiral","flag","pulse","ghost","crown","flower-lotus","aperture",
 
+
+# Files, export and sync
+"export","download-simple","upload-simple","arrow-square-out","arrows-clockwise","cloud-arrow-up","cloud-arrow-down","cloud-check","file-arrow-down","file-arrow-up","archive-box","floppy-disk",
+
+# Photos and media
+"image","images","images-square","camera-plus","video",
+
+# Writing and notes
+"note-pencil","article","textbox","text-aa","list-checks","bookmark-simple",
+
+# Product and security
+"lock-simple","devices","magnifying-glass","bell-simple","chart-line-up","calendar-blank","tag-simple",
 ]
 title = "string"
 

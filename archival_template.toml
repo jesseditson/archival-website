@@ -118,3 +118,28 @@ stacks = [
     "ui-serif, Georgia, serif",
     "ui-monospace, SFMono-Regular, Menlo, monospace",
 ]
+
+# ---------------------------------------------------------------------------
+# Deterministic field mappings
+# ---------------------------------------------------------------------------
+# These object fields are DATA the generator already holds exactly, not content
+# for the model to compose. archival-utility fills each `object.field` from the
+# named lead-metadata key AFTER generation, overwriting whatever the model
+# produced. The model is not trusted to copy them.
+#
+# Why: the App Store URL is the single most important CTA on the page, and it was
+# being dropped intermittently — the model is asked to copy `app_store_url` into
+# the renamed `appstore_download_link`, while the object prompt tells it twice to
+# leave links empty when unsure (a guard against invented Play Store links). A
+# cautious model takes the hint on the real link too. This makes it a copy, not a
+# request. Same principle as [skin]'s derived variables and keep_objects: compute
+# what we can, don't ask the model for it.
+#
+# A mapping whose metadata key is absent or empty is skipped, leaving the model's
+# value (which the prompt intends to be empty). So playstore/direct download links
+# stay model-controlled — there is no metadata source for them on iOS leads.
+
+[fields]
+"app.appstore_download_link" = "app_store_url"
+"app.legal_email" = "email"
+"app.country" = "country"

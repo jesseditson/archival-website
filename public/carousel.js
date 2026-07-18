@@ -18,7 +18,17 @@ class ImageCarousel {
   init() {
     this.setupEventListeners();
     this.updateCarousel();
-    
+
+    // Slide widths depend on each image's natural aspect ratio, which isn't
+    // known until the image loads. Recompute centering as they arrive.
+    this.slides.forEach((slide) => {
+      const img = slide.querySelector('img');
+      if (img && !img.complete) {
+        img.addEventListener('load', () => this.updateCarousel());
+        img.addEventListener('error', () => this.updateCarousel());
+      }
+    });
+
     // Handle window resize
     window.addEventListener('resize', () => {
       this.updateCarousel();
@@ -131,62 +141,20 @@ class ImageCarousel {
   }
   
   updateCarousel() {
-    // Get the actual image width from CSS calculation
+    const currentSlide = this.slides[this.currentIndex];
+    if (!currentSlide) return;
+
+    // Slides can each be a different width (screenshots keep their native
+    // aspect ratio), so measure the active slide's real layout position rather
+    // than assuming a uniform slide width. offsetLeft/offsetWidth ignore the
+    // track's transform, giving us the untransformed layout position; shifting
+    // the track by this amount centers the active slide in the viewport.
     const viewportWidth = window.innerWidth;
-    
-    // Calculate image width and slide spacing based on viewport
-    let imageWidth, slideSpacing;
-    
-    if (viewportWidth <= 600) {
-      // Mobile: Show significant portions of adjacent slides with proper spacing
-      imageWidth = viewportWidth * 0.7; // 70% of viewport for main image
-      slideSpacing = viewportWidth * 0.04; // 4vw total spacing (2vw padding on each side)
-    } else if (viewportWidth <= 900) {
-      // Small tablet: Show some adjacent slides
-      imageWidth = Math.min(600, viewportWidth * 0.8);
-      slideSpacing = 24;
-    } else if (viewportWidth <= 1200) {
-      // Large tablet: Standard spacing
-      imageWidth = Math.min(960, viewportWidth - 32);
-      slideSpacing = 32;
-    } else {
-      // Desktop: Full size
-      imageWidth = Math.min(1128, viewportWidth - 32);
-      slideSpacing = 32;
-    }
-    
-    // Calculate slide width including spacing
-    const slideWidth = imageWidth + slideSpacing;
-    
-    // Center the current slide with bounds checking
-    const trackWidth = this.totalSlides * slideWidth;
-    
-    // Calculate center offset to align with page content
-    let centerOffset;
-    if (viewportWidth <= 600) {
-      // On mobile, simply center the image in the viewport
-      centerOffset = (viewportWidth - imageWidth) / 2;
-    } else {
-      // On larger screens, align with the main container
-      const containerMaxWidth = Math.min(1128, viewportWidth - 32); // 70.5rem max, minus padding
-      const containerOffset = (viewportWidth - containerMaxWidth) / 2;
-      centerOffset = containerOffset + (containerMaxWidth - imageWidth) / 2;
-    }
-    
-    // Calculate the ideal position to center the current slide
-    let translateX = centerOffset - (this.currentIndex * slideWidth);
-    
-    // Apply bounds checking to prevent over-scrolling
-    const maxTranslateX = centerOffset; // Don't scroll past the first slide
-    const minTranslateX = centerOffset - ((this.totalSlides - 1) * slideWidth); // Position last slide centered
-    
-    // Only apply bounds if we have enough slides to warrant it
-    if (trackWidth > viewportWidth) {
-      translateX = Math.max(minTranslateX, Math.min(maxTranslateX, translateX));
-    }
-    
+    const slideCenter = currentSlide.offsetLeft + currentSlide.offsetWidth / 2;
+    const translateX = viewportWidth / 2 - slideCenter;
+
     this.track.style.transform = `translateX(${translateX}px)`;
-    
+
     // Update active states
     this.slides.forEach((slide, index) => {
       slide.classList.toggle('active', index === this.currentIndex);

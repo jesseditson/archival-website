@@ -62,11 +62,23 @@
 
 <div class="container">
 
-  <section id="features" class="features-grid">
+  {% comment %}
+    Balance the feature grid regardless of how many features exist. Cap at 4
+    columns, then pick the fewest columns that keeps every row as even as
+    possible: rows = ceil(n / 4), cols = ceil(n / rows). e.g. 5->3+2, 6->3+3,
+    7->4+3, 8->4+4. --feature-cols drives the row width in CSS.
+  {% endcomment %}
+  {% assign feature_count = features | size %}
+  {% assign feature_rows = feature_count | plus: 3 | divided_by: 4 %}
+  {% if feature_rows < 1 %}{% assign feature_rows = 1 %}{% endif %}
+  {% assign feature_cols = feature_count | plus: feature_rows | minus: 1 | divided_by: feature_rows %}
+  {% if feature_cols < 1 %}{% assign feature_cols = 1 %}{% endif %}
+
+  <section id="features" class="features-grid" style="--feature-cols: {{ feature_cols }}">
     {% for feature in features %}
     <div class="feature">
       <div class="feature-icon">
-        {% if feature.icon != blank %}<i class="ph-bold ph-{{ feature.icon }}"></i>{% endif %}
+        <i class="ph-bold ph-{{ feature.icon | default: 'check-circle' }}"></i>
       </div>
       <div class="feature-text">
         <h3>{{ feature.title }}</h3>

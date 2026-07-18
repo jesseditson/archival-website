@@ -319,24 +319,37 @@ p {
 
 /* Features Grid */
 .features-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, auto);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 4rem 2rem;
-  margin: 8rem 0;
-  align-items: start;
-  justify-items: center;
+  margin: 8rem auto;
+  /* Cap the row to exactly --feature-cols items (computed in the template for
+     even distribution) so rows stay balanced and any partial last row centers.
+     Narrower viewports wrap naturally and remain centered. */
+  max-width: calc(
+    var(--feature-cols, 4) * 14.625rem + (var(--feature-cols, 4) - 1) * 2rem
+  );
 }
 
 .feature {
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex: 0 0 14.625rem;
   max-width: 14.625rem;
 }
 
 .feature-icon {
   font-size: 4rem;
+  /* Reserve the icon's vertical space so a missing or unrecognized glyph can't
+     collapse the row and shift the title out of alignment. */
+  height: 4rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
   &.has-image {
     background-size: contain;
     background-repeat: no-repeat;
@@ -480,11 +493,17 @@ footer.container {
 }
 
 .image-carousel {
+  /* Single source of truth: all slides render at this height and keep their
+     native aspect ratio, so portrait and landscape screenshots both display
+     correctly. The container height tracks it (plus vertical breathing room). */
+  --carousel-img-height: 34rem;
   position: relative;
   width: 100%;
-  min-height: 400px;
+  height: calc(var(--carousel-img-height) + 2rem);
   overflow: hidden;
   background-color: var(--color-background);
+  touch-action: pan-y;
+  user-select: none;
 }
 
 .carousel-track {
@@ -515,13 +534,12 @@ footer.container {
   object-fit: contain;
   border-radius: 1rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  aspect-ratio: 8/5; /* All images maintain 8:5 aspect ratio */
-  height: auto;
-  width: min(
-    70.5rem,
-    calc(100vw - 2rem)
-  ); /* All images same size as container width */
-  max-width: 1128px; /* 70.5rem in pixels */
+  /* Fixed height, natural width: each screenshot keeps its own aspect ratio.
+     Ultra-wide images are capped to the viewport and letterbox rather than
+     overflow. */
+  height: var(--carousel-img-height);
+  width: auto;
+  max-width: calc(100vw - 2rem);
   transition: opacity 0.2s ease-in-out;
 }
 
@@ -534,40 +552,26 @@ footer.container {
   transition: opacity 0.2s ease-in-out;
 }
 
-/* Touch/Swipe Support */
-.image-carousel {
-  touch-action: pan-y;
-  user-select: none;
-}
-
 /* Carousel Responsive Adjustments */
 @media (max-width: 1200px) {
   .image-carousel {
-    min-height: 350px;
-  }
-
-  .carousel-slide img {
-    width: min(60rem, calc(100vw - 2rem));
+    --carousel-img-height: 30rem;
   }
 }
 
 @media (max-width: 900px) {
   .image-carousel {
-    min-height: 300px;
+    --carousel-img-height: 26rem;
   }
 
   .carousel-slide {
-    padding: 0 0.75rem; /* Match JavaScript: 24px spacing / 2 = 12px = 0.75rem */
-  }
-
-  .carousel-slide img {
-    width: min(37.5rem, 80vw); /* Match JavaScript: min(600px, 80% viewport) */
+    padding: 0 0.75rem;
   }
 }
 
 @media (max-width: 600px) {
   .image-carousel {
-    min-height: auto;
+    --carousel-img-height: 24rem;
   }
 
   .carousel-slide {
@@ -575,24 +579,15 @@ footer.container {
   }
 
   .carousel-slide img {
-    width: 70vw; /* Match JavaScript: 70% of viewport */
     border-radius: 0.5rem;
   }
 }
 
 /* Responsive Adjustments */
-@media (max-width: 1200px) {
-  .features-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-  }
-}
-
 @media (max-width: 900px) {
   .features-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin: 6rem 0;
+    gap: 3rem 2rem;
+    margin: 6rem auto;
   }
 
   .feature h3 {
@@ -686,12 +681,13 @@ footer.container {
   }
 
   .features-grid {
-    grid-template-columns: 1fr;
+    max-width: none;
     gap: 3rem;
-    margin: 4rem 0;
+    margin: 4rem auto;
   }
 
   .feature {
+    flex-basis: 100%;
     max-width: none;
     width: 100%;
   }

@@ -83,6 +83,14 @@ a {
 .app-logo {
   width: 4rem;
   height: 4rem;
+  /* Apple ships a flat square icon; round the corners to Apple's superellipse
+     bounding radius (~22.37% of the icon size) and add a soft layered shadow so
+     it reads like an app icon on the latest iOS home screen. */
+  border-radius: 22.37%;
+  object-fit: cover;
+  box-shadow:
+    0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.15),
+    0 0.375rem 0.75rem rgba(0, 0, 0, 0.12);
 }
 
 .nav {

@@ -11,6 +11,12 @@ class ImageCarousel {
     this.currentX = 0;
     this.isDragging = false;
     this.threshold = 50;
+
+    // Wheel/trackpad swipe accumulator
+    this.wheelDeltaX = 0;
+    this.wheelLocked = false;
+    this.wheelTrailing = false;
+    this.wheelPeak = 0;
     
     this.init();
   }
@@ -91,22 +97,59 @@ class ImageCarousel {
   }
   
   handleWheel(e) {
-    // Only handle horizontal scrolling, let vertical scroll work normally
-    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-      e.preventDefault();
-      
-      // Debounce wheel events
-      if (this.wheelTimeout) {
-        clearTimeout(this.wheelTimeout);
+    // Only handle horizontal swipes; let vertical scroll work normally.
+    if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+
+    e.preventDefault();
+
+    const absX = Math.abs(e.deltaX);
+
+    // Any wheel event refreshes the settle timer; when the stream (including
+    // the OS momentum tail) finally goes quiet, everything resets so the next
+    // gesture starts clean. (The original trailing-debounce fired ~50ms after
+    // the LAST event, so the carousel stayed frozen mid-swipe and only jumped
+    // once the gesture ended.)
+    clearTimeout(this.wheelSettleTimeout);
+    this.wheelSettleTimeout = setTimeout(() => {
+      this.wheelLocked = false;
+      this.wheelTrailing = false;
+      this.wheelDeltaX = 0;
+      this.wheelPeak = 0;
+    }, 120);
+
+    // After a slide change we lock to swallow the momentum tail, whose
+    // magnitude only ever decays. Track the gesture peak; once we've clearly
+    // trailed off (well below the peak) and then the magnitude climbs again,
+    // the user has started a fresh flick — re-arm immediately. This is what
+    // lets two quick flicks advance two slides even while the first flick's
+    // tail is still lingering, without a hard single flick advancing two.
+    if (this.wheelLocked) {
+      this.wheelPeak = Math.max(this.wheelPeak, absX);
+      if (absX < this.wheelPeak * 0.4) {
+        this.wheelTrailing = true;
       }
-      
-      this.wheelTimeout = setTimeout(() => {
-        if (e.deltaX > 10) {
-          this.nextSlide();
-        } else if (e.deltaX < -10) {
-          this.prevSlide();
-        }
-      }, 50);
+      if (this.wheelTrailing && absX > this.wheelPeak * 0.6) {
+        this.wheelLocked = false;
+        this.wheelTrailing = false;
+        this.wheelPeak = 0;
+        this.wheelDeltaX = 0;
+      } else {
+        return;
+      }
+    }
+
+    this.wheelDeltaX += e.deltaX;
+
+    if (Math.abs(this.wheelDeltaX) > this.threshold) {
+      if (this.wheelDeltaX > 0) {
+        this.nextSlide();
+      } else {
+        this.prevSlide();
+      }
+      this.wheelDeltaX = 0;
+      this.wheelLocked = true;
+      this.wheelTrailing = false;
+      this.wheelPeak = absX;
     }
   }
   

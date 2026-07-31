@@ -117,7 +117,7 @@ Output will be in the `dist/` directory.
 
 ## RSS Feed
 
-The site automatically generates `feed.rss` (and `posts.json`) at the site root. Set your production URL in `manifest.toml` so the feed's `<link>` and per-item URLs are valid absolute URLs:
+The site automatically generates `feed.rss` (and `posts.json`) at the site root. Set your production URL in `archival.toml` so the feed's `<link>` and per-item URLs are valid absolute URLs:
 
 ```toml
 site_url = "https://your-domain.com"

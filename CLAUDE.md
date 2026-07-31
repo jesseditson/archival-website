@@ -298,7 +298,7 @@ every user's site. Examples we caught:
   in the `default:` filter when the user's address was blank.
 - Hardcoded Google Maps Embed API key tied to someone's billing
   account.
-- `manifest.toml` shipping with `site_url = "https://theatre.onarchival.dev"`.
+- `archival.toml` shipping with `site_url = "https://theatre.onarchival.dev"`.
 
 Anything specific (brand voice prose, hardcoded URLs, API keys,
 example addresses) belongs in the **default data files**, not in the
@@ -405,7 +405,7 @@ secondary = "<field>"
 ## 5. Build pipelines
 
 For templates that need a build step (e.g. TypeScript compiled by
-esbuild), use `manifest.toml`'s `prebuild` array:
+esbuild), use `archival.toml`'s `prebuild` array:
 
 ```toml
 prebuild = ["npm ci", "npm run build:js"]
@@ -424,7 +424,7 @@ regenerated on every build rather than tracked.
 
 ## 6. Per-deployment config
 
-`manifest.toml` should **not** ship with `site_url` set — that's a
+`archival.toml` should **not** ship with `site_url` set — that's a
 per-deployment value the user fills in after deploying. Templates
 that ship with `site_url = "https://demo.example.com"` accidentally
 canonicalize every user's site to the demo URL.
@@ -484,7 +484,7 @@ A short pre-flight checklist:
       hr, img, anchor reset) — see Section 1
 - [ ] All CSS dimensions in rem, no `px` (even for hairlines)
 - [ ] Footer year is `{{ "now" | date: "%Y" }}`, not hardcoded
-- [ ] `manifest.toml` does **not** set `site_url` (left for the user
+- [ ] `archival.toml` does **not** set `site_url` (left for the user
       to configure)
 - [ ] No hardcoded brand-specific copy (search the layout for the
       placeholder business name and confirm it only appears in
@@ -498,7 +498,7 @@ A short pre-flight checklist:
 
 ## 9. Where things live
 
-- `objects.toml` — schema (top-level field types per object)
+- `archival_objects.toml` — schema (top-level field types per object)
 - `objects/<name>.toml` — singleton data
 - `objects/<name>/*.toml` — multi-file collection data (one file per
   item, an `order` field controls display order)
@@ -508,7 +508,7 @@ A short pre-flight checklist:
   used via `{% include 'partial-name' %}`
 - `layout/theme.liquid` — wraps every page that uses `{% layout 'theme' %}`
 - `public/**` — static files copied through to `dist/`
-- `manifest.toml` — per-site config (`site_url`, `prebuild`, etc.)
+- `archival.toml` — per-site config (`site_url`, `prebuild`, etc.)
 - `archival_template.toml` — template-level metadata + LLM-generation
   context
 

@@ -5,11 +5,11 @@ This End-User License Agreement (EULA) is a legal agreement between you (either 
 
 ### Summary
 
--\tYou must agree to all of the terms of this EULA to use this Software.
--\tIf so, you may use the Software for free and for any lawful purpose.
--\tThis Software automatically communicates with its server for three reasons: (1) to receive and install updates; (2) to send error reports; and (3) to send anonymized usage information. You can view sample data to see what information is sent, and you may opt out of sending the anonymized usage data.
--\tThis Software is provided "as-is" with no warranties, and you agree that {{app.author}} is not liable for anything you do with it.
--\tYou really ought to just go ahead and read the whole EULA. It's not all that long. You should not only rely on this summary.
+-	You must agree to all of the terms of this EULA to use this Software.
+-	If so, you may use the Software for free and for any lawful purpose.
+-	This Software automatically communicates with its server for three reasons: (1) to receive and install updates; (2) to send error reports; and (3) to send anonymized usage information. You can view sample data to see what information is sent, and you may opt out of sending the anonymized usage data.
+-	This Software is provided "as-is" with no warranties, and you agree that {{app.author}} is not liable for anything you do with it.
+-	You really ought to just go ahead and read the whole EULA. It's not all that long. You should not only rely on this summary.
 
 ### The Agreement
 
@@ -17,14 +17,19 @@ By downloading, installing, using, or copying the Software, you accept and agree
 
 ### The License
 
-This EULA entitles you to install as many copies of the Software as you want, and use the Software for any lawful purpose consistent with this EULA. Your license to use the Software is expressly conditioned upon your agreement to all of the terms of this EULA. This software is licensed, not sold. {{app.author}} reserves all other rights not granted by this EULA.
+This EULA grants you a nontransferable license to install and use the Software on any devices that you own or control, for any lawful purpose consistent with this EULA. The terms of this EULA will govern any content, materials, or services accessible from or purchased within the Software, as well as any upgrades provided by {{app.author}} that replace or supplement the original Software, unless such upgrade is accompanied by a separate license. You may not distribute or make the Software available over a network where it could be used by multiple devices at the same time. Your license to use the Software is expressly conditioned upon your agreement to all of the terms of this EULA. This software is licensed, not sold. {{app.author}} reserves all other rights not granted by this EULA.
 
 ### The Restrictions
 
 1. When using the Software you must use it in a manner that complies with the applicable laws in the jurisdiction(s) in which you use the Software.
 2. You may not sell, resell, rent, lease or exchange the Software for anything of value.
-3. You may redistribute the software, but it must include this EULA and you may not repackage or bundle the Software with any other software.
+3. You may not transfer, redistribute or sublicense the Software, and you may not repackage or bundle the Software with any other software. If you sell a device on which the Software is installed to a third party, you must remove the Software from that device before doing so.
 4. You may not remove or alter any proprietary notices or marks on the Software.
+5. You may not reverse-engineer, disassemble, attempt to derive the source code of, modify, or create derivative works of the Software, any updates, or any part thereof, except as and only to the extent that any foregoing restriction is prohibited by applicable law or permitted by the licensing terms governing use of any Open-Source Components included with the Software.
+
+### Term and Termination
+
+This EULA is effective until terminated by you or by {{app.author}}. Your rights under this EULA will terminate automatically without notice if you fail to comply with any of its terms. Upon termination you must cease all use of the Software and destroy all copies of it in your possession or control. The sections of this EULA concerning intellectual property, disclaimers, limitations on liability, and governing law survive termination.
 
 ### Privacy Notices
 
@@ -33,6 +38,12 @@ The Software automatically communicates with its server for three purposes: (1) 
 1. **Automatic Software Updates.** The Software communicates with its server (and sends information described at the URL above) to determine whether there are any patches, bug fixes, updates, upgrades or other modifications to improve the Software. You agree that the Software may automatically install any such improvements to the Software on your computer without providing any further notice or receiving any additional consent. This feature may not be disabled. If you do not want to receive automatic updates, you must uninstall the Software.
 2. **Error Reports.** In order to help us improve the Software, when the Software encounters certain errors, it will automatically send some information to its server about the error (as described at the URL above). This feature may not be disabled. If you do not want to send error reports to its server, you must uninstall the Software.
 3. **Anonymized Usage Data.** {{app.name}} collects anonymized data about your usage of the Software to help us make it more awesome. Approximately once a day the Software sends such data (as described in more detail at the URL above) to its server. If you do not want to send anonymized usage data to the server, you may opt out by changing your settings in the Preferences view.
+
+### External Services
+
+The Software may enable access to {{app.author}}'s and/or third-party services and websites (collectively and individually, "External Services"). You agree to use the External Services at your sole risk. {{app.author}} is not responsible for examining or evaluating the content or accuracy of any third-party External Services, and shall not be liable for any such third-party External Services. Data displayed by the Software or any External Service, including but not limited to financial, medical and location information, is for general informational purposes only and is not guaranteed by {{app.author}} or its agents.
+
+You will not use the External Services in any manner that is inconsistent with the terms of this EULA or that infringes the intellectual property rights of {{app.author}} or any third party. You agree not to use the External Services to harass, abuse, stalk, threaten or defame any person or entity, and that {{app.author}} is not responsible for any such use. External Services may not be available in all languages or in your country of residence, and may not be appropriate or available for use in any particular location. To the extent you choose to use such External Services, you are solely responsible for compliance with any applicable laws. {{app.author}} reserves the right to change, suspend, remove, disable or impose access restrictions or limits on any External Services at any time without notice or liability to you.
 
 ### Open-Source Notices
 
@@ -46,9 +57,29 @@ The Software and all worldwide copyrights, trade secrets, and other intellectual
 
 ### Disclaimers and Limitations on Liability
 
-THE SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, AND NO WARRANTY, EITHER EXPRESS OR IMPLIED, IS GIVEN. YOUR USE OF THE SOFTWARE IS AT YOUR SOLE RISK. {{app.author}} does not warrant that (i) the Software will meet your specific requirements; (ii) the Software is fully compatible with any particular platform; (iii) your use of the Software will be uninterrupted, timely, secure, or error-free; (iv) the results that may be obtained from the use of the Software will be accurate or reliable; (v) the quality of any products, services, information, or other material purchased or obtained by you through the Software will meet your expectations; or (vi) any errors in the Software will be corrected.
+THE SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, AND NO WARRANTY, EITHER EXPRESS OR IMPLIED, IS GIVEN. YOUR USE OF THE SOFTWARE IS AT YOUR SOLE RISK. {{app.author}} does not warrant that (i) the Software will meet your specific requirements; (ii) the Software is fully compatible with any particular platform; (iii) your use of the Software will be uninterrupted, timely, secure, or error-free; (iv) the results that may be obtained from the use of the Software will be accurate or reliable; (v) the quality of any products, services, information, or other material purchased or obtained by you through the Software will meet your expectations; or (vi) any errors in the Software will be corrected. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, {{app.author}} DISCLAIMS ALL WARRANTIES AND CONDITIONS, EITHER EXPRESS, IMPLIED, OR STATUTORY, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES AND/OR CONDITIONS OF MERCHANTABILITY, OF SATISFACTORY QUALITY, OF FITNESS FOR A PARTICULAR PURPOSE, OF ACCURACY, OF QUIET ENJOYMENT, AND OF NONINFRINGEMENT OF THIRD-PARTY RIGHTS. NO ORAL OR WRITTEN INFORMATION OR ADVICE GIVEN BY {{app.author}} OR ITS AUTHORIZED REPRESENTATIVE SHALL CREATE A WARRANTY. SHOULD THE SOFTWARE PROVE DEFECTIVE, YOU ASSUME THE ENTIRE COST OF ALL NECESSARY SERVICING, REPAIR, OR CORRECTION. SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF IMPLIED WARRANTIES OR LIMITATIONS ON APPLICABLE STATUTORY RIGHTS OF A CONSUMER, SO THE ABOVE EXCLUSION AND LIMITATIONS MAY NOT APPLY TO YOU.
 
-YOU EXPRESSLY UNDERSTAND AND AGREE THAT {{app.author}} SHALL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL OR EXEMPLARY DAMAGES, INCLUDING BUT NOT LIMITED TO, DAMAGES FOR LOSS OF PROFITS, GOODWILL, USE, DATA OR OTHER INTANGIBLE LOSSES (EVEN IF {{app.author}} HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES) RELATED TO THE SOFTWARE, including, for example: (i) the use or the inability to use the Software; (ii) the cost of procurement of substitute goods and services resulting from any goods, data, information or services purchased or obtained or messages received or transactions entered into through or from the Software; (iii) unauthorized access to or alteration of your transmissions or data; (iv) statements or conduct of any third-party on the Software; (v) or any other matter relating to the Software.
+YOU EXPRESSLY UNDERSTAND AND AGREE THAT {{app.author}} SHALL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL OR EXEMPLARY DAMAGES, INCLUDING BUT NOT LIMITED TO, DAMAGES FOR LOSS OF PROFITS, GOODWILL, USE, DATA OR OTHER INTANGIBLE LOSSES (EVEN IF {{app.author}} HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES) RELATED TO THE SOFTWARE, including, for example: (i) the use or the inability to use the Software; (ii) the cost of procurement of substitute goods and services resulting from any goods, data, information or services purchased or obtained or messages received or transactions entered into through or from the Software; (iii) unauthorized access to or alteration of your transmissions or data; (iv) statements or conduct of any third-party on the Software; (v) or any other matter relating to the Software. SOME JURISDICTIONS DO NOT ALLOW THE LIMITATION OF LIABILITY FOR PERSONAL INJURY, OR OF INCIDENTAL OR CONSEQUENTIAL DAMAGES, SO THIS LIMITATION MAY NOT APPLY TO YOU.
+
+In no event shall {{app.author}}'s total liability to you for all damages (other than as may be required by applicable law in cases involving personal injury) exceed the greater of the amount you paid for the Software or fifty dollars ($50.00). The foregoing limitations will apply even if the above stated remedy fails of its essential purpose.
 
 {{app.author}} reserves the right at any time and from time to time to modify or discontinue, temporarily or permanently, the Software (or any part thereof) with or without notice. {{app.author}} shall not be liable to you or to any third-party for any modification, price change, suspension or discontinuance of the Software.
+
+### Export Controls
+
+You may not use or otherwise export or re-export the Software except as authorized by United States law and the laws of the jurisdiction in which the Software was obtained. In particular, but without limitation, the Software may not be exported or re-exported (a) into any U.S.-embargoed countries or (b) to anyone on the U.S. Treasury Department's Specially Designated Nationals List or the U.S. Department of Commerce Denied Persons List or Entity List. By using the Software, you represent and warrant that you are not located in any such country or on any such list. You also agree that you will not use the Software for any purposes prohibited by United States law, including, without limitation, the development, design, manufacture, or production of nuclear, missile, or chemical or biological weapons.
+
+### U.S. Government End Users
+
+The Software and related documentation are "Commercial Items", as that term is defined at 48 C.F.R. §2.101, consisting of "Commercial Computer Software" and "Commercial Computer Software Documentation", as such terms are used in 48 C.F.R. §12.212 or 48 C.F.R. §227.7202, as applicable. Consistent with 48 C.F.R. §12.212 or 48 C.F.R. §227.7202-1 through 227.7202-4, as applicable, the Commercial Computer Software and Commercial Computer Software Documentation are being licensed to U.S. Government end users (a) only as Commercial Items and (b) with only those rights as are granted to all other end users pursuant to the terms and conditions herein. Unpublished-rights reserved under the copyright laws of the United States.
+
+### Governing Law
+
+Except to the extent expressly provided in the following paragraph, this EULA and the relationship between you and {{app.author}} shall be governed by the laws applicable in {{app.country}}, excluding its conflicts of law provisions. You and {{app.author}} agree to submit to the personal and exclusive jurisdiction of the courts located in {{app.country}} to resolve any dispute or claim arising from this EULA.
+
+If you are a citizen of any European Union country or Switzerland, Norway or Iceland, the governing law and forum shall be the laws and courts of your usual place of residence.
+
+Specifically excluded from application to this EULA is that law known as the United Nations Convention on the International Sale of Goods.
+
+If you have any questions about this EULA, you may contact us at {{app.legal_email}}.
 """

@@ -15,7 +15,16 @@ For about.story entries, generate exactly 3. Each has a title, markdown body (1-
 For about.stat entries, generate exactly 3. Each has a numeric value and a label (e.g. value: 500, label: "Projects Completed").
 For about.expertise entries, generate exactly 2. Each has an icon (emoji or short string), title, and markdown description.
 Do not modify about.process or about.feature entries — they are kept from template defaults.
-The contact object has: hero_title, hero_lead (markdown), availability_status (e.g. "Available"), availability_note. Project types and budget ranges live as child collections — generate 4-6 [[project_type]] entries (each with a `name` field, e.g. "Portraits", "Commercial Work") and 4-6 [[budget]] entries (each with a `name` field, e.g. "$500 - $1,000", "$5,000+"). Also generate 2-3 contact_method entries, 2-3 social entries, and 3-4 faq entries.
+The contact object has: hero_title, hero_lead (markdown), availability_status (e.g. "Available"), availability_note, show_project_types (boolean) and show_budgets (boolean). Project types and budget ranges live as child collections — generate 4-6 [[project_type]] entries (each with a `name` field, e.g. "Portraits", "Commercial Work") and 4-6 [[budget]] entries (each with a `name` field, e.g. "$500 - $1,000", "$5,000+").
+
+show_project_types and show_budgets control whether those two sections are DISPLAYED. Set both to true, because you are generating entries for them — leaving either false hides the entries you just wrote, so the page shows nothing where a list should be.
+
+Also generate 2-3 contact_method entries, 2-3 social entries, and 3-4 faq entries:
+- each contact_method has an icon (emoji or short string), a label (e.g. "Email"), a value (what is shown, e.g. the address), and a url used to link the value;
+- each social has an icon, a name (e.g. "Instagram"), and a url;
+- each faq has a question (one short sentence) and a markdown answer (1-2 short paragraphs).
+
+For every url field above: use only a URL that appears verbatim in the provided data. Never invent, guess or construct one — leave it empty instead, and the value or name still renders as plain text.
 Write in a creative, confident, artistic voice.
 """
 keep_objects = [

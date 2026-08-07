@@ -4,12 +4,29 @@ description = """
 This website showcases a mobile app, highlights key features, and contains support email links and example privacy policy and EULA pages for your mobile app. This variant features a tagline field, icon-based features with a rich icon picker, and Discord support link integration.
 """
 context = """
-This template shows information about an app that is for sale on an app store - for instance google play or the iOS app store. When generating features, for this template, generate 6 of them.
-The app object contains: name, tagline (short catchy phrase), author, logo (image), description, appstore_download_link, playstore_download_link, direct_download_link, country, legal_email, and copyright_year. If the user hasn't provided store links, leave them empty.
-Each feature has an icon (selected from a predefined set of icon names like nature, animals, food, people, tools, science, transportation, objects, communication, business, education, entertainment, health, lifestyle, security, miscellaneous), a title, and a desc (short description). Pick icons that best represent each feature. Keep feature descriptions to 1-2 sentences.
+This template shows information about an app that is for sale on an app store - for instance google play or the iOS app store.
+
+The app object contains: name, tagline, hero_description, author, logo (image), og_image (image), description, appstore_download_link, playstore_download_link, direct_download_link, country, and legal_email. If the user hasn't provided store links, leave them empty.
+
+BREVITY IS THE POINT OF THIS TEMPLATE. Its type is very large, and every text field below is rendered at display size in a narrow column. Text that reads as a normal sentence length in a document overflows here and looks broken. When in doubt, write less.
+
+tagline is the page's main headline, rendered as the h1 at the largest type on the page. Maximum five words. It must be a short, calm phrase - not a sentence, not two clauses joined by a separator such as "|" or a dash, and never with an exclamation mark. Write it fresh for this specific app, in words drawn from what the app actually does; do not fall back on a stock formula such as "Built for ..." or "Your ... companion". Bad: "Clear Sound, Clear Water! | Eject Dust & Water Effortlessly" - too long, two clauses, a separator, and an exclamation mark.
+
+hero_description is ONE short supporting sentence beneath the headline. Do not repeat the description text here.
+
+description is the longer body paragraph about the app: two or three sentences.
+
+Generate 6 features. A feature has exactly two fields: icon and title. THERE IS NO DESCRIPTION FIELD ON A FEATURE. Do not write one, and do not append explanatory text, a second clause, or a separator to the title in order to fit one in. title is a label of two to four words - a short noun phrase, like "Offline downloads", "Sleep timer", "Your data is yours" - with no ending punctuation, no exclamation mark, no separator character, and no sentence. A title longer than five words is wrong.
+
+Pick each icon from the predefined set of icon names (covering nature, animals, food, people, tools, science, transportation, objects, communication, business, education, entertainment, health, lifestyle, security, and miscellaneous) so that it best represents its feature.
+
+The source material is usually copied from an app store listing, so it often contains emoji, emoji shortcodes such as :sunny:, markup fragments such as |h3| or <p>, star ratings, and marketing punctuation. Never carry any of that into your output. Write plain text only.
+
 Generate 3-4 screenshots.
-Do not modify the eula, terms_of_service, or privacy_policy objects — they have template defaults that should be kept.
-The support object has email, chat_link, and discord_link fields. Fill the email with the same value as legal_email if not otherwise specified. Leave discord_link empty unless the user mentions Discord.
+
+Do not modify the eula, terms_of_service, or privacy_policy objects - they have template defaults that should be kept.
+
+The support object has title, description, email, chat_link, chat_label, and discord_link fields. Fill the email with the same value as legal_email if not otherwise specified. Leave discord_link empty unless the user mentions Discord.
 """
 tags = []
 tlds = ["com", "app"]

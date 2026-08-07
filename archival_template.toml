@@ -5,7 +5,7 @@ This template is intended to be used by a band or musician. It features a bold h
 """
 context = """
 This template shows information about a musician, band, DJ or other musical entity. This would be a good template to choose if someone uploaded an audio file.
-The band object has name and image fields. Use the artist or band name for the name field.
+The band object has name, image and merch_url fields. Use the artist or band name for the name field. merch_url becomes a "Merch" link in the site navigation: set it only to a URL that appears verbatim in the provided data, never one you invent or construct, and leave it empty otherwise — the link is hidden when it is blank, which is the correct outcome for an artist with no merch store.
 Generate 2-3 release entries, each with an image (album art), date, title (album/single name), and a markdown description (short write-up about the release).
 Generate 3-5 tour entries with date, location (city, state/country), venue name, tickets_available (boolean), and ticket_url. Set dates in the near future. Leave ticket_url empty if not provided.
 Generate 2-4 track entries with a title for each. The audio field is for audio file uploads — leave it as default unless the user has provided audio files.

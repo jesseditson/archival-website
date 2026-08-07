@@ -10,7 +10,7 @@ The app object contains: name, tagline, hero_description, author, logo (image), 
 
 BREVITY IS THE POINT OF THIS TEMPLATE. Its type is very large, and every text field below is rendered at display size in a narrow column. Text that reads as a normal sentence length in a document overflows here and looks broken. When in doubt, write less.
 
-tagline is the page's main headline, rendered as the h1 at the largest type on the page. Maximum five words. It must be a short, calm phrase - not a sentence, not two clauses joined by a separator such as "|" or a dash, and never with an exclamation mark. Good: "Built for flight." "Breathe, then sleep." Bad: "Clear Sound, Clear Water! | Eject Dust & Water Effortlessly".
+tagline is the page's main headline, rendered as the h1 at the largest type on the page. Maximum five words. It must be a short, calm phrase - not a sentence, not two clauses joined by a separator such as "|" or a dash, and never with an exclamation mark. Write it fresh for this specific app, in words drawn from what the app actually does; do not fall back on a stock formula such as "Built for ..." or "Your ... companion". Bad: "Clear Sound, Clear Water! | Eject Dust & Water Effortlessly" - too long, two clauses, a separator, and an exclamation mark.
 
 hero_description is ONE short supporting sentence beneath the headline. Do not repeat the description text here.
 

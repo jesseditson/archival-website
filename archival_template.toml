@@ -1,4 +1,4 @@
-#:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
+#:schema https://archival.dev/schemas/archival_template.schema.json
 name = ""
 description = ""
 context = ""

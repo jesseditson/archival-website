@@ -1,4 +1,4 @@
-#:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
+#:schema https://archival.dev/schemas/archival_template.schema.json
 name = "Small Business"
 description = """
 This template is a simple one pager website for a brick and mortar small business. It features a clean single-page layout with the business name and tagline, logo, operating hours, physical address with optional map embed, contact info (phone and email), and an about section. Perfect for shops, cafes, salons, repair services, pop-ups, and other local businesses that need a straightforward online presence.

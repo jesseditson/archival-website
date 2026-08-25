@@ -1,4 +1,4 @@
-#:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
+#:schema https://archival.dev/schemas/archival_template.schema.json
 name = "Band Template"
 description = """
 This template is intended to be used by a band or musician. It features a bold hero section with the band/artist image, a discography section for album releases, an upcoming tour dates section with ticket links, an about page, and an audio track player for streaming music directly on the site.

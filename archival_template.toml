@@ -1,4 +1,4 @@
-#:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
+#:schema https://archival.dev/schemas/archival_template.schema.json
 name = "Blog"
 description = """
 This template is perfect for a home page. It's a beautiful site where you can post pictures, links, blog posts, small updates, videos, or audio. It features a feed-style layout where posts appear in reverse chronological order. Each post can include rich markdown content, images, video, audio, and external links — making it versatile for personal blogs, micro-blogs, creative journals, or social-style updates.

@@ -1,4 +1,4 @@
-#:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
+#:schema https://archival.dev/schemas/archival_template.schema.json
 name = "Podcast"
 description = """
 This gorgeous template is everything you need to start your own podcast. Just upload podcast content, and this site will automatically generate rss feeds whenever you post episodes. Features host profiles, episode management with tags, customizable colors, and links to all major podcast platforms (Spotify, Apple Podcasts, YouTube, etc.). Each episode gets its own page with show notes, duration, and host attribution.

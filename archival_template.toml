@@ -1,4 +1,4 @@
-#:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
+#:schema https://archival.dev/schemas/archival_template.schema.json
 name = "Bar & Restaurant"
 description = "A dark, sophisticated template for bars and restaurants. Features a centered menu with dotted-leader pricing, events section, and warm gold accent theming. Includes a hero image, polaroid-style gallery images, reservation link, operating hours, and full contact details. The dedicated menu page groups items by category with an elegant dotted-leader price layout."
 context = """

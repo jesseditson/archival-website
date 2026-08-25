@@ -1,4 +1,4 @@
-#:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
+#:schema https://archival.dev/schemas/archival_template.schema.json
 name = "Photographica"
 description = """
 This template puts portfolio images front and center with a tiled mosaic on the home page, and about and contact pages. It features a dramatic grid gallery, an extensive about section with stories, statistics, expertise areas, and a detailed process breakdown, plus a contact page with availability status, project types, budgets, FAQ, and social links. Ideal for photographers, visual artists, designers, and other creative professionals.

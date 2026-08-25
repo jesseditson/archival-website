@@ -1,4 +1,4 @@
-#:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
+#:schema https://archival.dev/schemas/archival_template.schema.json
 name = "Professional Template"
 description = """
 This template is intended to be used by a professional who is offering services. It features a personal profile section with photo and bio, a service catalog with descriptions and pricing, client testimonials, and a contact form powered by Google Forms. Great for consultants, freelancers, coaches, therapists, tutors, and other service providers.

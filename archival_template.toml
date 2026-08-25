@@ -1,4 +1,4 @@
-#:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
+#:schema https://archival.dev/schemas/archival_template.schema.json
 name = "Publication"
 description = """
 An independent news publication template inspired by The Atlantic and New York Times. Features a grid-based front page layout of stories, beautiful serif typography optimized for long-form reading, and generous use of whitespace. Each story has its own detail page with a narrow reading column, hero image, byline, and section tagging. Includes section-based navigation and author profiles.

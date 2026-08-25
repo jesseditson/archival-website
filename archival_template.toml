@@ -1,4 +1,4 @@
-#:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
+#:schema https://archival.dev/schemas/archival_template.schema.json
 name = "Photographica"
 description = """
 This template puts portfolio images front and center with a tiled mosaic on the home page, and about and contact pages.

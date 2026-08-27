@@ -1,5 +1,5 @@
 #:schema https://archival.dev/schemas/archival_template.schema.json
-name = "App"
+name = "Mobile App"
 description = """
 This website showcases a mobile app, highlights key features, and contains support email links and example privacy policy and EULA pages for your mobile app. It includes a hero section with app store download buttons, a screenshot carousel with device frame options, and dedicated pages for EULA, Terms of Service, and Privacy Policy.
 """

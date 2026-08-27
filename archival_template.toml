@@ -1,5 +1,5 @@
 #:schema https://archival.dev/schemas/archival_template.schema.json
-name = "App"
+name = "Desktop & Mobile App"
 description = """
 This website showcases a mobile app, highlights key features, and contains support email links and example privacy policy and EULA pages for your mobile app. This variant features a tagline field, icon-based features with a rich icon picker, and Discord support link integration.
 """

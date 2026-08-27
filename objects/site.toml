@@ -2,5 +2,17 @@ name = "Archival"
 home_title = "Archival Video"
 description = "A simple video presentation template."
 author = "Archival"
-video_url = "https://archival-uploads.jesseditson.com/example.mp4"
+video_url = ""
 copyright_name = "Your Name"
+
+[video]
+display_type = "video"
+filename = "example.mp4"
+sha = "b883e19ac7613650116a25eefcf1d1f8c065427ec2c2ab98169fe6bc82f26ef8"
+mime = "video/mp4"
+
+[poster]
+display_type = "image"
+filename = "poster.png"
+sha = "c66159367980c7ab2e0dcb969a28eb0f5c24b1163d2028754bbe5a6fa4160536"
+mime = "image/png"

@@ -10,13 +10,15 @@
       <video
         crossOrigin="anonymous"
         id="myVideo"
-        src="{{ objects.site.video.url }}"
+        src="{{ objects.site.video.url }}"{% if objects.site.poster != blank %}
+        poster="{{ objects.site.poster.url }}"{% endif %}
         controls></video>
     {% elsif objects.site.video_url != blank %}
       <video
         crossOrigin="anonymous"
         id="myVideo"
-        src="{{ objects.site.video_url }}"
+        src="{{ objects.site.video_url }}"{% if objects.site.poster != blank %}
+        poster="{{ objects.site.poster.url }}"{% endif %}
         controls></video>
     {% endif %}
   </section>

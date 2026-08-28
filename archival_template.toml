@@ -1,5 +1,6 @@
 #:schema https://archival.dev/schemas/archival_template.schema.json
 name = "Video Premiere"
+tagline = "One video, lit by its own color — the background glows along with every frame."
 description = """
 This template shows a single video in a beautiful, color-synced background. The bias-lighting effect samples the video's colors at 60fps and projects them as a soft glow behind the player, plus tints the page heading to match the dominant color of the current frame.
 """

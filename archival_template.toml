@@ -1,5 +1,6 @@
 #:schema https://archival.dev/schemas/archival_template.schema.json
 name = "Portfolio"
+tagline = "Your work, your résumé, and how to reach you — on one clean page."
 description = """
 This template is intended to be used for a professional website for an individual. It features a clean, modern layout with sections for personal info, work experience, a project portfolio, and contact details. Ideal for resumes, personal branding, freelancers, and anyone who wants to present themselves professionally online.
 """

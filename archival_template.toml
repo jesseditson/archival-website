@@ -1,5 +1,6 @@
 #:schema https://archival.dev/schemas/archival_template.schema.json
 name = "Band"
+tagline = "Tour dates, releases, and a player that streams your music right on the page."
 description = """
 This template is intended to be used by a band or musician. It features a bold hero section with the band/artist image, a discography section for album releases, an upcoming tour dates section with ticket links, an about page, and an audio track player for streaming music directly on the site.
 """

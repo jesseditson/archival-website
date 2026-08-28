@@ -1,5 +1,6 @@
 #:schema https://archival.dev/schemas/archival_template.schema.json
 name = "Bar & Restaurant"
+tagline = "A dark, warm room online — menu, hours, events, and a reservation link."
 description = "A dark, sophisticated template for bars and restaurants. Features a centered menu with dotted-leader pricing, events section, and warm gold accent theming. Includes a hero image, polaroid-style gallery images, reservation link, operating hours, and full contact details. The dedicated menu page groups items by category with an elegant dotted-leader price layout."
 context = """
 This template is designed for upscale bars, cocktail lounges, and contemporary restaurants. It features a dark color scheme with customizable accent color, a dedicated menu page with category navigation, event listings, and all the essential info a venue needs.

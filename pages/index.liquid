@@ -9,8 +9,6 @@
           <a href="{{ story.path }}.html">
             {% if story.image != blank %}
               <img class="featured-image" src="{{ story.image.url }}" alt="{{ story.image_caption }}">
-            {% elsif story.cover_url != blank %}
-              <img class="featured-image" src="{{ story.cover_url }}" alt="{{ story.image_caption }}">
             {% else %}
               <div class="image-placeholder featured-image-placeholder" data-section="{{ story.section | downcase }}"><span class="image-placeholder-text">{{ story.section }}</span></div>
             {% endif %}
@@ -18,7 +16,7 @@
         </div>
         <div class="featured-text">
           <p class="featured-section">
-            <a href="/sections/{{ story.section | downcase }}.html">{{ story.section }}</a>
+            <a href="{% include 'section_href', section_name: story.section %}">{{ story.section }}</a>
           </p>
           <h2 class="featured-headline">
             <a href="{{ story.path }}.html">{{ story.headline }}</a>
@@ -45,14 +43,12 @@
           <a href="{{ story.path }}.html">
             {% if story.image != blank %}
               <img class="story-card-image" src="{{ story.image.url }}" alt="{{ story.image_caption }}">
-            {% elsif story.cover_url != blank %}
-              <img class="story-card-image" src="{{ story.cover_url }}" alt="{{ story.image_caption }}">
             {% else %}
               <div class="image-placeholder story-card-image-placeholder" data-section="{{ story.section | downcase }}"><span class="image-placeholder-text">{{ story.section }}</span></div>
             {% endif %}
           </a>
           <p class="story-card-section">
-            <a href="/sections/{{ story.section | downcase }}.html">{{ story.section }}</a>
+            <a href="{% include 'section_href', section_name: story.section %}">{{ story.section }}</a>
           </p>
           <h3 class="story-card-headline">
             <a href="{{ story.path }}.html">{{ story.headline }}</a>

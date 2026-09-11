@@ -1,10 +1,8 @@
 headline = "Can Your Doctor's AI Actually Be Trusted?"
 subheadline = "Clinical AI tools are proliferating faster than the evidence for their safety. Regulators are struggling to keep up."
-slug = "clinical-ai-trusted"
 section = "Technology"
 author = "Jane Doe"
 date = "March 19, 2026"
-cover_url = "/images/story-2.jpg"
 image_caption = ""
 featured = false
 

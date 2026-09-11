@@ -2,7 +2,9 @@
   , page: 'page-section'
   , active_section: sections.name %}
 
-<div class="section-page">
+{% assign section_key = sections.name | downcase %}
+
+<div class="section-page"
   <div class="section-page-header">
     <nav class="section-breadcrumb">
       <a class="breadcrumb-link" href="/">Home</a>
@@ -12,7 +14,8 @@
     <h1 class="section-page-name">{{ sections.name }}</h1>
     {% assign story_count = 0 %}
     {% for story in stories %}
-      {% if story.section == sections.name %}
+      {% assign story_section_key = story.section | downcase %}
+      {% if story_section_key == section_key %}
         {% assign story_count = story_count | plus: 1 %}
       {% endif %}
     {% endfor %}
@@ -25,15 +28,14 @@
 
   {% assign match_index = 0 %}
   {% for story in stories %}
-    {% if story.section == sections.name %}
+    {% assign story_section_key = story.section | downcase %}
+    {% if story_section_key == section_key %}
       {% if match_index == 0 %}
         <article class="section-lead-story">
           <div class="section-lead-image-wrap">
             <a href="/{{ story.path }}.html">
               {% if story.image != blank %}
                 <img class="section-lead-image" src="{{ story.image.url }}" alt="{{ story.image_caption }}">
-              {% elsif story.cover_url != blank %}
-                <img class="section-lead-image" src="{{ story.cover_url }}" alt="{{ story.image_caption }}">
               {% else %}
                 <div class="image-placeholder section-lead-image-placeholder" data-section="{{ story.section | downcase }}"><span class="image-placeholder-text">{{ story.section }}</span></div>
               {% endif %}
@@ -63,20 +65,19 @@
     <div class="story-grid">
       {% assign match_index = 0 %}
       {% for story in stories %}
-        {% if story.section == sections.name %}
+        {% assign story_section_key = story.section | downcase %}
+        {% if story_section_key == section_key %}
           {% if match_index > 0 %}
             <article class="story-card">
               <a href="/{{ story.path }}.html">
                 {% if story.image != blank %}
                   <img class="story-card-image" src="{{ story.image.url }}" alt="{{ story.image_caption }}">
-                {% elsif story.cover_url != blank %}
-                  <img class="story-card-image" src="{{ story.cover_url }}" alt="{{ story.image_caption }}">
                 {% else %}
                   <div class="image-placeholder story-card-image-placeholder" data-section="{{ story.section | downcase }}"><span class="image-placeholder-text">{{ story.section }}</span></div>
                 {% endif %}
               </a>
               <p class="story-card-section">
-                <a href="/sections/{{ story.section | downcase }}.html">{{ story.section }}</a>
+                <a href="{% include 'section_href', section_name: story.section %}">{{ story.section }}</a>
               </p>
               <h3 class="story-card-headline">
                 <a href="/{{ story.path }}.html">{{ story.headline }}</a>

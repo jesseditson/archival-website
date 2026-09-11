@@ -1,0 +1,9 @@
+{%- assign href_key = section_name | downcase -%}
+{%- assign href_url = "/sections/" | append: href_key | append: ".html" -%}
+{%- for href_section in objects.sections -%}
+  {%- assign href_section_key = href_section.name | downcase -%}
+  {%- if href_section_key == href_key -%}
+    {%- assign href_url = "/" | append: href_section.path | append: ".html" -%}
+  {%- endif -%}
+{%- endfor -%}
+{{- href_url -}}

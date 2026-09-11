@@ -1,10 +1,8 @@
 headline = "Why the Novel Isn't Dead"
 subheadline = "Reports of fiction's demise have been greatly exaggerated. A new generation of writers is proving it."
-slug = "why-the-novel-isnt-dead"
 section = "Culture"
 author = "John Smith"
 date = "March 14, 2026"
-cover_url = "/images/story-2.jpg"
 image_caption = "A reader at Powell's Books in Portland, Oregon"
 featured = false
 

@@ -1,10 +1,8 @@
 headline = "We Need to Talk About the Algorithm"
 subheadline = "The systems that shape what we see deserve more scrutiny — and more imagination"
-slug = "talk-about-the-algorithm"
 section = "Opinion"
 author = "John Smith"
 date = "March 12, 2026"
-cover_url = "/images/story-4.jpg"
 image_caption = ""
 featured = false
 

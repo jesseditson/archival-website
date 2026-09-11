@@ -1,10 +1,8 @@
 headline = "The Redistricting War Has a New Front: Algorithmic Maps"
 subheadline = "Both parties are now using AI-powered mapping tools to draw district lines. The technology has changed. The incentives haven't."
-slug = "redistricting-algorithmic-maps"
 section = "Politics"
 author = "Jane Doe"
 date = "March 25, 2026"
-cover_url = "/images/story-3.jpg"
 image_caption = ""
 featured = false
 

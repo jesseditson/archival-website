@@ -1,10 +1,8 @@
 headline = "The Quiet Revolution in Battery Technology"
 subheadline = "Solid-state batteries promise to reshape everything from electric vehicles to the power grid"
-slug = "battery-technology-revolution"
 section = "Technology"
 author = "Jane Doe"
 date = "March 13, 2026"
-cover_url = "/images/story-3.jpg"
 image_caption = "A solid-state battery prototype at MIT's energy lab"
 featured = false
 

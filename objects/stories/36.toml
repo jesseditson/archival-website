@@ -1,10 +1,8 @@
 headline = "The Company Trying to Sequence the Ocean"
 subheadline = "A startup called Thalassa is using environmental DNA to build the first comprehensive map of marine biodiversity — before it disappears."
-slug = "thalassa-sequencing-the-ocean"
 section = "Technology"
 author = "Jane Doe"
 date = "March 22, 2026"
-cover_url = "/images/story-5.jpg"
 image_caption = ""
 featured = false
 

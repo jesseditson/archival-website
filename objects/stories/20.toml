@@ -1,10 +1,8 @@
 headline = "AI-Generated Code Is Flooding Open Source Repositories"
 subheadline = "GitHub's maintainers are struggling with a surge of low-quality pull requests written by language models — and no one agrees on what to do about it."
-slug = "ai-code-flooding-open-source"
 section = "Technology"
 author = "Jane Doe"
 date = "March 7, 2026"
-cover_url = ""
 image_caption = ""
 featured = false
 

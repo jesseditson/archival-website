@@ -1,10 +1,8 @@
 headline = "Why Your Smart Home Is Listening to Your Neighbors"
 subheadline = "The mesh networks that make smart devices work also create unexpected surveillance problems no one planned for."
-slug = "smart-home-listening-neighbors"
 section = "Technology"
 author = "Jane Doe"
 date = "March 17, 2026"
-cover_url = "/images/story-3.jpg"
 image_caption = ""
 featured = false
 

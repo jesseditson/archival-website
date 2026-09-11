@@ -5,7 +5,6 @@ author = "John Smith"
 date = "March 6, 2026"
 image_caption = ""
 featured = false
-
 body = """
 Nong Kham has sold pad kra pao from a cart on the same Bangkok corner for nineteen years. She arrives at five in the morning to secure her spot, fires up her wok by six, and usually sells out by early afternoon. Her cart sits across the street from a glass-fronted café that charges four times what she does for a rice dish with half the flavor. The café is always busy. So is her cart. The difference is that the café owns its space. Nong Kham does not.
 
@@ -27,3 +26,9 @@ The sharpest version of this tension is visible in cities that have created high
 
 Back in Bangkok, Nong Kham is watching a construction project one block away. She does not know what it will be. She knows that whatever it is, it will not be for her.
 """
+
+[image]
+display_type = "image"
+filename = "story-4.jpg"
+sha = "d44e82691fdcbf805bbc74923b50676e554d9384ad3866b35dfdbf583b84af7f"
+mime = "image/jpeg"

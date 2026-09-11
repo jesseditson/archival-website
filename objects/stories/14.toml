@@ -5,7 +5,6 @@ author = "Jane Doe"
 date = "March 1, 2026"
 image_caption = ""
 featured = false
-
 body = """
 For eleven days, the floor of the United States Senate has been the site of something increasingly rare: sustained, genuine negotiation. Senators from both parties have been seen lingering in hallways, ducking into each other's offices, and breaking for extended lunches at the Capitol Hill Club. The subject is a $940 billion infrastructure package that, depending on who you ask, is either a generational investment or a fiscal catastrophe.
 
@@ -27,3 +26,9 @@ The White House has made clear that it considers the bill a legacy priority for 
 
 A vote that was expected this week has been pushed to at least next Thursday. For now, the hallway conversations continue.
 """
+
+[image]
+display_type = "image"
+filename = "story-6.jpg"
+sha = "27384c81a45ef8302672914e26e72a66f02f330d5ac542e71c27a9612f13ab23"
+mime = "image/jpeg"

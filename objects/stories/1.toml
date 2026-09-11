@@ -5,7 +5,6 @@ author = "Jane Doe"
 date = "March 15, 2026"
 image_caption = "Voters gather at a town hall in rural Pennsylvania"
 featured = true
-
 body = """
 The fluorescent lights of the community center hummed overhead as two dozen residents of this small Pennsylvania town filed into folding chairs arranged in a circle. They had come not to debate, but to listen.
 
@@ -27,3 +26,9 @@ Not everyone is convinced. Critics argue that dialogue alone cannot address stru
 
 But for the residents of this small town, the weekly gatherings have already changed something fundamental: the willingness to see a neighbor, not an adversary, in the chair across the circle.
 """
+
+[image]
+display_type = "image"
+filename = "story-1.jpg"
+sha = "43b5abbbc6ddafc424fc0ba7d876592a836bde1ecd03d6c84d55a5e344359cbc"
+mime = "image/jpeg"

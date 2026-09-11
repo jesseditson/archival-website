@@ -5,7 +5,6 @@ author = "John Smith"
 date = "March 25, 2026"
 image_caption = ""
 featured = false
-
 body = """
 The experts were wrong about Iraq. They were wrong, or at least silent, about the financial crisis. They were inconsistent about masks in the early months of the pandemic, overconfident about certain pharmaceutical interventions, and often contemptuous of the questions people were asking. The distrust of expert institutions that has spread across the American electorate is not irrational. It has causes. It has receipts.
 
@@ -29,3 +28,9 @@ The answer to the expert crisis is not to defend the credentialed class against 
 
 Institutions that acknowledge their failures, explain their reasoning, update their guidance publicly when evidence changes, and engage with legitimate criticism rather than dismissing it earn back something that cannot be granted by credential or title. They earn it the hard way, which is the only way that works.
 """
+
+[image]
+display_type = "image"
+filename = "story-2.jpg"
+sha = "052adc8b53004509cdd2840a051d9e538a9311fe2d7cae5943d46e0db91f9e09"
+mime = "image/jpeg"

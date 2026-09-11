@@ -5,7 +5,6 @@ author = "Jane Doe"
 date = "March 13, 2026"
 image_caption = ""
 featured = false
-
 body = """
 The last full-time employee of Harwick Township, population 1,840, retired in November. The township no longer has a clerk, a treasurer, or an administrative office of its own. Its functions — road maintenance, permit processing, tax assessment — have been absorbed by the county. The township still exists on paper. For most practical purposes, it does not exist at all.
 
@@ -29,3 +28,9 @@ Political scientists who study local government argue that the consolidation wav
 
 Whether the trade-off is worth it is a calculation that residents of consolidating jurisdictions are making, often with limited information and under fiscal conditions that leave them little real choice.
 """
+
+[image]
+display_type = "image"
+filename = "story-3.jpg"
+sha = "b89951845158c402c626999322d46826dffb1b36d7676794381ea4eed2e0f00b"
+mime = "image/jpeg"

@@ -5,7 +5,6 @@ author = "Jane Doe"
 date = "March 13, 2026"
 image_caption = "A solid-state battery prototype at MIT's energy lab"
 featured = false
-
 body = """
 In a lab on the outskirts of Cambridge, Massachusetts, a team of researchers is holding a small, flat rectangle that could change the world. It doesn't look like much — roughly the size of a playing card, encased in silver foil. But this solid-state battery prototype holds twice the energy of its lithium-ion equivalent in half the space.
 
@@ -21,3 +20,9 @@ The science is promising. The engineering is hard. Producing solid-state cells a
 
 Several companies have announced timelines, but the history of battery technology is littered with promises that arrived late or not at all. The researchers here are cautiously optimistic, which in academia is practically euphoria.
 """
+
+[image]
+display_type = "image"
+filename = "story-3.jpg"
+sha = "b89951845158c402c626999322d46826dffb1b36d7676794381ea4eed2e0f00b"
+mime = "image/jpeg"

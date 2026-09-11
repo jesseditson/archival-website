@@ -5,7 +5,6 @@ author = "Jane Doe"
 date = "March 17, 2026"
 image_caption = ""
 featured = false
-
 body = """
 When David Park installed a Ring doorbell at his apartment in Seattle, he assumed it would record his front door. He did not expect it to pick up conversations from the hallway, the elevator, and — thanks to a quirk of the building's acoustics — his neighbor's living room.
 
@@ -29,3 +28,9 @@ Current privacy law offers little protection. The Electronic Communications Priv
 
 For now, the only reliable defense is awareness. And the off switch.
 """
+
+[image]
+display_type = "image"
+filename = "story-3.jpg"
+sha = "b89951845158c402c626999322d46826dffb1b36d7676794381ea4eed2e0f00b"
+mime = "image/jpeg"

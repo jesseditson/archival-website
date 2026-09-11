@@ -5,7 +5,6 @@ author = "John Smith"
 date = "March 2, 2026"
 image_caption = ""
 featured = false
-
 body = """
 The shelves at Turnstile Records in Chicago's Logan Square neighborhood are stacked floor to ceiling with vinyl. On a Saturday afternoon, the store is packed — but not, notably, with the middle-aged men who dominated its early years. Today's crowd skews younger, louder, and considerably less reverent about genre purity. A 22-year-old in a vintage Radiohead shirt is flipping through a Bachata crate. Two teenagers are debating the merits of a original pressing of Fleetwood Mac's "Rumours" they clearly cannot afford.
 
@@ -25,3 +24,9 @@ The shift has created a mild identity crisis in some corners of the hobby. The o
 
 Major labels have taken notice. Pressing plants that were running years-long backlogs as recently as 2022 have expanded capacity, and several new facilities have opened in the Midwest. The question now is whether demand is durable or whether it peaks with the generation that discovered it. Most record store owners seem unconcerned. The teenagers arguing about "Rumours" are not performing nostalgia. They are making a purchase.
 """
+
+[image]
+display_type = "image"
+filename = "story-7.jpg"
+sha = "dfdf30b8c3e4981c4aac421655875c7bf7738837d1b41e5b6e0518716d2119b1"
+mime = "image/jpeg"

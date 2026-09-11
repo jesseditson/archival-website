@@ -5,7 +5,6 @@ author = "Jane Doe"
 date = "March 11, 2026"
 image_caption = ""
 featured = false
-
 body = """
 In the high desert of New Mexico, 263 radio telescope dishes are being trained on a patch of sky that, to the naked eye, contains nothing remarkable. What they are seeing, according to a paper published last week in Nature Astronomy, is a galaxy that should not, by current models, exist: a fully formed, rapidly star-forming system at a redshift of 12.4, meaning we are observing it as it existed roughly 400 million years after the Big Bang.
 
@@ -29,3 +28,9 @@ The team has submitted proposals for follow-up observations using the James Webb
 
 "We are not saying Lambda-CDM is wrong," said Dr. Carmen Iglesias, the paper's lead author. "We are saying it has something to explain. That is how science works."
 """
+
+[image]
+display_type = "image"
+filename = "story-1.jpg"
+sha = "43b5abbbc6ddafc424fc0ba7d876592a836bde1ecd03d6c84d55a5e344359cbc"
+mime = "image/jpeg"

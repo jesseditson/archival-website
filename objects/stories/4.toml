@@ -5,7 +5,6 @@ author = "John Smith"
 date = "March 12, 2026"
 image_caption = ""
 featured = false
-
 body = """
 There is a strange passivity in the way we talk about algorithms. We speak of them as weather — something that happens to us, beyond our control. The algorithm showed me this. The algorithm buried that.
 
@@ -23,3 +22,9 @@ What would it look like to build recommendation systems that served readers rath
 
 The technology exists. What's missing is the will.
 """
+
+[image]
+display_type = "image"
+filename = "story-4.jpg"
+sha = "d44e82691fdcbf805bbc74923b50676e554d9384ad3866b35dfdbf583b84af7f"
+mime = "image/jpeg"

@@ -5,7 +5,6 @@ author = "Jane Doe"
 date = "March 22, 2026"
 image_caption = ""
 featured = false
-
 body = """
 Every liter of seawater contains the genetic traces of every organism that has recently passed through it: shed skin cells, mucus, feces, decomposing tissue. This environmental DNA, or eDNA, persists in the water column for hours to days before it degrades. During that window, it is, in principle, readable.
 
@@ -31,3 +30,9 @@ Scientists who have reviewed the company's methodology are generally positive ab
 
 The company has published its sampling protocols and is negotiating with several academic institutions about data sharing arrangements. Whether it survives long enough to assemble the decades-long baseline its scientists believe is necessary remains an open question that depends, as all startup questions do, on money.
 """
+
+[image]
+display_type = "image"
+filename = "story-5.jpg"
+sha = "78044df388f7a333721555dd9ed6ca938c23a05ce986267a3465823594b34dc6"
+mime = "image/jpeg"

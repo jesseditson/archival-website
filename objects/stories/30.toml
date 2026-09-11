@@ -5,7 +5,6 @@ author = "Jane Doe"
 date = "March 17, 2026"
 image_caption = ""
 featured = false
-
 body = """
 On page 847 of the Consolidated Appropriations Act of 2024, between a provision funding a new federal courthouse in Mississippi and a technical amendment to the Wild Horse and Burro Act, sits a paragraph that its drafters declined to discuss publicly and that most members of Congress who voted for it did not read. Fourteen months later, that paragraph is the legal basis for a series of expedited mineral leasing approvals covering more than 4 million acres of Bureau of Land Management territory in six Western states.
 
@@ -33,3 +32,9 @@ The acres in question include habitat for several threatened species, recharge z
 
 It is also the kind of question that tends to have a clearer answer after the mining has started.
 """
+
+[image]
+display_type = "image"
+filename = "story-7.jpg"
+sha = "dfdf30b8c3e4981c4aac421655875c7bf7738837d1b41e5b6e0518716d2119b1"
+mime = "image/jpeg"

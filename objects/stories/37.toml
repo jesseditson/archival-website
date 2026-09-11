@@ -5,7 +5,6 @@ author = "John Smith"
 date = "March 23, 2026"
 image_caption = ""
 featured = false
-
 body = """
 Every two years, American political campaigns spend an aggregate of several billion dollars chasing a population that is, depending on the election cycle and how you measure it, somewhere between five and twelve percent of the electorate. These are the so-called undecided voters, the persuadables, the swing voters in swing districts in swing states. They are the obsessive focus of campaign strategy, polling methodology, and most of what passes for electoral analysis in the American media.
 
@@ -31,3 +30,9 @@ Those questions point toward policy and structural changes — automatic registr
 
 The myth of the persuadable center is politically convenient for incumbents and for a media industry that covers elections like horse races. It is less useful for understanding how elections actually work.
 """
+
+[image]
+display_type = "image"
+filename = "story-6.jpg"
+sha = "27384c81a45ef8302672914e26e72a66f02f330d5ac542e71c27a9612f13ab23"
+mime = "image/jpeg"

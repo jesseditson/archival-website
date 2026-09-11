@@ -5,7 +5,6 @@ author = "John Smith"
 date = "March 18, 2026"
 image_caption = ""
 featured = false
-
 body = """
 The waiting list at Earthbound Studio in Portland has 340 people on it. The average wait for a spot in a beginner wheel-throwing class is four months. The studio's owner, Keiko Mori, added two kilns in 2024 and is considering a third. She still cannot keep up with demand.
 
@@ -29,3 +28,9 @@ The work being produced in introductory studios is, by design, imperfect. Wobbly
 
 Several studio owners noted that the students who stick with ceramics beyond the first few classes are often not particularly interested in getting good at it in a competitive sense. They are interested in the process. In a cultural moment defined by productivity optimization and measurable output, this is, perhaps, the most interesting thing about the ceramics boom.
 """
+
+[image]
+display_type = "image"
+filename = "story-1.jpg"
+sha = "43b5abbbc6ddafc424fc0ba7d876592a836bde1ecd03d6c84d55a5e344359cbc"
+mime = "image/jpeg"

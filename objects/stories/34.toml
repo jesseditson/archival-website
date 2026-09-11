@@ -5,7 +5,6 @@ author = "Jane Doe"
 date = "March 21, 2026"
 image_caption = ""
 featured = false
-
 body = """
 The water bill for a family of four in Bridgemont, New Jersey has increased 61 percent over the past four years. The utility serving the city, Aqua America Mid-Atlantic, submitted a rate case in January requesting an additional 22 percent increase over the next three years. The state's Board of Public Utilities has scheduled hearings. The hearings are expected to take a year.
 
@@ -29,3 +28,9 @@ Several cities that previously privatized their water systems have moved to buy 
 
 The courts have generally upheld the right of municipalities to pursue remunicipalization. The cost of doing so, in most cases, is the primary obstacle.
 """
+
+[image]
+display_type = "image"
+filename = "story-4.jpg"
+sha = "d44e82691fdcbf805bbc74923b50676e554d9384ad3866b35dfdbf583b84af7f"
+mime = "image/jpeg"

@@ -5,7 +5,6 @@ author = "Jane Doe"
 date = "March 11, 2026"
 image_caption = ""
 featured = false
-
 body = """
 When was the last time you talked to someone for three hours straight? Not a meeting. Not a phone call squeezed between errands. A real conversation — the kind that wanders, circles back, and leaves you thinking differently about something you thought you understood.
 
@@ -21,3 +20,9 @@ A small but growing counter-movement is pushing back. Supper clubs, salon-style 
 
 The format varies, but the principle is the same. Depth requires time. Understanding requires patience. And some things can only be said slowly.
 """
+
+[image]
+display_type = "image"
+filename = "story-5.jpg"
+sha = "78044df388f7a333721555dd9ed6ca938c23a05ce986267a3465823594b34dc6"
+mime = "image/jpeg"

@@ -5,7 +5,6 @@ author = "Jane Doe"
 date = "March 3, 2026"
 image_caption = ""
 featured = false
-
 body = """
 In a clean room outside Tokyo, researchers at QuantaCell are running a test that would have been impossible three years ago. A solid-state battery the size of a deck of cards has been cycling — charging and discharging — continuously for eight months. At 2,200 cycles, it retains 94 percent of its original capacity. By the standards of current lithium-ion technology, this is extraordinary. By the standards QuantaCell has set for itself, it is merely a starting point.
 
@@ -27,3 +26,9 @@ A battery capable of powering an electric vehicle for 600 miles on a single char
 
 The skeptics are not gone. Manufacturing yield, thermal management, and cost-per-kilowatt-hour remain open questions. But in the clean rooms and university labs where the work is happening, something has shifted. The people doing the research have stopped hedging quite so carefully when asked if this time is different.
 """
+
+[image]
+display_type = "image"
+filename = "story-1.jpg"
+sha = "43b5abbbc6ddafc424fc0ba7d876592a836bde1ecd03d6c84d55a5e344359cbc"
+mime = "image/jpeg"

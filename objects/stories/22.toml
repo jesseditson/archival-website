@@ -5,7 +5,6 @@ author = "Jane Doe"
 date = "March 9, 2026"
 image_caption = ""
 featured = false
-
 body = """
 Three years ago, running a large-scale foreign influence operation required significant infrastructure: server farms, human operators fluent in the target language, teams to create and maintain fake social media personas, and resources to promote content at scale. It was expensive. It left traces. Intelligence agencies had learned to find those traces.
 
@@ -29,3 +28,9 @@ Platform moderation, which was the primary line of defense after 2016, has becom
 
 Whether resilience can be built fast enough to matter is the question that keeps election security officials awake at night.
 """
+
+[image]
+display_type = "image"
+filename = "story-6.jpg"
+sha = "27384c81a45ef8302672914e26e72a66f02f330d5ac542e71c27a9612f13ab23"
+mime = "image/jpeg"

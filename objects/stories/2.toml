@@ -5,7 +5,6 @@ author = "John Smith"
 date = "March 14, 2026"
 image_caption = "A reader at Powell's Books in Portland, Oregon"
 featured = false
-
 body = """
 Every decade or so, someone writes the eulogy for the novel. The attention economy, the streaming wars, the infinite scroll — surely this time the long-form narrative is finished.
 
@@ -23,3 +22,9 @@ But the revival goes deeper than viral moments. Writing programs are oversubscri
 
 The novel, it turns out, is the cockroach of art forms. It survives everything.
 """
+
+[image]
+display_type = "image"
+filename = "story-2.jpg"
+sha = "052adc8b53004509cdd2840a051d9e538a9311fe2d7cae5943d46e0db91f9e09"
+mime = "image/jpeg"

@@ -5,7 +5,6 @@ author = "John Smith"
 date = "March 8, 2026"
 image_caption = ""
 featured = false
-
 body = """
 I want to make an unfashionable argument: competent, undramatic, process-respecting governance is a profound public good, and we have spent the better part of a decade treating it like a failure of imagination. The hunger for disruption, for leaders who "tell it like it is" and "shake things up," has produced a great deal of shaking. The results are instructive.
 
@@ -27,3 +26,9 @@ This is not an argument for complacency or for deference to expertise as a subst
 
 Boring government does not mean unambitious government. It means government that is ambitious about outcomes rather than about its own image. We should want more of it, and we should be better at recognizing it when we have it.
 """
+
+[image]
+display_type = "image"
+filename = "story-5.jpg"
+sha = "78044df388f7a333721555dd9ed6ca938c23a05ce986267a3465823594b34dc6"
+mime = "image/jpeg"

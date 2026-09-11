@@ -5,7 +5,6 @@ author = "John Smith"
 date = "March 14, 2026"
 image_caption = ""
 featured = false
-
 body = """
 The pavilion at this year's Venice Architecture Biennale will not be there next year. That is the point. Designed by a collective of architects from Rotterdam, the structure — a hall of bent laminated timber and tensioned fabric, assembled without permanent fasteners — is explicitly intended to be dismantled, its components catalogued, and its materials reused in a community building project in rural Mozambique. Every design decision was made with disassembly in mind.
 
@@ -29,3 +28,9 @@ The deeper challenge posed by architecture's impermanence turn is cultural rathe
 
 "I think people assume we're pessimists," said one member of the Rotterdam collective. "We are the opposite. We think materials are too valuable to bury in the ground forever."
 """
+
+[image]
+display_type = "image"
+filename = "story-4.jpg"
+sha = "d44e82691fdcbf805bbc74923b50676e554d9384ad3866b35dfdbf583b84af7f"
+mime = "image/jpeg"

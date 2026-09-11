@@ -5,7 +5,6 @@ author = "John Smith"
 date = "March 25, 2026"
 image_caption = ""
 featured = false
-
 body = """
 The Multnomah County Library branch on Southeast Belmont Street in Portland has, on a Tuesday afternoon, a man sleeping in a chair near the periodicals, a teenager using a 3D printer in the makerspace, three people attending a free tax preparation assistance session in a small meeting room, a social worker from a partnering nonprofit meeting with a client in a private consultation space, and a toddler in a storytime circle who is deeply engaged with a book about trucks. It also has books. Quite a lot of them. But books are no longer most of what happens here.
 
@@ -29,3 +28,9 @@ Both critiques contain something true. The libraries are filling gaps. The gaps 
 
 The man sleeping in the chair near the periodicals wakes up, returns a book to the returns slot, and leaves. He has been coming here for three years. He has nowhere else warm to go.
 """
+
+[image]
+display_type = "image"
+filename = "story-4.jpg"
+sha = "d44e82691fdcbf805bbc74923b50676e554d9384ad3866b35dfdbf583b84af7f"
+mime = "image/jpeg"

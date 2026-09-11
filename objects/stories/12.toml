@@ -5,7 +5,6 @@ author = "John Smith"
 date = "March 13, 2026"
 image_caption = ""
 featured = false
-
 body = """
 On a Tuesday morning in March, sixteen-year-old Sofia Reyes straps on a dive mask and slips backward off the gunwale of a research boat into the warm, clear water of the Florida Keys National Marine Sanctuary. Twenty feet below, a lattice of PVC pipe holds dozens of small coral fragments, each one no larger than a thumbnail, each one growing.
 
@@ -29,3 +28,9 @@ The program has attracted interest from school districts across the Caribbean an
 
 For Reyes, the work is both scientific and personal. "I grew up snorkeling these reefs," she said. "They were already dying when I was a kid. The idea that I can help bring them back — that's not just biology class. That's my future."
 """
+
+[image]
+display_type = "image"
+filename = "story-4.jpg"
+sha = "d44e82691fdcbf805bbc74923b50676e554d9384ad3866b35dfdbf583b84af7f"
+mime = "image/jpeg"

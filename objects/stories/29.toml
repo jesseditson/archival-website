@@ -5,7 +5,6 @@ author = "John Smith"
 date = "March 16, 2026"
 image_caption = ""
 featured = false
-
 body = """
 Here is a sentence you will read in some form several times a week: "The economy added 180,000 jobs last month, and unemployment remained at 4.1 percent." Here is something that sentence does not tell you: whether the jobs pay enough to live on, whether the people taking them feel secure in them, whether the people who are counted as employed are working as many hours as they want, or whether the people counted as not-unemployed have simply stopped looking because they could not find anything.
 
@@ -29,3 +28,9 @@ This is not an argument for pessimism or for ignoring data that shows real progr
 
 The economy is not the stock market. It is the material condition of how people live. The way we describe it should reflect that.
 """
+
+[image]
+display_type = "image"
+filename = "story-6.jpg"
+sha = "27384c81a45ef8302672914e26e72a66f02f330d5ac542e71c27a9612f13ab23"
+mime = "image/jpeg"

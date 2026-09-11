@@ -5,7 +5,6 @@ author = "John Smith"
 date = "March 20, 2026"
 image_caption = ""
 featured = false
-
 body = """
 Before you object: I am not arguing that the 90-minute crawl in gridlock traffic is good for you. It is not. I am making a narrower claim, which is that the transit commute — train, bus, subway, ferry — performed a set of social and psychological functions that we did not fully understand until the work-from-home transition revealed their absence.
 
@@ -31,3 +30,9 @@ Some companies have experimented with deliberate "commute rituals" for remote em
 
 What we want is not the commute. It is the gap it created. We could design that gap. We have just not decided to.
 """
+
+[image]
+display_type = "image"
+filename = "story-3.jpg"
+sha = "b89951845158c402c626999322d46826dffb1b36d7676794381ea4eed2e0f00b"
+mime = "image/jpeg"

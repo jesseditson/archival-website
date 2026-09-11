@@ -5,7 +5,6 @@ author = "Jane Doe"
 date = "March 15, 2026"
 image_caption = ""
 featured = false
-
 body = """
 The experiment began with a simple instruction: stop scrolling whenever you want to. Participants in a study at University College London were placed in an fMRI scanner and shown a simulated social media feed. They were told they could stop looking at any time with no consequence. Almost none of them did.
 
@@ -29,3 +28,9 @@ Research published last month suggests that two types of intervention show genui
 
 The harder question is whether platforms will implement them voluntarily or whether regulation will need to require it.
 """
+
+[image]
+display_type = "image"
+filename = "story-5.jpg"
+sha = "78044df388f7a333721555dd9ed6ca938c23a05ce986267a3465823594b34dc6"
+mime = "image/jpeg"

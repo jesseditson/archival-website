@@ -5,7 +5,6 @@ author = "Jane Doe"
 date = "March 5, 2026"
 image_caption = ""
 featured = false
-
 body = """
 For most of the past thirty years, the governor's office in this high-desert state has been as safely Republican as a seat can be. The incumbent party has won the last seven cycles by margins ranging from comfortable to overwhelming. Political strategists from both parties treat it as background noise — a state worth visiting for fundraising but not for genuine competition.
 
@@ -29,3 +28,9 @@ A Democratic win would not only flip a governorship — it would signal a potent
 
 The election is eight months away. In water terms, a lot can happen in eight months.
 """
+
+[image]
+display_type = "image"
+filename = "story-3.jpg"
+sha = "b89951845158c402c626999322d46826dffb1b36d7676794381ea4eed2e0f00b"
+mime = "image/jpeg"

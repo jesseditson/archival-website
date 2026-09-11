@@ -1,42 +1,42 @@
-{% layout 'theme' title: stories.headline
+{% layout 'theme' title: story.headline
   , page: 'story-detail'
-  , active_section: stories.section %}
+  , active_section: story.section %}
 
 <article>
   <nav class="story-breadcrumb">
     <a class="breadcrumb-link" href="/">Home</a>
     <span class="breadcrumb-sep">/</span>
-    {% if stories.section.size > 0 %}
-      <a class="breadcrumb-link" href="{% include 'section_href', section_name: stories.section %}">{{ stories.section }}</a>
+    {% if story.section.size > 0 %}
+      <a class="breadcrumb-link" href="{% include 'section_href', section_name: story.section %}">{{ story.section }}</a>
       <span class="breadcrumb-sep">/</span>
     {% endif %}
-    <span class="breadcrumb-current">{{ stories.headline }}</span>
+    <span class="breadcrumb-current">{{ story.headline }}</span>
   </nav>
 
   <header class="story-header">
-    {% if stories.section.size > 0 %}
+    {% if story.section.size > 0 %}
       <p class="story-detail-section">
-        <a href="{% include 'section_href', section_name: stories.section %}">{{ stories.section }}</a>
+        <a href="{% include 'section_href', section_name: story.section %}">{{ story.section }}</a>
       </p>
     {% endif %}
-    <h1 class="story-detail-headline">{{ stories.headline }}</h1>
-    {% if stories.subheadline.size > 0 %}
-      <p class="story-detail-subheadline">{{ stories.subheadline }}</p>
+    <h1 class="story-detail-headline">{{ story.headline }}</h1>
+    {% if story.subheadline.size > 0 %}
+      <p class="story-detail-subheadline">{{ story.subheadline }}</p>
     {% endif %}
-    {% assign words = stories.body | strip_html | split: ' ' | size %}
+    {% assign words = story.body | strip_html | split: ' ' | size %}
     {% assign reading_time = words | plus: 199 | divided_by: 200 %}
     {% if reading_time < 1 %}{% assign reading_time = 1 %}{% endif %}
     <p class="story-detail-meta">
-      By <span class="story-detail-author">{{ stories.author }}</span> &middot; {{ stories.date }} &middot; {{ reading_time }} min read
+      By <span class="story-detail-author">{{ story.author }}</span> &middot; {{ story.date }} &middot; {{ reading_time }} min read
     </p>
   </header>
 
-  {% if stories.image != blank %}
+  {% if story.image != blank %}
     <div class="story-hero-image">
-      <img src="{{ stories.image.url }}" alt="{{ stories.image_caption }}">
+      <img src="{{ story.image.url }}" alt="{{ story.image_caption }}">
     </div>
-    {% if stories.image_caption.size > 0 %}
-      <p class="story-image-caption">{{ stories.image_caption }}</p>
+    {% if story.image_caption.size > 0 %}
+      <p class="story-image-caption">{{ story.image_caption }}</p>
     {% endif %}
   {% else %}
     <div class="story-header-rule">
@@ -45,6 +45,6 @@
   {% endif %}
 
   <div class="story-body markdown">
-    {{ stories.body }}
+    {{ story.body }}
   </div>
 </article>

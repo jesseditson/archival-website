@@ -1,4 +1,7 @@
-[[stories.views]]
+[[story.views]]
 name = "default"
 primary = "image"
 secondary = "headline"
+
+[[shortcuts]]
+path = "story"

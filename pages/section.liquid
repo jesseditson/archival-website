@@ -1,17 +1,17 @@
-{% layout 'theme' title: sections.name
+{% layout 'theme' title: section.name
   , page: 'page-section'
-  , active_section: sections.name %}
+  , active_section: section.name %}
 
-{% assign section_key = sections.name | downcase %}
+{% assign section_key = section.name | downcase %}
 
 <div class="section-page"
   <div class="section-page-header">
     <nav class="section-breadcrumb">
       <a class="breadcrumb-link" href="/">Home</a>
       <span class="breadcrumb-sep">/</span>
-      <span class="breadcrumb-current">{{ sections.name }}</span>
+      <span class="breadcrumb-current">{{ section.name }}</span>
     </nav>
-    <h1 class="section-page-name">{{ sections.name }}</h1>
+    <h1 class="section-page-name">{{ section.name }}</h1>
     {% assign story_count = 0 %}
     {% for story in stories %}
       {% assign story_section_key = story.section | downcase %}
@@ -19,11 +19,11 @@
         {% assign story_count = story_count | plus: 1 %}
       {% endif %}
     {% endfor %}
-    <p class="section-page-count">{{ story_count }} {% if story_count == 1 %}story{% else %}stories{% endif %}</p>
+    <p class="section-page-count">{{ story_count }} {% if story_count == 1 %}story{% else %}story{% endif %}</p>
   </div>
 
   {% if story_count == 0 %}
-    <p class="section-page-empty">No stories yet.</p>
+    <p class="section-page-empty">No story yet.</p>
   {% endif %}
 
   {% assign match_index = 0 %}

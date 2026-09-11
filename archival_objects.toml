@@ -6,17 +6,17 @@ name = "string"
 tagline = "string"
 og_image = "image"
 
-[sections]
+[section]
 template = "section"
 name = "string"
 
-[authors]
+[author]
 name = "string"
 title = "string"
 photo = "image"
 bio = "string"
 
-[stories]
+[story]
 template = "story"
 headline = "string"
 subheadline = "string"

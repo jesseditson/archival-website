@@ -9,20 +9,20 @@
   {% assign og_image_url = publication.og_image.url %}
 {% endif %}
 {% assign social_description = publication.tagline %}
-{% if page == 'story-detail' and stories %}
-  {% if og_image_url == "" and stories.image != blank %}
-    {% assign og_image_url = stories.image.url %}
+{% if page == 'story-detail' and story %}
+  {% if og_image_url == "" and story.image != blank %}
+    {% assign og_image_url = story.image.url %}
   {% endif %}
-  {% if stories.subheadline != blank %}
-    {% assign social_description = stories.subheadline %}
+  {% if story.subheadline != blank %}
+    {% assign social_description = story.subheadline %}
   {% endif %}
 {% endif %}
 {% capture jsonld_pub_name %}{{ publication.name | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
 {% capture jsonld_pub_desc %}{{ publication.tagline | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
-{% if page == 'story-detail' and stories %}
-  {% capture jsonld_headline %}{{ stories.headline | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
-  {% capture jsonld_subhead %}{{ stories.subheadline | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
-  {% capture jsonld_author %}{{ stories.author | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+{% if page == 'story-detail' and story %}
+  {% capture jsonld_headline %}{{ story.headline | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+  {% capture jsonld_subhead %}{{ story.subheadline | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+  {% capture jsonld_author %}{{ story.author | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
 {% endif %}
 <!DOCTYPE html>
 <html lang="en">
@@ -57,14 +57,14 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='bold' font-size='13' fill='%23e5ff00'%3E{{ initials }}%3C/text%3E%3C/svg%3E">
 
     <script type="application/ld+json">
-      {% if page == 'story-detail' and stories %}
+      {% if page == 'story-detail' and story %}
       {
         "@context": "https://schema.org",
         "@type": "NewsArticle",
         "headline": "{{ jsonld_headline }}"
-        {%- if stories.subheadline != blank -%}, "description": "{{ jsonld_subhead }}"{%- endif -%}
-        {%- if stories.image != blank -%}, "image": "{{ stories.image.url }}"{%- endif -%}
-        {%- if stories.author != blank -%}, "author": { "@type": "Person", "name": "{{ jsonld_author }}" }{%- endif -%}
+        {%- if story.subheadline != blank -%}, "description": "{{ jsonld_subhead }}"{%- endif -%}
+        {%- if story.image != blank -%}, "image": "{{ story.image.url }}"{%- endif -%}
+        {%- if story.author != blank -%}, "author": { "@type": "Person", "name": "{{ jsonld_author }}" }{%- endif -%}
         , "publisher": { "@type": "NewsMediaOrganization", "name": "{{ jsonld_pub_name }}" }
       }
       {% else %}
@@ -83,10 +83,10 @@
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <div class="header-inner">
-        <nav class="nav-sections" aria-label="Sections">
+        <nav class="nav-section" aria-label="section">
           {% unless active_section %}{% assign active_section = "" %}{% endunless %}
           {% assign active_section_key = active_section | downcase %}
-          {% for section in objects.sections %}
+          {% for section in objects.section %}
             {% assign section_key = section.name | downcase %}
             <a class="nav-link{% if section_key == active_section_key %} nav-link--active{% endif %}" href="/{{ section.path }}.html">{{ section.name }}</a>
           {% endfor %}

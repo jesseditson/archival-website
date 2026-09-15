@@ -28,6 +28,41 @@
 
   <!-- RSS Feed -->
   <link rel="alternate" type="application/rss+xml" title="{{ podcast.title }} RSS Feed" href="{{ podcast.website_url }}/rss.xml">
+
+  {% capture jsonld_name %}{{ podcast.title | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+  {% capture jsonld_newline %}
+{% endcapture %}
+  {% capture jsonld_desc %}{{ podcast.description | strip_html | strip | replace: jsonld_newline, ' ' | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+  {% capture jsonld_author %}{{ podcast.author | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+  <script type="application/ld+json">
+    {% if page == 'episode' and episode %}
+    {% capture jsonld_episode_name %}{{ episode.title | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+    {% capture jsonld_episode_desc %}{{ episode.description | strip_html | strip | replace: jsonld_newline, ' ' | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+    {
+      "@context": "https://schema.org",
+      "@type": "PodcastEpisode",
+      "name": "{{ jsonld_episode_name }}"
+      {%- if episode.number != blank -%}, "episodeNumber": "{{ episode.number }}"{%- endif -%}
+      {%- if episode.description != blank -%}, "description": "{{ jsonld_episode_desc }}"{%- endif -%}
+      {%- if episode.publish_date != blank -%}, "datePublished": "{{ episode.publish_date | date: '%Y-%m-%d' }}"{%- endif -%}
+      {%- if episode.thumbnail != blank -%}, "image": "{{ episode.thumbnail.url }}"{%- endif -%}
+      {%- if episode.audio_url != blank -%}, "associatedMedia": { "@type": "MediaObject", "contentUrl": "{{ episode.audio_url.url }}" }{%- endif -%}
+      , "partOfSeries": { "@type": "PodcastSeries", "name": "{{ jsonld_name }}"{%- if podcast.website_url != blank -%}, "url": "{{ podcast.website_url }}"{%- endif -%} }
+    }
+    {% else %}
+    {
+      "@context": "https://schema.org",
+      "@type": "PodcastSeries",
+      "name": "{{ jsonld_name }}"
+      {%- if podcast.description != blank -%}, "description": "{{ jsonld_desc }}"{%- endif -%}
+      {%- if podcast.website_url != blank -%}, "url": "{{ podcast.website_url }}"{%- endif -%}
+      {%- if podcast.logo != blank -%}, "image": "{{ podcast.website_url }}{{ podcast.logo }}"{%- endif -%}
+      {%- if podcast.language != blank -%}, "inLanguage": "{{ podcast.language }}"{%- endif -%}
+      {%- if podcast.author != blank -%}, "author": { "@type": "Organization", "name": "{{ jsonld_author }}" }{%- endif -%}
+      {%- if podcast.website_url != blank -%}, "webFeed": "{{ podcast.website_url }}/rss.xml"{%- endif -%}
+    }
+    {% endif %}
+  </script>
 </head>
 
 <body>

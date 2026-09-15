@@ -19,6 +19,15 @@
     <link rel="stylesheet" href="/style.css">
 
     <meta name="theme-color" content="#fafafa">
+
+    {% capture jsonld_name %}{{ objects.site.name | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "{{ jsonld_name }}"
+      }
+    </script>
   </head>
 
   <body>

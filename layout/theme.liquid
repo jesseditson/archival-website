@@ -29,6 +29,19 @@
         background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
       }
     </style>
+
+    {% assign jsonld_cta = objects.cta | where: "name", "top" | first %}
+    {% capture jsonld_name %}{{ site.name | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+    {% capture jsonld_desc %}{{ jsonld_cta.message | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "{{ jsonld_name }}"
+        {%- if jsonld_cta.message != blank -%}, "description": "{{ jsonld_desc }}"{%- endif -%}
+        {%- if site_url != blank -%}, "url": "{{ site_url }}"{%- endif -%}
+      }
+    </script>
   </head>
   <body class="leading-normal tracking-normal text-white gradient" style="font-family: 'Source Sans Pro', sans-serif;">
     <!--Nav-->

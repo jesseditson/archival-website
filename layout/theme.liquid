@@ -19,6 +19,29 @@
     <link rel="stylesheet" href="/styles.css">
 
     <meta name="theme-color" content="#fafafa">
+
+    {% capture jsonld_name %}{{ site.name | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+    {% capture jsonld_desc %}{{ site.description | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "{% if active_page == 'photos' %}ImageGallery{% else %}WebSite{% endif %}",
+        "name": "{{ jsonld_name }}"
+        {%- if site.description != blank -%}, "description": "{{ jsonld_desc }}"{%- endif -%}
+        {%- if active_page == 'photos' -%}
+        , "associatedMedia": [
+          {%- assign jsonld_first = true -%}
+          {%- for photo in photos -%}
+            {%- if photo.file -%}
+              {%- unless jsonld_first -%},{%- endunless -%}
+              { "@type": "ImageObject", "contentUrl": "{{ photo.file.url }}", "name": "{{ photo.title | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}" }
+              {%- assign jsonld_first = false -%}
+            {%- endif -%}
+          {%- endfor -%}
+        ]
+        {%- endif -%}
+      }
+    </script>
   </head>
 
   <body>

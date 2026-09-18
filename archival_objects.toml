@@ -4,6 +4,7 @@
 name = "string"
 description = "string"
 og_image = "image"
+favicon = "image"
 
 [post]
 title = "string"

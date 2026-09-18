@@ -5,6 +5,7 @@
 name = "string"
 tagline = "string"
 og_image = "image"
+favicon = "image"
 
 [section]
 template = "section"

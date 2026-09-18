@@ -3,6 +3,7 @@ name = "string"
 description = "string"
 image = "image"
 og_image = "image"
+favicon = "image"
 merch_url = "string"
 
 [release]

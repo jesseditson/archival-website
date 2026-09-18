@@ -42,6 +42,11 @@
 
     <meta name="theme-color" content="#000000">
 
+    {% if objects.site.favicon != blank %}
+    <link rel="icon" href="{{ objects.site.favicon.url }}">
+    <link rel="apple-touch-icon" href="{{ objects.site.favicon.url }}">
+    {% endif %}
+
     <link rel="stylesheet" href="/styles/global.css">
 
     {% if video_src != blank %}

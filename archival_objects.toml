@@ -11,6 +11,7 @@ language = "string"
 category = "string"
 explicit = "boolean"
 author = "string"
+favicon = "image"
 
 [episode]
 number = "number"

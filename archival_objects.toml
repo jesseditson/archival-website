@@ -6,6 +6,7 @@ tagline = "string"
 description = "string"
 logo_image = "image"
 og_image = "image"
+favicon = "image"
 
 [hours]
 day = "string"

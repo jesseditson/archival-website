@@ -35,7 +35,10 @@
   <meta name="twitter:title" content="{{ page_title }}">
   <meta name="twitter:description" content="{{ app.description }}">
 
-  {% if app.logo != blank %}
+  {% if app.favicon != blank %}
+    <link rel="icon" href="{{ app.favicon.url }}">
+    <link rel="apple-touch-icon" href="{{ app.favicon.url }}">
+  {% elsif app.logo != blank %}
     <link rel="apple-touch-icon" href="{{ app.logo.url }}">
     <link rel="icon" href="{{ app.logo.url }}">
   {% endif %}

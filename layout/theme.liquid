@@ -17,12 +17,12 @@
     {% assign social_description = story.subheadline %}
   {% endif %}
 {% endif %}
-{% capture jsonld_pub_name %}{{ publication.name | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
-{% capture jsonld_pub_desc %}{{ publication.tagline | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+{% capture jsonld_pub_name %}{{ publication.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
+{% capture jsonld_pub_desc %}{{ publication.tagline | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
 {% if page == 'story-detail' and story %}
-  {% capture jsonld_headline %}{{ story.headline | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
-  {% capture jsonld_subhead %}{{ story.subheadline | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
-  {% capture jsonld_author %}{{ story.author | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+  {% capture jsonld_headline %}{{ story.headline | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
+  {% capture jsonld_subhead %}{{ story.subheadline | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
+  {% capture jsonld_author %}{{ story.author | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
 {% endif %}
 <!DOCTYPE html>
 <html lang="en">
@@ -66,7 +66,7 @@
         "@type": "NewsArticle",
         "headline": "{{ jsonld_headline }}"
         {%- if story.subheadline != blank -%}, "description": "{{ jsonld_subhead }}"{%- endif -%}
-        {%- if story.image != blank -%}, "image": "{{ story.image.url }}"{%- endif -%}
+        {%- if story.image != blank -%}, "image": "{{ story.image.url | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- endif -%}
         {%- if story.author != blank -%}, "author": { "@type": "Person", "name": "{{ jsonld_author }}" }{%- endif -%}
         , "publisher": { "@type": "NewsMediaOrganization", "name": "{{ jsonld_pub_name }}" }
       }
@@ -76,7 +76,7 @@
         "@type": "NewsMediaOrganization",
         "name": "{{ jsonld_pub_name }}"
         {%- if publication.tagline != blank -%}, "description": "{{ jsonld_pub_desc }}"{%- endif -%}
-        {%- if og_image_url != blank -%}, "image": "{{ og_image_url }}"{%- endif -%}
+        {%- if og_image_url != blank -%}, "image": "{{ og_image_url | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- endif -%}
       }
       {% endif %}
     </script>

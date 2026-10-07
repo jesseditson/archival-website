@@ -16,11 +16,11 @@
   {% if post.excerpt != blank %}
     {% assign social_description = post.excerpt %}
   {% endif %}
-  {% capture jsonld_post_title %}{{ post.title | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
-  {% capture jsonld_post_excerpt %}{{ post.excerpt | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+  {% capture jsonld_post_title %}{{ post.title | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
+  {% capture jsonld_post_excerpt %}{{ post.excerpt | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
 {% endif %}
-{% capture jsonld_name %}{{ site.name | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
-{% capture jsonld_desc %}{{ site.description | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+{% capture jsonld_name %}{{ site.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
+{% capture jsonld_desc %}{{ site.description | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -65,7 +65,7 @@
         "@type": "BlogPosting",
         "headline": "{{ jsonld_post_title }}"
         {%- if post.excerpt != blank -%}, "description": "{{ jsonld_post_excerpt }}"{%- endif -%}
-        {%- if post.image != blank -%}, "image": "{{ post.image.url }}"{%- endif -%}
+        {%- if post.image != blank -%}, "image": "{{ post.image.url | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- endif -%}
         {%- if post.date != blank -%}, "datePublished": "{{ post.date | date: '%Y-%m-%d' }}"{%- endif -%}
         , "author": { "@type": "Person", "name": "{{ jsonld_name }}" }
       }
@@ -75,7 +75,7 @@
         "@type": "Blog",
         "name": "{{ jsonld_name }}"
         {%- if site.description != blank -%}, "description": "{{ jsonld_desc }}"{%- endif -%}
-        {%- if og_image_url != blank -%}, "image": "{{ og_image_url }}"{%- endif -%}
+        {%- if og_image_url != blank -%}, "image": "{{ og_image_url | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- endif -%}
       }
       {% endif %}
     </script>
@@ -136,7 +136,7 @@
     <script type="application/json" id="blog-state">
       {
         {% if post %}
-        "initialPostPath": "/{{ post.path | replace: '\', '\\' | replace: '"', '\"' | replace: '	', '\t' | strip_newlines }}.html",
+        "initialPostPath": "/{{ post.path | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | replace: '	', '\t' | strip_newlines }}.html",
         {% endif %}
         "blogPosts": [
           {%- assign sorted_posts = posts | sort: "date" | reverse -%}
@@ -145,14 +145,14 @@
               {% include "post" post: post %}
             {%- endcapture -%}
             {
-              "path": "/{{ post.path | replace: '\', '\\' | replace: '"', '\"' | replace: '	', '\t' | strip_newlines }}.html",
-              "content": "{{ html | strip_newlines | escape | replace: '\', '\\' | replace: '"', '\"' | replace: '	', '\t' }}",
-              {%- unless post.image == blank -%}"imageUrl": "{{ post.image.url | replace: '\', '\\' | replace: '"', '\"' | replace: '	', '\t' | strip_newlines }}",{%- endunless -%}
-              {%- unless post.video == blank -%}"videoUrl": "{{ post.video.url | replace: '\', '\\' | replace: '"', '\"' | replace: '	', '\t' | strip_newlines }}",{%- endunless -%}
+              "path": "/{{ post.path | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | replace: '	', '\t' | strip_newlines }}.html",
+              "content": "{{ html | strip_newlines | escape | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | replace: '	', '\t' }}",
+              {%- unless post.image == blank -%}"imageUrl": "{{ post.image.url | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | replace: '	', '\t' | strip_newlines }}",{%- endunless -%}
+              {%- unless post.video == blank -%}"videoUrl": "{{ post.video.url | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | replace: '	', '\t' | strip_newlines }}",{%- endunless -%}
               "index": {{ forloop.index }},
               "tags": [
                 {%- for tag in post.tag -%}
-                    {%- capture jsonld_tag_name -%}{{ tag.name | replace: '\', '\\' | replace: '"', '\"' | replace: '	', '\t' | strip_newlines }}{%- endcapture -%}
+                    {%- capture jsonld_tag_name -%}{{ tag.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | replace: '	', '\t' | strip_newlines }}{%- endcapture -%}
                     "{{ jsonld_tag_name }}"{% unless forloop.last %},{% endunless %}
                 {%- endfor -%}
               ]

@@ -1,3 +1,23 @@
+declare const self: ServiceWorkerGlobalScope;
+declare const clients: Clients;
+
+interface FeedPost {
+  link: string;
+  title: string;
+  date: string;
+  excerpt?: string;
+  path?: string;
+}
+
+interface PostsFeed {
+  lastBuildDate: string;
+  posts: FeedPost[];
+}
+
+interface Settings {
+  notifications?: boolean;
+}
+
 self.addEventListener('install', (event) => {
   self.skipWaiting();
 
@@ -21,8 +41,8 @@ async function pollForNotifications() {
   const cache = await caches.open("archival-notifications");
   const match = await cache.match(postsURL);
   if (match && settings.notifications) {
-    const previous = await match.json();
-    const current = await r.json();
+    const previous: PostsFeed = await match.json();
+    const current: PostsFeed = await r.json();
     if (previous.lastBuildDate === current.lastBuildDate) {
       // Nothing changed
       return;
@@ -42,7 +62,7 @@ async function pollForNotifications() {
   }
 }
 
-function showPostNotification(post) {
+function showPostNotification(post: FeedPost) {
   // https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification
   const options = {
     body: post.excerpt || "",
@@ -82,7 +102,7 @@ self.addEventListener('notificationclick', (event) => {
     return;
   }
 
-  let url = event.notification.data.link;
+  let url: string = event.notification.data.link;
   if (!url.includes("//")) {
     url = self.location.origin + url;
   }
@@ -106,7 +126,7 @@ self.addEventListener('notificationclick', (event) => {
 });
 
 // ==================== Settings ====================
-async function getSettings() {
+async function getSettings(): Promise<Settings> {
     const cache = await caches.open("settings");
     const r = await cache.match("/settings");
     if (r && r.ok) {

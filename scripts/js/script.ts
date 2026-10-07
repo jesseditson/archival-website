@@ -1,9 +1,36 @@
+import { animate } from "https://cdn.jsdelivr.net/npm/animejs@4/+esm";
+import type { JSAnimation } from "https://cdn.jsdelivr.net/npm/animejs@4/+esm";
+
+interface BlogPost {
+    path: string;
+    content: string;
+    index: number;
+    tags: string[];
+    imageUrl?: string;
+    videoUrl?: string;
+}
+
+interface BlogState {
+    initialPostPath?: string;
+    blogPosts: BlogPost[];
+}
+
+interface Settings {
+    notifications?: boolean;
+}
+
+interface LinkMetadata {
+    title: string | null;
+    description: string | null;
+    image: string | null;
+}
+
 // ==================== Blog State ====================
-const state = window.blogState;
-let iso = null; // Isotope instance
+const state = JSON.parse(document.getElementById("blog-state")!.textContent!) as BlogState;
+let iso: Isotope | null = null; // Isotope instance
 let touchStartX = 0;
 let touchEndX = 0;
-let filteredPosts = []; // Currently filtered posts
+let filteredPosts: BlogPost[] = []; // Currently filtered posts
 let currentPostIndex = -1;
 let activeFilter = 'all'; // Track current filter state
 
@@ -20,7 +47,7 @@ window.onload = function() {
 };
 
 // ==================== Settings ====================
-async function getSettings() {
+async function getSettings(): Promise<Settings> {
     const cache = await caches.open("settings");
     const r = await cache.match("/settings");
     if (r && r.ok) {
@@ -29,7 +56,7 @@ async function getSettings() {
         return {}
     }
 }
-async function writeSettings(settings) {
+async function writeSettings(settings: Settings) {
     const cache = await caches.open("settings");
     await cache.put("/settings", new Response(JSON.stringify(settings), {
         status: 200,
@@ -41,7 +68,7 @@ async function writeSettings(settings) {
 
 // ==================== Service Worker ====================
 function initializeServiceWorker() {
-    const toggle = document.querySelector(".notify-toggle");
+    const toggle = document.querySelector(".notify-toggle") as HTMLElement;
     if ('serviceWorker' in navigator && caches) {
         navigator.serviceWorker
             .register('/service-worker.js')
@@ -82,7 +109,7 @@ function initializeServiceWorker() {
                             };
 
                             navigator.serviceWorker.getRegistration().then(registration => {
-                                registration.showNotification('Notification without Push API', options);
+                                registration?.showNotification('Notification without Push API', options);
                             });
                         }
                     });
@@ -138,13 +165,13 @@ function addLinkPreviews() {
     previewCards.forEach((card) => {
         const url = card.getAttribute("href");
         if (url) {
-            const contentEl = card.querySelector(".link-preview-content");
+            const contentEl = card.querySelector(".link-preview-content") as HTMLElement;
             const linkEl = document.createElement("div");
             linkEl.classList.add("link-preview-url");
             linkEl.innerText = url;
             contentEl.appendChild(linkEl);
             fetch(`/carriers/metadata?url=${url}`).then(async (response) => {
-                const metadata = await response.json();
+                const metadata: LinkMetadata = await response.json();
                 const {description, image, title} = metadata;
                 if (image) {
                     const imageEl = document.createElement("div");
@@ -169,7 +196,7 @@ function addLinkPreviews() {
 }
 
 // ==================== Lazy Loading with Intersection Observer ====================
-function setupPostObserver(postCards) {
+function setupPostObserver(postCards: NodeListOf<Element>) {
     const observerOptions = {
         root: null,
         rootMargin: '100px',
@@ -214,13 +241,15 @@ function initializePostViewer() {
     if (nextBtn) nextBtn.addEventListener('click', () => navigatePostViewer(1));
 }
 
+const windowAnimations = window as unknown as Record<string, JSAnimation | undefined>;
+
 function animateMastheadTitle() {
     if (typeof animate !== 'function') return;
-    const masthead = document.querySelector('.masthead');
+    const masthead = document.querySelector<HTMLElement>('.masthead');
     if (!masthead) return;
 
     if (masthead.dataset.animationInstance) {
-        const prevAnimation = window[masthead.dataset.animationInstance];
+        const prevAnimation = windowAnimations[masthead.dataset.animationInstance];
         if (prevAnimation && typeof prevAnimation.pause === 'function') {
             prevAnimation.pause();
         }
@@ -234,21 +263,21 @@ function animateMastheadTitle() {
     });
 
     const animationId = `mastheadAnim_${Date.now()}`;
-    window[animationId] = animation;
+    windowAnimations[animationId] = animation;
     masthead.dataset.animationInstance = animationId;
 }
 
-function renderPost(post) {
+function renderPost(post: BlogPost) {
     // The content is HTML-escaped in the JSON, so we need to decode it
     const textarea = document.createElement('textarea');
     textarea.innerHTML = post.content;
     return textarea.value;
 }
 
-function openPostViewer(index) {
+function openPostViewer(index: number) {
     currentPostIndex = index;
-    const viewer = document.getElementById('post-viewer');
-    const viewerContent = document.getElementById('viewer-content');
+    const viewer = document.getElementById('post-viewer')!;
+    const viewerContent = document.getElementById('viewer-content')!;
 
     // Show viewer
     viewer.classList.add('active');
@@ -299,8 +328,8 @@ function openPostViewer(index) {
 }
 
 function closePostViewer() {
-    const viewer = document.getElementById('post-viewer');
-    const viewerContent = document.getElementById('viewer-content');
+    const viewer = document.getElementById('post-viewer')!;
+    const viewerContent = document.getElementById('viewer-content')!;
 
     // Animate exit
     animate(viewerContent, {
@@ -324,9 +353,9 @@ function closePostViewer() {
 }
 
 
-function navigatePostViewer(direction) {
-    const viewer = document.getElementById('post-viewer');
-    const viewerContent = document.getElementById('viewer-content');
+function navigatePostViewer(direction: number) {
+    const viewer = document.getElementById('post-viewer')!;
+    const viewerContent = document.getElementById('viewer-content')!;
 
     // Calculate new index with wrapping based on filtered posts
     currentPostIndex = (currentPostIndex + direction + filteredPosts.length) % filteredPosts.length;
@@ -372,8 +401,8 @@ function navigatePostViewer(direction) {
 }
 
 function updateViewerInfo(shouldAnimate = true) {
-    document.getElementById('viewer-current').textContent = currentPostIndex + 1;
-    document.getElementById('viewer-total').textContent = filteredPosts.length;
+    document.getElementById('viewer-current')!.textContent = String(currentPostIndex + 1);
+    document.getElementById('viewer-total')!.textContent = String(filteredPosts.length);
 
     // Only animate when navigating between posts, not on initial load
     if (shouldAnimate) {
@@ -497,15 +526,15 @@ function initializeThemeToggle() {
         const theme = document.body.classList.contains('light-theme') ? 'light' : 'dark';
         localStorage.setItem('theme', theme);
 
-        const masthead = document.querySelector('.masthead');
+        const masthead = document.querySelector<HTMLElement>('.masthead');
         if (masthead) {
             masthead.style.color = '';
             if (masthead.dataset.animationInstance) {
-                const prevAnimation = window[masthead.dataset.animationInstance];
+                const prevAnimation = windowAnimations[masthead.dataset.animationInstance];
                 if (prevAnimation && typeof prevAnimation.pause === 'function') {
                     prevAnimation.pause();
                 }
-                delete window[masthead.dataset.animationInstance];
+                delete windowAnimations[masthead.dataset.animationInstance];
                 delete masthead.dataset.animationInstance;
             }
             // Restart animation gently in new theme
@@ -516,7 +545,7 @@ function initializeThemeToggle() {
 
 // ==================== Isotope Initialization ====================
 function initializeIsotope() {
-    const grid = document.querySelector('#blog-grid');
+    const grid = document.querySelector('#blog-grid') as HTMLElement;
 
     // Initialize Isotope with masonry layout. The .grid-sizer element
     // (a zero-height sibling sized via CSS to match .post-card width)
@@ -549,13 +578,13 @@ function initializeIsotope() {
     imgLoad.on('progress', function() {
         // Only layout during initial load, not on subsequent filters
         if (!initialLoadComplete) {
-            iso.layout();
+            iso!.layout();
         }
     });
 
     // Show grid once all images are loaded
     imgLoad.on('always', function() {
-        iso.layout();
+        iso!.layout();
         grid.classList.add('isotope-ready');
         initialLoadComplete = true;
     });
@@ -576,10 +605,10 @@ function initializeIsotope() {
 }
 
 // ==================== Tag Filtering ====================
-function selectTag(selectedTag) {
+function selectTag(selectedTag: string) {
     activeFilter = selectedTag;
 
-    const filterBtns = document.querySelectorAll('.filter-btn');
+    const filterBtns = document.querySelectorAll<HTMLElement>('.filter-btn');
 
     // Update active state
     filterBtns.forEach(b => {
@@ -612,15 +641,15 @@ function selectTag(selectedTag) {
     const filterValue = selectedTag === 'all' ? '*' : `.tag-${tagSlug}`;
 
     // Temporarily disable transitions to prevent jitter
-    iso.options.transitionDuration = 0;
-    iso.arrange({
+    iso!.options.transitionDuration = 0;
+    iso!.arrange({
         filter: filterValue,
         transitionDuration: 0
     });
 
     // Re-enable transitions after a brief delay
     setTimeout(() => {
-        iso.options.transitionDuration = '0.4s';
+        iso!.options.transitionDuration = '0.4s';
     }, 50);
 }
 function initializeTagFilters() {
@@ -628,7 +657,7 @@ function initializeTagFilters() {
 
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            const selectedTag = btn.getAttribute('data-tag');
+            const selectedTag = btn.getAttribute('data-tag')!;
             selectTag(selectedTag);
             updateHistory();
         });
@@ -685,7 +714,7 @@ function setupScrollAnimations() {
 }
 
 // ==================== Performance: Debounce Resize ====================
-let resizeTimer;
+let resizeTimer: number | undefined;
 window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
@@ -753,12 +782,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==================== Code Block Fixing ====================
-function fixCodeBlocks(container) {
+function fixCodeBlocks(container: HTMLElement) {
     // Find all code blocks with stored content
     const codeBlocks = container.querySelectorAll('pre code[data-code-id]');
 
     codeBlocks.forEach(codeBlock => {
-        const codeId = codeBlock.getAttribute('data-code-id');
+        const codeId = codeBlock.getAttribute('data-code-id')!;
 
         if (window.codeBlockStore && window.codeBlockStore[codeId]) {
             // Set the code as textContent to preserve all whitespace and newlines
@@ -778,7 +807,7 @@ function fixCodeBlocks(container) {
     }
 }
 
-function enhanceTaskLists(container) {
+function enhanceTaskLists(container: HTMLElement) {
     if (!container) return;
 
     const listItems = container.querySelectorAll('li');
@@ -808,20 +837,20 @@ function enhanceTaskLists(container) {
     });
 }
 
-function decodeHtmlEntities(str) {
+function decodeHtmlEntities(str: string) {
     if (!str) return '';
     const textarea = document.createElement('textarea');
     textarea.innerHTML = str;
     return textarea.value;
 }
 
-function hasHtmlContent(str) {
+function hasHtmlContent(str: string) {
     if (!str) return false;
     return /<\s*(?:p|h[1-6]|ul|ol|li|blockquote|pre|code|table|thead|tbody|tr|td|th|img|hr|br|figure|figcaption)/i.test(str);
 }
 
 // ==================== Utility: Parse Markdown-style Content ====================
-function parseSimpleMarkdown(text) {
+function parseSimpleMarkdown(text: string) {
     // Enhanced markdown parsing with more formatting options
     return text
         // Bold + Italic combined (must come before individual)
@@ -844,7 +873,7 @@ function parseSimpleMarkdown(text) {
         .replace(/\^([^^\\s]+?)\^/g, '<sup>$1</sup>');
 }
 
-function renderMarkdown(markdown) {
+function renderMarkdown(markdown: string) {
     if (!markdown) return '';
 
     let html = '';
@@ -978,7 +1007,7 @@ function renderMarkdown(markdown) {
             if (inParagraph) { html += '</p>'; inParagraph = false; }
             if (inOrderedList) { html += '</ol>'; inOrderedList = false; }
 
-            const spaces = line.match(/^(\s*)/)[1].length;
+            const spaces = line.match(/^(\s*)/)![1].length;
             const currentDepth = Math.floor(spaces / 2);
             const content = line.replace(/^(\s*)[-*+]\s/, '');
 
@@ -1024,7 +1053,7 @@ function renderMarkdown(markdown) {
 }
 
 // ==================== Date Formatting ====================
-function formatDate(dateString) {
+function formatDate(dateString: string) {
     // Parse date in YYYY-MM-DD format
     const parts = dateString.split('-');
     if (parts.length !== 3) return dateString;
@@ -1036,7 +1065,7 @@ function formatDate(dateString) {
     const date = new Date(year, month, day);
 
     // Format as "November 1, 2025"
-    const options = { month: 'long', day: 'numeric', year: 'numeric' };
+    const options: Intl.DateTimeFormatOptions = { month: 'long', day: 'numeric', year: 'numeric' };
     return date.toLocaleDateString('en-US', options);
 }
 
@@ -1082,7 +1111,7 @@ function setupVideoPlayButtons() {
     });
 }
 
-function playVideo(container, video) {
+function playVideo(container: Element, video: HTMLVideoElement) {
     container.classList.add('playing');
     video.setAttribute('controls', 'controls');
     video.play();
@@ -1097,20 +1126,38 @@ function setupVideoPlayButtonsInViewer() {
 }
 
 // ==================== Audio Player with Waveform ====================
-const audioPlayers = new Map(); // Store audio player instances
+const audioPlayers = new Map<Element, AudioPlayer>(); // Store audio player instances
 
 class AudioPlayer {
-    constructor(container, existingPlayer = null) {
-        this.container = container;
-        this.audioUrl = container.getAttribute('data-audio-url');
-        this.canvas = container.querySelector('.audio-waveform');
-        this.playBtn = container.querySelector('.audio-play-btn');
-        this.playIcon = container.querySelector('.play-icon');
-        this.pauseIcon = container.querySelector('.pause-icon');
-        this.timeDisplay = container.querySelector('.audio-time');
-        this.durationDisplay = container.querySelector('.audio-duration');
+    container: Element;
+    audioUrl: string;
+    canvas: HTMLCanvasElement;
+    playBtn: HTMLButtonElement;
+    playIcon: SVGElement;
+    pauseIcon: SVGElement;
+    timeDisplay: HTMLElement;
+    durationDisplay: HTMLElement;
+    ctx: CanvasRenderingContext2D;
+    audio: HTMLAudioElement;
+    audioContext: AudioContext | null;
+    analyser?: AnalyserNode | null;
+    source?: MediaElementAudioSourceNode | null;
+    waveformData: number[] | null;
+    isPlaying: boolean;
+    isLoaded: boolean;
+    isLoading: boolean;
 
-        this.ctx = this.canvas.getContext('2d');
+    constructor(container: Element, existingPlayer: AudioPlayer | null = null) {
+        this.container = container;
+        this.audioUrl = container.getAttribute('data-audio-url')!;
+        this.canvas = container.querySelector('.audio-waveform') as HTMLCanvasElement;
+        this.playBtn = container.querySelector('.audio-play-btn') as HTMLButtonElement;
+        this.playIcon = container.querySelector('.play-icon') as SVGElement;
+        this.pauseIcon = container.querySelector('.pause-icon') as SVGElement;
+        this.timeDisplay = container.querySelector('.audio-time') as HTMLElement;
+        this.durationDisplay = container.querySelector('.audio-duration') as HTMLElement;
+
+        this.ctx = this.canvas.getContext('2d')!;
 
         // If we have an existing player with the same audio URL, reuse it
         if (existingPlayer && existingPlayer.audioUrl === this.audioUrl) {
@@ -1190,7 +1237,7 @@ class AudioPlayer {
 
             // Fetch audio file
             const response = await fetch(this.audioUrl);
-            const reader = response.body.getReader();
+            const reader = response.body!.getReader();
 
             let receivedLength = 0;
             const chunks = [];
@@ -1267,20 +1314,20 @@ class AudioPlayer {
         loadingContainer.appendChild(barsContainer);
 
         // Wrap canvas in a positioned container if not already wrapped
-        if (!this.canvas.parentElement.classList.contains('audio-waveform-container')) {
+        if (!this.canvas.parentElement!.classList.contains('audio-waveform-container')) {
             const wrapper = document.createElement('div');
             wrapper.className = 'audio-waveform-container';
-            this.canvas.parentElement.insertBefore(wrapper, this.canvas);
+            this.canvas.parentElement!.insertBefore(wrapper, this.canvas);
             wrapper.appendChild(this.canvas);
         }
 
         // Add loading UI to the wrapper
         this.canvas.style.opacity = '0.3';
-        this.canvas.parentElement.appendChild(loadingContainer);
+        this.canvas.parentElement!.appendChild(loadingContainer);
     }
 
     removeLoadingUI() {
-        const loadingContainer = this.canvas.parentElement.querySelector('[data-audio-loading="true"]');
+        const loadingContainer = this.canvas.parentElement!.querySelector('[data-audio-loading="true"]');
         if (loadingContainer) {
             loadingContainer.remove();
         }
@@ -1288,11 +1335,11 @@ class AudioPlayer {
     }
 
 
-    async extractWaveformDataProgressive(audioBuffer) {
+    async extractWaveformDataProgressive(audioBuffer: AudioBuffer) {
         const rawData = audioBuffer.getChannelData(0); // Get first channel
         const samples = 500; // Number of samples for waveform
         const blockSize = Math.floor(rawData.length / samples);
-        const filteredData = [];
+        const filteredData: number[] = [];
 
         for (let i = 0; i < samples; i++) {
             let blockStart = blockSize * i;
@@ -1316,11 +1363,11 @@ class AudioPlayer {
         return filteredData.map(n => n / max);
     }
 
-    extractWaveformData(audioBuffer) {
+    extractWaveformData(audioBuffer: AudioBuffer) {
         const rawData = audioBuffer.getChannelData(0); // Get first channel
         const samples = 500; // Number of samples for waveform
         const blockSize = Math.floor(rawData.length / samples);
-        const filteredData = [];
+        const filteredData: number[] = [];
 
         for (let i = 0; i < samples; i++) {
             let blockStart = blockSize * i;
@@ -1366,7 +1413,7 @@ class AudioPlayer {
         this.ctx.globalAlpha = 1;
     }
 
-    drawLoadingProgress(progress, partialWaveformData = null) {
+    drawLoadingProgress(progress: number, partialWaveformData: number[] | null = null) {
         const width = this.canvas.width / window.devicePixelRatio;
         const height = this.canvas.height / window.devicePixelRatio;
 
@@ -1505,8 +1552,8 @@ class AudioPlayer {
             this.pauseIcon.style.display = 'none';
         } else {
             // Resume audio context if suspended (browser autoplay policy)
-            if (this.audioContext.state === 'suspended') {
-                await this.audioContext.resume();
+            if (this.audioContext!.state === 'suspended') {
+                await this.audioContext!.resume();
             }
 
             this.audio.play();
@@ -1516,7 +1563,7 @@ class AudioPlayer {
         }
     }
 
-    handleCanvasClick(e) {
+    handleCanvasClick(e: MouseEvent) {
         if (!this.isLoaded) return;
 
         const rect = this.canvas.getBoundingClientRect();
@@ -1541,7 +1588,7 @@ class AudioPlayer {
         this.drawWaveform(0);
     }
 
-    formatTime(seconds) {
+    formatTime(seconds: number) {
         if (isNaN(seconds)) return '0:00';
         const mins = Math.floor(seconds / 60);
         const secs = Math.floor(seconds % 60);
@@ -1561,7 +1608,7 @@ function setupAudioPlayers() {
     const audioContainers = document.querySelectorAll('.post-audio, .viewer-post-audio');
 
     // Clean up any players whose containers are no longer in the DOM
-    const containersToRemove = [];
+    const containersToRemove: Element[] = [];
     audioPlayers.forEach((_player, container) => {
         if (!document.body.contains(container)) {
             containersToRemove.push(container);
@@ -1576,7 +1623,7 @@ function setupAudioPlayers() {
         const audioUrl = container.getAttribute('data-audio-url');
 
         // Check if there's an existing player with the same URL (from grid view)
-        let existingPlayer = null;
+        let existingPlayer: AudioPlayer | null = null;
         for (const [existingContainer, player] of audioPlayers.entries()) {
             if (player.audioUrl === audioUrl && existingContainer !== container) {
                 existingPlayer = player;

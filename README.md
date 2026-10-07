@@ -1,6 +1,6 @@
 # Modern Blog Template for Archival
 
-A modern, minimal blog design built on the Archival framework featuring masonry layout and advanced Anime.js 4.2.2 animations.
+A modern, minimal blog design built on the Archival framework featuring masonry layout and advanced Anime.js 4 animations.
 
 ## Features
 
@@ -18,7 +18,7 @@ The blog supports multiple content types:
 3. **Quote Posts**: Highlighted quotations with optional attribution
 4. **Link Posts**: Curated links with descriptions
 
-### Animations (Anime.js 4.2.2)
+### Animations (Anime.js 4)
 - **Stagger Animations**: Sequential entrance animations for grid items
 - **Spring Physics**: Natural, physics-based hover and interaction animations
 - **Timeline-Based Transitions**: Orchestrated animation sequences
@@ -55,7 +55,7 @@ Modify font families:
 ```
 
 ### Animation Timing
-Adjust animation durations and easing in `public/script.js`:
+Adjust animation durations and easing in `scripts/js/script.ts`:
 
 ```javascript
 animate(element, {
@@ -74,7 +74,16 @@ archival build
 
 Output will be in the `dist/` directory.
 
-## Anime.js 4.2.2 Features Used
+Archival compiles the TypeScript in `scripts/` itself, so there is no bundler or `npm install` step. `scripts/service-worker.ts` is served at `/service-worker.js`, so that it covers the whole site, and `scripts/js/` is served at `/js/`.
+
+To type-check the scripts and the `metadata` carrier, run `npm install` in `carriers/metadata` so the carrier's types resolve, then:
+
+```bash
+tsc -p tsconfig.json
+tsc -p tsconfig.sw.json
+```
+
+## Anime.js 4 Features Used
 
 - **Spring Physics**: `ease: 'spring(mass, stiffness, damping, velocity)'`
 - **Stagger**: `delay: stagger(80, {start: 400})`

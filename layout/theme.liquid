@@ -137,39 +137,28 @@
     <!-- Isotope.js for grid filtering -->
     <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
 
-    <!-- Anime.js Library v4.2.2 -->
-    <script type="module">
-      import { animate, createTimeline, stagger, utils } from 'https://cdn.jsdelivr.net/npm/animejs/+esm';
-      // Make animate available globally for the main script
-      window.animate = animate;
-      window.createTimeline = createTimeline;
-      window.stagger = stagger;
-      window.animeUtils = utils;
-    </script>
-
     <!-- Prism.js for syntax highlighting -->
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
 
-    <!-- injected vars -->
-    <script>
-      window.blogState = {
+    <script type="application/json" id="blog-state">
+      {
         {% if post %}
-        initialPostPath: "/{{ post.path }}.html",
+        "initialPostPath": "/{{ post.path | replace: '\', '\\' | replace: '"', '\"' | replace: '	', '\t' | strip_newlines }}.html",
         {% endif %}
-        blogPosts: [
+        "blogPosts": [
           {%- assign sorted_posts = posts | sort: "date" | reverse -%}
           {%- for post in sorted_posts -%}
             {%- capture html -%}
               {% include "post" post: post %}
             {%- endcapture -%}
             {
-              path: "/{{ post.path }}.html",
-              content: "{{ html | strip_newlines |  escape }}",
-              index: {{ forloop.index }},
-              tags: [
+              "path": "/{{ post.path | replace: '\', '\\' | replace: '"', '\"' | replace: '	', '\t' | strip_newlines }}.html",
+              "content": "{{ html | strip_newlines | escape | replace: '\', '\\' | replace: '"', '\"' | replace: '	', '\t' }}",
+              "index": {{ forloop.index }},
+              "tags": [
                 {%- for tag in post.tag -%}
-                    {%- capture jsonld_tag_name -%}{{ tag.name | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{%- endcapture -%}
+                    {%- capture jsonld_tag_name -%}{{ tag.name | replace: '\', '\\' | replace: '"', '\"' | replace: '	', '\t' | strip_newlines }}{%- endcapture -%}
                     "{{ jsonld_tag_name }}"{% unless forloop.last %},{% endunless %}
                 {%- endfor -%}
               ]
@@ -177,7 +166,7 @@
           ]
       }
     </script>
-    <script src="/script.js" type="module"></script>
+    <script type="module" src="/js/script.js"></script>
   </body>
 
 </html>

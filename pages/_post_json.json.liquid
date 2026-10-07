@@ -1,13 +1,13 @@
 {
     "link": "{{ site_url }}/{{ post.path }}.html",
-    "title": "{{ post.title }}",
+    "title": "{{ post.title | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}",
     "date": "{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}",
-    {%- unless post.excerpt == blank -%}"excerpt": "{{post.excerpt}}",{% endunless %}
-    {%- unless post.content == blank -%}"content": "{{post.content | strip_newlines | escape}}",{% endunless %}
+    {%- unless post.excerpt == blank -%}"excerpt": "{{ post.excerpt | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}",{% endunless %}
+    {%- unless post.content == blank -%}"content": "{{ post.content | strip_newlines | escape | replace: '\', '\\' }}",{% endunless %}
     {%- unless post.image == blank -%}"imageUrl": "{{post.image.url}}",{%- endunless -%}
     {%- unless post.video == blank -%}"videoUrl": "{{post.video.url}}",{%- endunless -%}
     {%- unless post.audio == blank -%}"audioUrl": "{{post.audio.url}}",{%- endunless -%}
-    {%- unless post.link == blank -%}"linkUrl": "{{post.link}}",{%- endunless -%}
+    {%- unless post.link == blank -%}"linkUrl": "{{ post.link | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}",{%- endunless -%}
     "index": {{ forloop.index }},
     "tags": [
         {%- for tag in post.tag -%}

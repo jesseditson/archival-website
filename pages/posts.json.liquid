@@ -6,6 +6,6 @@
         {%- for post in sorted_posts -%}{% include "post_json" post: post %}{% unless forloop.last %},{% endunless %}
         {%- endfor -%}
         {%- endcapture -%}
-        {{ posts_json | replace: '\s+', ' ' }}
+        {{ posts_json }}
 	]
 }

@@ -1,3 +1,5 @@
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // ============================================
 // Navigation & Mobile Menu
 // ============================================
@@ -31,7 +33,7 @@ function clickHandler(this: HTMLAnchorElement, e: MouseEvent) {
       const target = document.querySelector(href);
       if (target) {
           target.scrollIntoView({
-              behavior: 'smooth',
+              behavior: prefersReducedMotion ? 'auto' : 'smooth',
               block: 'start'
           });
       }
@@ -86,7 +88,7 @@ projectItems.forEach(item => {
 // ============================================
 // Cursor Follow Effect (Desktop Only)
 // ============================================
-if (window.innerWidth > 768) {
+if (!prefersReducedMotion && window.innerWidth > 768) {
     const cursor = document.createElement('div');
     cursor.classList.add('custom-cursor');
     document.body.appendChild(cursor);
@@ -225,9 +227,11 @@ function setupSectionObserver() {
 
         section.classList.add('in-view');
         const revealItems = section.querySelectorAll<HTMLElement>('.section-title, p, .content, .projects, .experience, .email-link');
-        revealItems.forEach((el, index) => {
-            el.style.transitionDelay = `${Math.min(index * 0.08, 0.6)}s`;
-        });
+        if (!prefersReducedMotion) {
+            revealItems.forEach((el, index) => {
+                el.style.transitionDelay = `${Math.min(index * 0.08, 0.6)}s`;
+            });
+        }
     };
 
     if (!('IntersectionObserver' in window)) {
@@ -291,7 +295,9 @@ function setupProjectReveal() {
     }, { threshold: 0.2 });
 
     projectItems.forEach((project, index) => {
-        project.style.transitionDelay = `${index * 0.05}s`;
+        if (!prefersReducedMotion) {
+            project.style.transitionDelay = `${index * 0.05}s`;
+        }
         projectObserver.observe(project);
     });
 

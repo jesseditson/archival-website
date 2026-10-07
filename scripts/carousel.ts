@@ -1,8 +1,23 @@
 class ImageCarousel {
-  constructor(carouselElement) {
+  carousel: HTMLElement;
+  track: HTMLElement;
+  slides: NodeListOf<HTMLElement>;
+  currentIndex: number;
+  totalSlides: number;
+  startX: number;
+  currentX: number;
+  isDragging: boolean;
+  threshold: number;
+  wheelDeltaX: number;
+  wheelLocked: boolean;
+  wheelTrailing: boolean;
+  wheelPeak: number;
+  wheelSettleTimeout: number | undefined;
+
+  constructor(carouselElement: HTMLElement) {
     this.carousel = carouselElement;
-    this.track = this.carousel.querySelector('.carousel-track');
-    this.slides = this.carousel.querySelectorAll('.carousel-slide');
+    this.track = this.carousel.querySelector('.carousel-track') as HTMLElement;
+    this.slides = this.carousel.querySelectorAll<HTMLElement>('.carousel-slide');
     this.currentIndex = 0;
     this.totalSlides = this.slides.length;
     
@@ -65,12 +80,12 @@ class ImageCarousel {
     this.carousel.setAttribute('tabindex', '0');
   }
   
-  handleTouchStart(e) {
+  handleTouchStart(e: TouchEvent) {
     this.startX = e.touches[0].clientX;
     this.isDragging = true;
   }
   
-  handleTouchMove(e) {
+  handleTouchMove(e: TouchEvent) {
     if (!this.isDragging) return;
     
     this.currentX = e.touches[0].clientX;
@@ -81,7 +96,7 @@ class ImageCarousel {
     }
   }
   
-  handleTouchEnd(e) {
+  handleTouchEnd(e: TouchEvent) {
     if (!this.isDragging) return;
     
     this.isDragging = false;
@@ -96,7 +111,7 @@ class ImageCarousel {
     }
   }
   
-  handleWheel(e) {
+  handleWheel(e: WheelEvent) {
     // Only handle horizontal swipes; let vertical scroll work normally.
     if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
 
@@ -153,7 +168,7 @@ class ImageCarousel {
     }
   }
   
-  handleKeyDown(e) {
+  handleKeyDown(e: KeyboardEvent) {
     switch (e.key) {
       case 'ArrowLeft':
         e.preventDefault();
@@ -166,7 +181,7 @@ class ImageCarousel {
     }
   }
   
-  goToSlide(index) {
+  goToSlide(index: number) {
     if (index >= 0 && index < this.totalSlides) {
       this.currentIndex = index;
       this.updateCarousel();

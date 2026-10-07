@@ -128,6 +128,8 @@ function initializeServiceWorker() {
 
 // ==================== Blog Initialization ====================
 function initializeBlog() {
+    if (!document.getElementById('blog-grid')) return;
+
     // initialize our tag, which will also update filteredPosts
     const initialTag = new URL(window.location.href).searchParams.get("tag") || "all";
     selectTag(initialTag);
@@ -545,7 +547,8 @@ function initializeThemeToggle() {
 
 // ==================== Isotope Initialization ====================
 function initializeIsotope() {
-    const grid = document.querySelector('#blog-grid') as HTMLElement;
+    const grid = document.querySelector<HTMLElement>('#blog-grid');
+    if (!grid) return;
 
     // Initialize Isotope with masonry layout. The .grid-sizer element
     // (a zero-height sibling sized via CSS to match .post-card width)

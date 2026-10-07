@@ -8,9 +8,9 @@
 {% if objects.site.og_image != blank %}
   {% assign og_image_url = objects.site.og_image.url %}
 {% endif %}
-{% capture jsonld_name %}{{ objects.site.name | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
-{% capture jsonld_desc %}{{ objects.site.description | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
-{% capture jsonld_video_name %}{{ objects.site.home_title | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+{% capture jsonld_name %}{{ objects.site.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
+{% capture jsonld_desc %}{{ objects.site.description | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
+{% capture jsonld_video_name %}{{ objects.site.home_title | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
 {% assign video_src = "" %}
 {% if objects.site.video != blank %}
   {% assign video_src = objects.site.video.url %}
@@ -56,8 +56,8 @@
         "@type": "VideoObject",
         "name": "{{ jsonld_video_name }}"
         {%- if objects.site.description != blank -%}, "description": "{{ jsonld_desc }}"{%- endif -%}
-        , "contentUrl": "{{ video_src }}"
-        {%- if og_image_url != blank -%}, "thumbnailUrl": "{{ og_image_url }}"{%- endif -%}
+        , "contentUrl": "{{ video_src | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"
+        {%- if og_image_url != blank -%}, "thumbnailUrl": "{{ og_image_url | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- endif -%}
         {%- if objects.site.author != blank -%}, "publisher": { "@type": "Organization", "name": "{{ jsonld_name }}" }{%- endif -%}
       }
     </script>

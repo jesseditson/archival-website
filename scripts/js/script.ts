@@ -1,5 +1,11 @@
-import { animate } from "https://cdn.jsdelivr.net/npm/animejs@4/+esm";
-import type { JSAnimation } from "https://cdn.jsdelivr.net/npm/animejs@4/+esm";
+import { animate as animeAnimate } from "https://cdn.jsdelivr.net/npm/animejs@4/+esm";
+import type { AnimationParams, JSAnimation } from "https://cdn.jsdelivr.net/npm/animejs@4/+esm";
+
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function animate(targets: string | Element, parameters: AnimationParams): JSAnimation {
+    return animeAnimate(targets, prefersReducedMotion ? { ...parameters, duration: 0, delay: 0, loop: false } : parameters);
+}
 
 interface BlogPost {
     path: string;

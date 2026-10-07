@@ -10,8 +10,9 @@ declare module "https://cdn.jsdelivr.net/npm/animejs@4/+esm" {
     duration?: number;
     delay?: number;
     ease?: string;
+    loop?: number | boolean;
     onComplete?: AnimationCallback;
-    [property: string]: AnimatableValue | AnimatableValue[] | AnimationCallback | undefined;
+    [property: string]: AnimatableValue | AnimatableValue[] | AnimationCallback | boolean | undefined;
   }
 
   export function animate(targets: string | Element, parameters: AnimationParams): JSAnimation;

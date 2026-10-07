@@ -116,9 +116,9 @@ dark rounded square with the Archival accent yellow):
   Escape to close (mobile menus, lightboxes, etc.).
 - Decorative images use `alt=""`; meaningful images use a description
   pulled from the schema.
-- Respect `prefers-reduced-motion` — global media query in CSS plus JS
-  short-circuits in motion-heavy code:
-  ```js
+- Respect `prefers-reduced-motion` — global media query in CSS plus
+  short-circuits in motion-heavy scripts:
+  ```ts
   const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
   ).matches;
@@ -402,23 +402,46 @@ secondary = "<field>"
 
 ---
 
-## 5. Build pipelines
+## 5. Scripts
 
-For templates that need a build step (e.g. TypeScript compiled by
-esbuild), use `archival.toml`'s `prebuild` array:
+All JavaScript is TypeScript in `scripts/`, which archival (0.26+)
+builds itself: `scripts/carousel.ts` is served at `/js/carousel.js`
+with its types stripped. There is no bundler, no `package.json` and no
+`prebuild` — the editor's previews never run `prebuild`, so anything a
+template needs must come out of `archival build` alone.
 
-```toml
-prebuild = ["npm ci", "npm run build:js"]
-```
+- Load scripts as modules: `<script type="module" src="/js/carousel.js"></script>`.
+  The one exception is a script that must run before first paint
+  (e.g. applying a stored theme): load it as a blocking classic
+  `<script src="/js/theme-init.js"></script>` in `<head>`, and give that
+  file no `import`/`export`.
+- No inline `<script>` code in layouts or pages — put it in a module and
+  load it only on the pages that need it. JSON-LD stays inline.
+- Data that liquid renders for a script goes in a JSON block, read with
+  `JSON.parse(document.getElementById("…")!.textContent!)`. Escape strings
+  with the pattern from "No `json` filter" above, and check that the
+  built JSON parses:
+  ```liquid
+  <script type="application/json" id="tracks-data">
+  [{% for t in objects.track %}{"title": "{{ t.title | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}"}{% unless forloop.last %},{% endunless %}{% endfor %}]
+  </script>
+  ```
+- Only TypeScript that erases: no `enum`, `namespace` or constructor
+  parameter properties. Use `import type` for types, and import local
+  modules by their built name (`./util.js`). Nothing is bundled, so bare
+  npm imports don't work.
+- Third-party libraries load from a CDN. Import an ES module straight
+  from its URL and type what you use with `declare module "<url>"` in a
+  `scripts/*.d.ts`; declare a classic script's globals in
+  `scripts/globals.d.ts`.
+- Every template ships the same strict `tsconfig.json` (copy it from
+  any template with scripts), and `tsc -p tsconfig.json` must pass.
+  archival strips types but doesn't check them.
 
-These commands run before `archival build`. **Important**: build outputs
-that need to be served must land in `public/` — `archival build`
-rebuilds `dist/` on every run, wiping anything written there directly
-(theatre-1 had this exact bug — esbuild was outputting to
-`dist/scripts/main.js` and the page was always 404'ing the JS).
-
-Gitignore the build artifact (`public/scripts/main.js` etc.) so it's
-regenerated on every build rather than tracked.
+Carriers are TypeScript too: carrier API version 2
+(`"archival": { "carrier": 2 }` in the carrier's `package.json`), typed
+with the `@archival/carrier` dev dependency. See blog-1 and
+professional-1.
 
 ---
 
@@ -475,8 +498,11 @@ A short pre-flight checklist:
 - [ ] `<meta name="theme-color">` set, ideally with light/dark
       variants
 - [ ] 404 page redesigned (not the bare default)
-- [ ] `prefers-reduced-motion` respected in CSS and any JS that
+- [ ] `prefers-reduced-motion` respected in CSS and any script that
       drives motion
+- [ ] All JS is TypeScript in `scripts/` (no `.js` in `public/`, no
+      inline `<script>` code), and `tsc -p tsconfig.json` passes —
+      see Section 5
 - [ ] Every `markdown`-typed field is rendered inside a
       `<div class="markdown">` wrapper, and the stylesheet ships a
       comprehensive `.markdown { ... }` block covering every element
@@ -508,7 +534,9 @@ A short pre-flight checklist:
   used via `{% include 'partial-name' %}`
 - `layout/theme.liquid` — wraps every page that uses `{% layout 'theme' %}`
 - `public/**` — static files copied through to `dist/`
-- `archival.toml` — per-site config (`site_url`, `prebuild`, etc.)
+- `scripts/**/*.ts` — browser scripts, built to `/js/` (see Section 5)
+- `tsconfig.json` — strict type-checking config for `scripts/`
+- `archival.toml` — per-site config (`site_url`, etc.)
 - `archival_template.toml` — template-level metadata + LLM-generation
   context
 

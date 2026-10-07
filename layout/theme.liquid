@@ -39,10 +39,10 @@
   {% assign words = objects.personal.name | split: " " %}{% assign initials = "" %}{% if words.size == 1 %}{% assign initials = words[0] | slice: 0, 2 | upcase %}{% else %}{% for word in words limit: 2 %}{% assign letter = word | slice: 0, 1 | upcase %}{% assign initials = initials | append: letter %}{% endfor %}{% endif %}{% assign initials = initials | replace: "&", "" | replace: "<", "" | replace: ">", "" | replace: "'", "" | replace: '"', "" %}
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='bold' font-size='13' fill='%23e5ff00'%3E{{ initials }}%3C/text%3E%3C/svg%3E">
   {% endif %}
-  {% capture jsonld_name %}{{ objects.personal.name | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
-  {% capture jsonld_jobtitle %}{{ objects.personal.title | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
-  {% capture jsonld_desc %}{{ objects.personal.tagline | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
-  {% capture jsonld_email %}{{ objects.contact.email | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+  {% capture jsonld_name %}{{ objects.personal.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
+  {% capture jsonld_jobtitle %}{{ objects.personal.title | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
+  {% capture jsonld_desc %}{{ objects.personal.tagline | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
+  {% capture jsonld_email %}{{ objects.contact.email | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -50,7 +50,7 @@
       "name": "{{ jsonld_name }}"
       {%- if objects.personal.title != blank -%}, "jobTitle": "{{ jsonld_jobtitle }}"{%- endif -%}
       {%- if objects.personal.tagline != blank -%}, "description": "{{ jsonld_desc }}"{%- endif -%}
-      {%- if objects.personal.og_image != blank -%}, "image": "{{ objects.personal.og_image.url }}"{%- endif -%}
+      {%- if objects.personal.og_image != blank -%}, "image": "{{ objects.personal.og_image.url | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- endif -%}
       {%- if objects.contact.email != blank -%}, "email": "{{ jsonld_email }}"{%- endif -%}
     }
   </script>

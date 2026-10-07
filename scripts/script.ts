@@ -576,16 +576,6 @@ function initializeThemeToggle() {
 }
 
 
-// ==================== Performance: Debounce Resize ====================
-let resizeTimer: number | undefined;
-window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-        // Re-calculate layout if needed
-        console.log('Window resized');
-    }, 250);
-});
-
 // ==================== Accessibility: Focus Management ====================
 document.addEventListener('DOMContentLoaded', () => {
     // Ensure proper focus management for keyboard users

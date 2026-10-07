@@ -1,29 +1,63 @@
 // Audio Player Functionality
+interface Episode {
+  url: string;
+  title: string;
+}
+
+declare global {
+  interface Window {
+    podcastPlayer: PodcastPlayer;
+  }
+}
+
 class PodcastPlayer {
+  audioElement: HTMLAudioElement;
+  playPauseBtn: HTMLButtonElement;
+  currentEpisodeSpan: HTMLSpanElement;
+  playIcon: SVGSVGElement;
+  pauseIcon: SVGSVGElement;
+  volumeBtn: HTMLButtonElement;
+  volumeSliderContainer: HTMLDivElement;
+  volumeSlider: HTMLInputElement;
+  volumeIcon: SVGSVGElement;
+  volumeMuteIcon: SVGSVGElement;
+  skipBackBtn: HTMLButtonElement;
+  skipForwardBtn: HTMLButtonElement;
+  progressBar: HTMLDivElement;
+  progressFill: HTMLDivElement;
+  progressHandle: HTMLDivElement;
+  currentTimeSpan: HTMLSpanElement;
+  totalTimeSpan: HTMLSpanElement;
+  currentEpisode: Episode | null;
+  isPlaying: boolean;
+  isMuted: boolean;
+  previousVolume: number;
+  isSeeking: boolean;
+
   constructor() {
-    this.audioElement = document.getElementById('audioElement');
-    this.playPauseBtn = document.getElementById('playPauseBtn');
-    this.currentEpisodeSpan = document.getElementById('currentEpisode');
-    this.playIcon = this.playPauseBtn.querySelector('.play-icon');
-    this.pauseIcon = this.playPauseBtn.querySelector('.pause-icon');
+    this.audioElement = document.getElementById('audioElement') as HTMLAudioElement;
+    this.playPauseBtn = document.getElementById('playPauseBtn') as HTMLButtonElement;
+    this.currentEpisodeSpan = document.getElementById('currentEpisode') as HTMLSpanElement;
+    this.playIcon = this.playPauseBtn.querySelector('.play-icon') as SVGSVGElement;
+    this.pauseIcon = this.playPauseBtn.querySelector('.pause-icon') as SVGSVGElement;
 
     // Volume controls
-    this.volumeBtn = document.getElementById('volumeBtn');
-    this.volumeSliderContainer = document.getElementById('volumeSliderContainer');
-    this.volumeSlider = document.getElementById('volumeSlider');
-    this.volumeIcon = this.volumeBtn.querySelector('.volume-icon');
-    this.volumeMuteIcon = this.volumeBtn.querySelector('.volume-mute-icon');
+    this.volumeBtn = document.getElementById('volumeBtn') as HTMLButtonElement;
+    this.volumeSliderContainer = document.getElementById('volumeSliderContainer') as HTMLDivElement;
+    this.volumeSlider = document.getElementById('volumeSlider') as HTMLInputElement;
+    this.volumeIcon = this.volumeBtn.querySelector('.volume-icon') as SVGSVGElement;
+    this.volumeMuteIcon = this.volumeBtn.querySelector('.volume-mute-icon') as SVGSVGElement;
 
     // Skip controls
-    this.skipBackBtn = document.getElementById('skipBackBtn');
-    this.skipForwardBtn = document.getElementById('skipForwardBtn');
+    this.skipBackBtn = document.getElementById('skipBackBtn') as HTMLButtonElement;
+    this.skipForwardBtn = document.getElementById('skipForwardBtn') as HTMLButtonElement;
 
     // Progress controls
-    this.progressBar = document.getElementById('progressBar');
-    this.progressFill = document.getElementById('progressFill');
-    this.progressHandle = document.getElementById('progressHandle');
-    this.currentTimeSpan = document.getElementById('currentTime');
-    this.totalTimeSpan = document.getElementById('totalTime');
+    this.progressBar = document.getElementById('progressBar') as HTMLDivElement;
+    this.progressFill = document.getElementById('progressFill') as HTMLDivElement;
+    this.progressHandle = document.getElementById('progressHandle') as HTMLDivElement;
+    this.currentTimeSpan = document.getElementById('currentTime') as HTMLSpanElement;
+    this.totalTimeSpan = document.getElementById('totalTime') as HTMLSpanElement;
 
     this.currentEpisode = null;
     this.isPlaying = false;
@@ -61,7 +95,7 @@ class PodcastPlayer {
 
     // Volume slider event listener
     this.volumeSlider.addEventListener('input', (e) => {
-      const volume = e.target.value / 100;
+      const volume = Number((e.target as HTMLInputElement).value) / 100;
       this.audioElement.volume = volume;
       this.updateVolumeIcon(volume);
       if (volume > 0 && this.isMuted) {
@@ -71,8 +105,8 @@ class PodcastPlayer {
 
     // Close volume slider when clicking outside
     document.addEventListener('click', (e) => {
-      if (!this.volumeSliderContainer.contains(e.target) &&
-          !this.volumeBtn.contains(e.target) &&
+      if (!this.volumeSliderContainer.contains(e.target as Node) &&
+          !this.volumeBtn.contains(e.target as Node) &&
           this.volumeSliderContainer.style.display === 'block') {
         this.volumeSliderContainer.style.display = 'none';
       }
@@ -134,7 +168,7 @@ class PodcastPlayer {
     });
   }
 
-  seek(e) {
+  seek(e: MouseEvent) {
     if (!this.audioElement.duration) return;
 
     const rect = this.progressBar.getBoundingClientRect();
@@ -159,7 +193,7 @@ class PodcastPlayer {
     this.totalTimeSpan.textContent = this.formatTime(this.audioElement.duration);
   }
 
-  formatTime(seconds) {
+  formatTime(seconds: number) {
     if (!seconds || isNaN(seconds)) return '0:00';
 
     const mins = Math.floor(seconds / 60);
@@ -175,7 +209,7 @@ class PodcastPlayer {
     }
   }
 
-  updateVolumeIcon(volume) {
+  updateVolumeIcon(volume: number) {
     if (volume === 0) {
       this.volumeIcon.style.display = 'none';
       this.volumeMuteIcon.style.display = 'block';
@@ -185,14 +219,14 @@ class PodcastPlayer {
     }
   }
 
-  skip(seconds) {
+  skip(seconds: number) {
     if (this.audioElement.src) {
       const newTime = this.audioElement.currentTime + seconds;
       this.audioElement.currentTime = Math.max(0, Math.min(newTime, this.audioElement.duration || 0));
     }
   }
 
-  loadEpisode(audioUrl, episodeTitle) {
+  loadEpisode(audioUrl: string, episodeTitle: string) {
     this.currentEpisode = {
       url: audioUrl,
       title: episodeTitle
@@ -233,7 +267,7 @@ class PodcastPlayer {
 
 // ----- Top-level helpers -----
 
-function formatDuration(seconds) {
+function formatDuration(seconds: number) {
   if (!seconds || !isFinite(seconds) || seconds < 0) return '0:00';
 
   const totalSeconds = Math.floor(seconds);
@@ -241,7 +275,7 @@ function formatDuration(seconds) {
   const minutes = Math.floor((totalSeconds % 3600) / 60);
   const secs = totalSeconds % 60;
 
-  const pad = (n) => n.toString().padStart(2, '0');
+  const pad = (n: number) => n.toString().padStart(2, '0');
 
   if (hours > 0) {
     return `${hours}:${pad(minutes)}:${pad(secs)}`;
@@ -250,7 +284,7 @@ function formatDuration(seconds) {
 }
 
 function probeDurations() {
-  const spans = document.querySelectorAll('span.episode-duration[data-duration-src]');
+  const spans = document.querySelectorAll<HTMLSpanElement>('span.episode-duration[data-duration-src]');
   spans.forEach((span) => {
     if (span.dataset.probed === 'true') return;
     span.dataset.probed = 'true';
@@ -275,7 +309,7 @@ function probeDurations() {
   });
 }
 
-let _episodeCardObserver = null;
+let _episodeCardObserver: IntersectionObserver | null = null;
 
 function ensureEpisodeCardObserver() {
   if (_episodeCardObserver) return _episodeCardObserver;
@@ -288,8 +322,8 @@ function ensureEpisodeCardObserver() {
   _episodeCardObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
+        (entry.target as HTMLElement).style.opacity = '1';
+        (entry.target as HTMLElement).style.transform = 'translateY(0)';
       }
     });
   }, observerOptions);
@@ -299,7 +333,7 @@ function ensureEpisodeCardObserver() {
 
 function attachEpisodeCardAnimations() {
   const observer = ensureEpisodeCardObserver();
-  document.querySelectorAll('.episode-card:not([data-animated])').forEach((card) => {
+  document.querySelectorAll<HTMLElement>('.episode-card:not([data-animated])').forEach((card) => {
     card.style.opacity = '0';
     card.style.transform = 'translateY(20px)';
     card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
@@ -317,7 +351,7 @@ function runPageEnhancements() {
 
 function attachPlayDelegation() {
   document.addEventListener('click', (e) => {
-    const trigger = e.target.closest('[data-audio-url]');
+    const trigger = (e.target as Element).closest<HTMLElement>('[data-audio-url]');
     if (!trigger) return;
 
     const url = trigger.dataset.audioUrl;
@@ -335,7 +369,7 @@ function attachPlayDelegation() {
 
   // Brief loading-state dim on .play-button click (delegated so it survives SPA nav)
   document.addEventListener('click', (e) => {
-    const playButton = e.target.closest('.play-button');
+    const playButton = (e.target as Element).closest<HTMLElement>('.play-button');
     if (!playButton) return;
     playButton.style.opacity = '0.7';
     setTimeout(() => {
@@ -345,7 +379,7 @@ function attachPlayDelegation() {
 
   // Smooth scrolling for in-page anchor links
   document.addEventListener('click', (e) => {
-    const anchor = e.target.closest('a[href^="#"]');
+    const anchor = (e.target as Element).closest('a[href^="#"]');
     if (!anchor) return;
     const href = anchor.getAttribute('href');
     if (!href || href === '#') return;
@@ -368,7 +402,7 @@ const NAV_ROUTES = [
   { path: '/about/', name: 'about' }
 ];
 
-function updateActiveNav(path) {
+function updateActiveNav(path: string) {
   const navLinks = document.querySelectorAll('.main-nav .nav-link');
   if (!navLinks.length) return;
 
@@ -385,8 +419,8 @@ function updateActiveNav(path) {
   });
 }
 
-async function navigateTo(url, pushState) {
-  let response;
+async function navigateTo(url: string, pushState: boolean) {
+  let response: Response;
   try {
     response = await fetch(url);
   } catch (err) {
@@ -434,7 +468,7 @@ async function navigateTo(url, pushState) {
 
 function setupSpaNavigation() {
   document.addEventListener('click', (e) => {
-    const link = e.target.closest('a');
+    const link = (e.target as Element).closest('a');
     if (!link) return;
 
     // Allow modifier-key clicks (open in new tab, etc.) and non-primary buttons

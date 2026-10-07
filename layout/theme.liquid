@@ -11,9 +11,9 @@
 {% elsif info.image != blank %}
   {% assign og_image_url = info.image.url %}
 {% endif %}
-{% capture jsonld_name %}{{ info.first_name | append: " " | append: info.last_name | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
-{% capture jsonld_jobtitle %}{{ info.title | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
-{% capture jsonld_desc %}{{ info.description | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+{% capture jsonld_name %}{{ info.first_name | append: " " | append: info.last_name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
+{% capture jsonld_jobtitle %}{{ info.title | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
+{% capture jsonld_desc %}{{ info.description | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
 <!doctype html>
 <html lang="en">
 
@@ -54,8 +54,8 @@
         "name": "{{ jsonld_name }}"
         {%- if info.title != blank -%}, "jobTitle": "{{ jsonld_jobtitle }}"{%- endif -%}
         {%- if info.description != blank -%}, "description": "{{ jsonld_desc }}"{%- endif -%}
-        {%- if og_image_url != blank -%}, "image": "{{ og_image_url }}"{%- endif -%}
-        {%- if info.location != blank -%}, "areaServed": "{{ info.location }}"{%- endif -%}
+        {%- if og_image_url != blank -%}, "image": "{{ og_image_url | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- endif -%}
+        {%- if info.location != blank -%}, "areaServed": "{{ info.location | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- endif -%}
       }
     </script>
   </head>

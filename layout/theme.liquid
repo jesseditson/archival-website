@@ -9,8 +9,8 @@
 {% elsif objects.band.image != blank %}
   {% assign og_image_url = objects.band.image.url %}
 {% endif %}
-{% capture jsonld_name %}{{ objects.band.name | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
-{% capture jsonld_desc %}{{ objects.band.description | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+{% capture jsonld_name %}{{ objects.band.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
+{% capture jsonld_desc %}{{ objects.band.description | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
 <!doctype html>
 <html lang="en">
 
@@ -57,7 +57,7 @@
       "@type": "MusicGroup",
       "name": "{{ jsonld_name }}"
       {%- if objects.band.description != blank -%}, "description": "{{ jsonld_desc }}"{%- endif -%}
-      {%- if og_image_url != blank -%}, "image": "{{ og_image_url }}"{%- endif -%}
+      {%- if og_image_url != blank -%}, "image": "{{ og_image_url | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- endif -%}
     }
   </script>
 </head>
@@ -133,7 +133,7 @@
         <script type="application/json" id="tracks-data">
           [
             {% for track in objects.track %}
-              {"title": "{{ track.title | replace: '\', '\\' | replace: '"', '\"' | replace: tab, '\t' | strip_newlines }}", "url": "{{ track.audio.url | replace: '\', '\\' | replace: '"', '\"' | replace: tab, '\t' | strip_newlines }}"}{% unless forloop.last %},{% endunless %}
+              {"title": "{{ track.title | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | replace: tab, '\t' | strip_newlines }}", "url": "{{ track.audio.url | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | replace: tab, '\t' | strip_newlines }}"}{% unless forloop.last %},{% endunless %}
             {% endfor %}
           ]
         </script>

@@ -14,11 +14,11 @@
 {% if social_description == blank %}
   {% assign social_description = objects.site.tagline %}
 {% endif %}
-{% capture jsonld_name %}{{ objects.site.name | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
-{% capture jsonld_desc %}{{ social_description | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
-{% capture jsonld_address %}{{ objects.location.address | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
-{% capture jsonld_phone %}{{ objects.contact.phone | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
-{% capture jsonld_email %}{{ objects.contact.email | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+{% capture jsonld_name %}{{ objects.site.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
+{% capture jsonld_desc %}{{ social_description | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
+{% capture jsonld_address %}{{ objects.location.address | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
+{% capture jsonld_phone %}{{ objects.contact.phone | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
+{% capture jsonld_email %}{{ objects.contact.email | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
 <!doctype html>
 <html lang="en">
 
@@ -61,7 +61,7 @@
         "@type": "LocalBusiness",
         "name": "{{ jsonld_name }}"
         {%- if social_description != blank -%}, "description": "{{ jsonld_desc }}"{%- endif -%}
-        {%- if og_image_url != blank -%}, "image": "{{ og_image_url }}"{%- endif -%}
+        {%- if og_image_url != blank -%}, "image": "{{ og_image_url | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- endif -%}
         {%- if objects.location.address != blank -%}, "address": "{{ jsonld_address }}"{%- endif -%}
         {%- if objects.contact.phone != blank -%}, "telephone": "{{ jsonld_phone }}"{%- endif -%}
         {%- if objects.contact.email != blank -%}, "email": "{{ jsonld_email }}"{%- endif -%}

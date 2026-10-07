@@ -16,17 +16,17 @@ if (hamburger && navLinks) {
 }
 
 // Smooth Scrolling for Anchor Links
-const links = document.querySelectorAll('.nav-links a');
+const links = document.querySelectorAll<HTMLAnchorElement>('.nav-links a');
 
 for (const link of links) {
     link.addEventListener('click', clickHandler);
 }
 
-function clickHandler(e) {
+function clickHandler(this: HTMLAnchorElement, e: MouseEvent) {
   const href = this.getAttribute('href');
 
   // Only prevent default if href starts with '#', indicating an anchor link
-  if (href.startsWith('#')) {
+  if (href && href.startsWith('#')) {
       e.preventDefault();
       const target = document.querySelector(href);
       if (target) {
@@ -37,7 +37,7 @@ function clickHandler(e) {
       }
 
       // Close mobile menu after clicking
-      if (navLinks.classList.contains('nav-active')) {
+      if (navLinks && hamburger && navLinks.classList.contains('nav-active')) {
           navLinks.classList.remove('nav-active');
           hamburger.classList.remove('toggle');
           hamburger.setAttribute('aria-expanded', 'false');
@@ -70,7 +70,7 @@ if (navbar) {
 // ============================================
 // Mouse Tracking for Project Cards
 // ============================================
-const projectItems = document.querySelectorAll('.project-item');
+const projectItems = document.querySelectorAll<HTMLElement>('.project-item');
 
 projectItems.forEach(item => {
     item.addEventListener('mousemove', (e) => {
@@ -218,13 +218,13 @@ function setupSectionObserver() {
         return;
     }
 
-    const revealSection = (section) => {
+    const revealSection = (section: Element) => {
         if (section.classList.contains('in-view')) {
             return;
         }
 
         section.classList.add('in-view');
-        const revealItems = section.querySelectorAll('.section-title, p, .content, .projects, .experience, .email-link');
+        const revealItems = section.querySelectorAll<HTMLElement>('.section-title, p, .content, .projects, .experience, .email-link');
         revealItems.forEach((el, index) => {
             el.style.transitionDelay = `${Math.min(index * 0.08, 0.6)}s`;
         });
@@ -270,7 +270,7 @@ function setupProjectReveal() {
         return;
     }
 
-    const revealProject = (project) => {
+    const revealProject = (project: Element) => {
         project.classList.add('project-visible');
     };
 

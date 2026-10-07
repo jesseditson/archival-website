@@ -9,9 +9,9 @@
 {% elsif app.logo != blank %}
   {% assign og_image_url = app.logo.url %}
 {% endif %}
-{% capture jsonld_name %}{{ app.name | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
-{% capture jsonld_desc %}{{ app.description | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
-{% capture jsonld_author %}{{ app.author | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+{% capture jsonld_name %}{{ app.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
+{% capture jsonld_desc %}{{ app.description | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
+{% capture jsonld_author %}{{ app.author | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,7 +53,7 @@
       "name": "{{ jsonld_name }}"
       {%- if app.description != blank -%}, "description": "{{ jsonld_desc }}"{%- endif -%}
       {%- if app.author != blank -%}, "author": { "@type": "Person", "name": "{{ jsonld_author }}" }{%- endif -%}
-      {%- if og_image_url != blank -%}, "image": "{{ og_image_url }}"{%- endif -%}
+      {%- if og_image_url != blank -%}, "image": "{{ og_image_url | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- endif -%}
       , "operatingSystem": "iOS, Android"
       , "applicationCategory": "MobileApplication"
     }

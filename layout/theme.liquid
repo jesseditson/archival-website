@@ -129,12 +129,13 @@
             </div>
           </div>
         </div>
-        <script>
-          window.__tracks = [
+        {% assign tab = "%09" | url_decode %}
+        <script type="application/json" id="tracks-data">
+          [
             {% for track in objects.track %}
-              { title: "{{ track.title }}", url: "{{ track.audio.url }}" }{% unless forloop.last %},{% endunless %}
+              {"title": "{{ track.title | replace: '\', '\\' | replace: '"', '\"' | replace: tab, '\t' | strip_newlines }}", "url": "{{ track.audio.url | replace: '\', '\\' | replace: '"', '\"' | replace: tab, '\t' | strip_newlines }}"}{% unless forloop.last %},{% endunless %}
             {% endfor %}
-          ];
+          ]
         </script>
         {% endif %}
       </div>
@@ -147,7 +148,7 @@
       </footer>
     </div>
   </div>
-  <script src="/scripts/global.js"></script>
+  <script type="module" src="/js/global.js"></script>
 </body>
 
 </html>

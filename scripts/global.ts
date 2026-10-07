@@ -1,10 +1,15 @@
+interface Track {
+  title: string;
+  url: string;
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   // Mobile menu
-  const menu = document.querySelector(".mobile-menu");
-  const openBtn = document.querySelector(".menu-toggle");
-  const closeBtn = document.querySelector(".close-menu");
+  const menu = document.querySelector(".mobile-menu") as HTMLElement;
+  const openBtn = document.querySelector(".menu-toggle") as HTMLButtonElement;
+  const closeBtn = document.querySelector(".close-menu") as HTMLButtonElement;
 
-  function setMenuOpen(open) {
+  function setMenuOpen(open: boolean) {
     menu.classList.toggle("active", open);
     openBtn.setAttribute("aria-expanded", open ? "true" : "false");
   }
@@ -13,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
   closeBtn.addEventListener("click", () => setMenuOpen(false));
 
   document.addEventListener("click", (event) => {
-    if (!menu.contains(event.target) && !openBtn.contains(event.target)) {
+    if (!menu.contains(event.target as Node) && !openBtn.contains(event.target as Node)) {
       setMenuOpen(false);
     }
   });
@@ -26,12 +31,12 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // SPA navigation
-  function updateActiveNav(path) {
-    var map = { "/": "latest", "/releases": "releases", "/tour": "tour", "/about": "about" };
+  function updateActiveNav(path: string) {
+    var map: Record<string, string> = { "/": "latest", "/releases": "releases", "/tour": "tour", "/about": "about" };
     var active = map[path] || "";
     document.querySelectorAll(".nav-link, .mobile-nav-link").forEach(function (link) {
       var href = link.getAttribute("href");
-      if (map[href] === active) {
+      if (href !== null && map[href] === active) {
         link.classList.add("active");
       } else {
         link.classList.remove("active");
@@ -39,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  function navigateTo(url, pushState) {
+  function navigateTo(url: string, pushState: boolean) {
     fetch(url).then(function (res) { return res.text(); }).then(function (html) {
       // Parse fetched page from same-origin server-rendered templates
       var doc = new DOMParser().parseFromString(html, "text/html");
@@ -63,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   document.addEventListener("click", function (e) {
-    var link = e.target.closest("a");
+    var link = (e.target as Element).closest("a");
     if (!link) return;
     var href = link.getAttribute("href");
     if (!href || href === "#" || href.startsWith("http") || href.startsWith("mailto:")) return;
@@ -76,23 +81,24 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Audio player
-  var tracks = window.__tracks || [];
+  var tracksData = document.getElementById("tracks-data");
+  var tracks = tracksData ? (JSON.parse(tracksData.textContent) as Track[]) : [];
   if (tracks.length === 0) return;
 
-  var playPauseBtn = document.querySelector(".play-pause");
-  var nowPlayingLabel = document.querySelector(".now-playing-label");
-  var nowPlayingItem = document.querySelector(".now-playing-item");
-  var volumeBtn = document.querySelector(".volume");
-  var volumeFlyout = document.querySelector(".volume-flyout");
-  var volumeSlider = document.querySelector(".volume-slider");
-  var progressBar = document.querySelector(".player-progress");
+  var playPauseBtn = document.querySelector(".play-pause") as HTMLButtonElement;
+  var nowPlayingLabel = document.querySelector(".now-playing-label") as HTMLElement;
+  var nowPlayingItem = document.querySelector(".now-playing-item") as HTMLElement;
+  var volumeBtn = document.querySelector(".volume") as HTMLButtonElement;
+  var volumeFlyout = document.querySelector(".volume-flyout") as HTMLElement;
+  var volumeSlider = document.querySelector(".volume-slider") as HTMLInputElement;
+  var progressBar = document.querySelector(".player-progress") as HTMLElement;
 
   var currentIndex = Math.floor(Math.random() * tracks.length);
   var audio = new Audio();
   audio.preload = "auto";
-  audio.volume = volumeSlider.value / 100;
+  audio.volume = Number(volumeSlider.value) / 100;
 
-  function loadTrack(index) {
+  function loadTrack(index: number) {
     currentIndex = index;
     nowPlayingItem.textContent = tracks[currentIndex].title;
     audio.src = tracks[currentIndex].url;
@@ -147,12 +153,12 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   document.addEventListener("click", function (e) {
-    if (!volumeFlyout.contains(e.target) && !volumeBtn.contains(e.target)) {
+    if (!volumeFlyout.contains(e.target as Node) && !volumeBtn.contains(e.target as Node)) {
       volumeFlyout.classList.remove("active");
     }
   });
 
   volumeSlider.addEventListener("input", function (e) {
-    audio.volume = e.target.value / 100;
+    audio.volume = Number((e.target as HTMLInputElement).value) / 100;
   });
 });

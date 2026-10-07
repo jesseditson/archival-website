@@ -482,7 +482,7 @@ function setupSpaNavigation() {
 
     const href = link.getAttribute('href');
     if (!href) return;
-    if (href === '' || href === '#') return;
+    if (href === '' || href.startsWith('#')) return;
     if (href.startsWith('http://') || href.startsWith('https://')) return;
     if (href.startsWith('mailto:')) return;
 

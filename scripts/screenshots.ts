@@ -18,7 +18,7 @@ const showScreenshotAnimation = [
   { clipPath: "xywh(0 0 100% 100%)", opacity: 1, transform: "scale(1)" },
 ];
 
-const windowPromise = new Promise((resolve) => {
+const windowPromise = new Promise<void>((resolve) => {
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => resolve());
   } else {
@@ -44,9 +44,9 @@ windowPromise.then(() => {
   );
 
   let currentPage = 0;
-  let currentAnimations = [];
+  let currentAnimations: Animation[] = [];
 
-  const showPage = (selectedPage) => {
+  const showPage = (selectedPage: number) => {
     if (currentPage === selectedPage) {
       return;
     }
@@ -91,7 +91,7 @@ windowPromise.then(() => {
       clearInterval(cycleInterval);
       cycleInterval = null;
     }
-    const el = evt.target;
+    const el = evt.target as HTMLElement;
     if (el.classList.contains("screenshot-page-icon")) {
       const selectedPage = Number(el.dataset.page);
       showPage(selectedPage - 1);

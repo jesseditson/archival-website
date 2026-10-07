@@ -1,3 +1,2 @@
 #:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/main/manifest.schema.json
 upload_prefix = "archival-template-uploads/"
-scripts_build_dir = ""

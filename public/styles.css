@@ -214,41 +214,6 @@ body.light-theme .theme-toggle .moon-icon {
   display: none;
 }
 
-.notify-toggle {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  background: transparent;
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all var(--transition-base);
-  color: var(--text-primary);
-  padding: 0;
-  &.enabled {
-    border-color: var(--accent-primary);
-    color: var(--accent-primary);
-    background: var(--accent-muted);
-  }
-}
-
-.notify-toggle:hover {
-  border-color: var(--accent-primary);
-  color: var(--accent-primary);
-  background: var(--accent-muted);
-}
-
-.notify-toggle svg {
-  width: 20px;
-  height: 20px;
-}
-
 /* ==================== Blog Grid (Masonry) ==================== */
 
 .blog-grid {

@@ -21,10 +21,6 @@ interface BlogState {
     blogPosts: BlogPost[];
 }
 
-interface Settings {
-    notifications?: boolean;
-}
-
 interface LinkMetadata {
     title: string | null;
     description: string | null;
@@ -42,7 +38,6 @@ let activeFilter = 'all'; // Track current filter state
 
 // ==================== Initialization ====================
 window.onload = function() {
-    initializeServiceWorker();
     initializeIsotope(); // Initialize Isotope FIRST
     formatAllDates();
     initializeBlog();
@@ -51,86 +46,6 @@ window.onload = function() {
     initializeTagFilters();
     animateMastheadTitle();
 };
-
-// ==================== Settings ====================
-async function getSettings(): Promise<Settings> {
-    const cache = await caches.open("settings");
-    const r = await cache.match("/settings");
-    if (r && r.ok) {
-        return await r.json();
-    } else {
-        return {}
-    }
-}
-async function writeSettings(settings: Settings) {
-    const cache = await caches.open("settings");
-    await cache.put("/settings", new Response(JSON.stringify(settings), {
-        status: 200,
-        headers: {
-            "Content-Type": "application/json",
-        },
-    }))
-}
-
-// ==================== Service Worker ====================
-function initializeServiceWorker() {
-    const toggle = document.querySelector(".notify-toggle") as HTMLElement;
-    if ('serviceWorker' in navigator && caches) {
-        navigator.serviceWorker
-            .register('/service-worker.js')
-            .then((registration) => {
-                console.log(`ServiceWorker registration successful with scope: ${registration.scope}`);
-                return registration.update();
-            })
-            .then((registration) => {
-                console.log(`ServiceWorker updated`);
-            })
-            .catch((err) => console.error('ServiceWorker registration failed: ', err));
-        
-        getSettings().then(settings => {
-            toggle.classList.toggle("enabled", Notification.permission === "granted" && !!settings.notifications);
-
-            toggle.addEventListener("click", () => {
-                if (Notification.permission !== "granted") {
-                    Notification.requestPermission(function (status) {
-                        console.log('Notification permission status:', status);
-                        if (status === "granted") {
-                            settings.notifications = true;
-                            writeSettings(settings);
-                            const options = {
-                                body: "Thanks for subscribing! We'll send you notifications when this blog is updated.",
-                                icon: '/icon.png',
-                                vibrate: [100, 50, 100],
-                                data: {
-                                dateOfArrival: Date.now(),
-                                primaryKey: 1,
-                                },
-                                actions: [
-                                {
-                                    action: 'close',
-                                    title: 'Close notification',
-                                    icon: 'images/xmark.png',
-                                },
-                                ],
-                            };
-
-                            navigator.serviceWorker.getRegistration().then(registration => {
-                                registration?.showNotification('Notification without Push API', options);
-                            });
-                        }
-                    });
-                } else {
-                    settings.notifications = !settings.notifications;
-                    writeSettings(settings);
-                    toggle.classList.toggle("enabled", Notification.permission === "granted" && !!settings.notifications);
-                }
-            });
-        })
-        .catch((err) => console.error('Failed reading settings: ', err));;
-    } else {
-        toggle.style.display = "none";
-    }
-}
 
 // ==================== Blog Initialization ====================
 function initializeBlog() {

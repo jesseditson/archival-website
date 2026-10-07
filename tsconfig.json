@@ -12,6 +12,5 @@
     "erasableSyntaxOnly": true,
     "skipLibCheck": true
   },
-  "include": ["scripts", "carriers/*/*.ts"],
-  "exclude": ["scripts/service-worker.ts"]
+  "include": ["scripts", "carriers/*/*.ts"]
 }

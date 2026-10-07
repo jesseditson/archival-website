@@ -55,7 +55,7 @@ Modify font families:
 ```
 
 ### Animation Timing
-Adjust animation durations and easing in `scripts/js/script.ts`:
+Adjust animation durations and easing in `scripts/script.ts`:
 
 ```javascript
 animate(element, {
@@ -74,13 +74,12 @@ archival build
 
 Output will be in the `dist/` directory.
 
-Archival compiles the TypeScript in `scripts/` itself, so there is no bundler or `npm install` step. `scripts/service-worker.ts` is served at `/service-worker.js`, so that it covers the whole site, and `scripts/js/` is served at `/js/`.
+Archival compiles the TypeScript in `scripts/` itself, so there is no bundler or `npm install` step: `scripts/script.ts` is served at `/js/script.js`.
 
 To type-check the scripts and the `metadata` carrier, run `npm install` in `carriers/metadata` so the carrier's types resolve, then:
 
 ```bash
 tsc -p tsconfig.json
-tsc -p tsconfig.sw.json
 ```
 
 ## Anime.js 4 Features Used

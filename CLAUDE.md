@@ -69,7 +69,7 @@ Liquid-rs has **no `json` filter** — escape strings via the
 `replace + strip_newlines` pipe pattern:
 
 ```liquid
-{% capture jsonld_name %}{{ ...name | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+{% capture jsonld_name %}{{ ...name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
 ```
 
 Conditional fields use Liquid's `{%- if X != blank -%}, "key": "..."{%- endif -%}`
@@ -344,9 +344,14 @@ etc.) works fine — it's only the URL-encoded portions that break.
 ### No `json` filter — escape manually
 
 ```liquid
-{% capture x %}{{ value | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}{% endcapture %}
+{% capture x %}{{ value | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
 "key": "{{ x }}"
 ```
+
+Every string interpolated into JSON inside a `<script>` (JSON-LD or a
+data block) goes through this chain — URLs included, since upload
+filenames are user-chosen. The `</` replacement keeps a value containing
+`</script>` from ending the block early; `<\/` is a valid JSON escape.
 
 ### Singleton-vs-collection access ambiguity
 
@@ -423,7 +428,7 @@ template needs must come out of `archival build` alone.
   built JSON parses:
   ```liquid
   <script type="application/json" id="tracks-data">
-  [{% for t in objects.track %}{"title": "{{ t.title | replace: '\', '\\' | replace: '"', '\"' | strip_newlines }}"}{% unless forloop.last %},{% endunless %}{% endfor %}]
+  [{% for t in objects.track %}{"title": "{{ t.title | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"}{% unless forloop.last %},{% endunless %}{% endfor %}]
   </script>
   ```
 - Only TypeScript that erases: no `enum`, `namespace` or constructor

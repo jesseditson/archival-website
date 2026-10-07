@@ -1,4 +1,11 @@
-import { animate, stagger, utils } from 'https://cdn.jsdelivr.net/npm/animejs@4/+esm';
+import { animate as animeAnimate, stagger, utils } from 'https://cdn.jsdelivr.net/npm/animejs@4/+esm';
+import type { AnimationParams, JSAnimation, TargetSelector } from 'https://cdn.jsdelivr.net/npm/animejs@4/+esm';
+
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function animate(targets: TargetSelector | TargetSelector[], params: AnimationParams): JSAnimation {
+    return animeAnimate(targets, prefersReducedMotion ? { ...params, duration: 0, delay: 0, loop: false } : params);
+}
 
 interface GalleryImage {
     src: string;
@@ -31,7 +38,8 @@ window.onload = function() {
 // Distributes photo items into explicit column wrappers round-robin
 // so that items are evenly spread across all columns.
 function distributeGallery(items?: HTMLElement[]) {
-    const gallery = document.getElementById('photo-gallery') as HTMLElement;
+    const gallery = document.getElementById('photo-gallery');
+    if (!gallery) return;
 
     // Collect items: either passed in, or pulled from existing columns/gallery
     if (!items) {
@@ -399,7 +407,7 @@ function scrollToActiveThumbnail(smooth: boolean) {
 
         thumbnailsContainer.scrollTo({
             left: scrollPosition,
-            behavior: smooth ? 'smooth' : 'auto'
+            behavior: smooth && !prefersReducedMotion ? 'smooth' : 'auto'
         });
     }
 }
@@ -605,7 +613,6 @@ document.addEventListener('DOMContentLoaded', () => {
 function initializeAboutPage() {
     // Animate stats counters
     const statItems = document.querySelectorAll('.stat-item');
-    if (statItems.length === 0) return;
 
     const observerOptions = {
         threshold: 0.5,
@@ -841,7 +848,7 @@ function initializeContactPage() {
 
     // Availability indicator pulse
     const statusIndicator = document.querySelector('.status-indicator');
-    if (statusIndicator) {
+    if (statusIndicator && !prefersReducedMotion) {
         animate(statusIndicator, {
             scale: [1, 1.3, 1],
             duration: 2000,

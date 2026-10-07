@@ -6,7 +6,13 @@ interface FeedPost {
   title: string;
   date: string;
   excerpt?: string;
-  path?: string;
+  content?: string;
+  imageUrl?: string;
+  videoUrl?: string;
+  audioUrl?: string;
+  linkUrl?: string;
+  index: number;
+  tags: string[];
 }
 
 interface PostsFeed {
@@ -48,9 +54,9 @@ async function pollForNotifications() {
       return;
     }
     // Find new posts and send notifications
-    const existingPostPaths = new Set(previous.posts.map(p => p.path));
+    const existingPostLinks = new Set(previous.posts.map(p => p.link));
     for (const post of current.posts) {
-      if (!existingPostPaths.has(post.path)) {
+      if (!existingPostLinks.has(post.link)) {
         showPostNotification(post);
       }
     }

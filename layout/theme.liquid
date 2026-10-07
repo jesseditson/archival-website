@@ -147,6 +147,8 @@
             {
               "path": "/{{ post.path | replace: '\', '\\' | replace: '"', '\"' | replace: '	', '\t' | strip_newlines }}.html",
               "content": "{{ html | strip_newlines | escape | replace: '\', '\\' | replace: '"', '\"' | replace: '	', '\t' }}",
+              {%- unless post.image == blank -%}"imageUrl": "{{ post.image.url | replace: '\', '\\' | replace: '"', '\"' | replace: '	', '\t' | strip_newlines }}",{%- endunless -%}
+              {%- unless post.video == blank -%}"videoUrl": "{{ post.video.url | replace: '\', '\\' | replace: '"', '\"' | replace: '	', '\t' | strip_newlines }}",{%- endunless -%}
               "index": {{ forloop.index }},
               "tags": [
                 {%- for tag in post.tag -%}

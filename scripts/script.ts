@@ -551,17 +551,12 @@ function initializeThemeToggle() {
     const themeToggle = document.getElementById('theme-toggle');
     if (!themeToggle) return;
 
-    // Check for saved theme preference or default to dark
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    if (savedTheme === 'light') {
-        document.body.classList.add('light-theme');
-    }
-
     themeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('light-theme');
+        const root = document.documentElement;
+        root.classList.toggle('light-theme');
 
         // Save preference
-        const theme = document.body.classList.contains('light-theme') ? 'light' : 'dark';
+        const theme = root.classList.contains('light-theme') ? 'light' : 'dark';
         localStorage.setItem('theme', theme);
 
         // Animate toggle button with Anime.js v4
@@ -579,6 +574,7 @@ function initializeThemeToggle() {
         });
     });
 }
+
 
 // ==================== Performance: Debounce Resize ====================
 let resizeTimer: number | undefined;

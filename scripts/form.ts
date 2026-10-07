@@ -1,3 +1,5 @@
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // Handle service book button clicks
 document.addEventListener('click', (e) => {
   const target = e.target as Element;
@@ -54,7 +56,13 @@ document.addEventListener('click', (e) => {
           return -c / 2 * (t * (t - 2) - 1) + b;
         }
 
-        requestAnimationFrame(animation);
+        if (prefersReducedMotion) {
+          window.scrollTo(0, targetPosition);
+          const nameInput = document.getElementById('contact-name');
+          if (nameInput) nameInput.focus();
+        } else {
+          requestAnimationFrame(animation);
+        }
       }
     }
   }

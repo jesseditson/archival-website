@@ -1,3 +1,5 @@
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 function shuffle<T>(array: T[]) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -75,6 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
   slotState[1].currentIndex = 1;
   shownIndices.add(0);
   shownIndices.add(1);
+
+  if (prefersReducedMotion) return;
 
   // Cycle: every 4 seconds, crossfade one random slot
   let lastSlotIndex = -1;

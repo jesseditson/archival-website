@@ -1,4 +1,4 @@
-function shuffle(array) {
+function shuffle<T>(array: T[]) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
@@ -7,8 +7,8 @@ function shuffle(array) {
 
 document.addEventListener('DOMContentLoaded', () => {
   // Collect unique testimonials from the marquee tracks before duplication
-  const allTestimonials = [];
-  const seen = new Set();
+  const allTestimonials: string[] = [];
+  const seen = new Set<string>();
   document.querySelectorAll('.testimonial-marquee .testimonial-item').forEach(item => {
     const key = item.textContent.trim();
     if (!seen.has(key)) {
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     shuffle(items);
     const originalHTML = items.map(item => item.outerHTML).join('');
     track.innerHTML = originalHTML;
-    const marquee = track.parentElement;
+    const marquee = track.parentElement!;
     const containerWidth = marquee.clientWidth;
     while (track.scrollWidth < 2 * containerWidth) {
       track.innerHTML += originalHTML;
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileContainer = document.querySelector('.testimonial-mobile-fade');
   if (!mobileContainer || allTestimonials.length < 2) return;
 
-  const mobileSlots = mobileContainer.querySelectorAll('.testimonial-mobile-slot');
+  const mobileSlots = mobileContainer.querySelectorAll<HTMLElement>('.testimonial-mobile-slot');
   if (mobileSlots.length < 2) return;
 
   // Each slot has two stacked .testimonial-item elements: [front, back]
@@ -45,9 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Track which testimonial indices are currently visible
-  const shownIndices = new Set();
+  const shownIndices = new Set<number>();
 
-  function pickRandom(exclude) {
+  function pickRandom(exclude: Set<number>) {
     const available = allTestimonials
       .map((_, i) => i)
       .filter(i => !exclude.has(i));

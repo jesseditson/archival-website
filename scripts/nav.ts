@@ -17,15 +17,17 @@ window.addEventListener('load', updateVisibility);
 const navToggle = document.querySelector('.mobile-nav-toggle');
 const mobileNav = document.getElementById('mobile-nav');
 
-navToggle.addEventListener('click', () => {
-  mobileNav.classList.toggle('nav-open');
-  const isExpanded = mobileNav.classList.contains('nav-open');
-  navToggle.setAttribute('aria-expanded', isExpanded);
-});
+if (navToggle && mobileNav) {
+  navToggle.addEventListener('click', () => {
+    mobileNav.classList.toggle('nav-open');
+    const isExpanded = mobileNav.classList.contains('nav-open');
+    navToggle.setAttribute('aria-expanded', String(isExpanded));
+  });
 
-mobileNav.addEventListener('click', (e) => {
-  if (e.target.classList.contains('nav-item')) {
-    mobileNav.classList.remove('nav-open');
-    navToggle.setAttribute('aria-expanded', 'false');
-  }
-});
+  mobileNav.addEventListener('click', (e) => {
+    if ((e.target as Element).classList.contains('nav-item')) {
+      mobileNav.classList.remove('nav-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+}

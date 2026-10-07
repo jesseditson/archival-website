@@ -2,5 +2,12 @@
 	"name": "submit-form",
 	"version": "0.1.0",
 	"private": true,
-	"main": "submit.js"
+	"type": "module",
+	"main": "submit.ts",
+	"archival": {
+		"carrier": 2
+	},
+	"devDependencies": {
+		"@archival/carrier": "^1.1.0"
+	}
 }

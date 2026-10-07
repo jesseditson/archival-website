@@ -1,17 +1,18 @@
 // Handle service book button clicks
 document.addEventListener('click', (e) => {
-  if (e.target.classList.contains('service-cta')) {
+  const target = e.target as Element;
+  if (target.classList.contains('service-cta')) {
     e.preventDefault();
 
     // Extract service name from the href
-    const href = e.target.getAttribute('href');
+    const href = target.getAttribute('href')!;
     const match = href.match(/service=([^&]+)/);
 
     if (match) {
       const serviceName = decodeURIComponent(match[1]);
 
       // Select the service in the dropdown
-      const serviceSelect = document.getElementById('contact-service');
+      const serviceSelect = document.getElementById('contact-service') as HTMLSelectElement | null;
       if (serviceSelect) {
         const options = Array.from(serviceSelect.options);
         const matchingOption = options.find(option =>
@@ -30,9 +31,9 @@ document.addEventListener('click', (e) => {
         const startPosition = window.pageYOffset;
         const distance = targetPosition - startPosition;
         const duration = 400; // milliseconds (faster scroll)
-        let start = null;
+        let start: number | null = null;
 
-        function animation(currentTime) {
+        function animation(currentTime: number) {
           if (start === null) start = currentTime;
           const timeElapsed = currentTime - start;
           const run = ease(timeElapsed, startPosition, distance, duration);
@@ -46,7 +47,7 @@ document.addEventListener('click', (e) => {
         }
 
         // Easing function for smooth animation
-        function ease(t, b, c, d) {
+        function ease(t: number, b: number, c: number, d: number) {
           t /= d / 2;
           if (t < 1) return c / 2 * t * t + b;
           t--;
@@ -72,9 +73,9 @@ document.querySelectorAll('a[href="#contact"], a[href="/#contact"]').forEach(lin
 // Auto-select service in booking form based on URL parameter (for page loads with hash)
 document.addEventListener('DOMContentLoaded', () => {
   // Check both hash and search params for service parameter
-  let serviceParam = null;
-  let submitParam = null;
-  let errorMessage = null;
+  let serviceParam: string | null = null;
+  let submitParam: string | null = null;
+  let errorMessage: string | null = null;
 
   // Check if service is in the hash (e.g., #contact?service=ServiceName)
   if (window.location.hash.includes('?')) {
@@ -99,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (serviceParam) {
-    const serviceSelect = document.getElementById('contact-service');
+    const serviceSelect = document.getElementById('contact-service') as HTMLSelectElement | null;
 
     if (serviceSelect) {
       // Find and select the matching option
@@ -115,11 +116,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (submitParam) {
-    const contactElement = document.querySelector("#contact");
-    const completeElement = document.querySelector("#contact-complete");
-    const errorElement = document.querySelector("#contact-complete-error");
+    const contactElement = document.querySelector("#contact") as HTMLElement;
+    const completeElement = document.querySelector("#contact-complete") as HTMLElement;
+    const errorElement = document.querySelector("#contact-complete-error") as HTMLElement;
     if (errorMessage) {
-      const messageElement = document.querySelector("#contact-complete-message");
+      const messageElement = document.querySelector("#contact-complete-message") as HTMLElement;
       errorElement.innerText = errorMessage;
       errorElement.style.removeProperty("display");
       messageElement.style.setProperty("display", "none");

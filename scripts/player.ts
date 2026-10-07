@@ -1,3 +1,5 @@
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // Audio Player Functionality
 interface Episode {
   url: string;
@@ -332,6 +334,7 @@ function ensureEpisodeCardObserver() {
 }
 
 function attachEpisodeCardAnimations() {
+  if (prefersReducedMotion) return;
   const observer = ensureEpisodeCardObserver();
   document.querySelectorAll<HTMLElement>('.episode-card:not([data-animated])').forEach((card) => {
     card.style.opacity = '0';
@@ -387,7 +390,7 @@ function attachPlayDelegation() {
     if (target) {
       e.preventDefault();
       target.scrollIntoView({
-        behavior: 'smooth',
+        behavior: prefersReducedMotion ? 'auto' : 'smooth',
         block: 'start'
       });
     }

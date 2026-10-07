@@ -162,6 +162,10 @@ function initializePostViewer() {
     if (closeBtn) closeBtn.addEventListener('click', closePostViewer);
     if (prevBtn) prevBtn.addEventListener('click', () => navigatePostViewer(-1));
     if (nextBtn) nextBtn.addEventListener('click', () => navigatePostViewer(1));
+
+    // A post page renders the viewer already open.
+    const viewer = document.getElementById('post-viewer');
+    if (viewer?.classList.contains('active')) isolateViewer(viewer);
 }
 
 const windowAnimations = window as unknown as Record<string, JSAnimation | undefined>;
@@ -197,6 +201,37 @@ function renderPost(post: BlogPost) {
     return textarea.value;
 }
 
+// While the viewer is open, everything outside it is inert, so keyboard focus
+// can't reach the grid or the tag filters behind the overlay.
+let inertBehindViewer: Element[] = [];
+let focusBeforeViewer: HTMLElement | null = null;
+
+function isolateViewer(viewer: HTMLElement) {
+    if (inertBehindViewer.length > 0) return;
+    const active = document.activeElement;
+    focusBeforeViewer = active instanceof HTMLElement && active !== document.body ? active : null;
+    for (let node: HTMLElement | null = viewer; node && node !== document.body; node = node.parentElement) {
+        for (const sibling of node.parentElement?.children ?? []) {
+            if (sibling !== node && !sibling.hasAttribute('inert')) {
+                sibling.setAttribute('inert', '');
+                inertBehindViewer.push(sibling);
+            }
+        }
+    }
+    document.getElementById('viewer-close')?.focus();
+}
+
+function releaseViewer() {
+    inertBehindViewer.forEach(el => el.removeAttribute('inert'));
+    inertBehindViewer = [];
+    if (focusBeforeViewer) {
+        focusBeforeViewer.focus();
+    } else if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur();
+    }
+    focusBeforeViewer = null;
+}
+
 function openPostViewer(index: number) {
     currentPostIndex = index;
     const viewer = document.getElementById('post-viewer')!;
@@ -205,6 +240,7 @@ function openPostViewer(index: number) {
     // Show viewer
     viewer.classList.add('active');
     document.body.style.overflow = 'hidden';
+    isolateViewer(viewer);
 
     // Animate backdrop entrance with blur
     animate('.viewer-backdrop', {
@@ -269,6 +305,7 @@ function closePostViewer() {
         onComplete: function() {
             viewer.classList.remove('active');
             document.body.style.overflow = '';
+            releaseViewer();
             currentPostIndex = -1;
             updateHistory();
         }

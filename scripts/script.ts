@@ -1,5 +1,13 @@
+import { animate, stagger, utils } from 'https://cdn.jsdelivr.net/npm/animejs@4/+esm';
+
+interface GalleryImage {
+    src: string;
+    title: string;
+    index: number;
+}
+
 // ==================== Photo Gallery State ====================
-let galleryImages = [];
+let galleryImages: GalleryImage[] = [];
 let currentImageIndex = 0;
 let touchStartX = 0;
 let touchEndX = 0;
@@ -12,7 +20,7 @@ window.onload = function() {
     initializeThemeToggle();
     animateGalleryEntrance();
 
-    let resizeTimer;
+    let resizeTimer: number | undefined;
     window.addEventListener('resize', function() {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(distributeGallery, 150);
@@ -22,12 +30,12 @@ window.onload = function() {
 // ==================== Gallery Distribution ====================
 // Distributes photo items into explicit column wrappers round-robin
 // so that items are evenly spread across all columns.
-function distributeGallery(items) {
-    const gallery = document.getElementById('photo-gallery');
+function distributeGallery(items?: HTMLElement[]) {
+    const gallery = document.getElementById('photo-gallery') as HTMLElement;
 
     // Collect items: either passed in, or pulled from existing columns/gallery
     if (!items) {
-        items = Array.from(gallery.querySelectorAll('.photo-item'))
+        items = Array.from(gallery.querySelectorAll<HTMLElement>('.photo-item'))
             .sort((a, b) => Number(a.dataset.index) - Number(b.dataset.index));
     }
 
@@ -57,7 +65,7 @@ function distributeGallery(items) {
     });
 
     // Create column wrappers
-    const columns = [];
+    const columns: HTMLDivElement[] = [];
     for (let i = 0; i < cols; i++) {
         const col = document.createElement('div');
         col.className = 'gallery-column';
@@ -67,7 +75,7 @@ function distributeGallery(items) {
 
     // Distribute items to the shortest column for balanced heights.
     // Use natural image aspect ratios when available, otherwise round-robin.
-    const columnHeights = new Array(cols).fill(0);
+    const columnHeights = new Array<number>(cols).fill(0);
     items.forEach((item) => {
         item.style.display = '';
 
@@ -91,11 +99,11 @@ function distributeGallery(items) {
 
 // ==================== Gallery Initialization ====================
 function initializeGallery() {
-    const photoItems = document.querySelectorAll(".photo-item");
+    const photoItems = document.querySelectorAll<HTMLElement>(".photo-item");
 
     // Build gallery images array
     galleryImages = Array.from(photoItems).map((item, index) => ({
-        src: item.getAttribute('data-src'),
+        src: item.getAttribute('data-src') as string,
         title: item.getAttribute('data-title') || '',
         index: index
     }));
@@ -112,7 +120,7 @@ function initializeGallery() {
 }
 
 // ==================== Lazy Loading ====================
-function setupLazyLoading(photoItems) {
+function setupLazyLoading(photoItems: NodeListOf<HTMLElement>) {
     const observerOptions = {
         root: null,
         rootMargin: '100px',
@@ -176,18 +184,18 @@ function initializeLightbox() {
     if (backdrop) backdrop.addEventListener('click', closeLightbox);
 }
 
-function openLightbox(index) {
+function openLightbox(index: number) {
     currentImageIndex = index;
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const loader = document.querySelector('.lightbox-loader');
+    const lightbox = document.getElementById('lightbox') as HTMLElement;
+    const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+    const loader = document.querySelector('.lightbox-loader') as HTMLElement;
 
     // Show lightbox
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
 
     // Generate thumbnails on first open only
-    const thumbnailsContainer = document.getElementById('lightbox-thumbnails');
+    const thumbnailsContainer = document.getElementById('lightbox-thumbnails') as HTMLElement;
     if (thumbnailsContainer.children.length === 0) {
         generateThumbnails();
     }
@@ -231,8 +239,8 @@ function openLightbox(index) {
 }
 
 function closeLightbox() {
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
+    const lightbox = document.getElementById('lightbox') as HTMLElement;
+    const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
 
     // Animate exit
     animate(lightboxImg, {
@@ -255,9 +263,9 @@ function closeLightbox() {
 
 // Expose functions globally for inline event handlers
 
-function navigateLightbox(direction) {
-    const lightboxImg = document.getElementById('lightbox-img');
-    const loader = document.querySelector('.lightbox-loader');
+function navigateLightbox(direction: number) {
+    const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+    const loader = document.querySelector('.lightbox-loader') as HTMLElement;
 
     // Calculate new index with wrapping
     currentImageIndex = (currentImageIndex + direction + galleryImages.length) % galleryImages.length;
@@ -310,9 +318,9 @@ function navigateLightbox(direction) {
 // Expose functions globally for inline event handlers
 
 function updateLightboxInfo() {
-    document.getElementById('lightbox-current').textContent = currentImageIndex + 1;
-    document.getElementById('lightbox-total').textContent = galleryImages.length;
-    document.getElementById('lightbox-title').textContent = galleryImages[currentImageIndex].title;
+    document.getElementById('lightbox-current')!.textContent = String(currentImageIndex + 1);
+    document.getElementById('lightbox-total')!.textContent = String(galleryImages.length);
+    document.getElementById('lightbox-title')!.textContent = galleryImages[currentImageIndex].title;
 
     // Animate info update
     animate('.lightbox-info', {
@@ -335,7 +343,7 @@ function preloadAdjacentImages() {
 
 // ==================== Thumbnails ====================
 function generateThumbnails() {
-    const thumbnailsContainer = document.getElementById('lightbox-thumbnails');
+    const thumbnailsContainer = document.getElementById('lightbox-thumbnails') as HTMLElement;
     thumbnailsContainer.innerHTML = '';
 
     galleryImages.forEach((image, index) => {
@@ -377,9 +385,9 @@ function updateThumbnails() {
     scrollToActiveThumbnail(true);
 }
 
-function scrollToActiveThumbnail(smooth) {
-    const thumbnailsContainer = document.getElementById('lightbox-thumbnails');
-    const activeThumbnail = thumbnailsContainer.querySelector('.thumbnail-item.active');
+function scrollToActiveThumbnail(smooth: boolean) {
+    const thumbnailsContainer = document.getElementById('lightbox-thumbnails') as HTMLElement;
+    const activeThumbnail = thumbnailsContainer.querySelector<HTMLElement>('.thumbnail-item.active');
 
     if (activeThumbnail) {
         const containerWidth = thumbnailsContainer.offsetWidth;
@@ -396,12 +404,12 @@ function scrollToActiveThumbnail(smooth) {
     }
 }
 
-function navigateToIndex(index) {
+function navigateToIndex(index: number) {
     const direction = index > currentImageIndex ? 1 : -1;
     currentImageIndex = index;
 
-    const lightboxImg = document.getElementById('lightbox-img');
-    const loader = document.querySelector('.lightbox-loader');
+    const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+    const loader = document.querySelector('.lightbox-loader') as HTMLElement;
 
     // Animate transition
     animate(lightboxImg, {
@@ -492,7 +500,7 @@ function toggleFullscreen() {
     if (!lightbox) return;
 
     if (!document.fullscreenElement) {
-        lightbox.requestFullscreen().catch(err => {
+        lightbox.requestFullscreen().catch((err: Error) => {
             console.log(`Error attempting to enable fullscreen: ${err.message}`);
         });
     } else {
@@ -565,7 +573,7 @@ function initializeThemeToggle() {
 }
 
 // ==================== Performance: Debounce Resize ====================
-let resizeTimer;
+let resizeTimer: number | undefined;
 window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
@@ -582,7 +590,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (lightbox) {
         lightbox.addEventListener('transitionend', () => {
             if (lightbox.classList.contains('active')) {
-                document.getElementById('lightbox-img').focus();
+                document.getElementById('lightbox-img')!.focus();
             }
         });
     }
@@ -608,17 +616,17 @@ function initializeAboutPage() {
         entries.forEach(entry => {
             if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
                 entry.target.classList.add('counted');
-                const targetCount = parseInt(entry.target.getAttribute('data-count'));
-                const numberElement = entry.target.querySelector('.stat-number');
+                const targetCount = parseInt(entry.target.getAttribute('data-count') as string);
+                const numberElement = entry.target.querySelector('.stat-number') as HTMLElement;
 
                 // Anime.js v4 counter animation - using modifier instead of round
                 animate({value: 0}, {
                     value: targetCount,
                     duration: 2000,
                     ease: 'outExpo',  // Changed from 'easeOutExpo'
-                    modifier: animeUtils.round(0),  // Changed from round: 1
+                    modifier: utils.round(0),  // Changed from round: 1
                     onUpdate: function(animation) {
-                        numberElement.textContent = Math.round(animation.targets[0].value);
+                        numberElement.textContent = String(Math.round((animation.targets[0] as { value: number }).value));
                     }
                 });
 
@@ -695,14 +703,14 @@ function initializeAboutPage() {
                     entry.target.classList.add('timeline-animated');
 
                     // Marker pulse
-                    animate(entry.target.querySelector('.timeline-marker'), {
+                    animate(entry.target.querySelector('.timeline-marker')!, {
                         scale: [0, 1],
                         duration: 400,
                         ease: 'outElastic(1, .8)'
                     });
 
                     // Content slide in
-                    animate(entry.target.querySelector('.timeline-content'), {
+                    animate(entry.target.querySelector('.timeline-content')!, {
                         translateX: [-30, 0],
                         opacity: [0, 1],
                         duration: 600,
@@ -722,7 +730,7 @@ function initializeAboutPage() {
         const logosObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && !entry.target.classList.contains('logo-animated')) {
-                    const items = Array.from(entry.target.parentElement.children);
+                    const items = Array.from(entry.target.parentElement!.children);
                     items.forEach((item, i) => {
                         item.classList.add('logo-animated');
                         animate(item, {
@@ -749,7 +757,7 @@ function initializeContactPage() {
     const formInputs = document.querySelectorAll('.form-group input, .form-group select, .form-group textarea');
     formInputs.forEach(input => {
         input.addEventListener('focus', (e) => {
-            animate(e.target, {
+            animate(e.target as HTMLElement, {
                 scale: [1, 1.02, 1],
                 duration: 300,
                 ease: 'outQuad'
@@ -760,7 +768,7 @@ function initializeContactPage() {
     // FAQ accordion
     const faqItems = document.querySelectorAll('.faq-item');
     faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
+        const question = item.querySelector('.faq-question') as HTMLElement;
         question.addEventListener('click', () => {
             const wasActive = item.classList.contains('active');
 
@@ -775,7 +783,7 @@ function initializeContactPage() {
             item.classList.toggle('active');
 
             // Animate icon rotation
-            animate(question.querySelector('.faq-icon'), {
+            animate(question.querySelector('.faq-icon')!, {
                 rotate: wasActive ? 0 : 45,
                 duration: 300,
                 ease: 'outQuad'
@@ -783,7 +791,7 @@ function initializeContactPage() {
 
             // Animate answer
             if (!wasActive) {
-                animate(item.querySelector('.faq-answer'), {
+                animate(item.querySelector('.faq-answer')!, {
                     opacity: [0, 1],
                     translateY: [-10, 0],
                     duration: 400,
@@ -797,7 +805,7 @@ function initializeContactPage() {
     const socialLinks = document.querySelectorAll('.social-link');
     socialLinks.forEach(link => {
         link.addEventListener('mouseenter', (e) => {
-            animate(e.currentTarget.querySelector('.social-icon'), {
+            animate((e.currentTarget as HTMLElement).querySelector('.social-icon')!, {
                 rotate: [0, 360],
                 duration: 600,
                 ease: 'outElastic(1, .6)'
@@ -806,12 +814,12 @@ function initializeContactPage() {
     });
 
     // Contact form submission animation
-    const contactForm = document.getElementById('contact-form');
+    const contactForm = document.getElementById('contact-form') as HTMLFormElement | null;
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            const submitBtn = contactForm.querySelector('.submit-btn');
+            const submitBtn = contactForm.querySelector('.submit-btn') as HTMLElement;
 
             // Success animation
             animate(submitBtn, {

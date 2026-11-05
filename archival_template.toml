@@ -1,16 +1,44 @@
 #:schema https://archival.dev/schemas/archival_template.schema.json
-# Shown in the editor's template picker.
-name = ""
-# One line for the gallery card, roughly ten to fifteen words.
-tagline = ""
-# The template info modal's body: what this template is and what it contains.
+name = "Food Truck"
+tagline = "A bright one-page site that shows where your truck is parked today."
 description = """
+A loud, cheerful one-page site for a food truck, built like a wall covered in stickers. The first thing a hungry visitor sees on their phone is where the truck is today and when, with a one-tap button for directions.
+
+Set a weekly rotation once (Tuesday lunch on Market St, Friday nights at the brewery) and add special stops for festivals and markets. "Today" is worked out in each visitor's browser, so it stays right even when you don't update the site, and special stops disappear on their own once their date has passed. Going on a break or rained out? Set a "closed until" date and a short note, and the regular schedule comes back by itself afterward.
+
+Also included: a simple menu with prices and spicy, vegetarian and sold-out tags, a strip of food photos, buttons for Instagram, TikTok and other socials, an optional "Order ahead" link and phone number, and a "Book the truck" section for catering and private events. Three color schemes (sunshine, bubblegum and lime) and gentle, playful motion that switches off for visitors who prefer less movement.
 """
-# The prompt that drives content generation. Describe when to pick this
-# template and what every field holds. Update it whenever the schema changes.
 context = """
+Pick this template for a food truck, food cart, trailer or pop-up that moves between locations: tacos, coffee, burgers, ice cream, anything served from a window. It is one page. Fill every field only from facts the person gave you. A made-up address or schedule sends real customers to the wrong place, so when the person has not given you their schedule or menu, leave stop, special_stop and dish empty and the page shows a friendly "schedule coming soon" prompt instead.
+
+site (the truck itself):
+- name: the truck's name. It is the page's only h1, shown on a big tilted sticker.
+- tagline: a short line under the name, around six to ten words ("Birria, street tacos and big salsa energy").
+- intro: one or two sentences about the truck in the owner's voice.
+- description: one or two sentences for search results and link previews.
+- cuisine: the kind of food in a word or two ("Mexican", "Coffee", "Korean BBQ").
+- palette: the color scheme, one of "sunshine" (yellow, the default), "bubblegum" (pink) or "lime" (green).
+- hero_image, hero_alt: the big header photo and its description. Leave every image field empty: hero_image, truck_photo, og_image, favicon and photo files. Leave hero_alt and truck_photo_alt empty too.
+- order_url: an online ordering link, only if the person gave one. Otherwise empty.
+- phone: only if the person gave one. Otherwise empty.
+- closed_until, closed_note: leave both empty. The owner sets them when the truck takes a break: a date through which the weekly schedule is paused, and a short note ("Winter break").
+- booking_heading: the heading of the catering section, usually "Book the truck".
+- booking_text: markdown, a short paragraph or two about catering and private events (what kinds of events, notice needed, minimums) based on what the person said. Leave empty if they don't cater.
+- booking_email, booking_url: how to book. Only real values the person gave; never invent an email address or URL. booking_url wins over booking_email for the button.
+- truck_photo, truck_photo_alt: an optional photo of the truck in the booking section. Leave empty.
+- og_image, favicon: leave empty.
+- social: one entry per social account the person gave. platform is one of "instagram", "tiktok", "facebook", "x", "youtube" or "other"; url is the full profile URL; label is the name shown to screen readers (and the visible name for "other"). Never invent URLs.
+- photo: a strip of food photos, each with file and alt. Leave empty.
+
+stop (the weekly rotation, one item per stop): day is one of "monday" through "sunday"; place is how customers know the spot ("Market St & 5th", "Riverside Park, north lawn"); address is what a maps app should search for, or empty if there is none; start and end are times written the way the owner says them ("11am", "2pm"); note is optional ("Card only"). A day with no stops shows as a day off. A day can have two stops (lunch and dinner); set order so they sort by time.
+
+special_stop (one-off dates: festivals, markets, brewery nights): date must be in the future, never in the past; place, address, start, end and note work as in stop. Past special stops hide themselves on the page.
+
+dish (the menu): name; description is one short line; price is text, written as the owner would ("$4", "2 for $7"); spicy, vegetarian and sold_out are true or false and show as small tags. Set order for the menu's sequence.
 """
-tags = []
-tlds = []
-# Value paths kept when a site is generated, instead of stripped as examples.
+tags = ["food truck", "restaurant", "street food", "one page", "schedule", "menu", "catering"]
+tlds = ["kitchen", "food", "com"]
+assets = ["CREDITS.md"]
+# Nothing is kept: a new site starts without the example truck's photos,
+# schedule or menu.
 keep_objects = []

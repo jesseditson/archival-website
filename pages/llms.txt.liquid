@@ -1,26 +1,50 @@
-{%- comment -%}
-  The editor's from-scratch flow can replace the schema, and archival fails
-  the build on any reference to a field the schema does not define, even
-  inside an `if`. Looping over the object's fields reads them safely.
-{%- endcomment -%}
 {%- assign site = objects.site -%}
-{%- for field in site -%}
-{%- if field.first == "name" and field.last != blank %}# {{ field.last }}
+{%- assign stops = objects.stop | sort: "order" -%}
+{%- assign specials = objects.special_stop | sort: "order" -%}
+{%- assign dishes = objects.dish | sort: "order" -%}
+{%- assign days = "monday,tuesday,wednesday,thursday,friday,saturday,sunday" | split: "," -%}
+# {{ site.name }}
+{% if site.description != blank %}
+> {{ site.description }}
+{% endif %}
+{%- if site.tagline != blank %}
+{{ site.tagline }}{% if site.cuisine != blank %} ({{ site.cuisine }}){% endif %}
+{% endif %}
+This is a food truck. It has no fixed address: the weekly schedule and special stops below say where it parks. "Today" on the website is worked out in the visitor's browser.
+{% if site.closed_until != blank %}
+## Closed
 
-{% endif -%}
-{%- if field.first == "description" and field.last != blank %}> {{ field.last }}
+Closed until {{ site.closed_until | date: "%Y-%m-%d" }}{% if site.closed_note != blank %}: {{ site.closed_note }}{% endif %}. The weekly schedule resumes after that date.
+{% endif %}
+{%- if stops.size > 0 %}
+## Weekly schedule
+{% for day in days %}
+{%- assign day_count = 0 -%}
+{%- for v in stops -%}{%- if v.day == day -%}{%- assign day_count = day_count | plus: 1 %}
+- {{ day | capitalize }}: {{ v.place }}{% if v.start != blank %}, {{ v.start }}{% if v.end != blank %} to {{ v.end }}{% endif %}{% endif %}{% if v.address != blank %} ({{ v.address }}){% endif %}{% if v.note != blank %}. {{ v.note }}{% endif %}
+{%- endif -%}{%- endfor -%}
+{%- if day_count == 0 %}
+- {{ day | capitalize }}: off
+{%- endif -%}
+{%- endfor %}
+{% endif %}
+{%- if specials.size > 0 %}
+## Special stops
+{% for v in specials %}
+- {{ v.date | date: "%Y-%m-%d" }}: {{ v.place }}{% if v.start != blank %}, {{ v.start }}{% if v.end != blank %} to {{ v.end }}{% endif %}{% endif %}{% if v.address != blank %} ({{ v.address }}){% endif %}{% if v.note != blank %}. {{ v.note }}{% endif %}
+{%- endfor %}
+{% endif %}
+{%- if dishes.size > 0 %}
+## Menu
+{% for d in dishes %}
+- {{ d.name }}{% if d.price != blank %}, {{ d.price }}{% endif %}{% if d.description != blank %}: {{ d.description }}{% endif %}{% if d.spicy %} (spicy){% endif %}{% if d.vegetarian %} (vegetarian){% endif %}{% if d.sold_out %} (sold out){% endif %}
+{%- endfor %}
+{% endif %}
+{%- if site.booking_text != blank or site.booking_email != blank or site.booking_url != blank %}
+## Catering and private events
 
-{% endif -%}
-{%- endfor -%}
+{% if site.booking_heading != blank %}{{ site.booking_heading }}{% else %}Book the truck{% endif %}: {% if site.booking_url != blank %}{{ site.booking_url }}{% elsif site.booking_email != blank %}{{ site.booking_email }}{% else %}see the website{% endif %}
+{% endif %}
 ## Pages
 
 - [Home]({{ site_url }}/)
-{% comment %}
-  List every section page, then every kind of content, generated from the
-  objects. For a list type:
-
-## Posts
-
-{% for post in posts %}- [{{ post.title }}]({{ site_url }}/{{ post.path }})
-{% endfor %}
-{% endcomment %}

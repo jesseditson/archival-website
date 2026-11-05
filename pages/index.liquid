@@ -42,16 +42,25 @@
 {%- endcapture -%}
 {% layout 'theme' title: "", path: "", jsonld: jsonld %}
 
-<header class="masthead">
-  <span class="blob blob-1" aria-hidden="true"></span>
-  <span class="blob blob-2" aria-hidden="true"></span>
-  <div class="wrap masthead-inner">
-    <div class="brand">
-      <h1 class="name sticker">{{ site.name | escape }}</h1>
-      {% if site.tagline != blank %}<p class="tagline">{{ site.tagline | escape }}</p>{% endif %}
-    </div>
+<header class="banner{% if site.hero_image != blank %} has-photo{% endif %}">
+  {% if site.hero_image != blank %}
+  <img class="banner-photo" src="{{ site.hero_image.url | escape }}" alt="{{ site.hero_alt | escape }}" fetchpriority="high">
+  {% endif %}
+  <div class="banner-tint" aria-hidden="true"></div>
+  <div class="lava" aria-hidden="true">
+    <span class="blob blob-1"></span>
+    <span class="blob blob-2"></span>
+    <span class="blob blob-3"></span>
+    <span class="blob blob-4"></span>
+  </div>
+  <div class="wrap banner-inner">
+    <h1 class="name">{{ site.name | escape }}</h1>
+    {% if site.tagline != blank %}<p class="tagline">{{ site.tagline | escape }}</p>{% endif %}
+    {% if site.intro != blank %}<p class="intro sticker">{{ site.intro | escape }}</p>{% endif %}
     <div class="actions">
+      {%- assign social_labels = true -%}
       {% include 'socials' %}
+      {%- assign social_labels = false -%}
       {% if site.order_url != blank or site.phone != blank %}
       <p class="buttons">
         {% if site.order_url != blank %}<a class="button sticker" href="{{ site.order_url | escape }}">Order ahead</a>{% endif %}
@@ -59,16 +68,10 @@
       </p>
       {% endif %}
     </div>
-    {% if site.intro != blank %}<p class="intro">{{ site.intro | escape }}</p>{% endif %}
   </div>
 </header>
 
-<div class="wrap hero{% if site.hero_image == blank %} no-photo{% endif %}">
-  {% if site.hero_image != blank %}
-  <figure class="hero-photo sticker">
-    <img src="{{ site.hero_image.url | escape }}" alt="{{ site.hero_alt | escape }}" width="1600" height="1067" fetchpriority="high">
-  </figure>
-  {% endif %}
+<div class="wrap today-wrap">
   <section class="today sticker" id="today" aria-labelledby="today-label" aria-live="polite" hidden>
     <p class="today-label" id="today-label">Today</p>
     <ol class="today-list"></ol>
@@ -79,10 +82,13 @@
 </div>
 
 <section class="week" id="week" aria-labelledby="week-title">
-  <span class="blob blob-3" aria-hidden="true"></span>
+  <div class="lava" aria-hidden="true">
+    <span class="blob blob-5"></span>
+    <span class="blob blob-6"></span>
+  </div>
   <div class="wrap week-inner">
     <div class="week-main">
-      <h2 class="drip-heading" id="week-title">This week<span class="drips" aria-hidden="true"><i></i><i></i><i></i></span></h2>
+      <h2 class="drip-heading" id="week-title">This week<span class="drips" aria-hidden="true"><b></b><i></i><i></i><i></i></span></h2>
       {% if site.closed_until != blank %}
       <p class="closure sticker" data-until="{{ site.closed_until | date: '%Y-%m-%d' }}">Closed until <time datetime="{{ site.closed_until | date: '%Y-%m-%d' }}">{{ site.closed_until | date: '%B %-d' }}</time>{% if site.closed_note != blank %}: {{ site.closed_note | escape }}{% endif %}</p>
       {% endif %}
@@ -146,7 +152,7 @@
 <div class="wrap lower">
   {% if dishes.size > 0 %}
   <section class="menu" id="menu" aria-labelledby="menu-title">
-    <h2 class="drip-heading" id="menu-title">Menu<span class="drips" aria-hidden="true"><i></i><i></i><i></i></span></h2>
+    <h2 class="drip-heading" id="menu-title">Menu<span class="drips" aria-hidden="true"><b></b><i></i><i></i><i></i></span></h2>
     <ul class="dishes">
       {% for dish in dishes %}
       <li class="dish sticker{% if dish.sold_out %} is-sold-out{% endif %}">
@@ -186,7 +192,7 @@
   {% if site.booking_text != blank or site.booking_email != blank or site.booking_url != blank %}
   <section class="booking{% if site.truck_photo != blank %} has-photo{% endif %}" id="booking" aria-labelledby="booking-title">
     <div class="booking-text">
-      <h2 class="drip-heading" id="booking-title">{% if site.booking_heading != blank %}{{ site.booking_heading | escape }}{% else %}Book the truck{% endif %}<span class="drips" aria-hidden="true"><i></i><i></i><i></i></span></h2>
+      <h2 class="drip-heading" id="booking-title">{% if site.booking_heading != blank %}{{ site.booking_heading | escape }}{% else %}Book the truck{% endif %}<span class="drips" aria-hidden="true"><b></b><i></i><i></i><i></i></span></h2>
       {% if site.booking_text != blank %}<div class="markdown">{{ site.booking_text }}</div>{% endif %}
       {% if site.booking_url != blank %}
       <p><a class="button sticker" href="{{ site.booking_url | escape }}">Ask about your event</a></p>
@@ -203,3 +209,4 @@
 
 <script type="module" src="/js/today.js"></script>
 <script type="module" src="/js/drips.js"></script>
+<script type="module" src="/js/lava.js"></script>

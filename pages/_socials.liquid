@@ -2,11 +2,15 @@
 {%- assign social_count = 0 -%}
 {%- for social in objects.site.social -%}{%- if social.url != blank -%}{%- assign social_count = social_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
 {%- if social_count > 0 -%}
-<ul class="socials">
+<ul class="socials{% if social_labels %} is-labeled{% endif %}">
   {%- for social in objects.site.social -%}
   {%- if social.url != blank -%}
   {%- if social.label != blank -%}{%- assign social_name = social.label -%}{%- else -%}{%- assign social_name = social.platform | capitalize -%}{%- endif -%}
+  {%- if social_labels -%}
+  <li><a class="social is-labeled" href="{{ social.url | escape }}">{% include 'social-icon' %}<span>{{ social_name | escape }}</span></a></li>
+  {%- else -%}
   <li><a class="social" href="{{ social.url | escape }}" aria-label="{{ social_name | escape }}">{% include 'social-icon' %}</a></li>
+  {%- endif -%}
   {%- endif -%}
   {%- endfor -%}
 </ul>

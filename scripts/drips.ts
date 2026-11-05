@@ -3,6 +3,9 @@
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const headings = document.querySelectorAll<HTMLElement>(".drip-heading");
 
+// Without this class (no script) the CSS shows the paint fully drawn.
+if (!reduce) document.documentElement.classList.add("drips-ready");
+
 if (!reduce && "IntersectionObserver" in window) {
   const seen = new IntersectionObserver(
     (entries) => {

@@ -8,10 +8,13 @@
     noindex: true on utility pages (404, thank-you, search results)
     jsonld:  a captured <script type="application/ld+json"> block
     og_type: an Open Graph type other than "website" ("profile" on home)
+    description: this page's meta description, instead of site.description
     back:    true on project pages; the top bar shows "← Index" instead
              of the role and nav
 {%- endcomment -%}
 {%- assign site = objects.site -%}
+{%- assign page_desc = site.description -%}
+{%- if description -%}{%- if description != blank -%}{%- assign page_desc = description -%}{%- endif -%}{%- endif -%}
 {%- assign accent = "red" -%}
 {%- if site.accent != blank -%}
   {%- assign accent = site.accent -%}
@@ -44,12 +47,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ page_title | escape }}</title>
-    <meta name="description" content="{{ site.description | escape }}">
+    <meta name="description" content="{{ page_desc | escape }}">
     <link rel="canonical" href="{{ canonical_url | escape }}">
     {% if noindex %}<meta name="robots" content="noindex">{% endif %}
 
     <meta property="og:title" content="{{ page_title | escape }}">
-    <meta property="og:description" content="{{ site.description | escape }}">
+    <meta property="og:description" content="{{ page_desc | escape }}">
     <meta property="og:type" content="{% if og_type %}{{ og_type }}{% else %}website{% endif %}">
     <meta property="og:url" content="{{ canonical_url | escape }}">
     <meta property="og:site_name" content="{{ site_name | escape }}">
@@ -61,7 +64,7 @@
     <meta name="twitter:card" content="summary">
     {% endif %}
     <meta name="twitter:title" content="{{ page_title | escape }}">
-    <meta name="twitter:description" content="{{ site.description | escape }}">
+    <meta name="twitter:description" content="{{ page_desc | escape }}">
 
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)">

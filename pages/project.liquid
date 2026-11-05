@@ -1,2 +1,91 @@
-{% layout 'theme' title: project.title, path: project.path, back: true %}
-<h1>{{ project.title | escape }}</h1>
+{%- assign site = objects.site -%}
+{%- assign list = objects.project | sort: "order" -%}
+{%- assign num = 0 -%}
+{%- assign found = false -%}
+{%- assign nxt_num = 0 -%}
+{%- for item in list -%}
+  {%- if found and nxt_num == 0 -%}
+    {%- assign nxt = item -%}
+    {%- assign nxt_num = forloop.index -%}
+  {%- endif -%}
+  {%- if item.path == project.path -%}
+    {%- assign num = forloop.index -%}
+    {%- assign found = true -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- if nxt_num == 0 -%}
+  {%- assign nxt = list.first -%}
+  {%- assign nxt_num = 1 -%}
+{%- endif -%}
+{%- assign year_rest = project.year | remove: "0" | remove: "1" | remove: "2" | remove: "3" | remove: "4" | remove: "5" | remove: "6" | remove: "7" | remove: "8" | remove: "9" -%}
+{%- assign plain_year = false -%}
+{%- if project.year.size == 4 and year_rest == "" -%}{%- assign plain_year = true -%}{%- endif -%}
+{%- capture ld_title %}{{ project.title | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
+{%- capture ld_summary %}{{ project.summary | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
+{%- capture ld_name %}{{ site.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
+{%- capture jsonld -%}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "{{ ld_title }}"
+    {%- if project.summary != blank -%}, "description": "{{ ld_summary }}"{%- endif -%}
+    {%- if project.cover != blank -%}, "image": "{{ project.cover.url | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- endif -%}
+    , "creator": { "@type": "Person", "name": "{{ ld_name }}" }
+    {%- if plain_year -%}, "dateCreated": "{{ project.year }}"{%- endif -%}
+    {%- if site_url != blank -%}, "url": "{{ site_url }}/{{ project.path }}"{%- endif -%}
+  }
+</script>
+{%- endcapture -%}
+{% layout 'theme' title: project.title, path: project.path, jsonld: jsonld, description: project.summary, back: true %}
+
+<article class="project">
+  <header class="project-head">
+    <p class="project-num">{% if num < 10 %}0{% endif %}{{ num }}</p>
+    <h1>{{ project.title | escape }}</h1>
+  </header>
+
+  <div class="facts">
+    {% if project.client != blank %}<div class="fact"><p class="fact-label">Client</p><p class="fact-value">{{ project.client | escape }}</p></div>{% endif %}
+    {% if project.role != blank %}<div class="fact"><p class="fact-label">Role</p><p class="fact-value">{{ project.role | escape }}</p></div>{% endif %}
+    {% if project.discipline != blank %}<div class="fact"><p class="fact-label">Discipline</p><p class="fact-value">{{ project.discipline | escape }}</p></div>{% endif %}
+    {% if project.year != blank %}<div class="fact"><p class="fact-label">Year</p><p class="fact-value">{{ project.year | escape }}</p></div>{% endif %}
+  </div>
+
+  {% if project.cover != blank %}
+  <figure class="project-cover">
+    <img src="{{ project.cover.url | escape }}" alt="{{ project.cover_alt | escape }}">
+  </figure>
+  {% endif %}
+
+  {% if project.body != blank %}
+  <div class="project-body">
+    <p class="overview-label">Overview</p>
+    <div class="markdown">{{ project.body }}</div>
+  </div>
+  {% endif %}
+
+  {% assign shown = 0 %}
+  {% for img in project.image %}{% if img.file != blank %}{% assign shown = shown | plus: 1 %}{% endif %}{% endfor %}
+  {% if shown > 0 %}
+  <div class="gallery">
+    {%- for img in project.image -%}
+      {%- if img.file != blank -%}
+        {%- if img.alt != blank -%}{%- assign img_alt = img.alt -%}{%- else -%}{%- assign img_alt = img.caption -%}{%- endif %}
+    <figure class="gallery-item {% if img.size == "half" %}is-half{% else %}is-full{% endif %}">
+      <img src="{{ img.file.url | escape }}" alt="{{ img_alt | escape }}" loading="lazy">
+      {% if img.caption != blank %}<figcaption>{{ img.caption | escape }}</figcaption>{% endif %}
+    </figure>
+      {%- endif -%}
+    {%- endfor %}
+  </div>
+  {% endif %}
+
+  {% if nxt.path != project.path %}
+  <a class="next-project" href="/{{ nxt.path }}">
+    <span class="index-num">{% if nxt_num < 10 %}0{% endif %}{{ nxt_num }}</span>
+    <span class="next-title">{{ nxt.title | escape }}</span>
+    <span class="next-label">Next project →</span>
+  </a>
+  {% endif %}
+</article>

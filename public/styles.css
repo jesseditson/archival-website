@@ -139,6 +139,11 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* Scripts hide things with the hidden attribute; no display rule may undo it. */
+[hidden] {
+  display: none !important;
+}
+
 body {
   margin: 0;
   min-height: 100vh;

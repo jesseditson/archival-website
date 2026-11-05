@@ -1,6 +1,6 @@
 {%- assign site = objects.site -%}
 {%- assign stops = objects.stop | sort: "order" -%}
-{%- assign specials = objects.special_stop | sort: "order" -%}
+{%- assign specials = objects.special_stop | sort: "order" | sort: "date" -%}
 {%- assign dishes = objects.dish | sort: "order" -%}
 {%- assign days = "monday,tuesday,wednesday,thursday,friday,saturday,sunday" | split: "," -%}
 {%- assign has_schedule = false -%}

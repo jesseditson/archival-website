@@ -20,6 +20,10 @@
 {%- assign og_image_url = "" -%}
 {%- if site.og_image != blank -%}
   {%- assign og_image_url = site.og_image.url -%}
+{%- elsif site.hero_image != blank -%}
+  {%- assign og_image_url = site.hero_image.url -%}
+{%- elsif site.truck_photo != blank -%}
+  {%- assign og_image_url = site.truck_photo.url -%}
 {%- endif -%}
 {%- assign words = site_name | split: " " -%}
 {%- assign initials = "" -%}

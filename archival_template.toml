@@ -27,7 +27,7 @@ site (the truck itself):
 - booking_email, booking_url: how to book. Only real values the person gave; never invent an email address or URL. booking_url wins over booking_email for the button.
 - truck_photo, truck_photo_alt: an optional photo of the truck in the booking section. Leave empty.
 - og_image, favicon: leave empty.
-- social: one entry per social account the person gave. platform is one of "instagram", "tiktok", "facebook", "x", "youtube" or "other"; url is the full profile URL; label is the name shown to screen readers (and the visible name for "other"). Never invent URLs.
+- social: one entry per social account the person gave. platform is one of "instagram", "tiktok", "facebook", "x", "youtube" or "other"; url is the full profile URL; label is the account's name for screen readers (the button itself shows only the platform's icon, or a link icon for "other"). Never invent URLs.
 - photo: a strip of food photos, each with file and alt. Leave empty.
 
 stop (the weekly rotation, one item per stop): day is one of "monday" through "sunday"; place is how customers know the spot ("Market St & 5th", "Riverside Park, north lawn"); address is what a maps app should search for, or empty if there is none; start and end are times written the way the owner says them ("11am", "2pm"); note is optional ("Card only"). A day with no stops shows as a day off. A day can have two stops (lunch and dinner); set order so they sort by time.

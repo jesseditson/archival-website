@@ -1,0 +1,7 @@
+order = 1
+name = "Birria tacos"
+description = "Three tacos with slow-braised beef, melted cheese and a cup of consomé for dipping."
+price = "$13"
+spicy = false
+vegetarian = false
+sold_out = false

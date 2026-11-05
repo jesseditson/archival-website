@@ -1,0 +1,7 @@
+order = 1
+day = "tuesday"
+place = "Market St & 5th"
+address = "Market St & 5th St"
+start = "11am"
+end = "2pm"
+note = "Lunch rush, card or cash"

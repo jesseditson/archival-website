@@ -1,0 +1,7 @@
+order = 4
+day = "friday"
+place = "Elm & 2nd"
+address = "Elm St & 2nd Ave"
+start = "5pm"
+end = "10pm"
+note = "Late tacos till the salsa runs out"

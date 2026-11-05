@@ -1,20 +1,61 @@
 #:schema https://archival.dev/schemas/archival_objects.schema.json
-# The content schema. Every type name is singular: root objects are addressed
-# by their own name, and lists pluralize themselves in templates.
+# The content schema for the Food Truck template. Every type name is singular.
+# `order` is built in: set it in each item's file, never declare it here.
 
-# The identity object. The layout reads it on every page.
+# The truck itself. The layout reads it on every page.
 [site]
 name = "string"
+tagline = "string"
+intro = "string"
 description = "string"
+cuisine = "string"
+palette = ["sunshine", "bubblegum", "lime"]
+hero_image = "image"
+hero_alt = "string"
+order_url = "string"
+phone = "string"
+closed_until = "date"
+closed_note = "string"
+booking_heading = "string"
+booking_text = "markdown"
+booking_email = "string"
+booking_url = "string"
+truck_photo = "image"
+truck_photo_alt = "string"
 og_image = "image"
 favicon = "image"
 
-# A list type, one file per item under objects/<type>/, looks like this.
-# `template` makes each item render through pages/<type>.liquid to /<type>/<file>.
-# `order` is built in: set it in each item's file, never declare it here.
-#
-# [post]
-# title = "string"
-# publish_date = "date"
-# body = "markdown"
-# template = "post"
+[site.social]
+platform = ["instagram", "tiktok", "facebook", "x", "youtube", "other"]
+url = "string"
+label = "string"
+
+[site.photo]
+file = "image"
+alt = "string"
+
+# The weekly rotation: one file per stop. A day with no stops is a day off.
+[stop]
+day = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+place = "string"
+address = "string"
+start = "string"
+end = "string"
+note = "string"
+
+# One-off dates: festivals, markets, breweries. They hide after their date.
+[special_stop]
+date = "date"
+place = "string"
+address = "string"
+start = "string"
+end = "string"
+note = "string"
+
+[dish]
+name = "string"
+description = "string"
+price = "string"
+spicy = "boolean"
+vegetarian = "boolean"
+sold_out = "boolean"

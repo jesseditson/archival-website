@@ -1,0 +1,7 @@
+order = 5
+name = "Rajas con queso"
+description = "Roasted poblano strips, sweet corn and melted cheese."
+price = "$4"
+spicy = false
+vegetarian = true
+sold_out = false

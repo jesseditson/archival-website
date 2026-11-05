@@ -1,2 +1,29 @@
-name = "Archival Website"
-description = "A new site built with Archival."
+name = "Taco Tilt"
+tagline = "Birria, street tacos and big salsa energy"
+intro = "We cook birria low and slow overnight, press our tortillas to order, and park somewhere new most days of the week."
+description = "Taco Tilt is a taco truck serving birria, street tacos and fresh salsas. See where we are parked today, this week's schedule, the menu, and how to book the truck."
+cuisine = "Mexican"
+palette = "sunshine"
+order_url = ""
+phone = ""
+booking_heading = "Book the truck"
+booking_text = """We bring the truck to weddings, office lunches, birthdays and block parties. Tell us the date, the place and roughly how many people, and we will send back a menu and a quote.
+
+Most events need at least two weeks of notice and a minimum of 50 guests."""
+booking_email = "hello@example.com"
+booking_url = ""
+
+[[social]]
+platform = "instagram"
+url = "https://instagram.com/"
+label = "Instagram"
+
+[[social]]
+platform = "tiktok"
+url = "https://tiktok.com/"
+label = "TikTok"
+
+[[social]]
+platform = "facebook"
+url = "https://facebook.com/"
+label = "Facebook"

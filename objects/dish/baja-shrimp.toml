@@ -1,0 +1,7 @@
+order = 4
+name = "Baja shrimp"
+description = "Crispy shrimp, cabbage slaw, chipotle crema and lime."
+price = "$5"
+spicy = true
+vegetarian = false
+sold_out = true

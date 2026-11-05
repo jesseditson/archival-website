@@ -1,0 +1,7 @@
+order = 2
+name = "Al pastor"
+description = "Marinated pork off the spit, pineapple, onion and cilantro."
+price = "$4"
+spicy = true
+vegetarian = false
+sold_out = false

@@ -1,0 +1,7 @@
+order = 3
+name = "Carne asada"
+description = "Grilled steak, charred onion and salsa verde."
+price = "$4.50"
+spicy = false
+vegetarian = false
+sold_out = false

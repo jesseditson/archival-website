@@ -3,6 +3,7 @@ tagline = "Birria, street tacos and big salsa energy"
 intro = "We cook birria low and slow overnight, press our tortillas to order, and park somewhere new most days of the week."
 description = "Taco Tilt is a taco truck serving birria, street tacos and fresh salsas. See where we are parked today, this week's schedule, the menu, and how to book the truck."
 cuisine = "Mexican"
+hero_alt = "Three steak tacos with pickled onion and salsas on a tray, on a table of bright painted tiles"
 palette = "sunshine"
 order_url = ""
 phone = ""
@@ -27,3 +28,51 @@ label = "TikTok"
 platform = "facebook"
 url = "https://facebook.com/"
 label = "Facebook"
+
+[hero_image]
+display_type = "image"
+filename = "tacos-tiles.jpg"
+sha = "2b17333629fc15a487105419b93d0eefe672ba654574dab380c127d8cdd7d949"
+mime = "image/jpeg"
+
+[og_image]
+display_type = "image"
+filename = "og-tacos.jpg"
+sha = "d04a4ce53bd89e5d2dd8cc72d0ac97a9fff78e1e1954e21b421af56889060928"
+mime = "image/jpeg"
+
+[[photo]]
+alt = "Barbacoa tacos piled with onion and cilantro"
+
+[photo.file]
+display_type = "image"
+filename = "barbacoa.jpg"
+sha = "f9accc7f3a85ab1cb1ed5d6654781eeef410f989f6963d5a20939fcd9d9c56a2"
+mime = "image/jpeg"
+
+[[photo]]
+alt = "Steak tacos with pickled onion and three salsas on painted tiles"
+
+[photo.file]
+display_type = "image"
+filename = "tacos-tiles.jpg"
+sha = "2b17333629fc15a487105419b93d0eefe672ba654574dab380c127d8cdd7d949"
+mime = "image/jpeg"
+
+[[photo]]
+alt = "A plate of three tacos on a turquoise picnic table"
+
+[photo.file]
+display_type = "image"
+filename = "tacos-blue-table.jpg"
+sha = "6fdc9ed1853741cbb892b05c9c884fe06a9fe0ec2ce6f54047785127ec1c5370"
+mime = "image/jpeg"
+
+[[photo]]
+alt = "Shrimp tacos with avocado and crema, held up on a plate"
+
+[photo.file]
+display_type = "image"
+filename = "shrimp-tacos.jpg"
+sha = "271c8684ba5bd92a9d9717442b4fa2e13bc2de3dadd484bc065e6a0f7750765e"
+mime = "image/jpeg"

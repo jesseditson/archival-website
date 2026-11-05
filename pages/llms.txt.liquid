@@ -1,16 +1,24 @@
-{% assign site = objects.site %}# {{ site.name }}
+{%- assign site = objects.site -%}
+{%- assign projects_sorted = objects.project | sort: "order" -%}
+# {{ site.name }}
 
-> {{ site.description }}
+> {{ site.statement }}
+
+{{ site.description }}
+{% if site.role != blank %}
+Role: {{ site.role }}{% if site.focus != blank %} ({{ site.focus }}){% endif %}{% endif %}
+{% if site.location != blank %}Location: {{ site.location }}{% endif %}
 
 ## Pages
 
-- [Home]({{ site_url }}/)
-{% comment %}
-  List every section page, then every kind of content, generated from the
-  objects. For a list type:
+- [Home]({{ site_url }}/): the statement, an index of case studies, about, and contact.
 
-## Posts
+## Case studies
+{% for p in projects_sorted %}
+- [{{ p.title }}]({{ site_url }}/{{ p.path }}){% if p.summary != blank %}: {{ p.summary }}{% endif %}{% if p.client != blank %} Client: {{ p.client }}.{% endif %}{% if p.year != blank %} {{ p.year }}.{% endif %}
+{%- endfor %}
+{% if site.email != blank %}
+## Contact
 
-{% for post in posts %}- [{{ post.title }}]({{ site_url }}/{{ post.path }})
-{% endfor %}
-{% endcomment %}
+{{ site.email }}
+{% endif %}

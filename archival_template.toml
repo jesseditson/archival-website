@@ -1,16 +1,40 @@
 #:schema https://archival.dev/schemas/archival_template.schema.json
-# Shown in the editor's template picker.
-name = ""
-# One line for the gallery card, roughly ten to fifteen words.
-tagline = ""
-# The template info modal's body: what this template is and what it contains.
+name = "Case Studies"
+tagline = "A numbered index of case studies, each with its own page for the full story."
 description = """
+A portfolio for designers, illustrators, architects and small studios who win work by showing how they think. The home page opens with one large statement, then lists every project as a numbered index; hovering a row shows its cover beside the list. Each project gets its own page with the client, role, discipline and year, a cover image, a written case study, and a run of captioned images. About, selected clients and contact sit below the index on the same page. The look is Swiss: a strict grid, one typeface, black on white, and a single accent color you can change.
 """
-# The prompt that drives content generation. Describe when to pick this
-# template and what every field holds. Update it whenever the schema changes.
 context = """
+Choose this template for a person or small studio showing creative work as case studies: designers, illustrators, architects, UX designers, art directors. Prefer it when the work comes with context (a client, a brief, a process), and the Photo Gallery template when the material is mostly standalone images.
+
+The site object holds the identity:
+- name: the person or studio name.
+- role: a short role line, such as "Independent designer".
+- focus: a few disciplines, comma separated, such as "Brand, editorial, wayfinding".
+- statement: one sentence shown very large as the home page's h1. Keep it under about 60 characters so it sets well at display size.
+- description: one or two sentences for search results and social cards.
+- accent: one of red, blue, orange, green, black. Use red unless the provided data suggests a brand color.
+- bio: a short markdown bio in the first person, one or two paragraphs.
+- portrait and portrait_alt: an image of the person or their workspace, and its alt text.
+- email and location.
+- show_clients: set it to true whenever you generate clients, or the list is hidden.
+- link: a list of links, each with a label (such as "Instagram") and a url.
+- client: a list of past clients, each with a name. Generate 4 to 8 when the data names clients.
+- og_image and favicon: optional images.
+
+Each project object is one case study, one file per project, with an order starting at 1:
+- title: the project name.
+- client, role (what the person did, such as "Identity, type, art direction"), discipline (one word for the index column, such as "Identity" or "Editorial"), and year (a year, or a range such as "2023–2024").
+- summary: exactly one line describing the project. It is used for search results and listings.
+- cover and cover_alt: the project's main image and its alt text.
+- body: the case study in markdown, two to four short paragraphs: the brief, the approach, the outcome.
+- image: a list of images, each with file, caption (a short line shown under the image), alt (alt text; leave it empty to reuse the caption), and size, which is either "full" (the image spans the page) or "half" (two consecutive half images sit side by side). Generate 2 to 4 images per project and mix full and half.
+
+Generate 4 to 6 projects.
+
+Never invent images: leave every image field empty (portrait, cover, file, og_image, favicon). Captions and alt text may still be written for image entries. For every url field, use only a URL that appears verbatim in the provided data; otherwise leave it empty, and the label still shows as plain text. Do not invent clients, awards or numbers that the data does not support.
 """
-tags = []
-tlds = []
+tags = ["portfolio", "design", "case studies", "studio"]
+tlds = ["design", "studio", "com"]
 # Value paths kept when a site is generated, instead of stripped as examples.
 keep_objects = []

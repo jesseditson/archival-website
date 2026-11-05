@@ -13,7 +13,7 @@ Pick this template for a food truck, food cart, trailer or pop-up that moves bet
 
 site (the truck itself):
 - name: the truck's name. It is the page's only h1, shown on a big tilted sticker.
-- tagline: a short line under the name, around six to ten words ("Birria, street tacos and big salsa energy").
+- tagline: a short line under the name, around six to ten words ("Birria and street tacos worth chasing down").
 - intro: one or two sentences about the truck in the owner's voice.
 - description: one or two sentences for search results and link previews.
 - cuisine: the kind of food in a word or two ("Mexican", "Coffee", "Korean BBQ").

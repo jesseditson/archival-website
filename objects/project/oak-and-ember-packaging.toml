@@ -1,0 +1,35 @@
+order = 3
+title = "Seasonal packaging"
+client = "Oak & Ember"
+role = "Packaging, illustration"
+discipline = "Packaging"
+year = "2024"
+summary = "Four boxes for four seasons, printed in two colors on recycled board."
+cover_alt = "Four small cardboard boxes stacked on a wooden table"
+body = """
+Oak & Ember blends tea in small batches and changes its range with the seasons. They needed packaging that could change four times a year without reprinting everything.
+
+The answer was one box, one label size and a palette of two inks per season. A simple pattern of lines changes angle as the year turns, so the full set reads as a sequence on a shelf.
+
+The boxes are printed on recycled board with no coating, which keeps the cost down and lets the ink sink into the fibers.
+"""
+
+[[image]]
+caption = "The full year on one shelf"
+alt = "A row of tea boxes in four color pairings"
+size = "full"
+
+[[image]]
+caption = "Winter blend"
+alt = "A single box with a dense pattern of diagonal lines"
+size = "half"
+
+[[image]]
+caption = "Label detail"
+alt = "A close view of a printed label on textured board"
+size = "half"
+
+[[image]]
+caption = "Shipping sleeve"
+alt = "A plain kraft sleeve with a small printed mark"
+size = "half"

@@ -1,20 +1,106 @@
 {%- assign site = objects.site -%}
+{%- assign projects_sorted = objects.project | sort: "order" -%}
+{%- assign has_preview = false -%}
+{%- for p in projects_sorted -%}
+  {%- if p.cover != blank -%}{%- assign has_preview = true -%}{%- endif -%}
+{%- endfor -%}
 {%- capture ld_name %}{{ site.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
 {%- capture ld_desc %}{{ site.description | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
+{%- capture ld_role %}{{ site.role | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
+{%- capture ld_email %}{{ site.email | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
+{%- capture ld_same -%}
+  {%- assign first = true -%}
+  {%- for link in site.link -%}
+    {%- if link.url != blank -%}
+      {%- unless first %},{% endunless %}"{{ link.url | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"
+      {%- assign first = false -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
 {%- capture jsonld -%}
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebSite",
+    "@type": "Person",
     "name": "{{ ld_name }}"
     {%- if site.description != blank -%}, "description": "{{ ld_desc }}"{%- endif -%}
+    {%- if site.role != blank -%}, "jobTitle": "{{ ld_role }}"{%- endif -%}
+    {%- if site.email != blank -%}, "email": "{{ ld_email }}"{%- endif -%}
+    {%- if site.portrait != blank -%}, "image": "{{ site.portrait.url | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- endif -%}
+    {%- if ld_same != blank -%}, "sameAs": [{{ ld_same }}]{%- endif -%}
     {%- if site_url != blank -%}, "url": "{{ site_url }}/"{%- endif -%}
   }
 </script>
 {%- endcapture -%}
-{% layout 'theme' title: "", path: "", jsonld: jsonld %}
+{% layout 'theme' title: "", path: "", jsonld: jsonld, og_type: "profile" %}
 
-<section class="intro">
-  <h1>{{ site.name | escape }}</h1>
-  {% if site.description != blank %}<p>{{ site.description | escape }}</p>{% endif %}
+<h1 class="statement">{{ site.statement | escape }}</h1>
+
+<section id="work" class="work{% if has_preview %} has-preview{% endif %}" aria-labelledby="work-heading">
+  <h2 id="work-heading" class="visually-hidden">Work</h2>
+  <ol class="index">
+    {%- for p in projects_sorted %}
+    <li class="index-row">
+      <a class="index-link" href="/{{ p.path }}">
+        <span class="index-num">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
+        <span class="index-title">{{ p.title | escape }}</span>
+        {% unless has_preview %}<span class="index-client">{{ p.client | escape }}</span>{% endunless %}
+        <span class="index-meta">
+          <span class="index-discipline">{{ p.discipline | escape }}</span>
+          <span class="index-year">{{ p.year | escape }}</span>
+        </span>
+      </a>
+    </li>
+    {%- endfor %}
+  </ol>
+  {% if has_preview %}
+  <div class="preview" aria-hidden="true">
+    {%- assign default_set = false -%}
+    {%- for p in projects_sorted -%}
+      {%- if p.cover != blank %}
+    <figure class="preview-item{% unless default_set %} is-default{% endunless %}" data-n="{{ forloop.index }}">
+      <img src="{{ p.cover.url | escape }}" alt="" loading="lazy">
+      <figcaption>{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }} {{ p.title | escape }}</figcaption>
+    </figure>
+        {%- assign default_set = true -%}
+      {%- endif -%}
+    {%- endfor %}
+  </div>
+  {% endif %}
+</section>
+
+<section id="about" class="home-section about{% if site.portrait != blank %} has-portrait{% endif %}" aria-labelledby="about-heading">
+  <h2 id="about-heading" class="section-label">About</h2>
+  {% if site.portrait != blank %}
+  <figure class="about-portrait">
+    <img src="{{ site.portrait.url | escape }}" alt="{{ site.portrait_alt | escape }}">
+  </figure>
+  {% endif %}
+  {% if site.bio != blank %}<div class="about-bio markdown">{{ site.bio }}</div>{% endif %}
+</section>
+
+{% if site.show_clients != false and site.client.size > 0 %}
+<section class="home-section clients" aria-labelledby="clients-heading">
+  <h2 id="clients-heading" class="section-label">Selected clients</h2>
+  <ul class="client-list">
+    {%- for c in site.client %}
+    {% if c.name != blank %}<li>{{ c.name | escape }}</li>{% endif %}
+    {%- endfor %}
+  </ul>
+</section>
+{% endif %}
+
+<section id="contact" class="home-section contact" aria-labelledby="contact-heading">
+  <h2 id="contact-heading" class="section-label">Contact</h2>
+  {% if site.email != blank %}
+  <a class="contact-email" href="mailto:{{ site.email | escape }}">{{ site.email | escape }}</a>
+  {% endif %}
+  {% if site.location != blank %}<p class="contact-location">{{ site.location | escape }}</p>{% endif %}
+  {% if site.link.size > 0 %}
+  <ul class="contact-links">
+    {%- for link in site.link %}
+    {% if link.label != blank %}<li>{% if link.url != blank %}<a href="{{ link.url | escape }}">{{ link.label | escape }}</a>{% else %}<span>{{ link.label | escape }}</span>{% endif %}</li>{% endif %}
+    {%- endfor %}
+  </ul>
+  {% endif %}
 </section>

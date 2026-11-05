@@ -1,20 +1,45 @@
 #:schema https://archival.dev/schemas/archival_objects.schema.json
-# The content schema. Every type name is singular: root objects are addressed
-# by their own name, and lists pluralize themselves in templates.
 
-# The identity object. The layout reads it on every page.
+# The identity object. The layout and home page read it.
 [site]
-name = "string"
-description = "string"
+name = "string"          # person or studio name
+role = "string"          # "Independent designer"
+focus = "string"         # "Brand, editorial, wayfinding"
+statement = "string"     # the large home-page statement, the page's h1
+description = "string"   # meta description and social cards
+accent = ["red", "blue", "orange", "green", "black"]
+bio = "markdown"
+portrait = "image"
+portrait_alt = "string"
+email = "string"
+location = "string"
+show_clients = "boolean"
 og_image = "image"
 favicon = "image"
 
-# A list type, one file per item under objects/<type>/, looks like this.
-# `template` makes each item render through pages/<type>.liquid to /<type>/<file>.
-# `order` is built in: set it in each item's file, never declare it here.
-#
-# [post]
-# title = "string"
-# publish_date = "date"
-# body = "markdown"
-# template = "post"
+[site.link]              # social and other links
+label = "string"
+url = "string"
+
+[site.client]            # "selected clients", names only
+name = "string"
+
+# One case study per file under objects/project/. `order` (built in) sets
+# the sequence and the two-digit numbers.
+[project]
+title = "string"
+client = "string"
+role = "string"          # what the designer did: "Identity, type, art direction"
+discipline = "string"    # the index column: "Identity"
+year = "string"          # a string so ranges work
+summary = "string"       # one line: meta description, llms.txt, JSON-LD
+cover = "image"
+cover_alt = "string"
+body = "markdown"
+template = "project"
+
+[project.image]
+file = "image"
+caption = "string"
+alt = "string"           # falls back to caption when blank
+size = ["full", "half"]  # consecutive halves sit side by side

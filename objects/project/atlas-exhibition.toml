@@ -1,0 +1,35 @@
+order = 6
+title = "Paper Weight exhibition"
+client = "Atlas Print Museum"
+role = "Exhibition graphics, catalog"
+discipline = "Exhibition"
+year = "2022"
+summary = "Graphics and a catalog for an exhibition about how much information a sheet of paper can carry."
+cover_alt = "Large printed panels hanging in a white gallery"
+body = """
+Paper Weight brought together maps, timetables, ledgers and posters from the museum's collection. The curators wanted the exhibition graphics to step back and let the objects talk.
+
+Wall texts are printed directly onto unbleached paper hung from rails, so the labels share a material with the work. The catalog follows the same rule: every object is shown at actual size wherever the page allows.
+
+The show ran for five months and the catalog went into a second printing.
+"""
+
+[[image]]
+caption = "Hanging wall texts"
+alt = "Long paper panels with printed text hanging from ceiling rails"
+size = "full"
+
+[[image]]
+caption = "Catalog spread at actual size"
+alt = "An open catalog with a map reproduced across both pages"
+size = "half"
+
+[[image]]
+caption = "Object label"
+alt = "A small printed label beside a framed document"
+size = "half"
+
+[[image]]
+caption = "Entrance title wall"
+alt = "Large black type on a white wall at a gallery entrance"
+size = "full"

@@ -1,2 +1,48 @@
-name = "Archival Website"
-description = "A new site built with Archival."
+name = "Mara Lindqvist"
+role = "Independent designer"
+focus = "Brand, editorial, wayfinding"
+statement = "Identity and editorial design for cultural clients."
+description = "Mara Lindqvist is an independent designer in Rotterdam working on identity, editorial and wayfinding projects for cultural clients."
+accent = "red"
+bio = """
+I design identities, publications and signage for museums, foundations and the small companies that sit around them. Most projects start with a long conversation and a short brief, and end with a system the client can run without me.
+
+Before going independent in 2019, I spent six years at a studio that made exhibition graphics and annual reports. I still like work that has to hold up on a wall, on a page and on a phone at the same time.
+"""
+portrait_alt = "Mara's desk with proofs, a cutting mat and a steel ruler"
+email = "hello@example.com"
+location = "Rotterdam, Netherlands"
+show_clients = true
+
+[[link]]
+label = "Instagram"
+url = "https://www.instagram.com/"
+
+[[link]]
+label = "LinkedIn"
+url = "https://www.linkedin.com/"
+
+[[link]]
+label = "Are.na"
+url = "https://www.are.na/"
+
+[[client]]
+name = "Fieldhouse Athletic"
+
+[[client]]
+name = "Nordvik Foundation"
+
+[[client]]
+name = "Oak & Ember"
+
+[[client]]
+name = "Meridian Arts Center"
+
+[[client]]
+name = "Harbor Line Ferries"
+
+[[client]]
+name = "Atlas Print Museum"
+
+[[client]]
+name = "Kestrel Books"

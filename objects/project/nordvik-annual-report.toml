@@ -1,0 +1,30 @@
+order = 2
+title = "Annual report"
+client = "Nordvik Foundation"
+role = "Editorial design, typesetting"
+discipline = "Editorial"
+year = "2025"
+summary = "A foundation's year in grants, told through the people who received them."
+cover_alt = "An open annual report showing a full-page photograph and a column of text"
+body = """
+Nordvik funds small arts organizations across the north of the country. Their reports had always opened with the numbers. This year they wanted to open with the work.
+
+The book leads with twelve short profiles of grant recipients, each set on a single spread with one photograph. The financial statements follow in a quieter second section printed on uncoated stock, so the change in paper marks the change in voice.
+
+Everything is set in two weights of one typeface, with a tight grid that let the foundation's staff update the profiles in a shared template after the first edition.
+"""
+
+[[image]]
+caption = "Profile spread"
+alt = "A spread with a portrait photograph on the left and a short profile on the right"
+size = "full"
+
+[[image]]
+caption = "Section divider"
+alt = "A blank divider page with a single line of text"
+size = "half"
+
+[[image]]
+caption = "Financial statements on uncoated stock"
+alt = "A page of tables printed on textured off-white paper"
+size = "half"

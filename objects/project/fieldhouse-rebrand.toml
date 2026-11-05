@@ -1,0 +1,35 @@
+order = 1
+title = "Fieldhouse rebrand"
+client = "Fieldhouse Athletic"
+role = "Identity, type, art direction"
+discipline = "Identity"
+year = "2025"
+summary = "A neighborhood gym outgrows its hand-painted sign without losing its warmth."
+cover_alt = "The Fieldhouse wordmark on a painted brick wall"
+body = """
+Fieldhouse had been a boxing gym, a community hall and, for a decade, a place where half the street learned to swim. The owners wanted a name and mark that could carry all of that, on a jersey, a door and a phone screen.
+
+We kept the slab letters from the original sign and redrew them as a compact wordmark with a heavier F that works as an icon on its own. The color is the green of the old changing-room tiles.
+
+The system ships as a short guide, a set of templates for class schedules, and a kit of painted signage the staff can reorder themselves.
+"""
+
+[[image]]
+caption = "The redrawn wordmark beside the original sign"
+alt = "Two versions of the Fieldhouse wordmark side by side"
+size = "full"
+
+[[image]]
+caption = "Class schedule template"
+alt = "A printed weekly class schedule pinned to a corkboard"
+size = "half"
+
+[[image]]
+caption = "Jersey and tote"
+alt = "A green jersey and canvas tote with the F mark"
+size = "half"
+
+[[image]]
+caption = "Entrance signage, painted on site"
+alt = "A sign painter finishing the gym's entrance lettering"
+size = "full"

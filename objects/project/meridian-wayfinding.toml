@@ -1,0 +1,30 @@
+order = 4
+title = "Museum wayfinding"
+client = "Meridian Arts Center"
+role = "Wayfinding, signage system"
+discipline = "Signage"
+year = "2024"
+summary = "A signage system for an arts center spread across three connected buildings."
+cover_alt = "A tall white sign with directional arrows in a concrete hallway"
+body = """
+Meridian occupies a former printworks, a school and a new glass hall, joined by bridges that visitors found confusing. The brief was to make the three buildings read as one place.
+
+Each building got a single letter and a floor number, so every room has a short address. Signs are white enamel with black type at three sizes only, mounted at one height throughout.
+
+We tested the system with printed paper signs for a month before anything was fabricated, and moved a third of them.
+"""
+
+[[image]]
+caption = "Directional sign at the main bridge"
+alt = "A white enamel sign with arrows and building letters"
+size = "full"
+
+[[image]]
+caption = "Room address"
+alt = "A small sign beside a door reading B2"
+size = "half"
+
+[[image]]
+caption = "Paper prototypes during testing"
+alt = "Printed paper signs taped to a wall"
+size = "half"

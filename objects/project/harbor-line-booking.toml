@@ -1,0 +1,30 @@
+order = 5
+title = "Booking site"
+client = "Harbor Line Ferries"
+role = "Interface design, design system"
+discipline = "Digital"
+year = "2023"
+summary = "A ferry booking site rebuilt around the one question riders ask: when is the next boat?"
+cover_alt = "A phone showing a ferry timetable on a harbor railing"
+body = """
+Harbor Line runs four routes across the bay. Their old site made riders choose a route, a date and a fare before showing a single departure time.
+
+The new site opens on the next three departures from the rider's nearest pier, with booking one tap away. Timetables, fares and accessibility information sit underneath, written in plain language.
+
+I designed the interface and a small component library, and worked with the ferry company's own developers through launch.
+"""
+
+[[image]]
+caption = "Next departures, on a phone"
+alt = "A phone screen listing three upcoming ferry times"
+size = "half"
+
+[[image]]
+caption = "Fare selection"
+alt = "A phone screen with three fare options"
+size = "half"
+
+[[image]]
+caption = "Component library overview"
+alt = "A grid of interface components on a light background"
+size = "full"

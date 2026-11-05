@@ -1,7 +1,17 @@
-{% assign site = objects.site %}# {{ site.name }}
+{%- comment -%}
+  The editor's from-scratch flow can replace the schema, and archival fails
+  the build on any reference to a field the schema does not define, even
+  inside an `if`. Looping over the object's fields reads them safely.
+{%- endcomment -%}
+{%- assign site = objects.site -%}
+{%- for field in site -%}
+{%- if field.first == "name" and field.last != blank %}# {{ field.last }}
 
-> {{ site.description }}
+{% endif -%}
+{%- if field.first == "description" and field.last != blank %}> {{ field.last }}
 
+{% endif -%}
+{%- endfor -%}
 ## Pages
 
 - [Home]({{ site_url }}/)

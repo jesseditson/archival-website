@@ -448,6 +448,26 @@ Leave `markdown` fields alone (they are already HTML), and use the JSON
 escape chain below, not `escape`, inside `<script>` blocks. Most of the
 older templates predate this rule.
 
+### A field the schema doesn't define fails on any reference
+
+archival treats two cases differently. A field defined in
+`archival_objects.toml` but missing from the data is nil, and
+`{% if x.field != blank %}` handles it. A field the schema does not define
+at all fails the build on *any* reference, including inside an `if`
+(`liquid: Unknown index ... requested index=description`).
+
+This matters most on `templates/new`: the editor's from-scratch flow starts
+from it, replaces the schema and rewrites the layout and home page, but
+keeps the other starter pages. Any page it keeps (`llms.txt`, `sitemap.xml`,
+`robots.txt`, `404`) must not name a schema field directly. Read optional
+fields by looping over the object instead:
+
+```liquid
+{% for field in objects.site %}{% if field.first == "description" %}{{ field.last }}{% endif %}{% endfor %}
+```
+
+The editor's `src/test/infer-script.test.ts` builds the starter this way.
+
 ### Singleton-vs-collection access ambiguity
 
 In templates rendering an object via `template = "..."`, the bare

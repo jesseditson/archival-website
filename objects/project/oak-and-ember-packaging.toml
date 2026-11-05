@@ -5,7 +5,7 @@ role = "Packaging, illustration"
 discipline = "Packaging"
 year = "2024"
 summary = "Four boxes for four seasons, printed in two colors on recycled board."
-cover_alt = "Four small cardboard boxes stacked on a wooden table"
+cover_alt = "A small kraft box with a wire handle on a pale gray surface"
 body = """
 Oak & Ember blends tea in small batches and changes its range with the seasons. They needed packaging that could change four times a year without reprinting everything.
 
@@ -15,21 +15,21 @@ The boxes are printed on recycled board with no coating, which keeps the cost do
 """
 
 [[image]]
-caption = "The full year on one shelf"
-alt = "A row of tea boxes in four color pairings"
+caption = "The single box, opened flat"
+alt = "An open kraft box seen from above"
 size = "full"
 
 [[image]]
-caption = "Winter blend"
-alt = "A single box with a dense pattern of diagonal lines"
+caption = "Tasting card, back"
+alt = "A folded kraft card standing on a gray surface"
 size = "half"
 
 [[image]]
-caption = "Label detail"
-alt = "A close view of a printed label on textured board"
+caption = "Tasting card, front"
+alt = "A kraft card seen from the front"
 size = "half"
 
 [[image]]
-caption = "Shipping sleeve"
-alt = "A plain kraft sleeve with a small printed mark"
+caption = "Recycled board, uncoated"
+alt = "Close view of corrugated cardboard"
 size = "half"

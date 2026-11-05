@@ -5,7 +5,7 @@ role = "Exhibition graphics, catalog"
 discipline = "Exhibition"
 year = "2022"
 summary = "Graphics and a catalog for an exhibition about how much information a sheet of paper can carry."
-cover_alt = "Large printed panels hanging in a white gallery"
+cover_alt = "A large empty gallery hall under rows of ceiling lights"
 body = """
 Paper Weight brought together maps, timetables, ledgers and posters from the museum's collection. The curators wanted the exhibition graphics to step back and let the objects talk.
 
@@ -15,21 +15,21 @@ The show ran for five months and the catalog went into a second printing.
 """
 
 [[image]]
-caption = "Hanging wall texts"
-alt = "Long paper panels with printed text hanging from ceiling rails"
+caption = "The main room before installation"
+alt = "A white gallery room lit by skylights"
 size = "full"
 
 [[image]]
-caption = "Catalog spread at actual size"
-alt = "An open catalog with a map reproduced across both pages"
+caption = "The long gallery"
+alt = "A tall, narrow white gallery with a dark floor"
 size = "half"
 
 [[image]]
-caption = "Object label"
-alt = "A small printed label beside a framed document"
+caption = "The curved wall at the exit"
+alt = "A curving white wall over a dark floor"
 size = "half"
 
 [[image]]
-caption = "Entrance title wall"
-alt = "Large black type on a white wall at a gallery entrance"
+caption = "Freestanding walls for the wall texts"
+alt = "White partition walls in an empty gallery"
 size = "full"

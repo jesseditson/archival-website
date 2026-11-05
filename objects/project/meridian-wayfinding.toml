@@ -5,7 +5,7 @@ role = "Wayfinding, signage system"
 discipline = "Signage"
 year = "2024"
 summary = "A signage system for an arts center spread across three connected buildings."
-cover_alt = "A tall white sign with directional arrows in a concrete hallway"
+cover_alt = "Arrows cast into a board-marked concrete wall"
 body = """
 Meridian occupies a former printworks, a school and a new glass hall, joined by bridges that visitors found confusing. The brief was to make the three buildings read as one place.
 
@@ -15,16 +15,16 @@ We tested the system with printed paper signs for a month before anything was fa
 """
 
 [[image]]
-caption = "Directional sign at the main bridge"
-alt = "A white enamel sign with arrows and building letters"
+caption = "Arrow set into a plastered wall"
+alt = "A thin arrow shape on a white wall"
 size = "full"
 
 [[image]]
-caption = "Room address"
-alt = "A small sign beside a door reading B2"
+caption = "Floor marking at the main bridge"
+alt = "A black arrow inside a white circle on concrete"
 size = "half"
 
 [[image]]
-caption = "Paper prototypes during testing"
-alt = "Printed paper signs taped to a wall"
+caption = "Blade sign in the glass hall"
+alt = "A black hanging sign with an arrow in a white hallway"
 size = "half"

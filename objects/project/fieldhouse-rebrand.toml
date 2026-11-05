@@ -5,7 +5,7 @@ role = "Identity, type, art direction"
 discipline = "Identity"
 year = "2025"
 summary = "A neighborhood gym outgrows its hand-painted sign without losing its warmth."
-cover_alt = "The Fieldhouse wordmark on a painted brick wall"
+cover_alt = "A dark gray card catching a hard diagonal shadow"
 body = """
 Fieldhouse had been a boxing gym, a community hall and, for a decade, a place where half the street learned to swim. The owners wanted a name and mark that could carry all of that, on a jersey, a door and a phone screen.
 
@@ -15,21 +15,21 @@ The system ships as a short guide, a set of templates for class schedules, and a
 """
 
 [[image]]
-caption = "The redrawn wordmark beside the original sign"
-alt = "Two versions of the Fieldhouse wordmark side by side"
+caption = "Letterhead and card stock in the new palette"
+alt = "Stacks of blank cream paper and cards on a gray surface"
 size = "full"
 
 [[image]]
-caption = "Class schedule template"
-alt = "A printed weekly class schedule pinned to a corkboard"
+caption = "Membership cards, folded for the spring mailing"
+alt = "Scattered folded white cards on brown paper"
 size = "half"
 
 [[image]]
-caption = "Jersey and tote"
-alt = "A green jersey and canvas tote with the F mark"
+caption = "Class schedule cards, printed in one color"
+alt = "Rows of white cards in raking light"
 size = "half"
 
 [[image]]
-caption = "Entrance signage, painted on site"
-alt = "A sign painter finishing the gym's entrance lettering"
+caption = "A proof of the schedule template"
+alt = "A sheet of white paper and a pen on a dark desk"
 size = "full"

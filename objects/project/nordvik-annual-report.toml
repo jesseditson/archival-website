@@ -5,7 +5,7 @@ role = "Editorial design, typesetting"
 discipline = "Editorial"
 year = "2025"
 summary = "A foundation's year in grants, told through the people who received them."
-cover_alt = "An open annual report showing a full-page photograph and a column of text"
+cover_alt = "An open book on a white table"
 body = """
 Nordvik funds small arts organizations across the north of the country. Their reports had always opened with the numbers. This year they wanted to open with the work.
 
@@ -15,16 +15,16 @@ Everything is set in two weights of one typeface, with a tight grid that let the
 """
 
 [[image]]
-caption = "Profile spread"
-alt = "A spread with a portrait photograph on the left and a short profile on the right"
+caption = "The profile section, uncoated stock"
+alt = "An open book seen from page level"
 size = "full"
 
 [[image]]
-caption = "Section divider"
-alt = "A blank divider page with a single line of text"
+caption = "The finished edition"
+alt = "A small open book against a gray wall"
 size = "half"
 
 [[image]]
-caption = "Financial statements on uncoated stock"
-alt = "A page of tables printed on textured off-white paper"
+caption = "Section binding detail"
+alt = "Close view of white pages and a binding thread"
 size = "half"

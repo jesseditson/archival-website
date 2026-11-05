@@ -5,7 +5,7 @@ role = "Interface design, design system"
 discipline = "Digital"
 year = "2023"
 summary = "A ferry booking site rebuilt around the one question riders ask: when is the next boat?"
-cover_alt = "A phone showing a ferry timetable on a harbor railing"
+cover_alt = "A phone standing upright on a white surface"
 body = """
 Harbor Line runs four routes across the bay. Their old site made riders choose a route, a date and a fare before showing a single departure time.
 
@@ -15,16 +15,16 @@ I designed the interface and a small component library, and worked with the ferr
 """
 
 [[image]]
-caption = "Next departures, on a phone"
-alt = "A phone screen listing three upcoming ferry times"
+caption = "Next departures, checked at the pier"
+alt = "A hand holding a phone outdoors"
 size = "half"
 
 [[image]]
 caption = "Fare selection"
-alt = "A phone screen with three fare options"
+alt = "A phone lying at an angle on a white surface"
 size = "half"
 
 [[image]]
-caption = "Component library overview"
-alt = "A grid of interface components on a light background"
+caption = "The booking flow, start to finish"
+alt = "A phone lying flat on a white surface"
 size = "full"

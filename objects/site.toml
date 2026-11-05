@@ -14,6 +14,12 @@ email = "hello@example.com"
 location = "Rotterdam, Netherlands"
 show_clients = true
 
+[portrait]
+display_type = "image"
+filename = "portrait.jpg"
+sha = "ad02e82dd3ae0dd851f48aabba18e35577aa75cdda80c80f589614721a17dc43"
+mime = "image/jpeg"
+
 [[link]]
 label = "Instagram"
 url = "https://www.instagram.com/"

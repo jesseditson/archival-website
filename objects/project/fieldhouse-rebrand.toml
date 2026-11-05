@@ -5,7 +5,7 @@ role = "Identity, type, art direction"
 discipline = "Identity"
 year = "2025"
 summary = "A neighborhood gym outgrows its hand-painted sign without losing its warmth."
-cover_alt = "A dark gray card catching a hard diagonal shadow"
+cover_alt = "A blank spiral notepad beside long green leaves on white"
 body = """
 Fieldhouse had been a boxing gym, a community hall and, for a decade, a place where half the street learned to swim. The owners wanted a name and mark that could carry all of that, on a jersey, a door and a phone screen.
 
@@ -14,22 +14,41 @@ We kept the slab letters from the original sign and redrew them as a compact wor
 The system ships as a short guide, a set of templates for class schedules, and a kit of painted signage the staff can reorder themselves.
 """
 
+[cover]
+display_type = "image"
+filename = "fieldhouse-notepad.jpg"
+sha = "a3d826c60804fea59b047accb6a71d208a402438a3ff4cb428a8ad3510acab75"
+mime = "image/jpeg"
+
 [[image]]
 caption = "Letterhead and card stock in the new palette"
 alt = "Stacks of blank cream paper and cards on a gray surface"
 size = "full"
 
-[[image]]
-caption = "Membership cards, folded for the spring mailing"
-alt = "Scattered folded white cards on brown paper"
-size = "half"
+[image.file]
+display_type = "image"
+filename = "fieldhouse-1.jpg"
+sha = "7c9897b7d886edf7b81bb9cc776b3f7e455dd71d6c6a5679087efc7847c16e39"
+mime = "image/jpeg"
 
 [[image]]
-caption = "Class schedule cards, printed in one color"
-alt = "Rows of white cards in raking light"
+caption = "Front desk notepads for class sign-ups"
+alt = "Two small white notepads, a tape dispenser and black scissors on a white desk"
 size = "half"
 
+[image.file]
+display_type = "image"
+filename = "fieldhouse-desk-notes.jpg"
+sha = "be092f16d200cc6923440f0ef3a4217c5c78999d22bef676ff8b707f8cb95e03"
+mime = "image/jpeg"
+
 [[image]]
-caption = "A proof of the schedule template"
-alt = "A sheet of white paper and a pen on a dark desk"
-size = "full"
+caption = "Early color studies"
+alt = "Gray watercolor swatches, pencils and copper binder clips on white"
+size = "half"
+
+[image.file]
+display_type = "image"
+filename = "fieldhouse-swatches.jpg"
+sha = "3eba60b745e8db3fae8c66634f09a65664bfa45fbf4af6152221ac717aa74891"
+mime = "image/jpeg"

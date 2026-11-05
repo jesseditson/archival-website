@@ -36,5 +36,7 @@ Never invent images: leave every image field empty (portrait, cover, file, og_im
 """
 tags = ["portfolio", "design", "case studies", "studio"]
 tlds = ["design", "studio", "com"]
+# Files the template itself uses; not copied into generated sites.
+assets = ["CREDITS.md"]
 # Value paths kept when a site is generated, instead of stripped as examples.
 keep_objects = []

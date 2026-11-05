@@ -14,22 +14,52 @@ The answer was one box, one label size and a palette of two inks per season. A s
 The boxes are printed on recycled board with no coating, which keeps the cost down and lets the ink sink into the fibers.
 """
 
+[cover]
+display_type = "image"
+filename = "oak-ember-cover.jpg"
+sha = "48479ab59c6cf67c5f356835d2c243777c0046c4bd548e15cfecca9e449fdaf0"
+mime = "image/jpeg"
+
 [[image]]
 caption = "The single box, opened flat"
 alt = "An open kraft box seen from above"
 size = "full"
+
+[image.file]
+display_type = "image"
+filename = "oak-ember-1.jpg"
+sha = "1c8d7e2aef85d51497d814f791a7a36d528c6e158fb147d1043400cef10ab523"
+mime = "image/jpeg"
 
 [[image]]
 caption = "Tasting card, back"
 alt = "A folded kraft card standing on a gray surface"
 size = "half"
 
+[image.file]
+display_type = "image"
+filename = "oak-ember-2.jpg"
+sha = "a969be1769c0f3679d7fec3262044a5a21fb051490714f04f6d4d8b53c074541"
+mime = "image/jpeg"
+
 [[image]]
 caption = "Tasting card, front"
 alt = "A kraft card seen from the front"
 size = "half"
 
+[image.file]
+display_type = "image"
+filename = "oak-ember-3.jpg"
+sha = "9f3f7de5d2cda336bf1cfd8c93fd214c429e67fe05a033f5a657ca0f15dfe0e4"
+mime = "image/jpeg"
+
 [[image]]
 caption = "Recycled board, uncoated"
 alt = "Close view of corrugated cardboard"
 size = "half"
+
+[image.file]
+display_type = "image"
+filename = "oak-ember-4.jpg"
+sha = "3f3c83d0ccb53c96e16222c0387efa126c43d494cf9c69d7866a5406b0e706ad"
+mime = "image/jpeg"

@@ -14,17 +14,41 @@ Each building got a single letter and a floor number, so every room has a short 
 We tested the system with printed paper signs for a month before anything was fabricated, and moved a third of them.
 """
 
+[cover]
+display_type = "image"
+filename = "meridian-cover.jpg"
+sha = "2fda5294f5e5091044605ea131573c29bdab5d57dd933a59b71fa99e994fa9a7"
+mime = "image/jpeg"
+
 [[image]]
 caption = "Arrow set into a plastered wall"
 alt = "A thin arrow shape on a white wall"
 size = "full"
+
+[image.file]
+display_type = "image"
+filename = "meridian-1.jpg"
+sha = "c813a131bfe6df9ce20ffad4be9997534e0f4eac06a093aef8bf78e02a5387b9"
+mime = "image/jpeg"
 
 [[image]]
 caption = "Floor marking at the main bridge"
 alt = "A black arrow inside a white circle on concrete"
 size = "half"
 
+[image.file]
+display_type = "image"
+filename = "meridian-2.jpg"
+sha = "fdb278696f1df4297bd367a7752feb6029550b1be4a951ec145b421ca6953642"
+mime = "image/jpeg"
+
 [[image]]
 caption = "Blade sign in the glass hall"
 alt = "A black hanging sign with an arrow in a white hallway"
 size = "half"
+
+[image.file]
+display_type = "image"
+filename = "meridian-3.jpg"
+sha = "d7fa1d2a7660a9392943bea470ef549b075f214f42af1a3205687643833cc8dc"
+mime = "image/jpeg"

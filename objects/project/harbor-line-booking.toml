@@ -14,17 +14,41 @@ The new site opens on the next three departures from the rider's nearest pier, w
 I designed the interface and a small component library, and worked with the ferry company's own developers through launch.
 """
 
+[cover]
+display_type = "image"
+filename = "harbor-line-cover.jpg"
+sha = "ddb756016afc5ff5f27af6b89d937bb9abfe9e0aac400d233116979acdddfc1e"
+mime = "image/jpeg"
+
 [[image]]
 caption = "Next departures, checked at the pier"
 alt = "A hand holding a phone outdoors"
 size = "half"
+
+[image.file]
+display_type = "image"
+filename = "harbor-line-1.jpg"
+sha = "fdc85201adf34eb03f211ba8dac95f3123b1f298c1de6e85edcf906c48256d97"
+mime = "image/jpeg"
 
 [[image]]
 caption = "Fare selection"
 alt = "A phone lying at an angle on a white surface"
 size = "half"
 
+[image.file]
+display_type = "image"
+filename = "harbor-line-2.jpg"
+sha = "783fe519154b8db042bcafd467fc22367e1377efa91a2df7b1c7609078c57aa5"
+mime = "image/jpeg"
+
 [[image]]
 caption = "The booking flow, start to finish"
 alt = "A phone lying flat on a white surface"
 size = "full"
+
+[image.file]
+display_type = "image"
+filename = "harbor-line-3.jpg"
+sha = "0e76b40a2d573263924e5b9a8d24766720f2e8a193dc2b23bf9de1b3ab62337b"
+mime = "image/jpeg"

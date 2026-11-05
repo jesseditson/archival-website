@@ -5,7 +5,7 @@ role = "Editorial design, typesetting"
 discipline = "Editorial"
 year = "2025"
 summary = "A foundation's year in grants, told through the people who received them."
-cover_alt = "An open book on a white table"
+cover_alt = "The fanned pages of an open book against a cream wall"
 body = """
 Nordvik funds small arts organizations across the north of the country. Their reports had always opened with the numbers. This year they wanted to open with the work.
 
@@ -14,17 +14,41 @@ The book leads with twelve short profiles of grant recipients, each set on a sin
 Everything is set in two weights of one typeface, with a tight grid that let the foundation's staff update the profiles in a shared template after the first edition.
 """
 
+[cover]
+display_type = "image"
+filename = "nordvik-pages.jpg"
+sha = "07f3099df98b63ca7e676a377c9d1b8761b227f3ed4156c6c73bcba448475130"
+mime = "image/jpeg"
+
 [[image]]
 caption = "The profile section, uncoated stock"
 alt = "An open book seen from page level"
 size = "full"
+
+[image.file]
+display_type = "image"
+filename = "nordvik-1.jpg"
+sha = "08e7f0f61ac84d6e841827040c375fc9934515b6fed81922620107ab5a2d5c80"
+mime = "image/jpeg"
 
 [[image]]
 caption = "The finished edition"
 alt = "A small open book against a gray wall"
 size = "half"
 
+[image.file]
+display_type = "image"
+filename = "nordvik-2.jpg"
+sha = "62a91363a8c360dfaf777fdcef782b73e48ee2b79644a4bce4193121223e2c67"
+mime = "image/jpeg"
+
 [[image]]
 caption = "Section binding detail"
 alt = "Close view of white pages and a binding thread"
 size = "half"
+
+[image.file]
+display_type = "image"
+filename = "nordvik-3.jpg"
+sha = "e83a22272d8a9a14bfcc1c87a32181b2f929cffab0189382689e136196316395"
+mime = "image/jpeg"

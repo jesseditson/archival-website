@@ -14,22 +14,52 @@ Wall texts are printed directly onto unbleached paper hung from rails, so the la
 The show ran for five months and the catalog went into a second printing.
 """
 
+[cover]
+display_type = "image"
+filename = "atlas-cover.jpg"
+sha = "922c88d6f4f7e1bd38d8c3fc64efb2b101469c95a80de847e011d5ad2cb4bd5e"
+mime = "image/jpeg"
+
 [[image]]
 caption = "The main room before installation"
 alt = "A white gallery room lit by skylights"
 size = "full"
+
+[image.file]
+display_type = "image"
+filename = "atlas-1.jpg"
+sha = "ad812ac3c2d270cb332bc4a14cc6b8624c70340e79abb0f0bf033445811f209f"
+mime = "image/jpeg"
 
 [[image]]
 caption = "The long gallery"
 alt = "A tall, narrow white gallery with a dark floor"
 size = "half"
 
+[image.file]
+display_type = "image"
+filename = "atlas-2.jpg"
+sha = "ae2d21f535d100f0f4d25d416a5badb523143045cb4f672248df8d68cc80b910"
+mime = "image/jpeg"
+
 [[image]]
 caption = "The curved wall at the exit"
 alt = "A curving white wall over a dark floor"
 size = "half"
 
+[image.file]
+display_type = "image"
+filename = "atlas-4.jpg"
+sha = "29469e777307b91ea55bb70deac337fc9eaa321793e49273c03884e62da44670"
+mime = "image/jpeg"
+
 [[image]]
 caption = "Freestanding walls for the wall texts"
 alt = "White partition walls in an empty gallery"
 size = "full"
+
+[image.file]
+display_type = "image"
+filename = "atlas-3.jpg"
+sha = "0d37351f7c74bc3f9c3022a92eab07eb97f8d407d0941516f1aeebff620b5ccf"
+mime = "image/jpeg"

@@ -34,7 +34,7 @@
 {%- endcapture -%}
 {% layout 'theme' title: "", path: "", jsonld: jsonld, og_type: "profile" %}
 
-<h1 class="statement">{{ site.statement | escape }}</h1>
+<h1 class="statement">{% if site.statement != blank %}{{ site.statement | escape }}{% else %}{{ site.name | escape }}{% endif %}</h1>
 
 <section id="work" class="work{% if has_preview %} has-preview{% endif %}" aria-labelledby="work-heading">
   <h2 id="work-heading" class="visually-hidden">Work</h2>
@@ -69,6 +69,7 @@
   {% endif %}
 </section>
 
+{% if site.bio != blank or site.portrait != blank %}
 <section id="about" class="home-section about{% if site.portrait != blank %} has-portrait{% endif %}" aria-labelledby="about-heading">
   <h2 id="about-heading" class="section-label">About</h2>
   {% if site.portrait != blank %}
@@ -78,8 +79,11 @@
   {% endif %}
   {% if site.bio != blank %}<div class="about-bio markdown">{{ site.bio }}</div>{% endif %}
 </section>
+{% endif %}
 
-{% if site.show_clients != false and site.client.size > 0 %}
+{%- comment -%} A missing show_clients means shown; only an explicit false hides the list. liquid-rs treats nil as equal to false, so compare the rendered text. {%- endcomment -%}
+{%- capture show_clients_text %}{{ site.show_clients }}{% endcapture -%}
+{% if show_clients_text == "false" %}{% elsif site.client != blank %}
 <section class="home-section clients" aria-labelledby="clients-heading">
   <h2 id="clients-heading" class="section-label">Selected clients</h2>
   <ul class="client-list">
@@ -90,17 +94,20 @@
 </section>
 {% endif %}
 
+{% if site.email != blank or site.location != blank or site.link != blank %}
 <section id="contact" class="home-section contact" aria-labelledby="contact-heading">
   <h2 id="contact-heading" class="section-label">Contact</h2>
   {% if site.email != blank %}
   <a class="contact-email" href="mailto:{{ site.email | escape }}">{{ site.email | escape }}</a>
   {% endif %}
   {% if site.location != blank %}<p class="contact-location">{{ site.location | escape }}</p>{% endif %}
-  {% if site.link.size > 0 %}
+  {% if site.link != blank %}
   <ul class="contact-links">
     {%- for link in site.link %}
-    {% if link.label != blank %}<li>{% if link.url != blank %}<a href="{{ link.url | escape }}">{{ link.label | escape }}</a>{% else %}<span>{{ link.label | escape }}</span>{% endif %}</li>{% endif %}
+    {%- if link.label != blank -%}{%- assign link_text = link.label -%}{%- else -%}{%- assign link_text = link.url -%}{%- endif %}
+    {% if link_text != blank %}<li>{% if link.url != blank %}<a href="{{ link.url | escape }}">{{ link_text | escape }}</a>{% else %}<span>{{ link_text | escape }}</span>{% endif %}</li>{% endif %}
     {%- endfor %}
   </ul>
   {% endif %}
 </section>
+{% endif %}

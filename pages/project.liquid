@@ -17,9 +17,11 @@
   {%- assign nxt = list.first -%}
   {%- assign nxt_num = 1 -%}
 {%- endif -%}
-{%- assign year_rest = project.year | remove: "0" | remove: "1" | remove: "2" | remove: "3" | remove: "4" | remove: "5" | remove: "6" | remove: "7" | remove: "8" | remove: "9" -%}
 {%- assign plain_year = false -%}
-{%- if project.year.size == 4 and year_rest == "" -%}{%- assign plain_year = true -%}{%- endif -%}
+{%- if project.year != blank -%}
+  {%- assign year_rest = project.year | remove: "0" | remove: "1" | remove: "2" | remove: "3" | remove: "4" | remove: "5" | remove: "6" | remove: "7" | remove: "8" | remove: "9" -%}
+  {%- if project.year.size == 4 and year_rest == "" -%}{%- assign plain_year = true -%}{%- endif -%}
+{%- endif -%}
 {%- capture ld_title %}{{ project.title | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
 {%- capture ld_summary %}{{ project.summary | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
 {%- capture ld_name %}{{ site.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}

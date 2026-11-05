@@ -269,6 +269,10 @@ a:focus-visible {
   overflow-wrap: break-word;
 }
 
+.index-year {
+  white-space: nowrap;
+}
+
 .index-client {
   display: none;
   color: var(--gray);
@@ -306,14 +310,14 @@ a:focus-visible {
 
   .index-num { grid-column: 1; }
   .index-title { grid-column: 2 / 7; }
-  .index-client { display: block; grid-column: 7 / 10; }
+  .index-client { display: block; grid-column: 7 / 9; }
   .index-meta { display: contents; font-size: var(--step-0); }
-  .index-discipline { grid-column: 10 / 12; }
-  .index-year { grid-column: 12; }
+  .index-discipline { grid-column: 9 / 11; }
+  .index-year { grid-column: 11 / 13; }
 
   /* Covers exist but no preview column (tablets, touch): no client span. */
   .has-preview .index-title { grid-column: 2 / 9; }
-  .has-preview .index-discipline { grid-column: 9 / 12; }
+  .has-preview .index-discipline { grid-column: 9 / 11; }
 }
 
 /* The reserved preview column: desktop pointers only. */
@@ -323,7 +327,7 @@ a:focus-visible {
   }
 
   .has-preview .index-link {
-    grid-template-columns: 2.5rem minmax(0, 1fr) 9rem 4rem;
+    grid-template-columns: 2.5rem minmax(0, 1fr) 9rem 5.5rem;
   }
 
   .has-preview .index-num,

@@ -2,8 +2,8 @@
 {%- assign projects_sorted = objects.project | sort: "order" -%}
 # {{ site.name }}
 
-> {{ site.statement }}
-
+{% if site.statement != blank %}> {{ site.statement }}
+{% endif %}
 {{ site.description }}
 {% if site.role != blank %}
 Role: {{ site.role }}{% if site.focus != blank %} ({{ site.focus }}){% endif %}{% endif %}

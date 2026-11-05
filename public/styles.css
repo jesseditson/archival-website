@@ -337,7 +337,7 @@ h2 {
 .blob-2 {
   width: 11rem;
   height: 10rem;
-  top: 0.5rem;
+  top: -4.5rem;
   left: -6.5rem;
   background: var(--splat-2);
   animation-delay: -4s;

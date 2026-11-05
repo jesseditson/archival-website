@@ -1,0 +1,505 @@
+/* =========================================================================
+   Starter stylesheet. A neutral base for a new template to replace: change
+   the tokens and the page styles, keep the structure (skip link, footer,
+   404, reduced motion, and the .markdown block at the end).
+   Every dimension is in rem (1rem is 16 CSS pixels).
+   ========================================================================= */
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-variable-italic.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI Variable Text",
+    "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --color-background: #ffffff;
+  --color-surface: #f4f4f5;
+  --color-text: #18181b;
+  --color-text-muted: #52525b;
+  --color-border: #e4e4e7;
+  --color-accent: #2f5bd3;
+
+  /* Code blocks stay dark in both color schemes. */
+  --color-code-background: #18181b;
+  --color-code-text: #f4f4f5;
+
+  --content-width: 44rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #111111;
+    --color-surface: #1c1c1f;
+    --color-text: #f4f4f5;
+    --color-text-muted: #a1a1aa;
+    --color-border: #2e2e33;
+    --color-accent: #8aa8ff;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--color-accent);
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+/* Skip link: hidden until focused */
+.skip-link {
+  position: absolute;
+  top: -10rem;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  background: var(--color-text);
+  color: var(--color-background);
+  border-radius: 0.25rem;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Home */
+.intro h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(2.25rem, 6vw, 3.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.intro p {
+  margin: 0;
+  font-size: 1.25rem;
+  color: var(--color-text-muted);
+}
+
+/* Footer */
+.site-footer {
+  padding: 3rem 1.5rem 2rem;
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer a {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.site-footer a:hover {
+  color: var(--color-accent);
+}
+
+/* 404: scoped under #not-found so generic rules can't override it */
+#not-found {
+  padding: 4rem 0;
+  text-align: center;
+}
+
+#not-found .not-found-eyebrow {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+#not-found .not-found-code {
+  margin: 0.5rem 0;
+  font-size: clamp(5rem, 18vw, 10rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+#not-found .not-found-title {
+  margin: 0 0 1rem;
+  font-size: 1.75rem;
+  font-style: italic;
+  font-weight: 500;
+}
+
+#not-found .not-found-description {
+  max-width: 28rem;
+  margin: 0 auto 2rem;
+  color: var(--color-text-muted);
+}
+
+#not-found .not-found-cta {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border: 0.125rem solid currentColor;
+  border-radius: 999rem;
+  color: var(--color-text);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+#not-found .not-found-cta:hover {
+  background: var(--color-text);
+  color: var(--color-background);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =========================================================================
+   Markdown content
+   Every markdown field renders inside <div class="markdown">. This block
+   stays at the end of the stylesheet so it wins by source order.
+   ========================================================================= */
+
+.markdown {
+  text-align: left;
+  overflow-wrap: break-word;
+}
+
+.markdown > *:first-child {
+  margin-top: 0;
+}
+
+.markdown > *:last-child {
+  margin-bottom: 0;
+}
+
+.markdown p {
+  margin: 0 0 1.25rem;
+  line-height: 1.7;
+}
+
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  color: var(--color-text);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.markdown h1 {
+  font-size: 2rem;
+  margin: 3rem 0 1.5rem;
+}
+
+.markdown h2 {
+  font-size: 1.625rem;
+  margin: 2.75rem 0 1rem;
+}
+
+.markdown h3 {
+  font-size: 1.3125rem;
+  margin: 2rem 0 0.75rem;
+}
+
+.markdown h4 {
+  font-size: 1.125rem;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.markdown h5,
+.markdown h6 {
+  font-size: 1rem;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.markdown h6 {
+  color: var(--color-text-muted);
+}
+
+/* The heading anchors the markdown filter injects */
+.markdown h1 a.anchor,
+.markdown h2 a.anchor,
+.markdown h3 a.anchor,
+.markdown h4 a.anchor,
+.markdown h5 a.anchor,
+.markdown h6 a.anchor {
+  border-bottom: none;
+  color: inherit;
+  text-decoration: none;
+}
+
+.markdown strong {
+  font-weight: 700;
+}
+
+.markdown em {
+  font-style: italic;
+}
+
+.markdown del {
+  color: var(--color-text-muted);
+}
+
+.markdown mark {
+  padding: 0 0.25rem;
+  border-radius: 0.1875rem;
+  background: color-mix(in srgb, var(--color-accent) 22%, transparent);
+  color: inherit;
+}
+
+.markdown sub,
+.markdown sup {
+  position: relative;
+  font-size: 0.75em;
+  line-height: 0;
+  vertical-align: baseline;
+}
+
+.markdown sub {
+  bottom: -0.25em;
+}
+
+.markdown sup {
+  top: -0.5em;
+}
+
+.markdown a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.markdown a:hover {
+  text-decoration-thickness: 0.125rem;
+}
+
+.markdown code {
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  background: var(--color-surface);
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+.markdown pre {
+  margin: 1.5rem 0;
+  padding: 1.25rem 1.5rem;
+  overflow-x: auto;
+  border-radius: 0.75rem;
+  background: var(--color-code-background);
+  color: var(--color-code-text);
+}
+
+.markdown pre code {
+  display: block;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  white-space: pre;
+}
+
+.markdown blockquote {
+  margin: 2rem 0;
+  padding: 1rem 1.5rem;
+  border-left: 0.1875rem solid var(--color-accent);
+  border-radius: 0 0.5rem 0.5rem 0;
+  background: var(--color-surface);
+  font-style: italic;
+}
+
+.markdown blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.markdown ul,
+.markdown ol {
+  margin: 1.25rem 0;
+  padding-left: 1.75rem;
+}
+
+.markdown li {
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+}
+
+.markdown li > ul,
+.markdown li > ol {
+  margin: 0.5rem 0;
+}
+
+.markdown li::marker {
+  color: var(--color-text-muted);
+}
+
+.markdown ul.contains-task-list,
+.markdown ul.task-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.markdown li.task-list-item input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+.markdown dl {
+  margin: 1.25rem 0;
+}
+
+.markdown dt {
+  font-weight: 700;
+}
+
+.markdown dd {
+  margin: 0 0 0.75rem 1.5rem;
+}
+
+.markdown hr {
+  margin: 3rem 0;
+  border: none;
+  border-top: 0.0625rem solid var(--color-border);
+}
+
+.markdown img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 2rem 0;
+  border-radius: 0.75rem;
+}
+
+.markdown table {
+  width: 100%;
+  margin: 2rem 0;
+  border-collapse: collapse;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 0 0 0.0625rem var(--color-border),
+    0 0.25rem 1rem rgba(0, 0, 0, 0.06);
+  font-size: 0.9375rem;
+}
+
+.markdown th {
+  padding: 0.75rem 1rem;
+  background: var(--color-surface);
+  font-weight: 600;
+  text-align: left;
+}
+
+.markdown td {
+  padding: 0.75rem 1rem;
+  border-top: 0.0625rem solid var(--color-border);
+}
+
+.markdown .footnotes {
+  margin-top: 3rem;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+/* Prism token colors, kept for parity even when Prism isn't loaded */
+.markdown .token.comment,
+.markdown .token.prolog,
+.markdown .token.doctype,
+.markdown .token.cdata {
+  color: #8b8b94;
+}
+
+.markdown .token.punctuation {
+  color: #c8c8d0;
+}
+
+.markdown .token.property,
+.markdown .token.tag,
+.markdown .token.boolean,
+.markdown .token.number,
+.markdown .token.constant,
+.markdown .token.symbol,
+.markdown .token.deleted {
+  color: #f9a8d4;
+}
+
+.markdown .token.selector,
+.markdown .token.attr-name,
+.markdown .token.string,
+.markdown .token.char,
+.markdown .token.builtin,
+.markdown .token.inserted {
+  color: #9ecbff;
+}
+
+.markdown .token.operator,
+.markdown .token.entity,
+.markdown .token.url,
+.markdown .token.function,
+.markdown .token.class-name {
+  color: #79b8ff;
+}
+
+.markdown .token.atrule,
+.markdown .token.attr-value,
+.markdown .token.keyword {
+  color: #b392f0;
+}
+
+.markdown .token.regex,
+.markdown .token.important,
+.markdown .token.variable {
+  color: #ffab70;
+}

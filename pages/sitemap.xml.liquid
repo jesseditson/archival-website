@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>{{ site_url }}/</loc></url>
+{% comment %}
+  One <url> per section page and per templated item, as absolute URLs without
+  .html: the same URLs the canonical links use. Leave out the 404 page and
+  every noindex page.
+
+  <url><loc>{{ site_url }}/about</loc></url>
+  {% for post in posts %}<url><loc>{{ site_url }}/{{ post.path }}</loc></url>
+  {% endfor %}
+{% endcomment %}
+</urlset>

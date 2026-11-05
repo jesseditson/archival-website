@@ -1,29 +1,82 @@
+{%- comment -%}
+  Every page calls this layout with:
+    title:   the page's title, "" on the home page
+    path:    the page's URL path without a leading slash or .html,
+             "" on the home page, "about" for pages/about.liquid,
+             item.path on a templated page. Never build it from `page`.
+  and optionally:
+    noindex: true on utility pages (404, thank-you, search results)
+    jsonld:  a captured <script type="application/ld+json"> block
+{%- endcomment -%}
+{%- assign site = objects.site -%}
+{%- assign site_name = site.name -%}
+{%- if title != blank -%}
+  {%- assign page_title = title | append: " — " | append: site_name -%}
+{%- else -%}
+  {%- assign page_title = site_name -%}
+{%- endif -%}
+{%- assign canonical_url = site_url | append: "/" | append: path -%}
+{%- assign og_image_url = "" -%}
+{%- if site.og_image != blank -%}
+  {%- assign og_image_url = site.og_image.url -%}
+{%- endif -%}
+{%- assign words = site_name | split: " " -%}
+{%- assign initials = "" -%}
+{%- if words.size == 1 -%}
+  {%- assign initials = words.first | slice: 0, 2 | upcase -%}
+{%- else -%}
+  {%- for word in words limit: 2 -%}
+    {%- assign letter = word | slice: 0, 1 | upcase -%}
+    {%- assign initials = initials | append: letter -%}
+  {%- endfor -%}
+{%- endif -%}
+{%- assign initials = initials | replace: "&", "" | replace: "<", "" | replace: ">", "" | replace: "'", "" | replace: '"', "" | replace: "#", "" | replace: "%", "" -%}
 <!doctype html>
-<html lang="">
-
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{{ title }}</title>
-    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  {% assign words = title | split: " " %}{% assign initials = "" %}{% if words.size == 1 %}{% assign initials = words[0] | slice: 0, 2 | upcase %}{% else %}{% for word in words limit: 2 %}{% assign letter = word | slice: 0, 1 | upcase %}{% assign initials = initials | append: letter %}{% endfor %}{% endif %}{% assign initials = initials | replace: "&", "" | replace: "<", "" | replace: ">", "" | replace: "'", "" | replace: '"', "" %}
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='bold' font-size='13' fill='%23e5ff00'%3E{{ initials }}%3C/text%3E%3C/svg%3E">
-  <style>
-.site-footer {
-  margin-top: auto;
-  padding: 4rem 2rem 2rem;
-  text-align: center;
-  font-size: 0.75rem;
-  opacity: 0.25;
-}
-  </style>
+    <title>{{ page_title | escape }}</title>
+    <meta name="description" content="{{ site.description | escape }}">
+    <link rel="canonical" href="{{ canonical_url | escape }}">
+    {% if noindex %}<meta name="robots" content="noindex">{% endif %}
+
+    <meta property="og:title" content="{{ page_title | escape }}">
+    <meta property="og:description" content="{{ site.description | escape }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ canonical_url | escape }}">
+    <meta property="og:site_name" content="{{ site_name | escape }}">
+    {% if og_image_url != blank %}
+    <meta property="og:image" content="{{ og_image_url | escape }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="{{ og_image_url | escape }}">
+    {% else %}
+    <meta name="twitter:card" content="summary">
+    {% endif %}
+    <meta name="twitter:title" content="{{ page_title | escape }}">
+    <meta name="twitter:description" content="{{ site.description | escape }}">
+
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)">
+
+    {% if site.favicon != blank %}
+    <link rel="icon" href="{{ site.favicon.url | escape }}">
+    <link rel="apple-touch-icon" href="{{ site.favicon.url | escape }}">
+    {% else %}
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='bold' font-size='13' fill='%23e5ff00'%3E{{ initials }}%3C/text%3E%3C/svg%3E">
+    {% endif %}
+
+    <link rel="preload" href="/fonts/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/styles.css">
+    {% if jsonld %}{{ jsonld }}{% endif %}
   </head>
-
   <body>
-    {{ page_content }}
-  <footer class="site-footer">
-    <span>&copy; {{ "now" | date: "%Y" }} {{ title }}. Powered by <a href="https://archival.dev">Archival</a>.</span>
-  </footer>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <main id="main">
+      {{ page_content }}
+    </main>
+    <footer class="site-footer">
+      <p>&copy; {{ "now" | date: "%Y" }} {{ site_name | escape }}. Powered by <a href="https://archival.dev">Archival</a>.</p>
+    </footer>
   </body>
-
 </html>

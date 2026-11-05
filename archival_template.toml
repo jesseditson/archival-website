@@ -1,7 +1,16 @@
 #:schema https://archival.dev/schemas/archival_template.schema.json
+# Shown in the editor's template picker.
 name = ""
-description = ""
-context = ""
+# One line for the gallery card, roughly ten to fifteen words.
+tagline = ""
+# The template info modal's body: what this template is and what it contains.
+description = """
+"""
+# The prompt that drives content generation. Describe when to pick this
+# template and what every field holds. Update it whenever the schema changes.
+context = """
+"""
 tags = []
 tlds = []
+# Value paths kept when a site is generated, instead of stripped as examples.
 keep_objects = []

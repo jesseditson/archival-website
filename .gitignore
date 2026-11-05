@@ -1,6 +1,7 @@
 # Archival
 dist
 bin/tmp
+.archival-bin
 
 # Dependencies
 node_modules

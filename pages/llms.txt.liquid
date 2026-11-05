@@ -1,0 +1,16 @@
+{% assign site = objects.site %}# {{ site.name }}
+
+> {{ site.description }}
+
+## Pages
+
+- [Home]({{ site_url }}/)
+{% comment %}
+  List every section page, then every kind of content, generated from the
+  objects. For a list type:
+
+## Posts
+
+{% for post in posts %}- [{{ post.title }}]({{ site_url }}/{{ post.path }})
+{% endfor %}
+{% endcomment %}

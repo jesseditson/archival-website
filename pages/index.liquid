@@ -1,1 +1,20 @@
-{% layout 'theme' title: "Archival Website" %}
+{%- assign site = objects.site -%}
+{%- capture ld_name %}{{ site.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
+{%- capture ld_desc %}{{ site.description | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
+{%- capture jsonld -%}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "{{ ld_name }}"
+    {%- if site.description != blank -%}, "description": "{{ ld_desc }}"{%- endif -%}
+    {%- if site_url != blank -%}, "url": "{{ site_url }}/"{%- endif -%}
+  }
+</script>
+{%- endcapture -%}
+{% layout 'theme' title: "", path: "", jsonld: jsonld %}
+
+<section class="intro">
+  <h1>{{ site.name | escape }}</h1>
+  {% if site.description != blank %}<p>{{ site.description | escape }}</p>{% endif %}
+</section>

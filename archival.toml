@@ -1,0 +1,2 @@
+#:schema https://archival.dev/schemas/manifest.schema.json
+upload_prefix = "archival-template-uploads/"

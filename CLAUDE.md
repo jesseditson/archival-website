@@ -1,12 +1,22 @@
 # Archival website templates — conventions
 
-This repo holds 12 content templates for the Archival editor, each on its own
-`templates/<slug>-N` branch. `main` is the boilerplate starter; every template
-branch is an orphan branch that descends from it.
+This repo holds the content templates for the Archival editor, each on its own
+`templates/<slug>-N` branch. The `templates/new` branch is the starter: it
+already builds, and it already implements every convention below, so a new
+template starts as a branch off `templates/new` and replaces its look and
+schema. The editor lists templates from
+`~/Repos/archival/archival-editor/objects/templates/<slug>.toml`.
 
 This file documents the conventions every template should honor — refined
 across an audit of all 12 templates. When adding a new template (or starting
 a fresh branch), use this as the checklist.
+
+Two other sources sit beside this file. The Archival MCP connector's
+`archival_reference` tool (topics `authoring`, `conventions`, `local`) is the
+official syntax reference; it is written for end-user sites, and this file
+wins where the two differ for templates. The editor's `TemplateDefinition` in
+`editor/src/templates.rs` is the truth for which `archival_template.toml`
+fields are read.
 
 ---
 
@@ -15,10 +25,12 @@ a fresh branch), use this as the checklist.
 ### Meta + SEO
 
 Every page should render the full social-card suite. The boilerplate pattern
-lives in `layout/theme.liquid`:
+lives in `layout/theme.liquid`. The identity object is `[site]` in new
+templates (older templates use `personal`, `app`, `band`, `info`, and so on):
 
 ```liquid
 {% assign site_name = objects.<singleton>.name %}
+{% assign canonical_url = site_url | append: "/" | append: path %}
 {% if title != blank %}
   {% assign page_title = title | append: " — " | append: site_name %}
 {% else %}
@@ -36,6 +48,13 @@ Then in `<head>`:
 
 - `<title>{{ page_title }}</title>` — em-dash (` — `) separator, **not** `|`
 - `<meta name="description" content="{{ ...description }}">`
+- `<link rel="canonical" href="{{ canonical_url }}">` and
+  `<meta property="og:url" content="{{ canonical_url }}">`: absolute, the
+  page's own URL, no `.html`. Built from the `path:` layout argument (see
+  "Layout arguments" below), never from `page`, which is the template's name
+  on every item of a templated type.
+- `{% if noindex %}<meta name="robots" content="noindex">{% endif %}` for
+  utility pages (404, thank-you, search results)
 - `<meta name="author" content="{{ ...name }}">` (when relevant)
 - `<meta property="og:title" content="{{ page_title }}">`
 - `<meta property="og:description" content="...">`
@@ -75,26 +94,91 @@ Liquid-rs has **no `json` filter** — escape strings via the
 Conditional fields use Liquid's `{%- if X != blank -%}, "key": "..."{%- endif -%}`
 inline so trailing-comma issues don't appear when an optional field is missing.
 
-### Auto-generated SVG favicon
-
-Every template uses the same favicon snippet (initials of the site name on a
-dark rounded square with the Archival accent yellow):
+JSON-LD goes in the `<head>` of the home page and of every templated page.
+A page builds its block with `capture` and hands it to the layout, which
+prints it inside `<head>`:
 
 ```liquid
-{% assign words = objects.<singleton>.name | split: " " %}
-{% assign initials = "" %}
-{% if words.size == 1 %}
-  {% assign initials = words[0] | slice: 0, 2 | upcase %}
-{% else %}
-  {% for word in words limit: 2 %}
-    {% assign letter = word | slice: 0, 1 | upcase %}
-    {% assign initials = initials | append: letter %}
-  {% endfor %}
-{% endif %}
-{% assign initials = initials | replace: "&", "" | replace: "<", "" | replace: ">", "" | replace: "'", "" | replace: '"', "" %}
-<link rel="icon" type="image/svg+xml"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='bold' font-size='13' fill='%23e5ff00'%3E{{ initials }}%3C/text%3E%3C/svg%3E">
+{%- capture jsonld -%}
+<script type="application/ld+json">
+  { "@context": "https://schema.org", "@type": "BlogPosting", "headline": "{{ ld_title }}" }
+</script>
+{%- endcapture -%}
+{% layout 'theme' title: post.title, path: post.path, jsonld: jsonld %}
 ```
+
+The starter's `pages/index.liquid` ships a generic `WebSite` block; replace
+the type with the one from the table above. Check that every built block
+parses as JSON.
+
+### Layout arguments
+
+Every page calls the layout with `title:` and `path:`. `noindex:` and
+`jsonld:` are optional, and the layout tests them with a bare
+`{% if noindex %}`, which tolerates an argument that was never passed.
+
+| Page | Call |
+|---|---|
+| Home | `{% layout 'theme' title: "", path: "", jsonld: jsonld %}` |
+| Section page | `{% layout 'theme' title: "About", path: "about" %}` |
+| Templated item | `{% layout 'theme' title: post.title, path: post.path, jsonld: jsonld %}` |
+| 404 | `{% layout 'theme' title: "Page Not Found", path: "404", noindex: true %}` |
+
+### Favicon
+
+The identity object carries `favicon = "image"`. The layout uses it when it
+is set, and otherwise falls back to an SVG of the site name's initials on a
+dark rounded square with the Archival accent yellow:
+
+```liquid
+{% if objects.<singleton>.favicon != blank %}
+<link rel="icon" href="{{ objects.<singleton>.favicon.url }}">
+<link rel="apple-touch-icon" href="{{ objects.<singleton>.favicon.url }}">
+{% else %}
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,…{{ initials }}…">
+{% endif %}
+```
+
+Build `initials` with `words.first`, not `words[0]`: archival's Liquid has
+no bracket indexing. The full snippet is in the starter's
+`layout/theme.liquid`.
+
+### Fonts
+
+Previews render on an Ubuntu box, where a bare `system-ui` stack resolves to
+a very different face than on macOS or Windows. Every template uses this
+body/UI stack:
+
+```css
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI Variable Text",
+  "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
+```
+
+Inter is self-hosted, never pulled from Google Fonts:
+`public/fonts/inter-variable.woff2` and `public/fonts/inter-variable-italic.woff2`
+(the variable latin subset from `@fontsource-variable/inter`), declared with
+two `@font-face` rules using `font-weight: 100 900` and `font-display: swap`.
+A template that leads with a brand display face keeps it first and uses this
+stack as the tail.
+
+### Computer-facing pages
+
+Feed readers, search engines and AI agents read the site too. Each of these
+is a Liquid page whose second extension sets the output type, generated from
+the objects (a loop over what it lists, never text written out by hand):
+
+- `pages/llms.txt.liquid`: every template. What the site is, its main pages
+  and its kinds of content, from the identity object and the lists.
+- `pages/sitemap.xml.liquid`: every page and every templated item as an
+  absolute URL without `.html`, the same URLs the canonical links use.
+  Leaves out the 404 page and every `noindex` page.
+- `pages/robots.txt.liquid`: allows all and names the sitemap.
+- `pages/feed.xml.liquid`: whenever there is a dated list, linked from the
+  layout's `<head>` with
+  `<link rel="alternate" type="application/rss+xml" title="…" href="{{ site_url }}/feed.xml">`.
+
+The starter ships the first three with commented loops to fill in. Their
+URLs are relative until `site_url` is set at claim time, which is expected.
 
 ### Accessibility
 
@@ -314,16 +398,17 @@ Not `{% if X %}` (truthy) and not `{% if X != empty %}` (which is
 intended for arrays). `!= blank` works for strings, nil, missing
 fields, and gives consistent behavior across the codebase.
 
-### Pages must explicitly pass `title:`
+### Pages must explicitly pass `title:` and `path:`
 
 liquid-rs errors on undefined-variable references in expressions like
 `{% if title != blank %}`. Every page must pass a title even if it's
-empty:
+empty, and a `path:` for the canonical URL (see "Layout arguments" in
+Section 1):
 
 ```liquid
-{% layout 'theme' title: "" %}              {# index page  #}
-{% layout 'theme' title: "About" %}         {# section page #}
-{% layout 'theme' title: post.title %}      {# detail page  #}
+{% layout 'theme' title: "", path: "" %}                   {# index page  #}
+{% layout 'theme' title: "About", path: "about" %}         {# section page #}
+{% layout 'theme' title: post.title, path: post.path %}    {# detail page  #}
 ```
 
 Bare truthy `{% if title %}` does work on undefined, but `!= blank`
@@ -353,6 +438,16 @@ data block) goes through this chain — URLs included, since upload
 filenames are user-chosen. The `</` replacement keeps a value containing
 `</script>` from ending the block early; `<\/` is a valid JSON escape.
 
+### Output is not HTML-escaped
+
+archival's Liquid writes values out raw, so a `"` in a title ends a
+`content="…"` attribute early and a `<` starts a tag. Pipe every `string`
+field through `| escape` where it lands in HTML, attributes included:
+`content="{{ page_title | escape }}"`, `<h1>{{ post.title | escape }}</h1>`.
+Leave `markdown` fields alone (they are already HTML), and use the JSON
+escape chain below, not `escape`, inside `<script>` blocks. Most of the
+older templates predate this rule.
+
 ### Singleton-vs-collection access ambiguity
 
 In templates rendering an object via `template = "..."`, the bare
@@ -363,6 +458,11 @@ inside a per-object page template, use `objects.<name>` explicitly:
 ```liquid
 {% for section in objects.sections %}
 ```
+
+New templates name every type in the singular (`[post]`, never `[posts]`),
+as the official docs require: a plural root object can't be addressed by its
+own name. On `pages/post.liquid` the current item is `post`, and the whole
+list is `objects.post`.
 
 ### `{% unless %}` works but doesn't always have `{% else %}`
 
@@ -395,15 +495,24 @@ Verified in the editor's source (Rust + TS):
 - Grand-child collections (e.g. `[parent.child.grandchild]` inside
   `[[parent.child]]`) work too — render as nested repeatable groups.
 
-`archival_editor.toml` can configure how each collection appears
-in the editor list view:
+`archival_editor.toml` configures how each collection appears in the
+editor list view. Every list type and every nested child list gets a
+view, and the one or two lists people will add to most get a shortcut:
 
 ```toml
 [[<collection>.views]]
 name = "default"
 primary = "<field>"
 secondary = "<field>"
+
+[[shortcuts]]
+name = "New Post"
+path = "post"
 ```
+
+`primary`, `secondary` and `tertiary` name fields of that type, or
+`filename`. A shortcut's `path` is the type name for a top-level list, or
+`<root>.<child>` for a child list on a root object.
 
 ---
 
@@ -457,6 +566,12 @@ per-deployment value the user fills in after deploying. Templates
 that ship with `site_url = "https://demo.example.com"` accidentally
 canonicalize every user's site to the demo URL.
 
+It **does** set `upload_prefix = "archival-template-uploads/"`, so the
+default media a template ships with (uploaded images, video, audio)
+resolves in previews. The platform rewrites it when a site is claimed.
+This is the one place templates deliberately differ from the official
+docs, which tell end-user sites to leave `upload_prefix` alone.
+
 The RSS feed and similar outputs that need an absolute URL pull from
 `{{ site_url }}` — they'll have empty `<link>` elements until the user
 configures their manifest. Document this in the template README.
@@ -479,11 +594,27 @@ when the schema changes.** Common drift we caught:
   documented so the LLM either fills them or leaves them blank
   appropriately.
 
-If the schema lives somewhere stable, link to it:
+The other fields, as the editor reads them:
+
+- `name`: shown in the template picker.
+- `tagline`: one line for the gallery card, roughly ten to fifteen words.
+  Missing from the public schema, but the editor reads it and falls back
+  to `description` without it.
+- `description`: the template info modal's body, long and specific.
+- `tags`, `tlds`, `keep_objects` (value paths kept when a site is
+  generated, instead of stripped as example content).
+- `[skin]`: optional. A contract declaring which `:root` variables an
+  automated recoloring pass may change, with ranges and derivations. See
+  app-1 and app-2; templates without one are never skinned.
+
+Every Archival TOML file starts with its schema hint:
 
 ```toml
-#:schema https://raw.githubusercontent.com/jesseditson/archival/refs/heads/toml_schemas/archival_template.schema.json
+#:schema https://archival.dev/schemas/archival_template.schema.json
 ```
+
+(`manifest`, `archival_objects` and `archival_editor` schemas live at the
+same path.)
 
 ---
 
@@ -524,6 +655,46 @@ A short pre-flight checklist:
       schema
 - [ ] `objects/<singleton>.toml` does **not** carry `order = -1`
       legacy patterns or other dead fields
+- [ ] `archival_template.toml` has a `name`, `tagline`, `description`
+      and `context`
+- [ ] Identity object has `og_image` and `favicon` image fields
+- [ ] Inter self-hosted and the standard font stack in use
+- [ ] Every page has a canonical link built from `path:`, and utility
+      pages pass `noindex: true`
+- [ ] `llms.txt`, `sitemap.xml` and `robots.txt` generated from the
+      objects; `feed.xml` too when there is a dated list
+- [ ] Every list type and nested child list has a view in
+      `archival_editor.toml`
+
+Most of this is mechanical. Run it after `rm -rf dist && archival build .`
+and fix every line it prints:
+
+```bash
+test -f dist/llms.txt || echo "no llms.txt"
+test -f dist/sitemap.xml || echo "no sitemap.xml"
+test -f dist/robots.txt || echo "no robots.txt"
+[ -f dist/feed.xml ] && { grep -q 'rel="alternate"' dist/index.html || echo "feed not linked from layout"; }
+grep -Eq '\.html</loc>|/404</loc>' dist/sitemap.xml 2>/dev/null && echo "sitemap lists .html or 404 URLs"
+grep -q 'content="noindex"' dist/404.html || echo "404 page is not noindex"
+for f in $(find dist -name '*.html'); do
+  for needle in '<title>' 'name="description"' 'rel="canonical"' 'property="og:title"' 'lang="en"' 'id="main"'; do
+    grep -q "$needle" "$f" || echo "missing $needle: $f"
+  done
+  [ "$(grep -c '<h1' "$f")" = 1 ] || echo "h1 count is not 1: $f"
+  grep -q 'href="#"' "$f" && echo "href=\"#\": $f"
+  grep -Eq 'href="/[^"]*\.html"' "$f" && echo ".html link: $f"
+  grep -q 'onclick=' "$f" && echo "onclick: $f"
+done
+for f in dist/index.html dist/*/*.html; do
+  [ -f "$f" ] && { grep -q 'application/ld+json' "$f" || echo "no JSON-LD: $f"; }
+done
+for d in objects/*/; do [ -d "$d" ] || continue; t=$(basename "$d"); grep -q "^\[\[$t.views\]\]" archival_editor.toml || echo "no editor view: $t"; done
+grep -rEn '[0-9.]+px' public --include='*.css' && echo "px units above"
+grep -En '>[^<{%]{60,}<' pages/*.liquid layout/*.liquid
+```
+
+The last line is for judgment: every hit should be the 404 page or the
+footer.
 
 ---
 
@@ -532,7 +703,9 @@ A short pre-flight checklist:
 - `archival_objects.toml` — schema (top-level field types per object)
 - `objects/<name>.toml` — singleton data
 - `objects/<name>/*.toml` — multi-file collection data (one file per
-  item, an `order` field controls display order)
+  item, an `order` field controls display order). `order` is built in:
+  set it in each data file, and never declare it in
+  `archival_objects.toml`, where it fails the build as a reserved field.
 - `pages/*.liquid` — page templates; the file name (minus `.liquid`)
   becomes the URL slug
 - `pages/_partial.liquid` — leading-underscore = include-only partial,
@@ -544,6 +717,11 @@ A short pre-flight checklist:
 - `archival.toml` — per-site config (`site_url`, etc.)
 - `archival_template.toml` — template-level metadata + LLM-generation
   context
+- `archival_editor.toml`: editor list views and shortcuts
+- `objects/site.toml`: the identity object's data in new templates
+- `pages/llms.txt.liquid`, `pages/sitemap.xml.liquid`,
+  `pages/robots.txt.liquid`: computer-facing pages (Section 1)
+- `public/fonts/`: self-hosted Inter
 
 ---
 

@@ -9,15 +9,15 @@ I design identities, publications and signage for museums, foundations and the s
 
 Before going independent in 2019, I spent six years at a studio that made exhibition graphics and annual reports. I still like work that has to hold up on a wall, on a page and on a phone at the same time.
 """
-portrait_alt = "Notebooks, loose sheets and a pen on Mara's white desk"
+portrait_alt = "A woman seen from behind at a railing, looking out over a hazy city"
 email = "hello@example.com"
 location = "Rotterdam, Netherlands"
 show_clients = true
 
 [portrait]
 display_type = "image"
-filename = "portrait.jpg"
-sha = "ad02e82dd3ae0dd851f48aabba18e35577aa75cdda80c80f589614721a17dc43"
+filename = "portrait-city.jpg"
+sha = "48f9b0f6ede86a0cfef56c54dbd1d410e243c1403dd22f2627c08bbd02be4657"
 mime = "image/jpeg"
 
 [[link]]

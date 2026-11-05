@@ -33,4 +33,4 @@ from the template.
 | `project/atlas-exhibition` | `image.1.file` | `atlas-2.jpg` | https://unsplash.com/photos/jUchUuDlhac |
 | `project/atlas-exhibition` | `image.2.file` | `atlas-4.jpg` | https://unsplash.com/photos/E6UbEy5x3KQ |
 | `project/atlas-exhibition` | `image.3.file` | `atlas-3.jpg` | https://unsplash.com/photos/CiND3adw3SE |
-| `site` | `portrait` | `portrait.jpg` | https://unsplash.com/photos/sHGyGynyD5Y |
+| `site` | `portrait` | `portrait-city.jpg` | https://unsplash.com/photos/PmsPJap8x-0 |

@@ -201,10 +201,16 @@ a:focus-visible {
   padding-block: 0.25rem;
 }
 
+.topbar a {
+  transition: color 120ms ease;
+}
+
 .topbar-nav a:hover,
-.topbar-back:hover {
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
+.topbar-back:hover,
+.topbar-name:hover,
+.topbar a:focus-visible,
+.topbar a:active {
+  color: var(--accent);
 }
 
 @media (min-width: 48rem) {
@@ -251,9 +257,14 @@ a:focus-visible {
   text-decoration: none;
 }
 
-.index-link:hover,
-.index-link:focus-visible {
-  background: var(--wash);
+.index-title {
+  transition: color 120ms ease;
+}
+
+.index-link:hover .index-title,
+.index-link:focus-visible .index-title,
+.index-link:active .index-title {
+  color: var(--accent);
 }
 
 .index-link:focus-visible {
@@ -474,6 +485,17 @@ a:focus-visible {
   text-decoration-thickness: 0.0625rem;
   text-underline-offset: 0.12em;
   overflow-wrap: anywhere;
+  margin-top: var(--space-4);
+  transition: color 120ms ease;
+}
+
+.contact-email:hover,
+.contact-email:focus-visible,
+.contact-email:active,
+.contact-links a:hover,
+.contact-links a:focus-visible,
+.contact-links a:active {
+  color: var(--accent);
 }
 
 .contact-location {
@@ -606,9 +628,18 @@ a:focus-visible {
   text-decoration: none;
 }
 
-.next-project:hover,
-.next-project:focus-visible {
-  background: var(--wash);
+.next-title,
+.next-label {
+  transition: color 120ms ease;
+}
+
+.next-project:hover .next-title,
+.next-project:hover .next-label,
+.next-project:focus-visible .next-title,
+.next-project:focus-visible .next-label,
+.next-project:active .next-title,
+.next-project:active .next-label {
+  color: var(--accent);
 }
 
 .next-label {
@@ -655,6 +686,13 @@ a:focus-visible {
 .site-footer a {
   color: var(--ink);
   text-underline-offset: 0.2em;
+  transition: color 120ms ease;
+}
+
+.site-footer a:hover,
+.site-footer a:focus-visible,
+.site-footer a:active {
+  color: var(--accent);
 }
 
 /* -------------------------------------------------------------- 404 page */
@@ -833,7 +871,10 @@ a:focus-visible {
   text-underline-offset: 0.15em;
 }
 
-.markdown a:hover {
+.markdown a:hover,
+.markdown a:focus-visible,
+.markdown a:active {
+  color: var(--accent);
   text-decoration-thickness: 0.125rem;
 }
 

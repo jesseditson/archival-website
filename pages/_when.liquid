@@ -1,0 +1,5 @@
+{%- comment -%} "11am to 2pm" for the visit in `v`, as the owner wrote the times. {%- endcomment -%}
+{%- if v.start != blank and v.end != blank -%}{{ v.start | escape }} to {{ v.end | escape }}
+{%- elsif v.start != blank -%}From {{ v.start | escape }}
+{%- elsif v.end != blank -%}Until {{ v.end | escape }}
+{%- endif -%}

@@ -1,20 +1,204 @@
 {%- assign site = objects.site -%}
+{%- assign stops = objects.stop | sort: "order" -%}
+{%- assign specials = objects.special_stop | sort: "order" -%}
+{%- assign dishes = objects.dish | sort: "order" -%}
+{%- assign days = "monday,tuesday,wednesday,thursday,friday,saturday,sunday" | split: "," -%}
+{%- assign has_schedule = false -%}
+{%- if stops.size > 0 or specials.size > 0 -%}{%- assign has_schedule = true -%}{%- endif -%}
+
+{%- comment -%} JSON-LD: a FoodEstablishment with its menu and special stops. No address: the truck moves. {%- endcomment -%}
 {%- capture ld_name %}{{ site.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
 {%- capture ld_desc %}{{ site.description | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
+{%- capture ld_cuisine %}{{ site.cuisine | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
+{%- capture ld_phone %}{{ site.phone | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
 {%- capture jsonld -%}
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebSite",
+    "@type": "FoodEstablishment",
     "name": "{{ ld_name }}"
     {%- if site.description != blank -%}, "description": "{{ ld_desc }}"{%- endif -%}
+    {%- if site.cuisine != blank -%}, "servesCuisine": "{{ ld_cuisine }}"{%- endif -%}
+    {%- if site.phone != blank -%}, "telephone": "{{ ld_phone }}"{%- endif -%}
+    {%- if site.hero_image != blank -%}, "image": "{{ site.hero_image.url | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' }}"{%- endif -%}
     {%- if site_url != blank -%}, "url": "{{ site_url }}/"{%- endif -%}
+    {%- assign same_count = 0 -%}{%- for social in site.social -%}{%- if social.url != blank -%}{%- assign same_count = same_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
+    {%- if same_count > 0 -%}, "sameAs": [{%- assign sep = "" -%}{%- for social in site.social -%}{%- if social.url != blank -%}{{ sep }}"{{ social.url | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- assign sep = ", " -%}{%- endif -%}{%- endfor -%}]{%- endif -%}
+    {%- if dishes.size > 0 -%}, "hasMenu": { "@type": "Menu", "hasMenuItem": [
+      {%- for dish in dishes -%}
+      { "@type": "MenuItem", "name": "{{ dish.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"
+        {%- if dish.description != blank -%}, "description": "{{ dish.description | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- endif -%} }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ] }{%- endif -%}
+    {%- if specials.size > 0 -%}, "event": [
+      {%- for sp in specials -%}
+      { "@type": "Event", "name": "{{ sp.place | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}", "startDate": "{{ sp.date | date: '%Y-%m-%d' }}",
+        "location": { "@type": "Place", "name": "{{ sp.place | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"
+          {%- if sp.address != blank -%}, "address": "{{ sp.address | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- endif -%} } }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ]{%- endif -%}
   }
 </script>
 {%- endcapture -%}
 {% layout 'theme' title: "", path: "", jsonld: jsonld %}
 
-<section class="intro">
-  <h1>{{ site.name | escape }}</h1>
-  {% if site.description != blank %}<p>{{ site.description | escape }}</p>{% endif %}
+<header class="masthead">
+  <span class="blob blob-1" aria-hidden="true"></span>
+  <span class="blob blob-2" aria-hidden="true"></span>
+  <div class="wrap masthead-inner">
+    <div class="brand">
+      <h1 class="name sticker">{{ site.name | escape }}</h1>
+      {% if site.tagline != blank %}<p class="tagline">{{ site.tagline | escape }}</p>{% endif %}
+    </div>
+    <div class="actions">
+      {% include 'socials' %}
+      {% if site.order_url != blank or site.phone != blank %}
+      <p class="buttons">
+        {% if site.order_url != blank %}<a class="button sticker" href="{{ site.order_url | escape }}">Order ahead</a>{% endif %}
+        {% if site.phone != blank %}<a class="button sticker button-light" href="tel:{{ site.phone | remove: ' ' | remove: '(' | remove: ')' | remove: '-' | remove: '.' | escape }}">Call {{ site.phone | escape }}</a>{% endif %}
+      </p>
+      {% endif %}
+    </div>
+    {% if site.intro != blank %}<p class="intro">{{ site.intro | escape }}</p>{% endif %}
+  </div>
+</header>
+
+<div class="wrap hero{% if site.hero_image == blank %} no-photo{% endif %}">
+  {% if site.hero_image != blank %}
+  <figure class="hero-photo sticker">
+    <img src="{{ site.hero_image.url | escape }}" alt="{{ site.hero_alt | escape }}" width="1600" height="1067" fetchpriority="high">
+  </figure>
+  {% endif %}
+  <section class="today sticker" id="today" aria-labelledby="today-label" aria-live="polite" hidden>
+    <p class="today-label" id="today-label">Today</p>
+    <ol class="today-list"></ol>
+  </section>
+  {% if has_schedule %}
+  <p class="today-fallback"><a class="button sticker" href="#week">Find us this week</a></p>
+  {% endif %}
+</div>
+
+<section class="week" id="week" aria-labelledby="week-title">
+  <span class="blob blob-3" aria-hidden="true"></span>
+  <div class="wrap week-inner">
+    <div class="week-main">
+      <h2 class="drip-heading" id="week-title">This week<span class="drips" aria-hidden="true"><i></i><i></i><i></i></span></h2>
+      {% if site.closed_until != blank %}
+      <p class="closure sticker" data-until="{{ site.closed_until | date: '%Y-%m-%d' }}">Closed until <time datetime="{{ site.closed_until | date: '%Y-%m-%d' }}">{{ site.closed_until | date: '%B %-d' }}</time>{% if site.closed_note != blank %}: {{ site.closed_note | escape }}{% endif %}</p>
+      {% endif %}
+      {% if stops.size > 0 %}
+      <table class="week-table sticker">
+        <caption class="visually-hidden">Where the truck parks each day of the week</caption>
+        <tbody>
+          {% for day in days %}
+          <tr data-day="{{ day }}">
+            <th scope="row"><abbr title="{{ day | capitalize }}">{{ day | slice: 0, 3 | capitalize }}</abbr></th>
+            <td>
+              {%- assign day_count = 0 -%}
+              {%- for v in stops -%}
+              {%- if v.day == day -%}
+              {%- assign day_count = day_count | plus: 1 -%}
+              <div class="slot">
+                <span class="slot-place">{% include 'place' %}</span>
+                <span class="slot-time">{% include 'when' %}</span>
+                {% if v.note != blank %}<span class="slot-note">{{ v.note | escape }}</span>{% endif %}
+              </div>
+              {%- endif -%}
+              {%- endfor -%}
+              {%- if day_count == 0 -%}<span class="slot-off">Off</span>{%- endif -%}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <div class="week-empty sticker">
+        <p>Our schedule is coming soon. Follow us for today's spot.</p>
+        {% include 'socials' %}
+      </div>
+      {% endif %}
+    </div>
+    {% if specials.size > 0 %}
+    <section class="specials" aria-labelledby="specials-title">
+      <h3 id="specials-title">Special stops</h3>
+      <ul class="special-list">
+        {% for v in specials %}
+        <li class="special sticker" data-date="{{ v.date | date: '%Y-%m-%d' }}">
+          <p class="special-date"><time datetime="{{ v.date | date: '%Y-%m-%d' }}">{{ v.date | date: '%a, %b %-d, %Y' }}</time></p>
+          <p class="special-place">{% include 'place' %}</p>
+          <p class="special-time">{% include 'when' %}</p>
+          {% if v.note != blank %}<p class="special-note">{{ v.note | escape }}</p>{% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+  </div>
 </section>
+
+<script type="application/json" id="schedule-data">
+{"stops": [{%- for v in stops -%}{"day": "{{ v.day }}", {% include 'visit-json' %}}{% unless forloop.last %}, {% endunless %}{%- endfor -%}],
+ "specials": [{%- for v in specials -%}{"date": "{{ v.date | date: '%Y-%m-%d' }}", {% include 'visit-json' %}}{% unless forloop.last %}, {% endunless %}{%- endfor -%}],
+ "closedUntil": "{% if site.closed_until != blank %}{{ site.closed_until | date: '%Y-%m-%d' }}{% endif %}",
+ "closedNote": "{{ site.closed_note | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"}
+</script>
+
+<div class="wrap lower">
+  {% if dishes.size > 0 %}
+  <section class="menu" id="menu" aria-labelledby="menu-title">
+    <h2 class="drip-heading" id="menu-title">Menu<span class="drips" aria-hidden="true"><i></i><i></i><i></i></span></h2>
+    <ul class="dishes">
+      {% for dish in dishes %}
+      <li class="dish sticker{% if dish.sold_out %} is-sold-out{% endif %}">
+        <div class="dish-main">
+          <p class="dish-name">{{ dish.name | escape }}</p>
+          {% if dish.description != blank %}<p class="dish-desc">{{ dish.description | escape }}</p>{% endif %}
+          {% if dish.spicy or dish.vegetarian or dish.sold_out %}
+          <p class="dish-tags">
+            {% if dish.sold_out %}<span class="dish-tag is-sold">Sold out</span>{% endif %}
+            {% if dish.spicy %}<span class="dish-tag is-spicy">Spicy</span>{% endif %}
+            {% if dish.vegetarian %}<span class="dish-tag is-veg">Veg</span>{% endif %}
+          </p>
+          {% endif %}
+        </div>
+        {% if dish.price != blank %}<p class="dish-price">{{ dish.price | escape }}</p>{% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  {%- assign photo_count = 0 -%}
+  {%- for photo in site.photo -%}{%- if photo.file != blank -%}{%- assign photo_count = photo_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
+  {% if photo_count > 0 %}
+  <section class="photos" aria-labelledby="photos-title">
+    <h2 class="visually-hidden" id="photos-title">Photos</h2>
+    <ul class="photo-strip">
+      {% for photo in site.photo %}
+      {% if photo.file != blank %}
+      <li class="photo sticker"><img src="{{ photo.file.url | escape }}" alt="{{ photo.alt | escape }}" loading="lazy"></li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  {% if site.booking_text != blank or site.booking_email != blank or site.booking_url != blank %}
+  <section class="booking{% if site.truck_photo != blank %} has-photo{% endif %}" id="booking" aria-labelledby="booking-title">
+    <div class="booking-text">
+      <h2 class="drip-heading" id="booking-title">{% if site.booking_heading != blank %}{{ site.booking_heading | escape }}{% else %}Book the truck{% endif %}<span class="drips" aria-hidden="true"><i></i><i></i><i></i></span></h2>
+      {% if site.booking_text != blank %}<div class="markdown">{{ site.booking_text }}</div>{% endif %}
+      {% if site.booking_url != blank %}
+      <p><a class="button sticker" href="{{ site.booking_url | escape }}">Ask about your event</a></p>
+      {% elsif site.booking_email != blank %}
+      <p><a class="button sticker" href="mailto:{{ site.booking_email | escape }}">Email us about your event</a></p>
+      {% endif %}
+    </div>
+    {% if site.truck_photo != blank %}
+    <figure class="booking-photo sticker"><img src="{{ site.truck_photo.url | escape }}" alt="{{ site.truck_photo_alt | escape }}" loading="lazy"></figure>
+    {% endif %}
+  </section>
+  {% endif %}
+</div>
+
+<script type="module" src="/js/today.js"></script>

@@ -1,0 +1,9 @@
+{%- comment -%} One visit (`v`) as JSON for scripts/schedule.ts. Every string goes through the JSON escape chain. {%- endcomment -%}
+{%- assign j_place = v.place | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines -%}
+{%- assign j_address = v.address | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines -%}
+{%- assign j_start = v.start | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines -%}
+{%- assign j_end = v.end | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines -%}
+{%- assign j_note = v.note | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines -%}
+{%- assign j_maps = "" -%}
+{%- if v.address != blank -%}{%- assign j_maps = v.address | url_encode | prepend: "https://www.google.com/maps/search/?api=1&query=" -%}{%- endif -%}
+"place": "{{ j_place }}", "address": "{{ j_address }}", "start": "{{ j_start }}", "end": "{{ j_end }}", "note": "{{ j_note }}", "maps": "{{ j_maps }}"

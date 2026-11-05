@@ -1,0 +1,6 @@
+{%- comment -%} The place for the visit in `v`, linked to a maps search when it has an address. {%- endcomment -%}
+{%- if v.address != blank -%}
+<a class="place-link" href="{{ v.address | url_encode | prepend: 'https://www.google.com/maps/search/?api=1&query=' | escape }}">{{ v.place | escape }}</a>
+{%- else -%}
+{{ v.place | escape }}
+{%- endif -%}

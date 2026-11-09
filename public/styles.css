@@ -1,7 +1,8 @@
 /* =========================================================================
-   Starter stylesheet. A neutral base for a new template to replace: change
-   the tokens and the page styles, keep the structure (skip link, footer,
-   404, reduced motion, and the .markdown block at the end).
+   Series: a photographer's contact sheet.
+   Each body of work is a strip of film on a white wall, with the frames the
+   photographer picked circled in grease pencil. Type is narrow and precise
+   so nothing competes with the pictures.
    Every dimension is in rem (1rem is 16 CSS pixels).
    ========================================================================= */
 
@@ -21,34 +22,42 @@
   font-display: swap;
 }
 
+/* Archivo with its width axis, set narrow. */
+@font-face {
+  font-family: "Archivo";
+  src: url("/fonts/archivo-latin-wdth.woff2") format("woff2");
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI Variable Text",
     "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Archivo", var(--font-body);
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  --color-background: #ffffff;
-  --color-surface: #f4f4f5;
-  --color-text: #18181b;
-  --color-text-muted: #52525b;
-  --color-border: #e4e4e7;
-  --color-accent: #2f5bd3;
+  /* AA ratios are against --wall. */
+  --wall: #ffffff;
+  --ink: #202020;     /* 16.3 */
+  --muted: #5e5e5e;   /* 6.5 */
+  --grease: #c22f1e;  /* 5.7, the grease pencil */
+  --rule: #dcdcdc;
+  --film: #000000;
+  --edge: #e8a33d;    /* 9.7 on film: the numbers printed on the film's edge */
+  --circle: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%2070'%20preserveAspectRatio='none'%3E%3Cpath%20d='M12%2040C8%2018%2034%206%2058%206s40%2012%2037%2032-30%2028-52%2027S4%2054%209%2034%2032%209%2052%208'%20fill='none'%20stroke='%23c22f1e'%20stroke-width='3.2'%20stroke-linecap='round'%20vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
 
-  /* Code blocks stay dark in both color schemes. */
-  --color-code-background: #18181b;
-  --color-code-text: #f4f4f5;
+  /* Names the markdown block below reads. */
+  --color-text: var(--ink);
+  --color-text-muted: var(--muted);
+  --color-accent: var(--grease);
+  --color-border: var(--rule);
+  --color-surface: #f2f2f2;
+  --color-code-background: #161616;
+  --color-code-text: #f2f2f2;
 
-  --content-width: 44rem;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: #111111;
-    --color-surface: #1c1c1f;
-    --color-text: #f4f4f5;
-    --color-text-muted: #a1a1aa;
-    --color-border: #2e2e33;
-    --color-accent: #8aa8ff;
-  }
+  --gutter: 1rem;
 }
 
 *,
@@ -63,43 +72,57 @@ html {
 
 body {
   margin: 0;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: var(--color-background);
-  color: var(--color-text);
+  min-height: 100vh;
+  background: var(--wall);
+  color: var(--ink);
   font-family: var(--font-body);
+  font-size: 1rem;
   line-height: 1.6;
 }
 
-a {
-  color: var(--color-accent);
+main {
+  flex: 1 0 auto;
 }
 
-img,
-video {
+img {
   max-width: 100%;
   height: auto;
 }
 
-main {
-  flex: 1;
-  width: 100%;
-  max-width: var(--content-width);
-  margin: 0 auto;
-  padding: 4rem 1.5rem;
+a {
+  color: var(--ink);
+  text-decoration-color: var(--grease);
+  text-decoration-thickness: 0.125rem;
+  text-underline-offset: 0.2em;
+  transition: color 150ms ease;
 }
 
-/* Skip link: hidden until focused */
+a:hover {
+  color: var(--grease);
+}
+
+:focus-visible {
+  outline: 0.1875rem solid var(--grease);
+  outline-offset: 0.1875rem;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
 .skip-link {
   position: absolute;
   top: -10rem;
   left: 1rem;
   z-index: 100;
   padding: 0.5rem 1rem;
-  background: var(--color-text);
-  color: var(--color-background);
-  border-radius: 0.25rem;
+  background: var(--film);
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -107,102 +130,483 @@ main {
   top: 1rem;
 }
 
-/* Home */
-.intro h1 {
-  margin: 0 0 1rem;
-  font-size: clamp(2.25rem, 6vw, 3.5rem);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-}
-
-.intro p {
+h1,
+h2,
+h3 {
   margin: 0;
-  font-size: 1.25rem;
-  color: var(--color-text-muted);
+  font-family: var(--font-display);
+  font-stretch: 62%;
+  text-wrap: balance;
 }
 
-/* Footer */
-.site-footer {
-  padding: 3rem 1.5rem 2rem;
-  text-align: center;
-  font-size: 0.8125rem;
-  color: var(--color-text-muted);
+/* ---------- Intro ---------- */
+
+.intro {
+  display: grid;
+  gap: 2rem;
+  padding-top: 3rem;
+  padding-bottom: 3.5rem;
 }
 
-.site-footer p {
+.name {
+  font-size: clamp(3.25rem, 13vw, 8.5rem);
+  font-weight: 700;
+  line-height: 0.88;
+  letter-spacing: -0.01em;
+}
+
+.tagline {
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-size: 1.0625rem;
+}
+
+.statement {
+  max-width: 34rem;
+  font-size: 1.0625rem;
+}
+
+.statement.markdown p {
+  line-height: 1.75rem;
+}
+
+/* ---------- Section headings ---------- */
+
+.section-title {
+  padding-top: 0.75rem;
+  border-top: 0.125rem solid var(--ink);
+  font-size: 1.375rem;
+  font-stretch: 75%;
+  font-weight: 650;
+  line-height: 2rem;
+  margin-bottom: 2rem;
+}
+
+.sheet,
+.shown,
+.contact {
+  padding-bottom: 4rem;
+}
+
+/* ---------- The contact sheet ---------- */
+
+.rolls {
+  list-style: none;
   margin: 0;
+  padding: 0;
 }
 
-.site-footer a {
-  color: var(--color-text);
+.roll + .roll {
+  margin-top: 3.5rem;
+}
+
+.roll-link {
+  display: block;
+  color: var(--ink);
   text-decoration: none;
-  transition: color 0.2s ease;
 }
 
-.site-footer a:hover {
-  color: var(--color-accent);
+/* A strip of film: black, with sprocket holes along both edges. */
+.strip {
+  position: relative;
+  display: flex;
+  gap: 0.375rem;
+  width: max-content;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 2.125rem 1.125rem;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 0.5rem, var(--wall) 0.5rem 1rem, transparent 1rem 1.5rem) left 0 top 0.375rem / 100% 0.5rem no-repeat,
+    repeating-linear-gradient(90deg, transparent 0 0.5rem, var(--wall) 0.5rem 1rem, transparent 1rem 1.5rem) left 0 bottom 0.375rem / 100% 0.5rem no-repeat,
+    var(--film);
+  scrollbar-width: thin;
+  scrollbar-color: #555555 var(--film);
 }
 
-/* 404: scoped under #not-found so generic rules can't override it */
+.frame {
+  position: relative;
+  flex: 0 0 auto;
+  width: clamp(8.5rem, 22vw, 17rem);
+  aspect-ratio: 3 / 2;
+}
+
+.frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Frame numbers, printed on the film below each frame. */
+.edge {
+  position: absolute;
+  top: calc(100% + 0.25rem);
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.375rem;
+  color: var(--edge);
+  font-family: var(--font-display);
+  font-stretch: 75%;
+  font-weight: 600;
+  font-size: 0.625rem;
+  line-height: 0.75rem;
+  letter-spacing: 0.04em;
+}
+
+/* The photographer's pick, circled in grease pencil. */
+.frame.is-circled::after {
+  content: "";
+  position: absolute;
+  inset: -0.875rem -1rem;
+  background: var(--circle) center / 100% 100% no-repeat;
+  pointer-events: none;
+}
+
+.roll-label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 1.25rem;
+  margin-top: 1rem;
+}
+
+.roll-title {
+  font-family: var(--font-display);
+  font-stretch: 62%;
+  font-weight: 700;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 0.1875rem;
+  text-underline-offset: 0.18em;
+  transition: text-decoration-color 150ms ease;
+}
+
+.roll-link:hover .roll-title,
+.roll-link:focus-visible .roll-title {
+  text-decoration-color: var(--grease);
+}
+
+.roll-meta,
+.roll-count {
+  color: var(--muted);
+}
+
+/* ---------- Shown and published ---------- */
+
+.show-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 56rem;
+}
+
+.show-list li {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  gap: 0 1.25rem;
+  padding: 0.75rem 0;
+  border-bottom: 0.0625rem solid var(--rule);
+  line-height: 1.5rem;
+}
+
+.show-year {
+  font-family: var(--font-display);
+  font-stretch: 75%;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.show-venue {
+  grid-column: 2;
+  color: var(--muted);
+}
+
+/* ---------- Contact ---------- */
+
+.contact-lines {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 2rem;
+  font-family: var(--font-display);
+  font-stretch: 75%;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.contact-lines a {
+  overflow-wrap: anywhere;
+}
+
+.contact-lines span {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* ---------- A series page ---------- */
+
+.series-head {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+.back {
+  margin: 0 0 2.5rem;
+  font-family: var(--font-display);
+  font-stretch: 75%;
+  font-weight: 650;
+  font-size: 1.125rem;
+}
+
+.back a {
+  text-decoration: none;
+}
+
+.series-title {
+  font-size: clamp(3rem, 11vw, 7rem);
+  font-weight: 700;
+  line-height: 0.9;
+}
+
+.series-meta {
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-size: 1.0625rem;
+}
+
+.series-statement {
+  margin-top: 2rem;
+  max-width: 36rem;
+  font-size: 1.0625rem;
+}
+
+.plates {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* One photograph per screen. */
+.plate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem var(--gutter);
+}
+
+.plate figure {
+  margin: 0;
+  display: grid;
+  justify-items: start;
+  max-width: 100%;
+}
+
+.plate img {
+  display: block;
+  width: auto;
+  max-width: min(100%, 64rem);
+  max-height: calc(100svh - 7rem);
+}
+
+.plate figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  margin-top: 0.875rem;
+  font-size: 0.9375rem;
+  line-height: 1.5rem;
+}
+
+.plate-number {
+  font-family: var(--font-display);
+  font-stretch: 75%;
+  font-weight: 650;
+}
+
+.plate-caption {
+  color: var(--muted);
+}
+
+.series-next {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+  font-family: var(--font-display);
+  font-stretch: 75%;
+  font-weight: 650;
+  font-size: 1.375rem;
+  line-height: 2rem;
+}
+
+.series-next a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  text-decoration: none;
+  border-bottom: 0.1875rem solid var(--grease);
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  border-top: 0.0625rem solid var(--rule);
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.footer-credit {
+  margin: 0;
+}
+
+.footer-credit a {
+  color: var(--ink);
+}
+
+.socials {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 0.0625rem solid var(--rule);
+  border-radius: 50%;
+  color: var(--ink);
+}
+
+.social:hover {
+  color: var(--grease);
+  border-color: var(--grease);
+}
+
+.social .icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* ---------- 404 ---------- */
+
 #not-found {
-  padding: 4rem 0;
-  text-align: center;
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 4rem var(--gutter) 6rem;
 }
 
 #not-found .not-found-eyebrow {
   margin: 0;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
+  color: var(--muted);
 }
 
 #not-found .not-found-code {
-  margin: 0.5rem 0;
-  font-size: clamp(5rem, 18vw, 10rem);
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -0.04em;
+  position: relative;
+  display: inline-block;
+  margin: 2rem 0 2.5rem 1.75rem;
+  font-family: var(--font-display);
+  font-stretch: 62%;
+  font-weight: 700;
+  font-size: clamp(6rem, 22vw, 10rem);
+  line-height: 0.85;
+}
+
+#not-found .not-found-code::after {
+  content: "";
+  position: absolute;
+  inset: -1.25rem -1.75rem;
+  background: var(--circle) center / 100% 100% no-repeat;
 }
 
 #not-found .not-found-title {
-  margin: 0 0 1rem;
-  font-size: 1.75rem;
-  font-style: italic;
-  font-weight: 500;
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 700;
+  line-height: 1;
 }
 
 #not-found .not-found-description {
-  max-width: 28rem;
-  margin: 0 auto 2rem;
-  color: var(--color-text-muted);
+  margin: 1rem 0 2rem;
+  color: var(--muted);
+  font-size: 1.0625rem;
 }
 
 #not-found .not-found-cta {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  border: 0.125rem solid currentColor;
-  border-radius: 999rem;
-  color: var(--color-text);
-  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0.5rem 1.25rem;
+  border: 0.125rem solid var(--ink);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-stretch: 75%;
+  font-weight: 650;
+  font-size: 1.125rem;
   text-decoration: none;
-  transition: background 0.2s ease, color 0.2s ease;
 }
 
 #not-found .not-found-cta:hover {
-  background: var(--color-text);
-  color: var(--color-background);
+  border-color: var(--grease);
+  color: var(--grease);
+}
+
+/* ---------- Wider screens ---------- */
+
+@media (min-width: 48rem) {
+  :root {
+    --gutter: 2rem;
+  }
+
+  .show-list li {
+    grid-template-columns: 3.5rem minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .show-venue {
+    grid-column: auto;
+  }
+
+  .plate {
+    min-height: 100svh;
+    padding: 2.5rem var(--gutter);
+  }
+}
+
+@media (min-width: 64rem) {
+  .intro {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    align-items: end;
+    gap: 4rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
   }
 }
 

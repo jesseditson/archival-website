@@ -1,2 +1,19 @@
-name = "Archival Website"
-description = "A new site built with Archival."
+name = "Oda Lindqvist"
+tagline = "Photographs of places at their edges"
+description = "Oda Lindqvist is a documentary photographer working in long series on salt, fog and empty streets. See each series, recent exhibitions and how to get in touch."
+statement = """
+I photograph places at the edge of being empty: salt flats at noon, a coastline lost in fog, a city street after the last bus. Each series is made over several returns to one place, and the pictures are meant to be seen in order.
+"""
+location = "Gothenburg, Sweden"
+email = "studio@example.com"
+
+[[social]]
+platform = "instagram"
+url = "https://instagram.com/"
+label = "Instagram"
+
+[og_image]
+display_type = "image"
+filename = "og-series.jpg"
+sha = "312e2bdbcacbe95a09c25a6ed05ebf52ba37c98c27adb310f99bae110f7f9e08"
+mime = "image/jpeg"

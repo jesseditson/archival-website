@@ -1,16 +1,36 @@
 #:schema https://archival.dev/schemas/archival_template.schema.json
 # Shown in the editor's template picker.
-name = ""
+name = "Series"
 # One line for the gallery card, roughly ten to fifteen words.
-tagline = ""
+tagline = "A contact sheet for documentary and fine-art photographers who work in series."
 # The template info modal's body: what this template is and what it contains.
 description = """
+A site for a documentary or fine-art photographer who thinks in bodies of work, not single shots. The home page is a contact sheet: each series is a strip of film with its frame numbers along the edge, and the frames you picked are circled in red grease pencil, the way photographers mark their selects. Under each strip are the series title, place and year. Each series opens on its own page with a short statement, then one photograph per screen in sequence, numbered and captioned. The home page also carries your statement, a list of exhibitions, books and press, and how to reach you. The rest stays quiet: a white wall, narrow precise type, nothing competing with the pictures.
 """
 # The prompt that drives content generation. Describe when to pick this
 # template and what every field holds. Update it whenever the schema changes.
 context = """
+Pick this template for a documentary, fine-art or editorial photographer who organizes their work into series or projects, each made in one place or around one idea. For a photographer who books clients for weddings or portraits, a booking template fits better.
+
+Write only from facts the person gave you. Never invent exhibitions, books, venues, places or dates: a made-up exhibition history is a false claim about a real person. When the person has not given them, leave show empty and the page leaves that section out.
+
+site (the photographer):
+- name: the photographer's name. It is the home page's only h1, set very large.
+- tagline: one short line under the name, around five to ten words ("Photographs of places at their edges").
+- description: one or two sentences for search results and link previews.
+- statement: a short artist statement in markdown, one paragraph, in the photographer's own voice and only from what they told you.
+- location: where they are based ("Gothenburg, Sweden").
+- email: only an address the person gave.
+- og_image, favicon: leave empty.
+- social: one entry per account the person gave. platform is one of "instagram", "website", "bluesky", "threads", "facebook", "youtube" or "vimeo"; url is the full URL; label is the account's name for screen readers (the button shows only the icon). Never invent URLs.
+
+project (one series, with its own page): title; place where it was made; year as text ("2025" or "2019 to 2023"); statement, a short markdown paragraph about the series. photo is the list of photographs in viewing order, each with image (leave empty), alt describing the photo, a short caption ("The first morning"), and circled, true for the one or two frames the photographer would pick out; they get a red grease pencil circle on the contact sheet, and the first circled one stands for the series in link previews. Set order for the sequence of series, newest first is usual. Leave photo empty unless the person gave photos.
+
+show (exhibitions, books and press): year, title, venue (where, or what kind: "Solo exhibition, Gothenburg", "Photobook, 48 photographs"), and url, an optional link. Only real ones the person gave. Set order, newest first.
 """
-tags = []
-tlds = []
-# Value paths kept when a site is generated, instead of stripped as examples.
+tags = ["photographer", "documentary", "fine art", "portfolio", "series", "projects", "exhibitions"]
+tlds = ["photography", "photo", "gallery", "art", "com"]
+assets = ["CREDITS.md"]
+# Nothing is kept: a new site starts without the example photographer's series
+# or exhibitions.
 keep_objects = []

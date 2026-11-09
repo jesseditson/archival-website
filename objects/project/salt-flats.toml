@@ -1,0 +1,47 @@
+order = 1
+title = "Salt Flats"
+place = "Salar de Uyuni, Bolivia"
+year = "2025"
+statement = """
+Twelve days on the largest salt flat in the world, in the dry season, when the ground cracks into tiles and the horizon stops meaning anything.
+"""
+
+[[photo]]
+alt = "A white salt plain running flat to a low line of distant mountains under a blue sky"
+caption = "The first morning"
+circled = true
+[photo.image]
+display_type = "image"
+filename = "salt-flats-1.jpg"
+sha = "55c4581b9e78d35316ec8014a99c6a5b1743e98e96d9522d8eecdffc279904ee"
+mime = "image/jpeg"
+
+[[photo]]
+alt = "Salt crust cracked into pale hexagons, with long streaks of cloud overhead"
+caption = "Tiles, noon"
+circled = false
+[photo.image]
+display_type = "image"
+filename = "salt-flats-2.jpg"
+sha = "9d1f27e373f45f5046c37a3bfe220539c56274ddd3272726ab91982151c9e371"
+mime = "image/jpeg"
+
+[[photo]]
+alt = "Cracked salt stretching away under a deep blue sky, one small figure far off on the right"
+caption = "Someone walking out"
+circled = true
+[photo.image]
+display_type = "image"
+filename = "salt-flats-3.jpg"
+sha = "d9d3213a176b00e679edd6963fd61dc323a10af2fb610c7fbdb1cd966d05af7c"
+mime = "image/jpeg"
+
+[[photo]]
+alt = "A thin layer of water on the salt mirroring clouds, with a few small figures standing in it"
+caption = "After the rain"
+circled = false
+[photo.image]
+display_type = "image"
+filename = "salt-flats-4.jpg"
+sha = "dad5240a10baae9d79ddb6ec47f39d19052672d44bbd90758173a3f8cea6ea45"
+mime = "image/jpeg"

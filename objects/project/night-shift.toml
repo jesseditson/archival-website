@@ -1,0 +1,47 @@
+order = 3
+title = "Night Shift"
+place = "Northern European cities"
+year = "2023"
+statement = """
+Streets photographed between two and four in the morning, when a city belongs to streetlights and the people who work under them.
+"""
+
+[[photo]]
+alt = "A row of streetlights glowing blue in thick fog over an empty road"
+caption = "Fog on the ring road"
+circled = true
+[photo.image]
+display_type = "image"
+filename = "night-shift-1.jpg"
+sha = "1409aca4c691e715ae212885a2db1a35b6044345cb8cbcd9059d1cea6787d1fb"
+mime = "image/jpeg"
+
+[[photo]]
+alt = "A dark road curving past trees lit by one streetlight"
+caption = "Edge of the park"
+circled = false
+[photo.image]
+display_type = "image"
+filename = "night-shift-2.jpg"
+sha = "e01811ac317bcda542d44782acc67584dbe436c9543af34524f814a5fdead62b"
+mime = "image/jpeg"
+
+[[photo]]
+alt = "A long residential street at night, parked cars on both sides, lamps blurred by fog"
+caption = "Before the bakeries open"
+circled = false
+[photo.image]
+display_type = "image"
+filename = "night-shift-3.jpg"
+sha = "70c34d68a6a7e8105e6167f19afe0c254346f074b5d17b6fbe9bd1e180fee255"
+mime = "image/jpeg"
+
+[[photo]]
+alt = "Apartment blocks behind trees at night, a few windows lit and a path lit by lamps"
+caption = "Four windows awake"
+circled = true
+[photo.image]
+display_type = "image"
+filename = "night-shift-4.jpg"
+sha = "23b3c7373951b68428bc8be8953204e9aaec56ef9d963a5d5a990958d716d638"
+mime = "image/jpeg"

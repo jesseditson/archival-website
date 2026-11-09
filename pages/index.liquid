@@ -1,20 +1,98 @@
 {%- assign site = objects.site -%}
-{%- capture ld_name %}{{ site.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
-{%- capture ld_desc %}{{ site.description | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
+{%- assign projects = objects.project | sort: "order" -%}
+{%- assign shows = objects.show | sort: "order" -%}
+{%- capture ld_name -%}{{ site.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{%- endcapture -%}
 {%- capture jsonld -%}
 <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "{{ ld_name }}"
-    {%- if site.description != blank -%}, "description": "{{ ld_desc }}"{%- endif -%}
-    {%- if site_url != blank -%}, "url": "{{ site_url }}/"{%- endif -%}
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "{{ ld_name }}",
+  "jobTitle": "Photographer",
+  "url": "{{ site_url }}/"
+  {%- if site.description != blank -%}, "description": "{{ site.description | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- endif -%}
+  {%- if site.email != blank -%}, "email": "{{ site.email | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- endif -%}
+  {%- if site.location != blank -%}, "workLocation": {"@type": "Place", "name": "{{ site.location | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"}{%- endif -%}
+  {%- assign social_urls = "" -%}
+  {%- for social in site.social -%}{%- if social.url != blank -%}{%- capture one -%}"{{ social.url | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- endcapture -%}{%- if social_urls != blank -%}{%- assign social_urls = social_urls | append: ", " -%}{%- endif -%}{%- assign social_urls = social_urls | append: one -%}{%- endif -%}{%- endfor -%}
+  {%- if social_urls != blank -%}, "sameAs": [{{ social_urls }}]{%- endif %}
+}
 </script>
 {%- endcapture -%}
 {% layout 'theme' title: "", path: "", jsonld: jsonld %}
 
-<section class="intro">
-  <h1>{{ site.name | escape }}</h1>
-  {% if site.description != blank %}<p>{{ site.description | escape }}</p>{% endif %}
+<header class="wrap intro">
+  <div class="intro-name">
+    <h1 class="name">{{ site.name | escape }}</h1>
+    {%- if site.tagline != blank %}
+    <p class="tagline">{{ site.tagline | escape }}</p>
+    {%- endif %}
+  </div>
+  {%- if site.statement != blank %}
+  <div class="statement markdown">{{ site.statement }}</div>
+  {%- endif %}
+</header>
+
+{%- if projects.size > 0 %}
+<section class="wrap sheet" aria-labelledby="sheet-title">
+  <h2 id="sheet-title" class="section-title">Series</h2>
+  <ol class="rolls">
+    {%- for project in projects %}
+    {%- assign shown = 0 -%}
+    {%- for photo in project.photo -%}{%- if photo.image != blank -%}{%- assign shown = shown | plus: 1 -%}{%- endif -%}{%- endfor %}
+    <li class="roll">
+      <a class="roll-link" href="/{{ project.path }}">
+        {%- if shown > 0 %}
+        <span class="strip">
+          {%- assign frame = 0 -%}
+          {%- for photo in project.photo %}{% if photo.image != blank %}
+          {%- assign frame = frame | plus: 1 %}
+          <span class="frame{% if photo.circled %} is-circled{% endif %}">
+            <span class="edge" aria-hidden="true"><span>{{ frame }}</span><span>{{ frame }}A</span></span>
+            <img src="{{ photo.image.url | escape }}" alt="" loading="lazy">
+          </span>
+          {%- endif %}{% endfor %}
+        </span>
+        {%- endif %}
+        <span class="roll-label">
+          <span class="roll-title">{{ project.title | escape }}</span>
+          {%- if project.place != blank or project.year != blank %}
+          <span class="roll-meta">{% if project.place != blank %}{{ project.place | escape }}{% endif %}{% if project.place != blank and project.year != blank %}, {% endif %}{% if project.year != blank %}{{ project.year | escape }}{% endif %}</span>
+          {%- endif %}
+          {%- if shown > 0 %}
+          <span class="roll-count">{{ shown }} {% if shown == 1 %}photograph{% else %}photographs{% endif %}</span>
+          {%- endif %}
+        </span>
+      </a>
+    </li>
+    {%- endfor %}
+  </ol>
 </section>
+{%- endif %}
+
+{%- if shows.size > 0 %}
+<section class="wrap shown" aria-labelledby="shown-title">
+  <h2 id="shown-title" class="section-title">Shown and published</h2>
+  <ul class="show-list">
+    {%- for show in shows %}{% if show.title != blank %}
+    <li>
+      <span class="show-year">{{ show.year | escape }}</span>
+      <span class="show-title">{% if show.url != blank %}<a href="{{ show.url | escape }}">{{ show.title | escape }}</a>{% else %}{{ show.title | escape }}{% endif %}</span>
+      {%- if show.venue != blank %}
+      <span class="show-venue">{{ show.venue | escape }}</span>
+      {%- endif %}
+    </li>
+    {%- endif %}{% endfor %}
+  </ul>
+</section>
+{%- endif %}
+
+{%- if site.email != blank or site.location != blank %}
+<section class="wrap contact" aria-labelledby="contact-title">
+  <h2 id="contact-title" class="section-title">Contact</h2>
+  <p class="contact-lines">
+    {%- if site.email != blank %}<a href="mailto:{{ site.email | escape }}">{{ site.email | escape }}</a>{% endif -%}
+    {%- if site.location != blank %}<span>{{ site.location | escape }}</span>{% endif -%}
+  </p>
+</section>
+{%- endif %}

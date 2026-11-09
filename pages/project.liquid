@@ -1,0 +1,82 @@
+{%- assign site = objects.site -%}
+{%- assign list = objects.project | sort: "order" -%}
+{%- assign found = false -%}
+{%- assign has_next = false -%}
+{%- for item in list -%}
+  {%- if found and has_next == false -%}
+    {%- assign next_project = item -%}
+    {%- assign has_next = true -%}
+  {%- endif -%}
+  {%- if item.path == project.path -%}{%- assign found = true -%}{%- endif -%}
+{%- endfor -%}
+{%- if has_next == false and list.size > 1 -%}
+  {%- assign next_project = list.first -%}
+  {%- assign has_next = true -%}
+{%- endif -%}
+
+{%- comment -%} The first circled frame stands for the series; else the first frame. {%- endcomment -%}
+{%- assign cover_url = "" -%}
+{%- assign total = 0 -%}
+{%- for photo in project.photo -%}
+  {%- if photo.image != blank -%}
+    {%- assign total = total | plus: 1 -%}
+    {%- if photo.circled and cover_url == "" -%}{%- assign cover_url = photo.image.url -%}{%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- if cover_url == "" -%}
+  {%- for photo in project.photo -%}{%- if photo.image != blank and cover_url == "" -%}{%- assign cover_url = photo.image.url -%}{%- endif -%}{%- endfor -%}
+{%- endif -%}
+
+{%- capture jsonld -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "{{ project.title | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}",
+  "creator": {"@type": "Person", "name": "{{ site.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"},
+  "url": "{{ site_url }}/{{ project.path }}"
+  {%- if project.place != blank -%}, "locationCreated": {"@type": "Place", "name": "{{ project.place | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"}{%- endif -%}
+  {%- if project.statement != blank -%}, "description": "{{ project.statement | strip_html | strip | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- endif -%}
+  {%- if total > 0 -%}, "image": [
+    {%- assign n = 0 -%}
+    {%- for photo in project.photo -%}{%- if photo.image != blank -%}{%- assign n = n | plus: 1 -%}"{{ photo.image.url | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- if n < total -%}, {% endif -%}{%- endif -%}{%- endfor -%}]
+  {%- endif %}
+}
+</script>
+{%- endcapture -%}
+{% layout 'theme' title: project.title, path: project.path, jsonld: jsonld, image: cover_url %}
+
+<article class="series">
+  <header class="wrap series-head">
+    <p class="back"><a href="/">{{ site.name | escape }}</a></p>
+    <h1 class="series-title">{{ project.title | escape }}</h1>
+    {%- if project.place != blank or project.year != blank %}
+    <p class="series-meta">{% if project.place != blank %}{{ project.place | escape }}{% endif %}{% if project.place != blank and project.year != blank %}, {% endif %}{% if project.year != blank %}{{ project.year | escape }}{% endif %}</p>
+    {%- endif %}
+    {%- if project.statement != blank %}
+    <div class="series-statement markdown">{{ project.statement }}</div>
+    {%- endif %}
+  </header>
+
+  {%- if total > 0 %}
+  <ol class="plates">
+    {%- assign n = 0 -%}
+    {%- for photo in project.photo %}{% if photo.image != blank %}
+    {%- assign n = n | plus: 1 %}
+    <li class="plate" id="photo-{{ n }}">
+      <figure>
+        <img src="{{ photo.image.url | escape }}" alt="{{ photo.alt | escape }}"{% if n > 1 %} loading="lazy"{% endif %}>
+        <figcaption><span class="plate-number">{{ n }} of {{ total }}</span>{% if photo.caption != blank %}<span class="plate-caption">{{ photo.caption | escape }}</span>{% endif %}</figcaption>
+      </figure>
+    </li>
+    {%- endif %}{% endfor %}
+  </ol>
+  {%- endif %}
+
+  <nav class="wrap series-next" aria-label="More series">
+    <a href="/">All series</a>
+    {%- if has_next %}
+    <a href="/{{ next_project.path }}">Next series: {{ next_project.title | escape }}</a>
+    {%- endif %}
+  </nav>
+</article>

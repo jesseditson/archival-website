@@ -1,26 +1,32 @@
-{%- comment -%}
-  The editor's from-scratch flow can replace the schema, and archival fails
-  the build on any reference to a field the schema does not define, even
-  inside an `if`. Looping over the object's fields reads them safely.
-{%- endcomment -%}
 {%- assign site = objects.site -%}
-{%- for field in site -%}
-{%- if field.first == "name" and field.last != blank %}# {{ field.last }}
+{%- assign projects = objects.project | sort: "order" -%}
+{%- assign shows = objects.show | sort: "order" -%}
+# {{ site.name }}
 
+> {{ site.description }}
+{% if site.tagline != blank %}
+{{ site.tagline }}.
 {% endif -%}
-{%- if field.first == "description" and field.last != blank %}> {{ field.last }}
-
+{%- if site.location != blank %}
+Based in {{ site.location }}.
 {% endif -%}
-{%- endfor -%}
-## Pages
-
-- [Home]({{ site_url }}/)
-{% comment %}
-  List every section page, then every kind of content, generated from the
-  objects. For a list type:
-
-## Posts
-
-{% for post in posts %}- [{{ post.title }}]({{ site_url }}/{{ post.path }})
-{% endfor %}
-{% endcomment %}
+{%- if site.statement != blank %}
+{{ site.statement | strip_html | strip }}
+{% endif %}
+## Series
+{% for project in projects %}
+- [{{ project.title }}]({{ site_url }}/{{ project.path }}){% if project.place != blank %}, {{ project.place }}{% endif %}{% if project.year != blank %}, {{ project.year }}{% endif %}{% if project.statement != blank %}: {{ project.statement | strip_html | strip | strip_newlines }}{% endif %}
+{%- endfor %}
+{% if shows.size > 0 %}
+## Shown and published
+{% for show in shows %}
+- {% if show.year != blank %}{{ show.year }}: {% endif %}{{ show.title }}{% if show.venue != blank %}, {{ show.venue }}{% endif %}{% if show.url != blank %} ({{ show.url }}){% endif %}
+{%- endfor %}
+{% endif %}
+## Contact
+{% if site.email != blank %}
+- Email: {{ site.email }}
+{%- endif %}
+{%- for social in site.social %}{% if social.url != blank %}
+- {% if social.label != blank %}{{ social.label }}{% else %}{{ social.platform | capitalize }}{% endif %}: {{ social.url }}
+{%- endif %}{% endfor %}

@@ -7,6 +7,7 @@
   and optionally:
     noindex: true on utility pages (404, thank-you, search results)
     jsonld:  a captured <script type="application/ld+json"> block
+    image:   an absolute image URL for link previews, overriding og_image
 {%- endcomment -%}
 {%- assign site = objects.site -%}
 {%- assign site_name = site.name -%}
@@ -20,6 +21,9 @@
 {%- if site.og_image != blank -%}
   {%- assign og_image_url = site.og_image.url -%}
 {%- endif -%}
+{%- if image -%}{%- if image != "" -%}
+  {%- assign og_image_url = image -%}
+{%- endif -%}{%- endif -%}
 {%- assign words = site_name | split: " " -%}
 {%- assign initials = "" -%}
 {%- if words.size == 1 -%}
@@ -57,15 +61,16 @@
     <meta name="twitter:description" content="{{ site.description | escape }}">
 
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: dark)">
 
     {% if site.favicon != blank %}
     <link rel="icon" href="{{ site.favicon.url | escape }}">
     <link rel="apple-touch-icon" href="{{ site.favicon.url | escape }}">
     {% else %}
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='bold' font-size='13' fill='%23e5ff00'%3E{{ initials }}%3C/text%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23000'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='bold' font-size='13' fill='%23e8a33d'%3E{{ initials }}%3C/text%3E%3C/svg%3E">
     {% endif %}
 
+    <link rel="preload" href="/fonts/archivo-latin-wdth.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/styles.css">
     {% if jsonld %}{{ jsonld }}{% endif %}
@@ -76,7 +81,10 @@
       {{ page_content }}
     </main>
     <footer class="site-footer">
-      <p>&copy; {{ "now" | date: "%Y" }} {{ site_name | escape }}. Powered by <a href="https://archival.dev">Archival</a>.</p>
+      <div class="wrap footer-inner">
+        {% include 'socials' %}
+        <p class="footer-credit">&copy; {{ "now" | date: "%Y" }} {{ site_name | escape }}. Powered by <a href="https://archival.dev">Archival</a>.</p>
+      </div>
     </footer>
   </body>
 </html>

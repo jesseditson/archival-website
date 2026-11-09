@@ -1,20 +1,42 @@
 #:schema https://archival.dev/schemas/archival_objects.schema.json
-# The content schema. Every type name is singular: root objects are addressed
-# by their own name, and lists pluralize themselves in templates.
+# The content schema. Every type name is singular.
 
-# The identity object. The layout reads it on every page.
+# The photographer. The layout reads it on every page.
 [site]
 name = "string"
+tagline = "string"
 description = "string"
+statement = "markdown"
+location = "string"
+email = "string"
 og_image = "image"
 favicon = "image"
 
-# A list type, one file per item under objects/<type>/, looks like this.
-# `template` makes each item render through pages/<type>.liquid to /<type>/<file>.
-# `order` is built in: set it in each item's file, never declare it here.
-#
-# [post]
-# title = "string"
-# publish_date = "date"
-# body = "markdown"
-# template = "post"
+[site.social]
+platform = ["instagram", "website", "bluesky", "threads", "facebook", "youtube", "vimeo"]
+url = "string"
+label = "string"
+
+# A body of work. Each one gets its own page at /project/<file>.
+[project]
+title = "string"
+place = "string"
+year = "string"
+statement = "markdown"
+template = "project"
+
+# The photographs in a series, in sequence. A circled frame is one the
+# photographer picked: it gets a grease pencil mark on the contact sheet,
+# and the first circled frame stands for the series in link previews.
+[project.photo]
+image = "image"
+alt = "string"
+caption = "string"
+circled = "boolean"
+
+# Exhibitions, books and press.
+[show]
+year = "string"
+title = "string"
+venue = "string"
+url = "string"

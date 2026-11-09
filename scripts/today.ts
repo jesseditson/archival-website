@@ -44,7 +44,9 @@ function update(data: CafeData): void {
   if (badge) {
     const b = badgeState(data, now);
     const text = badgeText(b, today);
-    badge.textContent = text;
+    // The badge is a live region: write only real changes, or screen readers
+    // may announce the same words again every minute.
+    if (badge.textContent !== text) badge.textContent = text;
     badge.hidden = text === "";
     badge.dataset.kind = b.kind;
   }

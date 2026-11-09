@@ -91,7 +91,7 @@
   {%- elsif closure_start != "" and closure_end != "" -%}
     Closed from {{ site.closure_start | date: "%B %-d" }} to {{ site.closure_end | date: "%B %-d" }}.
   {%- elsif closure_end != "" -%}
-    Closed until {{ site.closure_end | date: "%B %-d" }}.
+    Closed through {{ site.closure_end | date: "%B %-d" }}.
   {%- else -%}
     Closed on {{ site.closure_start | date: "%B %-d" }}.
   {%- endif -%}
@@ -126,8 +126,10 @@
       {%- if site.address != blank %}
       {%- assign map_src = site.address | url_encode | prepend: "https://maps.google.com/maps?q=" | append: "&output=embed" -%}
       {%- if site.map_embed_url != blank -%}
-        {%- assign map_src = site.map_embed_url | strip -%}
-        {%- if map_src contains 'src="' -%}{%- assign map_src = map_src | split: 'src="' | last | split: '"' | first -%}{%- endif -%}
+        {%- assign pasted = site.map_embed_url | strip -%}
+        {%- if pasted contains 'src="' -%}{%- assign pasted = pasted | split: 'src="' | last | split: '"' | first -%}{%- endif -%}
+        {%- comment -%} Google refuses to frame share and place links, so only an embed URL replaces the address search. {%- endcomment -%}
+        {%- if pasted contains "/maps/embed" or pasted contains "output=embed" -%}{%- assign map_src = pasted -%}{%- endif -%}
       {%- endif %}
       <div class="where">
         <address><a href="{{ directions_url | escape }}">{{ site.address | escape }}</a></address>

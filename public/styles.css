@@ -683,10 +683,15 @@ h3 {
     aspect-ratio: 16 / 7;
   }
 
-  .visit-grid {
+  /* Two columns only when both halves are there; a lone half spans the row. */
+  .visit-grid:has(> .hours + .where) {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
     gap: 3rem;
     align-items: start;
+  }
+
+  .visit-grid > .hours:only-child {
+    max-width: 40rem;
   }
 
   .map iframe {
@@ -698,9 +703,13 @@ h3 {
     text-align: left;
   }
 
+  /* One row for any number of photos: columns share the width up to 18rem
+     each, and a short row sits centered. */
   .photo-strip {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 18rem);
+    justify-content: center;
     overflow: visible;
     padding-bottom: 0;
   }

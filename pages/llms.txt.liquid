@@ -32,7 +32,7 @@ Times are local to the café.
 {%- endfor %}
 {% endif -%}
 {%- if closure_last != "" and closure_last >= build_day %}
-Closure: closed {% if closure_start != "" and closure_end != "" %}from {{ closure_start }} to {{ closure_end }}{% elsif closure_end != "" %}until {{ closure_end }}{% else %}on {{ closure_start }}{% endif %}.{% if site.closure_note != blank %} {{ site.closure_note }}{% endif %}
+Closure: closed {% if closure_start != "" and closure_end != "" %}from {{ closure_start }} to {{ closure_end }}{% elsif closure_end != "" %}through {{ closure_end }}{% else %}on {{ closure_start }}{% endif %}.{% if site.closure_note != blank %} {{ site.closure_note }}{% endif %}
 {% endif -%}
 {%- assign menu_items = 0 -%}
 {%- for group in objects.menu_group -%}{%- assign menu_items = menu_items | plus: group.item.size -%}{%- endfor -%}

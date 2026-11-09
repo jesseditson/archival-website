@@ -1,16 +1,37 @@
 #:schema https://archival.dev/schemas/archival_template.schema.json
 # Shown in the editor's template picker.
-name = ""
+name = "Café"
 # One line for the gallery card, roughly ten to fifteen words.
-tagline = ""
+tagline = "A calm one-page site for a neighborhood café, with live hours, map and menu."
 # The template info modal's body: what this template is and what it contains.
 description = """
+A one-page site for a neighborhood café or bakery, built to get people in the door. The name sits on a big bottle-green sign at the top, with a badge that says whether you are open right now ("Open now, until 3pm" or "Closed now, opens tomorrow at 7am"), worked out in each visitor's own time. Below it: your hours for the week with today highlighted, your address beside an interactive map, a menu set out like the little price cards in a pastry case, and a strip of photos. A holiday closure note shows ahead of time and takes itself down when you reopen. Visitors can switch between light and dark themes, and the page starts in whichever their device uses.
 """
 # The prompt that drives content generation. Describe when to pick this
 # template and what every field holds. Update it whenever the schema changes.
 context = """
+Pick this template for a café, coffee shop, bakery, tea room or similar counter-service spot with one fixed address, where the site's job is to get neighbors to stop by. It is one page. Fill the hours, the address and the menu only from facts the person gave you. Made-up hours put a false "Open now" on the page, and a made-up address puts a real customer at the wrong door, so when the person has not given them, leave hours, address and menu_group empty and the page simply leaves those sections out.
+
+site (the café itself):
+- name: the café's name. It is the page's only h1, set very large on the header.
+- tagline: one short line under the name, around six to twelve words ("Coffee and pastries baked every morning on Alder Street").
+- description: one or two sentences for search results and link previews.
+- hero_image, hero_alt: the big photo at the bottom of the header and its description. Leave every image field empty: hero_image, og_image, favicon and every photo file. Leave hero_alt empty too.
+- address: the street address on one line, as a maps app should search for it. Only a real address the person gave. It drives the map and the "Get directions" button.
+- map_embed_url: leave empty. The owner can paste a Google Maps embed link (or the whole embed code) to pin an exact spot; without it the map searches the address.
+- phone, email: only values the person gave. Otherwise empty. Never invent them.
+- closure_start, closure_end, closure_note: leave all three empty. The owner sets them for a holiday closure: the first and last closed dates, and a short note ("Closed for the holidays. Back December 27!").
+- og_image, favicon: leave empty.
+- social: one entry per social account the person gave. platform is one of "instagram", "facebook", "tiktok", "x", "threads", "bluesky", "youtube" or "website"; url is the full URL; label is the account's name for screen readers (the button shows only the icon). Never invent URLs.
+- photo: a strip of photos, each with file and alt. Leave empty.
+
+hours (one item per open day): day is one of "monday" through "sunday"; opens and closes are times written with am/pm, like "7am" and "3pm" or "7:30am". A missing day is closed, so add no row for closed days. Each range must open and close on the same day. Set order so the days run Monday to Sunday.
+
+menu_group (sections of the menu, such as Coffee, Pastries, Breakfast): name; note is an optional line under the section name ("Oat milk, add 0.75"); item is the list of things in it, each with a name, a price as text written the way the owner would ("4.25", "$4.25"), and an optional one-line description. Set order for the menu's sequence.
 """
-tags = []
-tlds = []
-# Value paths kept when a site is generated, instead of stripped as examples.
+tags = ["cafe", "coffee shop", "bakery", "restaurant", "one page", "hours", "menu", "map"]
+tlds = ["cafe", "coffee", "com"]
+assets = ["CREDITS.md"]
+# Nothing is kept: a new site starts without the example café's photos,
+# hours or menu.
 keep_objects = []

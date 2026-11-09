@@ -1,26 +1,53 @@
-{%- comment -%}
-  The editor's from-scratch flow can replace the schema, and archival fails
-  the build on any reference to a field the schema does not define, even
-  inside an `if`. Looping over the object's fields reads them safely.
-{%- endcomment -%}
 {%- assign site = objects.site -%}
-{%- for field in site -%}
-{%- if field.first == "name" and field.last != blank %}# {{ field.last }}
+{%- assign closure_start = "" -%}{%- if site.closure_start != blank -%}{%- assign closure_start = site.closure_start | date: "%Y-%m-%d" -%}{%- endif -%}
+{%- assign closure_end = "" -%}{%- if site.closure_end != blank -%}{%- assign closure_end = site.closure_end | date: "%Y-%m-%d" -%}{%- endif -%}
+{%- assign closure_last = closure_end -%}{%- if closure_last == "" -%}{%- assign closure_last = closure_start -%}{%- endif -%}
+{%- assign build_day = "now" | date: "%Y-%m-%d" -%}
+# {{ site.name }}
+{% if site.description != blank %}
+> {{ site.description }}
+{% endif %}{% if site.tagline != blank %}
+{{ site.tagline }}
+{% endif %}
+## Visit
+{% if site.address != blank %}
+Address: {{ site.address }}
+Directions: {{ site.address | url_encode | prepend: "https://www.google.com/maps/search/?api=1&query=" }}
+{%- endif %}
+{%- if site.phone != blank %}
+Phone: {{ site.phone }}
+{%- endif %}
+{%- if site.email != blank %}
+Email: {{ site.email }}
+{%- endif %}
+{% if objects.hours.size > 0 %}
+## Hours
 
+Times are local to the café.
+{% assign week = "monday,tuesday,wednesday,thursday,friday,saturday,sunday" | split: "," -%}
+{%- for day in week -%}
+{%- assign row = nil -%}
+{%- for h in objects.hours -%}{%- if h.day == day and row == nil -%}{%- assign row = h -%}{%- endif -%}{%- endfor %}
+- {{ day | capitalize }}: {% if row == nil or row.opens == blank and row.closes == blank %}Closed{% elsif row.closes == blank %}{{ row.opens }}{% elsif row.opens == blank %}{{ row.closes }}{% else %}{{ row.opens }} to {{ row.closes }}{% endif %}
+{%- endfor %}
 {% endif -%}
-{%- if field.first == "description" and field.last != blank %}> {{ field.last }}
-
+{%- if closure_last != "" and closure_last >= build_day %}
+Closure: closed {% if closure_start != "" and closure_end != "" %}from {{ closure_start }} to {{ closure_end }}{% elsif closure_end != "" %}until {{ closure_end }}{% else %}on {{ closure_start }}{% endif %}.{% if site.closure_note != blank %} {{ site.closure_note }}{% endif %}
 {% endif -%}
-{%- endfor -%}
+{%- assign menu_items = 0 -%}
+{%- for group in objects.menu_group -%}{%- assign menu_items = menu_items | plus: group.item.size -%}{%- endfor -%}
+{%- if menu_items > 0 %}
+## Menu
+{% for group in objects.menu_group -%}{%- if group.item.size > 0 %}
+### {{ group.name }}
+{% if group.note != blank %}
+{{ group.note }}
+{% endif %}
+{% for it in group.item -%}
+- {{ it.name }}{% if it.price != blank %}: {{ it.price }}{% endif %}{% if it.description != blank %}. {{ it.description }}{% endif %}
+{% endfor -%}
+{%- endif -%}{%- endfor -%}
+{%- endif %}
 ## Pages
 
 - [Home]({{ site_url }}/)
-{% comment %}
-  List every section page, then every kind of content, generated from the
-  objects. For a list type:
-
-## Posts
-
-{% for post in posts %}- [{{ post.title }}]({{ site_url }}/{{ post.path }})
-{% endfor %}
-{% endcomment %}

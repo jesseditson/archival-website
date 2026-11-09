@@ -291,11 +291,16 @@ h3 {
 
 .print-hero {
   --tilt: -1.5deg;
+  justify-self: start;
+  width: fit-content;
+  max-width: 100%;
 }
 
+/* Keep the photo's own shape: a portrait hero stays whole, just shorter. */
 .print-hero img {
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
+  width: auto;
+  max-width: 100%;
+  max-height: 44rem;
 }
 
 .hello {

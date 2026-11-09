@@ -17,7 +17,9 @@
   {%- if social_urls != blank -%}, "sameAs": [{{ social_urls }}]{%- endif -%}
   {%- if objects.package.size > 0 -%}, "makesOffer": [
     {%- for package in objects.package -%}
-    {"@type": "Offer", "name": "{{ package.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}", "description": "{{ package.price | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% if package.hours != blank %}, {{ package.hours | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endif %}{% if package.summary != blank %}. {{ package.summary | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endif %}"}{% unless forloop.last %},{% endunless %}
+    {%- capture offer_text -%}{{ package.price }}{% if package.price != blank and package.hours != blank %}, {% endif %}{{ package.hours }}{%- endcapture -%}
+    {%- if package.summary != blank -%}{%- if offer_text != blank -%}{%- assign offer_text = offer_text | append: ". " -%}{%- endif -%}{%- assign offer_text = offer_text | append: package.summary -%}{%- endif -%}
+    {"@type": "Offer", "name": "{{ package.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{% if offer_text != blank %}, "description": "{{ offer_text | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{% endif %}}{% unless forloop.last %},{% endunless %}
     {%- endfor -%}]
   {%- endif %}
 }
@@ -56,7 +58,7 @@
     </figure>
     {%- endif %}
     {%- if site.hello != blank %}
-    <div class="hello markdown">{{ site.hello }}</div>
+    <div class="hello markdown">{{ site.hello | replace: "<h1", "<h3" | replace: "</h1>", "</h3>" | replace: "<h2", "<h3" | replace: "</h2>", "</h3>" }}</div>
     {%- endif %}
   </div>
 </section>
@@ -147,7 +149,7 @@
       <details>
         <summary>{{ faq.question | escape }}</summary>
         {%- if faq.answer != blank %}
-        <div class="faq-answer markdown">{{ faq.answer }}</div>
+        <div class="faq-answer markdown">{{ faq.answer | replace: "<h1", "<h3" | replace: "</h1>", "</h3>" | replace: "<h2", "<h3" | replace: "</h2>", "</h3>" }}</div>
         {%- endif %}
       </details>
       {%- endif %}{% endfor %}
@@ -168,7 +170,8 @@
       <a class="button" href="mailto:{{ site.email | escape }}">Email {{ site.email | escape }}</a>
       {%- endif %}
       {%- if site.booking_url != blank %}
-      <a class="button{% if site.email != blank %} button-quiet{% endif %}" href="{{ site.booking_url | escape }}">{% if site.booking_label != blank %}{{ site.booking_label | escape }}{% else %}Book online{% endif %}</a>
+      {%- assign link = site.booking_url | strip -%}{%- include 'link-href' -%}
+      <a class="button{% if site.email != blank %} button-quiet{% endif %}" href="{{ link_href | escape }}">{% if site.booking_label != blank %}{{ site.booking_label | escape }}{% else %}Book online{% endif %}</a>
       {%- endif %}
     </p>
   </div>

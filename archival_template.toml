@@ -20,20 +20,20 @@ site (the photographer):
 - description: one or two sentences for search results and link previews.
 - booking_status: a short line beside the Inquire button ("Now booking 2027 weddings"). Only if the person said what they are booking; otherwise empty.
 - hero_image, hero_alt, hero_caption: the big tilted print. Leave every image field empty: hero_image, og_image, favicon and every shoot photo. Leave hero_alt empty too. hero_caption is the short handwritten note on the print, a place and month ("Rowena Crest, September"); leave it empty when there is no photo.
-- hello: a short first-person introduction in markdown, two short paragraphs at most, in the photographer's own voice and only from what they told you.
+- hello: a short first-person introduction in markdown, two short paragraphs at most, in the photographer's own voice and only from what they told you. No headings.
 - location: where they are based or work ("Hood River, Oregon").
-- email: only an address the person gave. booking_url: only a booking or contact page URL they gave. booking_label: the text of the booking button ("Check my availability"); leave empty when there is no booking_url.
+- email: only an address the person gave. booking_url: only a booking or contact page URL they gave, written in full with https://. booking_label: the text of the booking button ("Check my availability"); leave empty when there is no booking_url.
 - inquire_heading: the closing heading ("Tell me about your day"). inquire_note: one or two sentences on what to send and how soon they reply.
 - og_image, favicon: leave empty.
 - social: one entry per account the person gave. platform is one of "instagram", "pinterest", "facebook", "tiktok", "threads", "bluesky", "youtube" or "website"; url is the full URL; label is the account's name for screen readers (the button shows only the icon). Never invent URLs.
 
 package (what a client can book): name ("Elopement", "Half day"); price as text the way the photographer writes it ("From $2,400"); hours is the coverage ("Up to 5 hours"); summary is one sentence; include is a list of what comes with it, each with an item ("Second photographer"). Set order for the sequence, usually smallest to largest.
 
-shoot (recent work, shown as prints): photo (leave empty), alt describing the photo, and caption, a short handwritten note like a place and month ("Mosier, May"). Leave shoot empty unless the person gave photos.
+shoot (recent work, shown as prints): photo (leave empty), alt describing the photo, and caption, a short handwritten note like a place and month ("Mosier, May"). The prints fill columns from top to bottom, left column first, so the first two or three by order sit down the left side. Leave shoot empty unless the person gave photos.
 
 kind_word (what clients said): quote, name ("Priya and Sam"), and detail ("Married at Rowena Crest"). Only real quotes the person gave.
 
-faq: question and answer (markdown). Common ones are travel, delivery time, how many photos and how to hold a date; answer only from what the person told you.
+faq: question and answer (markdown, a sentence or two, no headings). Common ones are travel, delivery time, how many photos and how to hold a date; answer only from what the person told you.
 """
 tags = ["photographer", "wedding", "portrait", "elopement", "booking", "packages", "one page"]
 tlds = ["photography", "photo", "photos", "com"]

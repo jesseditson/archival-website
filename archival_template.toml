@@ -1,6 +1,9 @@
 #:schema https://archival.dev/schemas/archival_template.schema.json
 name = "Photo Gallery"
 tagline = "A tiled mosaic that puts the pictures first, with room for the story behind them."
+describe_title = "Tell us about your work"
+describe_placeholder = "I'm a landscape photographer in Oakland. Mostly coastal work, plus a print shop."
+describe_files = "Drop your best photos, a bio, a client list"
 description = """
 This template puts portfolio images front and center with a tiled mosaic on the home page, and about and contact pages. It features a dramatic grid gallery, an extensive about section with stories, statistics, expertise areas, and a detailed process breakdown, plus a contact page with availability status, project types, budgets, FAQ, and social links. Ideal for photographers, visual artists, designers, and other creative professionals.
 """

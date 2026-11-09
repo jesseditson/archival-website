@@ -1,6 +1,9 @@
 #:schema https://archival.dev/schemas/archival_template.schema.json
 name = "Professional"
 tagline = "Services, pricing, testimonials, and a contact form — for anyone who books their own clients."
+describe_title = "Tell us about your services"
+describe_placeholder = "I'm a career coach in Denver. One-on-one sessions, résumé reviews and interview prep, mostly over video."
+describe_files = "Drop a headshot, your rates, client testimonials"
 description = """
 This template is intended to be used by a professional who is offering services. It features a personal profile section with photo and bio, a service catalog with descriptions and pricing, client testimonials, and a contact form powered by Google Forms. Great for consultants, freelancers, coaches, therapists, tutors, and other service providers.
 """

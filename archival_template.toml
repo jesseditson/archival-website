@@ -3,6 +3,12 @@
 name = ""
 # One line for the gallery card, roughly ten to fifteen words.
 tagline = ""
+# The describe box on the confirm screen: its heading ("Tell us about your
+# band"), an example answer for its placeholder, and the files worth dropping
+# on it ("Drop band photos, album art, a few tracks"). Empty is generic copy.
+describe_title = ""
+describe_placeholder = ""
+describe_files = ""
 # The template info modal's body: what this template is and what it contains.
 description = """
 """

@@ -1,2 +1,17 @@
-name = "Archival Website"
-description = "A new site built with Archival."
+name = "Alder & Rye"
+tagline = "Coffee and pastries baked every morning on Alder Street"
+description = "Alder & Rye is a neighborhood café on SE Alder Street serving espresso, drip coffee and pastries baked in house each morning. See our hours, find us on the map and browse the menu."
+hero_alt = "The café's sunny dining room with woven pendant lamps, white chairs and big street-facing windows"
+address = "1418 SE Alder St, Portland, OR 97214"
+phone = "(503) 555-0147"
+email = "hello@example.com"
+
+[[social]]
+platform = "instagram"
+url = "https://instagram.com/"
+label = "Instagram"
+
+[[social]]
+platform = "facebook"
+url = "https://facebook.com/"
+label = "Facebook"

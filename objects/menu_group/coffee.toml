@@ -1,0 +1,25 @@
+order = 1
+name = "Coffee"
+note = "Oat or almond milk, add 0.75"
+
+[[item]]
+name = "Drip coffee"
+price = "3.00"
+description = "A rotating single origin, refilled free while you stay."
+
+[[item]]
+name = "Cortado"
+price = "4.00"
+
+[[item]]
+name = "Latte"
+price = "4.75"
+
+[[item]]
+name = "Cardamom latte"
+price = "5.25"
+description = "Our latte with house cardamom syrup."
+
+[[item]]
+name = "Cold brew"
+price = "4.50"

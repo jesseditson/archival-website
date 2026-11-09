@@ -1,0 +1,16 @@
+order = 3
+name = "Breakfast"
+
+[[item]]
+name = "Egg and cheddar sandwich"
+price = "8.50"
+description = "Soft scrambled eggs and aged cheddar on a toasted bun."
+
+[[item]]
+name = "Avocado toast"
+price = "9.00"
+description = "On our rye loaf with lemon and chili flakes."
+
+[[item]]
+name = "Yogurt and granola"
+price = "7.00"

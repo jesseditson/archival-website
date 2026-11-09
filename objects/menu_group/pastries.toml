@@ -1,0 +1,21 @@
+order = 2
+name = "Pastries"
+note = "Baked every morning until they run out"
+
+[[item]]
+name = "Butter croissant"
+price = "3.75"
+
+[[item]]
+name = "Cardamom bun"
+price = "4.25"
+description = "Twisted, glazed and still warm before nine."
+
+[[item]]
+name = "Cinnamon roll"
+price = "4.50"
+description = "With cream cheese icing."
+
+[[item]]
+name = "Rye chocolate chip cookie"
+price = "3.25"

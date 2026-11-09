@@ -1,6 +1,9 @@
 #:schema https://archival.dev/schemas/archival_template.schema.json
 name = "Case Studies"
 tagline = "A numbered index of case studies, each with its own page for the full story."
+describe_title = "Tell us about your studio"
+describe_placeholder = "A two-person brand design studio in Lisbon. Identity and packaging for food and drink companies."
+describe_files = "Drop project images, a client list, your bio"
 description = """
 A portfolio for designers, illustrators, architects and small studios who win work by showing how they think. The home page opens with one large statement, then lists every project as a numbered index; hovering a row shows its cover beside the list. Each project gets its own page with the client, role, discipline and year, a cover image, a written case study, and a run of captioned images. About, selected clients and contact sit below the index on the same page. The look is Swiss: a strict grid, one typeface, black on white, and a single accent color you can change.
 """

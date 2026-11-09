@@ -1,20 +1,185 @@
 {%- assign site = objects.site -%}
+{%- comment -%} Shared values {%- endcomment -%}
+{%- assign directions_url = "" -%}
+{%- if site.address != blank -%}
+  {%- assign directions_url = site.address | url_encode | prepend: "https://www.google.com/maps/search/?api=1&query=" -%}
+{%- endif -%}
+{%- assign tel = site.phone | remove: ' ' | remove: '(' | remove: ')' | remove: '-' | remove: '.' -%}
+{%- assign closure_start = "" -%}{%- if site.closure_start != blank -%}{%- assign closure_start = site.closure_start | date: "%Y-%m-%d" -%}{%- endif -%}
+{%- assign closure_end = "" -%}{%- if site.closure_end != blank -%}{%- assign closure_end = site.closure_end | date: "%Y-%m-%d" -%}{%- endif -%}
+{%- assign closure_last = closure_end -%}{%- if closure_last == "" -%}{%- assign closure_last = closure_start -%}{%- endif -%}
+{%- assign build_day = "now" | date: "%Y-%m-%d" -%}
+{%- assign menu_items = 0 -%}
+{%- for group in objects.menu_group -%}{%- assign menu_items = menu_items | plus: group.item.size -%}{%- endfor -%}
+{%- assign photo_count = 0 -%}
+{%- for p in site.photo -%}{%- if p.file != blank -%}{%- assign photo_count = photo_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
+
+{%- comment -%} JSON-LD {%- endcomment -%}
 {%- capture ld_name %}{{ site.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
 {%- capture ld_desc %}{{ site.description | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
+{%- capture ld_address %}{{ site.address | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
+{%- capture ld_phone %}{{ site.phone | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
+{%- capture ld_email %}{{ site.email | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
 {%- capture jsonld -%}
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebSite",
+    "@type": "CafeOrCoffeeShop",
     "name": "{{ ld_name }}"
     {%- if site.description != blank -%}, "description": "{{ ld_desc }}"{%- endif -%}
     {%- if site_url != blank -%}, "url": "{{ site_url }}/"{%- endif -%}
+    {%- if site.hero_image != blank -%}, "image": "{{ site.hero_image.url | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' }}"{%- endif -%}
+    {%- if site.address != blank -%}, "address": "{{ ld_address }}"{%- endif -%}
+    {%- if site.phone != blank -%}, "telephone": "{{ ld_phone }}"{%- endif -%}
+    {%- if site.email != blank -%}, "email": "{{ ld_email }}"{%- endif -%}
+    {%- assign sep = "" -%}
+    {%- for social in site.social -%}{%- if social.url != blank -%}
+      {%- if sep == "" -%}, "sameAs": [{%- endif -%}
+      {{ sep }}"{{ social.url | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"
+      {%- assign sep = "," -%}
+    {%- endif -%}{%- endfor -%}
+    {%- if sep != "" -%}]{%- endif -%}
+    {%- if menu_items > 0 -%}, "hasMenu": { "@type": "Menu", "hasMenuSection": [
+      {%- assign gsep = "" -%}
+      {%- for group in objects.menu_group -%}{%- if group.item.size > 0 -%}
+        {{ gsep }}{ "@type": "MenuSection", "name": "{{ group.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}", "hasMenuItem": [
+        {%- for it in group.item -%}
+          { "@type": "MenuItem", "name": "{{ it.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"
+          {%- if it.description != blank -%}, "description": "{{ it.description | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- endif -%}
+          {%- if it.price != blank -%}, "offers": { "@type": "Offer", "price": "{{ it.price | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}" }{%- endif -%}
+          }{%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+        ] }
+        {%- assign gsep = "," -%}
+      {%- endif -%}{%- endfor -%}
+    ] }{%- endif %}
   }
 </script>
 {%- endcapture -%}
 {% layout 'theme' title: "", path: "", jsonld: jsonld %}
 
-<section class="intro">
-  <h1>{{ site.name | escape }}</h1>
-  {% if site.description != blank %}<p>{{ site.description | escape }}</p>{% endif %}
+<header class="sign">
+  <div class="wrap sign-inner">
+    <div class="sign-top">
+      <p class="badge" id="badge" hidden aria-live="polite"></p>
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Dark theme" hidden>
+        <span class="toggle-track" aria-hidden="true">
+          <span class="toggle-knob">
+            <svg class="toggle-sun" viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <svg class="toggle-moon" viewBox="0 0 24 24" focusable="false"><path d="M19.5 14.6A8 8 0 0 1 9.4 4.5a8 8 0 1 0 10.1 10.1z" fill="currentColor"/></svg>
+          </span>
+        </span>
+      </button>
+    </div>
+    <h1 class="name">{{ site.name | escape }}</h1>
+    {% if site.tagline != blank %}<p class="tagline">{{ site.tagline | escape }}</p>{% endif %}
+    {%- if site.address != blank or site.phone != blank %}
+    <p class="sign-actions">
+      {%- if site.address != blank %}<a class="button button-primary directions" href="{{ directions_url | escape }}">Get directions</a>{% endif -%}
+      {%- if site.phone != blank %}<a class="button button-secondary call" href="tel:{{ tel | escape }}">Call</a>{% endif -%}
+    </p>
+    {%- endif %}
+    {% if site.hero_image != blank %}<img class="hero" src="{{ site.hero_image.url | escape }}" alt="{{ site.hero_alt | escape }}">{% endif %}
+  </div>
+</header>
+
+{%- if closure_last != "" and closure_last >= build_day %}
+<p class="closure" data-start="{{ closure_start }}" data-end="{{ closure_end }}">
+  <span class="wrap closure-inner">
+  {%- if site.closure_note != blank -%}
+    {{ site.closure_note | escape }}
+  {%- elsif closure_start != "" and closure_end != "" -%}
+    Closed from {{ site.closure_start | date: "%B %-d" }} to {{ site.closure_end | date: "%B %-d" }}.
+  {%- elsif closure_end != "" -%}
+    Closed until {{ site.closure_end | date: "%B %-d" }}.
+  {%- else -%}
+    Closed on {{ site.closure_start | date: "%B %-d" }}.
+  {%- endif -%}
+  </span>
+</p>
+{%- endif %}
+
+{%- if objects.hours.size > 0 or site.address != blank %}
+<section class="visit" id="visit" aria-labelledby="visit-heading">
+  <div class="wrap">
+    <h2 id="visit-heading">Visit</h2>
+    <div class="visit-grid">
+      {%- if objects.hours.size > 0 %}
+      <ol class="hours">
+        {%- assign week = "monday,tuesday,wednesday,thursday,friday,saturday,sunday" | split: "," -%}
+        {%- for day in week -%}
+          {%- assign row = nil -%}
+          {%- for h in objects.hours -%}{%- if h.day == day and row == nil -%}{%- assign row = h -%}{%- endif -%}{%- endfor %}
+        <li data-day="{{ day }}">
+          <span class="hours-day">{{ day | capitalize }}</span>
+          <span class="hours-time">
+            {%- if row == nil or row.opens == blank and row.closes == blank -%}Closed
+            {%- elsif row.closes == blank -%}{{ row.opens | escape }}
+            {%- elsif row.opens == blank -%}{{ row.closes | escape }}
+            {%- else -%}{{ row.opens | escape }} to {{ row.closes | escape }}
+            {%- endif -%}
+          </span>
+        </li>
+        {%- endfor %}
+      </ol>
+      {%- endif %}
+      {%- if site.address != blank %}
+      {%- assign map_src = site.address | url_encode | prepend: "https://maps.google.com/maps?q=" | append: "&output=embed" -%}
+      {%- if site.map_embed_url != blank -%}
+        {%- assign map_src = site.map_embed_url | strip -%}
+        {%- if map_src contains 'src="' -%}{%- assign map_src = map_src | split: 'src="' | last | split: '"' | first -%}{%- endif -%}
+      {%- endif %}
+      <div class="where">
+        <address><a href="{{ directions_url | escape }}">{{ site.address | escape }}</a></address>
+        {%- if site.phone != blank or site.email != blank %}
+        <p class="where-contact">
+          {%- if site.phone != blank %}<a href="tel:{{ tel | escape }}">{{ site.phone | escape }}</a>{% endif -%}
+          {%- if site.email != blank %}<a href="mailto:{{ site.email | escape }}">{{ site.email | escape }}</a>{% endif -%}
+        </p>
+        {%- endif %}
+        <div class="map">
+          <iframe src="{{ map_src | escape }}" title="Map of {{ site.name | escape }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+      </div>
+      {%- endif %}
+    </div>
+  </div>
 </section>
+{%- endif %}
+
+{%- if menu_items > 0 %}
+<section class="menu" id="menu" aria-labelledby="menu-heading">
+  <div class="wrap">
+    <h2 id="menu-heading">Menu</h2>
+    {%- for group in objects.menu_group -%}{%- if group.item.size > 0 %}
+    <section class="menu-group">
+      <h3>{{ group.name | escape }}</h3>
+      {% if group.note != blank %}<p class="menu-note">{{ group.note | escape }}</p>{% endif %}
+      <ul class="tents">
+        {%- for it in group.item %}
+        <li class="tent">
+          <p class="tent-line"><span class="tent-name">{{ it.name | escape }}</span>{% if it.price != blank %}<span class="tent-price">{{ it.price | escape }}</span>{% endif %}</p>
+          {% if it.description != blank %}<p class="tent-desc">{{ it.description | escape }}</p>{% endif %}
+        </li>
+        {%- endfor %}
+      </ul>
+    </section>
+    {%- endif -%}{%- endfor %}
+  </div>
+</section>
+{%- endif %}
+
+{%- if photo_count > 0 %}
+<section class="photos" aria-label="Photos">
+  <ul class="photo-strip">
+    {%- for p in site.photo -%}{%- if p.file != blank %}
+    <li><img src="{{ p.file.url | escape }}" alt="{{ p.alt | escape }}" loading="lazy"></li>
+    {%- endif -%}{%- endfor %}
+  </ul>
+</section>
+{%- endif %}
+
+<script type="application/json" id="cafe-data">
+{"hours": [{%- for h in objects.hours -%}{"day": "{{ h.day }}", "opens": "{{ h.opens | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}", "closes": "{{ h.closes | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"}{%- unless forloop.last -%}, {% endunless -%}{%- endfor -%}], "closureStart": "{{ closure_start }}", "closureEnd": "{{ closure_end }}"}
+</script>
+<script type="module" src="/js/today.js"></script>

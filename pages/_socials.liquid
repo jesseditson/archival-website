@@ -1,0 +1,13 @@
+{%- comment -%} Round icon buttons for every social link with a URL. {%- endcomment -%}
+{%- assign social_count = 0 -%}
+{%- for social in objects.site.social -%}{%- if social.url != blank -%}{%- assign social_count = social_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
+{%- if social_count > 0 -%}
+<ul class="socials">
+  {%- for social in objects.site.social -%}
+  {%- if social.url != blank -%}
+  {%- if social.label != blank -%}{%- assign social_name = social.label -%}{%- else -%}{%- assign social_name = social.platform | capitalize -%}{%- endif -%}
+  <li><a class="social" href="{{ social.url | escape }}" aria-label="{{ social_name | escape }}">{% include 'social-icon' %}</a></li>
+  {%- endif -%}
+  {%- endfor -%}
+</ul>
+{%- endif -%}

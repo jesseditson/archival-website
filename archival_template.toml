@@ -1,6 +1,9 @@
 #:schema https://archival.dev/schemas/archival_template.schema.json
 name = "Food Truck"
 tagline = "A bright one-page site that shows where your truck is parked today."
+describe_title = "Tell us about your truck"
+describe_placeholder = "Korean BBQ tacos in Austin. Tuesday lunch on South Congress, Friday nights at the brewery, and we cater."
+describe_files = "Drop your menu, photos of the truck and the food, a logo"
 description = """
 A loud, cheerful one-page site for a food truck, built like a wall covered in stickers. The first thing a hungry visitor sees on their phone is where the truck is today and when, with a one-tap button for directions.
 

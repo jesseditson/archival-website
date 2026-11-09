@@ -1,6 +1,9 @@
 #:schema https://archival.dev/schemas/archival_template.schema.json
 name = "Mobile App"
 tagline = "A launch page for your app: store buttons, screenshots, and the legal pages Apple asks for."
+describe_title = "Tell us about your app"
+describe_placeholder = "Tidepool is an iPhone app that tells surfers when their local break is working. Free, with a paid tier for long-range forecasts."
+describe_files = "Drop screenshots, your app icon, a privacy policy"
 description = """
 This website showcases a mobile app, highlights key features, and contains support email links and example privacy policy and EULA pages for your mobile app. It includes a hero section with app store download buttons, a screenshot carousel with device frame options, and dedicated pages for EULA, Terms of Service, and Privacy Policy.
 """

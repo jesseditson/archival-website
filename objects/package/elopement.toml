@@ -1,0 +1,14 @@
+order = 1
+name = "Elopement"
+price = "From $1,800"
+hours = "Up to 3 hours"
+summary = "Just the two of you, or a handful of people, somewhere worth the hike."
+
+[[include]]
+item = "Help picking the spot and the light"
+
+[[include]]
+item = "Edited gallery within three weeks"
+
+[[include]]
+item = "Print release"

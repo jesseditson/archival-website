@@ -1,0 +1,14 @@
+order = 3
+name = "Full day"
+price = "From $4,800"
+hours = "Up to 9 hours"
+summary = "The whole day, start to sparklers, with a second photographer."
+
+[[include]]
+item = "Second photographer"
+
+[[include]]
+item = "Engagement session"
+
+[[include]]
+item = "Linen album, 30 pages"

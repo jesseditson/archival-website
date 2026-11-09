@@ -1,26 +1,49 @@
-{%- comment -%}
-  The editor's from-scratch flow can replace the schema, and archival fails
-  the build on any reference to a field the schema does not define, even
-  inside an `if`. Looping over the object's fields reads them safely.
-{%- endcomment -%}
 {%- assign site = objects.site -%}
-{%- for field in site -%}
-{%- if field.first == "name" and field.last != blank %}# {{ field.last }}
+# {{ site.name }}
 
+> {{ site.description }}
+{% if site.tagline != blank %}
+{{ site.tagline }}.
 {% endif -%}
-{%- if field.first == "description" and field.last != blank %}> {{ field.last }}
-
+{%- if site.booking_status != blank %}
+Booking: {{ site.booking_status }}.
 {% endif -%}
-{%- endfor -%}
+{%- if site.location != blank %}
+Based in {{ site.location }}.
+{% endif %}
 ## Pages
 
-- [Home]({{ site_url }}/)
-{% comment %}
-  List every section page, then every kind of content, generated from the
-  objects. For a list type:
+- [Home]({{ site_url }}/): packages, recent sessions, kind words, questions and how to inquire.
+{% if objects.package.size > 0 %}
+## Packages
+{% for package in objects.package %}
+### {{ package.name }}
+{% if package.price != blank %}
+Price: {{ package.price }}
+{% endif -%}
+{%- if package.hours != blank %}Coverage: {{ package.hours }}
+{% endif -%}
+{%- if package.summary != blank %}
+{{ package.summary }}
+{% endif -%}
+{% if package.include.size > 0 %}
+{% for include in package.include %}{% if include.item != blank %}- {{ include.item }}
+{% endif %}{% endfor %}{% endif -%}
+{% endfor %}{% endif -%}
+{% if objects.faq.size > 0 %}
+## Questions
+{% for faq in objects.faq %}
+### {{ faq.question }}
 
-## Posts
-
-{% for post in posts %}- [{{ post.title }}]({{ site_url }}/{{ post.path }})
-{% endfor %}
-{% endcomment %}
+{{ faq.answer | strip_html | strip }}
+{% endfor %}{% endif %}
+## Contact
+{% if site.email != blank %}
+- Email: {{ site.email }}
+{%- endif %}
+{%- if site.booking_url != blank %}
+- Book: {{ site.booking_url }}
+{%- endif %}
+{%- for social in site.social %}{% if social.url != blank %}
+- {% if social.label != blank %}{{ social.label }}{% else %}{{ social.platform | capitalize }}{% endif %}: {{ social.url }}
+{%- endif %}{% endfor %}

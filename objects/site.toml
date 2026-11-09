@@ -1,2 +1,39 @@
-name = "Archival Website"
-description = "A new site built with Archival."
+name = "Tess Marlowe"
+tagline = "Wedding and portrait photographer in Hood River, Oregon"
+description = "Tess Marlowe photographs weddings, elopements and family portraits around Hood River and the Columbia Gorge. See packages and prices, recent sessions and how to book a date."
+booking_status = "Now booking 2027 weddings"
+hero_alt = "A couple holding hands, silhouetted on a ridge against a gold and pink sunset"
+hero_caption = "Rowena Crest, September"
+hello = """
+Hi, I'm Tess. I photograph weddings, elopements and the occasional family that still fits in one frame.
+
+I work light: one camera, no shot lists, lots of walking. You'll get the posed pictures your grandmother wants and the in-between ones you didn't know I took.
+"""
+location = "Hood River, Oregon"
+email = "hello@example.com"
+booking_url = "https://example.com/book"
+booking_label = "Check my availability"
+inquire_heading = "Tell me about your day"
+inquire_note = "Send the date, the place and roughly how many people. I answer every inquiry within two days."
+
+[[social]]
+platform = "instagram"
+url = "https://instagram.com/"
+label = "Instagram"
+
+[[social]]
+platform = "pinterest"
+url = "https://pinterest.com/"
+label = "Pinterest"
+
+[hero_image]
+display_type = "image"
+filename = "golden-hour-couple.jpg"
+sha = "81ad825e7ca7ad36c96dc2467959372b1b5536edf45e13ce46df2d529f8c05aa"
+mime = "image/jpeg"
+
+[og_image]
+display_type = "image"
+filename = "og-sessions.jpg"
+sha = "992333b66bff2a6a59f144dab68e5363831e20b3fe5fdb8e8e118731a18b7f28"
+mime = "image/jpeg"

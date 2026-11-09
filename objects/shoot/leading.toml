@@ -1,0 +1,9 @@
+order = 5
+alt = "A bride leading her partner by the hand, their shadows long on the grass"
+caption = "White Salmon, July"
+
+[photo]
+display_type = "image"
+filename = "leading-hands.jpg"
+sha = "a87fed29ebc4b573a403f871b4a1785449237bf3b8ca56905f2a06596f214321"
+mime = "image/jpeg"

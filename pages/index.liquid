@@ -1,20 +1,176 @@
 {%- assign site = objects.site -%}
-{%- capture ld_name %}{{ site.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
-{%- capture ld_desc %}{{ site.description | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
+{%- capture ld_name -%}{{ site.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{%- endcapture -%}
+{%- capture ld_description -%}{{ site.description | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{%- endcapture -%}
 {%- capture jsonld -%}
 <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "{{ ld_name }}"
-    {%- if site.description != blank -%}, "description": "{{ ld_desc }}"{%- endif -%}
-    {%- if site_url != blank -%}, "url": "{{ site_url }}/"{%- endif -%}
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "{{ ld_name }}",
+  "description": "{{ ld_description }}",
+  "url": "{{ site_url }}/"
+  {%- if site.hero_image != blank -%}, "image": "{{ site.hero_image.url | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- endif -%}
+  {%- if site.email != blank -%}, "email": "{{ site.email | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- endif -%}
+  {%- if site.location != blank -%}, "areaServed": "{{ site.location | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- endif -%}
+  {%- assign social_urls = "" -%}
+  {%- for social in site.social -%}{%- if social.url != blank -%}{%- capture one -%}"{{ social.url | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- endcapture -%}{%- if social_urls != blank -%}{%- assign social_urls = social_urls | append: ", " -%}{%- endif -%}{%- assign social_urls = social_urls | append: one -%}{%- endif -%}{%- endfor -%}
+  {%- if social_urls != blank -%}, "sameAs": [{{ social_urls }}]{%- endif -%}
+  {%- if objects.package.size > 0 -%}, "makesOffer": [
+    {%- for package in objects.package -%}
+    {"@type": "Offer", "name": "{{ package.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}", "description": "{{ package.price | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% if package.hours != blank %}, {{ package.hours | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endif %}{% if package.summary != blank %}. {{ package.summary | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endif %}"}{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}]
+  {%- endif %}
+}
 </script>
 {%- endcapture -%}
 {% layout 'theme' title: "", path: "", jsonld: jsonld %}
 
-<section class="intro">
-  <h1>{{ site.name | escape }}</h1>
-  {% if site.description != blank %}<p>{{ site.description | escape }}</p>{% endif %}
+<header class="masthead">
+  <div class="wrap masthead-inner">
+    <div class="masthead-name">
+      <h1 class="name">{{ site.name | escape }}</h1>
+      {%- if site.tagline != blank %}
+      <p class="tagline">{{ site.tagline | escape }}</p>
+      {%- endif %}
+    </div>
+    <div class="masthead-book">
+      {%- if site.booking_status != blank %}
+      <p class="booking-status">{{ site.booking_status | escape }}</p>
+      {%- endif %}
+      {%- if site.email != blank or site.booking_url != blank %}
+      <a class="button" href="#inquire">Inquire</a>
+      {%- endif %}
+    </div>
+  </div>
+</header>
+
+{%- if site.hero_image != blank or site.hello != blank %}
+<section class="intro{% if site.hero_image == blank %} intro-text-only{% endif %}" aria-label="Introduction">
+  <div class="wrap intro-grid">
+    {%- if site.hero_image != blank %}
+    <figure class="print print-hero">
+      <img src="{{ site.hero_image.url | escape }}" alt="{{ site.hero_alt | escape }}">
+      {%- if site.hero_caption != blank %}
+      <figcaption>{{ site.hero_caption | escape }}</figcaption>
+      {%- endif %}
+    </figure>
+    {%- endif %}
+    {%- if site.hello != blank %}
+    <div class="hello markdown">{{ site.hello }}</div>
+    {%- endif %}
+  </div>
 </section>
+{%- endif %}
+
+{%- if objects.package.size > 0 %}
+<section class="packages" aria-labelledby="packages-title">
+  <div class="wrap">
+    <h2 id="packages-title" class="section-title">Packages</h2>
+    <ul class="package-list">
+      {%- for package in objects.package %}
+      <li class="package">
+        <h3 class="package-name">{{ package.name | escape }}</h3>
+        {%- if package.price != blank %}
+        <p class="package-price">{{ package.price | escape }}</p>
+        {%- endif %}
+        {%- if package.hours != blank %}
+        <p class="package-hours">{{ package.hours | escape }}</p>
+        {%- endif %}
+        {%- if package.summary != blank %}
+        <p class="package-summary">{{ package.summary | escape }}</p>
+        {%- endif %}
+        {%- if package.include.size > 0 %}
+        <ul class="package-includes">
+          {%- for include in package.include %}{% if include.item != blank %}
+          <li>{{ include.item | escape }}</li>
+          {%- endif %}{% endfor %}
+        </ul>
+        {%- endif %}
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+{%- endif %}
+
+{%- assign shoot_count = 0 -%}
+{%- for shoot in objects.shoot -%}{%- if shoot.photo != blank -%}{%- assign shoot_count = shoot_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
+{%- if shoot_count > 0 %}
+<section class="sessions" aria-labelledby="sessions-title">
+  <div class="wrap">
+    <h2 id="sessions-title" class="section-title">Recent sessions</h2>
+    <ul class="print-table">
+      {%- for shoot in objects.shoot %}{% if shoot.photo != blank %}
+      <li>
+        <figure class="print">
+          <img src="{{ shoot.photo.url | escape }}" alt="{{ shoot.alt | escape }}" loading="lazy">
+          {%- if shoot.caption != blank %}
+          <figcaption>{{ shoot.caption | escape }}</figcaption>
+          {%- endif %}
+        </figure>
+      </li>
+      {%- endif %}{% endfor %}
+    </ul>
+  </div>
+</section>
+{%- endif %}
+
+{%- if objects.kind_word.size > 0 %}
+<section class="kind-words" aria-labelledby="kind-words-title">
+  <div class="wrap">
+    <h2 id="kind-words-title" class="section-title">Kind words</h2>
+    <ul class="quote-list">
+      {%- for word in objects.kind_word %}{% if word.quote != blank %}
+      <li>
+        <figure class="quote">
+          <blockquote><p>{{ word.quote | escape }}</p></blockquote>
+          {%- if word.name != blank or word.detail != blank %}
+          <figcaption>
+            {%- if word.name != blank %}<span class="quote-name">{{ word.name | escape }}</span>{% endif -%}
+            {%- if word.detail != blank %}<span class="quote-detail">{{ word.detail | escape }}</span>{% endif -%}
+          </figcaption>
+          {%- endif %}
+        </figure>
+      </li>
+      {%- endif %}{% endfor %}
+    </ul>
+  </div>
+</section>
+{%- endif %}
+
+{%- if objects.faq.size > 0 %}
+<section class="faq" aria-labelledby="faq-title">
+  <div class="wrap">
+    <h2 id="faq-title" class="section-title">Questions</h2>
+    <div class="faq-list">
+      {%- for faq in objects.faq %}{% if faq.question != blank %}
+      <details>
+        <summary>{{ faq.question | escape }}</summary>
+        {%- if faq.answer != blank %}
+        <div class="faq-answer markdown">{{ faq.answer }}</div>
+        {%- endif %}
+      </details>
+      {%- endif %}{% endfor %}
+    </div>
+  </div>
+</section>
+{%- endif %}
+
+{%- if site.email != blank or site.booking_url != blank %}
+<section class="inquire" id="inquire" aria-labelledby="inquire-title">
+  <div class="wrap">
+    <h2 id="inquire-title" class="inquire-title">{% if site.inquire_heading != blank %}{{ site.inquire_heading | escape }}{% else %}Inquire{% endif %}</h2>
+    {%- if site.inquire_note != blank %}
+    <p class="inquire-note">{{ site.inquire_note | escape }}</p>
+    {%- endif %}
+    <p class="inquire-actions">
+      {%- if site.email != blank %}
+      <a class="button" href="mailto:{{ site.email | escape }}">Email {{ site.email | escape }}</a>
+      {%- endif %}
+      {%- if site.booking_url != blank %}
+      <a class="button{% if site.email != blank %} button-quiet{% endif %}" href="{{ site.booking_url | escape }}">{% if site.booking_label != blank %}{{ site.booking_label | escape }}{% else %}Book online{% endif %}</a>
+      {%- endif %}
+    </p>
+  </div>
+</section>
+{%- endif %}

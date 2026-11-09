@@ -1,0 +1,9 @@
+order = 1
+alt = "A bride holding a white and green bouquet, her veil falling past her hands"
+caption = "Mosier, May"
+
+[photo]
+display_type = "image"
+filename = "bouquet-veil.jpg"
+sha = "d5da34684ab6c991e373c94afc0b27f8fd87e45f513361219f516e8b8658cf1c"
+mime = "image/jpeg"

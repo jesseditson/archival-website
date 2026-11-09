@@ -1,0 +1,14 @@
+order = 2
+name = "Half day"
+price = "From $3,200"
+hours = "Up to 5 hours"
+summary = "Getting ready through the first dance, for smaller weddings."
+
+[[include]]
+item = "A planning call a month out"
+
+[[include]]
+item = "Edited gallery within four weeks"
+
+[[include]]
+item = "Twenty-print box"

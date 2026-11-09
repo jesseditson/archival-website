@@ -1,0 +1,9 @@
+order = 2
+alt = "Hands resting on a white dress, showing a new engagement ring"
+caption = "Engagement, April"
+
+[photo]
+display_type = "image"
+filename = "rings-hands.jpg"
+sha = "dd50c9ac45dc4af6fa855be8b6124ba86038372aca49692eadb7de7bd04cbd85"
+mime = "image/jpeg"

@@ -1,0 +1,9 @@
+order = 4
+alt = "An older couple walking away arm in arm down a leafy garden path"
+caption = "Fiftieth, August"
+
+[photo]
+display_type = "image"
+filename = "anniversary-walk.jpg"
+sha = "ec4e904c3ae4736d9e079b4fa28bbebc94aa416468d9259dcb7d1b14a4d80e5f"
+mime = "image/jpeg"

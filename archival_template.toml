@@ -1,16 +1,43 @@
 #:schema https://archival.dev/schemas/archival_template.schema.json
 # Shown in the editor's template picker.
-name = ""
+name = "Sessions"
 # One line for the gallery card, roughly ten to fifteen words.
-tagline = ""
+tagline = "A one-page booking site for wedding and portrait photographers, with prints on a table."
 # The template info modal's body: what this template is and what it contains.
 description = """
+A one-page site for a wedding, elopement or portrait photographer whose site has one job: getting the next inquiry. Your name sits large at the top with a booking status you keep current ("Now booking 2027 weddings") and an Inquire button. Your photos are shown as real prints with white borders, laid slightly askew on a deep blue tabletop, each with a short handwritten caption like "Hood River, June". Below the big hero print: a short hello, your packages with starting prices, hours of coverage and what's included, a spread of recent sessions, kind words from clients, common questions that open with a tap, and a closing invitation to email you or use your booking link.
 """
 # The prompt that drives content generation. Describe when to pick this
 # template and what every field holds. Update it whenever the schema changes.
 context = """
+Pick this template for a photographer who books clients for sessions: weddings, elopements, engagements, family or portrait sessions. The site's job is to get an inquiry. It is one page. For a photographer who mainly shows bodies of personal or fine-art work, a gallery or project template fits better.
+
+Write only from facts the person gave you. Prices, packages, what a package includes, the booking status and the contact details are promises to real clients, so when the person has not given them, leave them empty and the page leaves those parts out. Never invent client names or quotes: leave kind_word empty unless the person gave you real ones.
+
+site (the photographer):
+- name: the photographer's or studio's name. It is the page's only h1, set very large at the top.
+- tagline: one short line under the name, around six to twelve words ("Wedding and portrait photographer in Hood River, Oregon").
+- description: one or two sentences for search results and link previews.
+- booking_status: a short line beside the Inquire button ("Now booking 2027 weddings"). Only if the person said what they are booking; otherwise empty.
+- hero_image, hero_alt, hero_caption: the big tilted print. Leave every image field empty: hero_image, og_image, favicon and every shoot photo. Leave hero_alt empty too. hero_caption is the short handwritten note on the print, a place and month ("Rowena Crest, September"); leave it empty when there is no photo.
+- hello: a short first-person introduction in markdown, two short paragraphs at most, in the photographer's own voice and only from what they told you.
+- location: where they are based or work ("Hood River, Oregon").
+- email: only an address the person gave. booking_url: only a booking or contact page URL they gave. booking_label: the text of the booking button ("Check my availability"); leave empty when there is no booking_url.
+- inquire_heading: the closing heading ("Tell me about your day"). inquire_note: one or two sentences on what to send and how soon they reply.
+- og_image, favicon: leave empty.
+- social: one entry per account the person gave. platform is one of "instagram", "pinterest", "facebook", "tiktok", "threads", "bluesky", "youtube" or "website"; url is the full URL; label is the account's name for screen readers (the button shows only the icon). Never invent URLs.
+
+package (what a client can book): name ("Elopement", "Half day"); price as text the way the photographer writes it ("From $2,400"); hours is the coverage ("Up to 5 hours"); summary is one sentence; include is a list of what comes with it, each with an item ("Second photographer"). Set order for the sequence, usually smallest to largest.
+
+shoot (recent work, shown as prints): photo (leave empty), alt describing the photo, and caption, a short handwritten note like a place and month ("Mosier, May"). Leave shoot empty unless the person gave photos.
+
+kind_word (what clients said): quote, name ("Priya and Sam"), and detail ("Married at Rowena Crest"). Only real quotes the person gave.
+
+faq: question and answer (markdown). Common ones are travel, delivery time, how many photos and how to hold a date; answer only from what the person told you.
 """
-tags = []
-tlds = []
-# Value paths kept when a site is generated, instead of stripped as examples.
+tags = ["photographer", "wedding", "portrait", "elopement", "booking", "packages", "one page"]
+tlds = ["photography", "photo", "photos", "com"]
+assets = ["CREDITS.md"]
+# Nothing is kept: a new site starts without the example photographer's photos,
+# packages or kind words.
 keep_objects = []

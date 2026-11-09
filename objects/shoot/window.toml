@@ -1,0 +1,9 @@
+order = 6
+alt = "A bride standing at a tall window in her gown and veil, seen from behind"
+caption = "Getting ready, June"
+
+[photo]
+display_type = "image"
+filename = "window-light.jpg"
+sha = "6871a2705e00124e1102091b6f43b911df6b54728e23366e079f39644e58b7d2"
+mime = "image/jpeg"

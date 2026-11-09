@@ -19,7 +19,17 @@
 }
 </script>
 {%- endcapture -%}
-{% layout 'theme' title: "", path: "", jsonld: jsonld %}
+{%- comment -%} Without an og_image, the first series' cover stands for the site. {%- endcomment -%}
+{%- assign home_cover = "" -%}
+{%- if site.og_image == blank -%}
+  {%- for project in projects -%}
+    {%- if home_cover == "" -%}
+      {%- for photo in project.photo -%}{%- if photo.image != blank and photo.circled and home_cover == "" -%}{%- assign home_cover = photo.image.url -%}{%- endif -%}{%- endfor -%}
+      {%- for photo in project.photo -%}{%- if photo.image != blank and home_cover == "" -%}{%- assign home_cover = photo.image.url -%}{%- endif -%}{%- endfor -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+{% layout 'theme' title: "", path: "", jsonld: jsonld, image: home_cover %}
 
 <header class="wrap intro">
   <div class="intro-name">
@@ -43,7 +53,7 @@
     <li class="roll">
       <a class="roll-link" href="/{{ project.path }}">
         {%- if shown > 0 %}
-        <span class="strip">
+        <span class="strip" aria-hidden="true" tabindex="-1">
           {%- assign frame = 0 -%}
           {%- for photo in project.photo %}{% if photo.image != blank %}
           {%- assign frame = frame | plus: 1 %}

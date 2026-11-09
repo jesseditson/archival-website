@@ -153,6 +153,8 @@ h3 {
   font-weight: 700;
   line-height: 0.88;
   letter-spacing: -0.01em;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .tagline {
@@ -221,6 +223,8 @@ h3 {
     var(--film);
   scrollbar-width: thin;
   scrollbar-color: #555555 var(--film);
+  /* Holes travel with the frames when a strip scrolls. */
+  background-attachment: local, local, local;
 }
 
 .frame {
@@ -262,6 +266,7 @@ h3 {
   inset: -0.875rem -1rem;
   background: var(--circle) center / 100% 100% no-repeat;
   pointer-events: none;
+  z-index: 1;
 }
 
 .roll-label {
@@ -283,6 +288,8 @@ h3 {
   text-decoration-thickness: 0.1875rem;
   text-underline-offset: 0.18em;
   transition: text-decoration-color 150ms ease;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .roll-link:hover .roll-title,
@@ -372,6 +379,8 @@ h3 {
   font-size: clamp(3rem, 11vw, 7rem);
   font-weight: 700;
   line-height: 0.9;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .series-meta {

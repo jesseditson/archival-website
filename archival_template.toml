@@ -1,6 +1,9 @@
 #:schema https://archival.dev/schemas/archival_template.schema.json
 name = "Desktop & Mobile App"
 tagline = "For an app on both desktop and mobile — icon-led features and a Discord link for support."
+describe_title = "Tell us about your app"
+describe_placeholder = "Inkwell is a writing app for Mac, Windows and iPad that keeps drafts in sync everywhere. Support happens on our Discord."
+describe_files = "Drop screenshots, your app icon, release notes"
 description = """
 This website showcases a mobile app, highlights key features, and contains support email links and example privacy policy and EULA pages for your mobile app. This variant features a tagline field, icon-based features with a rich icon picker, and Discord support link integration.
 """

@@ -15,3 +15,55 @@ label = "Instagram"
 platform = "facebook"
 url = "https://facebook.com/"
 label = "Facebook"
+
+[hero_image]
+display_type = "image"
+filename = "cafe-interior.jpg"
+sha = "c053cea263d83e010cb5c3ebac4d4de697c5bd1619ea54fa3fa345978b1ae872"
+mime = "image/jpeg"
+
+[og_image]
+display_type = "image"
+filename = "og-cafe.jpg"
+sha = "ae15c374e5cab43770d8fbf706a433b590504d9d2e1f025b15db9720bc6b0932"
+mime = "image/jpeg"
+
+[[photo]]
+alt = "A tray of golden croissants dusted with sugar"
+[photo.file]
+display_type = "image"
+filename = "croissants.jpg"
+sha = "b555d0cb6c4d926ecc5b1a505370d7ab994dedc09cf09cad37d571ec69c1edeb"
+mime = "image/jpeg"
+
+[[photo]]
+alt = "A latte with a leaf in the foam beside croissants and pain au chocolat on slate"
+[photo.file]
+display_type = "image"
+filename = "latte-croissants.jpg"
+sha = "869ef7aba7b0fe53c307d27358726343f4d720b7cd0792b68ad2ab459cdabcc6"
+mime = "image/jpeg"
+
+[[photo]]
+alt = "Cinnamon buns cooling on a wire rack, one topped with thick white icing"
+[photo.file]
+display_type = "image"
+filename = "cinnamon-bun.jpg"
+sha = "5f34e9d4e7310e021ab510062b9509811c0be0dffc78110bcf677e084040f9ff"
+mime = "image/jpeg"
+
+[[photo]]
+alt = "A latte and two sugar-topped buns on a wooden board, seen from above"
+[photo.file]
+display_type = "image"
+filename = "latte-buns.jpg"
+sha = "5606638cf61dcee37cc71f93d482bfcb0190e3e7c90bedfee0864334dddf704e"
+mime = "image/jpeg"
+
+[[photo]]
+alt = "A latte with a heart in the foam in a green cup on a worn wooden table"
+[photo.file]
+display_type = "image"
+filename = "green-cup-latte.jpg"
+sha = "df083b4f1711879e4c10a1ea9e551dc39818d25f3ffa94a1a058f881f041a7f1"
+mime = "image/jpeg"

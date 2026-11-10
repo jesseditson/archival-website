@@ -6,6 +6,12 @@ address = "1418 SE Alder St, Portland, OR 97214"
 phone = "(503) 555-0147"
 email = "hello@example.com"
 
+visit_heading = "Visit"
+menu_heading = "Menu"
+photos_heading = "Photos"
+directions_label = "Get directions"
+call_label = "Call"
+closed_label = "Closed"
 [[social]]
 platform = "instagram"
 url = "https://instagram.com/"

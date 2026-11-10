@@ -75,8 +75,8 @@
     {% if site.tagline != blank %}<p class="tagline">{{ site.tagline | escape }}</p>{% endif %}
     {%- if site.address != blank or site.phone != blank %}
     <p class="sign-actions">
-      {%- if site.address != blank %}<a class="button button-primary directions" href="{{ directions_url | escape }}">Get directions</a>{% endif -%}
-      {%- if site.phone != blank %}<a class="button button-secondary call" href="tel:{{ tel | escape }}">Call</a>{% endif -%}
+      {%- if site.address != blank %}<a class="button button-primary directions" href="{{ directions_url | escape }}">{% if site.directions_label != blank %}{{ site.directions_label | escape }}{% else %}Get directions{% endif %}</a>{% endif -%}
+      {%- if site.phone != blank %}<a class="button button-secondary call" href="tel:{{ tel | escape }}">{% if site.call_label != blank %}{{ site.call_label | escape }}{% else %}Call{% endif %}</a>{% endif -%}
     </p>
     {%- endif %}
     {% if site.hero_image != blank %}<img class="hero" src="{{ site.hero_image.url | escape }}" alt="{{ site.hero_alt | escape }}">{% endif %}
@@ -102,7 +102,7 @@
 {%- if objects.hours.size > 0 or site.address != blank %}
 <section class="visit" id="visit" aria-labelledby="visit-heading">
   <div class="wrap">
-    <h2 id="visit-heading">Visit</h2>
+    <h2 id="visit-heading">{% if site.visit_heading != blank %}{{ site.visit_heading | escape }}{% else %}Visit{% endif %}</h2>
     <div class="visit-grid">
       {%- if objects.hours.size > 0 %}
       <ol class="hours">
@@ -113,7 +113,7 @@
         <li data-day="{{ day }}">
           <span class="hours-day">{{ day | capitalize }}</span>
           <span class="hours-time">
-            {%- if row == nil or row.opens == blank and row.closes == blank -%}Closed
+            {%- if row == nil or row.opens == blank and row.closes == blank -%}{% if site.closed_label != blank %}{{ site.closed_label | escape }}{% else %}Closed{% endif %}
             {%- elsif row.closes == blank -%}{{ row.opens | escape }}
             {%- elsif row.opens == blank -%}{{ row.closes | escape }}
             {%- else -%}{{ row.opens | escape }} to {{ row.closes | escape }}
@@ -152,7 +152,7 @@
 {%- if menu_items > 0 %}
 <section class="menu" id="menu" aria-labelledby="menu-heading">
   <div class="wrap">
-    <h2 id="menu-heading">Menu</h2>
+    <h2 id="menu-heading">{% if site.menu_heading != blank %}{{ site.menu_heading | escape }}{% else %}Menu{% endif %}</h2>
     {%- for group in objects.menu_group -%}{%- if group.item.size > 0 %}
     <section class="menu-group">
       <h3>{{ group.name | escape }}</h3>
@@ -172,7 +172,7 @@
 {%- endif %}
 
 {%- if photo_count > 0 %}
-<section class="photos" aria-label="Photos">
+<section class="photos" aria-label="{% if site.photos_heading != blank %}{{ site.photos_heading | escape }}{% else %}Photos{% endif %}">
   <ul class="photo-strip">
     {%- for p in site.photo -%}{%- if p.file != blank %}
     <li><img src="{{ p.file.url | escape }}" alt="{{ p.alt | escape }}" loading="lazy"></li>

@@ -22,6 +22,7 @@ site (the café itself):
 - phone, email: only values the person gave. Otherwise empty. Never invent them.
 - closure_start, closure_end, closure_note: leave all three empty. The owner sets them for a holiday closure: the first and last closed dates, and a short note ("Closed for the holidays. Back December 27!").
 - og_image, favicon: leave empty.
+- Headings and button words, short and in the café's voice; leave any empty to use the wording shown here: visit_heading ("Visit"); menu_heading ("Menu"); photos_heading, the photo strip's name for screen readers ("Photos"); directions_label ("Get directions"); call_label ("Call"); closed_label, shown for a day with no hours ("Closed").
 - social: one entry per social account the person gave. platform is one of "instagram", "facebook", "tiktok", "x", "threads", "bluesky", "youtube" or "website"; url is the full URL; label is the account's name for screen readers (the button shows only the icon). Never invent URLs.
 - photo: a strip of photos, each with file and alt. Leave empty.
 

@@ -28,7 +28,7 @@ Times are local to the café.
 {%- for day in week -%}
 {%- assign row = nil -%}
 {%- for h in objects.hours -%}{%- if h.day == day and row == nil -%}{%- assign row = h -%}{%- endif -%}{%- endfor %}
-- {{ day | capitalize }}: {% if row == nil or row.opens == blank and row.closes == blank %}Closed{% elsif row.closes == blank %}{{ row.opens }}{% elsif row.opens == blank %}{{ row.closes }}{% else %}{{ row.opens }} to {{ row.closes }}{% endif %}
+- {{ day | capitalize }}: {% if row == nil or row.opens == blank and row.closes == blank %}{% if objects.site.closed_label != blank %}{{ objects.site.closed_label }}{% else %}Closed{% endif %}{% elsif row.closes == blank %}{{ row.opens }}{% elsif row.opens == blank %}{{ row.closes }}{% else %}{{ row.opens }} to {{ row.closes }}{% endif %}
 {%- endfor %}
 {% endif -%}
 {%- if closure_last != "" and closure_last >= build_day %}

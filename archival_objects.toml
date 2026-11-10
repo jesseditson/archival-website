@@ -22,6 +22,13 @@ closure_end = "date"
 closure_note = "string"
 og_image = "image"
 favicon = "image"
+# Headings and button words. Each has a fallback when left empty.
+visit_heading = "string"
+menu_heading = "string"
+photos_heading = "string"
+directions_label = "string"
+call_label = "string"
+closed_label = "string"
 
 [site.social]
 platform = ["instagram", "facebook", "tiktok", "x", "threads", "bluesky", "youtube", "website"]

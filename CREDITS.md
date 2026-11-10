@@ -4,7 +4,7 @@ Not copied into sites made from this template (listed under `assets`).
 
 ## Fonts
 
-- Syne, Copyright 2019 The Syne Project Authors (https://gitlab.com/bonjour-monde/fonderie/syne-typeface), SIL Open Font License 1.1. Latin subset with the weight axis from `@fontsource-variable/syne` 5.3.0.
+- Syne, Copyright 2019 The Syne Project Authors (https://gitlab.com/bonjour-monde/fonderie/syne-typeface), SIL Open Font License 1.1. Latin and Latin Extended subsets with the weight axis from `@fontsource-variable/syne` 5.3.0.
 - Inter, SIL Open Font License 1.1 (from the starter).
 
 ## Default photos

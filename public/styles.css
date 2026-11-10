@@ -127,6 +127,50 @@ main {
   flex: 1 0 auto;
 }
 
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Afternoon sun through a four-pane window, drifting slowly across the
+   table and over whatever lies on it. Screen blending means the dark
+   mullions drop out and only the warm panes lighten what they fall on.
+   It never takes clicks, and it holds still for reduced motion. */
+body::before {
+  content: "";
+  position: fixed;
+  z-index: 2;
+  top: -12rem;
+  left: -16rem;
+  width: 58rem;
+  height: 44rem;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 0 48.5%, #000 48.5% 51.5%, transparent 51.5%),
+    linear-gradient(0deg, transparent 0 47.5%, #000 47.5% 52.5%, transparent 52.5%),
+    linear-gradient(135deg, rgba(255, 205, 140, 0.9), rgba(255, 190, 120, 0.35));
+  mix-blend-mode: screen;
+  opacity: 0.12;
+  filter: blur(1.125rem);
+  transform: translate(0, 0) rotate(-14deg) skewX(-18deg);
+  animation: window-light 70s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes window-light {
+  0% {
+    transform: translate(-6vw, 0) rotate(-14deg) skewX(-18deg);
+    opacity: 0.09;
+  }
+  50% {
+    opacity: 0.14;
+  }
+  100% {
+    transform: translate(62vw, 34vh) rotate(-8deg) skewX(-10deg);
+    opacity: 0.11;
+  }
+}
+
 img {
   max-width: 100%;
   height: auto;
@@ -799,7 +843,7 @@ h3 {
 }
 
 @media (min-width: 60rem) {
-  /* Hello on the left; the hero print dropped over the foot of the name. */
+  /* Hello on the left, the hero print on the right, both under the name. */
   .intro {
     padding-top: 0;
   }
@@ -813,7 +857,7 @@ h3 {
   .intro-grid > .print-hero {
     grid-column: 2;
     grid-row: 1;
-    margin-top: calc(var(--name-size) * -0.42);
+    margin-top: -1.5rem;
   }
 
   .intro-grid > .hello {

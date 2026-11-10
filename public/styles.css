@@ -1,7 +1,8 @@
 /* =========================================================================
-   Sessions: prints laid out on a table.
-   The photographs are the one bold thing: white-bordered prints, slightly
-   askew, captioned by hand. Everything else sits quietly on the tabletop.
+   Sessions: prints laid out on a studio table.
+   Two things carry the page: a soft, warm serif set very large, and the
+   white-bordered prints dropped on the table under a lamp. Everything else
+   (body text, labels, buttons) stays small and quiet.
    Every dimension is in rem (1rem is 16 CSS pixels).
    ========================================================================= */
 
@@ -21,17 +22,25 @@
   font-display: swap;
 }
 
-/* Archivo with its width axis: set wide, like a photo lab envelope. */
+/* Fraunces with all four axes. Set soft (SOFT 100) so the big name reads
+   warm and rounded rather than bridal-formal. */
 @font-face {
-  font-family: "Archivo";
-  src: url("/fonts/archivo-latin-wdth.woff2") format("woff2");
+  font-family: "Fraunces";
+  src: url("/fonts/fraunces-latin-full-normal.woff2") format("woff2");
   font-weight: 100 900;
-  font-stretch: 62% 125%;
   font-style: normal;
   font-display: swap;
 }
 
-/* Felt pen, only for the captions written on the prints. */
+@font-face {
+  font-family: "Fraunces";
+  src: url("/fonts/fraunces-latin-full-italic.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Felt pen, only for what is written on the prints. */
 @font-face {
   font-family: "Nanum Pen Script";
   src: url("/fonts/nanum-pen-script-latin.woff2") format("woff2");
@@ -43,27 +52,32 @@
 :root {
   --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI Variable Text",
     "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-display: "Archivo", var(--font-body);
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
   --font-pen: "Nanum Pen Script", "Bradley Hand", "Segoe Print", cursive;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --soft: "SOFT" 100, "WONK" 0;
 
   /* The tabletop and what lies on it. AA ratios are against --table. */
   --table: #1f3d4c;
-  --table-deep: #18323f;
+  --table-deep: #173240;
   --text: #f4efe6;      /* 10.0 */
   --muted: #b8c7ce;     /* 6.6 */
   --accent: #f0b44c;    /* 6.2, marigold */
   --accent-hover: #f5c46e;
   --accent-ink: #1d2a31; /* 7.9 on marigold */
-  --rule: rgba(244, 239, 230, 0.18);
+  --rule: rgba(244, 239, 230, 0.2);
+  --lamp: rgba(255, 214, 150, 0.13);
 
   /* Print paper and the pen that writes on it. */
   --paper: #fbf9f4;
-  --paper-ink: #24292d; /* 14.0 on paper */
-  --pen: #27406b;       /* 9.8 on paper */
+  --paper-ink: #24292d;   /* 14.0 on paper */
+  --paper-muted: #5a6168; /* 6.0 on paper */
+  --paper-rule: #dcd8cf;
+  --pen: #27406b;         /* 9.8 on paper */
   --print-shadow:
     0 0.0625rem 0.125rem rgba(8, 22, 30, 0.35),
-    0 0.875rem 1.75rem -0.5rem rgba(8, 22, 30, 0.6);
+    0 1.25rem 2.5rem -0.75rem rgba(8, 22, 30, 0.65);
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 
   /* Names the markdown block below reads. */
   --color-text: var(--text);
@@ -75,7 +89,8 @@
   --color-code-text: #e9e4da;
 
   --tilt-scale: 1;
-  --gutter: 1rem;
+  --gutter: 1.25rem;
+  --name-size: clamp(3.5rem, 17vw, 11.5rem);
 }
 
 *,
@@ -87,11 +102,18 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
+  background: var(--table-deep);
 }
 
+/* The table: felt grain, and one warm lamp over the top of the page. */
 body {
   margin: 0;
-  background: var(--table);
+  background-color: var(--table);
+  background-image:
+    var(--grain),
+    radial-gradient(ellipse 70% 55rem at 62% -8rem, var(--lamp), transparent 72%),
+    linear-gradient(180deg, var(--table) 0%, var(--table) 70%, var(--table-deep) 100%);
+  background-size: 13.75rem 13.75rem, 100% 100%, 100% 100%;
   color: var(--text);
   font-family: var(--font-body);
   font-size: 1rem;
@@ -126,7 +148,7 @@ a:hover {
 
 .wrap {
   width: 100%;
-  max-width: 72rem;
+  max-width: 76rem;
   margin: 0 auto;
   padding: 0 var(--gutter);
 }
@@ -139,7 +161,7 @@ a:hover {
   padding: 0.5rem 1rem;
   background: var(--accent);
   color: var(--accent-ink);
-  border-radius: 0.375rem;
+  border-radius: 62rem;
   text-decoration: none;
 }
 
@@ -150,11 +172,13 @@ a:hover {
 h1,
 h2,
 h3 {
-  text-wrap: balance;
-  font-family: var(--font-display);
-  font-stretch: 125%;
-  color: var(--text);
   margin: 0;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-variation-settings: var(--soft);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  text-wrap: balance;
 }
 
 /* ---------- Buttons ---------- */
@@ -164,15 +188,13 @@ h3 {
   align-items: center;
   justify-content: center;
   min-height: 2.75rem;
-  padding: 0.625rem 1.25rem;
-  border: 0.125rem solid var(--accent);
-  border-radius: 0.375rem;
+  padding: 0.6875rem 1.375rem;
+  border: 0.0625rem solid var(--accent);
+  border-radius: 62rem;
   background: var(--accent);
   color: var(--accent-ink);
-  font-family: var(--font-display);
-  font-stretch: 112%;
-  font-weight: 650;
-  font-size: 1rem;
+  font-weight: 600;
+  font-size: 0.9375rem;
   line-height: 1.25rem;
   text-decoration: none;
   transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
@@ -186,46 +208,40 @@ h3 {
 
 .button-quiet {
   background: transparent;
+  border-color: rgba(244, 239, 230, 0.55);
   color: var(--text);
 }
 
 .button-quiet:hover {
   background: transparent;
+  border-color: var(--accent-hover);
   color: var(--accent-hover);
 }
 
 /* ---------- Masthead ---------- */
 
-.masthead-inner {
+.topbar {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
-  gap: 1.5rem 2rem;
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
+  gap: 0.75rem 1.5rem;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  font-size: 0.9375rem;
 }
 
-.name {
-  font-size: clamp(2.25rem, 8vw, 5.25rem);
-  font-weight: 800;
-  line-height: 0.95;
-  letter-spacing: -0.02em;
-  overflow-wrap: break-word;
-}
-
-.tagline {
-  margin: 0.875rem 0 0;
+.masthead-place {
+  margin: 0;
   color: var(--muted);
-  font-size: 1.0625rem;
-  max-width: 34rem;
 }
 
 .masthead-book {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 1rem 1.25rem;
+  gap: 0.75rem 1.25rem;
+  margin-left: auto;
 }
 
 .booking-status {
@@ -233,17 +249,39 @@ h3 {
   align-items: center;
   gap: 0.625rem;
   margin: 0;
-  font-size: 0.9375rem;
 }
 
 .booking-status::before {
   content: "";
   flex: none;
-  width: 0.625rem;
-  height: 0.625rem;
+  width: 0.5rem;
+  height: 0.5rem;
   border-radius: 50%;
   background: var(--accent);
   box-shadow: 0 0 0 0.25rem rgba(240, 180, 76, 0.2);
+}
+
+.nameplate {
+  padding-top: clamp(2.5rem, 7vw, 5.5rem);
+}
+
+/* The name is the one big piece of type: light, soft, very large, tight. */
+.name {
+  font-size: var(--name-size);
+  font-weight: 330;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  line-height: 0.86;
+  letter-spacing: -0.035em;
+  margin-left: -0.04em;
+  overflow-wrap: break-word;
+  text-wrap: balance;
+}
+
+.tagline {
+  margin: clamp(1rem, 2vw, 1.5rem) 0 0;
+  max-width: 30rem;
+  color: var(--muted);
+  font-size: 1.0625rem;
 }
 
 /* ---------- Prints ---------- */
@@ -272,7 +310,6 @@ h3 {
   line-height: 1.5rem;
 }
 
-/* A print with no caption still keeps a bottom border. */
 .print:not(:has(figcaption)) {
   padding-bottom: 0.75rem;
 }
@@ -280,36 +317,61 @@ h3 {
 /* ---------- Intro ---------- */
 
 .intro {
-  padding: 1rem 0 4rem;
+  position: relative;
+  padding: 3rem 0 5rem;
 }
 
 .intro-grid {
   display: grid;
   gap: 3rem;
-  align-items: center;
 }
 
 .print-hero {
-  --tilt: -1.5deg;
-  justify-self: start;
+  --tilt: 1.75deg;
+  position: relative;
+  z-index: 1;
+  justify-self: end;
   width: fit-content;
   max-width: 100%;
+  padding: 1rem 1rem 0;
+}
+
+.print-hero:not(:has(figcaption)) {
+  padding-bottom: 1rem;
 }
 
 /* Keep the photo's own shape: a portrait hero stays whole, just shorter. */
 .print-hero img {
   width: auto;
   max-width: 100%;
-  max-height: 44rem;
+  max-height: 46rem;
+}
+
+.print-hero figcaption {
+  font-size: 1.75rem;
+  line-height: 1.75rem;
+  padding: 0.625rem 0.25rem 0.75rem;
 }
 
 .hello {
+  max-width: 30rem;
   font-size: 1.125rem;
-  max-width: 34rem;
 }
 
 .hello.markdown p {
-  line-height: 1.75rem;
+  line-height: 1.8rem;
+}
+
+/* The first paragraph of the hello reads as a lede, in the display face. */
+.hello.markdown > p:first-child {
+  margin-top: 0;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-variation-settings: var(--soft);
+  font-size: 1.625rem;
+  font-weight: 380;
+  line-height: 2.125rem;
+  letter-spacing: -0.01em;
 }
 
 /* ---------- Sections ---------- */
@@ -318,17 +380,38 @@ h3 {
 .sessions,
 .kind-words,
 .faq {
-  padding: 3.5rem 0;
+  padding: clamp(3.5rem, 8vw, 6.5rem) 0;
 }
 
 .section-title {
-  font-size: 1.75rem;
-  font-weight: 750;
-  line-height: 2.25rem;
-  margin-bottom: 2rem;
+  font-size: clamp(2.5rem, 6.5vw, 4.75rem);
+  font-weight: 340;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
 }
 
-/* ---------- Packages ---------- */
+/* Heading on the left, content on the right, on wide screens. */
+.split {
+  display: grid;
+  gap: 0;
+}
+
+/* ---------- Packages: a printed rate card on the table ---------- */
+
+.rate-card {
+  --tilt: -0.6deg;
+  padding: clamp(1.75rem, 5vw, 4rem);
+  background: var(--paper);
+  color: var(--paper-ink);
+  box-shadow: var(--print-shadow);
+  transform: rotate(calc(var(--tilt) * var(--tilt-scale)));
+}
+
+.rate-card .section-title,
+.rate-card h3 {
+  color: var(--paper-ink);
+}
 
 .package-list {
   list-style: none;
@@ -339,28 +422,35 @@ h3 {
 }
 
 .package {
-  padding-top: 1.25rem;
-  border-top: 0.125rem solid var(--accent);
+  display: flex;
+  flex-direction: column;
+  padding-top: 1.5rem;
+  border-top: 0.0625rem solid var(--paper-ink);
 }
 
 .package-name {
-  font-size: 1.25rem;
-  font-weight: 700;
-  line-height: 1.75rem;
+  font-size: 1.5rem;
+  font-weight: 450;
+  line-height: 1.875rem;
+  letter-spacing: -0.01em;
 }
 
 .package-price {
-  margin: 0.25rem 0 0;
+  order: -1;
+  margin: 0 0 1rem;
   font-family: var(--font-display);
-  font-stretch: 112%;
-  font-weight: 600;
-  font-size: 1.625rem;
-  line-height: 2.25rem;
+  font-variation-settings: var(--soft);
+  font-weight: 300;
+  font-size: clamp(2.75rem, 5vw, 3.75rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: lining-nums;
 }
 
 .package-hours {
-  margin: 0;
-  color: var(--muted);
+  margin: 0.25rem 0 0;
+  color: var(--paper-muted);
+  font-size: 0.9375rem;
 }
 
 .package-summary {
@@ -374,21 +464,23 @@ h3 {
   padding: 0;
 }
 
+/* Ticked off in the same pen that writes on the prints. */
 .package-includes li {
   position: relative;
-  padding: 0.375rem 0 0.375rem 1.25rem;
-  border-top: 0.0625rem solid var(--rule);
+  padding: 0.4375rem 0 0.4375rem 1.625rem;
+  border-top: 0.0625rem solid var(--paper-rule);
   line-height: 1.5rem;
 }
 
 .package-includes li::before {
-  content: "";
+  content: "\2713";
   position: absolute;
-  left: 0;
-  top: 1rem;
-  width: 0.375rem;
-  height: 0.375rem;
-  background: var(--accent);
+  left: 0.125rem;
+  top: 0.3125rem;
+  color: var(--pen);
+  font-family: var(--font-pen);
+  font-size: 1.5rem;
+  line-height: 1.5rem;
 }
 
 /* ---------- Recent sessions: the print table ---------- */
@@ -396,9 +488,9 @@ h3 {
 .print-table {
   list-style: none;
   margin: 0;
-  padding: 1rem 0 0;
+  padding: 0.5rem 0 0;
   columns: 2;
-  column-gap: 1.5rem;
+  column-gap: 1.25rem;
 }
 
 .print-table li {
@@ -420,7 +512,7 @@ h3 {
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 2.5rem;
+  gap: 3rem;
 }
 
 .quote {
@@ -431,10 +523,18 @@ h3 {
   margin: 0;
 }
 
+/* Italic Fraunces, with the opening quote hung outside the text edge. */
 .quote blockquote p {
   margin: 0;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+  font-family: var(--font-display);
+  font-variation-settings: var(--soft);
+  font-style: italic;
+  font-weight: 340;
+  font-size: clamp(1.5rem, 3vw, 2.125rem);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  text-indent: -0.42em;
+  text-wrap: pretty;
 }
 
 .quote blockquote p::before {
@@ -446,20 +546,19 @@ h3 {
 }
 
 .quote figcaption {
-  margin-top: 1rem;
+  margin-top: 1.25rem;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 0 0.75rem;
+  font-size: 0.9375rem;
 }
 
 .quote-name {
-  font-family: var(--font-display);
-  font-stretch: 112%;
-  font-weight: 650;
+  font-weight: 600;
 }
 
 .quote-detail {
   color: var(--muted);
-  font-size: 0.9375rem;
 }
 
 /* ---------- Questions ---------- */
@@ -476,16 +575,23 @@ h3 {
 .faq summary {
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem 0;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding: 1.25rem 0;
   min-height: 2.75rem;
   cursor: pointer;
   list-style: none;
   font-family: var(--font-display);
-  font-stretch: 112%;
-  font-weight: 600;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+  font-variation-settings: var(--soft);
+  font-weight: 400;
+  font-size: 1.375rem;
+  line-height: 1.875rem;
+  letter-spacing: -0.01em;
+  transition: color 150ms ease;
+}
+
+.faq summary:hover {
+  color: var(--accent-hover);
 }
 
 .faq summary::-webkit-details-marker {
@@ -496,46 +602,50 @@ h3 {
   content: "+";
   flex: none;
   color: var(--accent);
-  font-weight: 500;
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 1.75rem;
+  transition: transform 200ms ease;
 }
 
 .faq details[open] summary::after {
-  content: "\2212";
+  transform: rotate(45deg);
 }
 
 .faq-answer {
-  padding: 0 0 1.25rem;
+  padding: 0 0 1.5rem;
   color: var(--muted);
-  max-width: 40rem;
+  max-width: 38rem;
 }
 
 /* ---------- Inquire ---------- */
 
 .inquire {
-  padding: 4.5rem 0 5rem;
-  background: var(--table-deep);
+  padding: clamp(4.5rem, 10vw, 8rem) 0 clamp(5rem, 10vw, 8rem);
+  border-top: 0.0625rem solid var(--rule);
 }
 
 .inquire-title {
-  font-size: clamp(2rem, 6vw, 3.75rem);
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.015em;
-  max-width: 48rem;
+  font-size: clamp(3rem, 10vw, 8.5rem);
+  font-weight: 320;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+  max-width: 62rem;
 }
 
 .inquire-note {
-  margin: 1.25rem 0 0;
-  max-width: 36rem;
+  margin: 1.75rem 0 0;
+  max-width: 34rem;
   color: var(--muted);
   font-size: 1.125rem;
 }
 
 .inquire-actions {
-  margin: 2rem 0 0;
+  margin: 2.25rem 0 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.875rem;
 }
 
 .inquire-actions .button {
@@ -546,7 +656,6 @@ h3 {
 
 .site-footer {
   background: var(--table-deep);
-  border-top: 0.0625rem solid var(--rule);
   color: var(--muted);
   font-size: 0.9375rem;
 }
@@ -611,7 +720,7 @@ h3 {
 /* ---------- 404 ---------- */
 
 #not-found {
-  max-width: 40rem;
+  max-width: 44rem;
   margin: 0 auto;
   padding: 5rem var(--gutter) 6rem;
 }
@@ -624,7 +733,7 @@ h3 {
 
 #not-found .not-found-code {
   display: inline-block;
-  margin: 1.5rem 0 2rem;
+  margin: 1.5rem 0 2.25rem;
   padding: 1rem 2rem 0.5rem;
   background: var(--paper);
   color: var(--pen);
@@ -636,13 +745,15 @@ h3 {
 }
 
 #not-found .not-found-title {
-  font-size: clamp(1.75rem, 5vw, 2.5rem);
-  font-weight: 800;
-  line-height: 1.1;
+  font-size: clamp(2.25rem, 7vw, 4rem);
+  font-weight: 330;
+  font-style: italic;
+  line-height: 1;
+  letter-spacing: -0.03em;
 }
 
 #not-found .not-found-description {
-  margin: 1rem 0 2rem;
+  margin: 1.25rem 0 2rem;
   color: var(--muted);
   font-size: 1.0625rem;
 }
@@ -651,57 +762,125 @@ h3 {
   display: inline-flex;
   align-items: center;
   min-height: 2.75rem;
-  padding: 0.625rem 1.25rem;
-  border: 0.125rem solid var(--accent);
-  border-radius: 0.375rem;
+  padding: 0.6875rem 1.375rem;
+  border: 0.0625rem solid var(--accent);
+  border-radius: 62rem;
   color: var(--text);
-  font-family: var(--font-display);
-  font-stretch: 112%;
-  font-weight: 650;
+  font-weight: 600;
+  font-size: 0.9375rem;
   text-decoration: none;
 }
 
 #not-found .not-found-cta:hover {
   color: var(--accent-hover);
+  border-color: var(--accent-hover);
 }
 
 /* ---------- Wider screens ---------- */
 
 @media (min-width: 48rem) {
   :root {
-    --gutter: 2rem;
+    --gutter: 2.5rem;
   }
 
   .print-table {
     columns: 3;
-    column-gap: 2.75rem;
+    column-gap: 3rem;
   }
 
   .print-table li {
-    padding-bottom: 3rem;
+    padding-bottom: 3.5rem;
   }
 
-  .package-list,
-  .quote-list {
-    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-    gap: 3rem;
+  .package-list {
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: 2.5rem 3rem;
   }
 }
 
 @media (min-width: 60rem) {
+  /* Hello on the left; the hero print dropped over the foot of the name. */
+  .intro {
+    padding-top: 0;
+  }
+
   .intro-grid {
-    grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
-    gap: 4rem;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 4.5rem;
+    align-items: start;
+  }
+
+  .intro-grid > .print-hero {
+    grid-column: 2;
+    grid-row: 1;
+    margin-top: calc(var(--name-size) * -0.42);
+  }
+
+  .intro-grid > .hello {
+    grid-column: 1;
+    grid-row: 1;
+    padding-top: 3.5rem;
   }
 
   .intro-text-only .intro-grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .intro-text-only .intro-grid > .hello {
+    grid-column: 1;
+    padding-top: 2rem;
+  }
+
+  .split {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .split > .section-title {
+    position: sticky;
+    top: 2rem;
+    margin-bottom: 0;
+  }
+
+  /* The ask on the left, the ways to answer it on the right. */
+  .inquire-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+    gap: 4rem;
+    align-items: end;
+  }
+
+  .inquire-note {
+    margin-top: 0;
+  }
+
+  .quote-list {
+    gap: 4rem;
+  }
+
+  .quote:nth-child(odd) {
+    padding-right: 3rem;
   }
 }
 
 @media (max-width: 40rem) {
   :root {
     --tilt-scale: 0.5;
+  }
+
+  .topbar {
+    font-size: 0.875rem;
+  }
+
+  .masthead-place {
+    flex-basis: 100%;
+  }
+
+  .masthead-book {
+    margin-left: 0;
+    width: 100%;
+    justify-content: space-between;
   }
 
   .print {
@@ -716,6 +895,19 @@ h3 {
     font-size: 1.25rem;
     line-height: 1.25rem;
     padding: 0.375rem 0.125rem 0.5rem;
+  }
+
+  .print-hero {
+    padding: 0.625rem 0.625rem 0;
+  }
+
+  .print-hero figcaption {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+  }
+
+  .rate-card {
+    margin: 0 calc(var(--gutter) * -0.5);
   }
 
   .footer-credit {

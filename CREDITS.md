@@ -4,7 +4,7 @@ Not copied into sites made from this template (listed under `assets`).
 
 ## Fonts
 
-- Archivo, Copyright 2020 The Archivo Project Authors (https://github.com/Omnibus-Type/Archivo), SIL Open Font License 1.1. Latin subset with width and weight axes from `@fontsource-variable/archivo` 5.3.0.
+- Fraunces, Copyright 2018 The Fraunces Project Authors (https://github.com/undercasetype/Fraunces), SIL Open Font License 1.1. Latin subset with all four axes (optical size, weight, softness, wonk), roman and italic, from `@fontsource-variable/fraunces` 5.3.0.
 - Nanum Pen Script, Copyright 2010 NHN Corporation, designed by Sandoll Communications, SIL Open Font License 1.1. Latin subset from `@fontsource/nanum-pen-script` 5.3.0.
 - Inter, SIL Open Font License 1.1 (from the starter).
 

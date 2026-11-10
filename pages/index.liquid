@@ -28,13 +28,10 @@
 {% layout 'theme' title: "", path: "", jsonld: jsonld %}
 
 <header class="masthead">
-  <div class="wrap masthead-inner">
-    <div class="masthead-name">
-      <h1 class="name">{{ site.name | escape }}</h1>
-      {%- if site.tagline != blank %}
-      <p class="tagline">{{ site.tagline | escape }}</p>
-      {%- endif %}
-    </div>
+  <div class="wrap topbar">
+    {%- if site.location != blank %}
+    <p class="masthead-place">{{ site.location | escape }}</p>
+    {%- endif %}
     <div class="masthead-book">
       {%- if site.booking_status != blank %}
       <p class="booking-status">{{ site.booking_status | escape }}</p>
@@ -43,6 +40,12 @@
       <a class="button" href="#inquire">Inquire</a>
       {%- endif %}
     </div>
+  </div>
+  <div class="wrap nameplate">
+    <h1 class="name">{{ site.name | escape }}</h1>
+    {%- if site.tagline != blank %}
+    <p class="tagline">{{ site.tagline | escape }}</p>
+    {%- endif %}
   </div>
 </header>
 
@@ -67,6 +70,7 @@
 {%- if objects.package.size > 0 %}
 <section class="packages" aria-labelledby="packages-title">
   <div class="wrap">
+    <div class="rate-card">
     <h2 id="packages-title" class="section-title">Packages</h2>
     <ul class="package-list">
       {%- for package in objects.package %}
@@ -91,6 +95,7 @@
       </li>
       {%- endfor %}
     </ul>
+    </div>
   </div>
 </section>
 {%- endif %}
@@ -119,8 +124,9 @@
 
 {%- if objects.kind_word.size > 0 %}
 <section class="kind-words" aria-labelledby="kind-words-title">
-  <div class="wrap">
+  <div class="wrap split">
     <h2 id="kind-words-title" class="section-title">Kind words</h2>
+    <div class="split-body">
     <ul class="quote-list">
       {%- for word in objects.kind_word %}{% if word.quote != blank %}
       <li>
@@ -136,14 +142,16 @@
       </li>
       {%- endif %}{% endfor %}
     </ul>
+    </div>
   </div>
 </section>
 {%- endif %}
 
 {%- if objects.faq.size > 0 %}
 <section class="faq" aria-labelledby="faq-title">
-  <div class="wrap">
+  <div class="wrap split">
     <h2 id="faq-title" class="section-title">Questions</h2>
+    <div class="split-body">
     <div class="faq-list">
       {%- for faq in objects.faq %}{% if faq.question != blank %}
       <details>
@@ -154,26 +162,29 @@
       </details>
       {%- endif %}{% endfor %}
     </div>
+    </div>
   </div>
 </section>
 {%- endif %}
 
 {%- if site.email != blank or site.booking_url != blank %}
 <section class="inquire" id="inquire" aria-labelledby="inquire-title">
-  <div class="wrap">
+  <div class="wrap inquire-grid">
     <h2 id="inquire-title" class="inquire-title">{% if site.inquire_heading != blank %}{{ site.inquire_heading | escape }}{% else %}Inquire{% endif %}</h2>
-    {%- if site.inquire_note != blank %}
-    <p class="inquire-note">{{ site.inquire_note | escape }}</p>
-    {%- endif %}
-    <p class="inquire-actions">
-      {%- if site.email != blank %}
-      <a class="button" href="mailto:{{ site.email | escape }}">Email {{ site.email | escape }}</a>
+    <div class="inquire-body">
+      {%- if site.inquire_note != blank %}
+      <p class="inquire-note">{{ site.inquire_note | escape }}</p>
       {%- endif %}
-      {%- if site.booking_url != blank %}
-      {%- assign link = site.booking_url | strip -%}{%- include 'link-href' -%}
-      <a class="button{% if site.email != blank %} button-quiet{% endif %}" href="{{ link_href | escape }}">{% if site.booking_label != blank %}{{ site.booking_label | escape }}{% else %}Book online{% endif %}</a>
-      {%- endif %}
-    </p>
+      <p class="inquire-actions">
+        {%- if site.email != blank %}
+        <a class="button" href="mailto:{{ site.email | escape }}">Email {{ site.email | escape }}</a>
+        {%- endif %}
+        {%- if site.booking_url != blank %}
+        {%- assign link = site.booking_url | strip -%}{%- include 'link-href' -%}
+        <a class="button{% if site.email != blank %} button-quiet{% endif %}" href="{{ link_href | escape }}">{% if site.booking_label != blank %}{{ site.booking_label | escape }}{% else %}Book online{% endif %}</a>
+        {%- endif %}
+      </p>
+    </div>
   </div>
 </section>
 {%- endif %}

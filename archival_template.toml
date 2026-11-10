@@ -5,7 +5,7 @@ name = "Series"
 tagline = "A contact sheet for documentary and fine-art photographers who work in series."
 # The template info modal's body: what this template is and what it contains.
 description = """
-A site for a documentary or fine-art photographer who thinks in bodies of work, not single shots. The home page is a contact sheet: each series is a strip of film with its frame numbers along the edge, and the frames you picked are circled in red grease pencil, the way photographers mark their selects. Under each strip are the series title, place and year. Each series opens on its own page with a short statement, then one photograph per screen in sequence, numbered and captioned. The home page also carries your statement, a list of exhibitions, books and press, and how to reach you. The rest stays quiet: a white wall, narrow precise type, nothing competing with the pictures.
+A site for a documentary or fine-art photographer who thinks in bodies of work, not single shots. The home page is a contact sheet: each series is a large title with its place and year, over a strip of film that runs off the edge of the page with its frame numbers printed along the edge. Each series opens on its own page with a short statement, then one photograph per screen in sequence, numbered and captioned. The home page also carries your statement, a list of exhibitions, books and press, and how to reach you. The rest stays quiet: a white wall, narrow precise type, nothing competing with the pictures.
 """
 # The prompt that drives content generation. Describe when to pick this
 # template and what every field holds. Update it whenever the schema changes.
@@ -24,7 +24,7 @@ site (the photographer):
 - og_image, favicon: leave empty.
 - social: one entry per account the person gave. platform is one of "instagram", "website", "bluesky", "threads", "facebook", "youtube" or "vimeo"; url is the full URL; label is the account's name for screen readers (the button shows only the icon). Never invent URLs.
 
-project (one series, with its own page): title; place where it was made; year as text ("2025" or "2019 to 2023"); statement, a short markdown paragraph about the series. photo is the list of photographs in viewing order, each with image (leave empty), alt describing the photo, a short caption ("The first morning"), and circled, true for the one or two frames the photographer would pick out; they get a red grease pencil circle on the contact sheet, and the first circled one stands for the series in link previews. Set order for the sequence of series, newest first is usual. Leave photo empty unless the person gave photos.
+project (one series, with its own page): title; place where it was made; year as text ("2025" or "2019 to 2023"); statement, a short markdown paragraph about the series. photo is the list of photographs in viewing order, each with image (leave empty), alt describing the photo, a short caption ("The first morning"). The first photo stands for the series in link previews, so put the strongest frame first. Set order for the sequence of series, newest first is usual. Leave photo empty unless the person gave photos.
 
 show (exhibitions, books and press): year, title, venue (where, or what kind: "Solo exhibition, Gothenburg", "Photobook, 48 photographs"), and url, an optional link. Only real ones the person gave. Set order, newest first.
 """

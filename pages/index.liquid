@@ -19,12 +19,11 @@
 }
 </script>
 {%- endcapture -%}
-{%- comment -%} Without an og_image, the first series' cover stands for the site. {%- endcomment -%}
+{%- comment -%} Without an og_image, the first photo of the first series stands for the site. {%- endcomment -%}
 {%- assign home_cover = "" -%}
 {%- if site.og_image == blank -%}
   {%- for project in projects -%}
     {%- if home_cover == "" -%}
-      {%- for photo in project.photo -%}{%- if photo.image != blank and photo.circled and home_cover == "" -%}{%- assign home_cover = photo.image.url -%}{%- endif -%}{%- endfor -%}
       {%- for photo in project.photo -%}{%- if photo.image != blank and home_cover == "" -%}{%- assign home_cover = photo.image.url -%}{%- endif -%}{%- endfor -%}
     {%- endif -%}
   {%- endfor -%}
@@ -32,14 +31,16 @@
 {% layout 'theme' title: "", path: "", jsonld: jsonld, image: home_cover %}
 
 <header class="wrap intro">
-  <div class="intro-name">
-    <h1 class="name">{{ site.name | escape }}</h1>
+  <h1 class="name">{{ site.name | escape }}</h1>
+  {%- if site.tagline != blank or site.statement != blank %}
+  <div class="intro-body">
     {%- if site.tagline != blank %}
     <p class="tagline">{{ site.tagline | escape }}</p>
     {%- endif %}
+    {%- if site.statement != blank %}
+    <div class="statement markdown">{{ site.statement }}</div>
+    {%- endif %}
   </div>
-  {%- if site.statement != blank %}
-  <div class="statement markdown">{{ site.statement }}</div>
   {%- endif %}
 </header>
 
@@ -52,27 +53,30 @@
     {%- for photo in project.photo -%}{%- if photo.image != blank -%}{%- assign shown = shown | plus: 1 -%}{%- endif -%}{%- endfor %}
     <li class="roll">
       <a class="roll-link" href="/{{ project.path }}">
+        <span class="roll-head">
+          {%- if project.year != blank %}
+          <span class="roll-year">{{ project.year | escape }}</span>
+          {%- endif %}
+          <span class="roll-title">{{ project.title | escape }}</span>
+          {%- if project.place != blank or shown > 0 %}
+          <span class="roll-meta">
+            {%- if project.place != blank %}<span class="roll-place">{{ project.place | escape }}</span>{% endif -%}
+            {%- if shown > 0 %}<span class="roll-count">{{ shown }} {% if shown == 1 %}photograph{% else %}photographs{% endif %}</span>{% endif -%}
+          </span>
+          {%- endif %}
+        </span>
         {%- if shown > 0 %}
         <span class="strip" aria-hidden="true" tabindex="-1">
           {%- assign frame = 0 -%}
           {%- for photo in project.photo %}{% if photo.image != blank %}
           {%- assign frame = frame | plus: 1 %}
-          <span class="frame{% if photo.circled %} is-circled{% endif %}">
+          <span class="frame">
             <span class="edge" aria-hidden="true"><span>{{ frame }}</span><span>{{ frame }}A</span></span>
             <img src="{{ photo.image.url | escape }}" alt="" loading="lazy">
           </span>
           {%- endif %}{% endfor %}
         </span>
         {%- endif %}
-        <span class="roll-label">
-          <span class="roll-title">{{ project.title | escape }}</span>
-          {%- if project.place != blank or project.year != blank %}
-          <span class="roll-meta">{% if project.place != blank %}{{ project.place | escape }}{% endif %}{% if project.place != blank and project.year != blank %}, {% endif %}{% if project.year != blank %}{{ project.year | escape }}{% endif %}</span>
-          {%- endif %}
-          {%- if shown > 0 %}
-          <span class="roll-count">{{ shown }} {% if shown == 1 %}photograph{% else %}photographs{% endif %}</span>
-          {%- endif %}
-        </span>
       </a>
     </li>
     {%- endfor %}

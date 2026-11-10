@@ -14,18 +14,15 @@
   {%- assign has_next = true -%}
 {%- endif -%}
 
-{%- comment -%} The first circled frame stands for the series; else the first frame. {%- endcomment -%}
+{%- comment -%} The first photograph stands for the series. {%- endcomment -%}
 {%- assign cover_url = "" -%}
 {%- assign total = 0 -%}
 {%- for photo in project.photo -%}
   {%- if photo.image != blank -%}
     {%- assign total = total | plus: 1 -%}
-    {%- if photo.circled and cover_url == "" -%}{%- assign cover_url = photo.image.url -%}{%- endif -%}
+    {%- if cover_url == "" -%}{%- assign cover_url = photo.image.url -%}{%- endif -%}
   {%- endif -%}
 {%- endfor -%}
-{%- if cover_url == "" -%}
-  {%- for photo in project.photo -%}{%- if photo.image != blank and cover_url == "" -%}{%- assign cover_url = photo.image.url -%}{%- endif -%}{%- endfor -%}
-{%- endif -%}
 
 {%- capture jsonld -%}
 <script type="application/ld+json">

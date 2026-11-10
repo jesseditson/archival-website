@@ -9,7 +9,6 @@ A winter of mornings on North Atlantic beaches, waiting for the fog to lift and 
 [[photo]]
 alt = "Dark sand and a pale wave line running toward sea stacks half hidden in fog"
 caption = "Black sand, 7am"
-circled = true
 [photo.image]
 display_type = "image"
 filename = "tideline-1.jpg"
@@ -19,7 +18,6 @@ mime = "image/jpeg"
 [[photo]]
 alt = "Jagged sea stacks rising out of fog above dark water"
 caption = "Three stacks"
-circled = false
 [photo.image]
 display_type = "image"
 filename = "tideline-2.jpg"
@@ -29,7 +27,6 @@ mime = "image/jpeg"
 [[photo]]
 alt = "A long line of surf on a gray beach disappearing into mist"
 caption = "Low tide"
-circled = false
 [photo.image]
 display_type = "image"
 filename = "tideline-3.jpg"
@@ -39,7 +36,6 @@ mime = "image/jpeg"
 [[photo]]
 alt = "An empty foggy beach with a few gulls standing near the water"
 caption = "Gulls, no horizon"
-circled = true
 [photo.image]
 display_type = "image"
 filename = "tideline-4.jpg"

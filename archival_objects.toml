@@ -25,14 +25,12 @@ year = "string"
 statement = "markdown"
 template = "project"
 
-# The photographs in a series, in sequence. A circled frame is one the
-# photographer picked: it gets a grease pencil mark on the contact sheet,
-# and the first circled frame stands for the series in link previews.
+# The photographs in a series, in sequence. The first one stands for the
+# series in link previews.
 [project.photo]
 image = "image"
 alt = "string"
 caption = "string"
-circled = "boolean"
 
 # Exhibitions, books and press.
 [show]

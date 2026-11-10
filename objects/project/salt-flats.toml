@@ -9,7 +9,6 @@ Twelve days on the largest salt flat in the world, in the dry season, when the g
 [[photo]]
 alt = "A white salt plain running flat to a low line of distant mountains under a blue sky"
 caption = "The first morning"
-circled = true
 [photo.image]
 display_type = "image"
 filename = "salt-flats-1.jpg"
@@ -19,7 +18,6 @@ mime = "image/jpeg"
 [[photo]]
 alt = "Salt crust cracked into pale hexagons, with long streaks of cloud overhead"
 caption = "Tiles, noon"
-circled = false
 [photo.image]
 display_type = "image"
 filename = "salt-flats-2.jpg"
@@ -29,7 +27,6 @@ mime = "image/jpeg"
 [[photo]]
 alt = "Cracked salt stretching away under a deep blue sky, one small figure far off on the right"
 caption = "Someone walking out"
-circled = true
 [photo.image]
 display_type = "image"
 filename = "salt-flats-3.jpg"
@@ -39,7 +36,6 @@ mime = "image/jpeg"
 [[photo]]
 alt = "A thin layer of water on the salt mirroring clouds, with a few small figures standing in it"
 caption = "After the rain"
-circled = false
 [photo.image]
 display_type = "image"
 filename = "salt-flats-4.jpg"

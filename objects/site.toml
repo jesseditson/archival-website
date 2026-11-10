@@ -7,6 +7,11 @@ I photograph places at the edge of being empty: salt flats at noon, a coastline 
 location = "Gothenburg, Sweden"
 email = "studio@example.com"
 
+series_heading = "Series"
+shows_heading = "Shown and published"
+contact_heading = "Contact"
+all_series_label = "All series"
+next_series_label = "Next series"
 [[social]]
 platform = "instagram"
 url = "https://instagram.com/"

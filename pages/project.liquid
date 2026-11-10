@@ -71,9 +71,9 @@
   {%- endif %}
 
   <nav class="wrap series-next" aria-label="More series">
-    <a href="/">All series</a>
+    <a href="/">{% if site.all_series_label != blank %}{{ site.all_series_label | escape }}{% else %}All series{% endif %}</a>
     {%- if has_next %}
-    <a href="/{{ next_project.path }}">Next series: {{ next_project.title | escape }}</a>
+    <a href="/{{ next_project.path }}">{% if site.next_series_label != blank %}{{ site.next_series_label | escape }}{% else %}Next series{% endif %}: {{ next_project.title | escape }}</a>
     {%- endif %}
   </nav>
 </article>

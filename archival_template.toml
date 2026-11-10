@@ -22,6 +22,7 @@ site (the photographer):
 - location: where they are based ("Gothenburg, Sweden").
 - email: only an address the person gave.
 - og_image, favicon: leave empty.
+- Headings and link words, short and in the photographer's voice; leave any empty to use the wording shown here: series_heading ("Series"); shows_heading ("Shown and published"); contact_heading ("Contact"); all_series_label, the link back home from a series ("All series"); next_series_label, set before the next series' title ("Next series").
 - social: one entry per account the person gave. platform is one of "instagram", "website", "bluesky", "threads", "facebook", "youtube" or "vimeo"; url is the full URL; label is the account's name for screen readers (the button shows only the icon). Never invent URLs.
 
 project (one series, with its own page): title; place where it was made; year as text ("2025" or "2019 to 2023"); statement, a short markdown paragraph about the series. photo is the list of photographs in viewing order, each with image (leave empty), alt describing the photo, a short caption ("The first morning"). The first photo stands for the series in link previews, so put the strongest frame first. Set order for the sequence of series, newest first is usual. Leave photo empty unless the person gave photos.

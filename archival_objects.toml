@@ -11,6 +11,12 @@ location = "string"
 email = "string"
 og_image = "image"
 favicon = "image"
+# Headings and link words. Each has a fallback when left empty.
+series_heading = "string"
+shows_heading = "string"
+contact_heading = "string"
+all_series_label = "string"
+next_series_label = "string"
 
 [site.social]
 platform = ["instagram", "website", "bluesky", "threads", "facebook", "youtube", "vimeo"]

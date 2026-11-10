@@ -46,7 +46,7 @@
 
 {%- if projects.size > 0 %}
 <section class="wrap sheet" aria-labelledby="sheet-title">
-  <h2 id="sheet-title" class="section-title">Series</h2>
+  <h2 id="sheet-title" class="section-title">{% if site.series_heading != blank %}{{ site.series_heading | escape }}{% else %}Series{% endif %}</h2>
   <ol class="rolls">
     {%- for project in projects %}
     {%- assign shown = 0 -%}
@@ -86,7 +86,7 @@
 
 {%- if shows.size > 0 %}
 <section class="wrap shown" aria-labelledby="shown-title">
-  <h2 id="shown-title" class="section-title">Shown and published</h2>
+  <h2 id="shown-title" class="section-title">{% if site.shows_heading != blank %}{{ site.shows_heading | escape }}{% else %}Shown and published{% endif %}</h2>
   <ul class="show-list">
     {%- for show in shows %}{% if show.title != blank %}
     <li>
@@ -103,7 +103,7 @@
 
 {%- if site.email != blank or site.location != blank %}
 <section class="wrap contact" aria-labelledby="contact-title">
-  <h2 id="contact-title" class="section-title">Contact</h2>
+  <h2 id="contact-title" class="section-title">{% if site.contact_heading != blank %}{{ site.contact_heading | escape }}{% else %}Contact{% endif %}</h2>
   <p class="contact-lines">
     {%- if site.email != blank %}<a href="mailto:{{ site.email | escape }}">{{ site.email | escape }}</a>{% endif -%}
     {%- if site.location != blank %}<span>{{ site.location | escape }}</span>{% endif -%}

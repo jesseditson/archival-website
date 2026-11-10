@@ -27,9 +27,11 @@
 {%- assign title_words = record.title | split: " " %}
 <section class="hero" aria-labelledby="record-title">
   <div class="wrap hero-inner">
-    <h1 id="record-title" class="record-title">
-      {%- for word in title_words %}<span class="word" style="--i: {{ forloop.index0 }}">{{ word | escape }}</span>{% unless forloop.last %} {% endunless %}{% endfor -%}
-    </h1>
+    <div class="hero-title-box">
+      <h1 id="record-title" class="record-title">
+        {%- for word in title_words %}<span class="word" style="--i: {{ forloop.index0 }}">{{ word | escape }}</span>{% unless forloop.last %} {% endunless %}{% endfor -%}
+      </h1>
+    </div>
     <div class="sleeve-stage">
       <div class="vinyl" aria-hidden="true">
         <div class="vinyl-turn">
@@ -64,7 +66,7 @@
       {%- for track in tracks %}
       {%- assign track_number = forloop.index %}
       <li class="track-row" data-row>
-        <span class="track-number" aria-hidden="true">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
+        <span class="track-number" aria-hidden="true"><span class="track-digits">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span><span class="track-eq"><i></i><i></i><i></i></span></span>
         <a class="track-title" href="/{{ track.path }}">{{ track.title | escape }}</a>
         {%- if track.duration != blank %}
         <span class="track-duration">{{ track.duration | escape }}</span>
@@ -81,16 +83,18 @@
 {%- if record.blurb != blank or site.bio != blank %}
 <section class="about" aria-labelledby="about-title">
   <div class="wrap about-grid">
-    <h2 id="about-title" class="section-title">About the record</h2>
-    {%- if record.blurb != blank %}
-    <div class="blurb markdown">{{ record.blurb | replace: "<h1", "<h3" | replace: "</h1>", "</h3>" | replace: "<h2", "<h3" | replace: "</h2>", "</h3>" }}</div>
-    {%- endif %}
     {%- if site.portrait != blank %}
     <figure class="portrait"><img src="{{ site.portrait.url | escape }}" alt="{{ site.portrait_alt | escape }}" loading="lazy"></figure>
     {%- endif %}
-    {%- if site.bio != blank %}
-    <div class="bio markdown">{{ site.bio | replace: "<h1", "<h3" | replace: "</h1>", "</h3>" | replace: "<h2", "<h3" | replace: "</h2>", "</h3>" }}</div>
-    {%- endif %}
+    <div class="about-text">
+      <h2 id="about-title" class="section-title">About the record</h2>
+      {%- if record.blurb != blank %}
+      <div class="blurb markdown">{{ record.blurb | replace: "<h1", "<h3" | replace: "</h1>", "</h3>" | replace: "<h2", "<h3" | replace: "</h2>", "</h3>" }}</div>
+      {%- endif %}
+      {%- if site.bio != blank %}
+      <div class="bio markdown">{{ site.bio | replace: "<h1", "<h3" | replace: "</h1>", "</h3>" | replace: "<h2", "<h3" | replace: "</h2>", "</h3>" }}</div>
+      {%- endif %}
+    </div>
   </div>
 </section>
 {%- endif %}

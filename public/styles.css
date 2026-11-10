@@ -269,25 +269,13 @@ h3 {
   letter-spacing: -0.02em;
   text-transform: uppercase;
   overflow-wrap: break-word;
+  animation: title-fade 1400ms var(--ease-out) 350ms both;
 }
 
-.record-title .word {
-  display: inline-block;
-  transform-origin: left bottom;
-  animation: open-word 1100ms var(--ease-out) both;
-  animation-delay: calc(150ms + var(--i) * 120ms);
-}
-
-/* Each word springs open from squeezed. A transform, so the title is laid
-   out once at its final size and never reflows while it animates. */
-@keyframes open-word {
+/* The title fades in on the record's timing: same length, same start. */
+@keyframes title-fade {
   from {
     opacity: 0;
-    transform: translateY(0.12em) scaleX(0.45);
-  }
-  to {
-    opacity: 1;
-    transform: none;
   }
 }
 
@@ -863,7 +851,6 @@ html[data-playing] .track-eq i:nth-child(3) { animation-duration: 950ms; animati
 
 /* Sized to the longest word, like the record's title. */
 .track-page-title {
-  transform-origin: left bottom;
   font-size: clamp(2.5rem, calc(100cqi / (var(--longest, 8) * 0.95)), 10rem);
   font-weight: 900;
   font-stretch: 120%;
@@ -871,7 +858,7 @@ html[data-playing] .track-eq i:nth-child(3) { animation-duration: 950ms; animati
   letter-spacing: -0.02em;
   text-transform: uppercase;
   overflow-wrap: break-word;
-  animation: open-word 1000ms var(--ease-out) both;
+  animation: title-fade 1400ms var(--ease-out) 350ms both;
 }
 
 .track-actions {
@@ -1150,14 +1137,13 @@ html[data-playing] .player-disc {
 
 #not-found .not-found-code {
   margin: 1rem 0 1.5rem;
-  transform-origin: left bottom;
   font-family: var(--font-display);
   font-weight: 900;
   font-stretch: 150%;
   font-size: clamp(6rem, 26vw, 16rem);
   line-height: 0.85;
   letter-spacing: -0.03em;
-  animation: open-word 1100ms var(--ease-out) both;
+  animation: title-fade 1400ms var(--ease-out) 350ms both;
 }
 
 #not-found .not-found-title {

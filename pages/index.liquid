@@ -31,9 +31,7 @@
 <section class="hero" aria-labelledby="record-title">
   <div class="wrap hero-inner">
     <div class="hero-title-box">
-      <h1 id="record-title" class="record-title" style="--longest: {{ longest }}">
-        {%- for word in title_words %}<span class="word" style="--i: {{ forloop.index0 }}">{{ word | escape }}</span>{% unless forloop.last %} {% endunless %}{% endfor -%}
-      </h1>
+      <h1 id="record-title" class="record-title" style="--longest: {{ longest }}">{{ record.title | escape }}</h1>
     </div>
     <div class="sleeve-stage">
       <div class="vinyl" aria-hidden="true">

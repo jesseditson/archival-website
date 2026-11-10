@@ -497,7 +497,7 @@ h3 {
    texture is four times as wide as it is tall; each layer moves exactly one
    tile, so the loop never shows a seam. */
 .smoke {
-  --smoke-h: 22rem;
+  --smoke-h: 18rem;
   --smoke-w: calc(var(--smoke-h) * 4);
   position: absolute;
   left: 0;
@@ -522,11 +522,11 @@ h3 {
 }
 
 .smoke::before {
-  opacity: 0.42;
+  opacity: 0.16;
 }
 
 .smoke::after {
-  opacity: 0.28;
+  opacity: 0.1;
   background-position: 0 70%;
   animation-duration: 55s;
   animation-direction: reverse;

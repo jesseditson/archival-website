@@ -12,6 +12,16 @@ email = "hello@example.com"
 booking_url = "https://example.com/book"
 booking_label = "Check a date"
 inquire_heading = "Tell us about the day"
+listen_label = "Hear us play"
+players_heading = "The players"
+formats_heading = "Formats & fees"
+repertoire_heading = "Repertoire"
+kind_words_heading = "Kind words"
+concerts_heading = "Concerts"
+nav_formats = "Formats"
+nav_repertoire = "Repertoire"
+nav_concerts = "Concerts"
+nav_book = "Book"
 inquire_note = "Send the date, the place and roughly what you would like played. We reply within two days, usually with a sample program."
 
 [[social]]
@@ -59,3 +69,15 @@ display_type = "image"
 filename = "violin-dark.jpg"
 sha = "1e425914ca577f10c6857c36ec353d501c6de117e67cc134e3ba43d0293d76b7"
 mime = "image/jpeg"
+
+[scene_fog]
+display_type = "image"
+filename = "smoke-dark.webp"
+sha = "aa110b3a60cf98bfad1f9bb00b9d1176f9dbfc8315c45eb41ca54315e99165e2"
+mime = "image/webp"
+
+[program_fog]
+display_type = "image"
+filename = "smoke-maroon.webp"
+sha = "865974457af996afb8ed88e7afbc297dc7abf4d198fb029f7aa6fc567c39578d"
+mime = "image/webp"

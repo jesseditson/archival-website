@@ -28,6 +28,16 @@
 {%- endcapture -%}
 {% layout 'theme' title: "", path: "", jsonld: jsonld %}
 
+{%- comment -%} Headings and labels come from the site object, with fallbacks. {%- endcomment -%}
+{%- if site.listen_label != blank -%}{%- assign listen_label = site.listen_label -%}{%- else -%}{%- assign listen_label = "Hear us play" -%}{%- endif -%}
+{%- if site.players_heading != blank -%}{%- assign players_heading = site.players_heading -%}{%- else -%}{%- assign players_heading = "The players" -%}{%- endif -%}
+{%- if site.formats_heading != blank -%}{%- assign formats_heading = site.formats_heading -%}{%- else -%}{%- assign formats_heading = "Formats & fees" -%}{%- endif -%}
+{%- if site.repertoire_heading != blank -%}{%- assign repertoire_heading = site.repertoire_heading -%}{%- else -%}{%- assign repertoire_heading = "Repertoire" -%}{%- endif -%}
+{%- if site.kind_words_heading != blank -%}{%- assign kind_words_heading = site.kind_words_heading -%}{%- else -%}{%- assign kind_words_heading = "Kind words" -%}{%- endif -%}
+{%- if site.concerts_heading != blank -%}{%- assign concerts_heading = site.concerts_heading -%}{%- else -%}{%- assign concerts_heading = "Concerts" -%}{%- endif -%}
+{%- comment -%} An ampersand in a heading is set smaller and in italic. {%- endcomment -%}
+{%- assign formats_heading_html = formats_heading | escape | replace: "&amp;", '<span class="amp">&amp;</span>' -%}
+
 {%- comment -%}
   The name is set in two voices: every word but the last in the light
   serif, the last word in the bold sans ("The Quarry Light" / "Quartet").
@@ -64,12 +74,14 @@
     {%- if site.sample != blank %}
     {%- if site.sample_title != blank %}{% assign sample_label = site.sample_title %}{% else %}{% assign sample_label = "A recording of us" %}{% endif %}
     <div class="hero-listen hero-in" style="--delay: 550ms">
-      <button type="button" class="play glass pill-button" data-track data-src="{{ site.sample.url | escape }}" data-title="{{ sample_label | escape }}" aria-label="Play {{ sample_label | escape }}" aria-pressed="false"><svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15L19.5 12z" fill="currentColor"/></svg><svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" fill="currentColor"/></svg><span class="pill-text">Hear us play</span></button>
+      <button type="button" class="play glass pill-button" data-track data-src="{{ site.sample.url | escape }}" data-title="{{ sample_label | escape }}" aria-label="Play {{ sample_label | escape }}" aria-pressed="false"><svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15L19.5 12z" fill="currentColor"/></svg><svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" fill="currentColor"/></svg><span class="pill-text">{{ listen_label | escape }}</span></button>
       <p class="hero-sample">{{ sample_label | escape }}</p>
     </div>
     {%- endif %}
   </div>
-  <img class="fog fog-hero" src="/images/fog-dark.webp" alt="" aria-hidden="true">
+  {%- if site.scene_fog != blank %}
+  <img class="fog fog-hero" src="{{ site.scene_fog.url | escape }}" alt="" aria-hidden="true">
+  {%- endif %}
 </header>
 
 {%- if site.intro != blank or members.size > 0 or site.players_image != blank %}
@@ -79,7 +91,7 @@
   {%- endif %}
   <div class="players-shade" aria-hidden="true"></div>
   <div class="players-content">
-    <h2 id="players-title" class="display-title reveal">The players</h2>
+    <h2 id="players-title" class="display-title reveal">{{ players_heading | escape }}</h2>
     {%- if site.intro != blank %}
     <div class="players-intro markdown reveal" style="--delay: 150ms">{{ site.intro | replace: "<h1", "<h3" | replace: "</h1>", "</h3>" | replace: "<h2", "<h3" | replace: "</h2>", "</h3>" }}</div>
     {%- endif %}
@@ -91,7 +103,7 @@
     </ul>
     {%- endif %}
     {%- if formats.size > 0 %}
-    <a class="pill-button outline reveal" style="--delay: 450ms" href="#formats">Formats and fees</a>
+    <a class="pill-button outline reveal" style="--delay: 450ms" href="#formats">{{ formats_heading | escape }}</a>
     {%- endif %}
   </div>
 </section>
@@ -101,7 +113,7 @@
 <div class="maroon">
   {%- if formats.size > 0 %}
   <section class="formats" id="formats" aria-labelledby="formats-title">
-    <h2 id="formats-title" class="display-title reveal">Formats <span class="amp">&amp;</span> fees</h2>
+    <h2 id="formats-title" class="display-title reveal">{{ formats_heading_html }}</h2>
     <div class="stagger">
       {%- for column in (1..2) %}
       <ul class="stagger-column">
@@ -126,7 +138,7 @@
 
   {%- if moments.size > 0 %}
   <section class="repertoire" id="repertoire" aria-labelledby="repertoire-title">
-    <h2 id="repertoire-title" class="display-title reveal">Repertoire</h2>
+    <h2 id="repertoire-title" class="display-title reveal">{{ repertoire_heading | escape }}</h2>
     <div class="stagger">
       {%- for column in (1..2) %}
       <div class="stagger-column">
@@ -161,7 +173,9 @@
     </div>
   </section>
   {%- endif %}
-  <img class="fog fog-maroon" src="/images/fog-maroon.webp" alt="" aria-hidden="true">
+  {%- if site.program_fog != blank %}
+  <img class="fog fog-maroon" src="{{ site.program_fog.url | escape }}" alt="" aria-hidden="true">
+  {%- endif %}
 </div>
 {%- endif %}
 
@@ -172,7 +186,7 @@
   <img class="kind-media" src="{{ quote_bg | escape }}" alt="" loading="lazy">
   {%- endif %}
   <div class="kind-shade" aria-hidden="true"></div>
-  <h2 id="kind-words-title" class="visually-hidden">Kind words</h2>
+  <h2 id="kind-words-title" class="visually-hidden">{{ kind_words_heading | escape }}</h2>
   <ul class="quotes reveal-scale" data-quotes>
     {%- for word in kind_words %}{% if word.quote != blank %}
     <li class="quote-slide">
@@ -190,7 +204,7 @@
 
 {%- if concerts.size > 0 %}
 <section class="concerts" id="concerts" aria-labelledby="concerts-title">
-  <h2 id="concerts-title" class="display-title reveal">Concerts</h2>
+  <h2 id="concerts-title" class="display-title reveal">{{ concerts_heading | escape }}</h2>
   <ol class="concert-list">
     {%- for concert in concerts %}{% if concert.title != blank %}
     <li class="concert reveal" style="--delay: {{ forloop.index | times: 100 }}ms">

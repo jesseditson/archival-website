@@ -29,6 +29,9 @@ site (the ensemble):
 - sample: leave empty unless the person uploaded a recording. sample_title names that recording, composer then piece ("Borodin, Nocturne from String Quartet No. 2"); leave it empty when there is no sample.
 - players_image, players_alt: leave both empty. The full-screen photo behind the note on the players.
 - quote_image: leave empty. The full-screen photo behind the kind words.
+- scene_fog, program_fog: leave empty. Transparent smoke images that fade one section into the next.
+- Headings and labels, each short and in the ensemble's voice; leave any of them empty to use the wording shown here: listen_label, the text of the button that plays the sample ("Hear us play"); players_heading ("The players"); formats_heading ("Formats & fees", an ampersand is set in italic); repertoire_heading ("Repertoire"); kind_words_heading ("Kind words", read by screen readers only); concerts_heading ("Concerts").
+- The floating menu's words, one or two words each: nav_formats ("Formats"), nav_repertoire ("Repertoire"), nav_concerts ("Concerts"), nav_book ("Book"). A menu link only shows when its section has content.
 - email: only an address the person gave. booking_url: only a booking or inquiry page URL they gave, written in full with https://. booking_label: the booking button's text ("Check a date"); leave empty when there is no booking_url.
 - inquire_heading: the closing heading ("Tell us about the day"). inquire_note: one or two sentences on what to send and how soon they reply.
 - og_image, favicon: leave empty.

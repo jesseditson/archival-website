@@ -20,6 +20,23 @@ players_image = "image"
 players_alt = "string"
 # Behind the kind words.
 quote_image = "image"
+# The smoke between scenes: scene_fog fades the opening film into the
+# players, program_fog fades the maroon program into the kind words.
+# Transparent images (WebP or PNG) work best; leave empty for a plain fade.
+scene_fog = "image"
+program_fog = "image"
+# Section headings and labels. Each has a fallback when left empty.
+listen_label = "string"
+players_heading = "string"
+formats_heading = "string"
+repertoire_heading = "string"
+kind_words_heading = "string"
+concerts_heading = "string"
+# The short words in the floating menu.
+nav_formats = "string"
+nav_repertoire = "string"
+nav_concerts = "string"
+nav_book = "string"
 email = "string"
 booking_url = "string"
 booking_label = "string"

@@ -79,13 +79,13 @@
     {%- assign has_moments = objects.moment.size | default: 0 -%}
     {%- assign has_concerts = objects.concert.size | default: 0 -%}
     <nav class="nav glass" aria-label="Sections">
-      {%- if has_formats > 0 %}<a href="/#formats">Formats</a>{% endif %}
-      {%- if has_moments > 0 %}<a href="/#repertoire">Repertoire</a>{% endif %}
+      {%- if has_formats > 0 %}<a href="/#formats">{% if site.nav_formats != blank %}{{ site.nav_formats | escape }}{% else %}Formats{% endif %}</a>{% endif %}
+      {%- if has_moments > 0 %}<a href="/#repertoire">{% if site.nav_repertoire != blank %}{{ site.nav_repertoire | escape }}{% else %}Repertoire{% endif %}</a>{% endif %}
       <a class="nav-mark" href="/" aria-label="{{ site_name | escape }}, home">
         {%- if site.favicon != blank -%}<img src="{{ site.favicon.url | escape }}" alt="">{%- else -%}<span aria-hidden="true">{{ initials }}</span>{%- endif -%}
       </a>
-      {%- if has_concerts > 0 %}<a href="/#concerts">Concerts</a>{% endif %}
-      {%- if site.email != blank or site.booking_url != blank %}<a href="/#inquire">Book</a>{% endif %}
+      {%- if has_concerts > 0 %}<a href="/#concerts">{% if site.nav_concerts != blank %}{{ site.nav_concerts | escape }}{% else %}Concerts{% endif %}</a>{% endif %}
+      {%- if site.email != blank or site.booking_url != blank %}<a href="/#inquire">{% if site.nav_book != blank %}{{ site.nav_book | escape }}{% else %}Book{% endif %}</a>{% endif %}
     </nav>
     <main id="main">
       {{ page_content }}

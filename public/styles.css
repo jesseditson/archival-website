@@ -627,7 +627,7 @@ h3 {
   margin-bottom: 3.5rem;
 }
 
-/* Two columns, the right one set lower, like a printed interview. */
+/* Two columns, both starting at the top. */
 .stagger {
   display: grid;
   gap: 2.5rem;
@@ -1251,9 +1251,6 @@ html[data-playing] .player-meter span:nth-child(4) { animation-delay: -150ms; an
     column-gap: 5rem;
   }
 
-  .stagger-column + .stagger-column {
-    margin-top: 6rem;
-  }
 }
 
 @media (min-width: 64rem) {

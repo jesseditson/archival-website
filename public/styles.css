@@ -522,11 +522,11 @@ h3 {
 }
 
 .smoke::before {
-  opacity: 0.16;
+  opacity: 0.08;
 }
 
 .smoke::after {
-  opacity: 0.1;
+  opacity: 0.05;
   background-position: 0 70%;
   animation-duration: 55s;
   animation-direction: reverse;

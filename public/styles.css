@@ -69,14 +69,24 @@
   --lamp: rgba(255, 214, 150, 0.13);
 
   /* Print paper and the pen that writes on it. */
-  --paper: #fbf9f4;
-  --paper-ink: #24292d;   /* 14.0 on paper */
-  --paper-muted: #5a6168; /* 6.0 on paper */
-  --paper-rule: #dcd8cf;
-  --pen: #27406b;         /* 9.8 on paper */
+  --paper: #f6f2e8;
+  --paper-ink: #24292d;   /* 13.1 on paper */
+  --paper-muted: #575e65; /* 5.9 on paper */
+  --paper-rule: #d9d3c6;
+  --pen: #27406b;         /* 9.2 on paper */
+  /* Contact shadow, a short soft one, and a long one from the lamp. */
   --print-shadow:
-    0 0.0625rem 0.125rem rgba(8, 22, 30, 0.35),
-    0 1.25rem 2.5rem -0.75rem rgba(8, 22, 30, 0.65);
+    0 0.0625rem 0.0625rem rgba(8, 22, 30, 0.45),
+    0 0.25rem 0.5rem -0.125rem rgba(8, 22, 30, 0.4),
+    0.5rem 1.5rem 2.75rem -0.75rem rgba(8, 22, 30, 0.75),
+    inset 0 0 0 0.0625rem rgba(255, 255, 255, 0.5),
+    inset 0 -0.125rem 0.25rem rgba(120, 100, 70, 0.08);
+  /* Fiber paper: fine dark grain, light from the top left falling off
+     toward the far corner. */
+  --paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.3 0 0 0 0 0.22 0 0 0 0.24 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+  --paper-surface:
+    var(--paper-grain),
+    linear-gradient(155deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 45%, rgba(110, 90, 60, 0.07) 100%);
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 
   /* Names the markdown block below reads. */
@@ -311,6 +321,7 @@ h3 {
 
 /* The name is the one big piece of type: light, soft, very large, tight. */
 .name {
+  color: var(--accent);
   font-size: var(--name-size);
   font-weight: 330;
   font-variation-settings: "SOFT" 100, "WONK" 1;
@@ -331,19 +342,36 @@ h3 {
 /* ---------- Prints ---------- */
 
 .print {
+  position: relative;
   margin: 0;
   padding: 0.75rem 0.75rem 0;
-  background: var(--paper);
+  background-color: var(--paper);
+  background-image: var(--paper-surface);
+  background-size: 10rem 10rem, 100% 100%;
   color: var(--paper-ink);
   box-shadow: var(--print-shadow);
   transform: rotate(calc(var(--tilt, 0deg) * var(--tilt-scale)));
 }
 
+/* The image edge sits a hair into the paper, the way a print's does. */
 .print img {
   display: block;
   width: 100%;
   height: auto;
   background: #d9d4c9;
+  box-shadow:
+    0 0 0 0.0625rem rgba(50, 38, 24, 0.22),
+    0 0.0625rem 0.125rem rgba(50, 38, 24, 0.18);
+}
+
+/* A glossy sheen across the whole print, catching the lamp. */
+.print::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(118deg, rgba(255, 255, 255, 0) 22%, rgba(255, 255, 255, 0.07) 40%, rgba(255, 255, 255, 0.1) 46%, rgba(255, 255, 255, 0.03) 58%, rgba(255, 255, 255, 0) 72%);
+  mix-blend-mode: screen;
 }
 
 .print figcaption {
@@ -446,7 +474,9 @@ h3 {
 .rate-card {
   --tilt: -0.6deg;
   padding: clamp(1.75rem, 5vw, 4rem);
-  background: var(--paper);
+  background-color: var(--paper);
+  background-image: var(--paper-surface);
+  background-size: 10rem 10rem, 100% 100%;
   color: var(--paper-ink);
   box-shadow: var(--print-shadow);
   transform: rotate(calc(var(--tilt) * var(--tilt-scale)));
@@ -779,7 +809,9 @@ h3 {
   display: inline-block;
   margin: 1.5rem 0 2.25rem;
   padding: 1rem 2rem 0.5rem;
-  background: var(--paper);
+  background-color: var(--paper);
+  background-image: var(--paper-surface);
+  background-size: 10rem 10rem, 100% 100%;
   color: var(--pen);
   box-shadow: var(--print-shadow);
   transform: rotate(-2deg);

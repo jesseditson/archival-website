@@ -1,13 +1,39 @@
 #:schema https://archival.dev/schemas/archival_editor.schema.json
-# How the editor lists each type. Every list type and every nested child list
-# gets a view; the one or two lists people add to most get a shortcut.
-# `primary`, `secondary` and `tertiary` name fields of that type, or `filename`.
-#
-# [[post.views]]
-# name = "default"
-# primary = "title"
-# secondary = "publish_date"
-#
-# [[shortcuts]]
-# name = "New Post"
-# path = "post"
+
+[[track.views]]
+name = "default"
+primary = "title"
+secondary = "duration"
+
+[[track.credit.views]]
+name = "default"
+primary = "name"
+secondary = "role"
+
+[[credit.views]]
+name = "default"
+primary = "name"
+secondary = "role"
+
+[[press.views]]
+name = "default"
+primary = "source"
+secondary = "quote"
+
+[[record.link.views]]
+name = "default"
+primary = "name"
+secondary = "url"
+
+[[site.social.views]]
+name = "default"
+primary = "platform"
+secondary = "url"
+
+[[shortcuts]]
+name = "New Track"
+path = "track"
+
+[[shortcuts]]
+name = "New Credit"
+path = "credit"

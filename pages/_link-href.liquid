@@ -1,0 +1,11 @@
+{%- comment -%}
+  Sets link_href from `link`, adding https:// when an owner typed a bare
+  address like "calendly.com/me". Full URLs, mailto:, tel: and site paths
+  are left alone.
+{%- endcomment -%}
+{%- assign link_first = link | slice: 0 -%}
+{%- if link contains "://" or link contains "mailto:" or link contains "tel:" or link_first == "/" or link_first == "#" -%}
+  {%- assign link_href = link -%}
+{%- else -%}
+  {%- assign link_href = "https://" | append: link -%}
+{%- endif -%}

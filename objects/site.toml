@@ -1,2 +1,37 @@
-name = "Archival Website"
-description = "A new site built with Archival."
+name = "Juno Halvorsen"
+description = "Night Bus Home, the new record from producer Juno Halvorsen: seven late tracks of brushed drums, warm keys and the city going past the window. Listen, read the notes and see who played."
+palette = "cobalt"
+bio = """
+Juno Halvorsen makes slow, warm records out of jazz loops, live drums and whatever the city sounds like after midnight. *Night Bus Home* is the second.
+
+For shows, mixes and press, write to the address below.
+"""
+portrait_alt = "Hands on a grid of glowing drum pads in a dark studio"
+email = "studio@example.com"
+
+[[social]]
+platform = "bandcamp"
+url = "https://bandcamp.com/"
+label = "Bandcamp"
+
+[[social]]
+platform = "spotify"
+url = "https://open.spotify.com/"
+label = "Spotify"
+
+[[social]]
+platform = "instagram"
+url = "https://instagram.com/"
+label = "Instagram"
+
+[portrait]
+display_type = "image"
+filename = "studio-pads.jpg"
+sha = "e74dfbdd3604da4151651e8e4c5e2216162fd1c1171071d964a8bcf647197f4c"
+mime = "image/jpeg"
+
+[og_image]
+display_type = "image"
+filename = "og-liner-notes.jpg"
+sha = "476afef41950c36d6d869cb6eae2f2f2bcfe2dadf1ee7667d53d6d5d9008e0d6"
+mime = "image/jpeg"

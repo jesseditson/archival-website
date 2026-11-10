@@ -1,0 +1,20 @@
+order = 2
+title = "Everyone, Briefly"
+duration = "4:49"
+notes = """
+Everyone on the bus is going somewhere for a few minutes and then they are gone. This one runs longest because I didn't want to get off.
+"""
+
+[[credit]]
+role = "Keys"
+name = "Juno Halvorsen"
+
+[[credit]]
+role = "Saxophone"
+name = "Leon Achterberg"
+
+[audio]
+display_type = "audio"
+filename = "night-bus-home-02.mp3"
+sha = "cf1860b13b2597b74878073cb2e7739db12be6bf758e1566249657836539dced"
+mime = "audio/mpeg"

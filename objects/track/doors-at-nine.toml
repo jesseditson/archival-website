@@ -1,0 +1,20 @@
+order = 1
+title = "Doors at Nine"
+duration = "2:36"
+notes = """
+The first loop I kept. A cymbal swell, a walking bass and the sound of the studio door shutting behind me.
+"""
+
+[[credit]]
+role = "Drums"
+name = "Juno Halvorsen"
+
+[[credit]]
+role = "Bass"
+name = "Kit Amara"
+
+[audio]
+display_type = "audio"
+filename = "night-bus-home-01.mp3"
+sha = "595587ff583ee9810b4b10fa951000ff523b9898dc3d9981cec521f621b13e02"
+mime = "audio/mpeg"

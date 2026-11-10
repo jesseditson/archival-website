@@ -1,0 +1,76 @@
+{%- assign site = objects.site -%}
+{%- assign record = objects.record -%}
+{%- assign tracks = objects.track | sort: "order" -%}
+{%- assign track_number = 0 -%}
+{%- assign has_prev = false -%}
+{%- assign has_next = false -%}
+{%- assign found = false -%}
+{%- for item in tracks -%}
+  {%- if found and has_next == false -%}{%- assign next_track = item -%}{%- assign has_next = true -%}{%- endif -%}
+  {%- if item.path == track.path -%}{%- assign found = true -%}{%- assign track_number = forloop.index -%}{%- endif -%}
+  {%- if found == false -%}{%- assign prev_track = item -%}{%- assign has_prev = true -%}{%- endif -%}
+{%- endfor -%}
+{%- assign cover_url = "" -%}
+{%- if record.cover != blank -%}{%- assign cover_url = record.cover.url -%}{%- endif -%}
+{%- capture jsonld -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MusicRecording",
+  "name": "{{ track.title | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}",
+  "byArtist": {"@type": "MusicGroup", "name": "{{ site.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"},
+  "inAlbum": {"@type": "MusicAlbum", "name": "{{ record.title | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}", "url": "{{ site_url }}/"},
+  "url": "{{ site_url }}/{{ track.path }}"
+  {%- if track.notes != blank -%}, "description": "{{ track.notes | strip_html | strip | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- endif -%}
+  {%- if track.audio != blank -%}, "audio": {"@type": "AudioObject", "contentUrl": "{{ track.audio.url | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"}{%- endif %}
+}
+</script>
+{%- endcapture -%}
+{% layout 'theme' title: track.title, path: track.path, jsonld: jsonld, image: cover_url %}
+
+<article class="track-page">
+  <div class="track-record" aria-hidden="true">
+    <div class="vinyl-disc">
+      <div class="vinyl-label">{% if record.cover != blank %}<img src="{{ record.cover.url | escape }}" alt="">{% endif %}</div>
+    </div>
+  </div>
+  <header class="wrap track-head">
+    <p class="track-from"><a href="/">{{ record.title | escape }}</a><span>Track {{ track_number }} of {{ tracks.size }}</span></p>
+    <h1 class="track-page-title">{{ track.title | escape }}</h1>
+    <div class="track-actions">
+      {%- if track.audio != blank %}{% include 'play-button' %}{% endif %}
+      {%- if track.duration != blank %}<span class="track-duration">{{ track.duration | escape }}</span>{% endif %}
+    </div>
+  </header>
+
+  <div class="wrap track-body">
+    {%- if track.notes != blank %}
+    <div class="track-notes markdown">{{ track.notes | replace: "<h1", "<h3" | replace: "</h1>", "</h3>" | replace: "<h2", "<h3" | replace: "</h2>", "</h3>" }}</div>
+    {%- endif %}
+    {%- if track.lyrics != blank %}
+    <section class="lyrics" aria-labelledby="lyrics-title">
+      <h2 id="lyrics-title" class="section-title">Lyrics</h2>
+      <div class="lyrics-text markdown">{{ track.lyrics | replace: "<h1", "<h3" | replace: "</h1>", "</h3>" | replace: "<h2", "<h3" | replace: "</h2>", "</h3>" }}</div>
+    </section>
+    {%- endif %}
+    {%- assign credit_count = 0 -%}
+    {%- for credit in track.credit -%}{%- if credit.name != blank -%}{%- assign credit_count = credit_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
+    {%- if credit_count > 0 %}
+    <section class="track-credits" aria-labelledby="track-credits-title">
+      <h2 id="track-credits-title" class="section-title">On this track</h2>
+      <dl class="credit-list">
+        {%- for credit in track.credit %}{% if credit.name != blank %}
+        <div class="credit"><dt>{{ credit.role | escape }}</dt><dd>{{ credit.name | escape }}</dd></div>
+        {%- endif %}{% endfor %}
+      </dl>
+    </section>
+    {%- endif %}
+  </div>
+
+  {%- if has_prev or has_next %}
+  <nav class="wrap track-nav" aria-label="Other tracks">
+    {%- if has_prev %}<a class="track-nav-prev" href="/{{ prev_track.path }}"><span>Previous</span>{{ prev_track.title | escape }}</a>{% endif %}
+    {%- if has_next %}<a class="track-nav-next" href="/{{ next_track.path }}"><span>Next</span>{{ next_track.title | escape }}</a>{% endif %}
+  </nav>
+  {%- endif %}
+</article>

@@ -1,0 +1,25 @@
+title = "Night Bus Home"
+released = 2026-10-03T00:00:00
+label = "Self-released"
+cover_alt = "A passenger in silhouette at a rain-streaked bus window, city lights blurred teal and amber behind the glass"
+blurb = """
+Seven tracks made on the late bus between the studio and home, one stop at a time. Brushed drums, an old Rhodes and a lot of rain on the window.
+"""
+
+[[link]]
+name = "Bandcamp"
+url = "https://bandcamp.com/"
+
+[[link]]
+name = "Spotify"
+url = "https://open.spotify.com/"
+
+[[link]]
+name = "Apple Music"
+url = "https://music.apple.com/"
+
+[cover]
+display_type = "image"
+filename = "night-bus-home-cover.jpg"
+sha = "826e4049e73463cf5c388b2430af288f48f4879d7de025a70ad193e3296e5852"
+mime = "image/jpeg"

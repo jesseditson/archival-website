@@ -1,0 +1,20 @@
+order = 6
+title = "People Are Spinning"
+duration = "3:57"
+notes = """
+The club two streets over lets out at two. This is that half hour on the pavement.
+"""
+
+[[credit]]
+role = "Bass"
+name = "Kit Amara"
+
+[[credit]]
+role = "Trumpet"
+name = "Ruth Danso"
+
+[audio]
+display_type = "audio"
+filename = "night-bus-home-06.mp3"
+sha = "5f8970a0d236a24178f75098ab27719377f38408787423c7f02a96e951dea841"
+mime = "audio/mpeg"

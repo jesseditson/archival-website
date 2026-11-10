@@ -1,0 +1,5 @@
+{%- comment -%}
+  A play button for `track`. Needs `track_number`. /js/player.js gathers
+  every button on the page, in page order, into the queue.
+{%- endcomment -%}
+<button type="button" class="play" data-track data-src="{{ track.audio.url | escape }}" data-title="{{ track.title | escape }}" data-number="{{ track_number }}" aria-label="Play {{ track.title | escape }}" aria-pressed="false"><svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15L19.5 12z" fill="currentColor"/></svg><svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" fill="currentColor"/></svg></button>

@@ -1,0 +1,16 @@
+order = 5
+title = "Window Seat"
+duration = "3:57"
+notes = """
+The lights go past in the same order every night. The beat follows them.
+"""
+
+[[credit]]
+role = "Keys and drums"
+name = "Juno Halvorsen"
+
+[audio]
+display_type = "audio"
+filename = "night-bus-home-05.mp3"
+sha = "b255da31b4cc301fba79f22b3caae7c07cd0d4cf4a937321cfb1f3a0d510dca5"
+mime = "audio/mpeg"

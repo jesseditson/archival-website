@@ -1,22 +1,49 @@
 #:schema https://archival.dev/schemas/archival_template.schema.json
 # Shown in the editor's template picker.
-name = ""
+name = "Liner Notes"
 # One line for the gallery card, roughly ten to fifteen words.
-tagline = ""
-# The describe box on the confirm screen: its heading ("Tell us about your
-# band"), an example answer for its placeholder, and the files worth dropping
-# on it ("Drop band photos, album art, a few tracks"). Empty is generic copy.
-describe_title = ""
-describe_placeholder = ""
-describe_files = ""
+tagline = "A whole site for one record: the sleeve, the tracklist, a player and the credits."
+# The describe box on the confirm screen.
+describe_title = "Tell us about your record"
+describe_placeholder = "Night Bus Home is my second record, seven instrumental tracks, out October 3. Kit Amara plays bass, Tove Brandt mixed it. It's on Bandcamp and Spotify."
+describe_files = "Drop the cover art, the tracks and a photo of you"
 # The template info modal's body: what this template is and what it contains.
 description = """
+A site for one album or EP, built like its sleeve. The record's title is set enormous in a typeface that stretches and squeezes, with the cover art in front and the record sliding out of it. Below is the tracklist, set like the back of the sleeve: press play on any track and a player bar appears, the record turns while it plays, and the track's name widens across the page. Each track has its own page for notes, lyrics and who played on it. The rest of the page carries a few words about the record and the artist with a two-color portrait, press quotes rolling past, and the full credits. Pick the sleeve's colors from four inks: cobalt, tangerine, bone or moss.
 """
 # The prompt that drives content generation. Describe when to pick this
 # template and what every field holds. Update it whenever the schema changes.
 context = """
+Pick this template when someone is putting out one record, an album, EP or single, and wants a site for that release: its tracks, a player, notes, lyrics and credits. For a band or artist whose site covers their whole career, tour dates and several releases, a band template fits better.
+
+Write only from facts the person gave you. Never invent collaborators, credits, release dates, labels, press quotes or links: leave those fields empty and the page leaves those parts out.
+
+site (the artist):
+- name: the artist or band name.
+- description: one or two sentences for search results and link previews, naming the record.
+- palette: the sleeve's colors, one of "cobalt" (deep blue with orange), "tangerine" (orange with ink and navy), "bone" (off-white with black and red) or "moss" (deep green with gold). Pick the one closest to the cover art if you can see it; otherwise "cobalt".
+- bio: a short markdown paragraph about the artist in the third person, from what the person told you. No headings.
+- portrait: leave empty. portrait_alt: leave empty.
+- email: only an address the person gave, for shows and press.
+- og_image, favicon: leave empty.
+- social: one entry per account the person gave. platform is one of "spotify", "apple-music", "bandcamp", "soundcloud", "youtube", "instagram", "tiktok" or "website"; url is the full URL; label is the account's name for screen readers (the button shows only the icon). Never invent URLs.
+
+record (the release itself, one object):
+- title: the record's title. It is the page's h1, set huge in capitals.
+- released: the release date, if given.
+- label: the record label, or "Self-released" only if the person said so.
+- cover: leave empty. cover_alt: leave empty.
+- blurb: one or two sentences about the record in markdown, set large. No headings.
+- link: where to listen or buy, each with name ("Bandcamp", "Spotify", "Vinyl") and the full url. Only links the person gave.
+
+track (one per song, in tracklist order; set order 1, 2, 3...): title; duration as "3:41" if known; audio (leave empty unless the person uploaded the file); notes, a short markdown paragraph about the song from what the person told you; lyrics in markdown with one line of the song per line, only if the person gave them. credit is who played or did what on that track, each with role ("Bass") and name.
+
+credit (the whole record): role ("Mixed by", "Bass", "Cover photograph") and name. Set order for the sequence, writing and production first.
+
+press (quotes about the record): quote, source (the publication or person) and url. Only real quotes the person gave; otherwise leave press empty.
 """
-tags = []
-tlds = []
-# Value paths kept when a site is generated, instead of stripped as examples.
+tags = ["music", "album", "EP", "record", "release", "musician", "producer", "band", "audio player"]
+tlds = ["music", "band", "fm", "com"]
+assets = ["CREDITS.md"]
+# Nothing is kept: a new site starts without the example record or its tracks.
 keep_objects = []

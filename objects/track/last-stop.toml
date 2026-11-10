@@ -1,0 +1,16 @@
+order = 7
+title = "Last Stop"
+duration = "3:44"
+notes = """
+The driver turns the lights off before you are quite off the bus. The record ends there.
+"""
+
+[[credit]]
+role = "Everything"
+name = "Juno Halvorsen"
+
+[audio]
+display_type = "audio"
+filename = "night-bus-home-07.mp3"
+sha = "f5fb984bfc0d14d0fb4de1d5e59f802a0e8aae93b608bca4fb4062cab8e34c7e"
+mime = "audio/mpeg"

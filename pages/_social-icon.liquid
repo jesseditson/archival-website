@@ -1,0 +1,13 @@
+{%- comment -%} Inline icon for `social.platform`. Decorative: the link carries the name. {%- endcomment -%}
+<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+{%- case social.platform -%}
+{%- when "instagram" -%}<rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor"/>
+{%- when "tiktok" -%}<path d="M14 3.5v11.2a3.7 3.7 0 1 1-3.7-3.7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M14 3.5c.4 2.6 2.2 4.4 5 4.7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+{%- when "spotify" -%}<circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7.5 9.6c3-1 6.4-.8 9.2.7M8 12.6c2.5-.7 5.2-.5 7.4.7M8.6 15.4c1.9-.5 3.9-.3 5.6.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+{%- when "apple-music" -%}<path d="M9.5 17.5V6.5l9-2v10.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="7.3" cy="17.5" r="2.3" fill="currentColor"/><circle cx="16.3" cy="15" r="2.3" fill="currentColor"/>
+{%- when "bandcamp" -%}<path d="M3 17.5l5.6-11H21l-5.6 11z" fill="currentColor"/>
+{%- when "soundcloud" -%}<path d="M10 17.5V8.3a5 5 0 0 1 8.8 3.2h.4a3 3 0 0 1 0 6zM7 17.5v-7M4 17.5v-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+{%- when "youtube" -%}<rect x="2.5" y="5.5" width="19" height="13" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 9.2v5.6l4.8-2.8z" fill="currentColor"/>
+{%- else -%}<circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 12h17M12 3.5c2.4 2.4 3.4 5.3 3.4 8.5s-1 6.1-3.4 8.5c-2.4-2.4-3.4-5.3-3.4-8.5s1-6.1 3.4-8.5z" fill="none" stroke="currentColor" stroke-width="2"/>
+{%- endcase -%}
+</svg>

@@ -16,10 +16,25 @@
   {%- assign page_title = site_name -%}
 {%- endif -%}
 {%- assign canonical_url = site_url | append: "/" | append: path -%}
+{%- comment -%}
+  image: optional, a page's own preview image (a track page passes the
+  cover). Tested with a bare `if` so pages that never pass it still build.
+{%- endcomment -%}
+{%- assign record = objects.record -%}
 {%- assign og_image_url = "" -%}
 {%- if site.og_image != blank -%}
   {%- assign og_image_url = site.og_image.url -%}
+{%- elsif record.cover != blank -%}
+  {%- assign og_image_url = record.cover.url -%}
 {%- endif -%}
+{%- if image -%}{%- if image != "" -%}{%- assign og_image_url = image -%}{%- endif -%}{%- endif -%}
+{%- assign palette = site.palette | default: "cobalt" -%}
+{%- case palette -%}
+  {%- when "tangerine" -%}{%- assign theme_color = "#ff6a2a" -%}{%- assign fav_bg = "%23ff6a2a" -%}{%- assign fav_fg = "%23171310" -%}
+  {%- when "bone" -%}{%- assign theme_color = "#ebe5d6" -%}{%- assign fav_bg = "%23ebe5d6" -%}{%- assign fav_fg = "%23c8341c" -%}
+  {%- when "moss" -%}{%- assign theme_color = "#26402b" -%}{%- assign fav_bg = "%2326402b" -%}{%- assign fav_fg = "%23ecc94b" -%}
+  {%- else -%}{%- assign palette = "cobalt" -%}{%- assign theme_color = "#1d3ccc" -%}{%- assign fav_bg = "%231d3ccc" -%}{%- assign fav_fg = "%23ff7a3d" -%}
+{%- endcase -%}
 {%- assign words = site_name | split: " " -%}
 {%- assign initials = "" -%}
 {%- if words.size == 1 -%}
@@ -56,27 +71,49 @@
     <meta name="twitter:title" content="{{ page_title | escape }}">
     <meta name="twitter:description" content="{{ site.description | escape }}">
 
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="{{ theme_color }}" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="{{ theme_color }}" media="(prefers-color-scheme: dark)">
 
     {% if site.favicon != blank %}
     <link rel="icon" href="{{ site.favicon.url | escape }}">
     <link rel="apple-touch-icon" href="{{ site.favicon.url | escape }}">
     {% else %}
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='bold' font-size='13' fill='%23e5ff00'%3E{{ initials }}%3C/text%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='16' fill='{{ fav_bg }}'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='bold' font-size='13' fill='{{ fav_fg }}'%3E{{ initials }}%3C/text%3E%3C/svg%3E">
     {% endif %}
 
+    <link rel="preload" href="/fonts/anybody-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/styles.css">
     {% if jsonld %}{{ jsonld }}{% endif %}
   </head>
-  <body>
+  <body class="palette-{{ palette }}">
     <a class="skip-link" href="#main">Skip to content</a>
+    <header class="topbar">
+      <div class="wrap topbar-inner">
+        <a class="topbar-name" href="/">{{ site_name | escape }}</a>
+        {%- if record.link.size > 0 %}
+        <nav class="listen" aria-label="Listen">
+          {%- for item in record.link %}{% if item.url != blank and item.name != blank %}
+          {%- assign link = item.url | strip -%}{%- include 'link-href' %}
+          <a href="{{ link_href | escape }}">{{ item.name | escape }}</a>
+          {%- endif %}{% endfor %}
+        </nav>
+        {%- endif %}
+      </div>
+    </header>
     <main id="main">
       {{ page_content }}
     </main>
     <footer class="site-footer">
-      <p>&copy; {{ "now" | date: "%Y" }} {{ site_name | escape }}. Powered by <a href="https://archival.dev">Archival</a>.</p>
+      <div class="wrap footer-inner">
+        {% include 'socials' %}
+        {%- if site.email != blank %}
+        <p class="footer-contact"><a href="mailto:{{ site.email | escape }}">{{ site.email | escape }}</a></p>
+        {%- endif %}
+        <p class="footer-credit">&copy; {{ "now" | date: "%Y" }} {{ site_name | escape }}. Powered by <a href="https://archival.dev">Archival</a>.</p>
+      </div>
     </footer>
+    {% include 'player' %}
+    <script type="module" src="/js/player.js"></script>
   </body>
 </html>

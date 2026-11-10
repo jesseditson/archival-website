@@ -1,26 +1,30 @@
-{%- comment -%}
-  The editor's from-scratch flow can replace the schema, and archival fails
-  the build on any reference to a field the schema does not define, even
-  inside an `if`. Looping over the object's fields reads them safely.
-{%- endcomment -%}
 {%- assign site = objects.site -%}
-{%- for field in site -%}
-{%- if field.first == "name" and field.last != blank %}# {{ field.last }}
-
-{% endif -%}
-{%- if field.first == "description" and field.last != blank %}> {{ field.last }}
-
-{% endif -%}
-{%- endfor -%}
+{%- assign record = objects.record -%}
+{%- assign tracks = objects.track | sort: "order" -%}
+# {{ site.name }}{% if record.title != blank %}: {{ record.title }}{% endif %}
+{% if site.description != blank %}
+> {{ site.description | strip_newlines }}
+{% endif %}
+{%- if record.released != blank %}
+Released {{ record.released | date: "%B %-d, %Y" }}{% if record.label != blank %} on {{ record.label }}{% endif %}.
+{% endif %}
 ## Pages
 
-- [Home]({{ site_url }}/)
-{% comment %}
-  List every section page, then every kind of content, generated from the
-  objects. For a list type:
+- [{{ record.title | default: "Home" }}]({{ site_url }}/): the record, its tracklist, notes and credits
+{%- for track in tracks %}
+- [{{ track.title }}]({{ site_url }}/{{ track.path }}){% if track.duration != blank %} ({{ track.duration }}){% endif %}
+{%- endfor %}
+{%- assign link_count = 0 -%}{%- for item in record.link -%}{%- if item.url != blank -%}{%- assign link_count = link_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
+{%- if link_count > 0 %}
 
-## Posts
+## Listen
 
-{% for post in posts %}- [{{ post.title }}]({{ site_url }}/{{ post.path }})
-{% endfor %}
-{% endcomment %}
+{% for item in record.link %}{% if item.url != blank %}- [{{ item.name | default: item.url }}]({{ item.url }})
+{% endif %}{% endfor %}
+{%- endif %}
+{%- if site.email != blank %}
+
+## Contact
+
+- {{ site.email }}
+{% endif %}

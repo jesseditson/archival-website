@@ -1,0 +1,20 @@
+order = 4
+title = "You Know Why"
+duration = "4:28"
+notes = """
+A phone call I kept replaying on the way home, turned into a chord progression.
+"""
+
+[[credit]]
+role = "Guitar"
+name = "Mae Okonkwo"
+
+[[credit]]
+role = "Drums"
+name = "Juno Halvorsen"
+
+[audio]
+display_type = "audio"
+filename = "night-bus-home-04.mp3"
+sha = "33e59c4b6a191ed4623ef177687bb75c4b8c1124b503c25303c9d68197bcca22"
+mime = "audio/mpeg"

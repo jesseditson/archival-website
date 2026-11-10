@@ -1,20 +1,59 @@
 #:schema https://archival.dev/schemas/archival_objects.schema.json
-# The content schema. Every type name is singular: root objects are addressed
-# by their own name, and lists pluralize themselves in templates.
+# Liner Notes: one record is the whole site. Every type name is singular.
 
-# The identity object. The layout reads it on every page.
+# The artist. The layout reads it on every page.
 [site]
 name = "string"
 description = "string"
+# The sleeve's colors: cobalt, tangerine, bone or moss.
+palette = ["cobalt", "tangerine", "bone", "moss"]
+bio = "markdown"
+portrait = "image"
+portrait_alt = "string"
+email = "string"
 og_image = "image"
 favicon = "image"
 
-# A list type, one file per item under objects/<type>/, looks like this.
-# `template` makes each item render through pages/<type>.liquid to /<type>/<file>.
-# `order` is built in: set it in each item's file, never declare it here.
-#
-# [post]
-# title = "string"
-# publish_date = "date"
-# body = "markdown"
-# template = "post"
+[site.social]
+platform = ["spotify", "apple-music", "bandcamp", "soundcloud", "youtube", "instagram", "tiktok", "website"]
+url = "string"
+label = "string"
+
+# The record itself.
+[record]
+title = "string"
+released = "date"
+label = "string"
+cover = "image"
+cover_alt = "string"
+blurb = "markdown"
+
+# Where to listen or buy: "Bandcamp", "Spotify", "Vinyl".
+[record.link]
+name = "string"
+url = "string"
+
+# One song, in tracklist order. Each gets a page at /track/<file>.
+[track]
+title = "string"
+duration = "string"
+audio = "audio"
+notes = "markdown"
+lyrics = "markdown"
+template = "track"
+
+# Who played or did what on this track.
+[track.credit]
+role = "string"
+name = "string"
+
+# The whole record's credits.
+[credit]
+role = "string"
+name = "string"
+
+# What other people said about the record.
+[press]
+quote = "string"
+source = "string"
+url = "string"

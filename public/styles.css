@@ -268,8 +268,9 @@ h3 {
   overflow-wrap: break-word;
 }
 
+/* One word per line from the start, so widening never reflows the title. */
 .record-title .word {
-  display: inline-block;
+  display: block;
   animation: open-word 1100ms var(--ease-out) both;
   animation-delay: calc(150ms + var(--i) * 120ms);
 }

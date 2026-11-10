@@ -575,8 +575,8 @@ html[data-playing] .track-eq i:nth-child(3) { animation-duration: 950ms; animati
   }
 }
 
-/* Pointing at a track nudges its name along and draws a rule under it;
-   the playing track stays nudged. */
+/* Pointing at a track (or tabbing to it) dims the others and nudges its
+   name along; the playing track stays nudged. */
 .track-title {
   position: relative;
   justify-self: start;
@@ -591,28 +591,19 @@ html[data-playing] .track-eq i:nth-child(3) { animation-duration: 950ms; animati
   transition: translate 450ms var(--ease-out);
 }
 
-.track-title::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -0.08em;
-  height: 0.1875rem;
-  background: currentColor;
-  scale: 0 1;
-  transform-origin: left center;
-  transition: scale 450ms var(--ease-out);
+.track-row {
+  transition: opacity 300ms ease;
+}
+
+.tracks:has(.track-row:hover) .track-row:not(:hover),
+.tracks:has(.track-row:focus-within) .track-row:not(:focus-within) {
+  opacity: 0.4;
 }
 
 .track-row:hover .track-title,
 .track-title:focus-visible,
 .track-row.is-current .track-title {
   translate: 0.75rem 0;
-}
-
-.track-row:hover .track-title::after,
-.track-title:focus-visible::after {
-  scale: 1 1;
 }
 
 .track-duration {

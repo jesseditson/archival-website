@@ -1,6 +1,6 @@
 /* =========================================================================
    Series: a photographer's contact sheet on a gallery wall.
-   Two things carry the page: Syne ExtraBold, a wide and slightly odd
+   Two things carry the page: Syne SemiBold, a round and slightly odd
    grotesque cut for a Paris art center, set very large for the name and
    each series title; and strips of film that run off the edge of the page.
    Everything else is small Inter on white. The one accent is darkroom
@@ -139,7 +139,7 @@ h2,
 h3 {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 600;
   text-wrap: balance;
 }
 
@@ -150,11 +150,11 @@ h3 {
   padding-bottom: clamp(3.5rem, 8vw, 7rem);
 }
 
-/* The name: as wide and heavy as Syne goes, tight enough to read as one mark. */
+/* The name. Syne widens as it gets heavier; SemiBold keeps it round, not stretched. */
 .name {
   font-size: clamp(2.75rem, 10.5vw, 9rem);
   line-height: 0.92;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.035em;
   margin-left: -0.05em;
   overflow-wrap: break-word;
   hyphens: auto;
@@ -248,10 +248,10 @@ h3 {
 
 .roll-title {
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 600;
   font-size: clamp(2.5rem, 8vw, 6.75rem);
   line-height: 0.95;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.035em;
   margin-left: -0.04em;
   transition: color 200ms ease;
   overflow-wrap: break-word;
@@ -371,7 +371,7 @@ h3 {
   align-items: baseline;
   gap: 0.5rem 2.5rem;
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 600;
   font-size: clamp(1.75rem, 4.5vw, 3.5rem);
   line-height: 1.1;
   letter-spacing: -0.035em;
@@ -411,7 +411,7 @@ h3 {
 .series-title {
   font-size: clamp(2.75rem, 9vw, 7.5rem);
   line-height: 0.92;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.035em;
   margin-left: -0.04em;
   overflow-wrap: break-word;
   hyphens: auto;
@@ -573,7 +573,7 @@ h3 {
   background: var(--holes), var(--film);
   color: #ffffff;
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 600;
   font-size: clamp(4.5rem, 18vw, 8rem);
   line-height: 1;
   letter-spacing: -0.05em;

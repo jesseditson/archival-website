@@ -4,7 +4,7 @@ Not copied into sites made from this template (listed under `assets`).
 
 ## Fonts
 
-- Bodoni Moda, Copyright 2020 The Bodoni Moda Project Authors (https://github.com/indestructible-type/Bodoni), SIL Open Font License 1.1. Latin subset with optical size and weight axes, roman and italic, from `@fontsource-variable/bodoni-moda` 5.3.0.
+- Cormorant, Copyright 2015 The Cormorant Project Authors (https://github.com/CatharsisFonts/Cormorant), SIL Open Font License 1.1. Latin and Latin Extended subsets with the weight axis, roman and italic, from `@fontsource-variable/cormorant` 5.3.0.
 - Inter, SIL Open Font License 1.1 (from the starter).
 
 ## Default recordings
@@ -18,11 +18,20 @@ Forty-five second excerpts of public-domain recordings by the Musopen String Qua
 - `sample-borodin-notturno.mp3`: Borodin, String Quartet No. 2, III. Notturno. https://commons.wikimedia.org/wiki/File:Borodin_-_String_Quartet_No._2_in_D_major_-_III._Notturno._Andante_(Musopen_String_Quartet).flac
 - `sample-suk-meditation.mp3`: Suk, Meditation on the Old Czech Chorale "Saint Wenceslas", Op. 35a. https://commons.wikimedia.org/wiki/File:Suk_-_Meditation_on_the_Old_Czech_Chorale_Saint_Wenceslas,_Op._35a_(Musopen_String_Quartet).flac
 
+## Default video
+
+- `hero-cello.mp4`: https://www.pexels.com/video/close-up-shot-of-a-person-playing-cello-7095534/, free under the Pexels License. Re-encoded at 1600 pixels wide without sound.
+
+## Images made for the template
+
+- `public/images/fog-dark.webp` and `public/images/fog-maroon.webp`: smoke layers generated from fractal noise for this template.
+
 ## Default photos
 
 Unsplash, free under the Unsplash License.
 
 - `cello-lights.jpg` and `og-repertoire.jpg`: https://unsplash.com/photos/8toEPksNNNk
 - `violin-stand.jpg`: https://unsplash.com/photos/-UBiTsLngno
+- `violin-dark.jpg`: https://unsplash.com/photos/MyE7SYlcD9s
 
 The quartet, its players, concerts and kind words are made up for the example.

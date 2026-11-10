@@ -47,3 +47,15 @@ display_type = "image"
 filename = "og-repertoire.jpg"
 sha = "83a9941b23bf5a9ebc15f05e1a487f7f1d8b19f3e9efbb198d123172ec22e309"
 mime = "image/jpeg"
+
+[hero_video]
+display_type = "video"
+filename = "hero-cello.mp4"
+sha = "7dcc6b30389356ff95e83eb60af7d12e1ee01bba49b27dfc99251cf11278ab2a"
+mime = "video/mp4"
+
+[quote_image]
+display_type = "image"
+filename = "violin-dark.jpg"
+sha = "1e425914ca577f10c6857c36ec353d501c6de117e67cc134e3ba43d0293d76b7"
+mime = "image/jpeg"

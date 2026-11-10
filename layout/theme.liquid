@@ -58,36 +58,44 @@
     <meta name="twitter:title" content="{{ page_title | escape }}">
     <meta name="twitter:description" content="{{ site.description | escape }}">
 
-    <meta name="theme-color" content="#4a0d1a" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#33070f" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#130605" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#130605" media="(prefers-color-scheme: dark)">
 
     {% if site.favicon != blank %}
     <link rel="icon" href="{{ site.favicon.url | escape }}">
     <link rel="apple-touch-icon" href="{{ site.favicon.url | escape }}">
     {% else %}
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%234a0d1a'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='Georgia,serif' font-weight='bold' font-size='13' fill='%23e2bf74'%3E{{ initials }}%3C/text%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23410C01'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='Georgia,serif' font-weight='bold' font-size='13' fill='%23ffffff'%3E{{ initials }}%3C/text%3E%3C/svg%3E">
     {% endif %}
 
-    <link rel="preload" href="/fonts/bodoni-moda-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/cormorant-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/styles.css">
     {% if jsonld %}{{ jsonld }}{% endif %}
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
+    {%- assign has_formats = objects.format.size | default: 0 -%}
+    {%- assign has_moments = objects.moment.size | default: 0 -%}
+    {%- assign has_concerts = objects.concert.size | default: 0 -%}
+    <nav class="nav glass" aria-label="Sections">
+      {%- if has_formats > 0 %}<a href="/#formats">Formats</a>{% endif %}
+      {%- if has_moments > 0 %}<a href="/#repertoire">Repertoire</a>{% endif %}
+      <a class="nav-mark" href="/" aria-label="{{ site_name | escape }}, home">
+        {%- if site.favicon != blank -%}<img src="{{ site.favicon.url | escape }}" alt="">{%- else -%}<span aria-hidden="true">{{ initials }}</span>{%- endif -%}
+      </a>
+      {%- if has_concerts > 0 %}<a href="/#concerts">Concerts</a>{% endif %}
+      {%- if site.email != blank or site.booking_url != blank %}<a href="/#inquire">Book</a>{% endif %}
+    </nav>
     <main id="main">
       {{ page_content }}
     </main>
     <footer class="site-footer">
-      <div class="wrap footer-inner">
-        {% include 'socials' %}
-        {%- if site.email != blank %}
-        <p class="footer-contact"><a href="mailto:{{ site.email | escape }}">{{ site.email | escape }}</a></p>
-        {%- endif %}
-        <p class="footer-credit">&copy; {{ "now" | date: "%Y" }} {{ site_name | escape }}. Powered by <a href="https://archival.dev">Archival</a>.</p>
-      </div>
+      {% include 'socials' %}
+      <p class="footer-credit">&copy; {{ "now" | date: "%Y" }} {{ site_name | escape }}. Powered by <a href="https://archival.dev">Archival</a>.</p>
     </footer>
     {% include 'player' %}
+    <script type="module" src="/js/reveal.js"></script>
     <script type="module" src="/js/player.js"></script>
   </body>
 </html>

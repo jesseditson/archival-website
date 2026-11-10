@@ -10,11 +10,16 @@ location = "string"
 intro = "markdown"
 hero_image = "image"
 hero_alt = "string"
+# Optional: a short silent loop that plays behind the name. hero_image is
+# shown until it loads, and instead of it for visitors who ask for less motion.
+hero_video = "video"
 # The recording the "Hear us" button plays, and what it is.
 sample = "audio"
 sample_title = "string"
 players_image = "image"
 players_alt = "string"
+# Behind the kind words.
+quote_image = "image"
 email = "string"
 booking_url = "string"
 booking_label = "string"

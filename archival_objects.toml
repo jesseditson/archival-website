@@ -19,6 +19,12 @@ inquire_heading = "string"
 inquire_note = "string"
 og_image = "image"
 favicon = "image"
+# Headings and button words. Each has a fallback when left empty.
+inquire_label = "string"
+packages_heading = "string"
+sessions_heading = "string"
+kind_words_heading = "string"
+faq_heading = "string"
 
 [site.social]
 platform = ["instagram", "pinterest", "facebook", "tiktok", "threads", "bluesky", "youtube", "website"]

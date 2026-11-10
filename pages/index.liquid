@@ -37,7 +37,7 @@
       <p class="booking-status">{{ site.booking_status | escape }}</p>
       {%- endif %}
       {%- if site.email != blank or site.booking_url != blank %}
-      <a class="button" href="#inquire">Inquire</a>
+      <a class="button" href="#inquire">{% if site.inquire_label != blank %}{{ site.inquire_label | escape }}{% else %}Inquire{% endif %}</a>
       {%- endif %}
     </div>
   </div>
@@ -71,7 +71,7 @@
 <section class="packages" aria-labelledby="packages-title">
   <div class="wrap">
     <div class="rate-card">
-    <h2 id="packages-title" class="section-title">Packages</h2>
+    <h2 id="packages-title" class="section-title">{% if site.packages_heading != blank %}{{ site.packages_heading | escape }}{% else %}Packages{% endif %}</h2>
     <ul class="package-list">
       {%- for package in objects.package %}
       <li class="package">
@@ -105,7 +105,7 @@
 {%- if shoot_count > 0 %}
 <section class="sessions" aria-labelledby="sessions-title">
   <div class="wrap">
-    <h2 id="sessions-title" class="section-title">Recent sessions</h2>
+    <h2 id="sessions-title" class="section-title">{% if site.sessions_heading != blank %}{{ site.sessions_heading | escape }}{% else %}Recent sessions{% endif %}</h2>
     <ul class="print-table">
       {%- for shoot in objects.shoot %}{% if shoot.photo != blank %}
       <li>
@@ -125,7 +125,7 @@
 {%- if objects.kind_word.size > 0 %}
 <section class="kind-words" aria-labelledby="kind-words-title">
   <div class="wrap split">
-    <h2 id="kind-words-title" class="section-title">Kind words</h2>
+    <h2 id="kind-words-title" class="section-title">{% if site.kind_words_heading != blank %}{{ site.kind_words_heading | escape }}{% else %}Kind words{% endif %}</h2>
     <div class="split-body">
     <ul class="quote-list">
       {%- for word in objects.kind_word %}{% if word.quote != blank %}
@@ -150,7 +150,7 @@
 {%- if objects.faq.size > 0 %}
 <section class="faq" aria-labelledby="faq-title">
   <div class="wrap split">
-    <h2 id="faq-title" class="section-title">Questions</h2>
+    <h2 id="faq-title" class="section-title">{% if site.faq_heading != blank %}{{ site.faq_heading | escape }}{% else %}Questions{% endif %}</h2>
     <div class="split-body">
     <div class="faq-list">
       {%- for faq in objects.faq %}{% if faq.question != blank %}

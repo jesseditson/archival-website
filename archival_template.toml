@@ -25,6 +25,7 @@ site (the photographer):
 - email: only an address the person gave. booking_url: only a booking or contact page URL they gave, written in full with https://. booking_label: the text of the booking button ("Check my availability"); leave empty when there is no booking_url.
 - inquire_heading: the closing heading ("Tell me about your day"). inquire_note: one or two sentences on what to send and how soon they reply.
 - og_image, favicon: leave empty.
+- Headings and button words, short and in the photographer's voice; leave any empty to use the wording shown here: inquire_label, the button beside the booking status ("Inquire"); packages_heading ("Packages"); sessions_heading ("Recent sessions"); kind_words_heading ("Kind words"); faq_heading ("Questions").
 - social: one entry per account the person gave. platform is one of "instagram", "pinterest", "facebook", "tiktok", "threads", "bluesky", "youtube" or "website"; url is the full URL; label is the account's name for screen readers (the button shows only the icon). Never invent URLs.
 
 package (what a client can book): name ("Elopement", "Half day"); price as text the way the photographer writes it ("From $2,400"); hours is the coverage ("Up to 5 hours"); summary is one sentence; include is a list of what comes with it, each with an item ("Second photographer"). Set order for the sequence, usually smallest to largest.

@@ -16,6 +16,11 @@ booking_label = "Check my availability"
 inquire_heading = "Tell me about your day"
 inquire_note = "Send the date, the place and roughly how many people. I answer every inquiry within two days."
 
+inquire_label = "Inquire"
+packages_heading = "Packages"
+sessions_heading = "Recent sessions"
+kind_words_heading = "Kind words"
+faq_heading = "Questions"
 [[social]]
 platform = "instagram"
 url = "https://instagram.com/"

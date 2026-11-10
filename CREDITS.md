@@ -4,7 +4,7 @@ Not copied into sites made from this template (listed under `assets`).
 
 ## Fonts
 
-- Anybody, Copyright 2020 The Anybody Project Authors (https://github.com/Etcetera-Type-Co/Anybody), SIL Open Font License 1.1. Latin subset with width and weight axes from `@fontsource-variable/anybody` 5.3.0.
+- Anybody, Copyright 2020 The Anybody Project Authors (https://github.com/Etcetera-Type-Co/Anybody), SIL Open Font License 1.1. Latin and Latin Extended subsets with width and weight axes from `@fontsource-variable/anybody` 5.3.0.
 - Inter, SIL Open Font License 1.1 (from the starter).
 
 ## Default music

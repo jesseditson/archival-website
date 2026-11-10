@@ -34,6 +34,7 @@ record (the release itself, one object):
 - label: the record label, or "Self-released" only if the person said so.
 - cover: leave empty. cover_alt: leave empty.
 - blurb: one or two sentences about the record in markdown, set large. No headings.
+- Headings and labels, short and in the artist's voice; leave any empty to use the wording shown here: released_label, the word before the release date ("Out"); play_label, the button that plays the whole record ("Play the record"); tracklist_heading ("Tracklist"); about_heading ("About the record"); press_heading ("What people said", read by screen readers only); credits_heading ("Credits"); track_credits_heading, over each track's players ("On this track"); lyrics_heading ("Lyrics").
 - link: where to listen or buy, each with name ("Bandcamp", "Spotify", "Vinyl") and the full url. Only links the person gave.
 
 track (one per song, in tracklist order; set order 1, 2, 3...): title; duration as "3:41" if known; audio (leave empty unless the person uploaded the file); notes, a short markdown paragraph about the song from what the person told you; lyrics in markdown with one line of the song per line, only if the person gave them. credit is who played or did what on that track, each with role ("Bass") and name.

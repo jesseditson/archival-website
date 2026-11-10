@@ -27,6 +27,15 @@ label = "string"
 cover = "image"
 cover_alt = "string"
 blurb = "markdown"
+# Headings and labels. Each has a fallback when left empty.
+released_label = "string"
+play_label = "string"
+tracklist_heading = "string"
+about_heading = "string"
+press_heading = "string"
+credits_heading = "string"
+track_credits_heading = "string"
+lyrics_heading = "string"
 
 # Where to listen or buy: "Bandcamp", "Spotify", "Vinyl".
 [record.link]

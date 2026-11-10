@@ -54,7 +54,7 @@
     {%- endif %}
     {%- if track.lyrics != blank %}
     <section class="lyrics" aria-labelledby="lyrics-title">
-      <h2 id="lyrics-title" class="section-title">Lyrics</h2>
+      <h2 id="lyrics-title" class="section-title">{% if record.lyrics_heading != blank %}{{ record.lyrics_heading | escape }}{% else %}Lyrics{% endif %}</h2>
       <div class="lyrics-text markdown">{{ track.lyrics | replace: "<h1", "<h3" | replace: "</h1>", "</h3>" | replace: "<h2", "<h3" | replace: "</h2>", "</h3>" }}</div>
     </section>
     {%- endif %}
@@ -62,7 +62,7 @@
     {%- for credit in track.credit -%}{%- if credit.name != blank -%}{%- assign credit_count = credit_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
     {%- if credit_count > 0 %}
     <section class="track-credits" aria-labelledby="track-credits-title">
-      <h2 id="track-credits-title" class="section-title">On this track</h2>
+      <h2 id="track-credits-title" class="section-title">{% if record.track_credits_heading != blank %}{{ record.track_credits_heading | escape }}{% else %}On this track{% endif %}</h2>
       <dl class="credit-list">
         {%- for credit in track.credit %}{% if credit.name != blank %}
         <div class="credit"><dt>{{ credit.role | escape }}</dt><dd>{{ credit.name | escape }}</dd></div>

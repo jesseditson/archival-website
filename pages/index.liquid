@@ -50,10 +50,10 @@
     <div class="hero-meta">
       <p class="artist">{{ site.name | escape }}</p>
       {%- if record.released != blank or record.label != blank %}
-      <p class="release">{% if record.released != blank %}Out {{ record.released | date: "%B %-d, %Y" }}{% endif %}{% if record.released != blank and record.label != blank %}<br>{% endif %}{% if record.label != blank %}{{ record.label | escape }}{% endif %}</p>
+      <p class="release">{% if record.released != blank %}{% if record.released_label != blank %}{{ record.released_label | escape }}{% else %}Out{% endif %} {{ record.released | date: "%B %-d, %Y" }}{% endif %}{% if record.released != blank and record.label != blank %}<br>{% endif %}{% if record.label != blank %}{{ record.label | escape }}{% endif %}</p>
       {%- endif %}
       {%- if playable > 0 %}
-      <button type="button" class="play-all" data-play-all>Play the record</button>
+      <button type="button" class="play-all" data-play-all>{% if record.play_label != blank %}{{ record.play_label | escape }}{% else %}Play the record{% endif %}</button>
       {%- endif %}
     </div>
   </div>
@@ -62,7 +62,7 @@
 {%- if tracks.size > 0 %}
 <section class="tracklist" aria-labelledby="tracklist-title">
   <div class="wrap">
-    <h2 id="tracklist-title" class="section-title">Tracklist</h2>
+    <h2 id="tracklist-title" class="section-title">{% if record.tracklist_heading != blank %}{{ record.tracklist_heading | escape }}{% else %}Tracklist{% endif %}</h2>
     <ol class="tracks">
       {%- for track in tracks %}
       {%- assign track_number = forloop.index %}
@@ -88,7 +88,7 @@
     <figure class="portrait"><img src="{{ site.portrait.url | escape }}" alt="{{ site.portrait_alt | escape }}" loading="lazy"></figure>
     {%- endif %}
     <div class="about-text">
-      <h2 id="about-title" class="section-title">About the record</h2>
+      <h2 id="about-title" class="section-title">{% if record.about_heading != blank %}{{ record.about_heading | escape }}{% else %}About the record{% endif %}</h2>
       {%- if record.blurb != blank %}
       <div class="blurb markdown">{{ record.blurb | replace: "<h1", "<h3" | replace: "</h1>", "</h3>" | replace: "<h2", "<h3" | replace: "</h2>", "</h3>" }}</div>
       {%- endif %}
@@ -104,7 +104,7 @@
 {%- for item in quotes -%}{%- if item.quote != blank -%}{%- assign quote_count = quote_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
 {%- if quote_count > 0 %}
 <section class="press" aria-labelledby="press-title">
-  <h2 id="press-title" class="visually-hidden">What people said</h2>
+  <h2 id="press-title" class="visually-hidden">{% if record.press_heading != blank %}{{ record.press_heading | escape }}{% else %}What people said{% endif %}</h2>
   <div class="marquee">
     <ul class="marquee-track">
       {%- for item in quotes %}{% if item.quote != blank %}
@@ -129,7 +129,7 @@
 {%- if credits.size > 0 %}
 <section class="credits" aria-labelledby="credits-title">
   <div class="wrap">
-    <h2 id="credits-title" class="section-title">Credits</h2>
+    <h2 id="credits-title" class="section-title">{% if record.credits_heading != blank %}{{ record.credits_heading | escape }}{% else %}Credits{% endif %}</h2>
     <dl class="credit-list">
       {%- for credit in credits %}{% if credit.name != blank %}
       <div class="credit"><dt>{{ credit.role | escape }}</dt><dd>{{ credit.name | escape }}</dd></div>

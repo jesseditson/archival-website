@@ -385,14 +385,17 @@ h3 {
 
 /* ---------- Hero ---------- */
 
+/* Above the next section, so its smoke can hang over the seam; only the
+   sides are clipped. */
 .hero {
   position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100svh;
   padding: 7rem var(--gutter) 9rem;
-  overflow: hidden;
+  overflow-x: clip;
   isolation: isolate;
   background: var(--night);
   text-align: center;
@@ -417,7 +420,7 @@ h3 {
   z-index: -1;
   background:
     radial-gradient(ellipse 70% 60% at 50% 50%, rgba(19, 6, 5, 0.25), rgba(19, 6, 5, 0.65)),
-    linear-gradient(rgba(19, 6, 5, 0.35), rgba(19, 6, 5, 0.1) 40%, rgba(19, 6, 5, 0.5));
+    linear-gradient(rgba(19, 6, 5, 0.35), rgba(19, 6, 5, 0.1) 40%, rgba(19, 6, 5, 0.55) 80%, var(--night));
 }
 
 .hero-content {
@@ -489,17 +492,56 @@ h3 {
   font-size: 1rem;
 }
 
-/* Smoke at the foot of a scene, drifting up as you scroll past. */
-.fog {
+/* Smoke drifting between scenes. Two copies of the owner's texture slide
+   sideways at different speeds in opposite directions so it billows. The
+   texture is four times as wide as it is tall; each layer moves exactly one
+   tile, so the loop never shows a seam. */
+.smoke {
+  --smoke-h: 22rem;
+  --smoke-w: calc(var(--smoke-h) * 4);
   position: absolute;
   left: 0;
-  bottom: -0.0625rem;
+  right: 0;
+  bottom: 0;
   z-index: 1;
-  width: 100%;
-  height: auto;
-  min-height: 12rem;
-  object-fit: cover;
+  height: var(--smoke-h);
+  overflow: hidden;
   pointer-events: none;
+}
+
+.smoke::before,
+.smoke::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: calc(100% + var(--smoke-w));
+  background: var(--smoke) 0 100% / var(--smoke-w) 100% repeat-x;
+  animation: smoke-drift 90s linear infinite;
+}
+
+.smoke::before {
+  opacity: 0.42;
+}
+
+.smoke::after {
+  opacity: 0.28;
+  background-position: 0 70%;
+  animation-duration: 55s;
+  animation-direction: reverse;
+}
+
+@keyframes smoke-drift {
+  to {
+    translate: calc(var(--smoke-w) * -1) 0;
+  }
+}
+
+/* The smoke hangs across the seam between two scenes. */
+.smoke-hero,
+.smoke-program {
+  bottom: calc(var(--smoke-h) * -0.5);
 }
 
 /* ---------- The players ---------- */
@@ -611,6 +653,7 @@ h3 {
 
 .maroon {
   position: relative;
+  z-index: 2;
   background: var(--maroon);
   padding-bottom: 8rem;
 }
@@ -627,23 +670,15 @@ h3 {
   margin-bottom: 3.5rem;
 }
 
-/* Two columns, both starting at the top. */
-.stagger {
+/* Two columns that share rows: each pair of items starts at the same
+   height, however long either one is. */
+.program-grid {
   display: grid;
-  gap: 2.5rem;
-}
-
-.stagger-column {
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
+  align-items: start;
+  gap: 3.5rem 5rem;
   margin: 0;
   padding: 0;
   list-style: none;
-}
-
-.stagger-column:empty {
-  display: none;
 }
 
 .item-title {
@@ -730,13 +765,6 @@ h3 {
 
 .piece.is-current .piece-title {
   font-weight: 600;
-}
-
-.fog-maroon {
-  /* The maroon section dissolves into the kind words below it. */
-  bottom: auto;
-  top: calc(100% - 0.0625rem);
-  rotate: 180deg;
 }
 
 /* ---------- Kind words ---------- */
@@ -1246,9 +1274,8 @@ html[data-playing] .player-meter span:nth-child(4) { animation-delay: -150ms; an
     --gutter: 2.5rem;
   }
 
-  .stagger {
-    grid-template-columns: 1fr 1fr;
-    column-gap: 5rem;
+  .program-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 
 }
@@ -1278,18 +1305,20 @@ html[data-playing] .player-meter span:nth-child(4) { animation-delay: -150ms; an
   }
 }
 
-/* Smoke drifts as you scroll past; only where the browser can tie animation
-   to scroll. */
+/* The smoke also rises a little as you scroll past it; only where the
+   browser can tie animation to scroll. */
 @supports (animation-timeline: view()) {
-  .fog-hero {
-    animation: drift-up linear both;
+  .smoke {
+    animation: smoke-rise linear both;
     animation-timeline: view();
-    animation-range: exit 0% exit 100%;
   }
 
-  @keyframes drift-up {
+  @keyframes smoke-rise {
+    from {
+      translate: 0 12%;
+    }
     to {
-      translate: 0 -30%;
+      translate: 0 -12%;
     }
   }
 }

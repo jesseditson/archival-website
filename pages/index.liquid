@@ -80,7 +80,7 @@
     {%- endif %}
   </div>
   {%- if site.scene_fog != blank %}
-  <img class="fog fog-hero" src="{{ site.scene_fog.url | escape }}" alt="" aria-hidden="true">
+  <div class="smoke smoke-hero" style="--smoke: url(&quot;{{ site.scene_fog.url | replace: '"', '%22' | escape }}&quot;)" aria-hidden="true"></div>
   {%- endif %}
 </header>
 
@@ -114,67 +114,53 @@
   {%- if formats.size > 0 %}
   <section class="formats" id="formats" aria-labelledby="formats-title">
     <h2 id="formats-title" class="display-title reveal">{{ formats_heading_html }}</h2>
-    <div class="stagger">
-      {%- for column in (1..2) %}
-      <ul class="stagger-column">
-        {%- for format in formats %}
-        {%- assign side = forloop.index0 | modulo: 2 | plus: 1 -%}
-        {%- if side == column and format.name != blank %}
-        <li class="format reveal" style="--delay: {{ forloop.index | times: 120 }}ms">
-          <h3 class="item-title">{{ format.name | escape }}</h3>
-          {%- if format.fee != blank %}<p class="format-fee">{{ format.fee | escape }}</p>{% endif %}
-          {%- if format.players != blank or format.length != blank %}
-          <p class="item-meta">{% if format.players != blank %}{{ format.players | escape }}{% endif %}{% if format.players != blank and format.length != blank %}<br>{% endif %}{% if format.length != blank %}{{ format.length | escape }}{% endif %}</p>
-          {%- endif %}
-          {%- if format.note != blank %}<p class="item-text">{{ format.note | escape }}</p>{% endif %}
-        </li>
+    <ul class="program-grid">
+      {%- for format in formats %}{% if format.name != blank %}
+      <li class="format reveal" style="--delay: {{ forloop.index0 | modulo: 2 | times: 120 | plus: 120 }}ms">
+        <h3 class="item-title">{{ format.name | escape }}</h3>
+        {%- if format.fee != blank %}<p class="format-fee">{{ format.fee | escape }}</p>{% endif %}
+        {%- if format.players != blank or format.length != blank %}
+        <p class="item-meta">{% if format.players != blank %}{{ format.players | escape }}{% endif %}{% if format.players != blank and format.length != blank %}<br>{% endif %}{% if format.length != blank %}{{ format.length | escape }}{% endif %}</p>
         {%- endif %}
-        {%- endfor %}
-      </ul>
-      {%- endfor %}
-    </div>
+        {%- if format.note != blank %}<p class="item-text">{{ format.note | escape }}</p>{% endif %}
+      </li>
+      {%- endif %}{% endfor %}
+    </ul>
   </section>
   {%- endif %}
 
   {%- if moments.size > 0 %}
   <section class="repertoire" id="repertoire" aria-labelledby="repertoire-title">
     <h2 id="repertoire-title" class="display-title reveal">{{ repertoire_heading | escape }}</h2>
-    <div class="stagger">
-      {%- for column in (1..2) %}
-      <div class="stagger-column">
-        {%- for moment in moments %}
-        {%- assign side = forloop.index0 | modulo: 2 | plus: 1 -%}
-        {%- if side == column %}
-        <div class="moment reveal" style="--delay: {{ forloop.index | times: 120 }}ms">
-          <h3 class="item-title">{{ moment.name | escape }}</h3>
-          {%- if moment.note != blank %}<p class="item-text">{{ moment.note | escape }}</p>{% endif %}
-          {%- if moment.piece.size > 0 %}
-          <ol class="pieces">
-            {%- for piece in moment.piece %}{% if piece.title != blank %}
-            <li class="piece" data-row>
-              {%- if piece.sample != blank %}
-              {%- assign sample_url = piece.sample.url -%}
-              {%- if piece.composer != blank %}{% assign sample_label = piece.title | append: ", " | append: piece.composer %}{% else %}{% assign sample_label = piece.title %}{% endif %}
-              {% include 'sample-button' %}
-              {%- else %}
-              <span class="play-space" aria-hidden="true"></span>
-              {%- endif %}
-              <span class="piece-text"><span class="piece-title">{{ piece.title | escape }}</span>{% if piece.composer != blank %}<span class="piece-composer">{{ piece.composer | escape }}</span>{% endif %}</span>
-              <span class="piece-progress" aria-hidden="true"></span>
-            </li>
-            {%- endif %}{% endfor %}
-          </ol>
-          {%- endif %}
-        </div>
+    <div class="program-grid">
+      {%- for moment in moments %}
+      <div class="moment reveal" style="--delay: {{ forloop.index0 | modulo: 2 | times: 120 | plus: 120 }}ms">
+        <h3 class="item-title">{{ moment.name | escape }}</h3>
+        {%- if moment.note != blank %}<p class="item-text">{{ moment.note | escape }}</p>{% endif %}
+        {%- if moment.piece.size > 0 %}
+        <ol class="pieces">
+          {%- for piece in moment.piece %}{% if piece.title != blank %}
+          <li class="piece" data-row>
+            {%- if piece.sample != blank %}
+            {%- assign sample_url = piece.sample.url -%}
+            {%- if piece.composer != blank %}{% assign sample_label = piece.title | append: ", " | append: piece.composer %}{% else %}{% assign sample_label = piece.title %}{% endif %}
+            {% include 'sample-button' %}
+            {%- else %}
+            <span class="play-space" aria-hidden="true"></span>
+            {%- endif %}
+            <span class="piece-text"><span class="piece-title">{{ piece.title | escape }}</span>{% if piece.composer != blank %}<span class="piece-composer">{{ piece.composer | escape }}</span>{% endif %}</span>
+            <span class="piece-progress" aria-hidden="true"></span>
+          </li>
+          {%- endif %}{% endfor %}
+        </ol>
         {%- endif %}
-        {%- endfor %}
       </div>
       {%- endfor %}
     </div>
   </section>
   {%- endif %}
   {%- if site.program_fog != blank %}
-  <img class="fog fog-maroon" src="{{ site.program_fog.url | escape }}" alt="" aria-hidden="true">
+  <div class="smoke smoke-program" style="--smoke: url(&quot;{{ site.program_fog.url | replace: '"', '%22' | escape }}&quot;)" aria-hidden="true"></div>
   {%- endif %}
 </div>
 {%- endif %}

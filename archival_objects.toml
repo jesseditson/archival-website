@@ -20,9 +20,10 @@ players_image = "image"
 players_alt = "string"
 # Behind the kind words.
 quote_image = "image"
-# The smoke between scenes: scene_fog fades the opening film into the
-# players, program_fog fades the maroon program into the kind words.
-# Transparent images (WebP or PNG) work best; leave empty for a plain fade.
+# The smoke that drifts between scenes: scene_fog at the foot of the opening
+# film, program_fog where the maroon program meets the kind words. Each is a
+# transparent image (WebP or PNG) four times as wide as it is tall that
+# repeats sideways as it drifts; leave empty for no smoke.
 scene_fog = "image"
 program_fog = "image"
 # Section headings and labels. Each has a fallback when left empty.

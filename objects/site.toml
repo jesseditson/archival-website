@@ -72,12 +72,12 @@ mime = "image/jpeg"
 
 [scene_fog]
 display_type = "image"
-filename = "smoke-dark.webp"
-sha = "aa110b3a60cf98bfad1f9bb00b9d1176f9dbfc8315c45eb41ca54315e99165e2"
+filename = "smoke-scene.webp"
+sha = "beec6c7941f4b936cf7d48340aac3ce8a99cdd11ea1fed68739bd93ffc84556d"
 mime = "image/webp"
 
 [program_fog]
 display_type = "image"
-filename = "smoke-maroon.webp"
-sha = "865974457af996afb8ed88e7afbc297dc7abf4d198fb029f7aa6fc567c39578d"
+filename = "smoke-program.webp"
+sha = "6230a02f91555f66c32d2d9662f03bf73f009cf95f15bb04e42b35d64efc4952"
 mime = "image/webp"

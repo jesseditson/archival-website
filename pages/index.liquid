@@ -1,20 +1,199 @@
 {%- assign site = objects.site -%}
-{%- capture ld_name %}{{ site.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
-{%- capture ld_desc %}{{ site.description | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
+{%- assign members = objects.member | sort: "order" -%}
+{%- assign formats = objects.format | sort: "order" -%}
+{%- assign moments = objects.moment | sort: "order" -%}
+{%- assign concerts = objects.concert | sort: "date" -%}
+{%- assign kind_words = objects.kind_word | sort: "order" -%}
 {%- capture jsonld -%}
 <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "{{ ld_name }}"
-    {%- if site.description != blank -%}, "description": "{{ ld_desc }}"{%- endif -%}
-    {%- if site_url != blank -%}, "url": "{{ site_url }}/"{%- endif -%}
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "MusicGroup",
+  "name": "{{ site.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}",
+  "url": "{{ site_url }}/"
+  {%- if site.description != blank -%}, "description": "{{ site.description | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- endif -%}
+  {%- if site.email != blank -%}, "email": "{{ site.email | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- endif -%}
+  {%- if site.location != blank -%}, "location": {"@type": "Place", "name": "{{ site.location | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"}{%- endif -%}
+  {%- if members.size > 0 -%}, "member": [
+    {%- for member in members -%}{"@type": "Person", "name": "{{ member.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- if member.instrument != blank -%}, "roleName": "{{ member.instrument | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- endif -%}}{%- unless forloop.last -%}, {% endunless -%}{%- endfor -%}]
+  {%- endif -%}
+  {%- if formats.size > 0 -%}, "makesOffer": [
+    {%- for format in formats -%}{"@type": "Offer", "name": "{{ format.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"{%- if format.fee != blank -%}, "description": "{{ format.fee | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% if format.length != blank %}. {{ format.length | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endif %}"{%- endif -%}}{%- unless forloop.last -%}, {% endunless -%}{%- endfor -%}]
+  {%- endif -%}
+  {%- if concerts.size > 0 -%}, "event": [
+    {%- for concert in concerts -%}{"@type": "MusicEvent", "name": "{{ concert.title | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}", "startDate": "{{ concert.date | date: '%Y-%m-%d' }}"{%- if concert.venue != blank or concert.city != blank -%}, "location": {"@type": "Place", "name": "{{ concert.venue | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}", "address": "{{ concert.city | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}"}{%- endif -%}}{%- unless forloop.last -%}, {% endunless -%}{%- endfor -%}]
+  {%- endif %}
+}
 </script>
 {%- endcapture -%}
 {% layout 'theme' title: "", path: "", jsonld: jsonld %}
 
-<section class="intro">
-  <h1>{{ site.name | escape }}</h1>
-  {% if site.description != blank %}<p>{{ site.description | escape }}</p>{% endif %}
+<header class="stage{% if site.hero_image == blank %} stage-plain{% endif %}" aria-labelledby="ensemble-name">
+  {%- if site.hero_image != blank %}
+  <img class="stage-photo" src="{{ site.hero_image.url | escape }}" alt="{{ site.hero_alt | escape }}">
+  {%- endif %}
+  <div class="curtain curtain-left" aria-hidden="true"></div>
+  <div class="curtain curtain-right" aria-hidden="true"></div>
+  <div class="stage-top wrap">
+    {%- if site.location != blank %}<p class="stage-place">{{ site.location | escape }}</p>{% endif %}
+    {%- if site.email != blank or site.booking_url != blank %}<a class="stage-book" href="#inquire">Book us</a>{% endif %}
+  </div>
+  <div class="stage-inner wrap">
+    <h1 id="ensemble-name" class="name foil">{{ site.name | escape }}</h1>
+    {%- if site.tagline != blank %}
+    <p class="tagline">{{ site.tagline | escape }}</p>
+    {%- endif %}
+    {%- if site.sample != blank %}
+    {%- assign sample_url = site.sample.url -%}
+    {%- if site.sample_title != blank %}{% assign sample_label = site.sample_title %}{% else %}{% assign sample_label = "A recording of us" %}{% endif %}
+    <div class="hear">
+      {% include 'sample-button' %}
+      <p class="hear-label"><span>Hear us play</span>{{ sample_label | escape }}</p>
+    </div>
+    {%- endif %}
+  </div>
+</header>
+
+{%- if site.intro != blank or members.size > 0 %}
+<section class="note" aria-labelledby="note-title">
+  <div class="wrap note-grid">
+    <h2 id="note-title" class="section-title foil">A note on the players</h2>
+    {%- if site.intro != blank %}
+    <div class="intro markdown">{{ site.intro | replace: "<h1", "<h3" | replace: "</h1>", "</h3>" | replace: "<h2", "<h3" | replace: "</h2>", "</h3>" }}</div>
+    {%- endif %}
+    {%- if members.size > 0 %}
+    <ul class="members">
+      {%- for member in members %}{% if member.name != blank %}
+      <li><span class="member-name">{{ member.name | escape }}</span>{% if member.instrument != blank %}<span class="member-instrument">{{ member.instrument | escape }}</span>{% endif %}</li>
+      {%- endif %}{% endfor %}
+    </ul>
+    {%- endif %}
+    {%- if site.players_image != blank %}
+    <figure class="players-photo"><img src="{{ site.players_image.url | escape }}" alt="{{ site.players_alt | escape }}" loading="lazy"></figure>
+    {%- endif %}
+  </div>
 </section>
+{%- endif %}
+
+{%- if formats.size > 0 %}
+<section class="formats" aria-labelledby="formats-title">
+  <div class="wrap">
+    <h2 id="formats-title" class="section-title foil">Formats and fees</h2>
+    <ul class="format-list">
+      {%- for format in formats %}{% if format.name != blank %}
+      <li class="format">
+        <p class="format-line"><span class="format-name">{{ format.name | escape }}</span>{% if format.fee != blank %}<span class="leader" aria-hidden="true"></span><span class="format-fee">{{ format.fee | escape }}</span>{% endif %}</p>
+        {%- if format.players != blank or format.length != blank %}
+        <p class="format-meta">{% if format.players != blank %}{{ format.players | escape }}{% endif %}{% if format.players != blank and format.length != blank %}<br>{% endif %}{% if format.length != blank %}{{ format.length | escape }}{% endif %}</p>
+        {%- endif %}
+        {%- if format.note != blank %}
+        <p class="format-note">{{ format.note | escape }}</p>
+        {%- endif %}
+      </li>
+      {%- endif %}{% endfor %}
+    </ul>
+  </div>
+</section>
+{%- endif %}
+
+{%- if moments.size > 0 %}
+<section class="repertoire" aria-labelledby="repertoire-title">
+  <div class="wrap">
+    <h2 id="repertoire-title" class="section-title foil">Repertoire</h2>
+    {%- for moment in moments %}
+    <div class="moment">
+      <div class="moment-head">
+        <h3 class="moment-name">{{ moment.name | escape }}</h3>
+        {%- if moment.note != blank %}
+        <p class="moment-note">{{ moment.note | escape }}</p>
+        {%- endif %}
+      </div>
+      {%- if moment.piece.size > 0 %}
+      <ol class="pieces">
+        {%- for piece in moment.piece %}{% if piece.title != blank %}
+        <li class="piece{% if piece.composer == blank %} piece-solo{% endif %}" data-row>
+          {%- if piece.sample != blank %}
+          {%- assign sample_url = piece.sample.url -%}
+          {%- if piece.composer != blank %}{% assign sample_label = piece.title | append: ", " | append: piece.composer %}{% else %}{% assign sample_label = piece.title %}{% endif %}
+          {% include 'sample-button' %}
+          {%- else %}
+          <span class="play-space" aria-hidden="true"></span>
+          {%- endif %}
+          <span class="piece-title">{{ piece.title | escape }}</span>
+          {%- if piece.composer != blank %}
+          <span class="leader" aria-hidden="true"></span>
+          <span class="piece-composer">{{ piece.composer | escape }}</span>
+          {%- endif %}
+          <span class="piece-progress" aria-hidden="true"></span>
+        </li>
+        {%- endif %}{% endfor %}
+      </ol>
+      {%- endif %}
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+{%- endif %}
+
+{%- if concerts.size > 0 %}
+<section class="concerts" aria-labelledby="concerts-title">
+  <div class="wrap">
+    <h2 id="concerts-title" class="section-title foil">Concerts</h2>
+    <ol class="concert-list">
+      {%- for concert in concerts %}{% if concert.title != blank %}
+      <li class="concert">
+        <p class="concert-date"><span class="concert-day">{{ concert.date | date: "%-d" }}</span><span class="concert-month">{{ concert.date | date: "%B %Y" }}</span></p>
+        <div class="concert-body">
+          <p class="concert-title">{% if concert.url != blank %}{%- assign link = concert.url | strip -%}{%- include 'link-href' -%}<a href="{{ link_href | escape }}">{{ concert.title | escape }}</a>{% else %}{{ concert.title | escape }}{% endif %}</p>
+          {%- if concert.venue != blank or concert.city != blank %}
+          <p class="concert-place">{% if concert.venue != blank %}{{ concert.venue | escape }}{% endif %}{% if concert.venue != blank and concert.city != blank %}, {% endif %}{% if concert.city != blank %}{{ concert.city | escape }}{% endif %}</p>
+          {%- endif %}
+        </div>
+      </li>
+      {%- endif %}{% endfor %}
+    </ol>
+  </div>
+</section>
+{%- endif %}
+
+{%- assign word_count = 0 -%}
+{%- for word in kind_words -%}{%- if word.quote != blank -%}{%- assign word_count = word_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
+{%- if word_count > 0 %}
+<section class="kind-words" aria-labelledby="kind-words-title">
+  <div class="wrap">
+    <h2 id="kind-words-title" class="section-title foil">Kind words</h2>
+    <ul class="quote-list">
+      {%- for word in kind_words %}{% if word.quote != blank %}
+      <li>
+        <figure class="quote">
+          <blockquote><p>{{ word.quote | escape }}</p></blockquote>
+          {%- if word.name != blank or word.detail != blank %}
+          <figcaption>{% if word.name != blank %}<span class="quote-name">{{ word.name | escape }}</span>{% endif %}{% if word.detail != blank %}<span class="quote-detail">{{ word.detail | escape }}</span>{% endif %}</figcaption>
+          {%- endif %}
+        </figure>
+      </li>
+      {%- endif %}{% endfor %}
+    </ul>
+  </div>
+</section>
+{%- endif %}
+
+{%- if site.email != blank or site.booking_url != blank %}
+<section class="inquire" id="inquire" aria-labelledby="inquire-title">
+  <div class="wrap">
+    <h2 id="inquire-title" class="inquire-title foil">{% if site.inquire_heading != blank %}{{ site.inquire_heading | escape }}{% else %}Book us{% endif %}</h2>
+    {%- if site.inquire_note != blank %}
+    <p class="inquire-note">{{ site.inquire_note | escape }}</p>
+    {%- endif %}
+    <p class="inquire-actions">
+      {%- if site.email != blank %}
+      <a class="button" href="mailto:{{ site.email | escape }}">Email {{ site.email | escape }}</a>
+      {%- endif %}
+      {%- if site.booking_url != blank %}
+      {%- assign link = site.booking_url | strip -%}{%- include 'link-href' -%}
+      <a class="button{% if site.email != blank %} button-quiet{% endif %}" href="{{ link_href | escape }}">{% if site.booking_label != blank %}{{ site.booking_label | escape }}{% else %}Check a date{% endif %}</a>
+      {%- endif %}
+    </p>
+  </div>
+</section>
+{%- endif %}

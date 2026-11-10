@@ -1,2 +1,49 @@
-name = "Archival Website"
-description = "A new site built with Archival."
+name = "The Quarry Light Quartet"
+tagline = "A string quartet for weddings, celebrations and concerts in the Hudson Valley"
+description = "The Quarry Light Quartet plays weddings, parties and concerts across the Hudson Valley. Hear us, see our formats and fees, and choose music for every part of the day."
+location = "Hudson Valley, New York"
+intro = """
+We are four friends who met in a conservatory practice room and never stopped playing together. We play the ceremony, the hour after it and the dinner, and we take requests seriously: if it isn't on our list, we will arrange it.
+"""
+hero_alt = "A cellist bowing in a dim room strung with warm lights"
+sample_title = "Borodin, Nocturne from String Quartet No. 2"
+players_alt = "A violinist with bow and violin at a music stand before a performance"
+email = "hello@example.com"
+booking_url = "https://example.com/book"
+booking_label = "Check a date"
+inquire_heading = "Tell us about the day"
+inquire_note = "Send the date, the place and roughly what you would like played. We reply within two days, usually with a sample program."
+
+[[social]]
+platform = "instagram"
+url = "https://instagram.com/"
+label = "Instagram"
+
+[[social]]
+platform = "youtube"
+url = "https://youtube.com/"
+label = "YouTube"
+
+[hero_image]
+display_type = "image"
+filename = "cello-lights.jpg"
+sha = "3483a4bd5405c5209506672e095d740cf8add932ffda930905ee9207fb6e5feb"
+mime = "image/jpeg"
+
+[sample]
+display_type = "audio"
+filename = "sample-borodin-notturno.mp3"
+sha = "9f7b4e46c18a543e164b7d451280a8aeec3979e73472fdf68dbdf1c57165ccff"
+mime = "audio/mpeg"
+
+[players_image]
+display_type = "image"
+filename = "violin-stand.jpg"
+sha = "70e8dd3528b779492e8fe4767cd5200d556c1eb55177867ffe2acba84ceda634"
+mime = "image/jpeg"
+
+[og_image]
+display_type = "image"
+filename = "og-repertoire.jpg"
+sha = "83a9941b23bf5a9ebc15f05e1a487f7f1d8b19f3e9efbb198d123172ec22e309"
+mime = "image/jpeg"

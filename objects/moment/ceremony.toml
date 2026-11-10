@@ -1,0 +1,33 @@
+order = 1
+name = "Ceremony"
+note = "While guests arrive, the walk down the aisle, and the walk back out."
+
+[[piece]]
+title = "Meditation on an Old Czech Chorale"
+composer = "Josef Suk"
+[piece.sample]
+display_type = "audio"
+filename = "sample-suk-meditation.mp3"
+sha = "ec09b7c181fff5abd44622c7b668b45ef09c55de85af347602261f920e1c3c89"
+mime = "audio/mpeg"
+
+[[piece]]
+title = "Canon in D"
+composer = "Johann Pachelbel"
+
+[[piece]]
+title = "Bridal Chorus"
+composer = "Richard Wagner"
+
+[[piece]]
+title = "Lento, from the \"American\" Quartet"
+composer = "Antonín Dvořák"
+[piece.sample]
+display_type = "audio"
+filename = "sample-dvorak-lento.mp3"
+sha = "0f00f8c6833f89cb8ae56b564f6d40f80d450978d522c8c3cf644b39c37629a8"
+mime = "audio/mpeg"
+
+[[piece]]
+title = "Wedding March"
+composer = "Felix Mendelssohn"

@@ -1,0 +1,29 @@
+order = 3
+name = "Dinner"
+note = "Slow movements, low enough to talk over."
+
+[[piece]]
+title = "Andante cantabile, from the \"Dissonance\" Quartet"
+composer = "Wolfgang Amadeus Mozart"
+[piece.sample]
+display_type = "audio"
+filename = "sample-mozart-andante.mp3"
+sha = "26173a97afc53d67261b4250d4760bc78e885b53b4047fcd3c997bfc048b79c1"
+mime = "audio/mpeg"
+
+[[piece]]
+title = "Air on the G String"
+composer = "Johann Sebastian Bach"
+
+[[piece]]
+title = "Nocturne, from String Quartet No. 2"
+composer = "Alexander Borodin"
+[piece.sample]
+display_type = "audio"
+filename = "sample-borodin-notturno.mp3"
+sha = "9f7b4e46c18a543e164b7d451280a8aeec3979e73472fdf68dbdf1c57165ccff"
+mime = "audio/mpeg"
+
+[[piece]]
+title = "Clair de lune"
+composer = "Claude Debussy, arranged by us"

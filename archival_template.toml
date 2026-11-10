@@ -1,22 +1,50 @@
 #:schema https://archival.dev/schemas/archival_template.schema.json
 # Shown in the editor's template picker.
-name = ""
+name = "Repertoire"
 # One line for the gallery card, roughly ten to fifteen words.
-tagline = ""
-# The describe box on the confirm screen: its heading ("Tell us about your
-# band"), an example answer for its placeholder, and the files worth dropping
-# on it ("Drop band photos, album art, a few tracks"). Empty is generic copy.
-describe_title = ""
-describe_placeholder = ""
-describe_files = ""
+tagline = "A velvet-and-gold site for musicians people hire for weddings, events and concerts."
+# The describe box on the confirm screen.
+describe_title = "Tell us about your ensemble"
+describe_placeholder = "We're a string quartet in the Hudson Valley. We play weddings and parties, solo cello up to full quartet, from $450. Classical plus pop arrangements."
+describe_files = "Drop photos of you playing and a few short recordings"
 # The template info modal's body: what this template is and what it contains.
 description = """
+A site for musicians who get booked: a string quartet, a jazz trio, a pianist or a harpist who plays weddings, events and concerts. It reads like a printed concert programme in a velvet hall. A curtain opens on your name in gold foil, with a button that plays a recording of you straight away. Below that: a short note on the players, your formats and fees (solo, duo, quartet) set with dot leaders like a programme, and your repertoire grouped by the part of the day it suits, each piece with an optional short recording that plays in a bar along the bottom of the page. Then upcoming public concerts, kind words from clients and a closing invitation to email you or check a date.
 """
 # The prompt that drives content generation. Describe when to pick this
 # template and what every field holds. Update it whenever the schema changes.
 context = """
+Pick this template for musicians whose site's job is getting booked: a string quartet, a jazz or folk trio, a solo pianist, harpist or singer who plays weddings, private events and concerts. For an artist promoting a record or a career of releases and tours, a record or band template fits better.
+
+Write only from facts the person gave you. Fees, what a format includes, concert dates and venues are promises to real clients, so when the person has not given them, leave them empty and the page leaves those parts out. Never invent client quotes, players' names or recordings.
+
+site (the ensemble):
+- name: the ensemble's or musician's name. It is the page's only h1, set very large in gold.
+- tagline: one line under the name, around eight to fourteen words ("A string quartet for weddings, celebrations and concerts in the Hudson Valley").
+- description: one or two sentences for search results and link previews.
+- location: where they are based or play ("Hudson Valley, New York").
+- intro: a short markdown paragraph in the first person plural (or singular for a soloist) about who they are and how they work. No headings.
+- hero_image, hero_alt: leave both empty. The photo behind the curtain.
+- sample: leave empty unless the person uploaded a recording. sample_title names that recording, composer then piece ("Borodin, Nocturne from String Quartet No. 2"); leave it empty when there is no sample.
+- players_image, players_alt: leave both empty.
+- email: only an address the person gave. booking_url: only a booking or inquiry page URL they gave, written in full with https://. booking_label: the booking button's text ("Check a date"); leave empty when there is no booking_url.
+- inquire_heading: the closing heading ("Tell us about the day"). inquire_note: one or two sentences on what to send and how soon they reply.
+- og_image, favicon: leave empty.
+- social: one entry per account the person gave. platform is one of "instagram", "youtube", "facebook", "spotify", "tiktok" or "website"; url is the full URL; label is the account's name for screen readers (the button shows only the icon). Never invent URLs.
+
+member (who plays): name and instrument ("Viola"). Only real players the person named; leave member empty for a soloist who did not give one.
+
+format (what can be booked): name ("Duo"), players as text ("Violin and cello"), fee as text the way they write it ("From $750"), length ("Up to two hours"), and a one-sentence note on when it suits. Set order from smallest to largest.
+
+moment (a part of the day or the program, such as "Ceremony", "Cocktail hour", "Dinner", "First dance", or for concerts "Classical", "Jazz standards"): name and a one-sentence note. piece is the list of pieces for that moment, each with title, composer (or songwriter, adding "arranged by us" for their own arrangements), and sample, a short recording, left empty unless the person uploaded one. Use only pieces the person said they play.
+
+concert (public dates): date, title, venue, city ("Hudson, NY") and url for tickets or details. Only real dates the person gave.
+
+kind_word (what clients said): quote, name ("Maya and Jo") and detail ("Married in Germantown"). Only real quotes the person gave.
 """
-tags = []
-tlds = []
-# Value paths kept when a site is generated, instead of stripped as examples.
+tags = ["music", "musician", "string quartet", "wedding music", "ensemble", "booking", "events", "concerts", "audio"]
+tlds = ["music", "band", "events", "com"]
+assets = ["CREDITS.md"]
+# Nothing is kept: a new site starts without the example quartet's players,
+# repertoire, recordings or quotes.
 keep_objects = []

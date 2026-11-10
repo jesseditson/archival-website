@@ -1,0 +1,29 @@
+order = 2
+name = "Cocktail hour"
+note = "Brighter and quicker, while everyone finds a drink."
+
+[[piece]]
+title = "\"The Lark\", first movement"
+composer = "Joseph Haydn"
+[piece.sample]
+display_type = "audio"
+filename = "sample-haydn-lark.mp3"
+sha = "c60ec2c0cb36f00d7b16af40ea203545c56e2db925fcad9a7830feef76445db1"
+mime = "audio/mpeg"
+
+[[piece]]
+title = "Molto vivace, from the \"American\" Quartet"
+composer = "Antonín Dvořák"
+[piece.sample]
+display_type = "audio"
+filename = "sample-dvorak-vivace.mp3"
+sha = "5ba8adccecd50956077cc7cdba496b9c8d6ee3b7b2b48ec8afed38ac3516df34"
+mime = "audio/mpeg"
+
+[[piece]]
+title = "Eine kleine Nachtmusik"
+composer = "Wolfgang Amadeus Mozart"
+
+[[piece]]
+title = "Can't Help Falling in Love"
+composer = "Peretti, Creatore and Weiss, arranged by us"

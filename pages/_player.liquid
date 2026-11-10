@@ -1,0 +1,16 @@
+{%- comment -%}
+  The player bar. It stays hidden until something plays; /js/player.js
+  fills it from the play button that was pressed. A small level meter
+  moves while audio plays.
+{%- endcomment -%}
+<div class="player" data-player hidden>
+  <div class="player-meter" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+  <p class="player-now"><span class="player-title" data-player-title></span><span class="player-artist">{{ objects.site.name | escape }}</span></p>
+  <div class="player-controls">
+    <button type="button" class="player-button" data-player-prev aria-label="Previous piece"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5v14M19 5L9 12l10 7z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+    <button type="button" class="player-button player-toggle" data-player-toggle aria-label="Pause"><svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15L19.5 12z" fill="currentColor"/></svg><svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" fill="currentColor"/></svg></button>
+    <button type="button" class="player-button" data-player-next aria-label="Next piece"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 5v14M5 5l10 7-10 7z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+  </div>
+  <label class="player-seek"><span class="visually-hidden">Position in piece</span><input type="range" min="0" max="1000" value="0" step="1" data-player-seek></label>
+  <p class="player-time"><span data-player-current>0:00</span> / <span data-player-total>0:00</span></p>
+</div>

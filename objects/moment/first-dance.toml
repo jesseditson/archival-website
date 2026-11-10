@@ -1,0 +1,11 @@
+order = 4
+name = "First dance"
+note = "Your song, arranged for four strings. Send it to us two months ahead."
+
+[[piece]]
+title = "At Last"
+composer = "Mack Gordon and Harry Warren, arranged by us"
+
+[[piece]]
+title = "La Vie en rose"
+composer = "Louiguy, arranged by us"

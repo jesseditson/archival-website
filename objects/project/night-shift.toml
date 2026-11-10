@@ -41,3 +41,21 @@ display_type = "image"
 filename = "night-shift-4.jpg"
 sha = "23b3c7373951b68428bc8be8953204e9aaec56ef9d963a5d5a990958d716d638"
 mime = "image/jpeg"
+
+[[photo]]
+alt = "A narrow street at night in thick yellow fog, two streetlamps and parked cars along the curb"
+caption = "Side street"
+[photo.image]
+display_type = "image"
+filename = "night-shift-5.jpg"
+sha = "3835572d297db5b03c9052bfb90c708688961d6d809efd1dcccd2174abdb6cb4"
+mime = "image/jpeg"
+
+[[photo]]
+alt = "An empty road at the edge of town, streetlamps fading one by one into fog"
+caption = "Edge of town"
+[photo.image]
+display_type = "image"
+filename = "night-shift-6.jpg"
+sha = "a11f30f48b470ae581e22f744c65623d69d5c4652eceb4897cf633d9dd230259"
+mime = "image/jpeg"

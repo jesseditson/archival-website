@@ -41,3 +41,30 @@ display_type = "image"
 filename = "salt-flats-4.jpg"
 sha = "dad5240a10baae9d79ddb6ec47f39d19052672d44bbd90758173a3f8cea6ea45"
 mime = "image/jpeg"
+
+[[photo]]
+alt = "A thin sheet of water on the salt doubling a line of storm clouds on the horizon"
+caption = "After the rain"
+[photo.image]
+display_type = "image"
+filename = "salt-flats-5.jpg"
+sha = "dd464f34951fe0634d850c7aac0dcbf14cb2da028a9a7840f4cb0e953eb468c7"
+mime = "image/jpeg"
+
+[[photo]]
+alt = "Salt crust broken into pale ridged plates, running back to a low line of hills"
+caption = "The crust"
+[photo.image]
+display_type = "image"
+filename = "salt-flats-6.jpg"
+sha = "54e23046585302a7282b7caefc854a4a6322e8f3dab33ffd292bd1114d0b605f"
+mime = "image/jpeg"
+
+[[photo]]
+alt = "A red volcano above a pale lagoon, with a line of vicuñas walking along the shore"
+caption = "South, the third day"
+[photo.image]
+display_type = "image"
+filename = "salt-flats-7.jpg"
+sha = "8476219e8f0c34fcf0f00d9bac991720f849b79adc3084bd5a78bb049ae864e2"
+mime = "image/jpeg"

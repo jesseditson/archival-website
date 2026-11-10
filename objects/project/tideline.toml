@@ -1,9 +1,9 @@
 order = 2
 title = "Tideline"
-place = "North Atlantic coasts"
+place = "Northern coasts"
 year = "2024"
 statement = """
-A winter of mornings on North Atlantic beaches, waiting for the fog to lift and photographing it when it didn't.
+A winter of mornings on northern beaches, waiting for the fog to lift and photographing it when it didn't.
 """
 
 [[photo]]
@@ -40,4 +40,40 @@ caption = "Gulls, no horizon"
 display_type = "image"
 filename = "tideline-4.jpg"
 sha = "82ede15331a694e63f3a7c3b8862775278a90c666732003b51b3d3fb4ab4fc7c"
+mime = "image/jpeg"
+
+[[photo]]
+alt = "Black and white: a dark pebble beach, breaking surf and a wooded headland fading into mist"
+caption = "Headland"
+[photo.image]
+display_type = "image"
+filename = "tideline-5.jpg"
+sha = "dd1081760b91d83638bd7b5cf923a512ceab2c81a0c2460a9a48e2655cf50622"
+mime = "image/jpeg"
+
+[[photo]]
+alt = "Grass tufts on dark sand dunes, the far dunes lost in white fog"
+caption = "Dunes"
+[photo.image]
+display_type = "image"
+filename = "tideline-6.jpg"
+sha = "114c6d6161932a61c53f667aa24a2642a834fb75acc59bf3a4e62d01fcead800"
+mime = "image/jpeg"
+
+[[photo]]
+alt = "Small waves breaking on a beach under a sky the same pale blue as the sea"
+caption = "Nothing else"
+[photo.image]
+display_type = "image"
+filename = "tideline-7.jpg"
+sha = "5b6087439cae985fda98020955b335b1e8b177143f6bc38ddae3458a9672433d"
+mime = "image/jpeg"
+
+[[photo]]
+alt = "Blue-gray water washing up a flat beach, a line of old posts at the edge of the fog"
+caption = "Last morning"
+[photo.image]
+display_type = "image"
+filename = "tideline-8.jpg"
+sha = "18e6c569edbbc73899795010a92e044d7657797b0480be468c351f554c3b1a62"
 mime = "image/jpeg"

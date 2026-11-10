@@ -36,7 +36,12 @@
   </div>
   <header class="wrap track-head">
     <p class="track-from"><a href="/">{{ record.title | escape }}</a><span>Track {{ track_number }} of {{ tracks.size }}</span></p>
-    <h1 class="track-page-title">{{ track.title | escape }}</h1>
+    {%- assign title_words = track.title | split: " " -%}
+    {%- assign longest = 1 -%}
+    {%- for word in title_words -%}{%- assign word_size = word | size -%}{%- if word_size > longest -%}{%- assign longest = word_size -%}{%- endif -%}{%- endfor %}
+    <div class="track-title-box">
+      <h1 class="track-page-title" style="--longest: {{ longest }}">{{ track.title | escape }}</h1>
+    </div>
     <div class="track-actions">
       {%- if track.audio != blank %}{% include 'play-button' %}{% endif %}
       {%- if track.duration != blank %}<span class="track-duration">{{ track.duration | escape }}</span>{% endif %}

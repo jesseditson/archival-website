@@ -24,11 +24,14 @@
 {%- endcapture -%}
 {% layout 'theme' title: "", path: "", jsonld: jsonld %}
 
-{%- assign title_words = record.title | split: " " %}
+{%- assign title_words = record.title | split: " " -%}
+{%- comment -%} The type is sized so the longest word fits its column. {%- endcomment -%}
+{%- assign longest = 1 -%}
+{%- for word in title_words -%}{%- assign word_size = word | size -%}{%- if word_size > longest -%}{%- assign longest = word_size -%}{%- endif -%}{%- endfor %}
 <section class="hero" aria-labelledby="record-title">
   <div class="wrap hero-inner">
     <div class="hero-title-box">
-      <h1 id="record-title" class="record-title">
+      <h1 id="record-title" class="record-title" style="--longest: {{ longest }}">
         {%- for word in title_words %}<span class="word" style="--i: {{ forloop.index0 }}">{{ word | escape }}</span>{% unless forloop.last %} {% endunless %}{% endfor -%}
       </h1>
     </div>

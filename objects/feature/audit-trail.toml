@@ -1,0 +1,4 @@
+order = 4
+icon = "lock"
+title = "An audit trail you can hand over"
+text = "Export a signed record of what a model saw, what it passed and who approved it."

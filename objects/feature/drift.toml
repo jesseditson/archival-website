@@ -1,0 +1,4 @@
+order = 5
+icon = "chart"
+title = "Drift alerts"
+text = "Know within hours when answers start to move away from the data that grounds them."

@@ -1,0 +1,4 @@
+order = 2
+icon = "gauge"
+title = "Private evaluations"
+text = "Run the Cairn Index on your own models without your weights leaving your cloud."

@@ -1,0 +1,4 @@
+order = 6
+icon = "code"
+title = "One API, any model"
+text = "Connect hosted or open models with a few lines of code and keep your stack."

@@ -1,0 +1,4 @@
+order = 3
+icon = "shield"
+title = "Adversarial testing"
+text = "Watchtower probes for jailbreaks, leaks and unsafe advice before anyone else does."

@@ -1,0 +1,4 @@
+order = 1
+icon = "layers"
+title = "Verified training data"
+text = "Every label carries its source, its reviewer and the date it was checked."

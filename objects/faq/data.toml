@@ -1,0 +1,3 @@
+order = 1
+question = "Does our data leave our cloud?"
+answer = "No. Cairn runs inside your own cloud account. Only scores and signed summaries come back to us, and you can turn that off too."

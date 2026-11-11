@@ -1,2 +1,78 @@
-name = "Archival Website"
-description = "A new site built with Archival."
+name = "Cairn"
+badge = "AI"
+tagline = "Trusted AI, built up layer by layer."
+description = "Cairn grounds models in verified data and checks them continuously, for model teams, public agencies and enterprise operations."
+primary_label = "Book a demo"
+primary_url = "mailto:hello@example.com"
+secondary_label = "Start free"
+secondary_url = "https://example.com/signup"
+header_cta_label = "Book a demo"
+login_label = "Log in"
+login_url = "https://example.com/login"
+subline = "Cairn layers verified data, evaluations and audits under every model you ship, so your team, your regulators and your customers can see why it answers the way it does."
+hero_alt = ""
+logos_heading = "Teams building on Cairn"
+features_heading = "Everything a model needs before it meets the public"
+features_intro = "One platform for the data you train on, the tests you pass and the record you keep."
+how_heading = "How it works"
+how_intro = "Each layer rests on the one beneath it. Nothing reaches production without passing through all four."
+quote_text = "We used to find out a model had drifted when a customer told us. With Cairn we find out the same afternoon, and we can show exactly which data it leaned on."
+quote_name = "Imani Okafor"
+quote_role = "Head of model quality, Northvane"
+faq_heading = "Questions teams ask first"
+closing_heading = "See your own models through Cairn"
+closing_text = "Bring a model and a dataset. In thirty minutes we will show you what it gets right, what it gets wrong, and why."
+nav_features = "Platform"
+nav_how = "How it works"
+nav_customers = "Customers"
+nav_faq = "FAQ"
+show_logos = true
+show_features = true
+show_how = true
+show_quote = true
+show_faq = true
+
+[[headline_line]]
+text = "Grounded models"
+
+[[headline_line]]
+text = "built on data"
+
+[[headline_line]]
+text = "you can check."
+
+[[stat]]
+value = "2.4B"
+label = "checked labels"
+
+[[stat]]
+value = "600+"
+label = "evals"
+
+[[stat]]
+value = "99.95%"
+label = "uptime"
+
+[[highlight]]
+kicker = "Benchmarking"
+title = "Cairn Index: peer-scored, private model evaluations."
+icon = "network"
+url = ""
+
+[[highlight]]
+kicker = "Red team"
+title = "Watchtower: adversarial tests for critical systems."
+icon = "shield"
+url = ""
+
+[[social]]
+platform = "github"
+url = "https://github.com/"
+
+[[social]]
+platform = "linkedin"
+url = "https://linkedin.com/"
+
+[[social]]
+platform = "x"
+url = "https://x.com/"

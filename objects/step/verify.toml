@@ -1,0 +1,3 @@
+order = 2
+title = "Verify"
+text = "Reviewers and automated checks confirm labels against their sources, and flag anything that does not hold up."

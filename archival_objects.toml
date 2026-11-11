@@ -1,20 +1,96 @@
 #:schema https://archival.dev/schemas/archival_objects.schema.json
-# The content schema. Every type name is singular: root objects are addressed
-# by their own name, and lists pluralize themselves in templates.
+# Tech Product: a one-page site for a startup or product team. Every type
+# name is singular.
 
-# The identity object. The layout reads it on every page.
+# The product. The layout reads it on every page.
 [site]
 name = "string"
+# A short tag set small and raised after the name, like "AI". Optional.
+badge = "string"
+# One line about the product, used in the footer and for search engines.
+tagline = "string"
 description = "string"
+# A square logo. Without one, the name's first letter sits in a violet tile.
+logo = "image"
+# The two buttons in the hero and the closing section. The secondary button
+# shows only when it has both a label and a link.
+primary_label = "string"
+primary_url = "string"
+secondary_label = "string"
+secondary_url = "string"
+# The outlined button at the top right; it links to primary_url.
+header_cta_label = "string"
+# An optional text link before it, such as "Log in".
+login_label = "string"
+login_url = "string"
+# The line under the headline.
+subline = "string"
+# Optional: an image shown in place of the glass-layer artwork in the hero.
+hero_image = "image"
+hero_alt = "string"
+logos_heading = "string"
+features_heading = "string"
+features_intro = "string"
+how_heading = "string"
+how_intro = "string"
+quote_text = "string"
+quote_name = "string"
+quote_role = "string"
+quote_image = "image"
+faq_heading = "string"
+closing_heading = "string"
+closing_text = "string"
+# The words for each section in the menu.
+nav_features = "string"
+nav_how = "string"
+nav_customers = "string"
+nav_faq = "string"
+# Uncheck to hide a section without deleting what is in it.
+show_logos = "boolean"
+show_features = "boolean"
+show_how = "boolean"
+show_quote = "boolean"
+show_faq = "boolean"
 og_image = "image"
 favicon = "image"
 
-# A list type, one file per item under objects/<type>/, looks like this.
-# `template` makes each item render through pages/<type>.liquid to /<type>/<file>.
-# `order` is built in: set it in each item's file, never declare it here.
-#
-# [post]
-# title = "string"
-# publish_date = "date"
-# body = "markdown"
-# template = "post"
+# The headline, one item per line. Keep each line short.
+[site.headline_line]
+text = "string"
+
+# Numbers under the buttons, like "600+" and "evals".
+[site.stat]
+value = "string"
+label = "string"
+
+# The glass cards over the artwork. Only the first two are shown.
+[site.highlight]
+kicker = "string"
+title = "string"
+icon = ["network", "shield", "layers", "gauge", "bolt", "lock", "search", "chart", "globe", "spark", "code", "check"]
+url = "string"
+
+[site.social]
+platform = ["x", "github", "linkedin", "youtube", "discord", "website"]
+url = "string"
+
+# Customers or partners, shown as a row of names.
+[logo]
+name = "string"
+style = ["bold-italic", "wide", "caps", "plain"]
+# Optional: an image of the logo, used instead of the name.
+image = "image"
+
+[feature]
+icon = ["network", "shield", "layers", "gauge", "bolt", "lock", "search", "chart", "globe", "spark", "code", "check"]
+title = "string"
+text = "string"
+
+# The steps of "How it works", in order. Each one gets a glass layer.
+[step]
+title = "string"
+text = "string"
+
+[faq]
+question = "string"
+answer = "markdown"

@@ -1,0 +1,3 @@
+order = 2
+question = "Which models can we test?"
+answer = "Any model you can call over an API, hosted or open weights, including the ones you fine-tune yourselves."

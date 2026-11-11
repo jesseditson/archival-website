@@ -1,0 +1,3 @@
+order = 4
+question = "Can we share results with a regulator?"
+answer = "Yes. Every evaluation exports as a signed report that lists the data, the tests, the scores and who approved the release."

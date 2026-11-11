@@ -1,0 +1,39 @@
+{%- comment -%}
+  The steps, in order, beside a smaller stack with one glass layer per step
+  (up to six). On wide screens the stack stays in view and the layer for the
+  step being read lifts and brightens (scripts/art.ts); otherwise every layer
+  stays lit.
+{%- endcomment -%}
+{%- assign site = objects.site -%}
+{%- if site.show_how != false and objects.step.size > 0 %}
+{%- assign slab_count = objects.step.size -%}
+{%- if slab_count > 6 -%}{%- assign slab_count = 6 -%}{%- endif %}
+<section class="section how" id="how" aria-labelledby="how-title">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="how-title">{% if site.how_heading != blank %}{{ site.how_heading | escape }}{% else %}How it works{% endif %}</h2>
+      {%- if site.how_intro != blank %}
+      <p>{{ site.how_intro | escape }}</p>
+      {%- endif %}
+    </div>
+    <div class="how__inner">
+      <ol class="how__steps">
+        {%- for step in objects.step %}
+        <li class="how-step" data-step="{{ forloop.index }}">
+          <span class="how-step__number" aria-hidden="true">{{ forloop.index }}</span>
+          <h3>{{ step.title | escape }}</h3>
+          {%- if step.text != blank %}
+          <p>{{ step.text | escape }}</p>
+          {%- endif %}
+        </li>
+        {%- endfor %}
+      </ol>
+      <div class="how__art">
+        {%- assign slab_density = "lite" -%}{%- assign slab_class = "art--steps" -%}
+        {% include 'slabs' %}
+      </div>
+    </div>
+  </div>
+</section>
+<script type="module" src="/js/art.js"></script>
+{%- endif -%}

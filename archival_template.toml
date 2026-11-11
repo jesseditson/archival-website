@@ -2,12 +2,12 @@
 name = "Tech Product"
 tagline = "A dark, one-page launch site for a startup, with glowing glass layers that move."
 description = """
-A one-page site for a tech startup or product team: AI, developer tools or software as a service. It opens on a calm, near-black screen with a large headline, two buttons, a row of key numbers and a stack of glowing glass layers drawn live in the page, with two frosted cards floating over them.
+A one-page site for a tech startup or product team: developer tools, data platforms or software as a service. It opens on a calm, near-black screen with a large headline, two buttons, a row of key numbers and a stack of glowing glass layers drawn live in the page, with two frosted cards floating over them.
 
 Below the opening it has a row of customer names, a panel of features, a "How it works" section where one glass layer lights up for each step as you scroll, a large customer quote, a short list of questions and answers, and a closing call to action. The menu scrolls to each section, and each section can be hidden on its own.
 """
 context = """
-This template is a one-page launch site for a technology product or startup: an AI tool, developer platform, data service or business software. Pick it when the person wants a modern product landing page whose main job is to get visitors to sign up, start a trial or book a demo.
+This template is a one-page launch site for a technology product or startup: a developer platform, data service, infrastructure product or business software. Pick it when the person wants a modern product landing page whose main job is to get visitors to sign up, start a trial or book a demo.
 
 THE OPENING SCREEN HAS VERY LARGE TYPE. Keep it short.
 
@@ -41,6 +41,6 @@ step: three to five steps of how the product works, in order. Each has a one- or
 
 faq: four to six questions a buyer would ask, each with a short answer in markdown.
 """
-tags = ["startup", "technology", "software", "ai", "saas", "product", "landing page", "dark"]
-tlds = ["ai", "io", "dev", "app", "tech", "com"]
+tags = ["startup", "technology", "software", "saas", "product", "landing page", "dark"]
+tlds = ["io", "dev", "app", "tech", "com"]
 keep_objects = []

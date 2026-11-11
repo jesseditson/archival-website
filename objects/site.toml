@@ -1,5 +1,5 @@
 name = "Cairn"
-tagline = "Trusted AI, built up layer by layer."
+tagline = "Models you can trace, built up layer by layer."
 description = "Cairn grounds models in verified data and checks them continuously, for model teams, public agencies and enterprise operations."
 primary_label = "Book a demo"
 primary_url = "mailto:hello@example.com"
@@ -73,3 +73,9 @@ url = "https://linkedin.com/"
 [[social]]
 platform = "x"
 url = "https://x.com/"
+
+[og_image]
+sha = "8a77fd8c14068387d7a8535d1ede1341ee04e0b02103f386eb6d5c49c9863403"
+filename = "tech-product-og.jpg"
+mime = "image/jpeg"
+display_type = "image"

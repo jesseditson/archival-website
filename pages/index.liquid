@@ -14,9 +14,4 @@
 {%- endcapture -%}
 {% layout 'theme' title: "", path: "", jsonld: jsonld %}
 
-{%- assign slab_count = 4 -%}{%- assign slab_density = "full" -%}{%- assign slab_class = "art--hero" -%}
-<div style="width: 40rem">{% include 'slabs' %}</div>
-<section class="intro">
-  <h1>{{ site.name | escape }}</h1>
-  {% if site.description != blank %}<p>{{ site.description | escape }}</p>{% endif %}
-</section>
+{% include 'hero' %}

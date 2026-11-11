@@ -1,0 +1,22 @@
+{%- comment -%}
+  Customer names along the foot of the opening screen. Each is set in one of
+  four wordmark styles, or shown as its uploaded image. When there is no
+  quote, "Customers" in the menu points here.
+{%- endcomment -%}
+{%- assign site = objects.site -%}
+{%- if site.show_logos != false and objects.logo.size > 0 -%}
+{%- assign logos_id = "" -%}
+{%- if site.show_quote == false or site.quote_text == blank -%}{%- assign logos_id = ' id="customers"' -%}{%- endif %}
+<div class="logos wrap"{{ logos_id }}>
+  {%- if site.logos_heading != blank %}
+  <p class="logos__heading" data-enter="logo">{{ site.logos_heading | escape }}</p>
+  {%- endif %}
+  <ul class="logos__list">
+    {%- for logo in objects.logo %}
+    <li class="logo logo--{{ logo.style | default: 'plain' }}" data-enter="logo">
+      {%- if logo.image != blank -%}<img src="{{ logo.image.url | escape }}" alt="{{ logo.name | escape }}" height="40">{%- else -%}{{ logo.name | escape }}{%- endif -%}
+    </li>
+    {%- endfor %}
+  </ul>
+</div>
+{%- endif -%}

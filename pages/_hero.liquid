@@ -1,0 +1,68 @@
+{%- comment -%}
+  The opening screen: headline, subline, buttons and numbers on the left; the
+  glass-layer artwork (or hero_image) with two cards over it on the right.
+  The headline's size comes from its longest line, so long lines wrap
+  instead of running off the screen.
+{%- endcomment -%}
+{%- assign site = objects.site -%}
+{%- assign longest = 6 -%}
+{%- for line in site.headline_line -%}
+  {%- assign len = line.text | strip | size -%}
+  {%- if len > longest -%}{%- assign longest = len -%}{%- endif -%}
+{%- endfor -%}
+<section class="hero" aria-labelledby="hero-title">
+  <div class="wrap hero__inner">
+    <div class="hero__copy">
+      <h1 class="headline" style="--longest: {{ longest }}" id="hero-title">
+        {%- if site.headline_line.size > 0 -%}
+          {%- for line in site.headline_line -%}{%- if line.text != blank %}
+        <span class="headline-line"><span>{{ line.text | strip | escape }}</span></span>
+          {%- endif -%}{%- endfor -%}
+        {%- else %}
+        <span class="headline-line"><span>{{ site.name | escape }}</span></span>
+        {%- endif %}
+      </h1>
+      {%- if site.subline != blank %}
+      <p class="hero__sub" data-enter="sub">{{ site.subline | escape }}</p>
+      {%- endif %}
+      {%- assign has_primary = false -%}{%- if site.primary_url != blank -%}{%- assign has_primary = true -%}{%- endif -%}
+      {%- assign has_secondary = false -%}{%- if site.secondary_url != blank and site.secondary_label != blank -%}{%- assign has_secondary = true -%}{%- endif -%}
+      {%- if has_primary or has_secondary %}
+      <div class="hero__ctas">
+        {%- if has_primary %}
+        <a class="pill pill--primary pill--lg" href="{{ site.primary_url | strip | escape }}" data-enter="cta" data-enter-primary>{% if site.primary_label != blank %}{{ site.primary_label | escape }}{% else %}Get started{% endif %}</a>
+        {%- endif -%}
+        {%- if has_secondary %}
+        <a class="pill pill--glass pill--lg" href="{{ site.secondary_url | strip | escape }}" data-enter="cta">{{ site.secondary_label | escape }}</a>
+        {%- endif %}
+      </div>
+      {%- endif %}
+      {%- if site.stat.size > 0 %}
+      <ul class="stats">
+        {%- for stat in site.stat %}
+        <li class="stat" data-enter="stat"><strong>{{ stat.value | escape }}</strong>{% if stat.label != blank %} <span>{{ stat.label | escape }}</span>{% endif %}</li>
+        {%- endfor %}
+      </ul>
+      {%- endif %}
+    </div>
+    <div class="hero__art">
+      {%- if site.hero_image != blank %}
+      <img class="hero__image" src="{{ site.hero_image.url | escape }}" alt="{{ site.hero_alt | escape }}" width="1200" height="1200">
+      {%- else -%}
+        {%- assign slab_count = 4 -%}{%- assign slab_density = "full" -%}{%- assign slab_class = "art--hero" -%}
+        {% include 'slabs' %}
+      {%- endif -%}
+      {%- for card in site.highlight limit: 2 %}
+      {%- if card.url != blank %}<a class="hero-card glass hero-card--{{ forloop.index }}" href="{{ card.url | strip | escape }}" data-enter="card">{% else %}<div class="hero-card glass hero-card--{{ forloop.index }}" data-enter="card">{% endif %}
+        <span class="hero-card__head">
+          <span class="icon-tile">{%- assign icon = card.icon -%}{% include 'icon' %}</span>
+          {%- if card.kicker != blank %}<span class="hero-card__kicker">{{ card.kicker | escape }}</span>{% endif %}
+        </span>
+        {%- if card.title != blank %}<span class="hero-card__title">{{ card.title | escape }}</span>{% endif %}
+      {% if card.url != blank %}</a>{% else %}</div>{% endif %}
+      {%- endfor %}
+    </div>
+  </div>
+  {%- comment -%} The logo row (pages/_logos.liquid) closes the opening screen. {%- endcomment -%}
+  {% include 'logos' %}
+</section>

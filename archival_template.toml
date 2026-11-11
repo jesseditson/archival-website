@@ -23,6 +23,7 @@ site:
 - highlight: exactly two items shown as cards over the artwork. Each has a kicker (one or two words, like "Benchmarking"), a title (under ten words, naming a product or capability), an icon, and an optional url. Only the first two are shown.
 - icon values for highlights and features: network, shield, layers, gauge, bolt, lock, search, chart, globe, spark, code, check.
 - hero_image and hero_alt: leave empty. The page draws its own artwork.
+- logo, quote_image, og_image and favicon: images the person uploads later. Leave them empty. Without a logo the page shows the name's first letter in a violet tile.
 - logos_heading: a short line above the customer names, like "Teams building on Cairn".
 - features_heading and features_intro: a heading (under ten words) and one sentence for the features section.
 - how_heading and how_intro: a heading and one or two sentences for the steps section.

@@ -6,14 +6,20 @@
 {%- endcomment -%}
 {%- assign site = objects.site -%}
 {%- assign longest = 6 -%}
+{%- assign longest_word = 4 -%}
 {%- for line in site.headline_line -%}
   {%- assign len = line.text | strip | size -%}
   {%- if len > longest -%}{%- assign longest = len -%}{%- endif -%}
+  {%- assign words = line.text | strip | split: " " -%}
+  {%- for word in words -%}
+    {%- assign wlen = word | size -%}
+    {%- if wlen > longest_word -%}{%- assign longest_word = wlen -%}{%- endif -%}
+  {%- endfor -%}
 {%- endfor -%}
 <section class="hero" aria-labelledby="hero-title">
   <div class="wrap hero__inner">
     <div class="hero__copy">
-      <h1 class="headline" style="--longest: {{ longest }}" id="hero-title">
+      <h1 class="headline" style="--longest: {{ longest }}; --longest-word: {{ longest_word }}" id="hero-title">
         {%- if site.headline_line.size > 0 -%}
           {%- for line in site.headline_line -%}{%- if line.text != blank %}
         <span class="headline-line"><span>{{ line.text | strip | escape }}</span></span>

@@ -787,7 +787,9 @@ main {
   margin: 0;
   font-family: var(--font-display);
   font-weight: 380;
-  font-size: clamp(2.5rem, min(calc(100cqi / (var(--longest) * 0.53)), 8.5svh), 5.25rem);
+  /* Sized so the longest line fits; never so large that the longest word
+     cannot fit on a line of its own. */
+  font-size: clamp(min(2.5rem, calc(100cqi / (var(--longest-word) * 0.6))), min(calc(100cqi / (var(--longest) * 0.53)), 8.5svh), 5.25rem);
   line-height: 1.17;
   letter-spacing: -0.03em;
 }
@@ -802,6 +804,7 @@ main {
 .headline-line > span {
   display: inline-block;
   max-width: 100%;
+  overflow-wrap: anywhere;
   background: linear-gradient(90deg, var(--ink) 55%, var(--fade));
   -webkit-background-clip: text;
   background-clip: text;
@@ -926,6 +929,7 @@ a.hero-card:hover {
 }
 
 .hero-card__title {
+  overflow-wrap: anywhere;
   font-size: 0.9375rem;
   font-weight: 480;
   line-height: 1.4;
@@ -959,6 +963,8 @@ a.hero-card:hover {
 }
 
 .logo {
+  max-width: 100%;
+  overflow-wrap: anywhere;
   color: var(--logo);
   font-family: var(--font-display);
   font-size: clamp(1.375rem, 1.1rem + 0.8vw, 1.75rem);

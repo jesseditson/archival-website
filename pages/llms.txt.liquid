@@ -42,6 +42,6 @@
 {% for faq in objects.faq %}
 ### {{ faq.question }}
 
-{{ faq.answer | strip_html | strip }}
+{{ faq.answer | strip_html | strip | replace: "&quot;", '"' | replace: "&#39;", "'" | replace: "&#x27;", "'" | replace: "&lt;", "<" | replace: "&gt;", ">" | replace: "&amp;", "&" }}
 {% endfor %}
 {%- endif %}

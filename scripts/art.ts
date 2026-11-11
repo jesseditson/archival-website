@@ -23,7 +23,9 @@ const steps = Array.from(document.querySelectorAll<HTMLElement>("[data-step]"));
 
 function setActive(n: string | null): void {
   if (!stepsArt) return;
-  stepsArt.classList.toggle("has-active", n !== null);
+  // Steps past the sixth have no layer of their own; leave the stack lit.
+  const slab = n === null ? null : stepsArt.querySelector(`[data-slab="${n}"]`);
+  stepsArt.classList.toggle("has-active", slab !== null);
   for (const slab of stepsArt.querySelectorAll<HTMLElement>("[data-slab]")) {
     slab.classList.toggle("is-active", slab.dataset.slab === n);
   }

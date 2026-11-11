@@ -27,7 +27,7 @@
         "mainEntity": [
           {%- for faq in objects.faq %}
           {%- capture ld_q %}{{ faq.question | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
-          {%- capture ld_a %}{{ faq.answer | strip_html | strip | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
+          {%- capture ld_a %}{{ faq.answer | strip_html | strip | newline_to_br | replace: "<br />", " " | replace: "<br>", " " | replace: "&quot;", '"' | replace: "&#39;", "'" | replace: "&#x27;", "'" | replace: "&lt;", "<" | replace: "&gt;", ">" | replace: "&amp;", "&" | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
           {
             "@type": "Question",
             "name": "{{ ld_q }}",

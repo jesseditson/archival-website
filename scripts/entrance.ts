@@ -5,6 +5,9 @@
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const root = document.documentElement;
+// If this module arrived after entrance-init.ts gave up waiting, the page is
+// already showing; replaying the sequence then would hide it again.
+const pending = root.classList.contains("enter-pending");
 
 const ease = "cubic-bezier(0.22, 1, 0.36, 1)";
 
@@ -23,7 +26,7 @@ const rise = (distance: string): Keyframe[] => [
   { opacity: 1, transform: "none" },
 ];
 
-if (!reduceMotion && typeof Element.prototype.animate === "function") {
+if (pending && !reduceMotion && typeof Element.prototype.animate === "function") {
   let t = 0;
 
   visible(".site-header [data-enter], .site-nav a").forEach((el, i) => {

@@ -30,6 +30,9 @@ function setActive(n: number): void {
   stepsArt.classList.toggle("has-active", slab !== null);
   for (const layer of stepsArt.querySelectorAll<HTMLElement>("[data-slab]")) {
     layer.classList.toggle("is-active", layer === slab);
+    // Layers above the active one rise with it, so the gaps above it stay
+    // even and the extra room opens beneath it.
+    layer.classList.toggle("is-above", slab !== null && Number(layer.dataset.slab) < n);
   }
   for (const step of steps) {
     const active = step.dataset.step === String(n);

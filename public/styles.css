@@ -1318,7 +1318,8 @@ a.hero-card:hover {
   filter: opacity(0.3);
 }
 
-.art--steps.has-active .slab.is-active {
+.art--steps.has-active .slab.is-active,
+.art--steps.has-active .slab.is-above {
   translate: 0 0 calc(var(--s) * 0.09);
 }
 

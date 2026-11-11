@@ -1,0 +1,100 @@
+{%- comment -%}
+  The glass-layer artwork. Assign before including:
+    slab_count:   how many layers (1 to 6)
+    slab_density: "full" or "lite" (fewer bars and pixels, no glow filters)
+    slab_class:   an extra class for the wrapper, like "art--hero"
+  Layers are numbered from the top (data-slab="1"). Their surfaces repeat
+  from the top down: a dot field with rising light bars, flowing waves,
+  pixel blocks, a violet haze. The scattered details come from a fixed
+  pseudo-random sequence, so every build draws the same picture.
+{%- endcomment -%}
+{%- assign seed = 7 -%}
+{%- if slab_density == "lite" -%}
+  {%- assign bar_total = 90 -%}{%- assign px_grid = 14 -%}{%- assign px_step = 65 -%}{%- assign px_min = 30 -%}{%- assign px_span = 25 -%}{%- assign wave_total = 20 -%}{%- assign wave_step = 47 -%}
+{%- else -%}
+  {%- assign bar_total = 190 -%}{%- assign px_grid = 22 -%}{%- assign px_step = 41 -%}{%- assign px_min = 20 -%}{%- assign px_span = 16 -%}{%- assign wave_total = 34 -%}{%- assign wave_step = 28 -%}
+{%- endif -%}
+{%- assign last_slab = slab_count | minus: 1 -%}
+<div class="art {{ slab_class }} art--{{ slab_density }}" aria-hidden="true" style="--count: {{ slab_count }}">
+  <div class="art-bloom"></div>
+  <div class="art-stack">
+  {%- for i in (0..last_slab) -%}
+    {%- assign n = slab_count | minus: i -%}
+    {%- assign kind = n | minus: 1 | modulo: 4 -%}
+    <div class="slab slab--k{{ kind }}" data-slab="{{ n }}" style="--i: {{ i }}">
+      <div class="slab-leak"></div>
+      {%- for k in (1..10) -%}<div class="slab-edge" style="--k: {{ 11 | minus: k }}"></div>{%- endfor -%}
+      <div class="slab-face">
+      {%- case kind -%}
+      {%- when 0 -%}
+        <div class="slab-dots"></div>
+      {%- when 1 -%}
+        <svg class="slab-waves" viewBox="0 0 1000 1000" preserveAspectRatio="none"><defs><linearGradient id="wave-{{ slab_class }}-{{ n }}"><stop offset="0" stop-color="rgb(80,236,220)"/><stop offset="1" stop-color="rgb(150,110,255)"/></linearGradient></defs><g>
+        {%- assign last_wave = wave_total | minus: 1 -%}
+        {%- for w in (0..last_wave) -%}
+          {%- assign yy = w | times: wave_step | plus: 30 -%}
+          {%- assign seed = seed | times: 9301 | plus: 49297 | modulo: 233280 -%}
+          {%- assign amp = seed | times: 60 | divided_by: 233280 | plus: 40 -%}
+          {%- assign seed = seed | times: 9301 | plus: 49297 | modulo: 233280 -%}
+          {%- assign op = seed | times: 50 | divided_by: 233280 | plus: 50 -%}
+          {%- assign d = "M0 " | append: yy -%}
+          {%- for x in (0..7) -%}
+            {%- assign x0 = x | times: 250 -%}
+            {%- assign cx = x0 | plus: 125 -%}
+            {%- assign ex = x0 | plus: 250 -%}
+            {%- assign up = x | modulo: 2 -%}
+            {%- if up == 1 -%}{%- assign cy = yy | plus: amp -%}{%- else -%}{%- assign cy = yy | minus: amp -%}{%- endif -%}
+            {%- assign d = d | append: " Q" | append: cx | append: " " | append: cy | append: " " | append: ex | append: " " | append: yy -%}
+          {%- endfor -%}
+          <path d="{{ d }}" stroke="url(#wave-{{ slab_class }}-{{ n }})" stroke-opacity="{% if op > 99 %}1{% else %}0.{{ op }}{% endif %}"/>
+        {%- endfor -%}
+        </g></svg>
+      {%- when 2 -%}
+        <svg class="slab-pixels" viewBox="0 0 1000 1000">
+        {%- assign last_px = px_grid | minus: 1 -%}
+        {%- assign px_diag = px_grid | times: 2 -%}
+        {%- for row in (0..last_px) -%}{%- for col in (0..last_px) -%}
+          {%- assign seed = seed | times: 9301 | plus: 49297 | modulo: 233280 -%}
+          {%- assign keep = seed | times: 100 | divided_by: 233280 -%}
+          {%- if keep >= 35 -%}
+            {%- assign t = row | plus: col -%}
+            {%- assign r = t | times: 60 | divided_by: px_diag | plus: 80 -%}
+            {%- assign g = t | times: 130 | divided_by: px_diag -%}{%- assign g = 236 | minus: g -%}
+            {%- assign b = t | times: 20 | divided_by: px_diag | plus: 220 -%}
+            {%- assign seed = seed | times: 9301 | plus: 49297 | modulo: 233280 -%}
+            {%- assign w = seed | times: px_span | divided_by: 233280 | plus: px_min -%}
+            {%- assign seed = seed | times: 9301 | plus: 49297 | modulo: 233280 -%}
+            {%- assign h = seed | times: px_span | divided_by: 233280 | plus: px_min -%}
+            {%- assign seed = seed | times: 9301 | plus: 49297 | modulo: 233280 -%}
+            {%- assign op = seed | times: 65 | divided_by: 233280 | plus: 35 -%}
+            {%- assign seed = seed | times: 9301 | plus: 49297 | modulo: 233280 -%}
+            {%- assign delay = seed | times: 3000 | divided_by: 233280 -%}
+            {%- assign dur = seed | times: 2400 | divided_by: 233280 | plus: 1600 -%}
+            <rect x="{{ col | times: px_step | plus: 50 }}" y="{{ row | times: px_step | plus: 50 }}" width="{{ w }}" height="{{ h }}" rx="6" fill="rgb({{ r }},{{ g }},{{ b }})" fill-opacity="{% if op > 99 %}1{% else %}0.{{ op }}{% endif %}" style="animation-delay:-{{ delay }}ms;animation-duration:{{ dur }}ms"/>
+          {%- endif -%}
+        {%- endfor -%}{%- endfor -%}
+        </svg>
+      {%- else -%}
+        <svg class="slab-haze" viewBox="0 0 100 100" preserveAspectRatio="none"><defs><filter id="haze-{{ slab_class }}-{{ n }}" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="9"/></filter></defs><g filter="url(#haze-{{ slab_class }}-{{ n }})"><circle cx="38" cy="42" r="30" fill="rgb(140,90,255)"/><circle cx="70" cy="66" r="24" fill="rgb(190,120,255)" fill-opacity="0.9"/><circle cx="22" cy="74" r="16" fill="rgb(80,236,220)" fill-opacity="0.6"/></g></svg>
+      {%- endcase -%}
+      </div>
+      {%- if kind == 0 -%}
+      <div class="slab-bars">
+        {%- for bar in (1..bar_total) -%}
+          {%- assign seed = seed | times: 9301 | plus: 49297 | modulo: 233280 -%}
+          {%- assign bx = seed | times: 90 | divided_by: 233280 | plus: 5 -%}
+          {%- assign seed = seed | times: 9301 | plus: 49297 | modulo: 233280 -%}
+          {%- assign by = seed | times: 90 | divided_by: 233280 | plus: 5 -%}
+          {%- assign seed = seed | times: 9301 | plus: 49297 | modulo: 233280 -%}
+          {%- assign rr = seed | times: 1000 | divided_by: 233280 -%}
+          {%- assign bh = rr | times: rr | divided_by: 5000 | plus: 14 -%}
+          {%- assign seed = seed | times: 9301 | plus: 49297 | modulo: 233280 -%}
+          {%- assign delay = seed | times: 3000 | divided_by: 233280 -%}
+          <div class="bar" style="left:{{ bx }}%;top:{{ by }}%;--h:{{ bh }};animation-delay:-{{ delay }}ms"></div>
+        {%- endfor -%}
+      </div>
+      {%- endif -%}
+    </div>
+  {%- endfor -%}
+  </div>
+</div><!-- /art -->

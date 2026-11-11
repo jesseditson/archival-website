@@ -1,0 +1,21 @@
+{%- comment -%}
+  One link per visible section. Links start with "/" so they also work from
+  the 404 page. A section shows when its show_* box is checked (or unset) and
+  it has something in it; "Customers" points at the quote, or at the logo row
+  when there is no quote.
+{%- endcomment -%}
+{%- assign site = objects.site -%}
+{%- if site.show_features != false and objects.feature.size > 0 -%}
+<a href="/#features">{% if site.nav_features != blank %}{{ site.nav_features | escape }}{% else %}Features{% endif %}</a>
+{%- endif -%}
+{%- if site.show_how != false and objects.step.size > 0 -%}
+<a href="/#how">{% if site.nav_how != blank %}{{ site.nav_how | escape }}{% else %}How it works{% endif %}</a>
+{%- endif -%}
+{%- assign has_quote = false -%}{%- if site.show_quote != false and site.quote_text != blank -%}{%- assign has_quote = true -%}{%- endif -%}
+{%- assign has_logos = false -%}{%- if site.show_logos != false and objects.logo.size > 0 -%}{%- assign has_logos = true -%}{%- endif -%}
+{%- if has_quote or has_logos -%}
+<a href="/#customers">{% if site.nav_customers != blank %}{{ site.nav_customers | escape }}{% else %}Customers{% endif %}</a>
+{%- endif -%}
+{%- if site.show_faq != false and objects.faq.size > 0 -%}
+<a href="/#faq">{% if site.nav_faq != blank %}{{ site.nav_faq | escape }}{% else %}FAQ{% endif %}</a>
+{%- endif -%}

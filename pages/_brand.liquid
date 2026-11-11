@@ -1,0 +1,10 @@
+{%- comment -%} The logo tile, name and badge, linking home. Used by the header and the footer. {%- endcomment -%}
+{%- assign site = objects.site -%}
+<a class="brand" href="/">
+  <span class="brand-tile" aria-hidden="true">
+    {%- if site.logo != blank -%}<img src="{{ site.logo.url | escape }}" alt="" width="40" height="40">
+    {%- else -%}{{ site.name | strip | slice: 0, 1 | upcase | escape }}{%- endif -%}
+  </span>
+  <span class="brand-name">{{ site.name | escape }}</span>
+  {%- if site.badge != blank -%}<sup class="brand-badge">{{ site.badge | escape }}</sup>{%- endif -%}
+</a>

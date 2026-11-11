@@ -19,18 +19,12 @@
 {%- assign og_image_url = "" -%}
 {%- if site.og_image != blank -%}
   {%- assign og_image_url = site.og_image.url -%}
+{%- elsif site.hero_image != blank -%}
+  {%- assign og_image_url = site.hero_image.url -%}
+{%- elsif site.logo != blank -%}
+  {%- assign og_image_url = site.logo.url -%}
 {%- endif -%}
-{%- assign words = site_name | split: " " -%}
-{%- assign initials = "" -%}
-{%- if words.size == 1 -%}
-  {%- assign initials = words.first | slice: 0, 2 | upcase -%}
-{%- else -%}
-  {%- for word in words limit: 2 -%}
-    {%- assign letter = word | slice: 0, 1 | upcase -%}
-    {%- assign initials = initials | append: letter -%}
-  {%- endfor -%}
-{%- endif -%}
-{%- assign initials = initials | replace: "&", "" | replace: "<", "" | replace: ">", "" | replace: "'", "" | replace: '"', "" | replace: "#", "" | replace: "%", "" -%}
+{%- assign initial = site_name | strip | slice: 0, 1 | upcase | replace: "&", "" | replace: "<", "" | replace: ">", "" | replace: "'", "" | replace: '"', "" | replace: "#", "" | replace: "%", "" -%}
 <!doctype html>
 <html lang="en">
   <head>
@@ -56,27 +50,59 @@
     <meta name="twitter:title" content="{{ page_title | escape }}">
     <meta name="twitter:description" content="{{ site.description | escape }}">
 
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#0d0c11">
+    <meta name="color-scheme" content="dark">
 
     {% if site.favicon != blank %}
     <link rel="icon" href="{{ site.favicon.url | escape }}">
     <link rel="apple-touch-icon" href="{{ site.favicon.url | escape }}">
     {% else %}
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='bold' font-size='13' fill='%23e5ff00'%3E{{ initials }}%3C/text%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234d19b1'/%3E%3Cstop offset='1' stop-color='%236f5adc'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='url(%23g)'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='bold' font-size='17' fill='%23fff'%3E{{ initial }}%3C/text%3E%3C/svg%3E">
     {% endif %}
 
+    <link rel="preload" href="/fonts/dm-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/styles.css">
     {% if jsonld %}{{ jsonld }}{% endif %}
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <div class="site-header__brand" data-enter="header">{% include 'brand' %}</div>
+        <nav class="site-nav" aria-label="Sections">{% include 'nav-links' %}</nav>
+        <div class="header-actions">{% include 'header-actions' %}</div>
+        <details class="menu">
+          <summary class="menu-button" aria-label="Menu" data-enter="header">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="menu-icon-open" d="M4 8h16M4 16h16"/><path class="menu-icon-close" d="M6 6l12 12M18 6L6 18"/></svg>
+          </summary>
+          <div class="menu-panel glass">
+            <nav aria-label="Sections">{% include 'nav-links' %}</nav>
+            <div class="menu-actions">{% include 'header-actions' %}</div>
+          </div>
+        </details>
+      </div>
+    </header>
     <main id="main">
       {{ page_content }}
     </main>
     <footer class="site-footer">
-      <p>&copy; {{ "now" | date: "%Y" }} {{ site_name | escape }}. Powered by <a href="https://archival.dev">Archival</a>.</p>
+      <div class="site-footer__inner">
+        <div class="site-footer__brand">
+          {% include 'brand' %}
+          {% if site.tagline != blank %}<p>{{ site.tagline | escape }}</p>{% endif %}
+        </div>
+        <nav class="site-footer__nav" aria-label="Footer">{% include 'nav-links' %}</nav>
+        {%- if site.social.size > 0 %}
+        <ul class="site-footer__social">
+          {%- for social in site.social %}{% if social.url != blank %}
+          <li><a href="{{ social.url | strip | escape }}" rel="me">{% case social.platform %}{% when "x" %}X{% when "github" %}GitHub{% when "linkedin" %}LinkedIn{% when "youtube" %}YouTube{% when "discord" %}Discord{% else %}Website{% endcase %}</a></li>
+          {%- endif %}{% endfor %}
+        </ul>
+        {%- endif %}
+      </div>
+      <p class="site-footer__legal">&copy; {{ "now" | date: "%Y" }} {{ site_name | escape }}. Powered by <a href="https://archival.dev">Archival</a>.</p>
     </footer>
+    <script type="module" src="/js/menu.js"></script>
   </body>
 </html>

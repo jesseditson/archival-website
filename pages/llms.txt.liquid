@@ -1,26 +1,47 @@
-{%- comment -%}
-  The editor's from-scratch flow can replace the schema, and archival fails
-  the build on any reference to a field the schema does not define, even
-  inside an `if`. Looping over the object's fields reads them safely.
-{%- endcomment -%}
+{%- comment -%} A plain-text summary of the site for AI agents and other readers, generated from the content. {%- endcomment -%}
 {%- assign site = objects.site -%}
-{%- for field in site -%}
-{%- if field.first == "name" and field.last != blank %}# {{ field.last }}
-
-{% endif -%}
-{%- if field.first == "description" and field.last != blank %}> {{ field.last }}
-
-{% endif -%}
-{%- endfor -%}
-## Pages
+# {{ site.name }}
+{% if site.description != blank %}
+> {{ site.description }}
+{% endif %}
+{%- if site.tagline != blank %}
+{{ site.tagline }}
+{% endif %}
+## Sections
 
 - [Home]({{ site_url }}/)
-{% comment %}
-  List every section page, then every kind of content, generated from the
-  objects. For a list type:
+{%- if site.show_features != false and objects.feature.size > 0 %}
+- [{% if site.nav_features != blank %}{{ site.nav_features }}{% else %}Features{% endif %}]({{ site_url }}/#features){% if site.features_intro != blank %}: {{ site.features_intro }}{% endif %}
+{%- endif %}
+{%- if site.show_how != false and objects.step.size > 0 %}
+- [{% if site.nav_how != blank %}{{ site.nav_how }}{% else %}How it works{% endif %}]({{ site_url }}/#how){% if site.how_intro != blank %}: {{ site.how_intro }}{% endif %}
+{%- endif %}
+{%- if site.show_faq != false and objects.faq.size > 0 %}
+- [{% if site.nav_faq != blank %}{{ site.nav_faq }}{% else %}FAQ{% endif %}]({{ site_url }}/#faq)
+{%- endif %}
+{%- if site.primary_url != blank %}
+- [{% if site.primary_label != blank %}{{ site.primary_label }}{% else %}Get started{% endif %}]({{ site.primary_url }})
+{%- endif %}
+{%- if site.secondary_url != blank and site.secondary_label != blank %}
+- [{{ site.secondary_label }}]({{ site.secondary_url }})
+{%- endif %}
+{% if site.show_features != false and objects.feature.size > 0 %}
+## {% if site.features_heading != blank %}{{ site.features_heading }}{% else %}Features{% endif %}
+{% for feature in objects.feature %}
+- **{{ feature.title }}**{% if feature.text != blank %}: {{ feature.text }}{% endif %}
+{%- endfor %}
+{% endif %}
+{%- if site.show_how != false and objects.step.size > 0 %}
+## {% if site.how_heading != blank %}{{ site.how_heading }}{% else %}How it works{% endif %}
+{% for step in objects.step %}
+{{ forloop.index }}. **{{ step.title }}**{% if step.text != blank %}: {{ step.text }}{% endif %}
+{%- endfor %}
+{% endif %}
+{%- if site.show_faq != false and objects.faq.size > 0 %}
+## {% if site.faq_heading != blank %}{{ site.faq_heading }}{% else %}Questions{% endif %}
+{% for faq in objects.faq %}
+### {{ faq.question }}
 
-## Posts
-
-{% for post in posts %}- [{{ post.title }}]({{ site_url }}/{{ post.path }})
+{{ faq.answer | strip_html | strip }}
 {% endfor %}
-{% endcomment %}
+{%- endif %}

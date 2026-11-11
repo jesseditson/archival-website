@@ -6,6 +6,8 @@
              item.path on a templated page. Never build it from `page`.
   and optionally:
     noindex: true on utility pages (404, thank-you, search results)
+    entrance: true on the home page, to hide the opening screen until
+             scripts/entrance.ts plays it in
     jsonld:  a captured <script type="application/ld+json"> block
 {%- endcomment -%}
 {%- assign site = objects.site -%}
@@ -63,6 +65,7 @@
     <link rel="preload" href="/fonts/dm-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/styles.css">
+    {% if entrance %}<script src="/js/entrance-init.js"></script>{% endif %}
     {% if jsonld %}{{ jsonld }}{% endif %}
   </head>
   <body>

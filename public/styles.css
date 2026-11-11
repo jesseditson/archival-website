@@ -1474,6 +1474,18 @@ a.hero-card:hover {
   max-width: 30rem;
 }
 
+/* Until scripts/entrance.ts plays the opening sequence (see entrance-init.ts). */
+.enter-pending [data-enter],
+.enter-pending .site-nav a,
+.enter-pending .headline-line > span {
+  opacity: 0;
+}
+
+#not-found .not-found-cta {
+  min-height: 3rem;
+  padding: 0 1.75rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

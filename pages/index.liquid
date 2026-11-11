@@ -1,18 +1,47 @@
 {%- assign site = objects.site -%}
 {%- capture ld_name %}{{ site.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
 {%- capture ld_desc %}{{ site.description | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
+{%- capture ld_logo %}{% if site.logo != blank %}{{ site.logo.url | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endif %}{% endcapture -%}
 {%- capture jsonld -%}
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "{{ ld_name }}"
-    {%- if site.description != blank -%}, "description": "{{ ld_desc }}"{%- endif -%}
-    {%- if site_url != blank -%}, "url": "{{ site_url }}/"{%- endif -%}
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "{{ ld_name }}",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web"
+        {%- if site.description != blank -%}, "description": "{{ ld_desc }}"{%- endif -%}
+        {%- if site_url != blank -%}, "url": "{{ site_url }}/"{%- endif -%},
+        "publisher": {
+          "@type": "Organization",
+          "name": "{{ ld_name }}"
+          {%- if ld_logo != blank -%}, "logo": "{{ ld_logo }}"{%- endif -%}
+          {%- if site_url != blank -%}, "url": "{{ site_url }}/"{%- endif %}
+        }
+      }
+      {%- if site.show_faq != false and objects.faq.size > 0 -%},
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {%- for faq in objects.faq %}
+          {%- capture ld_q %}{{ faq.question | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
+          {%- capture ld_a %}{{ faq.answer | strip_html | strip | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture %}
+          {
+            "@type": "Question",
+            "name": "{{ ld_q }}",
+            "acceptedAnswer": { "@type": "Answer", "text": "{{ ld_a }}" }
+          }{% unless forloop.last %},{% endunless %}
+          {%- endfor %}
+        ]
+      }
+      {%- endif %}
+    ]
   }
 </script>
 {%- endcapture -%}
-{% layout 'theme' title: "", path: "", jsonld: jsonld %}
+{% layout 'theme' title: "", path: "", jsonld: jsonld, entrance: true %}
 
 {% include 'hero' %}
 {% include 'features' %}
@@ -20,3 +49,4 @@
 {% include 'quote' %}
 {% include 'faq' %}
 {% include 'closing' %}
+<script type="module" src="/js/entrance.js"></script>

@@ -1,0 +1,22 @@
+{%- comment -%} Questions and answers. Each opens on its own, without script. {%- endcomment -%}
+{%- assign site = objects.site -%}
+{%- if site.show_faq != false and objects.faq.size > 0 %}
+<section class="section faq" id="faq" aria-labelledby="faq-title">
+  <div class="wrap faq__inner">
+    <div class="section-head">
+      <h2 id="faq-title">{% if site.faq_heading != blank %}{{ site.faq_heading | escape }}{% else %}Questions{% endif %}</h2>
+    </div>
+    <div class="faq__list">
+      {%- for faq in objects.faq %}
+      <details class="faq-item">
+        <summary>
+          <span>{{ faq.question | escape }}</span>
+          <svg class="faq-toggle" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg>
+        </summary>
+        <div class="faq-answer markdown">{{ faq.answer }}</div>
+      </details>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+{%- endif -%}

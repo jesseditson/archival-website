@@ -1,0 +1,25 @@
+{%- comment -%} The features panel: one glass frame, divided into cells by hairlines. {%- endcomment -%}
+{%- assign site = objects.site -%}
+{%- if site.show_features != false and objects.feature.size > 0 %}
+<section class="section features" id="features" aria-labelledby="features-title">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="features-title">{% if site.features_heading != blank %}{{ site.features_heading | escape }}{% else %}Features{% endif %}</h2>
+      {%- if site.features_intro != blank %}
+      <p>{{ site.features_intro | escape }}</p>
+      {%- endif %}
+    </div>
+    <ul class="features__grid glass">
+      {%- for feature in objects.feature %}
+      <li class="feature">
+        <span class="icon-tile">{%- assign icon = feature.icon -%}{% include 'icon' %}</span>
+        <h3>{{ feature.title | escape }}</h3>
+        {%- if feature.text != blank %}
+        <p>{{ feature.text | escape }}</p>
+        {%- endif %}
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+{%- endif -%}

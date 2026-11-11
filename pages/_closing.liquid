@@ -1,0 +1,22 @@
+{%- comment -%} The last call to action: a heading, a line, and the hero's two buttons. {%- endcomment -%}
+{%- assign site = objects.site -%}
+{%- if site.closing_heading != blank or site.primary_url != blank %}
+<section class="section closing" aria-labelledby="closing-title">
+  <div class="wrap">
+    <div class="closing__panel glass">
+      <h2 id="closing-title">{% if site.closing_heading != blank %}{{ site.closing_heading | escape }}{% else %}Get started with {{ site.name | escape }}{% endif %}</h2>
+      {%- if site.closing_text != blank %}
+      <p>{{ site.closing_text | escape }}</p>
+      {%- endif %}
+      <div class="closing__ctas">
+        {%- if site.primary_url != blank %}
+        <a class="pill pill--primary pill--lg" href="{{ site.primary_url | strip | escape }}">{% if site.primary_label != blank %}{{ site.primary_label | escape }}{% else %}Get started{% endif %}</a>
+        {%- endif -%}
+        {%- if site.secondary_url != blank and site.secondary_label != blank %}
+        <a class="pill pill--glass pill--lg" href="{{ site.secondary_url | strip | escape }}">{{ site.secondary_label | escape }}</a>
+        {%- endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{%- endif -%}

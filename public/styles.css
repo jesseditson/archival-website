@@ -1055,6 +1055,247 @@ a.hero-card:hover {
   }
 }
 
+/* -------------------------------------------------------------------------
+   Features: one glass panel, cells divided by hairlines
+   ------------------------------------------------------------------------- */
+
+.features__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  background:
+    radial-gradient(60% 80% at 0% 0%, rgba(var(--art-teal), 0.07), transparent 70%),
+    radial-gradient(60% 80% at 100% 100%, rgba(var(--art-violet), 0.09), transparent 70%),
+    var(--glass-fill);
+}
+
+/* Each cell draws its right and bottom hairline; the panel clips the outer ones. */
+.feature {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  box-shadow: 0.0625rem 0 0 var(--hairline-soft), 0 0.0625rem 0 var(--hairline-soft);
+}
+
+.feature .icon-tile {
+  margin-bottom: 0.75rem;
+}
+
+.feature h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 460;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.feature p {
+  margin: 0;
+  color: var(--nav);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+/* -------------------------------------------------------------------------
+   Quote
+   ------------------------------------------------------------------------- */
+
+.quote {
+  position: relative;
+}
+
+.quote::before {
+  content: "";
+  position: absolute;
+  inset: 10% 15%;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(var(--art-violet), 0.16), transparent);
+  filter: blur(2rem);
+}
+
+.quote__figure {
+  max-width: 56rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.quote blockquote {
+  margin: 0;
+}
+
+.quote blockquote p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 340;
+  font-size: clamp(1.625rem, 1.1rem + 2vw, 2.75rem);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  background: linear-gradient(180deg, var(--ink) 30%, var(--fade));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.quote blockquote p::before {
+  content: "\201C";
+}
+
+.quote blockquote p::after {
+  content: "\201D";
+}
+
+.quote figcaption {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2.25rem;
+  text-align: left;
+}
+
+.quote figcaption img {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 0.0625rem solid var(--hairline);
+}
+
+.quote figcaption strong {
+  display: block;
+  font-weight: 520;
+}
+
+.quote figcaption span span {
+  display: block;
+  color: var(--nav);
+  font-size: 0.9375rem;
+}
+
+/* -------------------------------------------------------------------------
+   FAQ
+   ------------------------------------------------------------------------- */
+
+.faq__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 2rem clamp(2rem, 6vw, 6rem);
+  align-items: start;
+}
+
+.faq .section-head {
+  position: sticky;
+  top: calc(var(--header-h) + 2rem);
+  margin-bottom: 0;
+}
+
+.faq__list {
+  border-top: 0.0625rem solid var(--hairline-soft);
+}
+
+.faq-item {
+  border-bottom: 0.0625rem solid var(--hairline-soft);
+}
+
+.faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.375rem 0;
+  list-style: none;
+  cursor: pointer;
+  font-size: 1.125rem;
+  font-weight: 460;
+  line-height: 1.4;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary:hover {
+  color: var(--kicker);
+}
+
+.faq-toggle {
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: none;
+  stroke: var(--badge);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  transition: transform 0.3s var(--ease-out);
+}
+
+.faq-item[open] .faq-toggle {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  padding: 0 2.75rem 1.5rem 0;
+}
+
+/* -------------------------------------------------------------------------
+   Closing call to action
+   ------------------------------------------------------------------------- */
+
+.closing__panel {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 4rem);
+  border-radius: 2rem;
+  text-align: center;
+  background:
+    radial-gradient(70% 90% at 50% 120%, rgba(111, 90, 220, 0.38), transparent 70%),
+    radial-gradient(40% 60% at 15% -10%, rgba(var(--art-teal), 0.12), transparent 70%),
+    var(--glass-fill);
+}
+
+.closing__panel h2 {
+  max-width: 40rem;
+  margin: 0 auto;
+  font-family: var(--font-display);
+  font-weight: 380;
+  font-size: clamp(2rem, 1.3rem + 3vw, 3.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.closing__panel p {
+  max-width: 34rem;
+  margin: 1.25rem auto 0;
+  color: var(--nav);
+  font-size: 1.125rem;
+}
+
+.closing__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2.25rem;
+}
+
+@media (max-width: 56rem) {
+  .faq__inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .faq .section-head {
+    position: static;
+  }
+}
+
 /* == End sections == */
 
 /* -------------------------------------------------------------------------

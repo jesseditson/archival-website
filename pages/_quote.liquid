@@ -1,0 +1,24 @@
+{%- comment -%} One large customer quote. "Customers" in the menu points here. {%- endcomment -%}
+{%- assign site = objects.site -%}
+{%- if site.show_quote != false and site.quote_text != blank %}
+<section class="section quote" id="customers" aria-label="What customers say">
+  <div class="wrap">
+    <figure class="quote__figure">
+      <blockquote>
+        <p>{{ site.quote_text | escape }}</p>
+      </blockquote>
+      {%- if site.quote_name != blank or site.quote_image != blank %}
+      <figcaption>
+        {%- if site.quote_image != blank %}
+        <img src="{{ site.quote_image.url | escape }}" alt="" width="56" height="56">
+        {%- endif %}
+        <span>
+          {%- if site.quote_name != blank %}<strong>{{ site.quote_name | escape }}</strong>{% endif %}
+          {%- if site.quote_role != blank %}<span>{{ site.quote_role | escape }}</span>{% endif %}
+        </span>
+      </figcaption>
+      {%- endif %}
+    </figure>
+  </div>
+</section>
+{%- endif -%}

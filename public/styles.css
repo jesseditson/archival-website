@@ -890,6 +890,7 @@ main {
   width: min(17.5rem, 62%);
   padding: 1rem 1.125rem 1.125rem;
   border-radius: 1.125rem;
+  background-color: rgba(18, 16, 26, 0.42);
   color: var(--ink);
   text-decoration: none;
 }
@@ -1030,18 +1031,24 @@ a.hero-card:hover {
     margin-top: 1rem;
   }
 
+  /* In the flow on small screens, so long titles can never collide: the
+     first card rises over the art's lower edge, the second steps right. */
   .hero-card {
-    width: min(16rem, 68%);
+    position: relative;
+    width: min(17rem, 82%);
     text-align: left;
   }
 
   .hero-card--1 {
-    top: 2%;
-    left: 0;
+    top: auto;
+    left: auto;
+    margin-top: -14%;
   }
 
   .hero-card--2 {
-    bottom: 4%;
+    right: auto;
+    bottom: auto;
+    margin: 0.75rem 0 0 auto;
   }
 }
 

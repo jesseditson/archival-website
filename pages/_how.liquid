@@ -1,8 +1,9 @@
 {%- comment -%}
   The steps, in order, beside a smaller stack with one glass layer per step
-  (up to six). On wide screens the stack stays in view and the layer for the
-  step being read lifts and brightens (scripts/art.ts); otherwise every layer
-  stays lit.
+  (up to six). scripts/art.ts plays through the steps on a loop while the
+  section is on screen: the current step opens and its layer lifts.
+  Choosing a step moves the loop there. Without script, or for visitors who
+  ask for less motion, every step stays open and every layer lit.
 {%- endcomment -%}
 {%- assign site = objects.site -%}
 {%- if site.show_how != false and objects.step.size > 0 %}
@@ -21,10 +22,11 @@
         {%- for step in objects.step %}
         <li class="how-step" data-step="{{ forloop.index }}">
           <span class="how-step__number" aria-hidden="true">{{ forloop.index }}</span>
-          <h3>{{ step.title | escape }}</h3>
+          <h3><button class="how-step__button" type="button" aria-controls="how-step-text-{{ forloop.index }}">{{ step.title | escape }}</button></h3>
           {%- if step.text != blank %}
-          <p>{{ step.text | escape }}</p>
+          <div class="how-step__body" id="how-step-text-{{ forloop.index }}"><p>{{ step.text | escape }}</p></div>
           {%- endif %}
+          <span class="how-step__progress" aria-hidden="true"></span>
         </li>
         {%- endfor %}
       </ol>

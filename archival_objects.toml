@@ -5,8 +5,6 @@
 # The product. The layout reads it on every page.
 [site]
 name = "string"
-# A short tag set small and raised after the name, like "AI". Optional.
-badge = "string"
 # One line about the product, used in the footer and for search engines.
 tagline = "string"
 description = "string"
@@ -20,9 +18,6 @@ secondary_label = "string"
 secondary_url = "string"
 # The outlined button at the top right; it links to primary_url.
 header_cta_label = "string"
-# An optional text link before it, such as "Log in".
-login_label = "string"
-login_url = "string"
 # The line under the headline.
 subline = "string"
 # Optional: an image shown in place of the glass-layer artwork in the hero.

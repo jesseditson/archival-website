@@ -1,9 +1,11 @@
 // Two jobs for the glass-layer artwork:
 // 1. Pause every copy's loops while it is off screen.
-// 2. In "How it works", lift the layer that matches the step being read.
-//    Only on wide screens, where the stack stays in view beside the steps,
-//    and never when the visitor asks for less motion. Otherwise every layer
-//    stays lit, which is also what visitors without script see.
+// 2. Play "How it works" as a loop: the current step opens and its layer
+//    lifts, and a thin bar under the step fills while it is shown. When the
+//    bar is full the next step takes over. Choosing a step moves the loop
+//    there. The loop holds while the section is off screen or while the
+//    visitor points at or tabs into it. Visitors who ask for less motion
+//    get no automatic advance, but can still choose a step.
 
 const arts = document.querySelectorAll<HTMLElement>(".art");
 
@@ -16,42 +18,73 @@ if ("IntersectionObserver" in window) {
   arts.forEach((art) => visibility.observe(art));
 }
 
-const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-const wide = window.matchMedia("(min-width: 56.0625rem)");
-const stepsArt = document.querySelector<HTMLElement>(".art--steps");
-const steps = Array.from(document.querySelectorAll<HTMLElement>("[data-step]"));
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const section = document.querySelector<HTMLElement>(".how");
+const stepsArt = section?.querySelector<HTMLElement>(".art--steps") ?? null;
+const steps = section ? Array.from(section.querySelectorAll<HTMLElement>("[data-step]")) : [];
 
-function setActive(n: string | null): void {
-  if (!stepsArt) return;
+function setActive(n: number): void {
+  if (!section || !stepsArt) return;
   // Steps past the sixth have no layer of their own; leave the stack lit.
-  const slab = n === null ? null : stepsArt.querySelector(`[data-slab="${n}"]`);
+  const slab = stepsArt.querySelector(`[data-slab="${n}"]`);
   stepsArt.classList.toggle("has-active", slab !== null);
-  for (const slab of stepsArt.querySelectorAll<HTMLElement>("[data-slab]")) {
-    slab.classList.toggle("is-active", slab.dataset.slab === n);
+  for (const layer of stepsArt.querySelectorAll<HTMLElement>("[data-slab]")) {
+    layer.classList.toggle("is-active", layer === slab);
   }
   for (const step of steps) {
-    step.classList.toggle("is-active", step.dataset.step === n);
+    const active = step.dataset.step === String(n);
+    // Take the class off first so the progress bar starts over.
+    step.classList.remove("is-active");
+    if (active) {
+      void step.offsetWidth;
+      step.classList.add("is-active");
+    }
+    step.querySelector("button")?.setAttribute("aria-expanded", String(active));
   }
 }
 
-if (stepsArt && steps.length > 0 && "IntersectionObserver" in window) {
-  let current: string | null = null;
+if (section && stepsArt && steps.length > 0) {
+  let current = 1;
+  section.classList.add("is-looping");
+  if (!reduceMotion) section.classList.add("is-auto");
+  setActive(current);
 
-  const reading = new IntersectionObserver(
-    (entries) => {
-      for (const entry of entries) {
-        if (entry.isIntersecting && entry.target instanceof HTMLElement) {
-          current = entry.target.dataset.step ?? null;
-        }
-      }
-      if (wide.matches && !reduceMotion.matches) setActive(current);
-    },
-    // A step counts as being read while it crosses the middle of the screen.
-    { rootMargin: "-45% 0px -45% 0px" },
-  );
-  steps.forEach((step) => reading.observe(step));
+  for (const step of steps) {
+    step.querySelector("button")?.addEventListener("click", () => {
+      current = Number(step.dataset.step);
+      setActive(current);
+    });
 
-  const update = (): void => setActive(wide.matches && !reduceMotion.matches ? current : null);
-  wide.addEventListener("change", update);
-  reduceMotion.addEventListener("change", update);
+    // The bar's fill animation is the timer, so holding the animation holds the loop.
+    if (!reduceMotion) {
+      step.querySelector<HTMLElement>(".how-step__progress")?.addEventListener("animationend", (event) => {
+        // The fill (::after) ends at the same moment; only the timer counts.
+        if (event.pseudoElement !== "" || !step.classList.contains("is-active")) return;
+        current = (current % steps.length) + 1;
+        setActive(current);
+      });
+    }
+  }
+
+  const holds = new Set<string>();
+  const hold = (reason: string, on: boolean): void => {
+    if (on) holds.add(reason);
+    else holds.delete(reason);
+    section.classList.toggle("is-holding", holds.size > 0);
+  };
+
+  const inner = section.querySelector<HTMLElement>(".how__inner");
+  inner?.addEventListener("pointerenter", () => hold("pointer", true));
+  inner?.addEventListener("pointerleave", () => hold("pointer", false));
+  inner?.addEventListener("focusin", () => hold("focus", true));
+  inner?.addEventListener("focusout", (event) => {
+    if (!(event.relatedTarget instanceof Node && inner.contains(event.relatedTarget))) hold("focus", false);
+  });
+
+  if ("IntersectionObserver" in window) {
+    hold("offscreen", true);
+    new IntersectionObserver((entries) => {
+      for (const entry of entries) hold("offscreen", !entry.isIntersecting);
+    }, { threshold: 0.35 }).observe(section);
+  }
 }

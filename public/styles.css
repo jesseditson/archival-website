@@ -339,23 +339,13 @@ main {
   line-height: 1;
 }
 
-.brand-badge {
-  margin-left: -0.875rem;
-  transform: translateY(-0.75rem);
-  color: var(--badge);
-  font-size: 0.6875rem;
-  font-weight: 560;
-  letter-spacing: 0.02em;
-  line-height: 1;
-}
 
 .site-nav {
   display: flex;
   gap: 2.25rem;
 }
 
-.site-nav a,
-.header-login {
+.site-nav a {
   color: var(--nav);
   font-size: 0.9375rem;
   text-decoration: none;
@@ -363,8 +353,7 @@ main {
   transition: color 0.2s ease;
 }
 
-.site-nav a:hover,
-.header-login:hover {
+.site-nav a:hover {
   color: var(--ink);
 }
 
@@ -899,8 +888,8 @@ main {
 }
 
 .hero-card--1 {
-  top: 12%;
-  left: -2%;
+  top: 6%;
+  left: 9%;
 }
 
 .hero-card--2 {
@@ -1116,14 +1105,20 @@ a.hero-card:hover {
 }
 
 /* -------------------------------------------------------------------------
-   How it works: the steps beside a stack with one layer per step
+   How it works: the steps beside a stack with one layer per step. With
+   script the steps play as a loop (scripts/art.ts): only the current step
+   is open, a bar fills under it, and its layer lifts.
    ------------------------------------------------------------------------- */
+
+.how {
+  --step-time: 5s;
+}
 
 .how__inner {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: clamp(2rem, 6vw, 6rem);
-  align-items: start;
+  align-items: center;
 }
 
 .how__steps {
@@ -1149,7 +1144,7 @@ a.hero-card:hover {
   display: grid;
   grid-template-columns: 2.5rem minmax(0, 1fr);
   column-gap: 1.5rem;
-  padding: 0 0 clamp(2.5rem, 12vh, 7rem);
+  padding-bottom: 1.75rem;
   transition: opacity 0.5s ease;
 }
 
@@ -1158,7 +1153,7 @@ a.hero-card:hover {
 }
 
 .how-step__number {
-  grid-row: span 2;
+  grid-row: span 3;
   display: grid;
   place-items: center;
   width: 2.5rem;
@@ -1174,7 +1169,7 @@ a.hero-card:hover {
 }
 
 .how-step h3 {
-  margin: 0.375rem 0 0;
+  margin: 0;
   font-family: var(--font-display);
   font-size: clamp(1.375rem, 1.1rem + 0.8vw, 1.75rem);
   font-weight: 400;
@@ -1182,22 +1177,119 @@ a.hero-card:hover {
   letter-spacing: -0.015em;
 }
 
-.how-step p {
+.how-step__button {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: left;
+  cursor: default;
+}
+
+.how-step__body p {
   max-width: 30rem;
-  margin: 0.625rem 0 0;
+  margin: 0.375rem 0 0;
   color: var(--nav);
   line-height: 1.6;
 }
 
+.how-step__progress {
+  display: none;
+}
+
 .how__art {
-  position: sticky;
-  top: calc(var(--header-h) + 2rem);
   width: 100%;
   max-width: min(36rem, 70svh);
   justify-self: center;
 }
 
-/* While a step is being read, its layer lifts and the others dim. */
+/* The loop, once art.ts has taken over. */
+.how.is-looping .how-step__button {
+  cursor: pointer;
+}
+
+.how.is-looping .how-step__button:hover {
+  color: var(--kicker);
+}
+
+.how.is-looping .how-step:not(.is-active) {
+  opacity: 0.5;
+}
+
+.how.is-looping .how-step:not(.is-active):hover {
+  opacity: 0.85;
+}
+
+.how.is-looping .how-step__body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s var(--ease-out);
+}
+
+.how.is-looping .how-step__body > p {
+  overflow: hidden;
+}
+
+.how.is-looping .how-step.is-active .how-step__body {
+  grid-template-rows: 1fr;
+}
+
+.how.is-looping .how-step.is-active .how-step__number {
+  background: rgba(var(--art-teal), 0.16);
+  color: var(--ink);
+  box-shadow: 0 0 1.5rem rgba(var(--art-teal), 0.4);
+}
+
+.how.is-auto .how-step__progress {
+  display: block;
+  grid-column: 2;
+  height: 0.125rem;
+  margin-top: 0.875rem;
+  max-width: 30rem;
+  border-radius: 999rem;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.how.is-auto .how-step__progress::after {
+  content: "";
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(var(--art-teal), 0.9), rgba(var(--art-violet), 0.9));
+  transform-origin: left center;
+  transform: scaleX(0);
+}
+
+.how.is-auto .how-step.is-active .how-step__progress {
+  visibility: visible;
+  animation: how-progress var(--step-time) linear forwards;
+}
+
+.how.is-auto .how-step.is-active .how-step__progress::after {
+  animation: how-progress-fill var(--step-time) linear forwards;
+}
+
+.how.is-holding .how-step__progress,
+.how.is-holding .how-step__progress::after {
+  animation-play-state: paused !important;
+}
+
+/* The bar's own animation does nothing visible; it is the timer that
+   art.ts listens to, so pausing it pauses the loop. */
+@keyframes how-progress {
+  to { opacity: 1; }
+}
+
+@keyframes how-progress-fill {
+  to { transform: scaleX(1); }
+}
+
+/* The current step's layer lifts and the others dim. */
 .art--steps .slab {
   translate: 0 0 0;
   transition: translate 0.7s var(--ease-out), opacity 0.6s ease;
@@ -1220,29 +1312,14 @@ a.hero-card:hover {
     0 0 2.5rem rgba(var(--art-teal), 0.7);
 }
 
-.how__steps:has(.is-active) .how-step:not(.is-active) {
-  opacity: 0.45;
-}
-
-.how-step.is-active .how-step__number {
-  background: rgba(var(--art-teal), 0.16);
-  color: var(--ink);
-  box-shadow: 0 0 1.5rem rgba(var(--art-teal), 0.4);
-}
-
 @media (max-width: 56rem) {
   .how__inner {
     grid-template-columns: minmax(0, 1fr);
   }
 
   .how__art {
-    position: static;
     order: -1;
     max-width: 26rem;
-  }
-
-  .how-step {
-    padding-bottom: 2.25rem;
   }
 }
 

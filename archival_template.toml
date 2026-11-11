@@ -13,14 +13,12 @@ THE OPENING SCREEN HAS VERY LARGE TYPE. Keep it short.
 
 site:
 - name: the product or company name, short.
-- badge: an optional tag of one to three characters shown raised after the name, like "AI" or "OS". Leave it empty if nothing fits.
 - tagline: one short sentence about the product, used in the footer and in search results.
 - description: one or two sentences for search engines and link previews.
 - headline_line: the main headline, written as two or three separate items, one per line. Each line is two to four words. Together they read as one short phrase, ending with a period. No exclamation marks.
 - subline: one or two sentences under the headline saying what the product does and for whom.
 - primary_label and primary_url: the main button, such as "Book a demo" with a mailto: link or a sign-up page. secondary_label and secondary_url: an optional second button such as "Start free"; leave both empty if there is no second action.
 - header_cta_label: a short label for the button at the top right, usually the same as primary_label.
-- login_label and login_url: an optional text link such as "Log in"; leave both empty if the product has no sign-in.
 - stat: two to four key numbers, each a short value ("600+", "99.95%", "2.4B") and a one- or two-word label. Only use numbers the person has given you; otherwise leave the list empty.
 - highlight: exactly two items shown as cards over the artwork. Each has a kicker (one or two words, like "Benchmarking"), a title (under ten words, naming a product or capability), an icon, and an optional url. Only the first two are shown.
 - icon values for highlights and features: network, shield, layers, gauge, bolt, lock, search, chart, globe, spark, code, check.

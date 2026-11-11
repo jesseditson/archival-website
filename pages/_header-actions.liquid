@@ -1,8 +1,5 @@
-{%- comment -%} The optional sign-in link and the outlined button, for the header and the small-screen menu. {%- endcomment -%}
+{%- comment -%} The outlined button, for the header and the small-screen menu. {%- endcomment -%}
 {%- assign site = objects.site -%}
-{%- if site.login_label != blank and site.login_url != blank -%}
-<a class="header-login" href="{{ site.login_url | strip | escape }}" data-enter="header">{{ site.login_label | escape }}</a>
-{%- endif -%}
 {%- if site.primary_url != blank -%}
 {%- if site.header_cta_label != blank -%}{%- assign cta_label = site.header_cta_label -%}{%- elsif site.primary_label != blank -%}{%- assign cta_label = site.primary_label -%}{%- else -%}{%- assign cta_label = "Get started" -%}{%- endif -%}
 <a class="pill pill--outline" href="{{ site.primary_url | strip | escape }}" data-enter="header">{{ cta_label | escape }}</a>

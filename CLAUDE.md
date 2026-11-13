@@ -228,7 +228,9 @@ transition to full brightness.
 
 ### 404 page
 
-Same shape across the campaign:
+The starter's `pages/404.liquid` is plain HTML with inline styles and no
+Liquid, so it builds under whatever layout and schema replace the starter's.
+A template replaces it with the same shape across the campaign:
 
 ```liquid
 {% layout 'theme' title: 'Page Not Found' %}
@@ -459,8 +461,8 @@ at all fails the build on *any* reference, including inside an `if`
 This matters most on `templates/new`: the editor's from-scratch flow starts
 from it, replaces the schema and rewrites the layout and home page, but
 keeps the other starter pages. Any page it keeps (`llms.txt`, `sitemap.xml`,
-`robots.txt`, `404`) must not name a schema field directly. Read optional
-fields by looping over the object instead:
+`robots.txt`) must not name a schema field directly, and `404` stays free of
+Liquid altogether. Read optional fields by looping over the object instead:
 
 ```liquid
 {% for field in objects.site %}{% if field.first == "description" %}{{ field.last }}{% endif %}{% endfor %}

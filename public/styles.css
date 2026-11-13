@@ -143,58 +143,6 @@ main {
   color: var(--color-accent);
 }
 
-/* 404: scoped under #not-found so generic rules can't override it */
-#not-found {
-  padding: 4rem 0;
-  text-align: center;
-}
-
-#not-found .not-found-eyebrow {
-  margin: 0;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-}
-
-#not-found .not-found-code {
-  margin: 0.5rem 0;
-  font-size: clamp(5rem, 18vw, 10rem);
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -0.04em;
-}
-
-#not-found .not-found-title {
-  margin: 0 0 1rem;
-  font-size: 1.75rem;
-  font-style: italic;
-  font-weight: 500;
-}
-
-#not-found .not-found-description {
-  max-width: 28rem;
-  margin: 0 auto 2rem;
-  color: var(--color-text-muted);
-}
-
-#not-found .not-found-cta {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  border: 0.125rem solid currentColor;
-  border-radius: 999rem;
-  color: var(--color-text);
-  font-weight: 600;
-  text-decoration: none;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-#not-found .not-found-cta:hover {
-  background: var(--color-text);
-  color: var(--color-background);
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

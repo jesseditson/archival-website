@@ -1,2 +1,37 @@
-name = "Archival Website"
-description = "A new site built with Archival."
+name = "Understory"
+description = "Slow stories about gardens, woods, and the people who tend them."
+accent_color = "#c8315f"
+color_scheme = "auto"
+heading_font = "sans"
+body_font = "serif"
+latest_heading = "Latest stories"
+read_more_heading = "Keep reading"
+show_subscribe = true
+subscribe_heading = "Get new stories by email"
+subscribe_text = "One letter every other Sunday. No ads, and you can leave whenever you like."
+subscribe_label = "Subscribe"
+subscribe_url = "https://buttondown.com"
+
+[[nav]]
+label = "Home"
+url = "/"
+
+[[nav]]
+label = "Field notes"
+url = "/tag/field-notes"
+
+[[nav]]
+label = "Growing"
+url = "/tag/growing"
+
+[[nav]]
+label = "About"
+url = "/author/maren-holt"
+
+[[social]]
+label = "Instagram"
+url = "https://instagram.com"
+
+[[social]]
+label = "RSS"
+url = "/feed.xml"

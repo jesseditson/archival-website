@@ -1,0 +1,118 @@
+{%- assign site = objects.site -%}
+{%- assign p = post -%}
+{%- include 'author_lookup' -%}
+{%- capture ld_title %}{{ post.title | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
+{%- capture ld_desc %}{{ post.excerpt | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
+{%- capture ld_author %}{{ post.author | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
+{%- capture ld_site %}{{ site.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
+{%- assign share_image = "" -%}
+{%- if post.feature_image != blank -%}{%- assign share_image = post.feature_image.url -%}{%- endif -%}
+{%- capture ld_image %}{{ share_image | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
+{%- capture jsonld -%}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "{{ ld_title }}",
+    "datePublished": "{{ post.date | date: '%Y-%m-%d' }}",
+    "url": "{{ site_url }}/{{ post.path }}",
+    "publisher": { "@type": "Organization", "name": "{{ ld_site }}" }
+    {%- if post.excerpt != blank -%}, "description": "{{ ld_desc }}"{%- endif -%}
+    {%- if post.author != blank -%}, "author": { "@type": "Person", "name": "{{ ld_author }}"{%- if found_author != blank and site_url != blank -%}, "url": "{{ site_url }}/{{ found_author.path }}"{%- endif -%} }{%- endif -%}
+    {%- if share_image != blank -%}, "image": "{{ ld_image }}"{%- endif -%}
+    {%- if post.tag.size > 0 -%}, "keywords": [{%- for t in post.tag -%}{%- capture ld_tag %}{{ t.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}"{{ ld_tag }}"{%- unless forloop.last -%}, {% endunless -%}{%- endfor -%}]{%- endif -%}
+  }
+</script>
+{%- endcapture -%}
+{% layout 'theme' title: post.title, path: post.path, description: post.excerpt, og_type: "article", image: share_image, jsonld: jsonld %}
+
+<article class="article">
+  <header class="article-header">
+    {% include 'primary_tag', p: post %}
+    {%- include 'longest', text: post.title -%}
+    <h1 class="article-title" style="--longest: {{ longest }}">{{ post.title | escape }}</h1>
+    {% if post.excerpt != blank %}<p class="article-excerpt">{{ post.excerpt | escape }}</p>{% endif %}
+    {% include 'byline', p: post %}
+  </header>
+
+  {% if post.feature_image != blank %}
+  <figure class="article-image">
+    <img src="{{ post.feature_image.url | escape }}" alt="{{ post.feature_image_alt | escape }}">
+    {% if post.feature_image_caption != blank %}<figcaption>{{ post.feature_image_caption | escape }}</figcaption>{% endif %}
+  </figure>
+  {% endif %}
+
+  <div class="article-body markdown">{{ post.content }}</div>
+
+  {% if post.tag.size > 1 %}
+  <ul class="article-tags" aria-label="Tags">
+    {% for t in post.tag %}
+      {%- assign t_key = t.name | downcase | strip -%}
+      {%- assign t_href = "" -%}
+      {%- for tag_obj in objects.tag -%}{%- assign o_key = tag_obj.name | downcase | strip -%}{%- if o_key == t_key -%}{%- assign t_href = tag_obj.path -%}{%- endif -%}{%- endfor -%}
+      <li>{% if t_href != blank %}<a href="/{{ t_href }}">{{ t.name | escape }}</a>{% else %}<span>{{ t.name | escape }}</span>{% endif %}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  {% if found_author != blank %}
+  <aside class="author-card" aria-label="About the author">
+    {% include 'avatar', who: found_author, name: found_author.name, size: "large" %}
+    <div class="author-card-text">
+      <p class="author-card-name"><a href="/{{ found_author.path }}">{{ found_author.name | escape }}</a></p>
+      {% if found_author.role != blank %}<p class="author-card-role">{{ found_author.role | escape }}</p>{% endif %}
+    </div>
+  </aside>
+  {% endif %}
+</article>
+
+{% include 'subscribe' %}
+
+{%- comment -%} Up to three other posts: those sharing this post's first tag, newest first, then the newest of the rest. {%- endcomment -%}
+{%- assign sorted = objects.post | sort: "date" | reverse -%}
+{%- assign own_key = "|" | append: post.path | append: "|" -%}
+{%- assign picked = own_key -%}
+{%- assign picked_count = 0 -%}
+{%- assign primary_key = "" -%}
+{%- if post.tag.size > 0 -%}{%- assign primary_key = post.tag.first.name | downcase | strip -%}{%- endif -%}
+{%- if primary_key != blank -%}
+  {%- for other in sorted -%}
+    {%- assign o_path = "|" | append: other.path | append: "|" -%}
+    {%- if picked_count < 3 -%}{%- unless picked contains o_path -%}
+      {%- for t in other.tag -%}
+        {%- assign t_key = t.name | downcase | strip -%}
+        {%- if t_key == primary_key -%}{%- unless picked contains o_path -%}
+          {%- assign picked = picked | append: other.path | append: "|" -%}
+          {%- assign picked_count = picked_count | plus: 1 -%}
+        {%- endunless -%}{%- endif -%}
+      {%- endfor -%}
+    {%- endunless -%}{%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+{%- for other in sorted -%}
+  {%- assign o_path = "|" | append: other.path | append: "|" -%}
+  {%- if picked_count < 3 -%}{%- unless picked contains o_path -%}
+    {%- assign picked = picked | append: other.path | append: "|" -%}
+    {%- assign picked_count = picked_count | plus: 1 -%}
+  {%- endunless -%}{%- endif -%}
+{%- endfor -%}
+{% if picked_count > 0 %}
+<section class="read-more wrap" aria-labelledby="read-more-heading">
+  <h2 class="section-heading" id="read-more-heading">{{ site.read_more_heading | default: "Keep reading" | escape }}</h2>
+  <div class="read-more-grid">
+    {% for other in sorted %}
+      {%- assign o_path = "|" | append: other.path | append: "|" -%}
+      {% if picked contains o_path and o_path != own_key %}
+      <article class="read-more-item">
+        {% if other.feature_image != blank %}
+        <a class="read-more-image" href="/{{ other.path }}" tabindex="-1" aria-hidden="true"><img src="{{ other.feature_image.url | escape }}" alt="" loading="lazy"></a>
+        {% endif %}
+        {% include 'primary_tag', p: other %}
+        <h3 class="read-more-title"><a href="/{{ other.path }}">{{ other.title | escape }}</a></h3>
+        {% include 'byline', p: other %}
+      </article>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+{% endif %}

@@ -1,26 +1,24 @@
-{%- comment -%}
-  The editor's from-scratch flow can replace the schema, and archival fails
-  the build on any reference to a field the schema does not define, even
-  inside an `if`. Looping over the object's fields reads them safely.
-{%- endcomment -%}
 {%- assign site = objects.site -%}
-{%- for field in site -%}
-{%- if field.first == "name" and field.last != blank %}# {{ field.last }}
+{%- assign sorted = objects.post | sort: "date" | reverse -%}
+# {{ site.name }}
+{% if site.description != blank %}
+> {{ site.description }}
+{% endif %}
+{{ site.name }} is a publication of {{ sorted.size }} stories{% if objects.author.size > 0 %} by {{ objects.author.size }} {% if objects.author.size == 1 %}author{% else %}authors{% endif %}{% endif %}. Each story has a title, a date, an author, tags and a body. New stories are announced in the RSS feed at {{ site_url }}/feed.xml.
 
-{% endif -%}
-{%- if field.first == "description" and field.last != blank %}> {{ field.last }}
-
-{% endif -%}
-{%- endfor -%}
-## Pages
-
-- [Home]({{ site_url }}/)
-{% comment %}
-  List every section page, then every kind of content, generated from the
-  objects. For a list type:
-
-## Posts
-
-{% for post in posts %}- [{{ post.title }}]({{ site_url }}/{{ post.path }})
-{% endfor %}
-{% endcomment %}
+## Stories
+{% for post in sorted %}
+- [{{ post.title }}]({{ site_url }}/{{ post.path }}){% if post.excerpt != blank %}: {{ post.excerpt }}{% endif %}
+{%- endfor %}
+{% if objects.author.size > 0 %}
+## Authors
+{% for a in objects.author %}
+- [{{ a.name }}]({{ site_url }}/{{ a.path }}){% if a.role != blank %}: {{ a.role }}{% endif %}
+{%- endfor %}
+{% endif %}
+{%- if objects.tag.size > 0 %}
+## Tags
+{% for t in objects.tag %}
+- [{{ t.name }}]({{ site_url }}/{{ t.path }}){% if t.description != blank %}: {{ t.description }}{% endif %}
+{%- endfor %}
+{% endif %}

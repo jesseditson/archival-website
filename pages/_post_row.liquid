@@ -1,0 +1,14 @@
+{%- comment -%} One post in a list: text on the left, a thumbnail on the right when there is an image. Arg: p. {%- endcomment -%}
+<article class="post-row{% if p.feature_image != blank %} has-image{% endif %}">
+  <div class="post-row-text">
+    {% include 'primary_tag' %}
+    <h3 class="post-row-title"><a href="/{{ p.path }}">{{ p.title | escape }}</a></h3>
+    {% if p.excerpt != blank %}<p class="post-row-excerpt">{{ p.excerpt | escape }}</p>{% endif %}
+    {% include 'byline' %}
+  </div>
+  {% if p.feature_image != blank %}
+  <a class="post-row-image" href="/{{ p.path }}" tabindex="-1" aria-hidden="true">
+    <img src="{{ p.feature_image.url | escape }}" alt="" loading="lazy">
+  </a>
+  {% endif %}
+</article>

@@ -1,0 +1,31 @@
+title = "A year of watching one oak"
+excerpt = "Twelve visits to the same white oak, and what changed between each one."
+date = "2026-10-05"
+author = "Tomás Reyes"
+order = 4
+content = """
+Last November I picked a single white oak at the edge of a hayfield and promised myself I'd visit it once a month for a year. I brought the same notebook every time and sat in the same spot, about twenty paces from the trunk.
+
+The rules were simple: stay half an hour, write down everything that moved, and don't look anything up until I got home.
+
+## Winter
+
+In January the tree looked empty. It wasn't. A brown creeper worked up the trunk every visit, and the dead leaves that oaks hold through winter rattled in every wind.
+
+## Spring
+
+The catkins arrived in early May, a week before the leaves, and for about ten days the whole tree hummed.
+
+## Summer
+
+By July I counted more than forty kinds of caterpillar on the low branches without trying very hard. White oaks are famous for this. They support more species of moth and butterfly than almost any other tree on the continent.
+
+## Fall
+
+The acorns came heavy this year. Deer found them first, then the jays, then the squirrels.
+
+I'm going to keep going. A year was enough to learn that I hadn't seen anything yet.
+"""
+
+[[tag]]
+name = "Field notes"

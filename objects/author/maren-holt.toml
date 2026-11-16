@@ -1,0 +1,10 @@
+name = "Maren Holt"
+role = "Editor"
+location = "Hudson Valley, New York"
+website = "https://example.com"
+order = 1
+bio = """
+Maren started Understory after ten years of keeping a quarter acre of clay soil alive and taking notes on what worked. She writes about soil, seed and the small habits that make a garden easier to tend.
+
+Before gardening took over, she edited a regional newspaper. She still believes most problems get smaller once you write them down.
+"""

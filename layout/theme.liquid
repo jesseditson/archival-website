@@ -2,11 +2,13 @@
   Every page calls this layout with:
     title:   the page's title, "" on the home page
     path:    the page's URL path without a leading slash or .html,
-             "" on the home page, "about" for pages/about.liquid,
-             item.path on a templated page. Never build it from `page`.
+             "" on the home page, item.path on a templated page.
   and optionally:
-    noindex: true on utility pages (404, thank-you, search results)
-    jsonld:  a captured <script type="application/ld+json"> block
+    description: the page's own summary (a post's excerpt, a tag's description)
+    og_type:     "article" on posts, "profile" on authors; "website" otherwise
+    image:       a page-specific share image URL (a post's feature image)
+    noindex:     true on utility pages (404)
+    jsonld:      a captured <script type="application/ld+json"> block
 {%- endcomment -%}
 {%- assign site = objects.site -%}
 {%- assign site_name = site.name -%}
@@ -15,11 +17,26 @@
 {%- else -%}
   {%- assign page_title = site_name -%}
 {%- endif -%}
+{%- assign page_description = site.description -%}
+{%- if description -%}{%- if description != blank -%}{%- assign page_description = description -%}{%- endif -%}{%- endif -%}
+{%- assign page_og_type = "website" -%}
+{%- if og_type -%}{%- assign page_og_type = og_type -%}{%- endif -%}
 {%- assign canonical_url = site_url | append: "/" | append: path -%}
 {%- assign og_image_url = "" -%}
-{%- if site.og_image != blank -%}
+{%- assign page_image = "" -%}
+{%- if image -%}{%- assign page_image = image -%}{%- endif -%}
+{%- if page_image != blank -%}
+  {%- assign og_image_url = page_image -%}
+{%- elsif site.og_image != blank -%}
   {%- assign og_image_url = site.og_image.url -%}
+{%- elsif site.logo != blank -%}
+  {%- assign og_image_url = site.logo.url -%}
 {%- endif -%}
+{%- assign scheme = site.color_scheme | default: "auto" -%}
+{%- assign heading_font = site.heading_font | default: "sans" -%}
+{%- assign body_font = site.body_font | default: "serif" -%}
+{%- assign show_subscribe = false -%}
+{%- if site.show_subscribe != false and site.subscribe_url != blank -%}{%- assign show_subscribe = true -%}{%- endif -%}
 {%- assign words = site_name | split: " " -%}
 {%- assign initials = "" -%}
 {%- if words.size == 1 -%}
@@ -32,18 +49,18 @@
 {%- endif -%}
 {%- assign initials = initials | replace: "&", "" | replace: "<", "" | replace: ">", "" | replace: "'", "" | replace: '"', "" | replace: "#", "" | replace: "%", "" -%}
 <!doctype html>
-<html lang="en">
+<html lang="en" data-scheme="{{ scheme | escape }}" data-heading="{{ heading_font | escape }}" data-body="{{ body_font | escape }}"{% if site.accent_color != blank %} style="--accent: {{ site.accent_color | escape }}"{% endif %}>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ page_title | escape }}</title>
-    <meta name="description" content="{{ site.description | escape }}">
+    <meta name="description" content="{{ page_description | escape }}">
     <link rel="canonical" href="{{ canonical_url | escape }}">
     {% if noindex %}<meta name="robots" content="noindex">{% endif %}
 
     <meta property="og:title" content="{{ page_title | escape }}">
-    <meta property="og:description" content="{{ site.description | escape }}">
-    <meta property="og:type" content="website">
+    <meta property="og:description" content="{{ page_description | escape }}">
+    <meta property="og:type" content="{{ page_og_type | escape }}">
     <meta property="og:url" content="{{ canonical_url | escape }}">
     <meta property="og:site_name" content="{{ site_name | escape }}">
     {% if og_image_url != blank %}
@@ -54,10 +71,16 @@
     <meta name="twitter:card" content="summary">
     {% endif %}
     <meta name="twitter:title" content="{{ page_title | escape }}">
-    <meta name="twitter:description" content="{{ site.description | escape }}">
+    <meta name="twitter:description" content="{{ page_description | escape }}">
 
+    {% if scheme == "dark" %}
+    <meta name="theme-color" content="#15171a">
+    {% elsif scheme == "light" %}
+    <meta name="theme-color" content="#ffffff">
+    {% else %}
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#15171a" media="(prefers-color-scheme: dark)">
+    {% endif %}
 
     {% if site.favicon != blank %}
     <link rel="icon" href="{{ site.favicon.url | escape }}">
@@ -66,17 +89,59 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='bold' font-size='13' fill='%23e5ff00'%3E{{ initials }}%3C/text%3E%3C/svg%3E">
     {% endif %}
 
+    <link rel="alternate" type="application/rss+xml" title="{{ site_name | escape }}" href="{{ site_url }}/feed.xml">
     <link rel="preload" href="/fonts/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
+    {% if body_font == "serif" or heading_font == "serif" %}<link rel="preload" href="/fonts/source-serif-4-variable.woff2" as="font" type="font/woff2" crossorigin>{% endif %}
     <link rel="stylesheet" href="/styles.css">
     {% if jsonld %}{{ jsonld }}{% endif %}
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="wrap site-header-inner">
+        <a class="brand" href="/"{% if path == "" %} aria-current="page"{% endif %}>
+          {%- if site.logo != blank -%}
+          <img class="brand-logo" src="{{ site.logo.url | escape }}" alt="{{ site_name | escape }}">
+          {%- else -%}
+          {{ site_name | escape }}
+          {%- endif -%}
+        </a>
+        {% if site.nav.size > 0 %}
+        <nav class="site-nav" aria-label="Main">
+          <ul>
+            {% for item in site.nav %}
+            {%- assign here = "/" | append: path -%}
+            <li><a href="{{ item.url | escape }}"{% if item.url == here %} aria-current="page"{% endif %}>{{ item.label | escape }}</a></li>
+            {% endfor %}
+          </ul>
+        </nav>
+        {% endif %}
+        {% if show_subscribe %}
+        <a class="button button-small site-header-cta" href="{{ site.subscribe_url | escape }}">{{ site.subscribe_label | default: "Subscribe" | escape }}</a>
+        {% endif %}
+      </div>
+    </header>
+
     <main id="main">
       {{ page_content }}
     </main>
+
     <footer class="site-footer">
-      <p>&copy; {{ "now" | date: "%Y" }} {{ site_name | escape }}. Powered by <a href="https://archival.dev">Archival</a>.</p>
+      <div class="wrap site-footer-inner">
+        <div class="site-footer-about">
+          <p class="site-footer-name">{{ site_name | escape }}</p>
+          {% if site.description != blank %}<p class="site-footer-description">{{ site.description | escape }}</p>{% endif %}
+        </div>
+        {% if site.nav.size > 0 or site.social.size > 0 %}
+        <nav class="site-footer-links" aria-label="Footer">
+          <ul>
+            {% for item in site.nav %}<li><a href="{{ item.url | escape }}">{{ item.label | escape }}</a></li>{% endfor %}
+            {% for item in site.social %}<li><a href="{{ item.url | escape }}">{{ item.label | escape }}</a></li>{% endfor %}
+          </ul>
+        </nav>
+        {% endif %}
+        <p class="site-footer-credit">&copy; {{ "now" | date: "%Y" }} {{ site_name | escape }}. Powered by <a href="https://archival.dev">Archival</a>.</p>
+      </div>
     </footer>
   </body>
 </html>

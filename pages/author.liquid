@@ -1,0 +1,55 @@
+{%- assign site = objects.site -%}
+{%- assign sorted = objects.post | sort: "date" | reverse -%}
+{%- assign me = author.name | downcase | strip -%}
+{%- assign me_file = author.path | remove_first: "author/" -%}
+{%- assign count = 0 -%}
+{%- for post in sorted -%}
+  {%- assign who = post.author | downcase | strip -%}
+  {%- if who == me or who == me_file -%}{%- assign count = count | plus: 1 -%}{%- endif -%}
+{%- endfor -%}
+{%- capture ld_name %}{{ author.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
+{%- capture ld_role %}{{ author.role | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
+{%- capture ld_site %}{{ author.website | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
+{%- capture jsonld -%}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "{{ ld_name }}"
+    {%- if author.role != blank -%}, "jobTitle": "{{ ld_role }}"{%- endif -%}
+    {%- if site_url != blank -%}, "url": "{{ site_url }}/{{ author.path }}"{%- endif -%}
+    {%- if author.website != blank -%}, "sameAs": ["{{ ld_site }}"]{%- endif -%}
+  }
+</script>
+{%- endcapture -%}
+{%- assign author_image = "" -%}
+{%- if author.avatar != blank -%}{%- assign author_image = author.avatar.url -%}{%- endif -%}
+{% layout 'theme' title: author.name, path: author.path, description: author.role, og_type: "profile", image: author_image, jsonld: jsonld %}
+
+<header class="profile wrap">
+  {% include 'avatar', who: author, name: author.name, size: "large" %}
+  <h1 class="profile-name">{{ author.name | escape }}</h1>
+  {% if author.role != blank or author.location != blank %}
+  <p class="profile-meta">
+    {%- if author.role != blank -%}{{ author.role | escape }}{%- endif -%}
+    {%- if author.role != blank and author.location != blank -%}, {% endif -%}
+    {%- if author.location != blank -%}{{ author.location | escape }}{%- endif -%}
+  </p>
+  {% endif %}
+  {% if author.bio != blank %}<div class="profile-bio markdown">{{ author.bio }}</div>{% endif %}
+  {% if author.website != blank %}<p class="profile-link"><a href="{{ author.website | escape }}">Website</a></p>{% endif %}
+</header>
+
+<section class="latest wrap" aria-labelledby="author-posts-heading">
+  <h2 class="section-heading" id="author-posts-heading">{% if count == 1 %}1 story{% else %}{{ count }} stories{% endif %}</h2>
+  {% if count > 0 %}
+  <div class="post-list">
+    {% for post in sorted %}
+      {%- assign who = post.author | downcase | strip -%}
+      {% if who == me or who == me_file %}{% include 'post_row', p: post %}{% endif %}
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="empty-note">Nothing published yet.</p>
+  {% endif %}
+</section>

@@ -1,0 +1,50 @@
+{%- assign site = objects.site -%}
+{%- assign sorted = objects.post | sort: "date" | reverse -%}
+{%- assign me = tag.name | downcase | strip -%}
+{%- assign count = 0 -%}
+{%- assign tagged = "|" -%}
+{%- for post in sorted -%}
+  {%- for t in post.tag -%}
+    {%- assign t_key = t.name | downcase | strip -%}
+    {%- assign key = "|" | append: post.path | append: "|" -%}
+    {%- if t_key == me -%}{%- unless tagged contains key -%}
+      {%- assign tagged = tagged | append: post.path | append: "|" -%}
+      {%- assign count = count | plus: 1 -%}
+    {%- endunless -%}{%- endif -%}
+  {%- endfor -%}
+{%- endfor -%}
+{%- capture ld_name %}{{ tag.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
+{%- capture ld_desc %}{{ tag.description | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
+{%- capture jsonld -%}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "{{ ld_name }}"
+    {%- if tag.description != blank -%}, "description": "{{ ld_desc }}"{%- endif -%}
+    {%- if site_url != blank -%}, "url": "{{ site_url }}/{{ tag.path }}"{%- endif -%}
+  }
+</script>
+{%- endcapture -%}
+{% layout 'theme' title: tag.name, path: tag.path, description: tag.description, jsonld: jsonld %}
+
+<header class="collection-header wrap">
+  <h1 class="collection-title">{{ tag.name | escape }}</h1>
+  {% if tag.description != blank %}<p class="collection-description">{{ tag.description | escape }}</p>{% endif %}
+</header>
+
+<section class="latest wrap" aria-labelledby="tag-posts-heading">
+  <h2 class="section-heading" id="tag-posts-heading">{% if count == 1 %}1 story{% else %}{{ count }} stories{% endif %}</h2>
+  {% if count > 0 %}
+  <div class="post-list">
+    {% for post in sorted %}
+      {%- assign key = "|" | append: post.path | append: "|" -%}
+      {% if tagged contains key %}{% include 'post_row', p: post %}{% endif %}
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="empty-note">Nothing here yet.</p>
+  {% endif %}
+</section>
+
+{% include 'subscribe' %}

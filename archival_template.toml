@@ -1,16 +1,37 @@
 #:schema https://archival.dev/schemas/archival_template.schema.json
-# Shown in the editor's template picker.
-name = ""
-# One line for the gallery card, roughly ten to fifteen words.
-tagline = ""
-# The template info modal's body: what this template is and what it contains.
+name = "Byline"
+tagline = "An editorial publication with featured stories, author pages, tags and a newsletter signup."
 description = """
+Byline is a clean, magazine-style home for a writer or a small team. The front page leads with one featured story in large type beside a short stack of recent ones, then lists everything else newest first. Every story gets a focused reading page with its tag, author byline, reading time, an optional wide feature image, and a "keep reading" row of related stories.
+
+Each author has a profile page with a bio and every story they wrote, and each tag has its own page too. A subscribe band and header button point readers to your newsletter signup page on any service you use.
+
+You choose the accent color, a light, dark or automatic color scheme, and whether headings and body text are set in a sans serif or a serif. It also publishes an RSS feed.
 """
-# The prompt that drives content generation. Describe when to pick this
-# template and what every field holds. Update it whenever the schema changes.
 context = """
+Byline is for a writer-led publication: a personal essay site, a newsletter's archive, a small magazine or a team blog. Pick it when the person writes long-form stories and wants them to read well, with authors and topics.
+
+The site object:
+- name: the publication's name, short.
+- description: one sentence about what the publication covers. It is the large line at the top of the home page and the default meta description.
+- accent_color: a hex color such as "#c8315f" used for buttons, tag labels and author initials. Choose a fairly deep color, since white text sits on it.
+- color_scheme: "auto", "light" or "dark". Use "auto" unless asked.
+- heading_font: "sans" or "serif". body_font: "serif" or "sans" (the article text).
+- latest_heading: the heading above the list of stories on the home page, e.g. "Latest stories". read_more_heading: the heading over related stories under each post, e.g. "Keep reading".
+- show_subscribe (boolean), subscribe_heading, subscribe_text (one or two sentences), subscribe_label (button text) and subscribe_url (the signup page on their newsletter service). Leave subscribe_url blank if you don't know it; the subscribe parts then hide.
+- [[nav]] child entries with label and url: Home ("/"), one or two tag pages ("/tag/<tag file name>") and an About link to the main author's page ("/author/<author file name>").
+- [[social]] child entries with label and url for footer links (social profiles, and "RSS" pointing to "/feed.xml").
+- logo, og_image and favicon are images. Leave them for the owner.
+
+Each post (objects/post/<slug>.toml):
+- title, excerpt (one or two sentences shown under the title and in lists), date (YYYY-MM-DD), author (exactly the name of an author object), featured (true on the one story that should lead the home page; otherwise the newest leads), content (markdown, several paragraphs with a few ## subheadings where natural), and [[tag]] child entries each with a name that exactly matches a tag object's name. Put the main tag first; it is the one shown above the title. Use one to three tags.
+- feature_image, feature_image_alt and feature_image_caption: leave the image for the owner, and leave alt and caption blank unless there is an image.
+- Write at least six posts with realistic dates spread over recent months, in the publication's voice.
+
+Each author (objects/author/<slug>.toml): name, role (e.g. "Editor"), location, website, bio (markdown, one or two short paragraphs). avatar is an image: leave it for the owner; initials show without it.
+
+Each tag (objects/tag/<slug>.toml): name and description (one sentence). Make three to five tags and use each on at least one post.
 """
-tags = []
-tlds = []
-# Value paths kept when a site is generated, instead of stripped as examples.
+tags = ["blog", "writing", "publication", "newsletter", "magazine", "essays", "editorial", "authors"]
+tlds = ["com", "blog", "news", "press", "pub"]
 keep_objects = []

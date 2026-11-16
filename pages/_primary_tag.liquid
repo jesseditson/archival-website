@@ -1,0 +1,15 @@
+{%- comment -%} The first tag of post `p`, linked to its tag page when one exists. {%- endcomment -%}
+{%- if p.tag.size > 0 -%}
+  {%- assign first_tag = p.tag.first.name -%}
+  {%- assign first_tag_key = first_tag | downcase | strip -%}
+  {%- assign tag_href = "" -%}
+  {%- for t in objects.tag -%}
+    {%- assign t_key = t.name | downcase | strip -%}
+    {%- if t_key == first_tag_key -%}{%- assign tag_href = t.path -%}{%- endif -%}
+  {%- endfor -%}
+  {%- if tag_href != blank -%}
+  <a class="post-tag" href="/{{ tag_href }}">{{ first_tag | escape }}</a>
+  {%- else -%}
+  <span class="post-tag">{{ first_tag | escape }}</span>
+  {%- endif -%}
+{%- endif -%}

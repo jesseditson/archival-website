@@ -1,0 +1,26 @@
+title = "Notes from a community orchard"
+excerpt = "Forty apple trees, three dozen volunteers and one spreadsheet. How a town keeps an orchard going."
+date = "2026-09-07"
+author = "Tomás Reyes"
+order = 6
+content = """
+The orchard sits on a slope behind the old library: forty apple trees, a few pears and a single quince that nobody planted on purpose. It belongs to the town, and for the last eight years it has been kept alive by volunteers.
+
+I spent a Saturday with them during harvest to see how it works.
+
+## The work is small and constant
+
+Nobody does much. Everyone does a little. There is a pruning day in February, a mulching day in April and a harvest every September. In between, a rota of neighbors walks the rows once a week and writes down anything that looks wrong.
+
+## The fruit goes everywhere
+
+About a third goes to the food bank. A third is pressed for cider at the harvest party. The rest is left in crates by the gate for anyone who walks by.
+
+The coordinator told me the hardest part isn't the trees. It's remembering who knows how to graft. Next year they're writing it all down.
+"""
+
+[[tag]]
+name = "Community"
+
+[[tag]]
+name = "Field notes"

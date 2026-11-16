@@ -1,20 +1,97 @@
 {%- assign site = objects.site -%}
+{%- assign sorted = objects.post | sort: "date" | reverse -%}
+{%- assign featured = nil -%}
+{%- for post in sorted -%}
+  {%- if featured == nil and post.featured == true -%}{%- assign featured = post -%}{%- endif -%}
+{%- endfor -%}
+{%- if featured == nil and sorted.size > 0 -%}{%- for post in sorted limit: 1 -%}{%- assign featured = post -%}{%- endfor -%}{%- endif -%}
+{%- assign used = "|" -%}
+{%- if featured != nil -%}{%- assign used = used | append: featured.path | append: "|" -%}{%- endif -%}
+{%- assign stack_paths = "|" -%}
+{%- assign stack_count = 0 -%}
+{%- for post in sorted -%}
+  {%- assign key = "|" | append: post.path | append: "|" -%}
+  {%- unless used contains key -%}
+    {%- if stack_count < 3 -%}
+      {%- assign stack_paths = stack_paths | append: post.path | append: "|" -%}
+      {%- assign used = used | append: post.path | append: "|" -%}
+      {%- assign stack_count = stack_count | plus: 1 -%}
+    {%- endif -%}
+  {%- endunless -%}
+{%- endfor -%}
 {%- capture ld_name %}{{ site.name | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
 {%- capture ld_desc %}{{ site.description | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
 {%- capture jsonld -%}
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebSite",
+    "@type": "Blog",
     "name": "{{ ld_name }}"
     {%- if site.description != blank -%}, "description": "{{ ld_desc }}"{%- endif -%}
     {%- if site_url != blank -%}, "url": "{{ site_url }}/"{%- endif -%}
+    , "blogPost": [
+      {%- for post in sorted limit: 10 -%}
+      {%- capture ld_title %}{{ post.title | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
+      {%- capture ld_author %}{{ post.author | replace: '\', '\\' | replace: '"', '\"' | replace: '</', '<\/' | strip_newlines }}{% endcapture -%}
+      { "@type": "BlogPosting", "headline": "{{ ld_title }}", "datePublished": "{{ post.date | date: '%Y-%m-%d' }}", "url": "{{ site_url }}/{{ post.path }}"
+        {%- if post.author != blank -%}, "author": { "@type": "Person", "name": "{{ ld_author }}" }{%- endif -%} }
+      {%- unless forloop.last -%},{%- endunless -%}
+      {%- endfor -%}
+    ]
   }
 </script>
 {%- endcapture -%}
 {% layout 'theme' title: "", path: "", jsonld: jsonld %}
 
-<section class="intro">
-  <h1>{{ site.name | escape }}</h1>
-  {% if site.description != blank %}<p>{{ site.description | escape }}</p>{% endif %}
+<section class="masthead wrap">
+  <h1 class="masthead-title">{% if site.description != blank %}{{ site.description | escape }}{% else %}{{ site.name | escape }}{% endif %}</h1>
 </section>
+
+{% if featured != nil %}
+<section class="highlight wrap{% if stack_count == 0 %} highlight-solo{% endif %}" aria-label="Featured stories">
+  <article class="feature">
+    {% if featured.feature_image != blank %}
+    <a class="feature-image" href="/{{ featured.path }}" tabindex="-1" aria-hidden="true">
+      <img src="{{ featured.feature_image.url | escape }}" alt="">
+    </a>
+    {% endif %}
+    <div class="feature-text">
+      {% include 'primary_tag', p: featured %}
+      {%- include 'longest', text: featured.title -%}
+      <h2 class="feature-title" style="--longest: {{ longest }}"><a href="/{{ featured.path }}">{{ featured.title | escape }}</a></h2>
+      {% if featured.excerpt != blank %}<p class="feature-excerpt">{{ featured.excerpt | escape }}</p>{% endif %}
+      {% include 'byline', p: featured %}
+    </div>
+  </article>
+
+  {% if stack_count > 0 %}
+  <div class="stack">
+    {% for post in sorted %}
+      {%- assign key = "|" | append: post.path | append: "|" -%}
+      {% if stack_paths contains key %}
+      <article class="stack-item">
+        {% include 'primary_tag', p: post %}
+        <h3 class="stack-title"><a href="/{{ post.path }}">{{ post.title | escape }}</a></h3>
+        {% include 'byline', p: post %}
+      </article>
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% endif %}
+</section>
+{% endif %}
+
+{%- assign latest_count = sorted.size | minus: 1 | minus: stack_count -%}
+{% if latest_count > 0 %}
+<section class="latest wrap" aria-labelledby="latest-heading">
+  <h2 class="section-heading" id="latest-heading">{{ site.latest_heading | default: "Latest" | escape }}</h2>
+  <div class="post-list">
+    {% for post in sorted %}
+      {%- assign key = "|" | append: post.path | append: "|" -%}
+      {% unless used contains key %}{% include 'post_row', p: post %}{% endunless %}
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% include 'subscribe' %}

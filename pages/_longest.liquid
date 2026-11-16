@@ -1,0 +1,4 @@
+{%- comment -%} Sets `longest` to the letter count of the longest word in `text`, so CSS can size a headline that never breaks a word. {%- endcomment -%}
+{%- assign longest = 1 -%}
+{%- assign lw_words = text | split: " " -%}
+{%- for lw in lw_words -%}{%- assign lw_size = lw | size -%}{%- if lw_size > longest -%}{%- assign longest = lw_size -%}{%- endif -%}{%- endfor -%}

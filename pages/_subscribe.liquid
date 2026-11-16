@@ -1,0 +1,11 @@
+{%- comment -%} The newsletter band. Shown when show_subscribe isn't off and there is a subscribe_url. {%- endcomment -%}
+{%- assign sub_site = objects.site -%}
+{%- if sub_site.show_subscribe != false and sub_site.subscribe_url != blank -%}
+<section class="subscribe" aria-labelledby="subscribe-heading">
+  <div class="subscribe-inner">
+    <h2 class="subscribe-heading" id="subscribe-heading">{{ sub_site.subscribe_heading | default: "Subscribe" | escape }}</h2>
+    {% if sub_site.subscribe_text != blank %}<p class="subscribe-text">{{ sub_site.subscribe_text | escape }}</p>{% endif %}
+    <a class="button" href="{{ sub_site.subscribe_url | escape }}">{{ sub_site.subscribe_label | default: "Subscribe" | escape }}</a>
+  </div>
+</section>
+{%- endif -%}

@@ -1,0 +1,9 @@
+{%- comment -%} An author's photo, or their initials on the accent color. Args: who (author), name (string), size ("small" or "large"). {%- endcomment -%}
+{%- assign av_words = name | split: " " -%}
+{%- assign av_initials = "" -%}
+{%- for w in av_words limit: 2 -%}{%- assign av_letter = w | slice: 0, 1 | upcase -%}{%- assign av_initials = av_initials | append: av_letter -%}{%- endfor -%}
+{%- if who != blank and who.avatar != blank -%}
+<img class="avatar avatar-{{ size }}" src="{{ who.avatar.url | escape }}" alt="" loading="lazy">
+{%- else -%}
+<span class="avatar avatar-{{ size }} avatar-initials" aria-hidden="true">{{ av_initials | escape }}</span>
+{%- endif -%}

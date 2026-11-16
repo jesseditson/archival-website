@@ -1,0 +1,17 @@
+{%- comment -%} Author, date and reading time for post `p`. {%- endcomment -%}
+{%- include 'author_lookup' -%}
+{%- assign word_count = p.content | strip_html | split: " " | size -%}
+{%- assign minutes = word_count | plus: 115 | divided_by: 230 | at_least: 1 -%}
+<div class="byline">
+  {%- if p.author != blank -%}
+  {%- include 'avatar', who: found_author, name: p.author, size: "small" -%}
+  {%- endif -%}
+  <div class="byline-text">
+    {%- if p.author != blank -%}
+    <span class="byline-author">
+      {%- if found_author != blank -%}<a href="/{{ found_author.path }}">{{ found_author.name | escape }}</a>{%- else -%}{{ p.author | escape }}{%- endif -%}
+    </span>
+    {%- endif -%}
+    <span class="byline-meta"><time datetime="{{ p.date | date: '%Y-%m-%d' }}">{{ p.date | date: "%b %-d, %Y" }}</time>, {{ minutes }} min read</span>
+  </div>
+</div>

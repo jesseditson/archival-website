@@ -1,0 +1,13 @@
+{%- comment -%}
+  Sets `found_author` to the author object `p.author` names, by name or by
+  file name ("maren-holt"), or to nil when there is none.
+{%- endcomment -%}
+{%- assign found_author = nil -%}
+{%- if p.author != blank -%}
+  {%- assign wanted = p.author | downcase | strip -%}
+  {%- assign wanted_path = "author/" | append: wanted -%}
+  {%- for a in objects.author -%}
+    {%- assign a_name = a.name | downcase | strip -%}
+    {%- if a_name == wanted or a.path == wanted_path -%}{%- assign found_author = a -%}{%- endif -%}
+  {%- endfor -%}
+{%- endif -%}

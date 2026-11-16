@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+{%- assign site = objects.site -%}
+{%- assign sorted = objects.post | sort: "date" | reverse %}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>{{ site.name | escape }}</title>
+    <link>{{ site_url }}/</link>
+    <description>{{ site.description | escape }}</description>
+    <language>en</language>
+    <atom:link href="{{ site_url }}/feed.xml" rel="self" type="application/rss+xml"/>
+    <lastBuildDate>{{ "now" | date: "%a, %d %b %Y %H:%M:%S %z" }}</lastBuildDate>
+    {%- for post in sorted %}
+    <item>
+      <title>{{ post.title | escape }}</title>
+      <link>{{ site_url }}/{{ post.path }}</link>
+      <guid isPermaLink="true">{{ site_url }}/{{ post.path }}</guid>
+      <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
+      {%- if post.author != blank %}
+      <dc:creator>{{ post.author | escape }}</dc:creator>
+      {%- endif %}
+      {%- for t in post.tag %}
+      <category>{{ t.name | escape }}</category>
+      {%- endfor %}
+      <description>{{ post.excerpt | escape }}</description>
+      <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"><![CDATA[{{ post.content | replace: "]]>", "]]]]><![CDATA[>" }}]]></content:encoded>
+    </item>
+    {%- endfor %}
+  </channel>
+</rss>

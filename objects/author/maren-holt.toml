@@ -8,3 +8,9 @@ Maren started Understory after ten years of keeping a quarter acre of clay soil 
 
 Before gardening took over, she edited a regional newspaper. She still believes most problems get smaller once you write them down.
 """
+
+[avatar]
+display_type = "image"
+filename = "maren-holt.jpg"
+sha = "5ce962b4f1bb9ae2fd55f20c0ef2047b9f19aa0a7e12edbce35d1b04fe753d05"
+mime = "image/jpeg"

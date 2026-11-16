@@ -3,6 +3,8 @@ excerpt = "Forty apple trees, three dozen volunteers and one spreadsheet. How a 
 date = "2026-09-07"
 author = "Tomás Reyes"
 order = 6
+feature_image_alt = "Rows of fruit trees with yellowing leaves on a grassy hillside"
+feature_image_caption = "The upper rows in late October, after the last pick."
 content = """
 The orchard sits on a slope behind the old library: forty apple trees, a few pears and a single quince that nobody planted on purpose. It belongs to the town, and for the last eight years it has been kept alive by volunteers.
 
@@ -18,6 +20,13 @@ About a third goes to the food bank. A third is pressed for cider at the harvest
 
 The coordinator told me the hardest part isn't the trees. It's remembering who knows how to graft. Next year they're writing it all down.
 """
+
+
+[feature_image]
+display_type = "image"
+filename = "orchard.jpg"
+sha = "0fdae29b1276fd2a954a68c77848d0c15ca5b123d7a357c443541587dc8bfaf4"
+mime = "image/jpeg"
 
 [[tag]]
 name = "Community"

@@ -4,6 +4,8 @@ date = "2026-11-08"
 author = "Maren Holt"
 featured = true
 order = 1
+feature_image_alt = "Fallen beech and hazel leaves on a forest floor, one lit yellow by the sun"
+feature_image_caption = "Next year's soil, delivered free."
 content = """
 Every October the same sound comes up the street: leaf blowers, then rakes, then the soft thump of paper bags lined up at the curb. By November the lawns are clean and the beds are bare, and the garden has lost the one thing it was trying to give itself.
 
@@ -14,6 +16,9 @@ Fallen leaves are not litter. They are next year's soil, delivered free, at exac
 A layer of leaves does three jobs at once. It shades the soil so frost heaves less. It holds moisture through the dry, windy weeks of early winter. And it feeds the long, slow chain of fungi, worms and insects that turns last year's growth into this year's crumb.
 
 Many of the insects we say we want in spring spend the winter in that layer. Fireflies overwinter as larvae in leaf litter. So do a good number of moths, beetles and the ground-nesting bees that pollinate early fruit trees.
+
+![A beech wood floor carpeted in orange leaves](https://uploads.archival.dev/archival-template-uploads/d517163dba4e52b0949b1d2608988d13dc131a447457ad952236f2db825925d3/leaf-carpet.jpg)
+*Under the beeches, nobody rakes. The ground does fine.*
 
 > A clean garden in November is a quiet garden in May.
 
@@ -32,6 +37,13 @@ Diseased foliage is worth removing. If a rose or a fruit tree had black spot or 
 
 This year I left almost everything. The beds look a little wild from the kitchen window, and I've decided I like it. The soil underneath is darker than it has ever been.
 """
+
+
+[feature_image]
+display_type = "image"
+filename = "forest-floor.jpg"
+sha = "5784f916c045ec3046af37cc51510b745186269e05f9dea35a144e3209ea470d"
+mime = "image/jpeg"
 
 [[tag]]
 name = "Soil"

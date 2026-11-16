@@ -2,7 +2,7 @@
 name = "Byline"
 tagline = "An editorial publication with featured stories, author pages, tags and a newsletter signup."
 description = """
-Byline is a clean, magazine-style home for a writer or a small team. The front page leads with one featured story in large type beside a short stack of recent ones, then lists everything else newest first. Every story gets a focused reading page with its tag, author byline, reading time, an optional wide feature image, and a "keep reading" row of related stories.
+Byline is a clean, magazine-style home for a writer or a small team. The front page leads with one featured story in large type beside a short stack of recent ones, then lists everything else newest first. Every story gets a focused reading page with its tag, author byline, reading time, a wide feature image or video, an audio player, wide inline photos with captions, link cards, and a "keep reading" row of related stories.
 
 Each author has a profile page with a bio and every story they wrote, and each tag has its own page too. A subscribe band and header button point readers to your newsletter signup page on any service you use.
 
@@ -26,7 +26,10 @@ The site object:
 
 Each post (objects/post/<slug>.toml):
 - title, excerpt (one or two sentences shown under the title and in lists), date (YYYY-MM-DD), author (exactly the name of an author object), featured (true on the one story that should lead the home page; otherwise the newest leads), content (markdown, several paragraphs with a few ## subheadings where natural), and [[tag]] child entries each with a name that exactly matches a tag object's name. Put the main tag first; it is the one shown above the title. Use one to three tags.
-- feature_image, feature_image_alt and feature_image_caption: leave the image for the owner, and leave alt and caption blank unless there is an image.
+- feature_image, feature_image_alt and feature_image_caption: leave the image for the owner, and leave alt and caption blank unless there is an image. When a post has a video, feature_image is the video's poster frame.
+- video and audio are uploads: leave them for the owner. audio_title is the line shown on the audio player; leave it blank unless there is audio.
+- link, link_title and link_description: an optional external page the story points to, shown as a card under the story. Use a real, well-known URL only when the story clearly refers to one; otherwise leave all three blank.
+- Photos inside content are markdown images with absolute URLs. A line in italics directly under an image becomes its caption.
 - Write at least six posts with realistic dates spread over recent months, in the publication's voice.
 
 Each author (objects/author/<slug>.toml): name, role (e.g. "Editor"), location, website, bio (markdown, one or two short paragraphs). avatar is an image: leave it for the owner; initials show without it.

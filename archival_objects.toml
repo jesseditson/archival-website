@@ -31,6 +31,7 @@ label = "string"
 url = "string"
 
 # A story. `author` names an author by name; each tag names a tag by name.
+# With a video, feature_image is its poster. link renders as a bookmark card.
 [post]
 title = "string"
 excerpt = "string"
@@ -40,7 +41,13 @@ featured = "boolean"
 feature_image = "image"
 feature_image_alt = "string"
 feature_image_caption = "string"
+video = "video"
+audio = "audio"
+audio_title = "string"
 content = "markdown"
+link = "string"
+link_title = "string"
+link_description = "string"
 template = "post"
 
 [post.tag]

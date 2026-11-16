@@ -1,0 +1,24 @@
+title = "A minute in the asters"
+excerpt = "Twenty seconds of bumblebees working the New England asters on the last warm afternoon of the year."
+date = "2026-11-02"
+author = "Tomás Reyes"
+order = 0
+feature_image_alt = "A bumblebee on purple aster flowers"
+content = """
+The asters along the field edge are the last big meal of the year for the bumblebees. On warm afternoons in early November there are still a dozen working a single clump, slow and heavy, and in no hurry at all.
+
+I set the camera down in the grass and let it run. This is the best twenty seconds.
+"""
+[feature_image]
+display_type = "image"
+filename = "bees-poster.jpg"
+sha = "fe9d868a3041f97155d86f0c9053a43123d1c04eb9b86aff91367394092ec20d"
+mime = "image/jpeg"
+[video]
+display_type = "video"
+filename = "bees-on-asters.mp4"
+sha = "ea0f0eeebfd5871ee5c7584a1df9cec2daf689381ab94da1e1c5e3a5aa9ab3e6"
+mime = "video/mp4"
+
+[[tag]]
+name = "Field notes"

@@ -7,7 +7,7 @@
     {% include 'byline' %}
   </div>
   {% if p.feature_image != blank %}
-  <a class="post-row-image" href="/{{ p.path }}" tabindex="-1" aria-hidden="true">
+  <a class="post-row-image{% if p.video != blank %} is-video{% endif %}" href="/{{ p.path }}" tabindex="-1" aria-hidden="true">
     <img src="{{ p.feature_image.url | escape }}" alt="" loading="lazy">
   </a>
   {% endif %}

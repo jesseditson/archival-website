@@ -3,6 +3,7 @@ excerpt = "The shady corner where grass never took has quietly become the best-l
 date = "2026-09-21"
 author = "Maren Holt"
 order = 5
+feature_image_alt = "Moss and small ferns growing on a fallen log in a green wood"
 content = """
 For six years I tried to grow grass under the maple by the back fence. I reseeded, I raked, I fed it. Every summer it thinned to bare dirt, and every spring the moss came back first.
 
@@ -12,6 +13,13 @@ Moss wants shade, acid soil and steady moisture, which is exactly what that corn
 
 If you have a corner like mine, try this: pull the weeds, stop feeding, and water it lightly through the first dry spell. Then leave it alone.
 """
+
+
+[feature_image]
+display_type = "image"
+filename = "mossy-log.jpg"
+sha = "b0ae99cacd0f6226ed7b34886847ed70227099b3e9c4309d8aa9a9e1cc8013ef"
+mime = "image/jpeg"
 
 [[tag]]
 name = "Growing"

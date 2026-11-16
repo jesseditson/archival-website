@@ -3,6 +3,7 @@ excerpt = "You don't need a seed vault or a degree in botany. Start with three p
 date = "2026-10-19"
 author = "Maren Holt"
 order = 3
+feature_image_alt = "Ears of dried multicolored corn hanging in a row"
 content = """
 Seed saving has a reputation for being fussy: isolation distances, hand pollination, paper bags tied over flower heads. Some crops really do need all that. Plenty don't.
 
@@ -16,6 +17,9 @@ If you want to try it this year, start with plants that pollinate themselves and
 | Lettuce | When heads go fluffy | Shake into a bag |
 | Tomatoes | From a fully ripe fruit | Ferment three days, rinse, dry |
 
+![Three butternut squash on a linen cloth](https://uploads.archival.dev/archival-template-uploads/892b2ba42eb3d65eb034ef8014afefa4812a271352b7b169dd4dc601b01cd7cb/squash.jpg)
+*Squash cross easily, so save seed from them only once you're comfortable with the easy three.*
+
 ## Label everything
 
 The single most useful habit is writing down what you saved and when. A jar of unlabeled beans is a mystery by February. I write the variety, the year and one line about how it grew.
@@ -24,6 +28,13 @@ The single most useful habit is writing down what you saved and when. A jar of u
 
 A glass jar in the back of a cupboard does the job. Most seeds stay good for three to five years that way, which is plenty of time to share them with a neighbor.
 """
+
+
+[feature_image]
+display_type = "image"
+filename = "dried-corn.jpg"
+sha = "8fb2ce2b95f1bc01fb8f07c11581c60177afd434f2df16d04c3e10a28fbff272"
+mime = "image/jpeg"
 
 [[tag]]
 name = "Growing"

@@ -3,6 +3,8 @@ excerpt = "Twelve visits to the same white oak, and what changed between each on
 date = "2026-10-05"
 author = "Tomás Reyes"
 order = 4
+feature_image_alt = "The branches of a wide oak in silhouette against a starry night sky"
+audio_title = "A spring dawn chorus, ten minutes before sunrise"
 content = """
 Last November I picked a single white oak at the edge of a hayfield and promised myself I'd visit it once a month for a year. I brought the same notebook every time and sat in the same spot, about twenty paces from the trunk.
 
@@ -14,7 +16,7 @@ In January the tree looked empty. It wasn't. A brown creeper worked up the trunk
 
 ## Spring
 
-The catkins arrived in early May, a week before the leaves, and for about ten days the whole tree hummed.
+Press play above for what May sounds like at five in the morning. The catkins arrived in early May, a week before the leaves, and for about ten days the whole tree hummed.
 
 ## Summer
 
@@ -26,6 +28,19 @@ The acorns came heavy this year. Deer found them first, then the jays, then the 
 
 I'm going to keep going. A year was enough to learn that I hadn't seen anything yet.
 """
+
+
+[feature_image]
+display_type = "image"
+filename = "oak-night.jpg"
+sha = "457fede4eede11e1bf1af106fe3b55c16e17034cc5a55b6451d01be1465b1e55"
+mime = "image/jpeg"
+
+[audio]
+display_type = "audio"
+filename = "dawn-chorus.mp3"
+sha = "d56cba0b127ce73df9ea973c66f952c8a2f5a8f635310fd512b483ba69b1062d"
+mime = "audio/mpeg"
 
 [[tag]]
 name = "Field notes"

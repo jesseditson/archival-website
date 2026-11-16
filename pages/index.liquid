@@ -51,7 +51,7 @@
 <section class="highlight wrap{% if stack_count == 0 %} highlight-solo{% endif %}" aria-label="Featured stories">
   <article class="feature">
     {% if featured.feature_image != blank %}
-    <a class="feature-image" href="/{{ featured.path }}" tabindex="-1" aria-hidden="true">
+    <a class="feature-image{% if featured.video != blank %} is-video{% endif %}" href="/{{ featured.path }}" tabindex="-1" aria-hidden="true">
       <img src="{{ featured.feature_image.url | escape }}" alt="">
     </a>
     {% endif %}

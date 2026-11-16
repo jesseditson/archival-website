@@ -13,6 +13,13 @@ subscribe_text = "One letter every other Sunday. No ads, and you can leave whene
 subscribe_label = "Subscribe"
 subscribe_url = "https://buttondown.com"
 
+
+[og_image]
+display_type = "image"
+filename = "understory-share.jpg"
+sha = "7fbb8bc61b0d4681b2bad70e3371e5ff97db98e16fa3f44966938d44005aee87"
+mime = "image/jpeg"
+
 [[nav]]
 label = "Home"
 url = "/"

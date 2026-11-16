@@ -35,14 +35,48 @@
     {% include 'byline', p: post %}
   </header>
 
-  {% if post.feature_image != blank %}
+  {% if post.video != blank %}
+  <figure class="article-image article-video">
+    <video src="{{ post.video.url | escape }}" controls playsinline preload="metadata"{% if post.feature_image != blank %} poster="{{ post.feature_image.url | escape }}"{% endif %}{% if post.feature_image_alt != blank %} aria-label="{{ post.feature_image_alt | escape }}"{% endif %}></video>
+    {% if post.feature_image_caption != blank %}<figcaption>{{ post.feature_image_caption | escape }}</figcaption>{% endif %}
+  </figure>
+  {% elsif post.feature_image != blank %}
   <figure class="article-image">
     <img src="{{ post.feature_image.url | escape }}" alt="{{ post.feature_image_alt | escape }}">
     {% if post.feature_image_caption != blank %}<figcaption>{{ post.feature_image_caption | escape }}</figcaption>{% endif %}
   </figure>
   {% endif %}
 
+  {% if post.audio != blank %}
+  <figure class="audio-card" data-audio-card>
+    <audio src="{{ post.audio.url | escape }}" controls preload="metadata"></audio>
+    <div class="audio-ui" hidden>
+      <button type="button" class="audio-play" aria-label="Play">
+        <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z"/></svg>
+        <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>
+      </button>
+      <div class="audio-body">
+        <p class="audio-title">{{ post.audio_title | default: post.title | escape }}</p>
+        <div class="audio-row">
+          <span class="audio-time" data-audio-current>0:00</span>
+          <input class="audio-seek" type="range" min="0" max="100" step="0.1" value="0" aria-label="Seek">
+          <span class="audio-time" data-audio-duration>0:00</span>
+        </div>
+      </div>
+    </div>
+  </figure>
+  {% endif %}
+
   <div class="article-body markdown">{{ post.content }}</div>
+
+  {% if post.link != blank %}
+  {%- assign link_host = post.link | remove_first: "https://" | remove_first: "http://" | remove_first: "www." | split: "/" | first -%}
+  <a class="bookmark" href="{{ post.link | escape }}">
+    <span class="bookmark-title">{{ post.link_title | default: link_host | escape }}</span>
+    {% if post.link_description != blank %}<span class="bookmark-description">{{ post.link_description | escape }}</span>{% endif %}
+    <span class="bookmark-host">{{ link_host | escape }}</span>
+  </a>
+  {% endif %}
 
   {% if post.tag.size > 1 %}
   <ul class="article-tags" aria-label="Tags">
@@ -65,6 +99,8 @@
   </aside>
   {% endif %}
 </article>
+
+{% if post.audio != blank %}<script type="module" src="/js/audio-card.js"></script>{% endif %}
 
 {% include 'subscribe' %}
 
@@ -105,7 +141,7 @@
       {% if picked contains o_path and o_path != own_key %}
       <article class="read-more-item">
         {% if other.feature_image != blank %}
-        <a class="read-more-image" href="/{{ other.path }}" tabindex="-1" aria-hidden="true"><img src="{{ other.feature_image.url | escape }}" alt="" loading="lazy"></a>
+        <a class="read-more-image{% if other.video != blank %} is-video{% endif %}" href="/{{ other.path }}" tabindex="-1" aria-hidden="true"><img src="{{ other.feature_image.url | escape }}" alt="" loading="lazy"></a>
         {% endif %}
         {% include 'primary_tag', p: other %}
         <h3 class="read-more-title"><a href="/{{ other.path }}">{{ other.title | escape }}</a></h3>

@@ -3,6 +3,9 @@ excerpt = "A line of hawthorn and hazel between two fields turns out to be a rec
 date = "2026-10-30"
 author = "Tomás Reyes"
 order = 2
+link = "https://en.wikipedia.org/wiki/Hedge"
+link_title = "Hedge"
+link_description = "How hedgerows are planted, laid and managed, and the wildlife that depends on them."
 content = """
 There is a hedgerow on the walk behind my house that I must have passed a thousand times before I really looked at it. It runs for about a quarter mile between two pastures, a tangle of hawthorn, hazel, wild rose and one stubborn holly.
 
@@ -18,8 +21,10 @@ The holly, I suspect, was planted on purpose. Farmers used to leave a holly stan
 
 A hedge is a corridor. Small mammals, birds and insects use it to move between patches of woodland without crossing open ground. Lose the hedge and the fields on either side become islands.
 
-I've started walking this one once a month with a notebook. Next month: who is eating the haws.
+I've started walking this one once a month with a notebook. Next month: who is eating the haws. Until then, the reference below is a good place to start reading about how hedges are made.
 """
+
+
 
 [[tag]]
 name = "Field notes"

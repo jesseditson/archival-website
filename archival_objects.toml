@@ -9,6 +9,7 @@ description = "string"
 logo = "image"
 accent_color = "string"
 color_scheme = ["auto", "light", "dark"]
+show_scheme_toggle = "boolean"
 heading_font = ["sans", "serif"]
 body_font = ["serif", "sans"]
 latest_heading = "string"

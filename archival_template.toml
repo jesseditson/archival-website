@@ -6,7 +6,7 @@ Byline is a clean, magazine-style home for a writer or a small team. The front p
 
 Each author has a profile page with a bio and every story they wrote, and each tag has its own page too. A subscribe band and header button point readers to your newsletter signup page on any service you use.
 
-You choose the accent color, a light, dark or automatic color scheme, and whether headings and body text are set in a sans serif or a serif. It also publishes an RSS feed.
+You choose the accent color, a light, dark or automatic color scheme (and whether visitors get a switch to change it), and whether headings and body text are set in a sans serif or a serif. It also publishes an RSS feed.
 """
 context = """
 Byline is for a writer-led publication: a personal essay site, a newsletter's archive, a small magazine or a team blog. Pick it when the person writes long-form stories and wants them to read well, with authors and topics.
@@ -15,7 +15,8 @@ The site object:
 - name: the publication's name, short.
 - description: one sentence about what the publication covers. It is the large line at the top of the home page and the default meta description.
 - accent_color: a hex color such as "#c8315f" used for buttons, tag labels and author initials. Choose a fairly deep color, since white text sits on it.
-- color_scheme: "auto", "light" or "dark". Use "auto" unless asked.
+- color_scheme: "auto", "light" or "dark", the scheme a first-time visitor sees. Use "auto" (follow the visitor's system) unless asked.
+- show_scheme_toggle (boolean): shows a light, dark and system switch in the header so visitors can choose. Default true.
 - heading_font: "sans" or "serif". body_font: "serif" or "sans" (the article text).
 - latest_heading: the heading above the list of stories on the home page, e.g. "Latest stories". read_more_heading: the heading over related stories under each post, e.g. "Keep reading".
 - show_subscribe (boolean), subscribe_heading, subscribe_text (one or two sentences), subscribe_label (button text) and subscribe_url (the signup page on their newsletter service). Leave subscribe_url blank if you don't know it; the subscribe parts then hide.

@@ -2,6 +2,7 @@ name = "Understory"
 description = "Slow stories about gardens, woods, and the people who tend them."
 accent_color = "#c8315f"
 color_scheme = "auto"
+show_scheme_toggle = true
 heading_font = "sans"
 body_font = "serif"
 latest_heading = "Latest stories"

@@ -140,9 +140,7 @@
       {%- assign o_path = "|" | append: other.path | append: "|" -%}
       {% if picked contains o_path and o_path != own_key %}
       <article class="read-more-item">
-        {% if other.feature_image != blank %}
-        <a class="read-more-image{% if other.video != blank %} is-video{% endif %}" href="/{{ other.path }}" tabindex="-1" aria-hidden="true"><img src="{{ other.feature_image.url | escape }}" alt="" loading="lazy"></a>
-        {% endif %}
+        {% include 'cover', p: other, cover_class: "read-more-image" %}
         {% include 'primary_tag', p: other %}
         <h3 class="read-more-title"><a href="/{{ other.path }}">{{ other.title | escape }}</a></h3>
         {% include 'byline', p: other %}

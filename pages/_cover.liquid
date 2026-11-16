@@ -1,0 +1,52 @@
+{%- comment -%}
+  The picture slot for post `p` in a list or grid, wrapped in a link with
+  class `cover_class`. A feature image (or a video's poster) shows as is.
+  Without one, the slot is drawn from the story itself:
+    audio: a waveform whose bars come from the story's own letters
+    link:  the linked site's name and title, like a bookmark
+    text:  the story's opening sentence, like a pull quote
+  The covers are decorative: the title and byline beside them carry the
+  meaning, so the link is hidden from assistive technology.
+{%- endcomment -%}
+{%- if p.feature_image != blank -%}
+<a class="{{ cover_class }}{% if p.video != blank %} is-video{% endif %}" href="/{{ p.path }}" tabindex="-1" aria-hidden="true">
+  <img src="{{ p.feature_image.url | escape }}" alt="" loading="lazy">
+</a>
+{%- elsif p.audio != blank -%}
+  {%- assign wf_source = p.title | append: " " | append: p.excerpt | downcase | split: "" -%}
+<a class="{{ cover_class }} cover cover-audio" href="/{{ p.path }}" tabindex="-1" aria-hidden="true">
+  <svg class="cover-wave" viewBox="0 0 128 40" preserveAspectRatio="none" focusable="false">
+    {%- for ch in wf_source limit: 32 -%}
+      {%- assign wf_before = "etaoinshrdlcumwfgypbvkjxqz" | split: ch | first -%}
+      {%- assign wf_index = wf_before | size -%}
+      {%- assign wf_height = wf_index | times: 7 | modulo: 30 | plus: 6 -%}
+      {%- assign wf_y = 40 | minus: wf_height | divided_by: 2.0 -%}
+      {%- assign wf_x = forloop.index0 | times: 4 -%}
+    <rect x="{{ wf_x }}" y="{{ wf_y }}" width="2.4" height="{{ wf_height }}" rx="1.2"/>
+    {%- endfor -%}
+  </svg>
+  <span class="cover-play"></span>
+  {%- if p.audio_title != blank -%}<span class="cover-caption">{{ p.audio_title | escape }}</span>{%- endif -%}
+</a>
+{%- elsif p.link != blank -%}
+  {%- assign cover_host = p.link | remove_first: "https://" | remove_first: "http://" | remove_first: "www." | split: "/" | first -%}
+<a class="{{ cover_class }} cover cover-link" href="/{{ p.path }}" tabindex="-1" aria-hidden="true">
+  <span class="cover-host">{{ cover_host | escape }}</span>
+  <span class="cover-link-title">{{ p.link_title | default: cover_host | escape }}</span>
+  <svg class="cover-arrow" viewBox="0 0 24 24" focusable="false"><path d="M7 17 17 7M9 7h8v8"/></svg>
+</a>
+{%- else -%}
+  {%- assign cover_text = "" -%}
+  {%- if p.content != blank -%}
+    {%- assign cover_text = p.content | newline_to_br | replace: "<br />", " " | strip_html | strip_newlines | strip | split: ". " | first -%}
+  {%- endif -%}
+  {%- if cover_text == blank -%}{%- assign cover_text = p.excerpt -%}{%- endif -%}
+  {%- if cover_text == blank -%}{%- assign cover_text = p.title -%}{%- endif -%}
+  {%- assign cover_text = cover_text | truncatewords: 16, "…" -%}
+  {%- assign cover_last = cover_text | slice: -1, 1 -%}
+  {%- if cover_last != "." and cover_last != "?" and cover_last != "!" and cover_last != "…" -%}{%- assign cover_text = cover_text | append: "." -%}{%- endif -%}
+<a class="{{ cover_class }} cover cover-quote" href="/{{ p.path }}" tabindex="-1" aria-hidden="true">
+  <span class="cover-mark">&ldquo;</span>
+  <span class="cover-quote-text">{{ cover_text | escape }}</span>
+</a>
+{%- endif -%}

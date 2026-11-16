@@ -61,11 +61,7 @@
   <div class="highlight-main">
   <p class="highlight-label">{% if marked_featured %}{{ featured_label | escape }}{% else %}{{ recent_label | escape }}{% endif %}</p>
   <article class="feature">
-    {% if featured.feature_image != blank %}
-    <a class="feature-image{% if featured.video != blank %} is-video{% endif %}" href="/{{ featured.path }}" tabindex="-1" aria-hidden="true">
-      <img src="{{ featured.feature_image.url | escape }}" alt="">
-    </a>
-    {% endif %}
+    {% include 'cover', p: featured, cover_class: "feature-image" %}
     <div class="feature-text">
       {% include 'primary_tag', p: featured %}
       {%- include 'longest', text: featured.title -%}

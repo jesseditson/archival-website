@@ -18,7 +18,7 @@ The site object:
 - color_scheme: "auto", "light" or "dark", the scheme a first-time visitor sees. Use "auto" (follow the visitor's system) unless asked.
 - show_scheme_toggle (boolean): shows a light, dark and system switch in the header so visitors can choose. Default true.
 - heading_font: "sans" or "serif". body_font: "serif" or "sans" (the article text).
-- latest_heading: the heading above the list of stories on the home page, e.g. "Latest stories". read_more_heading: the heading over related stories under each post, e.g. "Keep reading".
+- featured_heading: the label over the big lead story when a post is marked featured, e.g. "Featured". recent_heading: the label over the column of the newest stories beside it, e.g. "Latest". latest_heading: the heading over the full list of the remaining stories, e.g. "More stories". read_more_heading: the heading over related stories under each post, e.g. "Keep reading".
 - show_subscribe (boolean), subscribe_heading, subscribe_text (one or two sentences), subscribe_label (button text) and subscribe_url (the signup page on their newsletter service). Leave subscribe_url blank if you don't know it; the subscribe parts then hide.
 - [[nav]] child entries with label and url: Home ("/"), one or two tag pages ("/tag/<tag file name>") and an About link to the main author's page ("/author/<author file name>").
 - [[social]] child entries with label and url for footer links (social profiles, and "RSS" pointing to "/feed.xml").

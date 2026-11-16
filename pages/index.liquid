@@ -4,6 +4,10 @@
 {%- for post in sorted -%}
   {%- if featured == nil and post.featured == true -%}{%- assign featured = post -%}{%- endif -%}
 {%- endfor -%}
+{%- assign marked_featured = false -%}
+{%- if featured != nil -%}{%- assign marked_featured = true -%}{%- endif -%}
+{%- assign featured_label = site.featured_heading | default: "Featured" -%}
+{%- assign recent_label = site.recent_heading | default: "Latest" -%}
 {%- if featured == nil and sorted.size > 0 -%}{%- for post in sorted limit: 1 -%}{%- assign featured = post -%}{%- endfor -%}{%- endif -%}
 {%- assign used = "|" -%}
 {%- if featured != nil -%}{%- assign used = used | append: featured.path | append: "|" -%}{%- endif -%}
@@ -48,7 +52,14 @@
 </section>
 
 {% if featured != nil %}
-<section class="highlight wrap{% if stack_count == 0 %} highlight-solo{% endif %}" aria-label="Featured stories">
+{%- comment -%}
+  With a post marked featured, the big story is labeled Featured and the
+  column beside it Latest. Without one, the big story is simply the newest,
+  so it carries the Latest label and the column continues it unlabeled.
+{%- endcomment -%}
+<section class="highlight wrap{% if stack_count == 0 %} highlight-solo{% endif %}" aria-label="Top stories">
+  <div class="highlight-main">
+  <p class="highlight-label">{% if marked_featured %}{{ featured_label | escape }}{% else %}{{ recent_label | escape }}{% endif %}</p>
   <article class="feature">
     {% if featured.feature_image != blank %}
     <a class="feature-image{% if featured.video != blank %} is-video{% endif %}" href="/{{ featured.path }}" tabindex="-1" aria-hidden="true">
@@ -63,8 +74,11 @@
       {% include 'byline', p: featured %}
     </div>
   </article>
+  </div>
 
   {% if stack_count > 0 %}
+  <div class="highlight-side">
+  {% if marked_featured %}<h2 class="highlight-label">{{ recent_label | escape }}</h2>{% else %}<p class="highlight-label highlight-label-spacer" aria-hidden="true">&nbsp;</p>{% endif %}
   <div class="stack">
     {% for post in sorted %}
       {%- assign key = "|" | append: post.path | append: "|" -%}
@@ -77,6 +91,7 @@
       {% endif %}
     {% endfor %}
   </div>
+  </div>
   {% endif %}
 </section>
 {% endif %}
@@ -84,7 +99,7 @@
 {%- assign latest_count = sorted.size | minus: 1 | minus: stack_count -%}
 {% if latest_count > 0 %}
 <section class="latest wrap" aria-labelledby="latest-heading">
-  <h2 class="section-heading" id="latest-heading">{{ site.latest_heading | default: "Latest" | escape }}</h2>
+  <h2 class="section-heading" id="latest-heading">{{ site.latest_heading | default: "More stories" | escape }}</h2>
   <div class="post-list">
     {% for post in sorted %}
       {%- assign key = "|" | append: post.path | append: "|" -%}

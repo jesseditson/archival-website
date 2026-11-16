@@ -577,6 +577,29 @@ a.post-tag:hover {
   grid-template-columns: minmax(0, 1fr);
 }
 
+/* The small label over each column: Featured over the lead story, Latest
+   over the newest stories beside it. */
+.highlight-label {
+  margin: 0;
+  padding-bottom: 0.625rem;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+.highlight-label-spacer {
+  visibility: hidden;
+}
+
+@media (max-width: 55.99rem) {
+  .highlight-label-spacer {
+    display: none;
+  }
+}
+
 .feature {
   display: grid;
   gap: 1.75rem;

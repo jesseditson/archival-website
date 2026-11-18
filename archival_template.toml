@@ -3,6 +3,10 @@
 name = "Sessions"
 # One line for the gallery card, roughly ten to fifteen words.
 tagline = "A one-page booking site for wedding and portrait photographers, with prints on a table."
+# The describe box on the confirm screen.
+describe_title = "Tell us about your photography"
+describe_placeholder = "I photograph weddings and elopements around Bend, Oregon. Booking 2027 now, packages from $2,800, and I travel anywhere in the Northwest."
+describe_files = "Drop your favorite photos, your package list, a headshot"
 # The template info modal's body: what this template is and what it contains.
 description = """
 A one-page site for a wedding, elopement or portrait photographer whose site has one job: getting the next inquiry. Your name sits large at the top with a booking status you keep current ("Now booking 2027 weddings") and an Inquire button. Your photos are shown as real prints with white borders, laid slightly askew on a deep blue tabletop, each with a short handwritten caption like "Hood River, June". Below the big hero print: a short hello, your packages with starting prices, hours of coverage and what's included, a spread of recent sessions, kind words from clients, common questions that open with a tap, and a closing invitation to email you or use your booking link.

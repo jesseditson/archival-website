@@ -3,6 +3,10 @@
 name = "Café"
 # One line for the gallery card, roughly ten to fifteen words.
 tagline = "A calm one-page site for a neighborhood café, with live hours, map and menu."
+# The describe box on the confirm screen.
+describe_title = "Tell us about your café"
+describe_placeholder = "Brindle Street Coffee is a small café in Asheville, open 7 to 3 every day but Monday. Pour-over, cardamom buns and a quiet back patio."
+describe_files = "Drop your menu, photos of the room and the food, a logo"
 # The template info modal's body: what this template is and what it contains.
 description = """
 A one-page site for a neighborhood café or bakery, built to get people in the door. The name sits on a big bottle-green sign at the top, with a badge that says whether you are open right now ("Open now, until 3pm" or "Closed now, opens tomorrow at 7am"), worked out in each visitor's own time. Below it: your hours for the week with today highlighted, your address beside an interactive map, a menu set out like the little price cards in a pastry case, and a strip of photos. A holiday closure note shows ahead of time and takes itself down when you reopen. Visitors can switch between light and dark themes, and the page starts in whichever their device uses.

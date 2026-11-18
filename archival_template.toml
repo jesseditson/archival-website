@@ -14,7 +14,7 @@ Byline is for a writer-led publication: a personal essay site, a newsletter's ar
 The site object:
 - name: the publication's name, short.
 - description: one sentence about what the publication covers. It is the large line at the top of the home page and the default meta description.
-- accent_color: a hex color such as "#c8315f" used for buttons, tag labels and author initials. Choose a fairly deep color, since white text sits on it.
+- accent_color: a hex color such as "#e0115f" used for buttons, tag labels and author initials. Choose a fairly deep color, since white text sits on it.
 - color_scheme: "auto", "light" or "dark", the scheme a first-time visitor sees. Use "auto" (follow the visitor's system) unless asked.
 - show_scheme_toggle (boolean): shows a light, dark and system switch in the header so visitors can choose. Default true.
 - heading_font: "sans" or "serif". body_font: "serif" or "sans" (the article text).

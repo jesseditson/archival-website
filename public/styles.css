@@ -60,7 +60,7 @@
   --color-text: #15171a;
   --color-text-muted: #5f6670;
   --color-border: #e4e6e9;
-  --color-accent: var(--accent, #c8315f);
+  --color-accent: var(--accent, #e0115f);
   --color-accent-text: var(--color-accent);
   --color-on-accent: #ffffff;
 
@@ -264,6 +264,13 @@ main {
   font-size: 1.375rem;
   line-height: 1.1;
   text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+/* accent-text, not accent, so the name stays readable on the dark scheme */
+.brand:hover,
+.brand:focus-visible {
+  color: var(--color-accent-text);
 }
 
 .brand-logo {

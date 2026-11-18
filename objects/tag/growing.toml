@@ -1,3 +1,4 @@
 name = "Growing"
 description = "Practical notes from the beds, the greenhouse and the compost heap."
+show_in_menu = true
 order = 2

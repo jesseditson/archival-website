@@ -106,11 +106,20 @@
           {{ site_name | escape }}
           {%- endif -%}
         </a>
-        {% if site.nav.size > 0 %}
+        {%- comment -%}
+          The menu: every tag with show_in_menu, in the tags' order, then the
+          site's menu_link entries (an About page, an outside link).
+        {%- endcomment -%}
+        {%- assign menu_tags = 0 -%}
+        {%- for t in objects.tag -%}{%- if t.show_in_menu -%}{%- assign menu_tags = menu_tags | plus: 1 -%}{%- endif -%}{%- endfor -%}
+        {%- assign here = "/" | append: path -%}
+        {% if menu_tags > 0 or site.menu_link.size > 0 %}
         <nav class="site-nav" aria-label="Main">
           <ul>
-            {% for item in site.nav %}
-            {%- assign here = "/" | append: path -%}
+            {% for t in objects.tag %}{% if t.show_in_menu %}
+            <li><a href="/{{ t.path }}"{% if t.path == path %} aria-current="page"{% endif %}>{{ t.name | escape }}</a></li>
+            {% endif %}{% endfor %}
+            {% for item in site.menu_link %}
             <li><a href="{{ item.url | escape }}"{% if item.url == here %} aria-current="page"{% endif %}>{{ item.label | escape }}</a></li>
             {% endfor %}
           </ul>
@@ -149,10 +158,11 @@
           <p class="site-footer-name">{{ site_name | escape }}</p>
           {% if site.description != blank %}<p class="site-footer-description">{{ site.description | escape }}</p>{% endif %}
         </div>
-        {% if site.nav.size > 0 or site.social.size > 0 %}
+        {% if menu_tags > 0 or site.menu_link.size > 0 or site.social.size > 0 %}
         <nav class="site-footer-links" aria-label="Footer">
           <ul>
-            {% for item in site.nav %}<li><a href="{{ item.url | escape }}">{{ item.label | escape }}</a></li>{% endfor %}
+            {% for t in objects.tag %}{% if t.show_in_menu %}<li><a href="/{{ t.path }}">{{ t.name | escape }}</a></li>{% endif %}{% endfor %}
+            {% for item in site.menu_link %}<li><a href="{{ item.url | escape }}">{{ item.label | escape }}</a></li>{% endfor %}
             {% for item in site.social %}<li><a href="{{ item.url | escape }}">{{ item.label | escape }}</a></li>{% endfor %}
           </ul>
         </nav>

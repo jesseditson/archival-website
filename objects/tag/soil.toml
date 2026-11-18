@@ -1,3 +1,4 @@
 name = "Soil"
 description = "What lives under our feet, and how to keep it alive."
+show_in_menu = false
 order = 3

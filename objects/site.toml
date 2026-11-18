@@ -22,19 +22,7 @@ filename = "understory-share.jpg"
 sha = "7fbb8bc61b0d4681b2bad70e3371e5ff97db98e16fa3f44966938d44005aee87"
 mime = "image/jpeg"
 
-[[nav]]
-label = "Home"
-url = "/"
-
-[[nav]]
-label = "Field notes"
-url = "/tag/field-notes"
-
-[[nav]]
-label = "Growing"
-url = "/tag/growing"
-
-[[nav]]
+[[menu_link]]
 label = "About"
 url = "/author/maren-holt"
 

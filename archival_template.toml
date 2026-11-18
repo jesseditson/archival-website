@@ -20,7 +20,7 @@ The site object:
 - heading_font: "sans" or "serif". body_font: "serif" or "sans" (the article text).
 - featured_heading: the label over the big lead story when a post is marked featured, e.g. "Featured". recent_heading: the label over the column of the newest stories beside it, e.g. "Latest". latest_heading: the heading over the full list of the remaining stories, e.g. "More stories". read_more_heading: the heading over related stories under each post, e.g. "Keep reading".
 - show_subscribe (boolean), subscribe_heading, subscribe_text (one or two sentences), subscribe_label (button text) and subscribe_url (the signup page on their newsletter service). Leave subscribe_url blank if you don't know it; the subscribe parts then hide.
-- [[nav]] child entries with label and url: Home ("/"), one or two tag pages ("/tag/<tag file name>") and an About link to the main author's page ("/author/<author file name>").
+- [[menu_link]] child entries with label and url: extra links in the header and footer menus, after the tags shown there. Usually one About link to the main author's page ("/author/<author file name>"). Don't add tag pages here; tags join the menu with show_in_menu.
 - [[social]] child entries with label and url for footer links (social profiles, and "RSS" pointing to "/feed.xml").
 - logo, og_image and favicon are images. Leave them for the owner.
 
@@ -34,7 +34,7 @@ Each post (objects/post/<slug>.toml):
 
 Each author (objects/author/<slug>.toml): name, role (e.g. "Editor"), location, website, bio (markdown, one or two short paragraphs). avatar is an image: leave it for the owner; initials show without it.
 
-Each tag (objects/tag/<slug>.toml): name and description (one sentence). Make three to five tags and use each on at least one post.
+Each tag (objects/tag/<slug>.toml): name, description (one sentence) and show_in_menu (boolean: true puts the tag's page in the header and footer menus, in the tags' order; set it on the two or three main tags, false on the rest). Make three to five tags and use each on at least one post.
 """
 tags = ["blog", "writing", "publication", "newsletter", "magazine", "essays", "editorial", "authors"]
 tlds = ["com", "blog", "news", "press", "pub"]

@@ -24,7 +24,8 @@ subscribe_url = "string"
 og_image = "image"
 favicon = "image"
 
-[site.nav]
+# Extra menu links after the tags shown in the menu, e.g. an About page.
+[site.menu_link]
 label = "string"
 url = "string"
 
@@ -64,7 +65,9 @@ avatar = "image"
 bio = "markdown"
 template = "author"
 
+# show_in_menu puts the tag's page in the header and footer menus.
 [tag]
 name = "string"
 description = "string"
+show_in_menu = "boolean"
 template = "tag"

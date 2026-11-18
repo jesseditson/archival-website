@@ -1,3 +1,4 @@
 name = "Field notes"
 description = "Long looks at one place, one tree or one season."
+show_in_menu = true
 order = 1

@@ -20,7 +20,7 @@ name = "default"
 primary = "name"
 secondary = "description"
 
-[[site.nav.views]]
+[[site.menu_link.views]]
 name = "default"
 primary = "label"
 secondary = "url"

@@ -1,11 +1,11 @@
 order = 5
-title = "Anime.js 4.2 Released"
+title = "Lilt.js 4.2 Released"
 content = """
 Version 4.2 brings some incredible new features—spring physics, better stagger controls, and significant performance improvements. Worth checking out if you do any web animation work.
 """
 excerpt = "The animation library just got even better with spring physics and improved performance."
 date = 2024-11-08T00:00:00
-link = "https://animejs.com"
+link = "https://example.com"
 
 [[tag]]
 name = "code"

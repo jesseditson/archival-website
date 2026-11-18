@@ -1,11 +1,11 @@
 order = 9
 title = "On Creative Work"
 content = """
-> The most important thing is the thing you make next. As soon as one work is done, you move on to the next. You don't pause to wait for approval.
+> The most important print is the next one. Pull it, pin it up, and start the plate after it. Nobody is waiting to tell you it's done.
 >
-> — Rick Rubin
+> Hal Brennan, my first printmaking teacher
 """
-excerpt = "The most important thing is the thing you make next."
+excerpt = "The most important print is the next one."
 date = 2024-11-04T00:00:00
 
 [[tag]]

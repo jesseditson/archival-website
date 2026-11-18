@@ -1,11 +1,11 @@
 order = 3
 title = "On Simplicity"
 content = """
-> Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.
+> A thing is finished not when you can think of nothing to add, but when there is nothing left you would miss.
 >
-> — Antoine de Saint-Exupéry
+> Odile Marchetti, from a letter to her students
 """
-excerpt = "Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away."
+excerpt = "A thing is finished not when you can think of nothing to add, but when there is nothing left you would miss."
 date = 2024-11-10T00:00:00
 
 [[tag]]

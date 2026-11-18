@@ -54,14 +54,14 @@ answer = "Of course! Check out my full portfolio in the Photos section, or reque
 [[contact_method]]
 icon = "📧"
 label = "Email"
-value = "hello@photographica.com"
-url = "mailto:hello@photographica.com"
+value = "hello@example.com"
+url = "mailto:hello@example.com"
 
 [[contact_method]]
 icon = "📱"
 label = "Phone"
-value = "+1 (212) 555-1234"
-url = "tel:+12125551234"
+value = "+1 (212) 555-0142"
+url = "tel:+12125550142"
 
 [[contact_method]]
 icon = "📍"

@@ -1,8 +1,8 @@
 hero_title = "The Art of Visual Storytelling"
 hero_lead = "Capturing moments that transcend time and space, transforming fleeting instances into eternal memories through the lens."
 story_title = "My Journey"
-quote_text = "Photography is the story I fail to put into words."
-quote_citation = "— Destin Sparks"
+quote_text = "A photograph is the pause the rest of the day forgets."
+quote_citation = "Ines Varga"
 show_stats = true
 show_expertise = true
 show_process = true
@@ -57,22 +57,22 @@ title = "Fine Art"
 description = "Pushing creative boundaries with conceptual work that challenges perspectives."
 
 [[feature]]
-name = "National Geographic"
+name = "Northlight Quarterly"
 
 [[feature]]
-name = "Vogue"
+name = "Lumen"
 
 [[feature]]
-name = "Time Magazine"
+name = "Field & Frame"
 
 [[feature]]
-name = "Adobe"
+name = "Contact Sheet"
 
 [[feature]]
-name = "The Guardian"
+name = "The Long Exposure"
 
 [[feature]]
-name = "Rolling Stone"
+name = "Paper Lantern"
 
 [[process]]
 title = "01. Discovery"

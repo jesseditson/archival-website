@@ -1,6 +1,10 @@
 #:schema https://archival.dev/schemas/archival_template.schema.json
 name = "Tech Product"
 tagline = "A dark, one-page launch site for a startup, with glowing glass layers that move."
+# The describe box on the confirm screen.
+describe_title = "Tell us about your product"
+describe_placeholder = "Relay is an on-call scheduling tool for small engineering teams. It plugs into Slack and PagerDuty, and teams set it up in about ten minutes."
+describe_files = "Drop your logo, product screenshots, a pitch deck"
 description = """
 A one-page site for a tech startup or product team: developer tools, data platforms or software as a service. It opens on a calm, near-black screen with a large headline, two buttons, a row of key numbers and a stack of glowing glass layers drawn live in the page, with two frosted cards floating over them.
 

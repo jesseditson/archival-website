@@ -3,7 +3,8 @@
   class `cover_class`. A feature image (or a video's poster) shows as is.
   Without one, the slot is drawn from the story itself:
     audio: a waveform whose bars come from the story's own letters
-    link:  the linked site's name and title, like a bookmark
+    link:  the bookmark card the story carries, tucked into the cover,
+           so it reads as part of the story rather than a way out
     text:  the story's opening sentence, like a pull quote
   The covers are decorative: the title and byline beside them carry the
   meaning, so the link is hidden from assistive technology.
@@ -30,10 +31,19 @@
 </a>
 {%- elsif p.link != blank -%}
   {%- assign cover_host = p.link | remove_first: "https://" | remove_first: "http://" | remove_first: "www." | split: "/" | first -%}
+  {%- comment -%} The monogram is the site's own name: the label before the last dot, so en.wikipedia.org gives W. {%- endcomment -%}
+  {%- assign cover_labels = cover_host | split: "." | reverse -%}
+  {%- assign cover_initial = cover_host | slice: 0, 1 -%}
+  {%- for label in cover_labels -%}{%- if forloop.index == 2 -%}{%- assign cover_initial = label | slice: 0, 1 -%}{%- endif -%}{%- endfor -%}
 <a class="{{ cover_class }} cover cover-link" href="/{{ p.path }}" tabindex="-1" aria-hidden="true">
-  <span class="cover-host">{{ cover_host | escape }}</span>
-  <span class="cover-link-title">{{ p.link_title | default: cover_host | escape }}</span>
-  <svg class="cover-arrow" viewBox="0 0 24 24" focusable="false"><path d="M7 17 17 7M9 7h8v8"/></svg>
+  <span class="cover-clip">
+    <span class="cover-clip-mark">{{ cover_initial | upcase | escape }}</span>
+    <span class="cover-clip-title">{{ p.link_title | default: cover_host | escape }}</span>
+    <span class="cover-clip-host">{{ cover_host | escape }}</span>
+    {%- if p.link_description != blank %}
+    <span class="cover-clip-description">{{ p.link_description | escape }}</span>
+    {%- endif %}
+  </span>
 </a>
 {%- else -%}
   {%- assign cover_text = "" -%}

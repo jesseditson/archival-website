@@ -1121,50 +1121,85 @@ a.post-tag:hover {
   white-space: nowrap;
 }
 
-/* Link story: the linked page, like a bookmark */
+/* Link story: the post page's bookmark card, tucked into the cover and
+   running off its lower edge, so it reads as something inside the story. */
 .cover-link {
-  align-content: space-between;
-  padding: 8% 9%;
+  padding: 13% 11% 0;
 }
 
-.cover-host {
-  color: var(--color-accent-text);
-  font-size: clamp(0.75rem, 4.4cqi, 1rem);
-  font-weight: 600;
+.cover-clip {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-content: start;
+  column-gap: 5cqi;
+  row-gap: 1.5cqi;
+  height: 120%;
+  padding: 7cqi;
+  border: 0.0625rem solid var(--color-border);
+  border-radius: calc(var(--radius) * 2);
+  background: var(--color-background);
+  box-shadow: 0 0.5rem 1.5rem -0.75rem color-mix(in srgb, var(--color-accent) 35%, transparent);
 }
 
-.cover-link-title {
+.cover-clip-mark {
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  width: clamp(2rem, 15cqi, 3.75rem);
+  aspect-ratio: 1;
+  border-radius: var(--radius);
+  background: var(--color-accent);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: clamp(1rem, 8cqi, 2rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.cover-clip-title {
   display: -webkit-box;
   overflow: hidden;
   font-family: var(--font-heading);
-  font-size: clamp(1rem, 9cqi, 3rem);
+  font-size: clamp(0.9375rem, 6.4cqi, 1.875rem);
   font-weight: var(--heading-weight);
   letter-spacing: var(--heading-tracking);
-  line-height: 1.05;
+  line-height: 1.15;
   overflow-wrap: break-word;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
 }
 
-.cover-arrow {
-  position: absolute;
-  top: 8%;
-  right: 8%;
-  width: clamp(1.25rem, 10cqi, 2.5rem);
-  height: auto;
-  fill: none;
-  stroke: var(--color-accent);
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.cover-clip-description {
+  grid-column: 1 / -1;
+  display: -webkit-box;
+  overflow: hidden;
+  margin-top: 4cqi;
+  padding-top: 4cqi;
+  border-top: 0.0625rem solid var(--color-border);
+  color: var(--color-text-muted);
+  font-family: var(--font-article);
+  font-size: clamp(0.8125rem, 4.6cqi, 1.125rem);
+  line-height: 1.45;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.cover-clip-host {
+  overflow: hidden;
+  color: var(--color-text-muted);
+  font-size: clamp(0.75rem, 4.2cqi, 1rem);
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* Thumbnail size: one glyph, centered. A container can't query its own
    size, so these rules style the children of the small cover. */
 @container (max-width: 11rem) {
   .cover-quote-text,
-  .cover-link-title,
-  .cover-host,
+  .cover-clip-title,
+  .cover-clip-host,
+  .cover-clip-description,
   .cover-caption {
     display: none;
   }
@@ -1178,10 +1213,15 @@ a.post-tag:hover {
     padding-top: 22cqi;
   }
 
-  .cover-arrow {
-    inset: 30%;
-    width: 40%;
-    height: 40%;
+  .cover-clip {
+    grid-template-columns: auto;
+    justify-content: center;
+    padding: 9cqi 0 0;
+  }
+
+  .cover-clip-mark {
+    width: 30cqi;
+    font-size: 16cqi;
   }
 
   .cover-wave {

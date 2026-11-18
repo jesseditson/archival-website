@@ -7,7 +7,7 @@ appstore_download_link = ""
 playstore_download_link = ""
 direct_download_link = ""
 country = "United States"
-legal_email = "legal@your-app.app"
+legal_email = "legal@example.com"
 
 [logo]
 display_type = "image"

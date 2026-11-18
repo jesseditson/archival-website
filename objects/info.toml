@@ -1,15 +1,15 @@
-first_name = "Robin"
-last_name = "Collette"
-business_name = "Robin Therapy, LLC"
+first_name = "Nora"
+last_name = "Quillen"
+business_name = "Quillen Therapy, LLC"
 title = "Licensed Therapist"
 location = "Oakland, CA"
 description = "Compassionate, evidence-based therapy for individuals navigating anxiety, OCD, and life transitions."
 about = """
-It's nice to meet you. I am a professional therapist in Atlanta, GA. I believe that through doing work together, you can gain the things that you love the most back. You can move from feeling stuck, tired, and confused to feeling free, energized, and hopeful. I love what I do, because I see it work over and over again.
+It's nice to meet you. I am a licensed therapist in Oakland, CA. I believe that, working together, you can get back the parts of your life that anxiety has crowded out. You can move from feeling stuck, tired, and confused to feeling steady, rested, and hopeful. I love this work, because I watch it help, week after week.
 
-I support my clients by being straightforward and direct, offering encouragement and giving a clear idea of what the next steps are for you to take. Working with OCD is difficult and I bring much needed laughter to sessions.
+I support my clients by being clear and direct, offering encouragement, and making sure you always know what your next step is. Working through OCD is hard, and there is still plenty of room for laughter in our sessions.
 
-I teach you how to understand your OCD and anxiety and will fight some of your fears with you, until eventually I can stand aside and cheer you on as you do the work. I'm in the business of empowering you by teaching you the therapy, doing it together, then eventually seeing you do it all on your own.
+I'll help you understand how your OCD and anxiety work, and I'll face some of those fears alongside you, until I can step back and cheer you on as you do the work. My goal is to teach you the tools, practice them with you, and then watch you use them on your own.
 """
 
 [image]

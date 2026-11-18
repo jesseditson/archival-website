@@ -3,6 +3,10 @@
 name = "Series"
 # One line for the gallery card, roughly ten to fifteen words.
 tagline = "A contact sheet for documentary and fine-art photographers who work in series."
+# The describe box on the confirm screen.
+describe_title = "Tell us about your work"
+describe_placeholder = "I'm a documentary photographer in Detroit. Three series so far: river towns, night shift workers and my grandmother's kitchen."
+describe_files = "Drop photos from each series, an artist statement, your CV"
 # The template info modal's body: what this template is and what it contains.
 description = """
 A site for a documentary or fine-art photographer who thinks in bodies of work, not single shots. The home page is a contact sheet: each series is a large title with its place and year, over a strip of film that runs off the edge of the page with its frame numbers printed along the edge. Each series opens on its own page with a short statement, then one photograph per screen in sequence, numbered and captioned. The home page also carries your statement, a list of exhibitions, books and press, and how to reach you. The rest stays quiet: a white wall, narrow precise type, nothing competing with the pictures.

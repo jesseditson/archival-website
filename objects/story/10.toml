@@ -18,7 +18,7 @@ The problem is that mesh networks don't respect property lines. A Sidewalk-enabl
 
 ## What Gets Captured
 
-Security researchers at the University of Michigan tested a standard smart home setup in a multifamily building and found that devices routinely captured ambient audio, motion data, and network identifiers from adjacent units. In some configurations, a single Echo device could detect occupancy patterns — when people came and went, how many were present, even rough sleep schedules — for up to three neighboring apartments.
+Security researchers at a Midwestern university tested a standard smart home setup in a multifamily building and found that devices routinely captured ambient audio, motion data, and network identifiers from adjacent units. In some configurations, a single Echo device could detect occupancy patterns — when people came and went, how many were present, even rough sleep schedules — for up to three neighboring apartments.
 
 "The technical term is data leakage," said Dr. Anika Patel, who led the study. "But what it really means is that your neighbor's smart speaker is doing passive surveillance on you, and neither of you knows it."
 

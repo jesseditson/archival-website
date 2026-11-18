@@ -12,7 +12,7 @@ The maintainer of a widely used open-source logging library received 47 pull req
 
 ## The Scale of the Problem
 
-Maintainers across the open-source ecosystem are reporting similar patterns. A survey conducted by the Open Source Initiative in January found that 61 percent of projects with more than 500 stars on GitHub had experienced what maintainers described as a notable increase in AI-generated contribution attempts. Most of these submissions are from users who appear to be using coding assistants to generate contributions to projects they do not fully understand, in some cases to fulfill learning challenges or course assignments that require open-source participation.
+Maintainers across the open-source ecosystem are reporting similar patterns. A survey of open-source maintainers conducted in January found that 61 percent of projects with more than 500 stars on GitHub had experienced what maintainers described as a notable increase in AI-generated contribution attempts. Most of these submissions are from users who appear to be using coding assistants to generate contributions to projects they do not fully understand, in some cases to fulfill learning challenges or course assignments that require open-source participation.
 
 The problem is not limited to inexperienced contributors. Several projects have identified AI-generated code in pull requests from accounts with established histories, suggesting that experienced developers are also using language models to speed up contribution workflows — sometimes without adequately reviewing the output.
 
@@ -20,7 +20,7 @@ The problem is not limited to inexperienced contributors. Several projects have 
 
 Responses have varied from the pragmatic to the drastic. Some maintainers have added contribution guidelines explicitly discouraging or requiring disclosure of AI-assisted code. Others have closed their repositories to outside contributions entirely, a decision that sacrifices community engagement for sustainability.
 
-The Linux kernel project updated its submission policy in January to require that contributors certify they have personally reviewed and tested any AI-generated code they submit. Several major foundations are drafting similar language.
+One of the largest operating system projects updated its submission policy in January to require that contributors certify they have personally reviewed and tested any AI-generated code they submit. Several major foundations are drafting similar language.
 
 ## The Harder Question
 

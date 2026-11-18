@@ -1,11 +1,11 @@
-name = "Alana King"
+name = "Alana Voss"
 bio = """
 Alana is a senior technology reporter with over 8 years of experience covering the intersection 
 of technology and culture. They specialize in consumer electronics and digital privacy.
 """
-twitter = "https://twitter.com/alanaking"
+twitter = "https://twitter.com/"
 linkedin = ""
-instagram = "https://instagram.com/alanaking"
+instagram = "https://instagram.com/"
 
 [avatar]
 sha = "f5da624a508f44c5270f1a1f80b7bf28e0f11e33e1840fb130d3145ad8ca383e"

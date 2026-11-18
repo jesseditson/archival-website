@@ -1,13 +1,13 @@
-title = "The Verge Podcast"
+title = "The Long Signal"
 subtitle = "We cover all kinds of categories and a weekly special guest."
 description = """
-The Verge Podcast brings you the latest in technology, culture, and everything in between. 
+The Long Signal brings you the latest in technology, culture, and everything in between. 
 Join our hosts as they dive deep into the stories that matter most in our digital world.
 """
 logo = "/images/podcast-logo.png"
-website_url = "https://theverge.com"
-email = "podcast@theverge.com"
+website_url = "https://example.com"
+email = "podcast@example.com"
 language = "en-us"
 category = "Technology"
 explicit = false
-author = "The Verge Podcast"
+author = "The Long Signal"

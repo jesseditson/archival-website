@@ -1,6 +1,10 @@
 #:schema https://archival.dev/schemas/archival_template.schema.json
 name = "Byline"
 tagline = "An editorial publication with featured stories, author pages, tags and a newsletter signup."
+# The describe box on the confirm screen.
+describe_title = "Tell us about your publication"
+describe_placeholder = "The Tidewater Ledger covers food and local politics on the Virginia coast. Three writers, a story a week and a Friday newsletter."
+describe_files = "Drop a few stories, author photos, a logo"
 description = """
 Byline is a clean, magazine-style home for a writer or a small team. The front page leads with one featured story in large type beside a short stack of recent ones, then lists everything else newest first. Every story gets a focused reading page with its tag, author byline, reading time, a wide feature image or video, an audio player, wide inline photos with captions, link cards, and a "keep reading" row of related stories.
 
